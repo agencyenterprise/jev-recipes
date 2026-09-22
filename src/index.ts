@@ -169,6 +169,17 @@ export type {
   CitationNeededResult,
   CitationNeededVerdict,
 } from '../recipes/citation-needed/index.js';
+export {
+  claimStance,
+  claimStanceInputSchema,
+  claimStanceResultSchema,
+  claimStanceVerdictSchema,
+} from '../recipes/claim-stance/index.js';
+export type {
+  ClaimStanceInput,
+  ClaimStanceResult,
+  ClaimStanceVerdict,
+} from '../recipes/claim-stance/index.js';
 export { clarify, clarifyInputSchema, clarifyResultSchema } from '../recipes/clarify/index.js';
 export type {
   ClarifyInput,
@@ -187,6 +198,17 @@ export type {
   ConfirmationMatchResult,
   ConfirmationMatchVerdict,
 } from '../recipes/confirmation-match/index.js';
+export {
+  constraintStrength,
+  constraintStrengthInputSchema,
+  constraintStrengthResultSchema,
+  constraintStrengthVerdictSchema,
+} from '../recipes/constraint-strength/index.js';
+export type {
+  ConstraintStrengthInput,
+  ConstraintStrengthResult,
+  ConstraintStrengthVerdict,
+} from '../recipes/constraint-strength/index.js';
 export {
   contextRole,
   contextRoleInputSchema,
@@ -326,6 +348,17 @@ export {
   incidentMatchResultSchema,
 } from '../recipes/incident-match/index.js';
 export type { IncidentMatchInput, IncidentMatchResult } from '../recipes/incident-match/index.js';
+export {
+  instructionConflict,
+  instructionConflictInputSchema,
+  instructionConflictResultSchema,
+  instructionConflictVerdictSchema,
+} from '../recipes/instruction-conflict/index.js';
+export type {
+  InstructionConflictInput,
+  InstructionConflictResult,
+  InstructionConflictVerdict,
+} from '../recipes/instruction-conflict/index.js';
 export {
   instructionFit,
   instructionFitInputSchema,
@@ -476,6 +509,17 @@ export type {
   ReplyTemplateMatchInput,
   ReplyTemplateMatchResult,
 } from '../recipes/reply-template-match/index.js';
+export {
+  requirementTestability,
+  requirementTestabilityInputSchema,
+  requirementTestabilityResultSchema,
+  requirementTestabilityVerdictSchema,
+} from '../recipes/requirement-testability/index.js';
+export type {
+  RequirementTestabilityInput,
+  RequirementTestabilityResult,
+  RequirementTestabilityVerdict,
+} from '../recipes/requirement-testability/index.js';
 export { rerank, rerankInputSchema, rerankResultSchema } from '../recipes/rerank/index.js';
 export type { RerankInput, RerankItem, RerankResult } from '../recipes/rerank/index.js';
 export {
@@ -579,6 +623,28 @@ export type {
   SummaryCoverageResult,
   SummaryCoverageVerdict,
 } from '../recipes/summary-coverage/index.js';
+export {
+  taskDependency,
+  taskDependencyInputSchema,
+  taskDependencyResultSchema,
+  taskDependencyVerdictSchema,
+} from '../recipes/task-dependency/index.js';
+export type {
+  TaskDependencyInput,
+  TaskDependencyResult,
+  TaskDependencyVerdict,
+} from '../recipes/task-dependency/index.js';
+export {
+  taskDuplicate,
+  taskDuplicateInputSchema,
+  taskDuplicateResultSchema,
+  taskDuplicateVerdictSchema,
+} from '../recipes/task-duplicate/index.js';
+export type {
+  TaskDuplicateInput,
+  TaskDuplicateResult,
+  TaskDuplicateVerdict,
+} from '../recipes/task-duplicate/index.js';
 export {
   ticketMatch,
   ticketMatchInputSchema,

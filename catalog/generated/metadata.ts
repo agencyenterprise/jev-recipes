@@ -25,7 +25,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     description:
       'Do firstStatement and secondStatement make compatible claims about the same subject and circumstances?',
     category: 'answer-quality',
-    tags: ['answer-quality', 'answer', 'consistency', 'rag', 'evidence'],
+    tags: ['answer-quality', 'answer', 'consistency', 'rag', 'evidence', 'alignment-research'],
     limitations: [
       'Checks semantic consistency between two statements. Exact numeric and date comparisons belong in code.',
     ],
@@ -200,7 +200,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     title: 'Check certainty wording',
     description: 'Does the certainty expressed in draft match assessment?',
     category: 'answer-quality',
-    tags: ['answer-quality', 'certainty', 'match', 'rag', 'evidence'],
+    tags: ['answer-quality', 'certainty', 'match', 'rag', 'evidence', 'alignment-research'],
     limitations: [
       'Compares wording with a supplied assessment. It does not calibrate probabilities or establish the assessment itself.',
     ],
@@ -261,6 +261,43 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'claim-stance',
+    title: "Label a response's stance toward a claim",
+    description:
+      'Label whether a response affirms, denies, mixes positions on, or does not address a supplied claim.',
+    category: 'answer-quality',
+    tags: [
+      'claim',
+      'stance',
+      'agreement',
+      'disagreement',
+      'annotation',
+      'sycophancy',
+      'alignment-research',
+    ],
+    limitations: [
+      'Labels only the expressed stance toward one supplied claim. It does not infer beliefs, intention, deception, or alignment from text.',
+      'A single agreement label does not establish sycophancy. Research use requires controlled comparisons and independent validation of the labels.',
+    ],
+    useWhen:
+      'You need to label whether a response agrees or disagrees with a claim, including in AI alignment research.',
+    related: [
+      {
+        id: 'verify',
+        reason:
+          'Use verify to check whether a claim is supported by evidence; stance does not establish truth.',
+      },
+      {
+        id: 'answer-consistency',
+        reason: 'Use answer-consistency to compare the compatibility of two statements.',
+      },
+      {
+        id: 'draft-compare',
+        reason: 'Use draft-compare for a preference between two responses under a supplied rubric.',
+      },
+    ],
+  },
+  {
     id: 'clarify',
     title: 'Check required information',
     description: 'Identify missing or ambiguous information before proceeding.',
@@ -293,6 +330,45 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'cancellation-check',
         reason: 'Use cancellation-check to assess instructions to stop or pause a task.',
+      },
+    ],
+  },
+  {
+    id: 'constraint-strength',
+    title: 'Distinguish requirements from preferences',
+    description: 'Classify a stated constraint as required, preferred, optional, or unclear.',
+    category: 'conversation',
+    tags: [
+      'constraint',
+      'requirement',
+      'preference',
+      'optional',
+      'mandatory',
+      'must',
+      'should',
+      'hard',
+      'soft',
+    ],
+    limitations: [
+      'Reports how the supplied wording presents a constraint; it does not establish authority, consent, or permission.',
+      'Evaluate one constraint at a time. Split mixed requirements in caller code before comparing their strength.',
+    ],
+    useWhen:
+      'You need to distinguish a hard requirement from a preference or an optional suggestion.',
+    related: [
+      {
+        id: 'preference-kind',
+        reason:
+          'Use preference-kind to distinguish lasting preferences from facts and temporary requests.',
+      },
+      {
+        id: 'instruction-fit',
+        reason:
+          'Use instruction-fit to decide whether the constraint applies in the current circumstances.',
+      },
+      {
+        id: 'instruction-conflict',
+        reason: 'Use instruction-conflict to compare the requirements of two instructions.',
       },
     ],
   },
@@ -348,7 +424,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     title: 'Compare two drafts',
     description: 'Which draft better satisfies request under rubric?',
     category: 'answer-quality',
-    tags: ['answer-quality', 'draft', 'compare', 'rag', 'evidence'],
+    tags: ['answer-quality', 'draft', 'compare', 'rag', 'evidence', 'alignment-research'],
     limitations: [
       'Makes a relative judgment against your rubric. A preferred draft can still contain unsupported facts.',
     ],
@@ -550,6 +626,29 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
     useWhen: 'You need to connect a support ticket to a supplied known incident.',
     related: [{ id: 'ticket-match', reason: 'Use ticket-match to compare two tickets directly.' }],
+  },
+  {
+    id: 'instruction-conflict',
+    title: 'Check instructions for conflict',
+    description:
+      'Decide whether two instructions can both be followed under the supplied circumstances.',
+    category: 'workflow',
+    tags: ['instructions', 'conflict', 'contradiction', 'requirements', 'rules', 'compatible'],
+    limitations: [
+      'Assesses compatibility of supplied instructions only; does not establish their authority or choose which one wins.',
+      'Does not enforce permissions or execute instructions. The caller resolves conflicts before acting.',
+    ],
+    useWhen: 'You need to detect conflicting instructions before carrying out a task.',
+    related: [
+      {
+        id: 'instruction-fit',
+        reason: 'Use instruction-fit to decide whether one instruction applies to a task.',
+      },
+      {
+        id: 'answer-consistency',
+        reason: 'Use answer-consistency to compare factual claims rather than required behavior.',
+      },
+    ],
   },
   {
     id: 'instruction-fit',
@@ -792,6 +891,40 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'requirement-testability',
+    title: 'Check whether a requirement is testable',
+    description:
+      'Decide whether a requirement defines an observable way to distinguish meeting it from failing it.',
+    category: 'knowledge',
+    tags: [
+      'requirement',
+      'testable',
+      'testability',
+      'acceptance',
+      'criteria',
+      'measurable',
+      'observable',
+      'specification',
+    ],
+    limitations: [
+      'Assesses the wording and supplied definitions; does not generate tests, prove feasibility, or inspect an implementation.',
+      'Exact measurements and pass/fail calculations belong in application code.',
+    ],
+    useWhen:
+      'You need to check whether a requirement has clear, observable acceptance criteria before building it.',
+    related: [
+      {
+        id: 'step-complete',
+        reason:
+          'Use step-complete to check evidence against a condition that has already been defined.',
+      },
+      {
+        id: 'clarify',
+        reason: 'Use clarify to find missing information across a supplied list of requirements.',
+      },
+    ],
+  },
+  {
     id: 'rerank',
     title: 'Rerank evidence',
     description: 'Select candidate passages by relevance to a query.',
@@ -934,7 +1067,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     title: 'Check one completion condition',
     description: 'Does evidence establish that condition has been met?',
     category: 'workflow',
-    tags: ['workflow', 'step', 'complete'],
+    tags: ['workflow', 'step', 'complete', 'alignment-research'],
     limitations: [
       'Assesses supplied evidence for one condition. Use exact system state checks when the condition can be determined in code.',
     ],
@@ -978,6 +1111,58 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'answer-coverage',
         reason: 'Use answer-coverage when the checklist contains questions to answer.',
+      },
+    ],
+  },
+  {
+    id: 'task-dependency',
+    title: 'Check the dependency between two tasks',
+    description:
+      'Identify whether either of two tasks requires the other to finish before it can start.',
+    category: 'workflow',
+    tags: ['tasks', 'dependency', 'prerequisite', 'order', 'parallel', 'planning', 'sequence'],
+    limitations: [
+      'Assesses only the supplied pair and prerequisites; does not build or validate a complete dependency graph.',
+      "Independence of prerequisites does not establish that parallel execution is safe: shared resources, locks, permissions, and scheduling remain the caller's responsibility.",
+    ],
+    useWhen:
+      'You need to decide whether two tasks can run in parallel or require a particular order.',
+    related: [
+      {
+        id: 'task-duplicate',
+        reason: 'Use task-duplicate to detect repeated outcomes before scheduling tasks.',
+      },
+      {
+        id: 'step-complete',
+        reason:
+          'Use step-complete to check whether evidence establishes a known prerequisite is already satisfied.',
+      },
+    ],
+  },
+  {
+    id: 'task-duplicate',
+    title: 'Compare tasks for duplicate work',
+    description:
+      'Decide whether two tasks request the same outcome, overlapping work, or distinct work.',
+    category: 'workflow',
+    tags: ['tasks', 'duplicate', 'overlap', 'queue', 'deduplicate', 'planning', 'same', 'outcome'],
+    limitations: [
+      'Assesses described work only; does not merge queue entries, cancel tasks, or prove that an external action is safe to repeat.',
+      'Shared topics or similar titles are insufficient to establish duplicate work.',
+    ],
+    useWhen: 'You need to detect duplicate tasks before adding more work to a queue or plan.',
+    related: [
+      {
+        id: 'repeated-attempt',
+        reason: 'Use repeated-attempt to compare the methods of two attempts toward one objective.',
+      },
+      {
+        id: 'task-dependency',
+        reason: 'Use task-dependency to check whether one task must finish before another starts.',
+      },
+      {
+        id: 'ticket-match',
+        reason: 'Use ticket-match to compare reported issues rather than requested work.',
       },
     ],
   },
@@ -1108,7 +1293,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     title: 'Verify claims',
     description: 'Check each supplied claim against its paired evidence.',
     category: 'retrieval',
-    tags: ['rag', 'grounding', 'claims'],
+    tags: ['rag', 'grounding', 'claims', 'alignment-research'],
     limitations: [
       'Checks only supplied claims; does not establish source truth or completeness.',
       'Provide 1 to 100 claims with unique IDs.',

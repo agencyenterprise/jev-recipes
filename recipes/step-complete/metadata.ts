@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Check one completion condition',
   description: 'Does evidence establish that condition has been met?',
   category: 'workflow',
-  tags: ['workflow', 'step', 'complete'],
+  tags: ['workflow', 'step', 'complete', 'alignment-research'],
   useWhen: 'You need to check whether supplied evidence establishes a completion condition.',
   related: [
     {

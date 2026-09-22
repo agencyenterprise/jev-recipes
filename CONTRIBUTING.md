@@ -2,6 +2,8 @@
 
 Keep each recipe focused on one bounded decision. Prefer a direct function and the existing shared helpers. Applications compose recipes in their own code.
 
+The [recipe roadmap](RECIPE_ROADMAP.md) records the current gap review and adoption experiments. Before adding a recipe, identify its nearest existing alternative and explain the distinct decision. The [AI alignment research guide](docs/ai-alignment-research.md) separates behavioral annotation from claims that require an experiment.
+
 ## Everyday commands
 
 Requires Node.js 22.9 or newer. Make is optional; every task has an npm equivalent. The Makefile works with GNU Make 3.81 and newer and is only for contributors.

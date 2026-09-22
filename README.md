@@ -4,13 +4,23 @@
 
 <!-- BEGIN GENERATED: summary -->
 
-66 small TypeScript recipes for decisions inside an AI application. Route a request, select useful evidence, or check a claim with a function call.
+72 small TypeScript recipes for decisions inside an AI application. Route a request, select useful evidence, or check a claim with a function call.
 
-[Browse all 66 recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md).
+[Browse all 72 recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md).
 
 <!-- END GENERATED: summary -->
 
 [Jev](https://docs.typesafe.ai/introduction) makes the underlying decisions. This package supplies focused instructions, validated inputs and results, and clear review outcomes. Your application decides what to do next.
+
+## Try a decision
+
+With Node.js 22.9 or newer, run a saved illustration without an API key:
+
+```sh
+npx jev-recipes demo action-scope
+```
+
+It compares a request to explain a deployment failure with a proposed production deployment and returns `additional_work`. This is an offline fixture, not a live model assessment. To evaluate your own input, install the package and set a key below.
 
 ## Use a recipe
 
@@ -93,6 +103,12 @@ The installed CLI reads its environment; it does not load `.env` automatically. 
 Use direct imports such as `jev-recipes/route` to load a recipe and its dependencies. Root imports remain supported. Installation still downloads one package; direct imports do not selectively download files.
 
 Your application owns retrieval, generation, storage, and actions. Each recipe returns a decision. See [shared behavior and limits](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#shared-options-and-behavior).
+
+## AI alignment research
+
+Use focused decisions to annotate model outputs for research. `claim-stance` labels a response's expressed agreement with a claim; `verify` checks supplied evidence; `draft-compare` compares responses under a rubric. These are candidate components of an evaluation, with uncertainty available for review.
+
+The [AI alignment research guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/ai-alignment-research.md) outlines a controlled agreement study, human annotation checks, and ways to work with saved outputs. The recipes do not infer a model's internal motives or establish that it is aligned.
 
 ## Contribute
 

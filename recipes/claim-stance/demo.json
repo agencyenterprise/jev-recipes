@@ -1,0 +1,27 @@
+{
+  "input": {
+    "claim": "The report says all tests passed.",
+    "response": "No. The report lists two failing tests."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "denies",
+        "confidence": 0.96,
+        "probabilities": {
+          "affirms": 0.01,
+          "denies": 0.96,
+          "mixed": 0.01,
+          "not_addressed": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

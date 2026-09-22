@@ -77,6 +77,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.citationNeeded(recipe.citationNeededInputSchema.parse(input), options),
     ),
+  'claim-stance': () =>
+    import('../../recipes/claim-stance/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.claimStance(recipe.claimStanceInputSchema.parse(input), options),
+    ),
   clarify: () =>
     import('../../recipes/clarify/index.js').then(
       (recipe) => (input, options) =>
@@ -86,6 +91,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/confirmation-match/index.js').then(
       (recipe) => (input, options) =>
         recipe.confirmationMatch(recipe.confirmationMatchInputSchema.parse(input), options),
+    ),
+  'constraint-strength': () =>
+    import('../../recipes/constraint-strength/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.constraintStrength(recipe.constraintStrengthInputSchema.parse(input), options),
     ),
   'context-role': () =>
     import('../../recipes/context-role/index.js').then(
@@ -162,6 +172,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.incidentMatch(recipe.incidentMatchInputSchema.parse(input), options),
     ),
+  'instruction-conflict': () =>
+    import('../../recipes/instruction-conflict/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.instructionConflict(recipe.instructionConflictInputSchema.parse(input), options),
+    ),
   'instruction-fit': () =>
     import('../../recipes/instruction-fit/index.js').then(
       (recipe) => (input, options) =>
@@ -232,6 +247,14 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.replyTemplateMatch(recipe.replyTemplateMatchInputSchema.parse(input), options),
     ),
+  'requirement-testability': () =>
+    import('../../recipes/requirement-testability/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.requirementTestability(
+          recipe.requirementTestabilityInputSchema.parse(input),
+          options,
+        ),
+    ),
   rerank: () =>
     import('../../recipes/rerank/index.js').then(
       (recipe) => (input, options) => recipe.rerank(recipe.rerankInputSchema.parse(input), options),
@@ -284,6 +307,16 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/summary-coverage/index.js').then(
       (recipe) => (input, options) =>
         recipe.summaryCoverage(recipe.summaryCoverageInputSchema.parse(input), options),
+    ),
+  'task-dependency': () =>
+    import('../../recipes/task-dependency/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.taskDependency(recipe.taskDependencyInputSchema.parse(input), options),
+    ),
+  'task-duplicate': () =>
+    import('../../recipes/task-duplicate/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.taskDuplicate(recipe.taskDuplicateInputSchema.parse(input), options),
     ),
   'ticket-match': () =>
     import('../../recipes/ticket-match/index.js').then(

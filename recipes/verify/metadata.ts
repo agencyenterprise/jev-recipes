@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Verify claims',
   description: 'Check each supplied claim against its paired evidence.',
   category: 'retrieval',
-  tags: ['rag', 'grounding', 'claims'],
+  tags: ['rag', 'grounding', 'claims', 'alignment-research'],
   useWhen: 'You need to know whether a claim is supported by its supplied evidence.',
   related: [
     {

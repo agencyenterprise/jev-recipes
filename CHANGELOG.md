@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add six focused recipes: `instruction-conflict`, `task-dependency`, `task-duplicate`, `constraint-strength`, `requirement-testability`, and `claim-stance`.
+- Add a catalog growth roadmap, an AI alignment research protocol, research discovery tags, and an offline first-use command in the README.
+
 - Generate exports, catalog data, schema descriptions, and documentation from recipe folders; add authoring checks and a recipe scaffold.
 - Add usage guidance and related recipes to the catalog, ranked search, optional search limits, and lazy recipe loading.
 - Add Make commands and offline tooling checks, including a 1,000-entry capacity exercise and installation of the actual npm archive.

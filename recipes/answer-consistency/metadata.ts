@@ -6,7 +6,7 @@ export const metadata = {
   description:
     'Do firstStatement and secondStatement make compatible claims about the same subject and circumstances?',
   category: 'answer-quality',
-  tags: ['answer-quality', 'answer', 'consistency', 'rag', 'evidence'],
+  tags: ['answer-quality', 'answer', 'consistency', 'rag', 'evidence', 'alignment-research'],
   useWhen: 'You need to check whether two statements agree under the same conditions.',
   related: [
     {

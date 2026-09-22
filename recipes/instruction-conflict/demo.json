@@ -1,0 +1,27 @@
+{
+  "input": {
+    "firstInstruction": "Send the report as a PDF attachment.",
+    "secondInstruction": "Send the report only as plain text in the email body; do not attach any files.",
+    "context": "Both instructions apply to the same outgoing report email."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "conflicting",
+        "confidence": 0.96,
+        "probabilities": {
+          "compatible": 0.013333333333333334,
+          "conflicting": 0.96,
+          "different_scope": 0.013333333333333334,
+          "unclear": 0.013333333333333334
+        }
+      }
+    }
+  }
+}

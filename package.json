@@ -84,6 +84,10 @@
       "types": "./dist/recipes/citation-needed/index.d.ts",
       "import": "./dist/recipes/citation-needed/index.js"
     },
+    "./claim-stance": {
+      "types": "./dist/recipes/claim-stance/index.d.ts",
+      "import": "./dist/recipes/claim-stance/index.js"
+    },
     "./clarify": {
       "types": "./dist/recipes/clarify/index.d.ts",
       "import": "./dist/recipes/clarify/index.js"
@@ -91,6 +95,10 @@
     "./confirmation-match": {
       "types": "./dist/recipes/confirmation-match/index.d.ts",
       "import": "./dist/recipes/confirmation-match/index.js"
+    },
+    "./constraint-strength": {
+      "types": "./dist/recipes/constraint-strength/index.d.ts",
+      "import": "./dist/recipes/constraint-strength/index.js"
     },
     "./context-role": {
       "types": "./dist/recipes/context-role/index.d.ts",
@@ -152,6 +160,10 @@
       "types": "./dist/recipes/incident-match/index.d.ts",
       "import": "./dist/recipes/incident-match/index.js"
     },
+    "./instruction-conflict": {
+      "types": "./dist/recipes/instruction-conflict/index.d.ts",
+      "import": "./dist/recipes/instruction-conflict/index.js"
+    },
     "./instruction-fit": {
       "types": "./dist/recipes/instruction-fit/index.d.ts",
       "import": "./dist/recipes/instruction-fit/index.js"
@@ -208,6 +220,10 @@
       "types": "./dist/recipes/reply-template-match/index.d.ts",
       "import": "./dist/recipes/reply-template-match/index.js"
     },
+    "./requirement-testability": {
+      "types": "./dist/recipes/requirement-testability/index.d.ts",
+      "import": "./dist/recipes/requirement-testability/index.js"
+    },
     "./rerank": {
       "types": "./dist/recipes/rerank/index.d.ts",
       "import": "./dist/recipes/rerank/index.js"
@@ -251,6 +267,14 @@
     "./summary-coverage": {
       "types": "./dist/recipes/summary-coverage/index.d.ts",
       "import": "./dist/recipes/summary-coverage/index.js"
+    },
+    "./task-dependency": {
+      "types": "./dist/recipes/task-dependency/index.d.ts",
+      "import": "./dist/recipes/task-dependency/index.js"
+    },
+    "./task-duplicate": {
+      "types": "./dist/recipes/task-duplicate/index.d.ts",
+      "import": "./dist/recipes/task-duplicate/index.js"
     },
     "./ticket-match": {
       "types": "./dist/recipes/ticket-match/index.d.ts",

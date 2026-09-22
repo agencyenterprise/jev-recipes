@@ -1,0 +1,27 @@
+{
+  "input": {
+    "firstTask": "Write a summary of the supplied onboarding guide for new hires.",
+    "secondTask": "Summarize the same supplied onboarding guide for new hires and translate the summary into Spanish.",
+    "context": "Both tasks require the same English summary; only the second also requires a Spanish translation."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "overlapping",
+        "confidence": 0.96,
+        "probabilities": {
+          "duplicate": 0.013333333333333334,
+          "overlapping": 0.96,
+          "distinct": 0.013333333333333334,
+          "unclear": 0.013333333333333334
+        }
+      }
+    }
+  }
+}

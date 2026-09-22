@@ -1,0 +1,25 @@
+{
+  "input": {
+    "statement": "Prefer a CSV export, but JSON is fine if that is easier."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "preferred",
+        "confidence": 0.96,
+        "probabilities": {
+          "required": 0.013333333333333334,
+          "preferred": 0.96,
+          "optional": 0.013333333333333334,
+          "unclear": 0.013333333333333334
+        }
+      }
+    }
+  }
+}

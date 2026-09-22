@@ -1,0 +1,24 @@
+{
+  "input": {
+    "requirement": "The dashboard should load quickly."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "not_testable",
+        "confidence": 0.96,
+        "probabilities": {
+          "testable": 0.02,
+          "not_testable": 0.96,
+          "unclear": 0.02
+        }
+      }
+    }
+  }
+}

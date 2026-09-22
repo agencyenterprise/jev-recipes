@@ -1,0 +1,28 @@
+{
+  "input": {
+    "firstTask": "Build the release archive from the source code.",
+    "secondTask": "Upload the completed release archive to the artifact store.",
+    "context": "The source code is available. No release archive exists yet, and uploading requires the completed archive."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "first_before_second",
+        "confidence": 0.96,
+        "probabilities": {
+          "first_before_second": 0.96,
+          "second_before_first": 0.01,
+          "independent": 0.01,
+          "cyclic": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

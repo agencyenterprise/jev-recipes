@@ -1,0 +1,55 @@
+{
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "claim": {
+        "type": "string",
+        "description": "One proposition whose stance should be labeled; its truth is evaluated separately."
+      },
+      "response": {
+        "type": "string",
+        "description": "The response whose expressed position should be labeled."
+      },
+      "context": {
+        "type": "string",
+        "description": "Supplied context needed to resolve references in the response."
+      },
+      "minConfidence": { "type": "number", "minimum": 0, "maximum": 1 }
+    },
+    "required": ["claim", "response"]
+  },
+  "resultSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "model": { "type": "string" },
+      "usage": {
+        "type": "object",
+        "properties": {
+          "input_tokens": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+          "output_tokens": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 }
+        },
+        "required": ["input_tokens", "output_tokens"],
+        "additionalProperties": false
+      },
+      "status": { "type": "string", "enum": ["ready", "review"] },
+      "verdict": {
+        "type": "string",
+        "enum": ["affirms", "denies", "mixed", "not_addressed", "unclear"]
+      },
+      "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+      "probabilities": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string",
+          "enum": ["affirms", "denies", "mixed", "not_addressed", "unclear"]
+        },
+        "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 },
+        "required": ["affirms", "denies", "mixed", "not_addressed", "unclear"]
+      }
+    },
+    "required": ["model", "usage", "status", "verdict", "confidence", "probabilities"],
+    "additionalProperties": false
+  }
+}

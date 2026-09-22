@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Compare two drafts',
   description: 'Which draft better satisfies request under rubric?',
   category: 'answer-quality',
-  tags: ['answer-quality', 'draft', 'compare', 'rag', 'evidence'],
+  tags: ['answer-quality', 'draft', 'compare', 'rag', 'evidence', 'alignment-research'],
   useWhen: 'You have two drafts and want to choose the better fit for a request and rubric.',
   related: [
     {

@@ -33,6 +33,21 @@ test('search finds task wording and supports category and limit without truncati
   assert.equal(listRecipes({ query: 'claim supported', limit: 1 })[0].id, 'verify');
   assert.equal(listRecipes({ query: 'stop pause', limit: 1 })[0].id, 'cancellation-check');
   assert.equal(listRecipes({ query: 'writing criteria', limit: 1 })[0].id, 'tone-check');
+  assert.equal(listRecipes({ query: 'duplicate tasks', limit: 1 })[0].id, 'task-duplicate');
+  assert.equal(listRecipes({ query: 'tasks parallel', limit: 1 })[0].id, 'task-dependency');
+  assert.equal(
+    listRecipes({ query: 'acceptance criteria', limit: 1 })[0].id,
+    'requirement-testability',
+  );
+  assert.equal(listRecipes({ query: 'hard requirement', limit: 1 })[0].id, 'constraint-strength');
+  assert.equal(
+    listRecipes({ query: 'conflicting instructions', limit: 1 })[0].id,
+    'instruction-conflict',
+  );
+  assert.equal(listRecipes({ query: 'claim stance', limit: 1 })[0].id, 'claim-stance');
+  const research = listRecipes({ query: 'alignment research' });
+  assert.ok(research.some((recipe) => recipe.id === 'claim-stance'));
+  assert.ok(research.some((recipe) => recipe.id === 'verify'));
   assert.ok(listRecipes({ category: 'memory' }).every((recipe) => recipe.category === 'memory'));
   assert.equal(listRecipes({ limit: 3 }).length, 3);
   assert.equal(listRecipes({ query: 'doesnotexist' }).length, 0);
