@@ -1,51 +1,84 @@
 # Contributing
 
-Keep each recipe focused on one bounded decision and the shared layer small. Prefer a direct function over a new framework or abstraction. Describe larger applications in the README's Cool projects section and keep their orchestration in examples/.
+Keep each recipe focused on one bounded decision. Prefer a direct function and the existing shared helpers. Applications compose recipes in their own code.
 
-## Work in the repository
+## Everyday commands
 
-Use Node.js 22.9 or newer. After cloning the repository:
+Requires Node.js 22.9 or newer. Make is optional; every task has an npm equivalent. The Makefile works with GNU Make 3.81 and newer and is only for contributors.
 
-```sh
-npm ci
-npm run build
-npm run jev-recipes -- list
-```
+| Task                               | Make                        | npm equivalent                                       |
+| ---------------------------------- | --------------------------- | ---------------------------------------------------- |
+| Install development dependencies   | `make setup`                | `npm ci --ignore-scripts`                            |
+| Generate exports and catalog data  | `make generate`             | `npm run generate`                                   |
+| Generate code and documentation    | `make docs`                 | `npm run docs`                                       |
+| Run offline tests                  | `make test`                 | `npm test`                                           |
+| Test one recipe                    | `make test RECIPE=route`    | `npm run test:recipes -- tests/recipe/route.test.ts` |
+| Run the full verification pipeline | `make ci`                   | `npm run ci`                                         |
+| Check the installable archive      | `make pack-check`           | `npm run pack:check`                                 |
+| Scaffold a recipe                  | `make new RECIPE=my-recipe` | `npm run new -- my-recipe`                           |
+| Compile or clean                   | `make build` / `make clean` | `npm run build` / `npm run clean`                    |
 
-`npm run jev-recipes -- <command>` runs the locally built CLI and loads `.env` when present. Rebuild after source changes. To run a saved demo, use `npm run jev-recipes -- demo rerank`. The installed package's CLI is documented in the [README](README.md).
+`make ci` checks generated files without changing them, checks formatting and types, runs recipe coverage, builds, tests the tooling, and tests the actual npm archive. It makes no live Jev calls. Fix stale generated files with `make docs`; format author-maintained files with `npm run format`.
 
-`npm test` runs the recipe suite. `npm run test:coverage` adds coverage checks and an HTML report at `coverage/index.html`. Tests use mocked responses and require no API key.
-
-`npm run build` compiles TypeScript modules and declarations into `dist/`. `npm pack` creates the installable archive; see [RELEASING.md](RELEASING.md) for distribution steps.
+## Repository structure
 
 ```text
-recipes/<name>/   Individual recipes
-src/             Shared client, validation, schemas, and exports
-catalog/         Recipe discovery and registrations
-cli/             Command-line runner
-examples/        Workflows that combine recipes
-tests/recipe/    Recipe tests and shared test helpers
+recipes/<name>/  Code, schemas, metadata, demo, and guide for one recipe
+src/            Shared client and decision helpers; generated root exports
+catalog/        Metadata search, synchronous descriptions, and lazy execution
+catalog/generated/  Generated names, metadata, loaders, and schema descriptions
+cli/            Command-line interface
+scripts/        Generation, scaffolding, documentation, and package checks
+tests/recipe/  Existing recipe tests and shared helpers
+tests/tooling/ Catalog, generation, CLI, scale, and packaging tests
 ```
+
+Tests remain outside recipe folders. Production builds exclude tests, and package checks reject them in the archive.
 
 ## Add a recipe
 
-1. Create `recipes/<name>/` with `index.ts`, `schema.ts`, `metadata.ts`, `demo.json`, and `README.md`.
-2. Define inputs and results with Zod 4 in `schema.ts`; derive types with `z.infer`. Keep decision defaults in the recipe function. Validate inputs before calling Jev. Put prompts and recipe-specific policy in that folder.
-3. Use `src/client.ts` for inference and `src/answers.ts` to validate answers. Accept `RecipeOptions` so callers can supply a client.
-4. Return data. Leave side effects to the caller. Represent uncertainty separately from network or response errors.
-5. Export the function and types from `src/index.ts`; add its subpath to `package.json` and register its metadata, schemas, and runner in the appropriate `catalog/groups/` file. Add a new group to `catalog/recipes.ts` only when needed.
-6. Keep metadata specific: describe what the decision means, searchable tags, and limits. The catalog and CLI discover registered recipes automatically. Put application composition in `examples/`. Reuse shared choice, candidate-selection, or item-check helpers when they fit. A recipe may call another recipe through its public function; name that dependency in its README and metadata `uses` list, document the combined behavior and request count, and avoid circular dependencies. Recipes must not import the catalog or CLI.
-7. Add `tests/recipe/<name>.test.ts` with fixed expected outcomes, confidence boundaries, invalid inputs, and malformed responses. Reuse a small test helper when the recipe follows an existing decision pattern; write focused cases for recipe-specific behavior. Run `npm test` and `npm run test:coverage`.
-8. Update `recipes/README.md`, the root README group counts, package exports, and the changelog. Format with `npm run format` and compile with `npm run build`. Follow [RELEASING.md](RELEASING.md) for manual distribution steps.
+1. Run `make new RECIPE=my-recipe`. This creates the five recipe files and `tests/recipe/my-recipe.test.ts`. The starter is a generic requirement check; replace it with the intended decision before contributing it.
+2. Define inputs and results in `schema.ts` using Zod. Infer types from those schemas. Keep defaults, instructions, and decision rules in `index.ts`.
+3. Export one recipe function, one schema whose name ends in `InputSchema`, and one ending in `ResultSchema` from `index.ts`. Export its public types there too. Keep kebab-case recipe IDs and camelCase functions.
+4. Complete `metadata.ts`, `demo.json`, and the author-maintained parts of `README.md`.
+5. Add tests for the actual decision rules, confidence boundaries, invalid inputs, and malformed responses. Use the existing helpers where appropriate. Starter tests are not a complete contribution test suite.
+6. Run `make docs`. Exports, catalog registration, schema descriptions, reference tables, and counts are generated automatically.
+7. Run `make ci`, inspect the changes, and update the changelog.
 
-Each demo is hand-authored and clearly labeled. Live results and accuracy claims require a separate, reproducible evaluation with the model version and dataset documented. Do not present fixtures as evidence of model quality.
+Do not hand-edit `src/index.ts`, `catalog/generated/`, the exports map in `package.json`, or documentation between generated markers. Generation is deterministic. Running it again without source changes produces no diff.
 
-Do not commit API keys, private inputs, generated `dist/`, or `node_modules/`. Keep dependencies deliberate. The official Jev SDK and Zod 4 are the runtime dependencies.
+## Metadata
 
-All source code is TypeScript with strict checking, two-space indentation, single quotes, and semicolons.
+Keep descriptions concrete enough that a developer can choose between similar recipes.
 
-Write code in the order someone would explain the operation. Put the main flow first and supporting functions below it. Use descriptive names for each step. Refactor unclear code instead of adding explanatory comments. Keep types beside their schemas; do not add separate type files.
+| Field         | Authoring requirement                                                             |
+| ------------- | --------------------------------------------------------------------------------- |
+| `id`          | Unique kebab-case ID matching the folder name                                     |
+| `title`       | Short human-readable title                                                        |
+| `description` | The specific decision and its output                                              |
+| `category`    | One of the existing catalog categories                                            |
+| `tags`        | Useful search vocabulary, including common user wording                           |
+| `useWhen`     | A short situation in which this recipe is useful                                  |
+| `related`     | `{ id, reason }` alternatives explaining when to use another recipe; may be empty |
+| `limitations` | What the decision does not establish                                              |
+| `uses`        | IDs of recipes imported at runtime; omit when none                                |
 
-Recipe tests belong in `tests/recipe/`, with shared test helpers in `tests/recipe/helpers/`. Use the public recipe functions with an injected mock Jev client. Keep expected verdicts and outcomes explicit in the tests; do not derive them from the implementation under test. The suite blocks SDK inference and fetch calls so tests cannot use live credentials or API quota.
+`useWhen` and `related` are required by the authoring checks. They are optional in the public metadata schema to keep older metadata objects valid. References must resolve, dependencies must match imports, and dependency cycles are rejected. Related recipes are navigation links, not execution dependencies.
 
-Run `npm run typecheck` to check source and test types. `npm run test:coverage` enforces at least 95% line, statement, and function coverage and 90% branch coverage for each recipe implementation and schema file. Coverage excludes metadata and code outside `recipes/`. See [the recipe testing guide](tests/recipe/README.md). Keep tests inside the repository and keep hand-authored examples clearly labeled. Live API calls require a separate explicit request.
+Import paths, function names, schemas, example input, and counts are derived from source. Do not duplicate them in metadata. The current categories are `retrieval`, `conversation`, `workflow`, `answer-quality`, `support`, `memory`, and `knowledge`; use tags for narrower topics.
+
+## Dependencies and behavior
+
+Recipes use shared helpers under `src/` and may call another recipe through its public `index.js` export. Declare that reuse in `uses` and explain it in the guide. Recipes and shared helpers must not import the catalog, CLI, or root barrel. Keep side effects in the caller.
+
+Accept `RecipeOptions` for an injected client, model, or abort signal. Validate inputs before inference. Return uncertainty as a review outcome and throw for invalid data or provider failures. Preserve model and usage information.
+
+The catalog loads metadata only. `describeRecipe` reads one generated schema description synchronously. The CLI loads a selected execution module only for `run` or `demo`. Root imports remain compatible and export every recipe; direct imports are the lean execution path.
+
+## Tests, demos, and publishing
+
+Recipe tests use mocked Jev responses. Generation validates and runs hand-authored demo responses with an injected fixture client. Neither measures live model accuracy. Tests must not load `.env` or use API quota. Live API calls require a separate explicit request.
+
+`make pack-check` creates a real archive, rejects development files, and installs it in a temporary consumer. It checks every recipe import, root exports, declarations, schemas, and offline CLI commands. Runtime dependencies are packed from the existing installation so this check works without registry access. See [RELEASING.md](RELEASING.md).
+
+Do not commit API keys, private inputs, generated `dist/`, coverage, archives, or `node_modules`. Commit generated source and documentation so reviewers can inspect them and CI can detect drift.

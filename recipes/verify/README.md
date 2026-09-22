@@ -1,6 +1,12 @@
 # Verify claims
 
-Check whether each supplied claim is supported by its paired evidence. Every pair is evaluated independently.
+<!-- BEGIN GENERATED: usage -->
+
+Check each supplied claim against its paired evidence.
+
+Use when: You need to know whether a claim is supported by its supplied evidence.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { verify } from 'jev-recipes/verify';
@@ -8,22 +14,83 @@ import { verify } from 'jev-recipes/verify';
 const result = await verify({
   claims: [
     {
-      id: 'guest-export',
-      claim: 'Guests can export reports.',
-      evidence: 'Only workspace owners can export reports. Guests cannot export.',
+      id: 'refund-window',
+      claim: 'Customers can request a refund within 60 days.',
+      evidence: 'Refunds are available only within 30 days of purchase.',
+    },
+    {
+      id: 'support-hours',
+      claim: 'Support is available on weekdays.',
+      evidence: 'Contact our support team Monday through Friday, 9 am to 5 pm.',
     },
   ],
+  minConfidence: 0.8,
 });
-
-console.log(result.checks);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo verify`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "checks": [
+    {
+      "id": "refund-window",
+      "status": "ready",
+      "verdict": "contradicted",
+      "confidence": 0.94,
+      "probabilities": {
+        "supported": 0.01,
+        "contradicted": 0.97,
+        "unsupported": 0.02
+      }
+    },
+    {
+      "id": "support-hours",
+      "status": "ready",
+      "verdict": "supported",
+      "confidence": 0.92,
+      "probabilities": {
+        "supported": 0.96,
+        "contradicted": 0.01,
+        "unsupported": 0.03
+      }
+    }
+  ],
+  "allSupported": false
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`citation-match`](../citation-match/README.md): Use citation-match to select which passages support one claim.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                                                                                  |
-| --------------- | -------------------------------------------------------------------------------------------------------- |
-| `claims`        | 1 to 100 `{ id, claim, evidence }` items with unique non-empty IDs and non-empty claim and evidence text |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8                                                             |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                                          |
+| --------------- | -------- | -------------------------------------------------------------- |
+| `claims`        | Yes      | { id, claim, evidence }[]; at least 1 items; at most 100 items |
+| `minConfidence` | No       | number; minimum 0; maximum 1                                   |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors. Types are inferred from this folder's Zod 4 schemas.
 

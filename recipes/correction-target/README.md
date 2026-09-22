@@ -1,6 +1,12 @@
 # Locate a correction target
 
-Which supplied field or statement is message correcting? Identify the target, not the replacement value. Use ambiguous when the message corrects multiple targets without a single primary target.
+<!-- BEGIN GENERATED: usage -->
+
+Which supplied field or statement is message correcting?
+
+Use when: You need to identify which supplied field or statement a message corrects.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { correctionTarget } from 'jev-recipes/correction-target';
@@ -8,28 +14,65 @@ import { correctionTarget } from 'jev-recipes/correction-target';
 const result = await correctionTarget({
   message: 'The billing email is finance@example.com, not support@example.com.',
   targets: [
-    {
-      id: 'billing-email',
-      text: 'Billing email: support@example.com',
-    },
-    {
-      id: 'shipping-city',
-      text: 'Shipping city: Portland',
-    },
+    { id: 'billing-email', text: 'Billing email: support@example.com' },
+    { id: 'shipping-city', text: 'Shipping city: Portland' },
   ],
 });
-
-console.log(result.status, result.selection);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo correction-target`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "matched",
+  "selection": "billing-email",
+  "suggestedSelection": "billing-email",
+  "confidence": 0.96,
+  "probabilities": {
+    "candidates": {
+      "billing-email": 1,
+      "shipping-city": 0
+    },
+    "none": 0,
+    "ambiguous": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`reference-resolve`](../reference-resolve/README.md): Use reference-resolve for references that are not corrections.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `message`       | Non-empty text                               |
-| `targets`       | 1 to 50 `{ id, text }` items with unique IDs |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `message`       | Yes      | string                                             |
+| `targets`       | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `context`       | No       | string                                             |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

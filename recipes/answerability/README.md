@@ -1,6 +1,12 @@
 # Check answerability
 
-Decide whether the supplied evidence can answer an entire question before drafting a response.
+<!-- BEGIN GENERATED: usage -->
+
+Decide whether supplied evidence can answer an entire question.
+
+Use when: You need to know if you have enough evidence and can answer a question.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { answerability } from 'jev-recipes/answerability';
@@ -10,21 +16,61 @@ const result = await answerability({
   evidence: [
     {
       id: 'reset',
-      text: 'Select Forgot password. Reset links expire after 30 minutes.',
+      text: 'Select Forgot password on the sign-in page. Reset links expire after 30 minutes.',
     },
   ],
 });
-
-console.log(result.canAnswer);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo answerability`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "sufficient",
+  "canAnswer": true,
+  "confidence": 0.96,
+  "probabilities": {
+    "sufficient": 0.97,
+    "partial": 0.01,
+    "insufficient": 0.01,
+    "conflicting": 0.01
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`answer-coverage`](../answer-coverage/README.md): Use answer-coverage after drafting to check whether each question was addressed.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                                                      |
-| --------------- | ---------------------------------------------------------------------------- |
-| `question`      | Non-empty text containing the question                                       |
-| `evidence`      | 1 to 50 `{ id, text }` passages with unique non-empty IDs and non-empty text |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8                                 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `question`      | Yes      | string                                             |
+| `evidence`      | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors. Types are inferred from this folder's Zod 4 schemas.
 

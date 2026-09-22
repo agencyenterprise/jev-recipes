@@ -1,6 +1,12 @@
 # Assess a candidate memory
 
-How useful is fact for future work under purpose? Distinguish lasting relevance from a current-task detail. Use the supplied purpose rather than assuming every personal fact is worth retaining.
+<!-- BEGIN GENERATED: usage -->
+
+How useful is fact for future work under purpose?
+
+Use when: You need to assess whether a candidate fact is useful to remember for a stated purpose.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { memoryValue } from 'jev-recipes/memory-value';
@@ -9,18 +15,57 @@ const result = await memoryValue({
   fact: 'The user prefers short, direct support replies.',
   purpose: 'Help the user draft customer support replies across sessions.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo memory-value`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "ongoing_value",
+  "confidence": 0.96,
+  "probabilities": {
+    "ongoing_value": 1,
+    "task_only": 0,
+    "incidental": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`memory-scope`](../memory-scope/README.md): Use memory-scope to determine where a fact applies.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `fact`          | Non-empty text                               |
-| `purpose`       | Non-empty text                               |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `fact`          | Yes      | string                       |
+| `purpose`       | Yes      | string                       |
+| `context`       | No       | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

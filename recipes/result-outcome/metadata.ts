@@ -6,6 +6,13 @@ export const metadata = {
   description: 'What outcome does result report for task?',
   category: 'workflow',
   tags: ['workflow', 'result', 'outcome'],
+  useWhen: 'You need to classify what a tool result reports happened during a task.',
+  related: [
+    {
+      id: 'step-progress',
+      reason: 'Use step-progress to compare an observation with the previous state.',
+    },
+  ],
   limitations: [
     'Interprets a report; it does not independently confirm an external action occurred. Prefer structured result fields when available.',
   ],

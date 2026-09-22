@@ -1,6 +1,12 @@
 # Check certainty wording
 
-Does the certainty expressed in draft match assessment? Treat assessment as the supplied evidence assessment and do not independently re-evaluate its truth.
+<!-- BEGIN GENERATED: usage -->
+
+Does the certainty expressed in draft match assessment?
+
+Use when: You want the wording of a draft to reflect the certainty of an assessment.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { certaintyMatch } from 'jev-recipes/certainty-match';
@@ -9,17 +15,56 @@ const result = await certaintyMatch({
   draft: 'The outage was definitely caused by the deploy.',
   assessment: 'The deploy is one possible cause; the cause has not been established.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo certainty-match`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "overstated",
+  "confidence": 0.96,
+  "probabilities": {
+    "overstated": 1,
+    "appropriate": 0,
+    "understated": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`tone-check`](../tone-check/README.md): Use tone-check to evaluate other explicit writing criteria.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `draft`         | Non-empty text                               |
-| `assessment`    | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `draft`         | Yes      | string                       |
+| `assessment`    | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

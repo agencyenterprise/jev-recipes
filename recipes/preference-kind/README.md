@@ -1,6 +1,12 @@
 # Identify a stated preference
 
-Does statement express an ongoing preference, a factual assertion, or a temporary request? Do not treat a task-specific instruction as a lasting preference without evidence of scope.
+<!-- BEGIN GENERATED: usage -->
+
+Does statement express an ongoing preference, a factual assertion, or a temporary request?
+
+Use when: You need to distinguish an ongoing preference from a fact or temporary request.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { preferenceKind } from 'jev-recipes/preference-kind';
@@ -8,17 +14,56 @@ import { preferenceKind } from 'jev-recipes/preference-kind';
 const result = await preferenceKind({
   statement: 'For this reply, please use bullet points.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo preference-kind`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "temporary_request",
+  "confidence": 0.96,
+  "probabilities": {
+    "preference": 0,
+    "fact": 0,
+    "temporary_request": 1,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`memory-scope`](../memory-scope/README.md): Use memory-scope to identify the supported scope of that preference.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `statement`     | Non-empty text                               |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `statement`     | Yes      | string                       |
+| `context`       | No       | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

@@ -7,6 +7,13 @@ export const metadata = {
     'Does question require a current or time-specific state that can change, or stable conceptual knowledge?',
   category: 'retrieval',
   tags: ['retrieval', 'freshness', 'needed', 'rag', 'evidence'],
+  useWhen: 'You need to know whether a question depends on current or changing information.',
+  related: [
+    {
+      id: 'fact-stability',
+      reason: 'Use fact-stability to assess a particular fact rather than a question.',
+    },
+  ],
   limitations: [
     'Does not check timestamps, determine whether a source is up to date, or retrieve current information.',
   ],

@@ -6,6 +6,8 @@ export const metadata = {
   description: 'Which supplied incident is supported as a match for ticket?',
   category: 'support',
   tags: ['support', 'incident', 'match'],
+  useWhen: 'You need to connect a support ticket to a supplied known incident.',
+  related: [{ id: 'ticket-match', reason: 'Use ticket-match to compare two tickets directly.' }],
   limitations: [
     'Matches only incidents supplied by the caller. Filter incident status, dates, affected regions, and exact versions in code first.',
     'Supply 1 to 50 items per list, each with a unique non-empty ID and non-empty text.',

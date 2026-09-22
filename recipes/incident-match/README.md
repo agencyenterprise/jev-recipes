@@ -1,6 +1,12 @@
 # Match a known incident
 
-Which supplied incident is supported as a match for ticket? Require compatible affected functionality and supplied scope. Shared words alone are insufficient.
+<!-- BEGIN GENERATED: usage -->
+
+Which supplied incident is supported as a match for ticket?
+
+Use when: You need to connect a support ticket to a supplied known incident.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { incidentMatch } from 'jev-recipes/incident-match';
@@ -12,24 +18,64 @@ const result = await incidentMatch({
       id: 'exports',
       text: 'Active incident: workspace exports fail with EXPORT_TIMEOUT.',
     },
-    {
-      id: 'billing',
-      text: 'Active incident: invoices appear with a delay.',
-    },
+    { id: 'billing', text: 'Active incident: invoices appear with a delay.' },
   ],
 });
-
-console.log(result.status, result.selection);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo incident-match`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "matched",
+  "selection": "exports",
+  "suggestedSelection": "exports",
+  "confidence": 0.96,
+  "probabilities": {
+    "candidates": {
+      "exports": 1,
+      "billing": 0
+    },
+    "none": 0,
+    "ambiguous": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`ticket-match`](../ticket-match/README.md): Use ticket-match to compare two tickets directly.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `ticket`        | Non-empty text                               |
-| `incidents`     | 1 to 50 `{ id, text }` items with unique IDs |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `ticket`        | Yes      | string                                             |
+| `incidents`     | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `context`       | No       | string                                             |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

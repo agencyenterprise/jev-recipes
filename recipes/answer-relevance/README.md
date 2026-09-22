@@ -1,6 +1,12 @@
 # Check answer relevance
 
-How directly does draft address request? Judge alignment with the requested subject and task, not factual correctness or completeness.
+<!-- BEGIN GENERATED: usage -->
+
+How directly does draft address request?
+
+Use when: You need to check whether a draft stays relevant to the request.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { answerRelevance } from 'jev-recipes/answer-relevance';
@@ -9,17 +15,56 @@ const result = await answerRelevance({
   request: 'How do I reset my password?',
   draft: 'You can download invoices from the Billing page.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo answer-relevance`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "off_topic",
+  "confidence": 0.96,
+  "probabilities": {
+    "relevant": 0,
+    "partly_relevant": 0,
+    "off_topic": 1,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`answer-coverage`](../answer-coverage/README.md): Use answer-coverage to check separate question parts individually.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `request`       | Non-empty text                               |
-| `draft`         | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `request`       | Yes      | string                       |
+| `draft`         | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

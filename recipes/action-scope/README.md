@@ -1,6 +1,12 @@
 # Check proposed action scope
 
-Is proposedAction within the work requested in request and constraints? Do not treat a potentially helpful extra task as requested work. An explicit constraint overrides an implied convenience.
+<!-- BEGIN GENERATED: usage -->
+
+Is proposedAction within the work requested in request and constraints?
+
+Use when: You need to check whether a proposed action stays within the requested work and constraints.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { actionScope } from 'jev-recipes/action-scope';
@@ -9,18 +15,56 @@ const result = await actionScope({
   request: 'Explain why this deployment failed.',
   proposedAction: 'Deploy a replacement release to production.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo action-scope`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "additional_work",
+  "confidence": 0.96,
+  "probabilities": {
+    "within_scope": 0,
+    "additional_work": 1,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`instruction-fit`](../instruction-fit/README.md): Use instruction-fit to decide whether a particular instruction applies.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field            | Accepts                                      |
-| ---------------- | -------------------------------------------- |
-| `request`        | Non-empty text                               |
-| `proposedAction` | Non-empty text                               |
-| `constraints`    | Optional non-empty text                      |
-| `minConfidence`  | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field            | Required | Shape                        |
+| ---------------- | -------- | ---------------------------- |
+| `request`        | Yes      | string                       |
+| `proposedAction` | Yes      | string                       |
+| `constraints`    | No       | string                       |
+| `minConfidence`  | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

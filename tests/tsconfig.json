@@ -3,5 +3,6 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["recipe/**/*.ts", "../vitest.config.ts"]
+  "include": ["recipe/**/*.ts", "../vitest.config.ts"],
+  "exclude": ["../node_modules", "../dist"]
 }

@@ -1,6 +1,12 @@
 # Identify a conversation turn
 
-What is the primary communicative purpose of message in context? For mixed messages choose the purpose that changes what the application should do next; choose unclear if none dominates.
+<!-- BEGIN GENERATED: usage -->
+
+What is the primary communicative purpose of message in context?
+
+Use when: You need to classify a message as a request, answer, correction, cancellation, or acknowledgment.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { turnIntent } from 'jev-recipes/turn-intent';
@@ -9,17 +15,59 @@ const result = await turnIntent({
   message: 'Actually, use the staging account, not production.',
   context: 'The assistant is preparing a deployment.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo turn-intent`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "correction",
+  "confidence": 0.96,
+  "probabilities": {
+    "request": 0,
+    "answer": 0,
+    "correction": 1,
+    "cancellation": 0,
+    "acknowledgment": 0,
+    "other": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`intent-change`](../intent-change/README.md): Use intent-change to assess how the message changes an existing goal.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `message`       | Non-empty text                               |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `message`       | Yes      | string                       |
+| `context`       | No       | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

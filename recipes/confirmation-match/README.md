@@ -1,6 +1,12 @@
 # Interpret a confirmation
 
-Does response clearly agree to or reject this exact proposal? Do not treat politeness, acknowledgment, a question, or agreement to only part of the proposal as full agreement.
+<!-- BEGIN GENERATED: usage -->
+
+Does response clearly agree to or reject this exact proposal?
+
+Use when: You need to know whether a response accepts or rejects an exact proposal.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { confirmationMatch } from 'jev-recipes/confirmation-match';
@@ -9,18 +15,56 @@ const result = await confirmationMatch({
   proposal: 'Cancel the storage subscription now.',
   response: 'How much would I save?',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo confirmation-match`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "review",
+  "verdict": "unclear",
+  "confidence": 0.96,
+  "probabilities": {
+    "agrees": 0,
+    "rejects": 0,
+    "unclear": 1
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`cancellation-check`](../cancellation-check/README.md): Use cancellation-check to assess instructions to stop or pause a task.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `proposal`      | Non-empty text                               |
-| `response`      | Non-empty text                               |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `proposal`      | Yes      | string                       |
+| `response`      | Yes      | string                       |
+| `context`       | No       | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

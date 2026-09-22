@@ -1,24 +1,66 @@
 # Check question specificity
 
-Does question, interpreted with context, identify a focused information need? A broad but clear request differs from an ambiguous reference or missing subject.
+<!-- BEGIN GENERATED: usage -->
+
+Does question, interpreted with context, identify a focused information need?
+
+Use when: You need to know whether a question identifies a focused information need.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { querySpecificity } from 'jev-recipes/query-specificity';
 
-const result = await querySpecificity({
-  question: 'Tell me everything about software.',
-});
-
-console.log(result.status, result.verdict);
+const result = await querySpecificity({ question: 'Tell me everything about software.' });
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo query-specificity`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "too_broad",
+  "confidence": 0.96,
+  "probabilities": {
+    "specific": 0,
+    "too_broad": 1,
+    "ambiguous": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`clarify`](../clarify/README.md): Use clarify to check named requirements for missing or ambiguous information.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `question`      | Non-empty text                               |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `question`      | Yes      | string                       |
+| `context`       | No       | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

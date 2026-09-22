@@ -1,6 +1,12 @@
 # Check new evidence
 
-Does passage add material information relevant to question beyond existingEvidence? New information may conflict with existing evidence; novelty alone is not correctness.
+<!-- BEGIN GENERATED: usage -->
+
+Does passage add material information relevant to question beyond existingEvidence?
+
+Use when: You need to decide whether a new passage adds useful information to existing evidence.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { evidenceNovelty } from 'jev-recipes/evidence-novelty';
@@ -8,25 +14,59 @@ import { evidenceNovelty } from 'jev-recipes/evidence-novelty';
 const result = await evidenceNovelty({
   question: 'How do I reset my password and when does the link expire?',
   passage: 'Reset links expire after 30 minutes.',
-  existingEvidence: [
-    {
-      id: 'steps',
-      text: 'Select Forgot password to receive a reset link.',
-    },
-  ],
+  existingEvidence: [{ id: 'steps', text: 'Select Forgot password to receive a reset link.' }],
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo evidence-novelty`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "adds_information",
+  "confidence": 0.96,
+  "probabilities": {
+    "adds_information": 1,
+    "repeats_information": 0,
+    "irrelevant": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`passage-duplicate`](../passage-duplicate/README.md): Use passage-duplicate to compare overlap between two passages.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field              | Accepts                                      |
-| ------------------ | -------------------------------------------- |
-| `passage`          | Non-empty text                               |
-| `existingEvidence` | 1 to 50 `{ id, text }` items with unique IDs |
-| `question`         | Non-empty text                               |
-| `minConfidence`    | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field              | Required | Shape                                              |
+| ------------------ | -------- | -------------------------------------------------- |
+| `passage`          | Yes      | string                                             |
+| `existingEvidence` | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `question`         | Yes      | string                                             |
+| `minConfidence`    | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

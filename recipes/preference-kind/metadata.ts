@@ -7,6 +7,13 @@ export const metadata = {
     'Does statement express an ongoing preference, a factual assertion, or a temporary request?',
   category: 'memory',
   tags: ['memory', 'preference', 'kind'],
+  useWhen: 'You need to distinguish an ongoing preference from a fact or temporary request.',
+  related: [
+    {
+      id: 'memory-scope',
+      reason: 'Use memory-scope to identify the supported scope of that preference.',
+    },
+  ],
   limitations: [
     'Classifies a statement. It does not infer unexpressed preferences or grant permission to store personal information.',
   ],

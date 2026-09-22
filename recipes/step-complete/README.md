@@ -1,6 +1,12 @@
 # Check one completion condition
 
-Does evidence establish that condition has been met? A plan, attempted action, or unsupported assertion of completion is not enough unless the condition specifically concerns that report.
+<!-- BEGIN GENERATED: usage -->
+
+Does evidence establish that condition has been met?
+
+Use when: You need to check whether supplied evidence establishes a completion condition.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { stepComplete } from 'jev-recipes/step-complete';
@@ -9,17 +15,55 @@ const result = await stepComplete({
   condition: 'The customer has received a reset email.',
   evidence: 'A reset email was queued for delivery. Delivery has not been confirmed.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo step-complete`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "review",
+  "verdict": "unclear",
+  "confidence": 0.96,
+  "probabilities": {
+    "met": 0,
+    "unmet": 0,
+    "unclear": 1
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`result-outcome`](../result-outcome/README.md): Use result-outcome to interpret a tool result before checking completion.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `condition`     | Non-empty text                               |
-| `evidence`      | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `condition`     | Yes      | string                       |
+| `evidence`      | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

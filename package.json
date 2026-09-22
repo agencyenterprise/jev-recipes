@@ -19,42 +19,62 @@
       "types": "./dist/src/index.d.ts",
       "import": "./dist/src/index.js"
     },
-    "./route": {
-      "types": "./dist/recipes/route/index.d.ts",
-      "import": "./dist/recipes/route/index.js"
-    },
-    "./rerank": {
-      "types": "./dist/recipes/rerank/index.d.ts",
-      "import": "./dist/recipes/rerank/index.js"
-    },
-    "./verify": {
-      "types": "./dist/recipes/verify/index.d.ts",
-      "import": "./dist/recipes/verify/index.js"
-    },
-    "./package.json": "./package.json",
-    "./answerability": {
-      "types": "./dist/recipes/answerability/index.d.ts",
-      "import": "./dist/recipes/answerability/index.js"
-    },
-    "./clarify": {
-      "types": "./dist/recipes/clarify/index.d.ts",
-      "import": "./dist/recipes/clarify/index.js"
-    },
-    "./handoff": {
-      "types": "./dist/recipes/handoff/index.d.ts",
-      "import": "./dist/recipes/handoff/index.js"
-    },
     "./catalog": {
       "types": "./dist/catalog/index.d.ts",
       "import": "./dist/catalog/index.js"
+    },
+    "./package.json": "./package.json",
+    "./action-scope": {
+      "types": "./dist/recipes/action-scope/index.d.ts",
+      "import": "./dist/recipes/action-scope/index.js"
+    },
+    "./answer-consistency": {
+      "types": "./dist/recipes/answer-consistency/index.d.ts",
+      "import": "./dist/recipes/answer-consistency/index.js"
     },
     "./answer-coverage": {
       "types": "./dist/recipes/answer-coverage/index.d.ts",
       "import": "./dist/recipes/answer-coverage/index.js"
     },
+    "./answer-invalidation": {
+      "types": "./dist/recipes/answer-invalidation/index.d.ts",
+      "import": "./dist/recipes/answer-invalidation/index.js"
+    },
     "./answer-relevance": {
       "types": "./dist/recipes/answer-relevance/index.d.ts",
       "import": "./dist/recipes/answer-relevance/index.js"
+    },
+    "./answerability": {
+      "types": "./dist/recipes/answerability/index.d.ts",
+      "import": "./dist/recipes/answerability/index.js"
+    },
+    "./argument-fit": {
+      "types": "./dist/recipes/argument-fit/index.d.ts",
+      "import": "./dist/recipes/argument-fit/index.js"
+    },
+    "./attempted-step": {
+      "types": "./dist/recipes/attempted-step/index.d.ts",
+      "import": "./dist/recipes/attempted-step/index.js"
+    },
+    "./audience-fit": {
+      "types": "./dist/recipes/audience-fit/index.d.ts",
+      "import": "./dist/recipes/audience-fit/index.js"
+    },
+    "./cache-match": {
+      "types": "./dist/recipes/cache-match/index.d.ts",
+      "import": "./dist/recipes/cache-match/index.js"
+    },
+    "./cancellation-check": {
+      "types": "./dist/recipes/cancellation-check/index.d.ts",
+      "import": "./dist/recipes/cancellation-check/index.js"
+    },
+    "./certainty-match": {
+      "types": "./dist/recipes/certainty-match/index.d.ts",
+      "import": "./dist/recipes/certainty-match/index.js"
+    },
+    "./change-meaning": {
+      "types": "./dist/recipes/change-meaning/index.d.ts",
+      "import": "./dist/recipes/change-meaning/index.js"
     },
     "./citation-match": {
       "types": "./dist/recipes/citation-match/index.d.ts",
@@ -64,259 +84,248 @@
       "types": "./dist/recipes/citation-needed/index.d.ts",
       "import": "./dist/recipes/citation-needed/index.js"
     },
-    "./answer-consistency": {
-      "types": "./dist/recipes/answer-consistency/index.d.ts",
-      "import": "./dist/recipes/answer-consistency/index.js"
-    },
-    "./summary-coverage": {
-      "types": "./dist/recipes/summary-coverage/index.d.ts",
-      "import": "./dist/recipes/summary-coverage/index.js"
-    },
-    "./certainty-match": {
-      "types": "./dist/recipes/certainty-match/index.d.ts",
-      "import": "./dist/recipes/certainty-match/index.js"
-    },
-    "./promise-check": {
-      "types": "./dist/recipes/promise-check/index.d.ts",
-      "import": "./dist/recipes/promise-check/index.js"
-    },
-    "./tone-check": {
-      "types": "./dist/recipes/tone-check/index.d.ts",
-      "import": "./dist/recipes/tone-check/index.js"
-    },
-    "./draft-compare": {
-      "types": "./dist/recipes/draft-compare/index.d.ts",
-      "import": "./dist/recipes/draft-compare/index.js"
-    },
-    "./retrieval-needed": {
-      "types": "./dist/recipes/retrieval-needed/index.d.ts",
-      "import": "./dist/recipes/retrieval-needed/index.js"
-    },
-    "./freshness-needed": {
-      "types": "./dist/recipes/freshness-needed/index.d.ts",
-      "import": "./dist/recipes/freshness-needed/index.js"
-    },
-    "./source-applicability": {
-      "types": "./dist/recipes/source-applicability/index.d.ts",
-      "import": "./dist/recipes/source-applicability/index.js"
-    },
-    "./evidence-conflict": {
-      "types": "./dist/recipes/evidence-conflict/index.d.ts",
-      "import": "./dist/recipes/evidence-conflict/index.js"
-    },
-    "./passage-duplicate": {
-      "types": "./dist/recipes/passage-duplicate/index.d.ts",
-      "import": "./dist/recipes/passage-duplicate/index.js"
-    },
-    "./evidence-novelty": {
-      "types": "./dist/recipes/evidence-novelty/index.d.ts",
-      "import": "./dist/recipes/evidence-novelty/index.js"
-    },
-    "./cache-match": {
-      "types": "./dist/recipes/cache-match/index.d.ts",
-      "import": "./dist/recipes/cache-match/index.js"
-    },
-    "./query-equivalence": {
-      "types": "./dist/recipes/query-equivalence/index.d.ts",
-      "import": "./dist/recipes/query-equivalence/index.js"
-    },
-    "./context-role": {
-      "types": "./dist/recipes/context-role/index.d.ts",
-      "import": "./dist/recipes/context-role/index.js"
-    },
-    "./query-specificity": {
-      "types": "./dist/recipes/query-specificity/index.d.ts",
-      "import": "./dist/recipes/query-specificity/index.js"
-    },
-    "./turn-intent": {
-      "types": "./dist/recipes/turn-intent/index.d.ts",
-      "import": "./dist/recipes/turn-intent/index.js"
-    },
-    "./followup-link": {
-      "types": "./dist/recipes/followup-link/index.d.ts",
-      "import": "./dist/recipes/followup-link/index.js"
-    },
-    "./reference-resolve": {
-      "types": "./dist/recipes/reference-resolve/index.d.ts",
-      "import": "./dist/recipes/reference-resolve/index.js"
-    },
-    "./intent-change": {
-      "types": "./dist/recipes/intent-change/index.d.ts",
-      "import": "./dist/recipes/intent-change/index.js"
-    },
-    "./correction-target": {
-      "types": "./dist/recipes/correction-target/index.d.ts",
-      "import": "./dist/recipes/correction-target/index.js"
+    "./clarify": {
+      "types": "./dist/recipes/clarify/index.d.ts",
+      "import": "./dist/recipes/clarify/index.js"
     },
     "./confirmation-match": {
       "types": "./dist/recipes/confirmation-match/index.d.ts",
       "import": "./dist/recipes/confirmation-match/index.js"
     },
-    "./cancellation-check": {
-      "types": "./dist/recipes/cancellation-check/index.d.ts",
-      "import": "./dist/recipes/cancellation-check/index.js"
+    "./context-role": {
+      "types": "./dist/recipes/context-role/index.d.ts",
+      "import": "./dist/recipes/context-role/index.js"
     },
-    "./topic-shift": {
-      "types": "./dist/recipes/topic-shift/index.d.ts",
-      "import": "./dist/recipes/topic-shift/index.js"
-    },
-    "./response-needed": {
-      "types": "./dist/recipes/response-needed/index.d.ts",
-      "import": "./dist/recipes/response-needed/index.js"
-    },
-    "./resolution-check": {
-      "types": "./dist/recipes/resolution-check/index.d.ts",
-      "import": "./dist/recipes/resolution-check/index.js"
-    },
-    "./tool-fit": {
-      "types": "./dist/recipes/tool-fit/index.d.ts",
-      "import": "./dist/recipes/tool-fit/index.js"
-    },
-    "./argument-fit": {
-      "types": "./dist/recipes/argument-fit/index.d.ts",
-      "import": "./dist/recipes/argument-fit/index.js"
-    },
-    "./result-usefulness": {
-      "types": "./dist/recipes/result-usefulness/index.d.ts",
-      "import": "./dist/recipes/result-usefulness/index.js"
-    },
-    "./result-outcome": {
-      "types": "./dist/recipes/result-outcome/index.d.ts",
-      "import": "./dist/recipes/result-outcome/index.js"
-    },
-    "./action-scope": {
-      "types": "./dist/recipes/action-scope/index.d.ts",
-      "import": "./dist/recipes/action-scope/index.js"
-    },
-    "./step-progress": {
-      "types": "./dist/recipes/step-progress/index.d.ts",
-      "import": "./dist/recipes/step-progress/index.js"
-    },
-    "./repeated-attempt": {
-      "types": "./dist/recipes/repeated-attempt/index.d.ts",
-      "import": "./dist/recipes/repeated-attempt/index.js"
-    },
-    "./step-complete": {
-      "types": "./dist/recipes/step-complete/index.d.ts",
-      "import": "./dist/recipes/step-complete/index.js"
-    },
-    "./failure-kind": {
-      "types": "./dist/recipes/failure-kind/index.d.ts",
-      "import": "./dist/recipes/failure-kind/index.js"
-    },
-    "./instruction-fit": {
-      "types": "./dist/recipes/instruction-fit/index.d.ts",
-      "import": "./dist/recipes/instruction-fit/index.js"
-    },
-    "./issue-impact": {
-      "types": "./dist/recipes/issue-impact/index.d.ts",
-      "import": "./dist/recipes/issue-impact/index.js"
-    },
-    "./attempted-step": {
-      "types": "./dist/recipes/attempted-step/index.d.ts",
-      "import": "./dist/recipes/attempted-step/index.js"
-    },
-    "./workaround-fit": {
-      "types": "./dist/recipes/workaround-fit/index.d.ts",
-      "import": "./dist/recipes/workaround-fit/index.js"
-    },
-    "./ticket-match": {
-      "types": "./dist/recipes/ticket-match/index.d.ts",
-      "import": "./dist/recipes/ticket-match/index.js"
-    },
-    "./incident-match": {
-      "types": "./dist/recipes/incident-match/index.d.ts",
-      "import": "./dist/recipes/incident-match/index.js"
-    },
-    "./troubleshooting-fit": {
-      "types": "./dist/recipes/troubleshooting-fit/index.d.ts",
-      "import": "./dist/recipes/troubleshooting-fit/index.js"
-    },
-    "./frustration-signal": {
-      "types": "./dist/recipes/frustration-signal/index.d.ts",
-      "import": "./dist/recipes/frustration-signal/index.js"
-    },
-    "./urgency-signal": {
-      "types": "./dist/recipes/urgency-signal/index.d.ts",
-      "import": "./dist/recipes/urgency-signal/index.js"
-    },
-    "./feedback-kind": {
-      "types": "./dist/recipes/feedback-kind/index.d.ts",
-      "import": "./dist/recipes/feedback-kind/index.js"
-    },
-    "./reply-template-match": {
-      "types": "./dist/recipes/reply-template-match/index.d.ts",
-      "import": "./dist/recipes/reply-template-match/index.js"
-    },
-    "./memory-value": {
-      "types": "./dist/recipes/memory-value/index.d.ts",
-      "import": "./dist/recipes/memory-value/index.js"
-    },
-    "./memory-scope": {
-      "types": "./dist/recipes/memory-scope/index.d.ts",
-      "import": "./dist/recipes/memory-scope/index.js"
-    },
-    "./memory-relation": {
-      "types": "./dist/recipes/memory-relation/index.d.ts",
-      "import": "./dist/recipes/memory-relation/index.js"
-    },
-    "./preference-kind": {
-      "types": "./dist/recipes/preference-kind/index.d.ts",
-      "import": "./dist/recipes/preference-kind/index.js"
-    },
-    "./fact-stability": {
-      "types": "./dist/recipes/fact-stability/index.d.ts",
-      "import": "./dist/recipes/fact-stability/index.js"
+    "./correction-target": {
+      "types": "./dist/recipes/correction-target/index.d.ts",
+      "import": "./dist/recipes/correction-target/index.js"
     },
     "./document-role": {
       "types": "./dist/recipes/document-role/index.d.ts",
       "import": "./dist/recipes/document-role/index.js"
     },
-    "./audience-fit": {
-      "types": "./dist/recipes/audience-fit/index.d.ts",
-      "import": "./dist/recipes/audience-fit/index.js"
+    "./draft-compare": {
+      "types": "./dist/recipes/draft-compare/index.d.ts",
+      "import": "./dist/recipes/draft-compare/index.js"
     },
-    "./change-meaning": {
-      "types": "./dist/recipes/change-meaning/index.d.ts",
-      "import": "./dist/recipes/change-meaning/index.js"
+    "./evidence-conflict": {
+      "types": "./dist/recipes/evidence-conflict/index.d.ts",
+      "import": "./dist/recipes/evidence-conflict/index.js"
     },
-    "./answer-invalidation": {
-      "types": "./dist/recipes/answer-invalidation/index.d.ts",
-      "import": "./dist/recipes/answer-invalidation/index.js"
+    "./evidence-novelty": {
+      "types": "./dist/recipes/evidence-novelty/index.d.ts",
+      "import": "./dist/recipes/evidence-novelty/index.js"
+    },
+    "./fact-stability": {
+      "types": "./dist/recipes/fact-stability/index.d.ts",
+      "import": "./dist/recipes/fact-stability/index.js"
+    },
+    "./failure-kind": {
+      "types": "./dist/recipes/failure-kind/index.d.ts",
+      "import": "./dist/recipes/failure-kind/index.js"
+    },
+    "./feedback-kind": {
+      "types": "./dist/recipes/feedback-kind/index.d.ts",
+      "import": "./dist/recipes/feedback-kind/index.js"
     },
     "./field-select": {
       "types": "./dist/recipes/field-select/index.d.ts",
       "import": "./dist/recipes/field-select/index.js"
+    },
+    "./followup-link": {
+      "types": "./dist/recipes/followup-link/index.d.ts",
+      "import": "./dist/recipes/followup-link/index.js"
+    },
+    "./freshness-needed": {
+      "types": "./dist/recipes/freshness-needed/index.d.ts",
+      "import": "./dist/recipes/freshness-needed/index.js"
+    },
+    "./frustration-signal": {
+      "types": "./dist/recipes/frustration-signal/index.d.ts",
+      "import": "./dist/recipes/frustration-signal/index.js"
+    },
+    "./handoff": {
+      "types": "./dist/recipes/handoff/index.d.ts",
+      "import": "./dist/recipes/handoff/index.js"
+    },
+    "./incident-match": {
+      "types": "./dist/recipes/incident-match/index.d.ts",
+      "import": "./dist/recipes/incident-match/index.js"
+    },
+    "./instruction-fit": {
+      "types": "./dist/recipes/instruction-fit/index.d.ts",
+      "import": "./dist/recipes/instruction-fit/index.js"
+    },
+    "./intent-change": {
+      "types": "./dist/recipes/intent-change/index.d.ts",
+      "import": "./dist/recipes/intent-change/index.js"
+    },
+    "./issue-impact": {
+      "types": "./dist/recipes/issue-impact/index.d.ts",
+      "import": "./dist/recipes/issue-impact/index.js"
+    },
+    "./memory-relation": {
+      "types": "./dist/recipes/memory-relation/index.d.ts",
+      "import": "./dist/recipes/memory-relation/index.js"
+    },
+    "./memory-scope": {
+      "types": "./dist/recipes/memory-scope/index.d.ts",
+      "import": "./dist/recipes/memory-scope/index.js"
+    },
+    "./memory-value": {
+      "types": "./dist/recipes/memory-value/index.d.ts",
+      "import": "./dist/recipes/memory-value/index.js"
+    },
+    "./passage-duplicate": {
+      "types": "./dist/recipes/passage-duplicate/index.d.ts",
+      "import": "./dist/recipes/passage-duplicate/index.js"
+    },
+    "./preference-kind": {
+      "types": "./dist/recipes/preference-kind/index.d.ts",
+      "import": "./dist/recipes/preference-kind/index.js"
+    },
+    "./promise-check": {
+      "types": "./dist/recipes/promise-check/index.d.ts",
+      "import": "./dist/recipes/promise-check/index.js"
+    },
+    "./query-equivalence": {
+      "types": "./dist/recipes/query-equivalence/index.d.ts",
+      "import": "./dist/recipes/query-equivalence/index.js"
+    },
+    "./query-specificity": {
+      "types": "./dist/recipes/query-specificity/index.d.ts",
+      "import": "./dist/recipes/query-specificity/index.js"
+    },
+    "./reference-resolve": {
+      "types": "./dist/recipes/reference-resolve/index.d.ts",
+      "import": "./dist/recipes/reference-resolve/index.js"
+    },
+    "./repeated-attempt": {
+      "types": "./dist/recipes/repeated-attempt/index.d.ts",
+      "import": "./dist/recipes/repeated-attempt/index.js"
+    },
+    "./reply-template-match": {
+      "types": "./dist/recipes/reply-template-match/index.d.ts",
+      "import": "./dist/recipes/reply-template-match/index.js"
+    },
+    "./rerank": {
+      "types": "./dist/recipes/rerank/index.d.ts",
+      "import": "./dist/recipes/rerank/index.js"
+    },
+    "./resolution-check": {
+      "types": "./dist/recipes/resolution-check/index.d.ts",
+      "import": "./dist/recipes/resolution-check/index.js"
+    },
+    "./response-needed": {
+      "types": "./dist/recipes/response-needed/index.d.ts",
+      "import": "./dist/recipes/response-needed/index.js"
+    },
+    "./result-outcome": {
+      "types": "./dist/recipes/result-outcome/index.d.ts",
+      "import": "./dist/recipes/result-outcome/index.js"
+    },
+    "./result-usefulness": {
+      "types": "./dist/recipes/result-usefulness/index.d.ts",
+      "import": "./dist/recipes/result-usefulness/index.js"
+    },
+    "./retrieval-needed": {
+      "types": "./dist/recipes/retrieval-needed/index.d.ts",
+      "import": "./dist/recipes/retrieval-needed/index.js"
+    },
+    "./route": {
+      "types": "./dist/recipes/route/index.d.ts",
+      "import": "./dist/recipes/route/index.js"
+    },
+    "./source-applicability": {
+      "types": "./dist/recipes/source-applicability/index.d.ts",
+      "import": "./dist/recipes/source-applicability/index.js"
+    },
+    "./step-complete": {
+      "types": "./dist/recipes/step-complete/index.d.ts",
+      "import": "./dist/recipes/step-complete/index.js"
+    },
+    "./step-progress": {
+      "types": "./dist/recipes/step-progress/index.d.ts",
+      "import": "./dist/recipes/step-progress/index.js"
+    },
+    "./summary-coverage": {
+      "types": "./dist/recipes/summary-coverage/index.d.ts",
+      "import": "./dist/recipes/summary-coverage/index.js"
+    },
+    "./ticket-match": {
+      "types": "./dist/recipes/ticket-match/index.d.ts",
+      "import": "./dist/recipes/ticket-match/index.js"
+    },
+    "./tone-check": {
+      "types": "./dist/recipes/tone-check/index.d.ts",
+      "import": "./dist/recipes/tone-check/index.js"
+    },
+    "./tool-fit": {
+      "types": "./dist/recipes/tool-fit/index.d.ts",
+      "import": "./dist/recipes/tool-fit/index.js"
+    },
+    "./topic-shift": {
+      "types": "./dist/recipes/topic-shift/index.d.ts",
+      "import": "./dist/recipes/topic-shift/index.js"
+    },
+    "./troubleshooting-fit": {
+      "types": "./dist/recipes/troubleshooting-fit/index.d.ts",
+      "import": "./dist/recipes/troubleshooting-fit/index.js"
+    },
+    "./turn-intent": {
+      "types": "./dist/recipes/turn-intent/index.d.ts",
+      "import": "./dist/recipes/turn-intent/index.js"
+    },
+    "./urgency-signal": {
+      "types": "./dist/recipes/urgency-signal/index.d.ts",
+      "import": "./dist/recipes/urgency-signal/index.js"
+    },
+    "./verify": {
+      "types": "./dist/recipes/verify/index.d.ts",
+      "import": "./dist/recipes/verify/index.js"
+    },
+    "./workaround-fit": {
+      "types": "./dist/recipes/workaround-fit/index.d.ts",
+      "import": "./dist/recipes/workaround-fit/index.js"
     }
   },
   "bin": {
     "jev-recipes": "dist/cli/index.js"
   },
   "files": [
-    "dist",
-    "recipes/*/demo.json",
-    "recipes/*/README.md",
+    "dist/src/**/*.js",
+    "dist/src/**/*.d.ts",
+    "dist/recipes/**/*.js",
+    "dist/recipes/**/*.d.ts",
+    "dist/catalog/**/*.js",
+    "dist/catalog/**/*.d.ts",
+    "dist/catalog/generated/details/*.json",
+    "dist/cli/*.js",
+    "dist/cli/*.d.ts",
+    "dist/recipes/*/demo.json",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE",
-    "examples/support/demo.json",
-    "examples/support/README.md",
-    "recipes/README.md"
+    "LICENSE"
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && tsc -p tsconfig.json",
+    "generate": "node scripts/generate.mjs",
+    "generate:check": "node scripts/generate.mjs --check",
+    "docs": "node scripts/generate.mjs --docs",
+    "new": "node scripts/new-recipe.mjs",
+    "build": "npm run clean && tsc -p tsconfig.json && node scripts/build-assets.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tests/tsconfig.json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "demo": "node dist/cli/index.js demo all",
     "jev-recipes": "node --env-file-if-exists=.env dist/cli/index.js",
-    "ci": "npm run format:check && npm run typecheck && npm run test:coverage && npm run build && npm run demo && npm run example:support",
-    "pack:check": "npm pack --dry-run",
-    "prepack": "npm run build",
+    "ci": "node scripts/ci.mjs",
+    "pack:check": "node scripts/pack-check.mjs",
+    "prepack": "npm run generate:check && npm run build",
     "prepublishOnly": "npm run ci",
-    "example:support": "node --env-file-if-exists=.env dist/examples/support/index.js",
-    "test": "vitest run",
+    "test": "npm run test:recipes && npm run test:tooling",
+    "test:recipes": "vitest run",
+    "test:tooling": "npm run build && node scripts/test-tooling.mjs",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
   },

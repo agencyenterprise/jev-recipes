@@ -1,6 +1,12 @@
 # Identify a passage role
 
-What role does passage play in answering question? Classify its contribution without establishing whether its claims are true.
+<!-- BEGIN GENERATED: usage -->
+
+What role does passage play in answering question?
+
+Use when: You want to identify the role a passage plays in answering a question.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { contextRole } from 'jev-recipes/context-role';
@@ -9,17 +15,56 @@ const result = await contextRole({
   question: 'How do I reset my password?',
   passage: 'Passwords help protect access to accounts.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo context-role`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "background",
+  "confidence": 0.96,
+  "probabilities": {
+    "direct_evidence": 0,
+    "background": 1,
+    "unrelated": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`rerank`](../rerank/README.md): Use rerank to select and order passages by relevance.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `question`      | Non-empty text                               |
-| `passage`       | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `question`      | Yes      | string                       |
+| `passage`       | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

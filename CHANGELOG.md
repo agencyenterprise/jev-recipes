@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Generate exports, catalog data, schema descriptions, and documentation from recipe folders; add authoring checks and a recipe scaffold.
+- Add usage guidance and related recipes to the catalog, ranked search, optional search limits, and lazy recipe loading.
+- Add Make commands and offline tooling checks, including a 1,000-entry capacity exercise and installation of the actual npm archive.
+- Move published offline demo assets under `dist/recipes/` so npm does not automatically include source recipe guides.
+- Keep recipe tests under `tests/recipe/`; enforce an npm content allowlist and exclude development files and source guides.
+- Remove the standalone support example and its build, CI, and publishing references.
+
 - Document installed-package imports and CLI commands first; move repository setup into the contributor guide and rename the local CLI script to `jev-recipes`.
 
 - Add recipe tests under `tests/recipe/`, mocked Jev responses, recipe coverage reports and thresholds, and test checks in CI.
@@ -15,7 +22,7 @@
 
 - Add independent `answerability`, `clarify`, and `handoff` recipes with Zod schemas, inferred types, documentation, and offline fixtures.
 - Add recipe-owned metadata, a searchable catalog, and CLI `describe` with JSON schemas and example input.
-- Add `demo all` and a support-assistant example that composes six recipes, accepts an application draft callback, and verifies claims against selected evidence.
+- Add `demo all` for offline recipe illustrations.
 - Extend package exports and release checks without adding dependencies.
 
 ## 0.0.1

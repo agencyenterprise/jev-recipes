@@ -1,6 +1,12 @@
 # Check reported resolution
 
-Does message establish that the customer reports issue as resolved? Courtesy or thanks without a resolution statement is not enough. Assess the reported state, not the actual system state.
+<!-- BEGIN GENERATED: usage -->
+
+Does message establish that the customer reports issue as resolved?
+
+Use when: You need to know whether the customer reports that an issue is resolved.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { resolutionCheck } from 'jev-recipes/resolution-check';
@@ -9,18 +15,56 @@ const result = await resolutionCheck({
   issue: 'The customer cannot sign in.',
   message: 'The reset worked. I can sign in now.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo resolution-check`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "resolved",
+  "confidence": 0.96,
+  "probabilities": {
+    "resolved": 1,
+    "unresolved": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`step-complete`](../step-complete/README.md): Use step-complete to assess evidence against a supplied completion condition.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `issue`         | Non-empty text                               |
-| `message`       | Non-empty text                               |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `issue`         | Yes      | string                       |
+| `message`       | Yes      | string                       |
+| `context`       | No       | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

@@ -1,6 +1,12 @@
 # Check answer coverage
 
+<!-- BEGIN GENERATED: usage -->
+
 Check whether a draft answers each supplied question.
+
+Use when: You have a draft and need to check whether it answers each supplied question.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { answerCoverage } from 'jev-recipes/answer-coverage';
@@ -8,27 +14,79 @@ import { answerCoverage } from 'jev-recipes/answer-coverage';
 const result = await answerCoverage({
   draft: 'Select Forgot password on the sign-in page.',
   questions: [
-    {
-      id: 'reset',
-      text: 'How do I reset my password?',
-    },
-    {
-      id: 'expiry',
-      text: 'When does the link expire?',
-    },
+    { id: 'reset', text: 'How do I reset my password?' },
+    { id: 'expiry', text: 'When does the link expire?' },
   ],
 });
-
-console.log(result.status, result.checks);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo answer-coverage`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "allAnswered": false,
+  "checks": [
+    {
+      "id": "reset",
+      "status": "ready",
+      "verdict": "answered",
+      "confidence": 0.96,
+      "probabilities": {
+        "answered": 1,
+        "partial": 0,
+        "missing": 0,
+        "unclear": 0
+      }
+    },
+    {
+      "id": "expiry",
+      "status": "ready",
+      "verdict": "missing",
+      "confidence": 0.96,
+      "probabilities": {
+        "answered": 0,
+        "partial": 0,
+        "missing": 1,
+        "unclear": 0
+      }
+    }
+  ]
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`answer-relevance`](../answer-relevance/README.md): Use answer-relevance to assess how directly the draft addresses the overall request.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `draft`         | Non-empty text                               |
-| `questions`     | 1 to 50 `{ id, text }` items with unique IDs |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `draft`         | Yes      | string                                             |
+| `questions`     | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

@@ -1,6 +1,12 @@
 # Link a follow-up request
 
-Which supplied earlier request does message follow up on? Link by the intended task, not merely a shared word. A new unrelated request belongs to none.
+<!-- BEGIN GENERATED: usage -->
+
+Which supplied earlier request does message follow up on?
+
+Use when: You need to connect a follow-up message to one of the earlier requests.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { followupLink } from 'jev-recipes/followup-link';
@@ -8,28 +14,65 @@ import { followupLink } from 'jev-recipes/followup-link';
 const result = await followupLink({
   message: 'Can you make that explanation shorter?',
   requests: [
-    {
-      id: 'reset',
-      text: 'Explain how password resets work.',
-    },
-    {
-      id: 'invoice',
-      text: 'Download my invoice.',
-    },
+    { id: 'reset', text: 'Explain how password resets work.' },
+    { id: 'invoice', text: 'Download my invoice.' },
   ],
 });
-
-console.log(result.status, result.selection);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo followup-link`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "matched",
+  "selection": "reset",
+  "suggestedSelection": "reset",
+  "confidence": 0.96,
+  "probabilities": {
+    "candidates": {
+      "reset": 1,
+      "invoice": 0
+    },
+    "none": 0,
+    "ambiguous": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`reference-resolve`](../reference-resolve/README.md): Use reference-resolve to identify a referenced item rather than an earlier request.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `message`       | Non-empty text                               |
-| `requests`      | 1 to 50 `{ id, text }` items with unique IDs |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `message`       | Yes      | string                                             |
+| `requests`      | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `context`       | No       | string                                             |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

@@ -1,6 +1,12 @@
 # Select a field value
 
-Which supplied candidate is the value of field in document? Select an existing candidate only. Do not calculate a value, invent one, or infer an unstated field.
+<!-- BEGIN GENERATED: usage -->
+
+Which supplied candidate is the value of field in document?
+
+Use when: You need to select which supplied candidate expresses a field value in a document.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { fieldSelect } from 'jev-recipes/field-select';
@@ -9,28 +15,65 @@ const result = await fieldSelect({
   field: 'Invoice reference',
   document: 'Invoice INV-2026-A. Purchase order PO-77.',
   candidates: [
-    {
-      id: 'invoice',
-      text: 'INV-2026-A',
-    },
-    {
-      id: 'purchase-order',
-      text: 'PO-77',
-    },
+    { id: 'invoice', text: 'INV-2026-A' },
+    { id: 'purchase-order', text: 'PO-77' },
   ],
 });
-
-console.log(result.status, result.selection);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo field-select`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "matched",
+  "selection": "invoice",
+  "suggestedSelection": "invoice",
+  "confidence": 0.96,
+  "probabilities": {
+    "candidates": {
+      "invoice": 1,
+      "purchase-order": 0
+    },
+    "none": 0,
+    "ambiguous": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`reference-resolve`](../reference-resolve/README.md): Use reference-resolve to identify what a conversational reference points to.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `field`         | Non-empty text                               |
-| `document`      | Non-empty text                               |
-| `candidates`    | 1 to 50 `{ id, text }` items with unique IDs |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `field`         | Yes      | string                                             |
+| `document`      | Yes      | string                                             |
+| `candidates`    | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

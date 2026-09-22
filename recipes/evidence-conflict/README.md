@@ -1,6 +1,12 @@
 # Compare evidence for conflicts
 
-Do firstPassage and secondPassage give incompatible evidence relevant to question under the same conditions? Different scopes are not automatically contradictions.
+<!-- BEGIN GENERATED: usage -->
+
+Do firstPassage and secondPassage give incompatible evidence relevant to question under the same conditions?
+
+Use when: You have two passages and need to check for conflicting evidence about a question.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { evidenceConflict } from 'jev-recipes/evidence-conflict';
@@ -10,18 +16,57 @@ const result = await evidenceConflict({
   firstPassage: 'Guests can export reports.',
   secondPassage: 'Guests cannot export reports.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo evidence-conflict`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "conflicting",
+  "confidence": 0.96,
+  "probabilities": {
+    "compatible": 0,
+    "conflicting": 1,
+    "different_scope": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`answer-consistency`](../answer-consistency/README.md): Use answer-consistency to compare two statements directly.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `firstPassage`  | Non-empty text                               |
-| `secondPassage` | Non-empty text                               |
-| `question`      | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `firstPassage`  | Yes      | string                       |
+| `secondPassage` | Yes      | string                       |
+| `question`      | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

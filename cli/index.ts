@@ -2,7 +2,7 @@
 import { readFile } from 'node:fs/promises';
 import { stdin, stdout, stderr } from 'node:process';
 import { z } from 'zod';
-import { recipes } from '../catalog/recipes.js';
+import { loadRecipe } from '../catalog/runner.js';
 import { listRecipes, describeRecipe, recipeCategorySchema } from '../catalog/index.js';
 import { commandArgumentsSchema, demoFixtureSchema } from './schema.js';
 import type { RecipeName } from '../catalog/schema.js';
@@ -38,8 +38,8 @@ function parseCommandArguments(args: string[]) {
 function printHelp(): void {
   stdout.write(`jev-recipes
 
-  jev-recipes list [query] [--category <category>]
-                                        Discover recipes (all search terms must match)
+  jev-recipes list [query] [--category <category>] [--limit <count>]
+                                        Find recipes, with the closest matches first
   jev-recipes describe <recipe>         Print metadata, JSON schemas, and example input
   jev-recipes demo <recipe|all>         Run offline fixtures (no model calls)
   jev-recipes example <recipe>          Print example input as JSON
@@ -61,10 +61,12 @@ async function printVersion(): Promise<void> {
 
 function printRecipeList(args: string[]): void {
   const categoryPosition = args.indexOf('--category');
-  const query = args[0] === '--category' ? undefined : args[0];
+  const limitPosition = args.indexOf('--limit');
+  const query = args[0]?.startsWith('--') ? undefined : args[0];
   const category =
     categoryPosition === -1 ? undefined : recipeCategorySchema.parse(args[categoryPosition + 1]);
-  printJson(listRecipes({ query, category }));
+  const limit = limitPosition === -1 ? undefined : Number(args[limitPosition + 1]);
+  printJson(listRecipes({ query, category, limit }));
 }
 
 async function printRecipeDescription(name: RecipeName): Promise<void> {
@@ -88,7 +90,8 @@ async function runOfflineRecipes(name: RecipeName | 'all'): Promise<void> {
 async function evaluateOfflineRecipe(name: RecipeName) {
   const fixture = await readDemoFixture(name);
   const fixtureClient = { systemOne: async () => fixture.response };
-  const result = await recipes[name].run(fixture.input, { client: fixtureClient });
+  const run = await loadRecipe(name);
+  const result = await run(fixture.input, { client: fixtureClient });
 
   return {
     mode: 'demo',
@@ -99,13 +102,21 @@ async function evaluateOfflineRecipe(name: RecipeName) {
 }
 
 async function runLiveRecipe(name: RecipeName, source: string): Promise<void> {
+  if (!process.env.TYPESAFE_API_KEY?.trim()) {
+    throw new Error(
+      'Set TYPESAFE_API_KEY in your environment before running a live recipe. Try jev-recipes demo ' +
+        name +
+        ' without a key.',
+    );
+  }
   const inputJson = source === '-' ? await readStandardInput() : await readFile(source, 'utf8');
-  const result = await recipes[name].run(JSON.parse(inputJson));
+  const run = await loadRecipe(name);
+  const result = await run(JSON.parse(inputJson));
   printJson({ mode: 'live', result });
 }
 
 async function readDemoFixture(name: RecipeName) {
-  const fixturePath = new URL(`../../recipes/${name}/demo.json`, import.meta.url);
+  const fixturePath = new URL(`../recipes/${name}/demo.json`, import.meta.url);
   const fixtureJson = await readFile(fixturePath, 'utf8');
   return demoFixtureSchema.parse(JSON.parse(fixtureJson));
 }

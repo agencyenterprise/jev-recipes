@@ -1,6 +1,12 @@
 # Compare support tickets
 
-Do firstTicket and secondTicket describe the same underlying reported issue? Similar symptoms alone establish relatedness, not identity. Use only supplied links between the reports.
+<!-- BEGIN GENERATED: usage -->
+
+Do firstTicket and secondTicket describe the same underlying reported issue?
+
+Use when: You want to check whether two tickets describe the same underlying issue.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { ticketMatch } from 'jev-recipes/ticket-match';
@@ -9,18 +15,57 @@ const result = await ticketMatch({
   firstTicket: 'My workspace export fails with error EXPORT_TIMEOUT.',
   secondTicket: 'Exports also time out with EXPORT_TIMEOUT in another workspace.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo ticket-match`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "related",
+  "confidence": 0.96,
+  "probabilities": {
+    "same_issue": 0,
+    "related": 1,
+    "different": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`incident-match`](../incident-match/README.md): Use incident-match to select a known incident for one ticket.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `firstTicket`   | Non-empty text                               |
-| `secondTicket`  | Non-empty text                               |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `firstTicket`   | Yes      | string                       |
+| `secondTicket`  | Yes      | string                       |
+| `context`       | No       | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

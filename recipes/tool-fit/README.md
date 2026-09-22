@@ -1,6 +1,12 @@
 # Check a tool fit
 
-Can the capabilities explicitly described in tool perform task? Do not assume capabilities that are not described. Capability fit is separate from permission to invoke the tool.
+<!-- BEGIN GENERATED: usage -->
+
+Can the capabilities explicitly described in tool perform task?
+
+Use when: You need to check whether a tool has the stated capability to perform a task.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { toolFit } from 'jev-recipes/tool-fit';
@@ -9,18 +15,56 @@ const result = await toolFit({
   task: 'Read the current incident status.',
   tool: 'Status reader: retrieves active incidents. It cannot create or modify incidents.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo tool-fit`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "fits",
+  "confidence": 0.96,
+  "probabilities": {
+    "fits": 1,
+    "does_not_fit": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`argument-fit`](../argument-fit/README.md): Use argument-fit to validate the meaning of a proposed tool argument.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `task`          | Non-empty text                               |
-| `tool`          | Non-empty text                               |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `task`          | Yes      | string                       |
+| `tool`          | Yes      | string                       |
+| `context`       | No       | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

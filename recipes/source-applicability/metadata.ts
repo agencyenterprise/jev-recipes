@@ -6,6 +6,13 @@ export const metadata = {
   description: 'Does the scope described in passage apply to scenario?',
   category: 'retrieval',
   tags: ['retrieval', 'source', 'applicability', 'rag', 'evidence'],
+  useWhen: 'You need to check whether the conditions and scope of a source fit a scenario.',
+  related: [
+    {
+      id: 'evidence-conflict',
+      reason: 'Use evidence-conflict to compare two applicable sources for disagreement.',
+    },
+  ],
   limitations: [
     'Assesses semantic scope. Enforce tenant, access, exact version, and region constraints in application code.',
   ],

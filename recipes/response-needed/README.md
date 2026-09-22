@@ -1,6 +1,12 @@
 # Check whether a reply is needed
 
-Does message require a substantive reply in context? A question, request, correction needing follow-through, or unresolved issue requires a reply. A simple closing acknowledgment does not.
+<!-- BEGIN GENERATED: usage -->
+
+Does message require a substantive reply in context?
+
+Use when: You need to decide whether a message calls for a substantive reply.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { responseNeeded } from 'jev-recipes/response-needed';
@@ -9,17 +15,55 @@ const result = await responseNeeded({
   message: 'Thanks, that solved it!',
   context: 'The assistant provided password reset instructions.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo response-needed`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "no_reply_needed",
+  "confidence": 0.96,
+  "probabilities": {
+    "reply_needed": 0,
+    "no_reply_needed": 1,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`turn-intent`](../turn-intent/README.md): Use turn-intent to classify the message purpose in more detail.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `message`       | Non-empty text                               |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `message`       | Yes      | string                       |
+| `context`       | No       | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

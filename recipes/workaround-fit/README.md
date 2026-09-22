@@ -1,6 +1,12 @@
 # Check workaround fit
 
-Can workaround address issue without violating constraints? Check the stated prerequisites and restrictions. Do not assume permissions, tools, or capabilities not supplied.
+<!-- BEGIN GENERATED: usage -->
+
+Can workaround address issue without violating constraints?
+
+Use when: You need to check whether a workaround addresses an issue within the stated constraints.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { workaroundFit } from 'jev-recipes/workaround-fit';
@@ -10,18 +16,56 @@ const result = await workaroundFit({
   workaround: 'Open the report in the web application.',
   constraints: 'The customer has web access and needs only to view the report.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo workaround-fit`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "fits",
+  "confidence": 0.96,
+  "probabilities": {
+    "fits": 1,
+    "conflicts": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`troubleshooting-fit`](../troubleshooting-fit/README.md): Use troubleshooting-fit to assess a diagnostic procedure rather than a workaround.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `issue`         | Non-empty text                               |
-| `workaround`    | Non-empty text                               |
-| `constraints`   | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `issue`         | Yes      | string                       |
+| `workaround`    | Yes      | string                       |
+| `constraints`   | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

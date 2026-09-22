@@ -1,6 +1,12 @@
 # Assess reported issue impact
 
-What practical impact does message explicitly describe? Use the customer's described ability to work, not emotional intensity or the volume of complaints.
+<!-- BEGIN GENERATED: usage -->
+
+What practical impact does message explicitly describe?
+
+Use when: You need to assess the practical impact explicitly described in a support message.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { issueImpact } from 'jev-recipes/issue-impact';
@@ -8,17 +14,56 @@ import { issueImpact } from 'jev-recipes/issue-impact';
 const result = await issueImpact({
   message: 'I cannot sign in, so I cannot access any of my reports.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo issue-impact`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "blocked",
+  "confidence": 0.96,
+  "probabilities": {
+    "blocked": 1,
+    "degraded": 0,
+    "cosmetic": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`urgency-signal`](../urgency-signal/README.md): Use urgency-signal to detect requests for immediate attention.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `message`       | Non-empty text                               |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `message`       | Yes      | string                       |
+| `context`       | No       | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

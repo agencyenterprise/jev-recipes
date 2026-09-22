@@ -74,6 +74,8 @@ export const recipeMetadataSchema = z.object({
   tags: z.array(nonEmptyText),
   limitations: z.array(nonEmptyText),
   uses: z.array(nonEmptyText).optional(),
+  useWhen: nonEmptyText.optional(),
+  related: z.array(z.object({ id: nonEmptyText, reason: nonEmptyText })).optional(),
 });
 export type RecipeMetadata = z.infer<typeof recipeMetadataSchema>;
 export type RecipeCategory = z.infer<typeof recipeCategorySchema>;

@@ -1,6 +1,12 @@
 # Check step progress
 
-How does observation change progress toward objective relative to previousState? Base the decision on observed information or achieved conditions, not an unsupported claim of progress.
+<!-- BEGIN GENERATED: usage -->
+
+How does observation change progress toward objective relative to previousState?
+
+Use when: You need to compare a new observation with the previous state of a task.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { stepProgress } from 'jev-recipes/step-progress';
@@ -10,18 +16,57 @@ const result = await stepProgress({
   previousState: 'No relevant page has been identified.',
   observation: 'The search returned the official password reset guide.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo step-progress`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "progress",
+  "confidence": 0.96,
+  "probabilities": {
+    "progress": 1,
+    "no_progress": 0,
+    "setback": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`step-complete`](../step-complete/README.md): Use step-complete to check whether the completion condition has been met.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `objective`     | Non-empty text                               |
-| `previousState` | Non-empty text                               |
-| `observation`   | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `objective`     | Yes      | string                       |
+| `previousState` | Yes      | string                       |
+| `observation`   | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

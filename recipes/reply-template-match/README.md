@@ -1,6 +1,12 @@
 # Select a reply template
 
-Which supplied approved template applies to request and context? Match any stated template conditions and do not select a template that promises unsupported actions.
+<!-- BEGIN GENERATED: usage -->
+
+Which supplied approved template applies to request and context?
+
+Use when: You want to select a supplied approved reply template for a request.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { replyTemplateMatch } from 'jev-recipes/reply-template-match';
@@ -18,18 +24,61 @@ const result = await replyTemplateMatch({
     },
   ],
 });
-
-console.log(result.status, result.selection);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo reply-template-match`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "matched",
+  "selection": "reset",
+  "suggestedSelection": "reset",
+  "confidence": 0.96,
+  "probabilities": {
+    "candidates": {
+      "reset": 1,
+      "invoice": 0
+    },
+    "none": 0,
+    "ambiguous": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`route`](../route/README.md): Use route to select a handler rather than a response template.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `request`       | Non-empty text                               |
-| `templates`     | 1 to 50 `{ id, text }` items with unique IDs |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `request`       | Yes      | string                                             |
+| `templates`     | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `context`       | No       | string                                             |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

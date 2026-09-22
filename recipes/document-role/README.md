@@ -1,6 +1,12 @@
 # Identify document purpose
 
-What is the primary purpose of document? Judge the actual content rather than a title alone. Choose unclear if several purposes are equally central.
+<!-- BEGIN GENERATED: usage -->
+
+What is the primary purpose of document?
+
+Use when: You need to identify the primary purpose of a document.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { documentRole } from 'jev-recipes/document-role';
@@ -9,16 +15,58 @@ const result = await documentRole({
   document:
     'New in this release: workspace exports now include archived reports. Fixed an invoice download error.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo document-role`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "release_note",
+  "confidence": 0.96,
+  "probabilities": {
+    "policy": 0,
+    "tutorial": 0,
+    "reference": 0,
+    "troubleshooting": 0,
+    "release_note": 1,
+    "other": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`context-role`](../context-role/README.md): Use context-role to assess how a passage relates to a specific question.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `document`      | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `document`      | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

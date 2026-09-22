@@ -20,5 +20,4 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: npm run ci
-      - run: npm run pack:check
+      - run: make ci

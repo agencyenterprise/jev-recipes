@@ -1,6 +1,12 @@
 # Check source applicability
 
-Does the scope described in passage apply to scenario? Distinguish applicable information from information about another product, environment, role, or condition.
+<!-- BEGIN GENERATED: usage -->
+
+Does the scope described in passage apply to scenario?
+
+Use when: You need to check whether the conditions and scope of a source fit a scenario.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { sourceApplicability } from 'jev-recipes/source-applicability';
@@ -9,17 +15,55 @@ const result = await sourceApplicability({
   passage: 'Workspace owners can delete the workspace. These instructions are for owners only.',
   scenario: 'A workspace guest wants to delete the workspace.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo source-applicability`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "does_not_apply",
+  "confidence": 0.96,
+  "probabilities": {
+    "applies": 0,
+    "does_not_apply": 1,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`evidence-conflict`](../evidence-conflict/README.md): Use evidence-conflict to compare two applicable sources for disagreement.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `passage`       | Non-empty text                               |
-| `scenario`      | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `passage`       | Yes      | string                       |
+| `scenario`      | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

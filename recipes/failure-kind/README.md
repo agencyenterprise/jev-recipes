@@ -1,6 +1,12 @@
 # Classify a described failure
 
-Which supplied category best describes the observed failure? Classify the described failure rather than inventing an underlying cause.
+<!-- BEGIN GENERATED: usage -->
+
+Which supplied category best describes the observed failure?
+
+Use when: You need to assign an observed failure to one of your supplied categories.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { failureKind } from 'jev-recipes/failure-kind';
@@ -8,28 +14,68 @@ import { failureKind } from 'jev-recipes/failure-kind';
 const result = await failureKind({
   failure: 'The export was rejected because the report name is missing.',
   categories: [
-    {
-      id: 'missing-input',
-      text: 'A required input was not supplied.',
-    },
+    { id: 'missing-input', text: 'A required input was not supplied.' },
     {
       id: 'temporary',
       text: 'A temporary service interruption prevented the operation.',
     },
   ],
 });
-
-console.log(result.status, result.selection);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo failure-kind`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "matched",
+  "selection": "missing-input",
+  "suggestedSelection": "missing-input",
+  "confidence": 0.96,
+  "probabilities": {
+    "candidates": {
+      "missing-input": 1,
+      "temporary": 0
+    },
+    "none": 0,
+    "ambiguous": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`result-outcome`](../result-outcome/README.md): Use result-outcome when first determining what a result reports.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `failure`       | Non-empty text                               |
-| `categories`    | 1 to 50 `{ id, text }` items with unique IDs |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `failure`       | Yes      | string                                             |
+| `categories`    | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `context`       | No       | string                                             |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

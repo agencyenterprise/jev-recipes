@@ -1,6 +1,12 @@
 # Compare attempted approaches
 
-Does proposedAttempt use essentially the same approach as previousAttempt for objective? Rewording the same query without a material strategy change counts as the same approach.
+<!-- BEGIN GENERATED: usage -->
+
+Does proposedAttempt use essentially the same approach as previousAttempt for objective?
+
+Use when: You need to detect whether a proposed retry repeats an earlier approach.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { repeatedAttempt } from 'jev-recipes/repeated-attempt';
@@ -10,18 +16,56 @@ const result = await repeatedAttempt({
   previousAttempt: 'Search the help center for password reset.',
   proposedAttempt: 'Search the same help center for reset password.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo repeated-attempt`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "same_approach",
+  "confidence": 0.96,
+  "probabilities": {
+    "same_approach": 1,
+    "different_approach": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`step-progress`](../step-progress/README.md): Use step-progress to assess what an attempted step actually changed.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field             | Accepts                                      |
-| ----------------- | -------------------------------------------- |
-| `objective`       | Non-empty text                               |
-| `previousAttempt` | Non-empty text                               |
-| `proposedAttempt` | Non-empty text                               |
-| `minConfidence`   | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field             | Required | Shape                        |
+| ----------------- | -------- | ---------------------------- |
+| `objective`       | Yes      | string                       |
+| `previousAttempt` | Yes      | string                       |
+| `proposedAttempt` | Yes      | string                       |
+| `minConfidence`   | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

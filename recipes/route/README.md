@@ -1,28 +1,74 @@
 # Route a request
 
-Choose a handler from the routes you supply. The recipe returns the selection; your application runs the handler.
+<!-- BEGIN GENERATED: usage -->
+
+Choose a named handler or return a review decision.
+
+Use when: You need to send a request to the right handler, team, or department.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { route } from 'jev-recipes/route';
 
 const result = await route({
-  request: 'I was charged twice.',
+  request: 'I was charged twice for my subscription. Can someone check the invoice?',
   routes: {
     billing: 'Payments, invoices, subscriptions, and refunds',
     technical: 'Errors, outages, and broken integrations',
   },
+  minConfidence: 0.8,
 });
-
-console.log(result.route);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo route`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "route": "billing",
+  "suggestedRoute": "billing",
+  "confidence": 0.9,
+  "probabilities": {
+    "billing": 0.95,
+    "technical": 0.02,
+    "__review__": 0.03
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`turn-intent`](../turn-intent/README.md): Use turn-intent to identify what a message is doing before choosing a handler.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                                                   |
-| --------------- | ------------------------------------------------------------------------- |
-| `request`       | Non-empty text describing the request                                     |
-| `routes`        | 1 to 254 non-empty route names and descriptions; `__review__` is reserved |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8                              |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `request`       | Yes      | string                       |
+| `routes`        | Yes      | object                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors. Types are inferred from this folder's Zod 4 schemas.
 

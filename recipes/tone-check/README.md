@@ -1,30 +1,76 @@
 # Check writing criteria
 
+<!-- BEGIN GENERATED: usage -->
+
 Check a draft against each supplied writing criterion.
+
+Use when: You want to check a draft against a supplied set of writing criteria.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { toneCheck } from 'jev-recipes/tone-check';
 
 const result = await toneCheck({
   draft: 'You caused this problem. Read the manual.',
-  criteria: [
-    {
-      id: 'blame',
-      text: 'Avoid blaming the customer.',
-    },
-  ],
+  criteria: [{ id: 'blame', text: 'Avoid blaming the customer.' }],
 });
-
-console.log(result.status, result.checks);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo tone-check`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "allPassed": false,
+  "checks": [
+    {
+      "id": "blame",
+      "status": "ready",
+      "verdict": "fail",
+      "confidence": 0.96,
+      "probabilities": {
+        "pass": 0,
+        "fail": 1,
+        "unclear": 0
+      }
+    }
+  ]
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`draft-compare`](../draft-compare/README.md): Use draft-compare to choose between two drafts under a rubric.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `draft`         | Non-empty text                               |
-| `criteria`      | 1 to 50 `{ id, text }` items with unique IDs |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `draft`         | Yes      | string                                             |
+| `criteria`      | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

@@ -3,10 +3,12 @@
 Every recipe has a matching TypeScript test file in this directory. Run from the repository root:
 
 ```sh
-npm test
+make test
 npm run test:watch
 npm run test:coverage
-npm test -- tests/recipe/route.test.ts
+make test RECIPE=route
+# Without Make:
+npm run test:recipes -- tests/recipe/route.test.ts
 ```
 
 The suite calls recipe functions with a mock Jev client. Shared decision handling and response validation run normally. Tests block the SDK inference method and global fetch, do not load .env, and require no API key.
@@ -30,10 +32,12 @@ Add a focused case when behavior differs from a shared helper. Avoid teaching a 
 
 ## Coverage
 
-Coverage includes recipes/_/index.ts and recipes/_/schema.ts, including files that no test imports. Metadata, shared source, the catalog, the CLI, and examples are outside this report's scope.
+Coverage includes `recipes/*/index.ts` and `recipes/*/schema.ts`, including files that no test imports. Metadata, shared source, the catalog, and the CLI are outside this report's scope. Separate offline tests in `tests/tooling/` cover generation, discovery, import boundaries, CLI commands, package rules, and a 1,000-entry catalog.
 
 Each included file must meet 95% line, statement, and function coverage and 90% branch coverage. Reports are written to coverage/ as a terminal summary, an HTML report at coverage/index.html, and coverage-summary.json. Generated reports are ignored by Git and excluded from the npm package.
 
 npm run typecheck checks both production and test TypeScript. npm run ci includes recipe coverage checks. Tests and their configuration are excluded from the production build.
+
+`make test` (or `npm test`) runs the recipe suite and builds before running the tooling tests. `make ci` also verifies generated files, formatting, types, coverage, and installation of the actual npm archive. The archive check rejects test files even if a publishing rule accidentally includes them.
 
 Vitest 4 and Vite 6 keep the test tooling compatible with the package's Node.js 22.9 minimum. They are development dependencies only.

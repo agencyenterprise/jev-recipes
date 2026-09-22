@@ -1,6 +1,12 @@
 # Check reply commitments
 
-Does reply promise actions or outcomes beyond allowedCommitments? A conditional possibility is not a guarantee. Judge the whole reply; one unsupported promise is enough.
+<!-- BEGIN GENERATED: usage -->
+
+Does reply promise actions or outcomes beyond allowedCommitments?
+
+Use when: You need to catch commitments in a reply that exceed what is allowed.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { promiseCheck } from 'jev-recipes/promise-check';
@@ -9,17 +15,55 @@ const result = await promiseCheck({
   reply: 'Your refund is guaranteed.',
   allowedCommitments: 'We may promise to review a refund request. We cannot promise approval.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo promise-check`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "unsupported",
+  "confidence": 0.96,
+  "probabilities": {
+    "within_commitments": 0,
+    "unsupported": 1,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`action-scope`](../action-scope/README.md): Use action-scope to check a proposed action against the requested work.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field                | Accepts                                      |
-| -------------------- | -------------------------------------------- |
-| `reply`              | Non-empty text                               |
-| `allowedCommitments` | Non-empty text                               |
-| `minConfidence`      | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field                | Required | Shape                        |
+| -------------------- | -------- | ---------------------------- |
+| `reply`              | Yes      | string                       |
+| `allowedCommitments` | Yes      | string                       |
+| `minConfidence`      | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

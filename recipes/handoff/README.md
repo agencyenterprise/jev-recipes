@@ -1,6 +1,12 @@
 # Check handoff rules
 
-Check whether a request matches your rules for involving a human. Your application handles the transfer.
+<!-- BEGIN GENERATED: usage -->
+
+Decide whether a request matches your human escalation rules.
+
+Use when: You need to decide whether your escalation rules call for a human.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { handoff } from 'jev-recipes/handoff';
@@ -14,18 +20,65 @@ const result = await handoff({
     },
   ],
 });
-
-console.log(result.decision);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo handoff`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "decision": "human",
+  "matchedRules": ["requested-human"],
+  "uncertainRules": [],
+  "checks": [
+    {
+      "id": "requested-human",
+      "status": "ready",
+      "verdict": "matches",
+      "confidence": 0.96,
+      "probabilities": {
+        "matches": 0.97,
+        "does_not_match": 0.015,
+        "unclear": 0.015
+      }
+    }
+  ]
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`route`](../route/README.md): Use route to choose a handler when escalation is not the decision.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                                                                  |
-| --------------- | ---------------------------------------------------------------------------------------- |
-| `request`       | Non-empty text containing the request                                                    |
-| `context`       | Optional non-empty conversation context or application facts                             |
-| `rules`         | 1 to 50 `{ id, description }` rules with unique non-empty IDs and non-empty descriptions |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8                                             |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                                     |
+| --------------- | -------- | --------------------------------------------------------- |
+| `request`       | Yes      | string                                                    |
+| `context`       | No       | string                                                    |
+| `rules`         | Yes      | { id, description }[]; at least 1 items; at most 50 items |
+| `minConfidence` | No       | number; minimum 0; maximum 1                              |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors. Types are inferred from this folder's Zod 4 schemas.
 

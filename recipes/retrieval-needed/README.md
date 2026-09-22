@@ -1,6 +1,12 @@
 # Check whether retrieval is needed
 
-Does request require facts beyond context? A request to transform or summarize supplied material does not need outside facts unless the request explicitly asks for them.
+<!-- BEGIN GENERATED: usage -->
+
+Does request require facts beyond context?
+
+Use when: You need to decide whether answering requires facts beyond the current context.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { retrievalNeeded } from 'jev-recipes/retrieval-needed';
@@ -9,17 +15,55 @@ const result = await retrievalNeeded({
   request: 'Summarize this policy in one sentence.',
   context: 'Customers may cancel their subscription from Account settings.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo retrieval-needed`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "unnecessary",
+  "confidence": 0.96,
+  "probabilities": {
+    "needed": 0,
+    "unnecessary": 1,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`freshness-needed`](../freshness-needed/README.md): Use freshness-needed to check whether those facts must be current.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `request`       | Non-empty text                               |
-| `context`       | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `request`       | Yes      | string                       |
+| `context`       | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

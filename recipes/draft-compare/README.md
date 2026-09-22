@@ -1,6 +1,12 @@
 # Compare two drafts
 
-Which draft better satisfies request under rubric? Evaluate only the supplied criteria. Treat presentation order as irrelevant and allow a tie or neither.
+<!-- BEGIN GENERATED: usage -->
+
+Which draft better satisfies request under rubric?
+
+Use when: You have two drafts and want to choose the better fit for a request and rubric.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { draftCompare } from 'jev-recipes/draft-compare';
@@ -11,19 +17,59 @@ const result = await draftCompare({
   secondDraft: 'Contact billing to download an invoice.',
   rubric: 'Prefer a direct answer to the requested task.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo draft-compare`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "first",
+  "confidence": 0.96,
+  "probabilities": {
+    "first": 1,
+    "second": 0,
+    "tie": 0,
+    "neither": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`tone-check`](../tone-check/README.md): Use tone-check to evaluate each writing criterion for one draft.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `request`       | Non-empty text                               |
-| `firstDraft`    | Non-empty text                               |
-| `secondDraft`   | Non-empty text                               |
-| `rubric`        | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `request`       | Yes      | string                       |
+| `firstDraft`    | Yes      | string                       |
+| `secondDraft`   | Yes      | string                       |
+| `rubric`        | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

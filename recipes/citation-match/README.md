@@ -1,6 +1,12 @@
 # Match claims to citations
 
-Find passages that support a supplied claim. Each passage is checked independently against the entire claim.
+<!-- BEGIN GENERATED: usage -->
+
+Find supplied passages that independently support an entire claim.
+
+Use when: You want to find which supplied passages support an entire claim.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { citationMatch } from 'jev-recipes/citation-match';
@@ -8,27 +14,77 @@ import { citationMatch } from 'jev-recipes/citation-match';
 const result = await citationMatch({
   claim: 'Reset links expire after 30 minutes.',
   passages: [
-    {
-      id: 'reset',
-      text: 'Password reset links expire after 30 minutes.',
-    },
-    {
-      id: 'billing',
-      text: 'Invoices are available on the Billing page.',
-    },
+    { id: 'reset', text: 'Password reset links expire after 30 minutes.' },
+    { id: 'billing', text: 'Invoices are available on the Billing page.' },
   ],
 });
-
-console.log(result.status, result.passageIds);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo citation-match`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "passageIds": ["reset"],
+  "checks": [
+    {
+      "id": "reset",
+      "status": "ready",
+      "verdict": "supported",
+      "confidence": 0.96,
+      "probabilities": {
+        "supported": 1,
+        "contradicted": 0,
+        "unsupported": 0
+      }
+    },
+    {
+      "id": "billing",
+      "status": "ready",
+      "verdict": "unsupported",
+      "confidence": 0.96,
+      "probabilities": {
+        "supported": 0,
+        "contradicted": 0,
+        "unsupported": 1
+      }
+    }
+  ]
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`verify`](../verify/README.md): Use verify when each claim already has its own paired evidence.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `claim`         | Non-empty text                               |
-| `passages`      | 1 to 50 `{ id, text }` items with unique IDs |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `claim`         | Yes      | string                                             |
+| `passages`      | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

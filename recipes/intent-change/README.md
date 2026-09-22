@@ -1,6 +1,12 @@
 # Detect a change of intent
 
-How does message change currentGoal? Compare the intended outcome rather than surface wording. An added constraint refines a goal; asking for a different outcome replaces it.
+<!-- BEGIN GENERATED: usage -->
+
+How does message change currentGoal?
+
+Use when: You need to check whether a new message changes the current task or goal.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { intentChange } from 'jev-recipes/intent-change';
@@ -9,18 +15,57 @@ const result = await intentChange({
   currentGoal: 'Draft a reply explaining password resets.',
   message: 'Keep it under three sentences.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo intent-change`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "refines",
+  "confidence": 0.96,
+  "probabilities": {
+    "continues": 0,
+    "refines": 1,
+    "replaces": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`cancellation-check`](../cancellation-check/README.md): Use cancellation-check for the narrower question of stopping, pausing, or continuing.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `currentGoal`   | Non-empty text                               |
-| `message`       | Non-empty text                               |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `currentGoal`   | Yes      | string                       |
+| `message`       | Yes      | string                       |
+| `context`       | No       | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

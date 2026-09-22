@@ -1,6 +1,12 @@
 # Compare passages for duplication
 
-How much material information do firstPassage and secondPassage share? Different wording can express the same information. Shared subject matter alone does not make a duplicate.
+<!-- BEGIN GENERATED: usage -->
+
+How much material information do firstPassage and secondPassage share?
+
+Use when: You want to detect duplicate or overlapping information in two passages.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { passageDuplicate } from 'jev-recipes/passage-duplicate';
@@ -9,17 +15,56 @@ const result = await passageDuplicate({
   firstPassage: 'Select Forgot password to receive a reset email.',
   secondPassage: 'Use Forgot password and we will email a reset link.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo passage-duplicate`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "duplicate",
+  "confidence": 0.96,
+  "probabilities": {
+    "duplicate": 1,
+    "overlapping": 0,
+    "distinct": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`evidence-novelty`](../evidence-novelty/README.md): Use evidence-novelty to compare a passage with the evidence already collected.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `firstPassage`  | Non-empty text                               |
-| `secondPassage` | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `firstPassage`  | Yes      | string                       |
+| `secondPassage` | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

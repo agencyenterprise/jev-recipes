@@ -1,0 +1,41 @@
+.PHONY: help setup generate docs test ci pack-check build clean new
+.DEFAULT_GOAL := help
+export RECIPE
+
+help:
+	@echo "make setup                  Install locked development dependencies"
+	@echo "make generate               Refresh exports and catalog data"
+	@echo "make docs                   Refresh generated code and documentation"
+	@echo "make test                   Run offline recipe and tooling tests"
+	@echo "make test RECIPE=route      Run one recipe's tests"
+	@echo "make ci                     Run all checks, including the npm archive"
+	@echo "make pack-check             Build, inspect, and test the npm archive"
+	@echo "make new RECIPE=my-recipe   Scaffold a recipe and its test file"
+	@echo "make build / make clean     Build or remove compiled output"
+
+setup:
+	@npm ci --ignore-scripts
+
+generate:
+	@npm run generate
+
+docs:
+	@npm run docs
+
+test:
+	@node scripts/test.mjs
+
+ci:
+	@npm run ci
+
+pack-check:
+	@npm run pack:check
+
+build:
+	@npm run build
+
+clean:
+	@npm run clean
+
+new:
+	@node scripts/new-recipe.mjs

@@ -1,36 +1,94 @@
 # Check required information
 
-Identify which supplied requirements are present, missing, or ambiguous in a request and its context.
+<!-- BEGIN GENERATED: usage -->
+
+Identify missing or ambiguous information before proceeding.
+
+Use when: You need to check for missing or ambiguous requirements before proceeding.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { clarify } from 'jev-recipes/clarify';
 
 const result = await clarify({
   request: 'Please cancel it.',
-  context: 'The customer has a storage subscription and a pending hardware order.',
+  context: 'The customer has a monthly storage subscription and a pending hardware order.',
   requirements: [
-    {
-      id: 'target',
-      description: 'Which product or order should be changed',
-    },
-    {
-      id: 'action',
-      description: 'What change the customer wants',
-    },
+    { id: 'target', description: 'Which product or order should be changed' },
+    { id: 'action', description: 'What change the customer wants' },
   ],
 });
-
-console.log(result.canProceed);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo clarify`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "canProceed": false,
+  "missing": [],
+  "ambiguous": ["target"],
+  "checks": [
+    {
+      "id": "target",
+      "status": "ready",
+      "verdict": "ambiguous",
+      "confidence": 0.96,
+      "probabilities": {
+        "present": 0.015,
+        "missing": 0.015,
+        "ambiguous": 0.97
+      }
+    },
+    {
+      "id": "action",
+      "status": "ready",
+      "verdict": "present",
+      "confidence": 0.96,
+      "probabilities": {
+        "present": 0.97,
+        "missing": 0.015,
+        "ambiguous": 0.015
+      }
+    }
+  ]
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`query-specificity`](../query-specificity/README.md): Use query-specificity to assess how focused the question is, without a requirements list.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                                                                  |
-| --------------- | ---------------------------------------------------------------------------------------- |
-| `request`       | Non-empty text containing the request                                                    |
-| `context`       | Optional non-empty conversation context or application facts                             |
-| `requirements`  | 1 to 50 `{ id, description }` items with unique non-empty IDs and non-empty descriptions |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8                                             |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                                     |
+| --------------- | -------- | --------------------------------------------------------- |
+| `request`       | Yes      | string                                                    |
+| `context`       | No       | string                                                    |
+| `requirements`  | Yes      | { id, description }[]; at least 1 items; at most 50 items |
+| `minConfidence` | No       | number; minimum 0; maximum 1                              |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors. Types are inferred from this folder's Zod 4 schemas.
 

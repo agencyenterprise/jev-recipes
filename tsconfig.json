@@ -15,12 +15,6 @@
     "rootDir": ".",
     "skipLibCheck": true
   },
-  "include": [
-    "src/**/*.ts",
-    "cli/**/*.ts",
-    "recipes/**/*.ts",
-    "catalog/**/*.ts",
-    "examples/**/*.ts"
-  ],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*.ts", "cli/**/*.ts", "recipes/**/*.ts", "catalog/**/*.ts"],
+  "exclude": ["node_modules", "dist", "tests", "**/*.test.ts", "**/*.spec.ts"]
 }

@@ -1,109 +1,113 @@
 # Recipe catalog
 
-66 small decisions for AI applications. Every recipe has its own input and result schemas, example, and usage guide. The package exports camelCase functions from kebab-case paths: `answerCoverage` from `jev-recipes/answer-coverage`, for example.
+Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with `npx jev-recipes describe <recipe>`. These commands need no API key.
 
-After `npm install jev-recipes`, browse the groups below or use `npx jev-recipes list <query>` and `npx jev-recipes describe <recipe>` from your app’s directory. Discovery needs no API key. Each recipe guide describes its inputs, results, limits, and review policy.
+<!-- BEGIN GENERATED: catalog -->
+
+66 recipes. Each guide includes a working call, input reference, result behavior, and nearby alternatives.
 
 ## Answer quality
 
-| Recipe                                               | Function            | Decision                                                                                               |
-| ---------------------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------ |
-| [`answer-coverage`](answer-coverage/README.md)       | `answerCoverage`    | Check whether a draft answers each supplied question.                                                  |
-| [`answer-relevance`](answer-relevance/README.md)     | `answerRelevance`   | How directly does draft address request?                                                               |
-| [`citation-match`](citation-match/README.md)         | `citationMatch`     | Find supplied passages that independently support an entire claim.                                     |
-| [`citation-needed`](citation-needed/README.md)       | `citationNeeded`    | Do citationRules require evidence for statement?                                                       |
-| [`answer-consistency`](answer-consistency/README.md) | `answerConsistency` | Do firstStatement and secondStatement make compatible claims about the same subject and circumstances? |
-| [`summary-coverage`](summary-coverage/README.md)     | `summaryCoverage`   | Check whether a summary preserves each supplied point.                                                 |
-| [`certainty-match`](certainty-match/README.md)       | `certaintyMatch`    | Does the certainty expressed in draft match assessment?                                                |
-| [`promise-check`](promise-check/README.md)           | `promiseCheck`      | Does reply promise actions or outcomes beyond allowedCommitments?                                      |
-| [`tone-check`](tone-check/README.md)                 | `toneCheck`         | Check a draft against each supplied writing criterion.                                                 |
-| [`draft-compare`](draft-compare/README.md)           | `draftCompare`      | Which draft better satisfies request under rubric?                                                     |
+| Recipe                                               | Function            | Use when                                                                        |
+| ---------------------------------------------------- | ------------------- | ------------------------------------------------------------------------------- |
+| [`answer-consistency`](answer-consistency/README.md) | `answerConsistency` | You need to check whether two statements agree under the same conditions.       |
+| [`answer-coverage`](answer-coverage/README.md)       | `answerCoverage`    | You have a draft and need to check whether it answers each supplied question.   |
+| [`answer-relevance`](answer-relevance/README.md)     | `answerRelevance`   | You need to check whether a draft stays relevant to the request.                |
+| [`certainty-match`](certainty-match/README.md)       | `certaintyMatch`    | You want the wording of a draft to reflect the certainty of an assessment.      |
+| [`citation-match`](citation-match/README.md)         | `citationMatch`     | You want to find which supplied passages support an entire claim.               |
+| [`citation-needed`](citation-needed/README.md)       | `citationNeeded`    | You need to decide whether a statement requires a citation under your rules.    |
+| [`draft-compare`](draft-compare/README.md)           | `draftCompare`      | You have two drafts and want to choose the better fit for a request and rubric. |
+| [`promise-check`](promise-check/README.md)           | `promiseCheck`      | You need to catch commitments in a reply that exceed what is allowed.           |
+| [`summary-coverage`](summary-coverage/README.md)     | `summaryCoverage`   | You need to check whether a summary preserves each important source point.      |
+| [`tone-check`](tone-check/README.md)                 | `toneCheck`         | You want to check a draft against a supplied set of writing criteria.           |
 
 ## Retrieval and evidence
 
-| Recipe                                                   | Function              | Decision                                                                                                     |
-| -------------------------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`rerank`](rerank/README.md)                             | `rerank`              | Select and order relevant passages.                                                                          |
-| [`verify`](verify/README.md)                             | `verify`              | Check claims against supplied evidence.                                                                      |
-| [`answerability`](answerability/README.md)               | `answerability`       | Check whether evidence can answer the question.                                                              |
-| [`retrieval-needed`](retrieval-needed/README.md)         | `retrievalNeeded`     | Does request require facts beyond context?                                                                   |
-| [`freshness-needed`](freshness-needed/README.md)         | `freshnessNeeded`     | Does question require a current or time-specific state that can change, or stable conceptual knowledge?      |
-| [`source-applicability`](source-applicability/README.md) | `sourceApplicability` | Does the scope described in passage apply to scenario?                                                       |
-| [`evidence-conflict`](evidence-conflict/README.md)       | `evidenceConflict`    | Do firstPassage and secondPassage give incompatible evidence relevant to question under the same conditions? |
-| [`passage-duplicate`](passage-duplicate/README.md)       | `passageDuplicate`    | How much material information do firstPassage and secondPassage share?                                       |
-| [`evidence-novelty`](evidence-novelty/README.md)         | `evidenceNovelty`     | Does passage add material information relevant to question beyond existingEvidence?                          |
-| [`cache-match`](cache-match/README.md)                   | `cacheMatch`          | Does cachedAnswer address question with the same relevant meaning and conditions as originalQuestion?        |
-| [`query-equivalence`](query-equivalence/README.md)       | `queryEquivalence`    | Do firstQuestion and secondQuestion request the same information under the same stated conditions?           |
-| [`context-role`](context-role/README.md)                 | `contextRole`         | What role does passage play in answering question?                                                           |
-| [`query-specificity`](query-specificity/README.md)       | `querySpecificity`    | Does question, interpreted with context, identify a focused information need?                                |
+| Recipe                                                   | Function              | Use when                                                                               |
+| -------------------------------------------------------- | --------------------- | -------------------------------------------------------------------------------------- |
+| [`answerability`](answerability/README.md)               | `answerability`       | You need to know if you have enough evidence and can answer a question.                |
+| [`cache-match`](cache-match/README.md)                   | `cacheMatch`          | You want to know whether a saved answer applies to a new question.                     |
+| [`context-role`](context-role/README.md)                 | `contextRole`         | You want to identify the role a passage plays in answering a question.                 |
+| [`evidence-conflict`](evidence-conflict/README.md)       | `evidenceConflict`    | You have two passages and need to check for conflicting evidence about a question.     |
+| [`evidence-novelty`](evidence-novelty/README.md)         | `evidenceNovelty`     | You need to decide whether a new passage adds useful information to existing evidence. |
+| [`freshness-needed`](freshness-needed/README.md)         | `freshnessNeeded`     | You need to know whether a question depends on current or changing information.        |
+| [`passage-duplicate`](passage-duplicate/README.md)       | `passageDuplicate`    | You want to detect duplicate or overlapping information in two passages.               |
+| [`query-equivalence`](query-equivalence/README.md)       | `queryEquivalence`    | You need to check whether two questions ask for the same information.                  |
+| [`query-specificity`](query-specificity/README.md)       | `querySpecificity`    | You need to know whether a question identifies a focused information need.             |
+| [`rerank`](rerank/README.md)                             | `rerank`              | You have retrieved passages and want the most relevant evidence for a question.        |
+| [`retrieval-needed`](retrieval-needed/README.md)         | `retrievalNeeded`     | You need to decide whether answering requires facts beyond the current context.        |
+| [`source-applicability`](source-applicability/README.md) | `sourceApplicability` | You need to check whether the conditions and scope of a source fit a scenario.         |
+| [`verify`](verify/README.md)                             | `verify`              | You need to know whether a claim is supported by its supplied evidence.                |
 
 ## Conversation
 
-| Recipe                                               | Function            | Decision                                                                           |
-| ---------------------------------------------------- | ------------------- | ---------------------------------------------------------------------------------- |
-| [`clarify`](clarify/README.md)                       | `clarify`           | Find missing or ambiguous requirements.                                            |
-| [`turn-intent`](turn-intent/README.md)               | `turnIntent`        | What is the primary communicative purpose of message in context?                   |
-| [`followup-link`](followup-link/README.md)           | `followupLink`      | Which supplied earlier request does message follow up on?                          |
-| [`reference-resolve`](reference-resolve/README.md)   | `referenceResolve`  | Which supplied candidate does reference refer to in message and context?           |
-| [`intent-change`](intent-change/README.md)           | `intentChange`      | How does message change currentGoal?                                               |
-| [`correction-target`](correction-target/README.md)   | `correctionTarget`  | Which supplied field or statement is message correcting?                           |
-| [`confirmation-match`](confirmation-match/README.md) | `confirmationMatch` | Does response clearly agree to or reject this exact proposal?                      |
-| [`cancellation-check`](cancellation-check/README.md) | `cancellationCheck` | Does message ask to cancel, pause, or continue task?                               |
-| [`topic-shift`](topic-shift/README.md)               | `topicShift`        | Does message stay with currentTopic, introduce a different topic, or contain both? |
-| [`response-needed`](response-needed/README.md)       | `responseNeeded`    | Does message require a substantive reply in context?                               |
-| [`resolution-check`](resolution-check/README.md)     | `resolutionCheck`   | Does message establish that the customer reports issue as resolved?                |
+| Recipe                                               | Function            | Use when                                                                                          |
+| ---------------------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------------- |
+| [`cancellation-check`](cancellation-check/README.md) | `cancellationCheck` | You need to detect whether a message asks to stop, pause, or continue a task.                     |
+| [`clarify`](clarify/README.md)                       | `clarify`           | You need to check for missing or ambiguous requirements before proceeding.                        |
+| [`confirmation-match`](confirmation-match/README.md) | `confirmationMatch` | You need to know whether a response accepts or rejects an exact proposal.                         |
+| [`correction-target`](correction-target/README.md)   | `correctionTarget`  | You need to identify which supplied field or statement a message corrects.                        |
+| [`followup-link`](followup-link/README.md)           | `followupLink`      | You need to connect a follow-up message to one of the earlier requests.                           |
+| [`intent-change`](intent-change/README.md)           | `intentChange`      | You need to check whether a new message changes the current task or goal.                         |
+| [`reference-resolve`](reference-resolve/README.md)   | `referenceResolve`  | You need to resolve a phrase such as this one to a supplied candidate.                            |
+| [`resolution-check`](resolution-check/README.md)     | `resolutionCheck`   | You need to know whether the customer reports that an issue is resolved.                          |
+| [`response-needed`](response-needed/README.md)       | `responseNeeded`    | You need to decide whether a message calls for a substantive reply.                               |
+| [`topic-shift`](topic-shift/README.md)               | `topicShift`        | You need to detect whether a message moves away from the current topic.                           |
+| [`turn-intent`](turn-intent/README.md)               | `turnIntent`        | You need to classify a message as a request, answer, correction, cancellation, or acknowledgment. |
 
 ## Tools and tasks
 
-| Recipe                                             | Function           | Decision                                                                                 |
-| -------------------------------------------------- | ------------------ | ---------------------------------------------------------------------------------------- |
-| [`route`](route/README.md)                         | `route`            | Choose a handler for a request.                                                          |
-| [`handoff`](handoff/README.md)                     | `handoff`          | Check your rules for involving a human.                                                  |
-| [`tool-fit`](tool-fit/README.md)                   | `toolFit`          | Can the capabilities explicitly described in tool perform task?                          |
-| [`argument-fit`](argument-fit/README.md)           | `argumentFit`      | Does proposedValue for argument express the intended value in request and context?       |
-| [`result-usefulness`](result-usefulness/README.md) | `resultUsefulness` | Does result provide information useful for task?                                         |
-| [`result-outcome`](result-outcome/README.md)       | `resultOutcome`    | What outcome does result report for task?                                                |
-| [`action-scope`](action-scope/README.md)           | `actionScope`      | Is proposedAction within the work requested in request and constraints?                  |
-| [`step-progress`](step-progress/README.md)         | `stepProgress`     | How does observation change progress toward objective relative to previousState?         |
-| [`repeated-attempt`](repeated-attempt/README.md)   | `repeatedAttempt`  | Does proposedAttempt use essentially the same approach as previousAttempt for objective? |
-| [`step-complete`](step-complete/README.md)         | `stepComplete`     | Does evidence establish that condition has been met?                                     |
-| [`failure-kind`](failure-kind/README.md)           | `failureKind`      | Which supplied category best describes the observed failure?                             |
-| [`instruction-fit`](instruction-fit/README.md)     | `instructionFit`   | Does the explicit scope of instruction cover task and context?                           |
+| Recipe                                             | Function           | Use when                                                                                     |
+| -------------------------------------------------- | ------------------ | -------------------------------------------------------------------------------------------- |
+| [`action-scope`](action-scope/README.md)           | `actionScope`      | You need to check whether a proposed action stays within the requested work and constraints. |
+| [`argument-fit`](argument-fit/README.md)           | `argumentFit`      | You need to check whether a proposed argument value matches the user request.                |
+| [`failure-kind`](failure-kind/README.md)           | `failureKind`      | You need to assign an observed failure to one of your supplied categories.                   |
+| [`handoff`](handoff/README.md)                     | `handoff`          | You need to decide whether your escalation rules call for a human.                           |
+| [`instruction-fit`](instruction-fit/README.md)     | `instructionFit`   | You need to check whether an instruction applies to the current task and context.            |
+| [`repeated-attempt`](repeated-attempt/README.md)   | `repeatedAttempt`  | You need to detect whether a proposed retry repeats an earlier approach.                     |
+| [`result-outcome`](result-outcome/README.md)       | `resultOutcome`    | You need to classify what a tool result reports happened during a task.                      |
+| [`result-usefulness`](result-usefulness/README.md) | `resultUsefulness` | You need to assess whether a tool result provides useful information for a task.             |
+| [`route`](route/README.md)                         | `route`            | You need to send a request to the right handler, team, or department.                        |
+| [`step-complete`](step-complete/README.md)         | `stepComplete`     | You need to check whether supplied evidence establishes a completion condition.              |
+| [`step-progress`](step-progress/README.md)         | `stepProgress`     | You need to compare a new observation with the previous state of a task.                     |
+| [`tool-fit`](tool-fit/README.md)                   | `toolFit`          | You need to check whether a tool has the stated capability to perform a task.                |
 
 ## Customer support
 
-| Recipe                                                   | Function             | Decision                                                                     |
-| -------------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------- |
-| [`issue-impact`](issue-impact/README.md)                 | `issueImpact`        | What practical impact does message explicitly describe?                      |
-| [`attempted-step`](attempted-step/README.md)             | `attemptedStep`      | Does conversation establish whether the customer already performed step?     |
-| [`workaround-fit`](workaround-fit/README.md)             | `workaroundFit`      | Can workaround address issue without violating constraints?                  |
-| [`ticket-match`](ticket-match/README.md)                 | `ticketMatch`        | Do firstTicket and secondTicket describe the same underlying reported issue? |
-| [`incident-match`](incident-match/README.md)             | `incidentMatch`      | Which supplied incident is supported as a match for ticket?                  |
-| [`troubleshooting-fit`](troubleshooting-fit/README.md)   | `troubleshootingFit` | Does procedure address symptoms under the described circumstances?           |
-| [`frustration-signal`](frustration-signal/README.md)     | `frustrationSignal`  | Does message express frustration or dissatisfaction in its wording?          |
-| [`urgency-signal`](urgency-signal/README.md)             | `urgencySignal`      | Does message explicitly request urgent attention?                            |
-| [`feedback-kind`](feedback-kind/README.md)               | `feedbackKind`       | What is the primary kind of feedback in message?                             |
-| [`reply-template-match`](reply-template-match/README.md) | `replyTemplateMatch` | Which supplied approved template applies to request and context?             |
+| Recipe                                                   | Function             | Use when                                                                                 |
+| -------------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------- |
+| [`attempted-step`](attempted-step/README.md)             | `attemptedStep`      | You need to know whether a customer already tried a troubleshooting step.                |
+| [`feedback-kind`](feedback-kind/README.md)               | `feedbackKind`       | You need to classify the kind of feedback expressed in a message.                        |
+| [`frustration-signal`](frustration-signal/README.md)     | `frustrationSignal`  | You need to detect frustration or dissatisfaction expressed in a message.                |
+| [`incident-match`](incident-match/README.md)             | `incidentMatch`      | You need to connect a support ticket to a supplied known incident.                       |
+| [`issue-impact`](issue-impact/README.md)                 | `issueImpact`        | You need to assess the practical impact explicitly described in a support message.       |
+| [`reply-template-match`](reply-template-match/README.md) | `replyTemplateMatch` | You want to select a supplied approved reply template for a request.                     |
+| [`ticket-match`](ticket-match/README.md)                 | `ticketMatch`        | You want to check whether two tickets describe the same underlying issue.                |
+| [`troubleshooting-fit`](troubleshooting-fit/README.md)   | `troubleshootingFit` | You need to choose whether a procedure fits the reported symptoms and circumstances.     |
+| [`urgency-signal`](urgency-signal/README.md)             | `urgencySignal`      | You need to detect whether a message explicitly asks for urgent attention.               |
+| [`workaround-fit`](workaround-fit/README.md)             | `workaroundFit`      | You need to check whether a workaround addresses an issue within the stated constraints. |
 
 ## Memory
 
-| Recipe                                         | Function         | Decision                                                                                   |
-| ---------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------ |
-| [`memory-value`](memory-value/README.md)       | `memoryValue`    | How useful is fact for future work under purpose?                                          |
-| [`memory-scope`](memory-scope/README.md)       | `memoryScope`    | What is the narrowest explicitly supported scope of fact in context?                       |
-| [`memory-relation`](memory-relation/README.md) | `memoryRelation` | How does newFact relate to existingMemory?                                                 |
-| [`preference-kind`](preference-kind/README.md) | `preferenceKind` | Does statement express an ongoing preference, a factual assertion, or a temporary request? |
-| [`fact-stability`](fact-stability/README.md)   | `factStability`  | Is fact about an enduring or historical attribute, or a state that is expected to change?  |
+| Recipe                                         | Function         | Use when                                                                                |
+| ---------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| [`fact-stability`](fact-stability/README.md)   | `factStability`  | You need to assess whether a fact is enduring or likely to change over time.            |
+| [`memory-relation`](memory-relation/README.md) | `memoryRelation` | You need to compare a new fact with an existing memory for agreement or change.         |
+| [`memory-scope`](memory-scope/README.md)       | `memoryScope`    | You need to identify the narrowest supported scope of a fact or preference.             |
+| [`memory-value`](memory-value/README.md)       | `memoryValue`    | You need to assess whether a candidate fact is useful to remember for a stated purpose. |
+| [`preference-kind`](preference-kind/README.md) | `preferenceKind` | You need to distinguish an ongoing preference from a fact or temporary request.         |
 
 ## Knowledge maintenance
 
-| Recipe                                                 | Function             | Decision                                                                                                |
-| ------------------------------------------------------ | -------------------- | ------------------------------------------------------------------------------------------------------- |
-| [`document-role`](document-role/README.md)             | `documentRole`       | What is the primary purpose of document?                                                                |
-| [`audience-fit`](audience-fit/README.md)               | `audienceFit`        | Does the level of explanation in document fit the knowledge and needs explicitly described in audience? |
-| [`change-meaning`](change-meaning/README.md)           | `changeMeaning`      | Does the revision from before to after change material meaning, conditions, or obligations?             |
-| [`answer-invalidation`](answer-invalidation/README.md) | `answerInvalidation` | Does updatedEvidence still support the entire claim that was based on previousEvidence?                 |
-| [`field-select`](field-select/README.md)               | `fieldSelect`        | Which supplied candidate is the value of field in document?                                             |
+| Recipe                                                 | Function             | Use when                                                                                |
+| ------------------------------------------------------ | -------------------- | --------------------------------------------------------------------------------------- |
+| [`answer-invalidation`](answer-invalidation/README.md) | `answerInvalidation` | You need to check whether updated evidence still supports a previously supported claim. |
+| [`audience-fit`](audience-fit/README.md)               | `audienceFit`        | You need to check whether a document suits the stated audience knowledge and needs.     |
+| [`change-meaning`](change-meaning/README.md)           | `changeMeaning`      | You need to know whether a revision changes material meaning or obligations.            |
+| [`document-role`](document-role/README.md)             | `documentRole`       | You need to identify the primary purpose of a document.                                 |
+| [`field-select`](field-select/README.md)               | `fieldSelect`        | You need to select which supplied candidate expresses a field value in a document.      |
+
+<!-- END GENERATED: catalog -->
 
 ## Shared options and behavior
 
@@ -119,10 +123,10 @@ After `npm install jev-recipes`, browse the groups below or use `npx jev-recipes
 
 Recipes share small helpers for choices, candidate selection, and item checks. Rerank uses independent yes/no relevance scores. Each recipe owns its question and decision rules. `citation-match` composes the public `verify` function; its guide and catalog `uses` field name that dependency.
 
-Each current recipe makes one logical Jev request per live invocation. Batch checks place their questions in that request. SDK retries can add transport attempts. The recipes return decisions without executing application actions. The separate support example makes up to six logical requests and can stop early.
+Each current recipe makes one logical Jev request per live invocation. Batch checks place their questions in that request. SDK retries can add transport attempts. The recipes return decisions without executing application actions. Applications compose recipes and decide which calls are needed.
 
 ## Examples and limits
 
 Every `demo.json` includes input and a hand-authored response. These examples illustrate behavior; they are not model accuracy results. Use `example <recipe>` to obtain editable input and `demo <recipe>` to inspect an offline illustration when desired.
 
-Application code owns exact arithmetic, dates, identifiers, access controls, consent, and storage. Recipe guides describe the limits of each semantic decision. Larger applications combine the recipes in caller code; see [Cool projects](../README.md#cool-projects).
+Application code owns exact arithmetic, dates, identifiers, access controls, consent, and storage. Recipe guides describe the limits of each semantic decision. Applications combine recipes in caller code.

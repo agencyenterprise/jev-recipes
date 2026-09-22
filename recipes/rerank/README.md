@@ -1,6 +1,12 @@
 # Rerank evidence
 
-Select supplied passages by how directly they help answer a query, then order them by relevance.
+<!-- BEGIN GENERATED: usage -->
+
+Select candidate passages by relevance to a query.
+
+Use when: You have retrieved passages and want the most relevant evidence for a question.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { rerank } from 'jev-recipes/rerank';
@@ -8,29 +14,70 @@ import { rerank } from 'jev-recipes/rerank';
 const result = await rerank({
   query: 'How do I reset my password?',
   items: [
-    {
-      id: 'billing',
-      text: 'Invoices appear on the Billing page.',
-    },
+    { id: 'billing', text: 'Invoices are available on the Billing page.' },
     {
       id: 'reset',
-      text: 'Select Forgot password to receive a reset link.',
+      text: 'Select Forgot password on the sign-in page. We will email you a reset link.',
+    },
+    {
+      id: 'security',
+      text: 'Choose a strong password and enable two-factor authentication.',
     },
   ],
-  topK: 1,
+  topK: 2,
+  minRelevance: 0.5,
 });
-
-console.log(result.items);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo rerank`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "items": [
+    {
+      "id": "reset",
+      "text": "Select Forgot password on the sign-in page. We will email you a reset link.",
+      "relevance": 0.97
+    }
+  ],
+  "evaluated": 3
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`answerability`](../answerability/README.md): Use answerability to check whether the selected evidence is enough to answer.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field          | Accepts                                                                    |
-| -------------- | -------------------------------------------------------------------------- |
-| `query`        | Non-empty text describing the information needed                           |
-| `items`        | 1 to 100 `{ id, text }` items with unique non-empty IDs and non-empty text |
-| `topK`         | Optional integer from 1 to 100; defaults to 5                              |
-| `minRelevance` | Optional number from 0 to 1; defaults to 0.5                               |
+<!-- BEGIN GENERATED: input -->
+
+| Field          | Required | Shape                                               |
+| -------------- | -------- | --------------------------------------------------- |
+| `query`        | Yes      | string                                              |
+| `items`        | Yes      | { id, text }[]; at least 1 items; at most 100 items |
+| `topK`         | No       | integer; minimum 1; maximum 100                     |
+| `minRelevance` | No       | number; minimum 0; maximum 1                        |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors. Types are inferred from this folder's Zod 4 schemas.
 

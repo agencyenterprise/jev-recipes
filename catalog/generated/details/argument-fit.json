@@ -1,0 +1,41 @@
+{
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "request": { "type": "string" },
+      "argument": { "type": "string" },
+      "proposedValue": { "type": "string" },
+      "context": { "type": "string" },
+      "minConfidence": { "type": "number", "minimum": 0, "maximum": 1 }
+    },
+    "required": ["request", "argument", "proposedValue"]
+  },
+  "resultSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "model": { "type": "string" },
+      "usage": {
+        "type": "object",
+        "properties": {
+          "input_tokens": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+          "output_tokens": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 }
+        },
+        "required": ["input_tokens", "output_tokens"],
+        "additionalProperties": false
+      },
+      "status": { "type": "string", "enum": ["ready", "review"] },
+      "verdict": { "type": "string", "enum": ["fits", "conflicts", "unclear"] },
+      "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+      "probabilities": {
+        "type": "object",
+        "propertyNames": { "type": "string", "enum": ["fits", "conflicts", "unclear"] },
+        "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 },
+        "required": ["fits", "conflicts", "unclear"]
+      }
+    },
+    "required": ["model", "usage", "status", "verdict", "confidence", "probabilities"],
+    "additionalProperties": false
+  }
+}

@@ -1,112 +1,59 @@
 # Releasing jev-recipes
 
-Publishing is manual. Choose a new version for each release; npm does not allow reusing a published version. The README badge reads the published version from npm, while package.json records the checkout version. GitHub CI checks the project without publishing it.
+Publishing is manual. Keep the current package name and existing imports. The Makefile, generation tooling, and tests are contributor tools; users install compiled code from npm.
 
 ## What ships
 
-```text
-TypeScript source
-  npm run build
-JavaScript modules and TypeScript declarations in dist/
-  npm pack
-jev-recipes-VERSION.tgz
-  npm publish
-npm registry
-```
+The `files` allowlist in `package.json` includes:
 
-The package uses native ESM. TypeScript compiles each module to JavaScript and generates `.d.ts` declarations. The build clears `dist/` first so deleted source files cannot survive in a later package.
+- Compiled recipe and shared runtime JavaScript with TypeScript declarations.
+- The CLI and generated catalog metadata, loaders, and schema descriptions.
+- Recipe `demo.json` files copied under `dist/recipes/` and required by `demo`, `example`, and `describe`.
+- The root README, changelog, license, and package metadata.
 
-The `files` list in `package.json` includes the compiled modules, recipe demo JSON, recipe READMEs, the complete recipe catalog guide, the support example fixture and README, root README, changelog, and license. npm includes `package.json` as well. Source files, tests, coverage reports, development configuration, `.env` files, and `node_modules` are excluded.
+The archive excludes tests, coverage, development scripts, the Makefile, source TypeScript, source recipe guides, and standalone examples. Recipe authoring metadata modules are removed from the build after the catalog is generated. Detailed guides stay on GitHub and are linked from the root README.
 
-Zod and the official TypeSafe SDK remain runtime dependencies. npm installs them for consumers. Consumers do not need TypeScript, Prettier, or the repository's build tools, and installation does not run a build.
+Zod and the official TypeSafe SDK remain runtime dependencies. Users need no build tools, and installing the published package does not run a build.
 
-The CLI's version comes from the installed `package.json`. Its demo command reads the packaged `recipes/<name>/demo.json` files. Both paths resolve relative to the installed CLI, so it works from another directory.
-
-## Prepare the checkout
-
-Use Node.js 22.9 or newer. From the repository:
+## Prepare a release
 
 ```sh
-npm ci
-npm run ci
-npm run pack:check
+make setup
+make docs
+npm run format
+make ci
 ```
 
-`npm run ci` checks formatting, type-checks the source and tests, runs recipe tests with coverage thresholds, makes a clean build, and runs every registered offline demo and the support example. `npm run pack:check` previews the exact files npm would include.
+`make ci` checks generated files, formatting, types, recipe coverage, the build, tooling, and the actual archive. Generated source and documentation must already be current; CI reports drift rather than silently updating them.
 
-If formatting needs attention, run `npm run format`. The demos use saved responses; they confirm that the examples run, not that Jev makes accurate decisions. Recipe tests use mocked Jev responses to check recipe behavior. They require no API key and do not measure model accuracy. Run them with `npm test`, or use `npm run test:coverage` to generate `coverage/index.html`.
+The archive check uses `npm pack --ignore-scripts` after a clean build. This avoids recursively running publishing hooks. It then:
 
-## Try the packaged artifact
+1. Checks every archive path against the allowed content and rejects tests or development files.
+2. Verifies all public export targets, schema descriptions, and demo files are present.
+3. Packs the installed runtime dependencies and installs the archives into a separate temporary project, offline and with lifecycle scripts disabled.
+4. Exercises all recipe subpath imports, root exports, generated descriptions, TypeScript declarations, and offline CLI commands.
+5. Reports compressed size, unpacked size, and file count, then removes temporary files.
 
-From the repository, create the same archive npm will distribute:
+Run `make pack-check` to repeat just the generation check, clean build, and archive verification. A source-directory link is not an adequate substitute for an archive installation.
 
-```sh
-npm pack
-```
+When adding a runtime dependency with transitive dependencies, extend the offline consumer setup to provide those archives too. Missing dependencies fail the installation check rather than falling back to the network.
 
-This creates `jev-recipes-VERSION.tgz`, with `VERSION` taken from package.json. Replace `VERSION` in the commands below with that value. In a separate empty folder, install that file using its absolute path:
+## Publish
 
-```sh
-npm init -y
-npm install /absolute/path/to/jev-recipes/jev-recipes-VERSION.tgz
-npx --no -- jev-recipes --version
-npx --no -- jev-recipes list
-npx --no -- jev-recipes demo all
-npx --no -- jev-recipes describe answerability
-node node_modules/jev-recipes/dist/examples/support/index.js
-```
-
-The installed version should match the packed checkout's package.json. An unchanged version number does not imply an unchanged archive; uncommitted additions are included when packing. Demos should report `mode: "demo"` and `model: "demo-fixture"`.
-
-Use the same tarball in an existing TypeScript app to try the library exports:
-
-```ts
-import { rerank, rerankInputSchema } from 'jev-recipes';
-import { route } from 'jev-recipes/route';
-import { verify } from 'jev-recipes/verify';
-```
-
-Installing the tarball checks the files consumers receive. Installing the repository folder directly can create a local link and hide missing package files.
-
-## Try live Jev calls
-
-In the separate folder where you installed the tarball:
-
-```sh
-npx --no -- jev-recipes example rerank > input.json
-```
-
-Edit `input.json` with your own query and passages. Create a local `.env` containing `TYPESAFE_API_KEY`, then run:
-
-```sh
-node --env-file=.env node_modules/jev-recipes/dist/cli/index.js run rerank input.json
-```
-
-A live run sends the input to TypeSafe and uses API quota. Inspect the selected passages and review status against the outcome you expect. Repeat with the other recipes to evaluate their behavior. To run the support example with live decisions and a saved draft, use `node --env-file=.env node_modules/jev-recipes/dist/examples/support/index.js --live`. Keep private inputs and credentials out of the repository.
-
-## Publish the next version
-
-Update the catalog documentation and move the changelog's `Unreleased` content under the chosen version with the actual release date. Commit the intended changes and choose a new version with `npm version patch`, `npm version minor`, or `npm version major` from a clean working tree. npm updates the manifest and lockfile and creates a commit and tag. Repeat the checks and packaged installation with the new tarball, then let GitHub CI pass.
-
-From the repository:
+Update the changelog, choose a new version, and review the complete release diff. npm does not permit reusing a published version. Use `npm version patch`, `npm version minor`, or `npm version major` from the intended clean checkout, and let CI pass.
 
 ```sh
 npm login
 npm whoami
 npm publish --dry-run
-```
-
-The dry run runs the publish checks and prints the package contents without uploading. Review those results, then publish when ready:
-
-```sh
 npm publish
 npm view jev-recipes version
 ```
 
-`prepublishOnly` runs `npm run ci` before a directory-based publish. `prepack` makes a clean build before packing or publishing. These hooks require development dependencies to be installed. Publishing a previously packed tarball does not rerun the checkout's checks, so use the repository command above for the documented workflow.
+`prepublishOnly` runs the full CI script. `prepack` checks generated files and builds from source. Both use npm scripts directly, so Make is optional. Publishing a previously packed archive does not rerun the checkout's checks; publish from the checked repository directory.
 
-After publishing succeeds, push the version commit and its tag, then create a GitHub release with the changelog notes. No workflow publishes on push, tag creation, or release creation.
+After publishing succeeds, push the version commit and tag and create a GitHub release from the changelog. There is no automatic publishing workflow.
 
-While the project is below 1.0.0, document breaking API changes explicitly. Treat 0.x releases as evolving APIs.
+While the project is below 1.0.0, document breaking API changes explicitly. This foundation preserves existing recipe names, inputs, result policies, and import paths. Catalog search gains ranking and an optional result limit.
 
-See npm's [package lifecycle documentation](https://docs.npmjs.com/cli/v11/using-npm/scripts/) and [package file rules](https://docs.npmjs.com/cli/v11/commands/npm-publish/#files-included-in-package) for the underlying behavior.
+See npm's [package file rules](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/#files) and [lifecycle scripts](https://docs.npmjs.com/cli/v11/using-npm/scripts/).

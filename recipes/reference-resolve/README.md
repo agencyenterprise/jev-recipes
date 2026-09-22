@@ -1,6 +1,12 @@
 # Resolve a reference
 
-Which supplied candidate does reference refer to in message and context? Resolve only this reference. Do not invent an entity or break a genuine tie.
+<!-- BEGIN GENERATED: usage -->
+
+Which supplied candidate does reference refer to in message and context?
+
+Use when: You need to resolve a phrase such as this one to a supplied candidate.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { referenceResolve } from 'jev-recipes/reference-resolve';
@@ -9,29 +15,66 @@ const result = await referenceResolve({
   message: 'Please cancel the hardware order, not my subscription.',
   reference: 'the hardware order',
   candidates: [
-    {
-      id: 'order',
-      text: 'A pending hardware order.',
-    },
-    {
-      id: 'subscription',
-      text: 'An active monthly storage subscription.',
-    },
+    { id: 'order', text: 'A pending hardware order.' },
+    { id: 'subscription', text: 'An active monthly storage subscription.' },
   ],
 });
-
-console.log(result.status, result.selection);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo reference-resolve`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "matched",
+  "selection": "order",
+  "suggestedSelection": "order",
+  "confidence": 0.96,
+  "probabilities": {
+    "candidates": {
+      "order": 1,
+      "subscription": 0
+    },
+    "none": 0,
+    "ambiguous": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`correction-target`](../correction-target/README.md): Use correction-target when the message corrects a particular field or statement.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `message`       | Non-empty text                               |
-| `reference`     | Non-empty text                               |
-| `candidates`    | 1 to 50 `{ id, text }` items with unique IDs |
-| `context`       | Optional non-empty text                      |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `message`       | Yes      | string                                             |
+| `reference`     | Yes      | string                                             |
+| `candidates`    | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `context`       | No       | string                                             |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

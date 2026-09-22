@@ -1,6 +1,12 @@
 # Check tool result usefulness
 
-Does result provide information useful for task? A response can be technically successful but contain no substantive information or information about a different task.
+<!-- BEGIN GENERATED: usage -->
+
+Does result provide information useful for task?
+
+Use when: You need to assess whether a tool result provides useful information for a task.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { resultUsefulness } from 'jev-recipes/result-usefulness';
@@ -9,17 +15,56 @@ const result = await resultUsefulness({
   task: 'Find password reset instructions.',
   result: 'Search completed successfully. No matching documents were found.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo result-usefulness`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "no_useful_information",
+  "confidence": 0.96,
+  "probabilities": {
+    "useful": 0,
+    "no_useful_information": 1,
+    "irrelevant": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`result-outcome`](../result-outcome/README.md): Use result-outcome to classify the reported outcome rather than its usefulness.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `task`          | Non-empty text                               |
-| `result`        | Non-empty text                               |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `task`          | Yes      | string                       |
+| `result`        | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

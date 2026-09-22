@@ -1,6 +1,12 @@
 # Check summary coverage
 
+<!-- BEGIN GENERATED: usage -->
+
 Check whether a summary preserves each supplied point.
+
+Use when: You need to check whether a summary preserves each important source point.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { summaryCoverage } from 'jev-recipes/summary-coverage';
@@ -8,27 +14,79 @@ import { summaryCoverage } from 'jev-recipes/summary-coverage';
 const result = await summaryCoverage({
   summary: 'We agreed to keep the API unchanged.',
   points: [
-    {
-      id: 'api',
-      text: 'Keep the public API unchanged.',
-    },
-    {
-      id: 'docs',
-      text: 'Update the installation instructions.',
-    },
+    { id: 'api', text: 'Keep the public API unchanged.' },
+    { id: 'docs', text: 'Update the installation instructions.' },
   ],
 });
-
-console.log(result.status, result.checks);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo summary-coverage`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "allPreserved": false,
+  "checks": [
+    {
+      "id": "api",
+      "status": "ready",
+      "verdict": "preserved",
+      "confidence": 0.96,
+      "probabilities": {
+        "preserved": 1,
+        "partial": 0,
+        "missing": 0,
+        "unclear": 0
+      }
+    },
+    {
+      "id": "docs",
+      "status": "ready",
+      "verdict": "missing",
+      "confidence": 0.96,
+      "probabilities": {
+        "preserved": 0,
+        "partial": 0,
+        "missing": 1,
+        "unclear": 0
+      }
+    }
+  ]
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`answer-coverage`](../answer-coverage/README.md): Use answer-coverage when the checklist contains questions to answer.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field           | Accepts                                      |
-| --------------- | -------------------------------------------- |
-| `summary`       | Non-empty text                               |
-| `points`        | 1 to 50 `{ id, text }` items with unique IDs |
-| `minConfidence` | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                                              |
+| --------------- | -------- | -------------------------------------------------- |
+| `summary`       | Yes      | string                                             |
+| `points`        | Yes      | { id, text }[]; at least 1 items; at most 50 items |
+| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 

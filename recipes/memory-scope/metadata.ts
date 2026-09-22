@@ -6,6 +6,13 @@ export const metadata = {
   description: 'What is the narrowest explicitly supported scope of fact in context?',
   category: 'memory',
   tags: ['memory', 'scope'],
+  useWhen: 'You need to identify the narrowest supported scope of a fact or preference.',
+  related: [
+    {
+      id: 'preference-kind',
+      reason: 'Use preference-kind to distinguish ongoing preferences from temporary instructions.',
+    },
+  ],
   limitations: [
     'Identifies semantic scope. It does not identify a storage tenant, establish consent, or persist a memory.',
   ],

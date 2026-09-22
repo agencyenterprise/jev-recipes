@@ -1,6 +1,12 @@
 # Check a cached answer
 
-Does cachedAnswer address question with the same relevant meaning and conditions as originalQuestion? Do not assume freshness, access, tenant, or product compatibility beyond the supplied facts.
+<!-- BEGIN GENERATED: usage -->
+
+Does cachedAnswer address question with the same relevant meaning and conditions as originalQuestion?
+
+Use when: You want to know whether a saved answer applies to a new question.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
 ```ts
 import { cacheMatch } from 'jev-recipes/cache-match';
@@ -10,19 +16,57 @@ const result = await cacheMatch({
   originalQuestion: 'How do I download invoices?',
   cachedAnswer: 'Open Billing and select Download invoice.',
 });
-
-console.log(result.status, result.verdict);
+console.log(result);
 ```
+
+Try the saved example without an API key: `npx jev-recipes demo cache-match`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "verdict": "reusable",
+  "confidence": 0.96,
+  "probabilities": {
+    "reusable": 1,
+    "unsuitable": 0,
+    "unclear": 0
+  }
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`query-equivalence`](../query-equivalence/README.md): Use query-equivalence to compare questions without assessing a saved answer.
+
+<!-- END GENERATED: usage -->
 
 ## Input
 
-| Field              | Accepts                                      |
-| ------------------ | -------------------------------------------- |
-| `question`         | Non-empty text                               |
-| `originalQuestion` | Non-empty text                               |
-| `cachedAnswer`     | Non-empty text                               |
-| `context`          | Optional non-empty text                      |
-| `minConfidence`    | Optional number from 0 to 1; defaults to 0.8 |
+<!-- BEGIN GENERATED: input -->
+
+| Field              | Required | Shape                        |
+| ------------------ | -------- | ---------------------------- |
+| `question`         | Yes      | string                       |
+| `originalQuestion` | Yes      | string                       |
+| `cachedAnswer`     | Yes      | string                       |
+| `context`          | No       | string                       |
+| `minConfidence`    | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
 
 See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors.
 
