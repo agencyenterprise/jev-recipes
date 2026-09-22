@@ -1,5 +1,7 @@
 # jev-recipes
 
+[![npm version](https://img.shields.io/npm/v/jev-recipes?logo=npm)](https://www.npmjs.com/package/jev-recipes)
+
 Small TypeScript recipes for the decisions inside an AI application. Use [Jev](https://docs.typesafe.ai/introduction/coding-agents) to choose a handler, select useful evidence, check an answer, or decide when to ask for help.
 
 Each recipe is a function you can use on its own. Your application supplies the context and acts on the result.
