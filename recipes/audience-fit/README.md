@@ -47,4 +47,4 @@ Uses only the supplied audience description. It does not infer ability from iden
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo audience-fit` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe audience-fit` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo audience-fit` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe audience-fit` shows the input and result schemas.

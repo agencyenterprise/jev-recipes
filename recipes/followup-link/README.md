@@ -49,4 +49,4 @@ Selects from the supplied earlier requests. Supply enough conversation context t
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo followup-link` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe followup-link` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo followup-link` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe followup-link` shows the input and result schemas.

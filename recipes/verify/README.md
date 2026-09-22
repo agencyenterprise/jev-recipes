@@ -51,4 +51,4 @@ Checks only supplied claim/evidence pairs. It does not extract claims, retrieve 
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo verify` shows an offline illustration, not an accuracy measurement. Use `npm run jev -- describe verify` to inspect the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo verify` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe verify` to inspect the input and result schemas.

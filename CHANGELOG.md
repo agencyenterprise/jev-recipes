@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Document installed-package imports and CLI commands first; move repository setup into the contributor guide and rename the local CLI script to `jev-recipes`.
+
+- Add recipe tests under `tests/recipe/`, mocked Jev responses, recipe coverage reports and thresholds, and test checks in CI.
+
 - Unify recipe execution helpers, result validation, subject registration, and documentation across the catalog.
 
 - Expand the catalog to 66 focused recipes across answer quality, retrieval, conversation, tools, support, memory, and knowledge maintenance.

@@ -57,4 +57,4 @@ Checks the points you supply. It does not select important points from a transcr
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo summary-coverage` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe summary-coverage` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo summary-coverage` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe summary-coverage` shows the input and result schemas.

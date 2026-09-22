@@ -2,7 +2,7 @@
 
 66 small decisions for AI applications. Every recipe has its own input and result schemas, example, and usage guide. The package exports camelCase functions from kebab-case paths: `answerCoverage` from `jev-recipes/answer-coverage`, for example.
 
-Browse the groups below, or use `npm run jev -- list <query>` and `npm run jev -- describe <recipe>` from the repository. Discovery does not call Jev. Each recipe guide describes its inputs, results, limits, and review policy.
+After `npm install jev-recipes`, browse the groups below or use `npx jev-recipes list <query>` and `npx jev-recipes describe <recipe>` from your app’s directory. Discovery needs no API key. Each recipe guide describes its inputs, results, limits, and review policy.
 
 ## Answer quality
 

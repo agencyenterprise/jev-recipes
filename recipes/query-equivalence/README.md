@@ -47,4 +47,4 @@ Compares supplied questions. It does not rewrite them or establish that an exist
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo query-equivalence` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe query-equivalence` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo query-equivalence` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe query-equivalence` shows the input and result schemas.

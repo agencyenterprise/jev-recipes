@@ -2,31 +2,19 @@
 
 [![npm version](https://img.shields.io/npm/v/jev-recipes?logo=npm)](https://www.npmjs.com/package/jev-recipes)
 
-Small TypeScript recipes for the decisions inside an AI application. Use [Jev](https://docs.typesafe.ai/introduction/coding-agents) to choose a handler, select useful evidence, check an answer, or decide when to ask for help.
+66 small TypeScript recipes for AI applications. Choose a handler, select useful evidence, check an answer, or decide when to ask for help.
 
-Each recipe is a function you can use on its own. Your application supplies the context and acts on the result.
+Use `jev-recipes` through TypeScript imports or its included command-line tool. [Jev](https://docs.typesafe.ai/introduction/coding-agents) powers the live decisions. Your application supplies the context and acts on the result.
 
-## Recipes
-
-[Browse all 66 recipes](recipes/README.md). Each handles a focused decision and has its own schemas, example, and usage guide.
-
-| Group                                                              | Recipes | Examples                                                |
-| ------------------------------------------------------------------ | ------- | ------------------------------------------------------- |
-| [Answer quality](recipes/README.md#answer-quality)                 | 10      | `answer-coverage`, `answer-relevance`, `citation-match` |
-| [Retrieval and evidence](recipes/README.md#retrieval-and-evidence) | 13      | `rerank`, `verify`, `answerability`                     |
-| [Conversation](recipes/README.md#conversation)                     | 11      | `clarify`, `turn-intent`, `followup-link`               |
-| [Tools and tasks](recipes/README.md#tools-and-tasks)               | 12      | `route`, `handoff`, `tool-fit`                          |
-| [Customer support](recipes/README.md#customer-support)             | 10      | `issue-impact`, `attempted-step`, `workaround-fit`      |
-| [Memory](recipes/README.md#memory)                                 | 5       | `memory-value`, `memory-scope`, `memory-relation`       |
-| [Knowledge maintenance](recipes/README.md#knowledge-maintenance)   | 5       | `document-role`, `audience-fit`, `change-meaning`       |
-
-## Use in an app
+## Install
 
 Requires Node.js 22.9 or newer.
 
 ```sh
 npm install jev-recipes
 ```
+
+## Use a recipe
 
 Set `TYPESAFE_API_KEY` in your server's environment, then call a recipe:
 
@@ -51,28 +39,38 @@ You can also import recipes from `jev-recipes`. Every recipe accepts an optional
 
 Live calls send the supplied input to TypeSafe and use API quota. Keep your API key on the server.
 
-## Try the demos
+## Recipes
 
-From this repository:
+[Browse all 66 recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md). Each handles a focused decision and has its own schemas, example, and usage guide.
+
+| Group                                                                                                                        | Recipes | Examples                                                |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------- |
+| [Answer quality](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#answer-quality)                 | 10      | `answer-coverage`, `answer-relevance`, `citation-match` |
+| [Retrieval and evidence](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#retrieval-and-evidence) | 13      | `rerank`, `verify`, `answerability`                     |
+| [Conversation](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#conversation)                     | 11      | `clarify`, `turn-intent`, `followup-link`               |
+| [Tools and tasks](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#tools-and-tasks)               | 12      | `route`, `handoff`, `tool-fit`                          |
+| [Customer support](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#customer-support)             | 10      | `issue-impact`, `attempted-step`, `workaround-fit`      |
+| [Memory](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#memory)                                 | 5       | `memory-value`, `memory-scope`, `memory-relation`       |
+| [Knowledge maintenance](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#knowledge-maintenance)   | 5       | `document-role`, `audience-fit`, `change-meaning`       |
+
+## Try a demo
+
+After installing the package, run its CLI from your app's directory:
 
 ```sh
-npm ci
-npm run build
-npm run jev -- demo all
+npx jev-recipes demo rerank
 ```
 
-Demos use saved responses and need no API key. They show how each recipe handles a decision; they do not measure model accuracy. To run one, replace `all` with its name.
-
-The repository may contain additions that are not yet in the [published npm package](https://www.npmjs.com/package/jev-recipes). Use this checkout to try all the recipes shown here.
+Replace `rerank` with another recipe name, or use `all` to try every installed recipe. Demos use saved responses and need no API key. They show how recipes handle decisions; they do not measure model accuracy.
 
 ## Find a recipe
 
-Developers and coding agents can inspect the catalog without calling Jev:
+Use the CLI to browse the installed recipes without an API key:
 
 ```sh
-npm run jev -- list
-npm run jev -- list evidence --category retrieval
-npm run jev -- describe answer-coverage
+npx jev-recipes list
+npx jev-recipes list evidence --category retrieval
+npx jev-recipes describe answer-coverage
 ```
 
 `list` searches names, descriptions, categories, and tags. `describe` returns the recipe's limits, JSON input and result schemas, and example input.
@@ -90,20 +88,20 @@ The library returns metadata and schemas. The command-line description also incl
 
 ## Run your own input
 
-Add `TYPESAFE_API_KEY` to a local `.env` file. See [.env.example](.env.example) for the format.
-
-Create an input file, edit it, then run the recipe:
+Save an example input from the installed package:
 
 ```sh
-node dist/cli/index.js example rerank > input.json
-npm run jev -- run rerank input.json
+npx jev-recipes example rerank > input.json
 ```
 
-The `npm run jev` command loads `.env`. Use `-` instead of a filename to read from stdin. For scripts that need JSON without npm's command banner:
+Edit `input.json`, then set your API key in the terminal and run the recipe:
 
 ```sh
-node --env-file-if-exists=.env dist/cli/index.js run rerank input.json
+export TYPESAFE_API_KEY='your-api-key'
+npx jev-recipes run rerank input.json
 ```
+
+The CLI reads the key from its environment; it does not load `.env` files automatically. Live runs send your input to TypeSafe and use API quota. Commands return JSON. Use `-` instead of a filename to read from stdin.
 
 ## Read the result before acting
 
@@ -115,19 +113,7 @@ node --env-file-if-exists=.env dist/cli/index.js run rerank input.json
 
 ## Contribute
 
-Each recipe owns its implementation, Zod 4 schemas, inferred types, metadata, demo, and documentation. Recipes share small decision helpers. A recipe that reuses another names that dependency in its guide and catalog metadata. Larger workflows belong in examples.
-
-```text
-recipes/<name>/    Individual recipes
-src/              Shared client, response validation, schemas, and exports
-catalog/          Recipe discovery and registrations grouped by subject
-cli/              Command-line runner
-examples/         Workflows that combine recipes
-```
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) to add a recipe.
-
-`npm run build` compiles the TypeScript into JavaScript modules and type declarations. `npm pack` creates the installable archive. See [RELEASING.md](RELEASING.md) for packaging and publishing, and [CHANGELOG.md](CHANGELOG.md) for changes.
+See [CONTRIBUTING.md](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md) for repository setup, tests, and adding recipes. See [CHANGELOG.md](https://github.com/agencyenterprise/jev-recipes/blob/main/CHANGELOG.md) for changes and [RELEASING.md](https://github.com/agencyenterprise/jev-recipes/blob/main/RELEASING.md) for publishing.
 
 ## Cool projects
 
@@ -141,18 +127,12 @@ Keep the recipes small and connect them in your application. These ideas show ho
 | A knowledge base that catches outdated answers     | `change-meaning`, `answer-invalidation`, `cache-match`               | Source change tracking, saved answers, and access and freshness checks |
 | Memory that respects the task's scope              | `preference-kind`, `memory-value`, `memory-scope`, `memory-relation` | Candidate facts, storage consent, and retention rules                  |
 
-The [support assistant example](examples/support/README.md) is implemented in this repository. It stops when review or better information is needed and accepts your own draft callback:
+The [support assistant example](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/support/README.md) shows how to combine recipes with your own draft generator. It stops when review or better information is needed:
 
 ```text
 handoff → clarify → route → rerank → answerability → draft an answer → verify
 ```
 
-```sh
-npm run example:support
-```
-
-That command uses saved decisions and a saved draft. Add `-- --live` to use live Jev decisions with your `.env` key; the example still uses the saved draft. The other projects above are composition ideas, not additional bundled applications.
-
 ## License
 
-[MIT](LICENSE). Independent community project. Jev and TypeSafe are products of TypeSafe AI.
+[MIT](https://github.com/agencyenterprise/jev-recipes/blob/main/LICENSE). Independent community project. Jev and TypeSafe are products of TypeSafe AI.

@@ -49,4 +49,4 @@ Selects a supplied template. It does not fill placeholders, approve its content,
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo reply-template-match` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe reply-template-match` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo reply-template-match` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe reply-template-match` shows the input and result schemas.

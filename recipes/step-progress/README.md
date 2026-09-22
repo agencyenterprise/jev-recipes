@@ -48,4 +48,4 @@ Compares one observation with a supplied prior state. It does not measure elapse
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo step-progress` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe step-progress` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo step-progress` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe step-progress` shows the input and result schemas.

@@ -47,4 +47,4 @@ Compares two attempts only. Counting repeats, deciding whether a retry is justif
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo repeated-attempt` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe repeated-attempt` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo repeated-attempt` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe repeated-attempt` shows the input and result schemas.

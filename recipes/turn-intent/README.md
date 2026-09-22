@@ -49,4 +49,4 @@ Returns the primary purpose only. It does not split a message into separate requ
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo turn-intent` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe turn-intent` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo turn-intent` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe turn-intent` shows the input and result schemas.

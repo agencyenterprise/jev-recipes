@@ -51,4 +51,4 @@ Handle empty retrieval in application code before calling. This recipe does not 
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo answerability` shows an offline illustration, not an accuracy measurement. Use `npm run jev -- describe answerability` to inspect the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo answerability` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe answerability` to inspect the input and result schemas.

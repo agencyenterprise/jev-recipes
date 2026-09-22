@@ -47,4 +47,4 @@ Compares one message with a supplied topic. It does not generate topic labels or
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo topic-shift` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe topic-shift` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo topic-shift` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe topic-shift` shows the input and result schemas.

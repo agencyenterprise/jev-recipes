@@ -46,4 +46,4 @@ Interprets the customer report. It does not verify the system state, close a tic
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo resolution-check` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe resolution-check` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo resolution-check` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe resolution-check` shows the input and result schemas.

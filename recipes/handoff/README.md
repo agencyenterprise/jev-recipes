@@ -53,4 +53,4 @@ Write observable rules and supply the facts needed to evaluate them. Compute exa
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo handoff` shows an offline illustration, not an accuracy measurement. Use `npm run jev -- describe handoff` to inspect the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo handoff` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe handoff` to inspect the input and result schemas.

@@ -52,4 +52,4 @@ Relevance does not establish that a passage is true or sufficient to answer the 
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo rerank` shows an offline illustration, not an accuracy measurement. Use `npm run jev -- describe rerank` to inspect the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo rerank` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe rerank` to inspect the input and result schemas.

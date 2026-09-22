@@ -48,4 +48,4 @@ Enforce tenant, permissions, version, and freshness checks in code before callin
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo cache-match` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe cache-match` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo cache-match` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe cache-match` shows the input and result schemas.

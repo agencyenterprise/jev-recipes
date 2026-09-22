@@ -49,4 +49,4 @@ Matches only incidents supplied by the caller. Filter incident status, dates, af
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo incident-match` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe incident-match` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo incident-match` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe incident-match` shows the input and result schemas.

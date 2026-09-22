@@ -48,4 +48,4 @@ Does not decide which source is authoritative. Exact numbers, timestamps, and ve
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo evidence-conflict` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe evidence-conflict` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo evidence-conflict` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe evidence-conflict` shows the input and result schemas.

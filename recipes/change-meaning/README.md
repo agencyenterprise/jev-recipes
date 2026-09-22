@@ -46,4 +46,4 @@ Compares supplied passages. It does not parse a repository diff or perform exact
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo change-meaning` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe change-meaning` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo change-meaning` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe change-meaning` shows the input and result schemas.

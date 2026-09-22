@@ -44,4 +44,4 @@ Detects an expressed urgency request. Compute deadline proximity and apply incid
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo urgency-signal` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe urgency-signal` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo urgency-signal` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe urgency-signal` shows the input and result schemas.

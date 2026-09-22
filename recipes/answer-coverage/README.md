@@ -57,4 +57,4 @@ Checks supplied question IDs only. It does not extract questions or verify the d
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo answer-coverage` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe answer-coverage` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo answer-coverage` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe answer-coverage` shows the input and result schemas.

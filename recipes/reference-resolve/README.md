@@ -51,4 +51,4 @@ Resolves a supplied reference among candidates. It does not extract references, 
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo reference-resolve` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe reference-resolve` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo reference-resolve` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe reference-resolve` shows the input and result schemas.

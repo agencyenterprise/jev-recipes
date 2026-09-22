@@ -45,4 +45,4 @@ Classifies a statement. It does not infer unexpressed preferences or grant permi
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo preference-kind` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe preference-kind` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo preference-kind` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe preference-kind` shows the input and result schemas.

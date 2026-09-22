@@ -48,4 +48,4 @@ Does not validate schemas, compare identifiers, or enforce authorization. Check 
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo argument-fit` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe argument-fit` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo argument-fit` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe argument-fit` shows the input and result schemas.

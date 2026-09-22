@@ -44,4 +44,4 @@ Routes with overlapping descriptions can be difficult to distinguish. Describe t
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo route` shows an offline illustration, not an accuracy measurement. Use `npm run jev -- describe route` to inspect the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo route` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe route` to inspect the input and result schemas.

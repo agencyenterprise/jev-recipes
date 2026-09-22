@@ -46,4 +46,4 @@ Interprets language only. Approval identity, authority, scope, expiration, and a
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo confirmation-match` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe confirmation-match` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo confirmation-match` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe confirmation-match` shows the input and result schemas.

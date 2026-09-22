@@ -16,7 +16,7 @@ npm registry
 
 The package uses native ESM. TypeScript compiles each module to JavaScript and generates `.d.ts` declarations. The build clears `dist/` first so deleted source files cannot survive in a later package.
 
-The `files` list in `package.json` includes the compiled modules, recipe demo JSON, recipe READMEs, the complete recipe catalog guide, the support example fixture and README, root README, changelog, and license. npm includes `package.json` as well. Source files, development configuration, `.env` files, and `node_modules` are excluded.
+The `files` list in `package.json` includes the compiled modules, recipe demo JSON, recipe READMEs, the complete recipe catalog guide, the support example fixture and README, root README, changelog, and license. npm includes `package.json` as well. Source files, tests, coverage reports, development configuration, `.env` files, and `node_modules` are excluded.
 
 Zod and the official TypeSafe SDK remain runtime dependencies. npm installs them for consumers. Consumers do not need TypeScript, Prettier, or the repository's build tools, and installation does not run a build.
 
@@ -32,9 +32,9 @@ npm run ci
 npm run pack:check
 ```
 
-`npm run ci` checks formatting, type-checks the source, makes a clean build, and runs every registered offline demo and the support example. `npm run pack:check` previews the exact files npm would include.
+`npm run ci` checks formatting, type-checks the source and tests, runs recipe tests with coverage thresholds, makes a clean build, and runs every registered offline demo and the support example. `npm run pack:check` previews the exact files npm would include.
 
-If formatting needs attention, run `npm run format`. The demos use saved responses; they confirm that the examples run, not that Jev makes accurate decisions. No test suite is configured.
+If formatting needs attention, run `npm run format`. The demos use saved responses; they confirm that the examples run, not that Jev makes accurate decisions. Recipe tests use mocked Jev responses to check recipe behavior. They require no API key and do not measure model accuracy. Run them with `npm test`, or use `npm run test:coverage` to generate `coverage/index.html`.
 
 ## Try the packaged artifact
 

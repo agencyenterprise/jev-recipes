@@ -46,4 +46,4 @@ Assesses response content, not transport success or source truth. Handle empty b
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo result-usefulness` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe result-usefulness` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo result-usefulness` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe result-usefulness` shows the input and result schemas.

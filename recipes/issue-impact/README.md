@@ -45,4 +45,4 @@ Assesses reported impact, not verified system severity. Service commitments and 
 
 ## Example input
 
-[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo issue-impact` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npm run jev -- describe issue-impact` shows the input and result schemas.
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo issue-impact` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe issue-impact` shows the input and result schemas.
