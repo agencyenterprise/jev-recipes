@@ -8,14 +8,14 @@ Each recipe is a function you can use on its own. Your application supplies the 
 
 ## Recipes
 
-| Recipe | What it does |
-| --- | --- |
-| [`route`](recipes/route/README.md) | Chooses a handler for a request. |
-| [`rerank`](recipes/rerank/README.md) | Selects and orders relevant passages. |
-| [`verify`](recipes/verify/README.md) | Checks claims against supplied evidence. |
+| Recipe                                             | What it does                                       |
+| -------------------------------------------------- | -------------------------------------------------- |
+| [`route`](recipes/route/README.md)                 | Chooses a handler for a request.                   |
+| [`rerank`](recipes/rerank/README.md)               | Selects and orders relevant passages.              |
+| [`verify`](recipes/verify/README.md)               | Checks claims against supplied evidence.           |
 | [`answerability`](recipes/answerability/README.md) | Checks whether the evidence can answer a question. |
-| [`clarify`](recipes/clarify/README.md) | Finds missing or ambiguous information. |
-| [`handoff`](recipes/handoff/README.md) | Checks your rules for involving a human. |
+| [`clarify`](recipes/clarify/README.md)             | Finds missing or ambiguous information.            |
+| [`handoff`](recipes/handoff/README.md)             | Checks your rules for involving a human.           |
 
 Each recipe has its own usage guide, input and result schemas, and runnable demo.
 
