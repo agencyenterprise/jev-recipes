@@ -1,0 +1,35 @@
+{
+  "input": {
+    "failure": "The export was rejected because the report name is missing.",
+    "categories": [
+      {
+        "id": "missing-input",
+        "text": "A required input was not supplied."
+      },
+      {
+        "id": "temporary",
+        "text": "A temporary service interruption prevented the operation."
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_0",
+        "confidence": 0.96,
+        "probabilities": {
+          "candidate_0": 1,
+          "candidate_1": 0,
+          "none": 0,
+          "ambiguous": 0
+        }
+      }
+    }
+  }
+}

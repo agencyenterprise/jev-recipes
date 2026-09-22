@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Add 60 focused recipes across answer quality, retrieval, conversation, tools, support, memory, and knowledge maintenance, bringing the catalog to 66.
+- Add shared choice, candidate-selection, and item-check helpers; keep recipe criteria and schemas in their own folders.
+- Register every new recipe for root and subpath imports, discovery, CLI input examples, and offline demos.
+- Document the complete catalog, explicit internal reuse, and Cool projects that compose small decisions.
+
 - Add independent `answerability`, `clarify`, and `handoff` recipes with Zod schemas, inferred types, documentation, and offline fixtures.
 - Add recipe-owned metadata, a searchable catalog, and CLI `describe` with JSON schemas and example input.
 - Add `demo all` and a support-assistant example that composes six recipes, accepts an application draft callback, and verifies claims against selected evidence.

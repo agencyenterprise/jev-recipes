@@ -47,6 +47,246 @@
     "./catalog": {
       "types": "./dist/catalog/index.d.ts",
       "import": "./dist/catalog/index.js"
+    },
+    "./answer-coverage": {
+      "types": "./dist/recipes/answer-coverage/index.d.ts",
+      "import": "./dist/recipes/answer-coverage/index.js"
+    },
+    "./answer-relevance": {
+      "types": "./dist/recipes/answer-relevance/index.d.ts",
+      "import": "./dist/recipes/answer-relevance/index.js"
+    },
+    "./citation-match": {
+      "types": "./dist/recipes/citation-match/index.d.ts",
+      "import": "./dist/recipes/citation-match/index.js"
+    },
+    "./citation-needed": {
+      "types": "./dist/recipes/citation-needed/index.d.ts",
+      "import": "./dist/recipes/citation-needed/index.js"
+    },
+    "./answer-consistency": {
+      "types": "./dist/recipes/answer-consistency/index.d.ts",
+      "import": "./dist/recipes/answer-consistency/index.js"
+    },
+    "./summary-coverage": {
+      "types": "./dist/recipes/summary-coverage/index.d.ts",
+      "import": "./dist/recipes/summary-coverage/index.js"
+    },
+    "./certainty-match": {
+      "types": "./dist/recipes/certainty-match/index.d.ts",
+      "import": "./dist/recipes/certainty-match/index.js"
+    },
+    "./promise-check": {
+      "types": "./dist/recipes/promise-check/index.d.ts",
+      "import": "./dist/recipes/promise-check/index.js"
+    },
+    "./tone-check": {
+      "types": "./dist/recipes/tone-check/index.d.ts",
+      "import": "./dist/recipes/tone-check/index.js"
+    },
+    "./draft-compare": {
+      "types": "./dist/recipes/draft-compare/index.d.ts",
+      "import": "./dist/recipes/draft-compare/index.js"
+    },
+    "./retrieval-needed": {
+      "types": "./dist/recipes/retrieval-needed/index.d.ts",
+      "import": "./dist/recipes/retrieval-needed/index.js"
+    },
+    "./freshness-needed": {
+      "types": "./dist/recipes/freshness-needed/index.d.ts",
+      "import": "./dist/recipes/freshness-needed/index.js"
+    },
+    "./source-applicability": {
+      "types": "./dist/recipes/source-applicability/index.d.ts",
+      "import": "./dist/recipes/source-applicability/index.js"
+    },
+    "./evidence-conflict": {
+      "types": "./dist/recipes/evidence-conflict/index.d.ts",
+      "import": "./dist/recipes/evidence-conflict/index.js"
+    },
+    "./passage-duplicate": {
+      "types": "./dist/recipes/passage-duplicate/index.d.ts",
+      "import": "./dist/recipes/passage-duplicate/index.js"
+    },
+    "./evidence-novelty": {
+      "types": "./dist/recipes/evidence-novelty/index.d.ts",
+      "import": "./dist/recipes/evidence-novelty/index.js"
+    },
+    "./cache-match": {
+      "types": "./dist/recipes/cache-match/index.d.ts",
+      "import": "./dist/recipes/cache-match/index.js"
+    },
+    "./query-equivalence": {
+      "types": "./dist/recipes/query-equivalence/index.d.ts",
+      "import": "./dist/recipes/query-equivalence/index.js"
+    },
+    "./context-role": {
+      "types": "./dist/recipes/context-role/index.d.ts",
+      "import": "./dist/recipes/context-role/index.js"
+    },
+    "./query-specificity": {
+      "types": "./dist/recipes/query-specificity/index.d.ts",
+      "import": "./dist/recipes/query-specificity/index.js"
+    },
+    "./turn-intent": {
+      "types": "./dist/recipes/turn-intent/index.d.ts",
+      "import": "./dist/recipes/turn-intent/index.js"
+    },
+    "./followup-link": {
+      "types": "./dist/recipes/followup-link/index.d.ts",
+      "import": "./dist/recipes/followup-link/index.js"
+    },
+    "./reference-resolve": {
+      "types": "./dist/recipes/reference-resolve/index.d.ts",
+      "import": "./dist/recipes/reference-resolve/index.js"
+    },
+    "./intent-change": {
+      "types": "./dist/recipes/intent-change/index.d.ts",
+      "import": "./dist/recipes/intent-change/index.js"
+    },
+    "./correction-target": {
+      "types": "./dist/recipes/correction-target/index.d.ts",
+      "import": "./dist/recipes/correction-target/index.js"
+    },
+    "./confirmation-match": {
+      "types": "./dist/recipes/confirmation-match/index.d.ts",
+      "import": "./dist/recipes/confirmation-match/index.js"
+    },
+    "./cancellation-check": {
+      "types": "./dist/recipes/cancellation-check/index.d.ts",
+      "import": "./dist/recipes/cancellation-check/index.js"
+    },
+    "./topic-shift": {
+      "types": "./dist/recipes/topic-shift/index.d.ts",
+      "import": "./dist/recipes/topic-shift/index.js"
+    },
+    "./response-needed": {
+      "types": "./dist/recipes/response-needed/index.d.ts",
+      "import": "./dist/recipes/response-needed/index.js"
+    },
+    "./resolution-check": {
+      "types": "./dist/recipes/resolution-check/index.d.ts",
+      "import": "./dist/recipes/resolution-check/index.js"
+    },
+    "./tool-fit": {
+      "types": "./dist/recipes/tool-fit/index.d.ts",
+      "import": "./dist/recipes/tool-fit/index.js"
+    },
+    "./argument-fit": {
+      "types": "./dist/recipes/argument-fit/index.d.ts",
+      "import": "./dist/recipes/argument-fit/index.js"
+    },
+    "./result-usefulness": {
+      "types": "./dist/recipes/result-usefulness/index.d.ts",
+      "import": "./dist/recipes/result-usefulness/index.js"
+    },
+    "./result-outcome": {
+      "types": "./dist/recipes/result-outcome/index.d.ts",
+      "import": "./dist/recipes/result-outcome/index.js"
+    },
+    "./action-scope": {
+      "types": "./dist/recipes/action-scope/index.d.ts",
+      "import": "./dist/recipes/action-scope/index.js"
+    },
+    "./step-progress": {
+      "types": "./dist/recipes/step-progress/index.d.ts",
+      "import": "./dist/recipes/step-progress/index.js"
+    },
+    "./repeated-attempt": {
+      "types": "./dist/recipes/repeated-attempt/index.d.ts",
+      "import": "./dist/recipes/repeated-attempt/index.js"
+    },
+    "./step-complete": {
+      "types": "./dist/recipes/step-complete/index.d.ts",
+      "import": "./dist/recipes/step-complete/index.js"
+    },
+    "./failure-kind": {
+      "types": "./dist/recipes/failure-kind/index.d.ts",
+      "import": "./dist/recipes/failure-kind/index.js"
+    },
+    "./instruction-fit": {
+      "types": "./dist/recipes/instruction-fit/index.d.ts",
+      "import": "./dist/recipes/instruction-fit/index.js"
+    },
+    "./issue-impact": {
+      "types": "./dist/recipes/issue-impact/index.d.ts",
+      "import": "./dist/recipes/issue-impact/index.js"
+    },
+    "./attempted-step": {
+      "types": "./dist/recipes/attempted-step/index.d.ts",
+      "import": "./dist/recipes/attempted-step/index.js"
+    },
+    "./workaround-fit": {
+      "types": "./dist/recipes/workaround-fit/index.d.ts",
+      "import": "./dist/recipes/workaround-fit/index.js"
+    },
+    "./ticket-match": {
+      "types": "./dist/recipes/ticket-match/index.d.ts",
+      "import": "./dist/recipes/ticket-match/index.js"
+    },
+    "./incident-match": {
+      "types": "./dist/recipes/incident-match/index.d.ts",
+      "import": "./dist/recipes/incident-match/index.js"
+    },
+    "./troubleshooting-fit": {
+      "types": "./dist/recipes/troubleshooting-fit/index.d.ts",
+      "import": "./dist/recipes/troubleshooting-fit/index.js"
+    },
+    "./frustration-signal": {
+      "types": "./dist/recipes/frustration-signal/index.d.ts",
+      "import": "./dist/recipes/frustration-signal/index.js"
+    },
+    "./urgency-signal": {
+      "types": "./dist/recipes/urgency-signal/index.d.ts",
+      "import": "./dist/recipes/urgency-signal/index.js"
+    },
+    "./feedback-kind": {
+      "types": "./dist/recipes/feedback-kind/index.d.ts",
+      "import": "./dist/recipes/feedback-kind/index.js"
+    },
+    "./reply-template-match": {
+      "types": "./dist/recipes/reply-template-match/index.d.ts",
+      "import": "./dist/recipes/reply-template-match/index.js"
+    },
+    "./memory-value": {
+      "types": "./dist/recipes/memory-value/index.d.ts",
+      "import": "./dist/recipes/memory-value/index.js"
+    },
+    "./memory-scope": {
+      "types": "./dist/recipes/memory-scope/index.d.ts",
+      "import": "./dist/recipes/memory-scope/index.js"
+    },
+    "./memory-relation": {
+      "types": "./dist/recipes/memory-relation/index.d.ts",
+      "import": "./dist/recipes/memory-relation/index.js"
+    },
+    "./preference-kind": {
+      "types": "./dist/recipes/preference-kind/index.d.ts",
+      "import": "./dist/recipes/preference-kind/index.js"
+    },
+    "./fact-stability": {
+      "types": "./dist/recipes/fact-stability/index.d.ts",
+      "import": "./dist/recipes/fact-stability/index.js"
+    },
+    "./document-role": {
+      "types": "./dist/recipes/document-role/index.d.ts",
+      "import": "./dist/recipes/document-role/index.js"
+    },
+    "./audience-fit": {
+      "types": "./dist/recipes/audience-fit/index.d.ts",
+      "import": "./dist/recipes/audience-fit/index.js"
+    },
+    "./change-meaning": {
+      "types": "./dist/recipes/change-meaning/index.d.ts",
+      "import": "./dist/recipes/change-meaning/index.js"
+    },
+    "./answer-invalidation": {
+      "types": "./dist/recipes/answer-invalidation/index.d.ts",
+      "import": "./dist/recipes/answer-invalidation/index.js"
+    },
+    "./field-select": {
+      "types": "./dist/recipes/field-select/index.d.ts",
+      "import": "./dist/recipes/field-select/index.js"
     }
   },
   "bin": {
@@ -60,7 +300,8 @@
     "CHANGELOG.md",
     "LICENSE",
     "examples/support/demo.json",
-    "examples/support/README.md"
+    "examples/support/README.md",
+    "recipes/README.md"
   ],
   "scripts": {
     "clean": "rimraf dist",

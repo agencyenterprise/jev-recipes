@@ -1,0 +1,26 @@
+{
+  "input": {
+    "draft": "The outage was definitely caused by the deploy.",
+    "assessment": "The deploy is one possible cause; the cause has not been established."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "overstated",
+        "confidence": 0.96,
+        "probabilities": {
+          "overstated": 1,
+          "appropriate": 0,
+          "understated": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

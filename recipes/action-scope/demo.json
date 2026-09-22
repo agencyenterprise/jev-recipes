@@ -1,0 +1,25 @@
+{
+  "input": {
+    "request": "Explain why this deployment failed.",
+    "proposedAction": "Deploy a replacement release to production."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "additional_work",
+        "confidence": 0.96,
+        "probabilities": {
+          "within_scope": 0,
+          "additional_work": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

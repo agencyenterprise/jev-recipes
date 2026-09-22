@@ -1,0 +1,46 @@
+{
+  "input": {
+    "summary": "We agreed to keep the API unchanged.",
+    "points": [
+      {
+        "id": "api",
+        "text": "Keep the public API unchanged."
+      },
+      {
+        "id": "docs",
+        "text": "Update the installation instructions."
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "check_0": {
+        "type": "choice",
+        "choice": "preserved",
+        "confidence": 0.96,
+        "probabilities": {
+          "preserved": 1,
+          "partial": 0,
+          "missing": 0,
+          "unclear": 0
+        }
+      },
+      "check_1": {
+        "type": "choice",
+        "choice": "missing",
+        "confidence": 0.96,
+        "probabilities": {
+          "preserved": 0,
+          "partial": 0,
+          "missing": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

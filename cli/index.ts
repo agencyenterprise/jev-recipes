@@ -46,7 +46,7 @@ function printHelp(): void {
   jev-recipes run <recipe> <file|->      Run live with a JSON file or stdin
   jev-recipes --version
 
-Categories: retrieval, conversation, workflow. Quote multi-word search queries.
+Categories: ${recipeCategorySchema.options.join(', ')}. Quote multi-word search queries.
 Live runs send your input to TypeSafe and require TYPESAFE_API_KEY.
 Output is JSON. Errors go to stderr and exit with code 1.
 Review outcomes are successful evaluations; inspect status before acting.

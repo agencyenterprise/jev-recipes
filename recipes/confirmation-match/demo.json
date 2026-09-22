@@ -1,0 +1,25 @@
+{
+  "input": {
+    "proposal": "Cancel the storage subscription now.",
+    "response": "How much would I save?"
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "unclear",
+        "confidence": 0.96,
+        "probabilities": {
+          "agrees": 0,
+          "rejects": 0,
+          "unclear": 1
+        }
+      }
+    }
+  }
+}

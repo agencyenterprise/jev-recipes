@@ -1,0 +1,25 @@
+{
+  "input": {
+    "request": "Summarize this policy in one sentence.",
+    "context": "Customers may cancel their subscription from Account settings."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "unnecessary",
+        "confidence": 0.96,
+        "probabilities": {
+          "needed": 0,
+          "unnecessary": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

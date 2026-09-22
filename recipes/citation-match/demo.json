@@ -1,0 +1,44 @@
+{
+  "input": {
+    "claim": "Reset links expire after 30 minutes.",
+    "passages": [
+      {
+        "id": "reset",
+        "text": "Password reset links expire after 30 minutes."
+      },
+      {
+        "id": "billing",
+        "text": "Invoices are available on the Billing page."
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "claim_0": {
+        "type": "choice",
+        "choice": "supported",
+        "confidence": 0.96,
+        "probabilities": {
+          "supported": 1,
+          "contradicted": 0,
+          "unsupported": 0
+        }
+      },
+      "claim_1": {
+        "type": "choice",
+        "choice": "unsupported",
+        "confidence": 0.96,
+        "probabilities": {
+          "supported": 0,
+          "contradicted": 0,
+          "unsupported": 1
+        }
+      }
+    }
+  }
+}

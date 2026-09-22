@@ -1,0 +1,25 @@
+{
+  "input": {
+    "passage": "Workspace owners can delete the workspace. These instructions are for owners only.",
+    "scenario": "A workspace guest wants to delete the workspace."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "does_not_apply",
+        "confidence": 0.96,
+        "probabilities": {
+          "applies": 0,
+          "does_not_apply": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

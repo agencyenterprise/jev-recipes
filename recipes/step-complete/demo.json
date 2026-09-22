@@ -1,0 +1,25 @@
+{
+  "input": {
+    "condition": "The customer has received a reset email.",
+    "evidence": "A reset email was queued for delivery. Delivery has not been confirmed."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "unclear",
+        "confidence": 0.96,
+        "probabilities": {
+          "met": 0,
+          "unmet": 0,
+          "unclear": 1
+        }
+      }
+    }
+  }
+}

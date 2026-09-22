@@ -15,6 +15,8 @@ export const resultMetadataSchema = z.object({
   }),
 });
 
+export const decisionStateSchema = z.record(z.string(), z.json());
+
 export const decisionResponseSchema = resultMetadataSchema.extend({
   answers: z.record(z.string(), z.unknown()),
 });
@@ -29,7 +31,41 @@ export const recipeOptionsSchema = z.object({
   signal: z.instanceof(AbortSignal).optional(),
 });
 
-export const recipeCategorySchema = z.enum(['retrieval', 'conversation', 'workflow']);
+export const identifiedItemSchema = z.object({ id: nonEmptyText });
+export const textItemSchema = identifiedItemSchema.extend({ text: nonEmptyText });
+export const textItemsSchema = z
+  .array(textItemSchema)
+  .min(1)
+  .max(50)
+  .refine(
+    (items) => new Set(items.map((item) => item.id)).size === items.length,
+    'Item IDs must be unique.',
+  );
+export const selectionResultSchema = resultMetadataSchema.extend({
+  status: decisionStatusSchema,
+  verdict: z.enum(['matched', 'none', 'ambiguous']),
+  selection: nonEmptyText.nullable(),
+  suggestedSelection: nonEmptyText.nullable(),
+  confidence: probability,
+  probabilities: z.object({
+    candidates: z.record(nonEmptyText, probability),
+    none: probability,
+    ambiguous: probability,
+  }),
+});
+export type IdentifiedItem = z.infer<typeof identifiedItemSchema>;
+export type TextItem = z.infer<typeof textItemSchema>;
+export type SelectionResult = z.infer<typeof selectionResultSchema>;
+
+export const recipeCategorySchema = z.enum([
+  'retrieval',
+  'conversation',
+  'workflow',
+  'answer-quality',
+  'support',
+  'memory',
+  'knowledge',
+]);
 export const recipeMetadataSchema = z.object({
   id: nonEmptyText,
   title: nonEmptyText,
@@ -37,6 +73,7 @@ export const recipeMetadataSchema = z.object({
   category: recipeCategorySchema,
   tags: z.array(nonEmptyText),
   limitations: z.array(nonEmptyText),
+  uses: z.array(nonEmptyText).optional(),
 });
 export type RecipeMetadata = z.infer<typeof recipeMetadataSchema>;
 export type RecipeCategory = z.infer<typeof recipeCategorySchema>;

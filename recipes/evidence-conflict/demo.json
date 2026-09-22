@@ -1,0 +1,27 @@
+{
+  "input": {
+    "question": "Can guests export reports?",
+    "firstPassage": "Guests can export reports.",
+    "secondPassage": "Guests cannot export reports."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "conflicting",
+        "confidence": 0.96,
+        "probabilities": {
+          "compatible": 0,
+          "conflicting": 1,
+          "different_scope": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

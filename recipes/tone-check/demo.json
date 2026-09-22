@@ -1,0 +1,30 @@
+{
+  "input": {
+    "draft": "You caused this problem. Read the manual.",
+    "criteria": [
+      {
+        "id": "blame",
+        "text": "Avoid blaming the customer."
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "check_0": {
+        "type": "choice",
+        "choice": "fail",
+        "confidence": 0.96,
+        "probabilities": {
+          "pass": 0,
+          "fail": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "input": {
+    "currentGoal": "Draft a reply explaining password resets.",
+    "message": "Keep it under three sentences."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "refines",
+        "confidence": 0.96,
+        "probabilities": {
+          "continues": 0,
+          "refines": 1,
+          "replaces": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

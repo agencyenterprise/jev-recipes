@@ -1,0 +1,26 @@
+{
+  "input": {
+    "request": "Search closed incidents only.",
+    "argument": "Incident status filter",
+    "proposedValue": "open"
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "conflicts",
+        "confidence": 0.96,
+        "probabilities": {
+          "fits": 0,
+          "conflicts": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

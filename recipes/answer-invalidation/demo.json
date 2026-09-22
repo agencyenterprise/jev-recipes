@@ -1,0 +1,26 @@
+{
+  "input": {
+    "claim": "Guests can export reports.",
+    "previousEvidence": "Guests can export reports.",
+    "updatedEvidence": "Exporting reports is restricted to workspace owners. Guests cannot export."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "invalidated",
+        "confidence": 0.96,
+        "probabilities": {
+          "still_supported": 0,
+          "invalidated": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

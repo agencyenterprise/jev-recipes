@@ -1,0 +1,25 @@
+{
+  "input": {
+    "statement": "For this reply, please use bullet points."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "temporary_request",
+        "confidence": 0.96,
+        "probabilities": {
+          "preference": 0,
+          "fact": 0,
+          "temporary_request": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

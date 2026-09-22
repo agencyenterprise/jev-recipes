@@ -1,0 +1,25 @@
+{
+  "input": {
+    "step": "Clear the browser cache and try again.",
+    "conversation": "I already cleared my browser cache and tried again. The error is still there."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "tried",
+        "confidence": 0.96,
+        "probabilities": {
+          "tried": 1,
+          "not_tried": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

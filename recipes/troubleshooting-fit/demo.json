@@ -1,0 +1,25 @@
+{
+  "input": {
+    "symptoms": "The customer forgot their password and cannot sign in.",
+    "procedure": "For forgotten passwords, use Forgot password on the sign-in page."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "applicable",
+        "confidence": 0.96,
+        "probabilities": {
+          "applicable": 1,
+          "unsuitable": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "input": {
+    "question": "Tell me everything about software."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "too_broad",
+        "confidence": 0.96,
+        "probabilities": {
+          "specific": 0,
+          "too_broad": 1,
+          "ambiguous": 0
+        }
+      }
+    }
+  }
+}

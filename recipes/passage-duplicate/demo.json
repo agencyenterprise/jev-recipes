@@ -1,0 +1,26 @@
+{
+  "input": {
+    "firstPassage": "Select Forgot password to receive a reset email.",
+    "secondPassage": "Use Forgot password and we will email a reset link."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "duplicate",
+        "confidence": 0.96,
+        "probabilities": {
+          "duplicate": 1,
+          "overlapping": 0,
+          "distinct": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

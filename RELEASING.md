@@ -1,6 +1,6 @@
 # Releasing jev-recipes
 
-**0.0.1 is already published.** The current additions are unreleased; choose a new version before publishing them. Do not republish 0.0.1. Publishing is manual; GitHub CI checks the project without publishing it.
+Publishing is manual. Choose a new version for each release; npm does not allow reusing a published version. The README badge reads the published version from npm, while package.json records the checkout version. GitHub CI checks the project without publishing it.
 
 ## What ships
 
@@ -9,14 +9,14 @@ TypeScript source
   npm run build
 JavaScript modules and TypeScript declarations in dist/
   npm pack
-jev-recipes-0.0.1.tgz
+jev-recipes-VERSION.tgz
   npm publish
 npm registry
 ```
 
 The package uses native ESM. TypeScript compiles each module to JavaScript and generates `.d.ts` declarations. The build clears `dist/` first so deleted source files cannot survive in a later package.
 
-The `files` list in `package.json` includes the compiled modules, recipe demo JSON, recipe READMEs, the support example fixture and README, root README, changelog, and license. npm includes `package.json` as well. Source files, development configuration, `.env` files, and `node_modules` are excluded.
+The `files` list in `package.json` includes the compiled modules, recipe demo JSON, recipe READMEs, the complete recipe catalog guide, the support example fixture and README, root README, changelog, and license. npm includes `package.json` as well. Source files, development configuration, `.env` files, and `node_modules` are excluded.
 
 Zod and the official TypeSafe SDK remain runtime dependencies. npm installs them for consumers. Consumers do not need TypeScript, Prettier, or the repository's build tools, and installation does not run a build.
 
@@ -44,11 +44,11 @@ From the repository, create the same archive npm will distribute:
 npm pack
 ```
 
-This creates `jev-recipes-0.0.1.tgz`. In a separate empty folder, install that file using its absolute path:
+This creates `jev-recipes-VERSION.tgz`, with `VERSION` taken from package.json. Replace `VERSION` in the commands below with that value. In a separate empty folder, install that file using its absolute path:
 
 ```sh
 npm init -y
-npm install /absolute/path/to/jev-recipes/jev-recipes-0.0.1.tgz
+npm install /absolute/path/to/jev-recipes/jev-recipes-VERSION.tgz
 npx --no -- jev-recipes --version
 npx --no -- jev-recipes list
 npx --no -- jev-recipes demo all
@@ -56,7 +56,7 @@ npx --no -- jev-recipes describe answerability
 node node_modules/jev-recipes/dist/examples/support/index.js
 ```
 
-Before a version bump the local tarball still reports `0.0.1`; it contains the checkout, which now differs from published 0.0.1. After a bump, use the new tarball filename and expect that version. Demos should report `mode: "demo"` and `model: "demo-fixture"`.
+The installed version should match the packed checkout's package.json. An unchanged version number does not imply an unchanged archive; uncommitted additions are included when packing. Demos should report `mode: "demo"` and `model: "demo-fixture"`.
 
 Use the same tarball in an existing TypeScript app to try the library exports:
 
@@ -86,7 +86,7 @@ A live run sends the input to TypeSafe and uses API quota. Inspect the selected 
 
 ## Publish the next version
 
-Update the README release status and move the changelog's `Unreleased` content under the chosen version with the actual release date. Commit the intended changes and choose a new version with `npm version patch`, `npm version minor`, or `npm version major` from a clean working tree. npm updates the manifest and lockfile and creates a commit and tag. Repeat the checks and packaged installation with the new tarball, then let GitHub CI pass.
+Update the catalog documentation and move the changelog's `Unreleased` content under the chosen version with the actual release date. Commit the intended changes and choose a new version with `npm version patch`, `npm version minor`, or `npm version major` from a clean working tree. npm updates the manifest and lockfile and creates a commit and tag. Repeat the checks and packaged installation with the new tarball, then let GitHub CI pass.
 
 From the repository:
 

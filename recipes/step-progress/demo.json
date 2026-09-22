@@ -1,0 +1,27 @@
+{
+  "input": {
+    "objective": "Find the password reset documentation.",
+    "previousState": "No relevant page has been identified.",
+    "observation": "The search returned the official password reset guide."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "progress",
+        "confidence": 0.96,
+        "probabilities": {
+          "progress": 1,
+          "no_progress": 0,
+          "setback": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

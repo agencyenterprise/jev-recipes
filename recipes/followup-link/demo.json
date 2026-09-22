@@ -1,0 +1,35 @@
+{
+  "input": {
+    "message": "Can you make that explanation shorter?",
+    "requests": [
+      {
+        "id": "reset",
+        "text": "Explain how password resets work."
+      },
+      {
+        "id": "invoice",
+        "text": "Download my invoice."
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_0",
+        "confidence": 0.96,
+        "probabilities": {
+          "candidate_0": 1,
+          "candidate_1": 0,
+          "none": 0,
+          "ambiguous": 0
+        }
+      }
+    }
+  }
+}

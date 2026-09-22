@@ -1,0 +1,25 @@
+{
+  "input": {
+    "instruction": "For customer-facing replies, use plain language.",
+    "task": "Write an email explaining a password reset to a customer."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "applies",
+        "confidence": 0.96,
+        "probabilities": {
+          "applies": 1,
+          "does_not_apply": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

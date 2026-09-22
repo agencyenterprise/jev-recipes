@@ -1,0 +1,26 @@
+{
+  "input": {
+    "task": "Export the customer report.",
+    "result": "The export could not be created because the account lacks export access."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "failure",
+        "confidence": 0.96,
+        "probabilities": {
+          "success": 0,
+          "partial_success": 0,
+          "failure": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

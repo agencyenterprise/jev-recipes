@@ -1,0 +1,25 @@
+{
+  "input": {
+    "reply": "Your refund is guaranteed.",
+    "allowedCommitments": "We may promise to review a refund request. We cannot promise approval."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "unsupported",
+        "confidence": 0.96,
+        "probabilities": {
+          "within_commitments": 0,
+          "unsupported": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

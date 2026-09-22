@@ -1,0 +1,36 @@
+{
+  "input": {
+    "field": "Invoice reference",
+    "document": "Invoice INV-2026-A. Purchase order PO-77.",
+    "candidates": [
+      {
+        "id": "invoice",
+        "text": "INV-2026-A"
+      },
+      {
+        "id": "purchase-order",
+        "text": "PO-77"
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_0",
+        "confidence": 0.96,
+        "probabilities": {
+          "candidate_0": 1,
+          "candidate_1": 0,
+          "none": 0,
+          "ambiguous": 0
+        }
+      }
+    }
+  }
+}

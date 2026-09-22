@@ -1,0 +1,25 @@
+{
+  "input": {
+    "issue": "The customer cannot sign in.",
+    "message": "The reset worked. I can sign in now."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "resolved",
+        "confidence": 0.96,
+        "probabilities": {
+          "resolved": 1,
+          "unresolved": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

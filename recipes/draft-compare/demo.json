@@ -1,0 +1,29 @@
+{
+  "input": {
+    "request": "Explain how to reset a password.",
+    "firstDraft": "Select Forgot password on the sign-in page.",
+    "secondDraft": "Contact billing to download an invoice.",
+    "rubric": "Prefer a direct answer to the requested task."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "first",
+        "confidence": 0.96,
+        "probabilities": {
+          "first": 1,
+          "second": 0,
+          "tie": 0,
+          "neither": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "input": {
+    "message": "Could you add CSV export to the activity page?"
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "feature_request",
+        "confidence": 0.96,
+        "probabilities": {
+          "bug_report": 0,
+          "feature_request": 1,
+          "question": 0,
+          "praise": 0,
+          "complaint": 0,
+          "other": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

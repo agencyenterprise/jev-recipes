@@ -1,0 +1,25 @@
+{
+  "input": {
+    "message": "Thanks, that solved it!",
+    "context": "The assistant provided password reset instructions."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "no_reply_needed",
+        "confidence": 0.96,
+        "probabilities": {
+          "reply_needed": 0,
+          "no_reply_needed": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

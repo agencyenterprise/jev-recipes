@@ -1,0 +1,36 @@
+{
+  "input": {
+    "message": "Please cancel the hardware order, not my subscription.",
+    "reference": "the hardware order",
+    "candidates": [
+      {
+        "id": "order",
+        "text": "A pending hardware order."
+      },
+      {
+        "id": "subscription",
+        "text": "An active monthly storage subscription."
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_0",
+        "confidence": 0.96,
+        "probabilities": {
+          "candidate_0": 1,
+          "candidate_1": 0,
+          "none": 0,
+          "ambiguous": 0
+        }
+      }
+    }
+  }
+}

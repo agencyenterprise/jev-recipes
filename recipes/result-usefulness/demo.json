@@ -1,0 +1,26 @@
+{
+  "input": {
+    "task": "Find password reset instructions.",
+    "result": "Search completed successfully. No matching documents were found."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "no_useful_information",
+        "confidence": 0.96,
+        "probabilities": {
+          "useful": 0,
+          "no_useful_information": 1,
+          "irrelevant": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

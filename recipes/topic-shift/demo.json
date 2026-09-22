@@ -1,0 +1,26 @@
+{
+  "input": {
+    "currentTopic": "Resetting a password.",
+    "message": "Also, where can I download my invoices?"
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "new_topic",
+        "confidence": 0.96,
+        "probabilities": {
+          "same_topic": 0,
+          "new_topic": 1,
+          "mixed": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

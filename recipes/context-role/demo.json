@@ -1,0 +1,26 @@
+{
+  "input": {
+    "question": "How do I reset my password?",
+    "passage": "Passwords help protect access to accounts."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "background",
+        "confidence": 0.96,
+        "probabilities": {
+          "direct_evidence": 0,
+          "background": 1,
+          "unrelated": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

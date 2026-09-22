@@ -1,0 +1,25 @@
+{
+  "input": {
+    "before": "Guests may export reports.",
+    "after": "Only workspace owners may export reports."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "meaning_changed",
+        "confidence": 0.96,
+        "probabilities": {
+          "meaning_changed": 1,
+          "editorial_only": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

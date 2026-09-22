@@ -1,0 +1,35 @@
+{
+  "input": {
+    "request": "How do I reset my password?",
+    "templates": [
+      {
+        "id": "reset",
+        "text": "For password reset requests: Select Forgot password on the sign-in page."
+      },
+      {
+        "id": "invoice",
+        "text": "For invoice requests: Open Billing and select Download invoice."
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_0",
+        "confidence": 0.96,
+        "probabilities": {
+          "candidate_0": 1,
+          "candidate_1": 0,
+          "none": 0,
+          "ambiguous": 0
+        }
+      }
+    }
+  }
+}

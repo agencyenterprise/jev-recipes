@@ -1,0 +1,26 @@
+{
+  "input": {
+    "request": "How do I reset my password?",
+    "draft": "You can download invoices from the Billing page."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "off_topic",
+        "confidence": 0.96,
+        "probabilities": {
+          "relevant": 0,
+          "partly_relevant": 0,
+          "off_topic": 1,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

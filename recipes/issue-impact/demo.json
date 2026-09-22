@@ -1,0 +1,25 @@
+{
+  "input": {
+    "message": "I cannot sign in, so I cannot access any of my reports."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "blocked",
+        "confidence": 0.96,
+        "probabilities": {
+          "blocked": 1,
+          "degraded": 0,
+          "cosmetic": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

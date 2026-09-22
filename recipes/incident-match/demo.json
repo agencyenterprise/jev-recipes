@@ -1,0 +1,35 @@
+{
+  "input": {
+    "ticket": "Workspace exports fail with EXPORT_TIMEOUT.",
+    "incidents": [
+      {
+        "id": "exports",
+        "text": "Active incident: workspace exports fail with EXPORT_TIMEOUT."
+      },
+      {
+        "id": "billing",
+        "text": "Active incident: invoices appear with a delay."
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_0",
+        "confidence": 0.96,
+        "probabilities": {
+          "candidate_0": 1,
+          "candidate_1": 0,
+          "none": 0,
+          "ambiguous": 0
+        }
+      }
+    }
+  }
+}

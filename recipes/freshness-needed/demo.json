@@ -1,0 +1,24 @@
+{
+  "input": {
+    "question": "Is the API experiencing an outage right now?"
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "current",
+        "confidence": 0.96,
+        "probabilities": {
+          "current": 1,
+          "stable": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

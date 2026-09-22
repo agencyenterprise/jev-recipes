@@ -8,16 +8,17 @@ Each recipe is a function you can use on its own. Your application supplies the 
 
 ## Recipes
 
-| Recipe                                             | What it does                                       |
-| -------------------------------------------------- | -------------------------------------------------- |
-| [`route`](recipes/route/README.md)                 | Chooses a handler for a request.                   |
-| [`rerank`](recipes/rerank/README.md)               | Selects and orders relevant passages.              |
-| [`verify`](recipes/verify/README.md)               | Checks claims against supplied evidence.           |
-| [`answerability`](recipes/answerability/README.md) | Checks whether the evidence can answer a question. |
-| [`clarify`](recipes/clarify/README.md)             | Finds missing or ambiguous information.            |
-| [`handoff`](recipes/handoff/README.md)             | Checks your rules for involving a human.           |
+[Browse all 66 recipes](recipes/README.md). Each handles a focused decision and has its own schemas, example, and usage guide.
 
-Each recipe has its own usage guide, input and result schemas, and runnable demo.
+| Group                                                              | Recipes | Examples                                                |
+| ------------------------------------------------------------------ | ------- | ------------------------------------------------------- |
+| [Answer quality](recipes/README.md#answer-quality)                 | 10      | `answer-coverage`, `answer-relevance`, `citation-match` |
+| [Retrieval and evidence](recipes/README.md#retrieval-and-evidence) | 13      | `rerank`, `verify`, `answerability`                     |
+| [Conversation](recipes/README.md#conversation)                     | 11      | `clarify`, `turn-intent`, `followup-link`               |
+| [Tools and tasks](recipes/README.md#tools-and-tasks)               | 12      | `route`, `handoff`, `tool-fit`                          |
+| [Customer support](recipes/README.md#customer-support)             | 10      | `issue-impact`, `attempted-step`, `workaround-fit`      |
+| [Memory](recipes/README.md#memory)                                 | 5       | `memory-value`, `memory-scope`, `memory-relation`       |
+| [Knowledge maintenance](recipes/README.md#knowledge-maintenance)   | 5       | `document-role`, `audience-fit`, `change-meaning`       |
 
 ## Use in an app
 
@@ -71,7 +72,7 @@ Developers and coding agents can inspect the catalog without calling Jev:
 ```sh
 npm run jev -- list
 npm run jev -- list evidence --category retrieval
-npm run jev -- describe answerability
+npm run jev -- describe answer-coverage
 ```
 
 `list` searches names, descriptions, categories, and tags. `describe` returns the recipe's limits, JSON input and result schemas, and example input.
@@ -82,7 +83,7 @@ The same catalog is available in TypeScript:
 import { listRecipes, describeRecipe } from 'jev-recipes/catalog';
 
 const recipes = listRecipes({ category: 'retrieval' });
-const specification = describeRecipe('answerability');
+const specification = describeRecipe('answer-coverage');
 ```
 
 The library returns metadata and schemas. The command-line description also includes example input. Zod validates runtime inputs, including rules such as unique IDs that JSON Schema does not fully express.
@@ -104,38 +105,22 @@ The `npm run jev` command loads `.env`. Use `-` instead of a filename to read fr
 node --env-file-if-exists=.env dist/cli/index.js run rerank input.json
 ```
 
-## Connect the recipes
-
-The [support assistant example](examples/support/README.md) combines all six:
-
-```text
-handoff → clarify → route → rerank → answerability → draft an answer → verify
-```
-
-It stops when the request needs a person, clarification, better evidence, or review. The draft step is a callback you can connect to your existing generation code.
-
-```sh
-npm run example:support
-```
-
-This runs offline with a saved draft and saved decisions. Add `-- --live` to call Jev for the decisions using your `.env` key. The draft stays fixed in both modes.
-
 ## Read the result before acting
 
 - `ready` means a decision passed its threshold. Check the recipe's outcome too: a ready assessment can still find missing information or an unsupported claim.
-- Use `canProceed`, `canAnswer`, `decision`, or `allSupported` as described in each recipe's guide.
+- Inspect `verdict`, `selection`, or the recipe's aggregate result such as `allAnswered` or `canProceed`. Each guide explains its output.
 - `review` is a valid outcome. Invalid inputs, malformed model responses, and provider errors throw; the command-line runner reports them on stderr and exits with code 1.
 - Confidence does not guarantee correctness. Choose thresholds for your use case.
 - Recipes assess the evidence and rules you supply. They return decisions; your application handles actions and permissions.
 
 ## Contribute
 
-Each recipe owns its implementation, Zod 4 schemas, inferred types, metadata, demo, and documentation. Recipes share a small client layer and stay independent of one another.
+Each recipe owns its implementation, Zod 4 schemas, inferred types, metadata, demo, and documentation. Recipes share small decision helpers. A recipe that reuses another names that dependency in its guide and catalog metadata. Larger workflows belong in examples.
 
 ```text
 recipes/<name>/    Individual recipes
 src/              Shared client, response validation, schemas, and exports
-catalog/          Recipe registration and discovery
+catalog/          Recipe discovery and registrations grouped by subject
 cli/              Command-line runner
 examples/         Workflows that combine recipes
 ```
@@ -143,6 +128,30 @@ examples/         Workflows that combine recipes
 See [CONTRIBUTING.md](CONTRIBUTING.md) to add a recipe.
 
 `npm run build` compiles the TypeScript into JavaScript modules and type declarations. `npm pack` creates the installable archive. See [RELEASING.md](RELEASING.md) for packaging and publishing, and [CHANGELOG.md](CHANGELOG.md) for changes.
+
+## Cool projects
+
+Keep the recipes small and connect them in your application. These ideas show how a few decisions can support a larger project:
+
+| Project idea                                       | Recipes to combine                                                   | Your application supplies                                              |
+| -------------------------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| An assistant that answers every part of a question | `rerank`, `answerability`, `citation-match`, `answer-coverage`       | Document retrieval, a draft generator, and the question parts to check |
+| Support that remembers attempted fixes             | `attempted-step`, `troubleshooting-fit`, `workaround-fit`, `handoff` | Conversation history, approved procedures, and escalation rules        |
+| An agent that notices repeated attempts            | `result-usefulness`, `step-progress`, `repeated-attempt`             | Tool execution, attempt history, retry limits, and stop rules          |
+| A knowledge base that catches outdated answers     | `change-meaning`, `answer-invalidation`, `cache-match`               | Source change tracking, saved answers, and access and freshness checks |
+| Memory that respects the task's scope              | `preference-kind`, `memory-value`, `memory-scope`, `memory-relation` | Candidate facts, storage consent, and retention rules                  |
+
+The [support assistant example](examples/support/README.md) is implemented in this repository. It combines six recipes, stops when review or better information is needed, and accepts your own draft callback:
+
+```text
+handoff → clarify → route → rerank → answerability → draft an answer → verify
+```
+
+```sh
+npm run example:support
+```
+
+That command uses saved decisions and a saved draft. Add `-- --live` to use live Jev decisions with your `.env` key; the example still uses the saved draft. The other projects above are composition ideas, not additional bundled applications.
 
 ## License
 

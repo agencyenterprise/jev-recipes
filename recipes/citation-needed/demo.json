@@ -1,0 +1,25 @@
+{
+  "input": {
+    "statement": "Reset links expire after 30 minutes.",
+    "citationRules": "Cite documentation for claims about product behavior. Greetings need no citations."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "needed",
+        "confidence": 0.96,
+        "probabilities": {
+          "needed": 1,
+          "unnecessary": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}

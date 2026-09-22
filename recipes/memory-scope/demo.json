@@ -1,0 +1,27 @@
+{
+  "input": {
+    "fact": "Use two-space indentation in this repository.",
+    "context": "The user is describing the conventions for the billing service repository."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "project",
+        "confidence": 0.96,
+        "probabilities": {
+          "user": 0,
+          "project": 1,
+          "task": 0,
+          "session": 0,
+          "unclear": 0
+        }
+      }
+    }
+  }
+}
