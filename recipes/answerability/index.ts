@@ -3,7 +3,10 @@ import type { RecipeOptions } from '../../src/schema.js';
 import { answerabilityInputSchema, answerabilityResultSchema } from './schema.js';
 import type { AnswerabilityInput, AnswerabilityResult } from './schema.js';
 
-export async function answerability(input: AnswerabilityInput, options: RecipeOptions = {}): Promise<AnswerabilityResult> {
+export async function answerability(
+  input: AnswerabilityInput,
+  options: RecipeOptions = {},
+): Promise<AnswerabilityResult> {
   const { question, evidence, minConfidence = 0.8 } = answerabilityInputSchema.parse(input);
   const decision = await evaluateChoice(
     { question, evidence },

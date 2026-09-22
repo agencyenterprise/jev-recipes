@@ -20,7 +20,10 @@ export async function evaluateChecks(
   );
   const response = await evaluateWithJev({ state: parseDecisionState(state), questions }, options);
   const checks = items.map((item, index) => {
-    const answer = parseChoiceAnswer(response.answers[`${questionPrefix}_${index}`], Object.keys(criteria));
+    const answer = parseChoiceAnswer(
+      response.answers[`${questionPrefix}_${index}`],
+      Object.keys(criteria),
+    );
     return {
       id: item.id,
       verdict: answer.choice,

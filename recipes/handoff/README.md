@@ -1,6 +1,6 @@
-# Handoff
+# Check handoff rules
 
-Check a request against your rules for involving a human. The function returns a decision; your application handles the transfer.
+Check whether a request matches your rules for involving a human. Your application handles the transfer.
 
 ```ts
 import { handoff } from 'jev-recipes/handoff';
@@ -15,21 +15,42 @@ const result = await handoff({
   ],
 });
 
-console.log(result.decision, result.matchedRules);
+console.log(result.decision);
 ```
 
-Provide 1 to 50 rules with unique, non-empty IDs. Optional `context` supplies conversation history or application facts. `minConfidence` defaults to `0.8` and applies independently to each check.
+## Input
 
-| Decision   | Condition                                                               |
-| ---------- | ----------------------------------------------------------------------- |
-| `human`    | At least one rule confidently `matches`.                                |
-| `review`   | No confident match, and at least one `unclear` or low-confidence check. |
-| `continue` | Every rule confidently `does_not_match`.                                |
+| Field           | Accepts                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| `request`       | Non-empty text containing the request                                                    |
+| `context`       | Optional non-empty conversation context or application facts                             |
+| `rules`         | 1 to 50 `{ id, description }` rules with unique non-empty IDs and non-empty descriptions |
+| `minConfidence` | Optional number from 0 to 1; defaults to 0.8                                             |
 
-`matchedRules` contains confident matches. `uncertainRules` contains unclear and low-confidence checks. A confident match is enough to return `human` with `status: "ready"`, even if other rules are uncertain. A `review` decision always has `status: "review"`.
+See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors. Types are inferred from this folder's Zod 4 schemas.
 
-The result includes every rule's verdict, confidence, and probabilities, plus model and token usage. An `unclear` verdict can have high confidence: the model is confident that it cannot decide from the supplied facts.
+## Result
 
-Write observable rules and provide the facts needed to evaluate them. Compute exact amounts, dates, permissions, and hard limits in code. This semantic check does not contact anyone, enforce authorization, or provide a security boundary.
+| Decision   | Condition                                                                                     |
+| ---------- | --------------------------------------------------------------------------------------------- |
+| `human`    | At least one rule confidently matches.                                                        |
+| `review`   | No confident match exists and at least one rule is unclear or below the confidence threshold. |
+| `continue` | Every rule confidently does not match.                                                        |
 
-Run `npm run jev -- demo handoff` for the hand-authored offline [fixture](demo.json). Fixtures do not measure live model accuracy.
+`checks` preserves each rule ID with its verdict (`matches`, `does_not_match`, or `unclear`), status, confidence, and probabilities. Check status reflects the confidence threshold. A high-confidence `unclear` verdict still describes uncertainty about whether the rule applies.
+
+`matchedRules` contains confident matches. `uncertainRules` contains unclear and low-confidence checks. One confident match is enough for `decision: "human"` and `status: "ready"`, even when other rules are uncertain. A review decision always has review status.
+
+The result includes model and token usage. Inspect the outcome as well as its review status.
+
+## Reuse and calls
+
+Uses the shared item-check helper. This folder owns the rule criteria and human, continue, or review decision. All rule questions are sent in one request. A live invocation makes one logical Jev request; SDK retries can add transport attempts.
+
+## Limits
+
+Write observable rules and supply the facts needed to evaluate them. Compute exact amounts, deadlines, and permissions in code. This recipe does not contact anyone, execute actions, or enforce access controls.
+
+## Example input
+
+[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo handoff` shows an offline illustration, not an accuracy measurement. Use `npm run jev -- describe handoff` to inspect the input and result schemas.

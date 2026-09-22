@@ -2,7 +2,11 @@ import { rerank, rerankInputSchema, rerankResultSchema } from '../../recipes/rer
 import { metadata as rerankMetadata } from '../../recipes/rerank/metadata.js';
 import { verify, verifyInputSchema, verifyResultSchema } from '../../recipes/verify/index.js';
 import { metadata as verifyMetadata } from '../../recipes/verify/metadata.js';
-import { answerability, answerabilityInputSchema, answerabilityResultSchema } from '../../recipes/answerability/index.js';
+import {
+  answerability,
+  answerabilityInputSchema,
+  answerabilityResultSchema,
+} from '../../recipes/answerability/index.js';
 import { metadata as answerabilityMetadata } from '../../recipes/answerability/metadata.js';
 import type { RecipeOptions } from '../../src/schema.js';
 import {
@@ -67,9 +71,27 @@ import {
 import { metadata as querySpecificityMetadata } from '../../recipes/query-specificity/metadata.js';
 
 export const retrievalRecipes = {
-  rerank: { metadata: rerankMetadata, inputSchema: rerankInputSchema, resultSchema: rerankResultSchema, run: (input: unknown, options?: RecipeOptions) => rerank(rerankInputSchema.parse(input), options) },
-  verify: { metadata: verifyMetadata, inputSchema: verifyInputSchema, resultSchema: verifyResultSchema, run: (input: unknown, options?: RecipeOptions) => verify(verifyInputSchema.parse(input), options) },
-  answerability: { metadata: answerabilityMetadata, inputSchema: answerabilityInputSchema, resultSchema: answerabilityResultSchema, run: (input: unknown, options?: RecipeOptions) => answerability(answerabilityInputSchema.parse(input), options) },
+  rerank: {
+    metadata: rerankMetadata,
+    inputSchema: rerankInputSchema,
+    resultSchema: rerankResultSchema,
+    run: (input: unknown, options?: RecipeOptions) =>
+      rerank(rerankInputSchema.parse(input), options),
+  },
+  verify: {
+    metadata: verifyMetadata,
+    inputSchema: verifyInputSchema,
+    resultSchema: verifyResultSchema,
+    run: (input: unknown, options?: RecipeOptions) =>
+      verify(verifyInputSchema.parse(input), options),
+  },
+  answerability: {
+    metadata: answerabilityMetadata,
+    inputSchema: answerabilityInputSchema,
+    resultSchema: answerabilityResultSchema,
+    run: (input: unknown, options?: RecipeOptions) =>
+      answerability(answerabilityInputSchema.parse(input), options),
+  },
   'retrieval-needed': {
     metadata: retrievalNeededMetadata,
     inputSchema: retrievalNeededInputSchema,

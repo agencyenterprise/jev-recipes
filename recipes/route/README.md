@@ -1,6 +1,6 @@
-# Route
+# Route a request
 
-Choose a handler for a request. This function returns a decision and never executes the handler.
+Choose a handler from the routes you supply. The recipe returns the selection; your application runs the handler.
 
 ```ts
 import { route } from 'jev-recipes/route';
@@ -11,14 +11,37 @@ const result = await route({
     billing: 'Payments, invoices, subscriptions, and refunds',
     technical: 'Errors, outages, and broken integrations',
   },
-  minConfidence: 0.8,
 });
+
+console.log(result.route);
 ```
 
-Provide 1 to 254 route names and non-empty descriptions. The recipe adds a reserved `__review__` option for ambiguous requests or requests with no suitable handler. Do not use that name for your own route.
+## Input
 
-`minConfidence` defaults to `0.8`. At or above the threshold, a non-review selection returns `status: "ready"` and `route`. Below the threshold, or when Jev selects `__review__`, `route` is null and `status` is `review`. `suggestedRoute` preserves a low-confidence model suggestion for inspection; it is not an accepted decision.
+| Field           | Accepts                                                                   |
+| --------------- | ------------------------------------------------------------------------- |
+| `request`       | Non-empty text describing the request                                     |
+| `routes`        | 1 to 254 non-empty route names and descriptions; `__review__` is reserved |
+| `minConfidence` | Optional number from 0 to 1; defaults to 0.8                              |
 
-Results include confidence, the complete choice probability distribution (including `__review__`), model, and token usage. Describe overlapping routes carefully. Confidence does not guarantee correctness.
+See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors. Types are inferred from this folder's Zod 4 schemas.
 
-Try `npm run jev -- demo route` for the offline [`demo.json`](demo.json) fixture. Use `node dist/cli/index.js example route` to print editable input for a live run. Live routing accuracy has not been measured.
+## Result
+
+A confident selection returns `status: "ready"` and the route name in `route`. A low-confidence result or the reserved `__review__` choice returns `status: "review"` and a null `route`.
+
+`suggestedRoute` preserves a low-confidence suggestion. It is null when no route is selected. `confidence` and `probabilities` describe the model decision, including the `__review__` option.
+
+The result includes model and token usage. Inspect the outcome as well as its review status.
+
+## Reuse and calls
+
+Uses the shared choice helper. This folder owns the routing question, route criteria, and review policy. A live invocation makes one logical Jev request; SDK retries can add transport attempts.
+
+## Limits
+
+Routes with overlapping descriptions can be difficult to distinguish. Describe their responsibilities clearly. Routing does not execute handlers or establish permission to act.
+
+## Example input
+
+[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo route` shows an offline illustration, not an accuracy measurement. Use `npm run jev -- describe route` to inspect the input and result schemas.

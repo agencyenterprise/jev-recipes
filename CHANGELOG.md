@@ -2,7 +2,9 @@
 
 ## Unreleased
 
-- Add 60 focused recipes across answer quality, retrieval, conversation, tools, support, memory, and knowledge maintenance, bringing the catalog to 66.
+- Unify recipe execution helpers, result validation, subject registration, and documentation across the catalog.
+
+- Expand the catalog to 66 focused recipes across answer quality, retrieval, conversation, tools, support, memory, and knowledge maintenance.
 - Add shared choice, candidate-selection, and item-check helpers; keep recipe criteria and schemas in their own folders.
 - Register every new recipe for root and subpath imports, discovery, CLI input examples, and offline demos.
 - Document the complete catalog, explicit internal reuse, and Cool projects that compose small decisions.

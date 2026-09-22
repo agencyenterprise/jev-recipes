@@ -2,7 +2,7 @@
 
 66 small decisions for AI applications. Every recipe has its own input and result schemas, example, and usage guide. The package exports camelCase functions from kebab-case paths: `answerCoverage` from `jev-recipes/answer-coverage`, for example.
 
-Browse the groups below, or use `npm run jev -- list <query>` and `npm run jev -- describe <recipe>` from the repository. Discovery does not call Jev. The original six recipes retain their existing result shapes; each guide describes its contract.
+Browse the groups below, or use `npm run jev -- list <query>` and `npm run jev -- describe <recipe>` from the repository. Discovery does not call Jev. Each recipe guide describes its inputs, results, limits, and review policy.
 
 ## Answer quality
 
@@ -108,16 +108,16 @@ Browse the groups below, or use `npm run jev -- list <query>` and `npm run jev -
 ## Shared options and behavior
 
 - Pass `{ client, model, signal }` as an optional second argument to any recipe. The default client reads `TYPESAFE_API_KEY` from the process environment.
-- New recipes default `minConfidence` to `0.8`. A decision below the threshold requires review. An explicit `unclear` or `ambiguous` verdict also requires review even at high confidence.
+- Recipes that accept `minConfidence` default it to `0.8`. Rerank uses `minRelevance`, defaulting to `0.5`. Each guide explains which outcomes require review and how individual checks affect the overall decision.
 - `ready` describes confidence in the assessment. Inspect the verdict too: a ready result can describe a conflict, missing information, or an unsuitable candidate.
 - Candidate selectors return `selection` only for a ready match. `suggestedSelection` preserves a low-confidence suggestion. Candidate probabilities use your supplied IDs; no candidate match and ambiguity are separate outcomes.
 - Item checks preserve each item's ID, verdict, confidence, and status. The coverage and tone recipes also provide `allAnswered`, `allPreserved`, or `allPassed` as appropriate.
 - Model and token usage accompany every result. Inputs and model responses are validated with Zod 4. Invalid input, malformed answers, and provider failures throw.
-- Shared `{ id, text }` lists accept 1 to 50 items with unique non-empty IDs. The original recipes document their own limits. Provider context limits may require smaller inputs; content is not silently truncated.
+- Shared `{ id, text }` lists accept 1 to 50 items with unique non-empty IDs. Route accepts up to 254 routes; rerank and verify accept up to 100 items. Each guide documents its input limits. Provider context limits may require smaller inputs; content is not silently truncated.
 
 ## Reuse and side effects
 
-The new recipes share small helpers for choices, candidate selection, and item checks. Each recipe owns its question and decision rules. `citation-match` composes the public `verify` function; its guide and catalog `uses` field name that dependency.
+Recipes share small helpers for choices, candidate selection, and item checks. Rerank uses independent yes/no relevance scores. Each recipe owns its question and decision rules. `citation-match` composes the public `verify` function; its guide and catalog `uses` field name that dependency.
 
 Each current recipe makes one logical Jev request per live invocation. Batch checks place their questions in that request. SDK retries can add transport attempts. The recipes return decisions without executing application actions. The separate support example makes up to six logical requests and can stop early.
 

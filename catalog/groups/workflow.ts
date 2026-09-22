@@ -61,8 +61,19 @@ import {
 import { metadata as instructionFitMetadata } from '../../recipes/instruction-fit/metadata.js';
 
 export const workflowRecipes = {
-  route: { metadata: routeMetadata, inputSchema: routeInputSchema, resultSchema: routeResultSchema, run: (input: unknown, options?: RecipeOptions) => route(routeInputSchema.parse(input), options) },
-  handoff: { metadata: handoffMetadata, inputSchema: handoffInputSchema, resultSchema: handoffResultSchema, run: (input: unknown, options?: RecipeOptions) => handoff(handoffInputSchema.parse(input), options) },
+  route: {
+    metadata: routeMetadata,
+    inputSchema: routeInputSchema,
+    resultSchema: routeResultSchema,
+    run: (input: unknown, options?: RecipeOptions) => route(routeInputSchema.parse(input), options),
+  },
+  handoff: {
+    metadata: handoffMetadata,
+    inputSchema: handoffInputSchema,
+    resultSchema: handoffResultSchema,
+    run: (input: unknown, options?: RecipeOptions) =>
+      handoff(handoffInputSchema.parse(input), options),
+  },
   'tool-fit': {
     metadata: toolFitMetadata,
     inputSchema: toolFitInputSchema,

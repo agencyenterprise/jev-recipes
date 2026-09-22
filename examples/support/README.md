@@ -1,6 +1,6 @@
 # Support assistant
 
-A complete decision flow using all six recipes. The workflow lives here so each recipe remains independently usable.
+A support workflow built from the recipe catalog. The workflow lives here so each recipe remains independently usable.
 
 From the repository, after `npm run build`:
 

@@ -1,29 +1,54 @@
-# Answerability
+# Check answerability
 
-Decide whether supplied evidence can answer an entire question before generating a response.
+Decide whether the supplied evidence can answer an entire question before drafting a response.
 
 ```ts
 import { answerability } from 'jev-recipes/answerability';
 
 const result = await answerability({
   question: 'How do I reset my password, and when does the link expire?',
-  evidence: [{ id: 'reset', text: 'Select Forgot password. Reset links expire after 30 minutes.' }],
+  evidence: [
+    {
+      id: 'reset',
+      text: 'Select Forgot password. Reset links expire after 30 minutes.',
+    },
+  ],
 });
 
-if (result.canAnswer) console.log('Evidence is sufficient for drafting.');
+console.log(result.canAnswer);
 ```
 
-Provide 1 to 50 passages with unique, non-empty IDs. Handle empty retrieval in your application before calling this recipe. `minConfidence` defaults to `0.8`.
+## Input
 
-| Verdict        | Meaning                                                 |
-| -------------- | ------------------------------------------------------- |
-| `sufficient`   | Every material part of the question can be answered.    |
-| `partial`      | Some material parts can be answered, but others cannot. |
-| `insufficient` | No material part can be answered.                       |
-| `conflicting`  | Incompatible evidence prevents a consistent answer.     |
+| Field           | Accepts                                                                      |
+| --------------- | ---------------------------------------------------------------------------- |
+| `question`      | Non-empty text containing the question                                       |
+| `evidence`      | 1 to 50 `{ id, text }` passages with unique non-empty IDs and non-empty text |
+| `minConfidence` | Optional number from 0 to 1; defaults to 0.8                                 |
 
-`canAnswer` is true only for `sufficient` at or above the confidence threshold. `status: "ready"` means the assessment passed the threshold; it can still describe insufficient or conflicting evidence. Below the threshold, `status` is `review` and `canAnswer` is false.
+See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors. Types are inferred from this folder's Zod 4 schemas.
 
-The result includes the verdict, confidence, all choice probabilities, model, and token usage. The recipe assesses only supplied evidence. It does not verify source truth, generate an answer, or guarantee that a later draft uses the evidence correctly. Use `verify` on that draft's claims.
+## Result
 
-Run `npm run jev -- demo answerability` for the hand-authored offline [fixture](demo.json). Fixtures exercise decision handling; they do not measure accuracy. Calibrate thresholds with your own labeled examples.
+| Verdict        | Meaning                                                   |
+| -------------- | --------------------------------------------------------- |
+| `sufficient`   | The evidence answers every material part of the question. |
+| `partial`      | Some material parts can be answered, but others cannot.   |
+| `insufficient` | No material part can be answered.                         |
+| `conflicting`  | Incompatible evidence prevents a consistent answer.       |
+
+`canAnswer` is true only when the verdict is `sufficient` and confidence reaches `minConfidence`. `status` is `ready` at or above that threshold, otherwise `review`. A ready assessment can still describe partial, insufficient, or conflicting evidence. The result includes confidence and all choice probabilities.
+
+The result includes model and token usage. Inspect the outcome as well as its review status.
+
+## Reuse and calls
+
+Uses the shared choice helper. This folder owns the evidence-sufficiency criteria and the can-answer decision. A live invocation makes one logical Jev request; SDK retries can add transport attempts.
+
+## Limits
+
+Handle empty retrieval in application code before calling. This recipe does not establish source truth, draft an answer, or guarantee a later draft uses the evidence correctly. Use verify on drafted claims and answer-coverage on supplied question parts.
+
+## Example input
+
+[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo answerability` shows an offline illustration, not an accuracy measurement. Use `npm run jev -- describe answerability` to inspect the input and result schemas.

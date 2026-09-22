@@ -3,12 +3,16 @@ import type { RecipeOptions } from '../../src/schema.js';
 import { handoffInputSchema, handoffResultSchema } from './schema.js';
 import type { HandoffInput, HandoffResult } from './schema.js';
 
-export async function handoff(input: HandoffInput, options: RecipeOptions = {}): Promise<HandoffResult> {
+export async function handoff(
+  input: HandoffInput,
+  options: RecipeOptions = {},
+): Promise<HandoffResult> {
   const { request, context, rules, minConfidence = 0.8 } = handoffInputSchema.parse(input);
   const evaluation = await evaluateChecks(
     { request, context: context ?? '', rules },
     rules,
-    (index) => `Does rules[${index}].description apply to the request and context? ` +
+    (index) =>
+      `Does rules[${index}].description apply to the request and context? ` +
       'Choose unclear when missing or conflicting facts prevent deciding this rule.',
     {
       matches: 'The supplied facts establish that this handoff rule applies.',
@@ -22,9 +26,14 @@ export async function handoff(input: HandoffInput, options: RecipeOptions = {}):
     ...check,
     status: check.confidence >= minConfidence ? 'ready' : 'review',
   }));
-  const matchedRules = checks.filter((check) => check.status === 'ready' && check.verdict === 'matches').map((check) => check.id);
-  const uncertainRules = checks.filter((check) => check.status === 'review' || check.verdict === 'unclear').map((check) => check.id);
-  const decision = matchedRules.length > 0 ? 'human' : uncertainRules.length > 0 ? 'review' : 'continue';
+  const matchedRules = checks
+    .filter((check) => check.status === 'ready' && check.verdict === 'matches')
+    .map((check) => check.id);
+  const uncertainRules = checks
+    .filter((check) => check.status === 'review' || check.verdict === 'unclear')
+    .map((check) => check.id);
+  const decision =
+    matchedRules.length > 0 ? 'human' : uncertainRules.length > 0 ? 'review' : 'continue';
 
   return handoffResultSchema.parse({
     ...evaluation,

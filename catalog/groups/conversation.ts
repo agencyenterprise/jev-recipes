@@ -63,7 +63,13 @@ import {
 import { metadata as resolutionCheckMetadata } from '../../recipes/resolution-check/metadata.js';
 
 export const conversationRecipes = {
-  clarify: { metadata: clarifyMetadata, inputSchema: clarifyInputSchema, resultSchema: clarifyResultSchema, run: (input: unknown, options?: RecipeOptions) => clarify(clarifyInputSchema.parse(input), options) },
+  clarify: {
+    metadata: clarifyMetadata,
+    inputSchema: clarifyInputSchema,
+    resultSchema: clarifyResultSchema,
+    run: (input: unknown, options?: RecipeOptions) =>
+      clarify(clarifyInputSchema.parse(input), options),
+  },
   'turn-intent': {
     metadata: turnIntentMetadata,
     inputSchema: turnIntentInputSchema,

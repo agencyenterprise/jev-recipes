@@ -1,6 +1,6 @@
-# Rerank
+# Rerank evidence
 
-Rank supplied passages by how directly they help answer a query. This function does not retrieve documents or write an answer.
+Select supplied passages by how directly they help answer a query, then order them by relevance.
 
 ```ts
 import { rerank } from 'jev-recipes/rerank';
@@ -8,18 +8,48 @@ import { rerank } from 'jev-recipes/rerank';
 const result = await rerank({
   query: 'How do I reset my password?',
   items: [
-    { id: 'billing', text: 'Invoices appear on the Billing page.' },
-    { id: 'reset', text: 'Select Forgot password to receive a reset link.' },
+    {
+      id: 'billing',
+      text: 'Invoices appear on the Billing page.',
+    },
+    {
+      id: 'reset',
+      text: 'Select Forgot password to receive a reset link.',
+    },
   ],
-  topK: 5,
-  minRelevance: 0.5,
+  topK: 1,
 });
+
+console.log(result.items);
 ```
 
-Supply 1 to 100 items with unique, non-empty IDs and non-empty text. `topK` defaults to `5` and must be an integer from 1 to 100. `minRelevance` defaults to `0.5` and must be between 0 and 1.
+## Input
 
-One Jev call asks an independent yes/no relevance question for every item. The returned relevance values do not sum to 1 and have no separate confidence field. Results at or above the threshold are sorted, then limited to `topK`. Equal scores keep the original order. IDs and text are preserved, and the input array is not changed.
+| Field          | Accepts                                                                    |
+| -------------- | -------------------------------------------------------------------------- |
+| `query`        | Non-empty text describing the information needed                           |
+| `items`        | 1 to 100 `{ id, text }` items with unique non-empty IDs and non-empty text |
+| `topK`         | Optional integer from 1 to 100; defaults to 5                              |
+| `minRelevance` | Optional number from 0 to 1; defaults to 0.5                               |
 
-An empty selection returns `status: "review"`. `ready` means some candidates passed the relevance threshold; it does not establish that they completely answer the query. The result also includes the number evaluated, model, and token usage. Large passages may require fewer items to fit the provider's context limit.
+See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors. Types are inferred from this folder's Zod 4 schemas.
 
-Try `npm run jev -- demo rerank` for the offline [`demo.json`](demo.json) fixture. Use `node dist/cli/index.js example rerank` to print editable input. Live retrieval quality and cost improvements have not been measured.
+## Result
+
+`items` contains passages at or above `minRelevance`, ordered from highest relevance to lowest and limited to `topK`. Each item keeps its ID and text and adds `relevance`. Equal values preserve input order. The input array is not changed.
+
+`status` is `ready` when at least one passage qualifies, otherwise `review`. `evaluated` reports the number of supplied items. Relevance comes from independent yes/no questions, so values do not sum to 1 and have no separate confidence field.
+
+The result includes model and token usage. Inspect the outcome as well as its review status.
+
+## Reuse and calls
+
+Uses shared input preparation, instruction handling, the SDK client, and yes/no answer parsing. This folder owns the relevance question, filtering, and ordering. All item questions are sent in one request. A live invocation makes one logical Jev request; SDK retries can add transport attempts.
+
+## Limits
+
+Relevance does not establish that a passage is true or sufficient to answer the entire query. Use answerability to assess the selected evidence. This recipe does not retrieve documents or generate an answer.
+
+## Example input
+
+[demo.json](demo.json) contains editable input and a hand-authored response. After building the repository, `npm run jev -- demo rerank` shows an offline illustration, not an accuracy measurement. Use `npm run jev -- describe rerank` to inspect the input and result schemas.

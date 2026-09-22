@@ -141,7 +141,7 @@ Keep the recipes small and connect them in your application. These ideas show ho
 | A knowledge base that catches outdated answers     | `change-meaning`, `answer-invalidation`, `cache-match`               | Source change tracking, saved answers, and access and freshness checks |
 | Memory that respects the task's scope              | `preference-kind`, `memory-value`, `memory-scope`, `memory-relation` | Candidate facts, storage consent, and retention rules                  |
 
-The [support assistant example](examples/support/README.md) is implemented in this repository. It combines six recipes, stops when review or better information is needed, and accepts your own draft callback:
+The [support assistant example](examples/support/README.md) is implemented in this repository. It stops when review or better information is needed and accepts your own draft callback:
 
 ```text
 handoff → clarify → route → rerank → answerability → draft an answer → verify

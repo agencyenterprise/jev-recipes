@@ -8,7 +8,10 @@ export async function route(input: RouteInput, options: RecipeOptions = {}): Pro
   const decision = await evaluateChoice(
     { request },
     'Choose the single route that best handles request. Use __review__ when no route clearly fits.',
-    { ...routes, __review__: 'The request is ambiguous, no route fits, or more information is needed.' },
+    {
+      ...routes,
+      __review__: 'The request is ambiguous, no route fits, or more information is needed.',
+    },
     options,
     'route',
   );
