@@ -1,7 +1,7 @@
 {
   "name": "jev-recipes",
   "version": "0.0.1",
-  "description": "Small, composable Jev recipes for routing, reranking, and checking evidence.",
+  "description": "Small, composable Jev decisions for retrieval, conversations, and agent workflows.",
   "type": "module",
   "license": "MIT",
   "repository": {
@@ -31,7 +31,23 @@
       "types": "./dist/recipes/verify/index.d.ts",
       "import": "./dist/recipes/verify/index.js"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./answerability": {
+      "types": "./dist/recipes/answerability/index.d.ts",
+      "import": "./dist/recipes/answerability/index.js"
+    },
+    "./clarify": {
+      "types": "./dist/recipes/clarify/index.d.ts",
+      "import": "./dist/recipes/clarify/index.js"
+    },
+    "./handoff": {
+      "types": "./dist/recipes/handoff/index.d.ts",
+      "import": "./dist/recipes/handoff/index.js"
+    },
+    "./catalog": {
+      "types": "./dist/catalog/index.d.ts",
+      "import": "./dist/catalog/index.js"
+    }
   },
   "bin": {
     "jev-recipes": "dist/cli/index.js"
@@ -42,7 +58,9 @@
     "recipes/*/README.md",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "examples/support/demo.json",
+    "examples/support/README.md"
   ],
   "scripts": {
     "clean": "rimraf dist",
@@ -50,12 +68,13 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "demo": "node dist/cli/index.js demo route && node dist/cli/index.js demo rerank && node dist/cli/index.js demo verify",
+    "demo": "node dist/cli/index.js demo all",
     "jev": "node --env-file-if-exists=.env dist/cli/index.js",
-    "ci": "npm run format:check && npm run typecheck && npm run build && npm run demo",
+    "ci": "npm run format:check && npm run typecheck && npm run build && npm run demo && npm run example:support",
     "pack:check": "npm pack --dry-run",
     "prepack": "npm run build",
-    "prepublishOnly": "npm run ci"
+    "prepublishOnly": "npm run ci",
+    "example:support": "node --env-file-if-exists=.env dist/examples/support/index.js"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "0.6.0",

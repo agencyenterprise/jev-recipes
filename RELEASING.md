@@ -1,6 +1,6 @@
 # Releasing jev-recipes
 
-The first release is **0.0.1**. Keep that version for the initial publish. Publishing is manual; GitHub CI checks the project without publishing it.
+**0.0.1 is already published.** The current additions are unreleased; choose a new version before publishing them. Do not republish 0.0.1. Publishing is manual; GitHub CI checks the project without publishing it.
 
 ## What ships
 
@@ -16,7 +16,7 @@ npm registry
 
 The package uses native ESM. TypeScript compiles each module to JavaScript and generates `.d.ts` declarations. The build clears `dist/` first so deleted source files cannot survive in a later package.
 
-The `files` list in `package.json` includes the compiled modules, recipe demo JSON, recipe READMEs, root README, changelog, and license. npm includes `package.json` as well. Source files, development configuration, `.env` files, and `node_modules` are excluded.
+The `files` list in `package.json` includes the compiled modules, recipe demo JSON, recipe READMEs, the support example fixture and README, root README, changelog, and license. npm includes `package.json` as well. Source files, development configuration, `.env` files, and `node_modules` are excluded.
 
 Zod and the official TypeSafe SDK remain runtime dependencies. npm installs them for consumers. Consumers do not need TypeScript, Prettier, or the repository's build tools, and installation does not run a build.
 
@@ -32,7 +32,7 @@ npm run ci
 npm run pack:check
 ```
 
-`npm run ci` checks formatting, type-checks the source, makes a clean build, and runs all three offline demos. `npm run pack:check` previews the exact files npm would include.
+`npm run ci` checks formatting, type-checks the source, makes a clean build, and runs every registered offline demo and the support example. `npm run pack:check` previews the exact files npm would include.
 
 If formatting needs attention, run `npm run format`. The demos use saved responses; they confirm that the examples run, not that Jev makes accurate decisions. No test suite is configured.
 
@@ -51,12 +51,12 @@ npm init -y
 npm install /absolute/path/to/jev-recipes/jev-recipes-0.0.1.tgz
 npx --no -- jev-recipes --version
 npx --no -- jev-recipes list
-npx --no -- jev-recipes demo route
-npx --no -- jev-recipes demo rerank
-npx --no -- jev-recipes demo verify
+npx --no -- jev-recipes demo all
+npx --no -- jev-recipes describe answerability
+node node_modules/jev-recipes/dist/examples/support/index.js
 ```
 
-The version should be `0.0.1`. Demos should report `mode: "demo"` and `model: "demo-fixture"`.
+Before a version bump the local tarball still reports `0.0.1`; it contains the checkout, which now differs from published 0.0.1. After a bump, use the new tarball filename and expect that version. Demos should report `mode: "demo"` and `model: "demo-fixture"`.
 
 Use the same tarball in an existing TypeScript app to try the library exports:
 
@@ -82,11 +82,11 @@ Edit `input.json` with your own query and passages. Create a local `.env` contai
 node --env-file=.env node_modules/jev-recipes/dist/cli/index.js run rerank input.json
 ```
 
-A live run sends the input to TypeSafe and uses API quota. Inspect the selected passages and review status against the outcome you expect. Repeat with `route` and `verify` to evaluate all three recipes. Keep private inputs and credentials out of the repository.
+A live run sends the input to TypeSafe and uses API quota. Inspect the selected passages and review status against the outcome you expect. Repeat with the other recipes to evaluate their behavior. To run the support example with live decisions and a saved draft, use `node --env-file=.env node_modules/jev-recipes/dist/examples/support/index.js --live`. Keep private inputs and credentials out of the repository.
 
-## Publish 0.0.1
+## Publish the next version
 
-Before publishing, move the changelog's `Unreleased` content under a `0.0.1` heading with the release date, commit the intended files, and let GitHub CI pass. Confirm that you can publish the `jev-recipes` package name with your npm account.
+Update the README release status and move the changelog's `Unreleased` content under the chosen version with the actual release date. Commit the intended changes and choose a new version with `npm version patch`, `npm version minor`, or `npm version major` from a clean working tree. npm updates the manifest and lockfile and creates a commit and tag. Repeat the checks and packaged installation with the new tarball, then let GitHub CI pass.
 
 From the repository:
 
@@ -105,19 +105,7 @@ npm view jev-recipes version
 
 `prepublishOnly` runs `npm run ci` before a directory-based publish. `prepack` makes a clean build before packing or publishing. These hooks require development dependencies to be installed. Publishing a previously packed tarball does not rerun the checkout's checks, so use the repository command above for the documented workflow.
 
-After the publish succeeds, tag that same commit and create a GitHub release with the changelog notes:
-
-```sh
-git tag v0.0.1
-git push origin main
-git push origin v0.0.1
-```
-
-No workflow publishes on push, tag creation, or release creation.
-
-## Later releases
-
-Update the changelog and commit your changes. With a clean working tree, choose the next version with `npm version patch`, `npm version minor`, or `npm version major`. npm updates the manifest and lockfile and creates a commit and tag. Repeat the checks and packaged installation using the new tarball filename, publish, then push that version's commit and tag.
+After publishing succeeds, push the version commit and its tag, then create a GitHub release with the changelog notes. No workflow publishes on push, tag creation, or release creation.
 
 While the project is below 1.0.0, document breaking API changes explicitly. Treat 0.x releases as evolving APIs.
 

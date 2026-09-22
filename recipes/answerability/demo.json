@@ -1,0 +1,31 @@
+{
+  "input": {
+    "question": "How do I reset my password, and when does the link expire?",
+    "evidence": [
+      {
+        "id": "reset",
+        "text": "Select Forgot password on the sign-in page. Reset links expire after 30 minutes."
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "answerability": {
+        "type": "choice",
+        "choice": "sufficient",
+        "confidence": 0.96,
+        "probabilities": {
+          "sufficient": 0.97,
+          "partial": 0.01,
+          "insufficient": 0.01,
+          "conflicting": 0.01
+        }
+      }
+    }
+  }
+}

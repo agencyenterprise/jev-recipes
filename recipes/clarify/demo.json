@@ -1,0 +1,45 @@
+{
+  "input": {
+    "request": "Please cancel it.",
+    "context": "The customer has a monthly storage subscription and a pending hardware order.",
+    "requirements": [
+      {
+        "id": "target",
+        "description": "Which product or order should be changed"
+      },
+      {
+        "id": "action",
+        "description": "What change the customer wants"
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "requirement_0": {
+        "type": "choice",
+        "choice": "ambiguous",
+        "confidence": 0.96,
+        "probabilities": {
+          "present": 0.015,
+          "missing": 0.015,
+          "ambiguous": 0.97
+        }
+      },
+      "requirement_1": {
+        "type": "choice",
+        "choice": "present",
+        "confidence": 0.96,
+        "probabilities": {
+          "present": 0.97,
+          "missing": 0.015,
+          "ambiguous": 0.015
+        }
+      }
+    }
+  }
+}

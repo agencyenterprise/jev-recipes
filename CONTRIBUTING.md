@@ -4,12 +4,13 @@ Keep recipes independent and the shared layer small. Prefer a direct function ov
 
 ## Add a recipe
 
-1. Create `recipes/<name>/` with `index.ts`, `schema.ts`, `demo.json`, and `README.md`.
+1. Create `recipes/<name>/` with `index.ts`, `schema.ts`, `metadata.ts`, `demo.json`, and `README.md`.
 2. Define inputs and results with Zod 4 in `schema.ts`; derive types with `z.infer`. Keep decision defaults in the recipe function. Validate inputs before calling Jev. Put prompts and recipe-specific policy in that folder.
 3. Use `src/client.ts` for inference and `src/answers.ts` to validate answers. Accept `RecipeOptions` so callers can supply a client.
 4. Return data. Leave side effects to the caller. Represent uncertainty separately from network or response errors.
-5. Export the function and types from `src/index.ts`; add its subpath to `package.json` and register it in `cli/recipes.ts`.
-6. Run `npm run format`, `npm run ci`, and `npm run pack:check`. Follow [RELEASING.md](RELEASING.md) to try a packed installation.
+5. Export the function and types from `src/index.ts`; add its subpath to `package.json` and register its metadata, schemas, and runner in `catalog/recipes.ts`.
+6. Keep metadata specific: describe what the decision means, searchable tags, and limits. The catalog and CLI discover registered recipes automatically. Put application composition in `examples/`; recipes must not import one another, the catalog, or the CLI.
+7. Run `npm run format`, `npm run ci`, and `npm run pack:check`. Follow [RELEASING.md](RELEASING.md) to try a packed installation.
 
 Each demo is hand-authored and clearly labeled. Live results and accuracy claims require a separate, reproducible evaluation with the model version and dataset documented. Do not present fixtures as evidence of model quality.
 
@@ -18,3 +19,5 @@ Do not commit API keys, private inputs, generated `dist/`, or `node_modules/`. K
 All source code is TypeScript with strict checking, two-space indentation, single quotes, and semicolons.
 
 Write code in the order someone would explain the operation. Put the main flow first and supporting functions below it. Use descriptive names for each step. Refactor unclear code instead of adding explanatory comments. Keep types beside their schemas; do not add separate type files.
+
+Do not add permanent test files at this stage. Use the offline demos, package checks, and temporary validation scripts for changes. Keep any live evaluation data separate from hand-authored fixtures.

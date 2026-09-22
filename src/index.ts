@@ -11,3 +11,34 @@ export type {
   VerifyResult,
   ClaimVerdict,
 } from '../recipes/verify/schema.js';
+export {
+  answerability,
+  answerabilityInputSchema,
+  answerabilityResultSchema,
+} from '../recipes/answerability/index.js';
+export type {
+  AnswerabilityInput,
+  AnswerabilityResult,
+  AnswerabilityVerdict,
+} from '../recipes/answerability/schema.js';
+export { clarify, clarifyInputSchema, clarifyResultSchema } from '../recipes/clarify/index.js';
+export type {
+  ClarifyInput,
+  ClarifyRequirement,
+  ClarifyResult,
+  RequirementVerdict,
+} from '../recipes/clarify/schema.js';
+export { handoff, handoffInputSchema, handoffResultSchema } from '../recipes/handoff/index.js';
+export type {
+  HandoffInput,
+  HandoffRule,
+  HandoffResult,
+  HandoffVerdict,
+} from '../recipes/handoff/schema.js';
+export { listRecipes, describeRecipe } from '../catalog/index.js';
+export type {
+  RecipeFilters,
+  RecipeName,
+  RecipeCategory,
+  RecipeMetadata,
+} from '../catalog/index.js';

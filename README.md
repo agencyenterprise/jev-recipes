@@ -1,14 +1,19 @@
 # jev recipes
 
-Small, composable recipes for [Jev](https://docs.typesafe.ai/introduction/coding-agents): choose a handler, rank useful passages, and check claims against evidence.
+Small, composable recipes for [Jev](https://docs.typesafe.ai/introduction/coding-agents): check what a request needs, decide when to involve a human, and ground answers in evidence.
 
-**Version 0.0.1.** A TypeScript library and a small command-line runner. Each recipe owns its implementation, Zod schemas, example, and documentation. Public data types are inferred from those schemas.
+A TypeScript library and a small command-line runner. Each recipe owns its implementation, Zod schemas, discovery metadata, example, and documentation. Public data types are inferred from those schemas.
 
-| Recipe                               | Input                          | Result                                     |
-| ------------------------------------ | ------------------------------ | ------------------------------------------ |
-| [`route`](recipes/route/README.md)   | A request and named handlers   | A selected handler or a review decision    |
-| [`rerank`](recipes/rerank/README.md) | A query and candidate passages | Relevant passages, ordered by relevance    |
-| [`verify`](recipes/verify/README.md) | Claims paired with evidence    | A verdict and review status for each claim |
+**Release status:** `0.0.1` is published on npm with `route`, `rerank`, and `verify`. The additional recipes, catalog, and support example below are unreleased changes in this checkout. Try them locally or from a packed tarball until the next release; the package version is still `0.0.1`.
+
+| Recipe                                             | Use it to                                   | Inspect before proceeding                      |
+| -------------------------------------------------- | ------------------------------------------- | ---------------------------------------------- |
+| [`route`](recipes/route/README.md)                 | Choose a handler                            | `status`, `route`                              |
+| [`rerank`](recipes/rerank/README.md)               | Select useful evidence                      | `status`, `items`                              |
+| [`verify`](recipes/verify/README.md)               | Check claims against evidence               | `allSupported`, `checks`                       |
+| [`answerability`](recipes/answerability/README.md) | Check whether evidence answers the question | `canAnswer`, `verdict`                         |
+| [`clarify`](recipes/clarify/README.md)             | Find missing or ambiguous requirements      | `canProceed`, `missing`, `ambiguous`, `checks` |
+| [`handoff`](recipes/handoff/README.md)             | Check your escalation rules                 | `decision`, `matchedRules`, `uncertainRules`   |
 
 ## Try it locally
 
@@ -21,12 +26,50 @@ npm run jev -- list
 npm run jev -- demo rerank
 ```
 
-All three demos work without a key. Each recipe's `README.md` explains its API and limits; `demo.json` supplies executable example input and a saved response for the CLI. The demos run the recipe's validation and decision handling without calling Jev or measuring model accuracy.
+All six demos work without a key. Each recipe's `README.md` explains its API and limits; `demo.json` supplies executable example input and a saved response for the CLI. The demos run the recipe's validation and decision handling without calling Jev or measuring model accuracy.
 
 ```sh
-npm run jev -- demo route
-npm run jev -- demo verify
+npm run jev -- demo all
+npm run example:support
 ```
+
+## Discover a recipe
+
+```sh
+npm run jev -- list
+npm run jev -- list rag
+npm run jev -- list --category conversation
+npm run jev -- list evidence --category retrieval
+npm run jev -- describe answerability
+```
+
+Discovery is local and needs no API key. `list` searches names, descriptions, categories, and tags; all query words must match. `describe` returns metadata, limitations, JSON input/result schemas, and example input. A coding agent can use that output to select a recipe and prepare a call. Zod remains the runtime validator: refinements such as unique IDs are documented but are not fully represented by JSON Schema.
+
+```ts
+import { listRecipes, describeRecipe } from 'jev-recipes/catalog';
+
+const recipes = listRecipes({ category: 'retrieval', query: 'rag' });
+const specification = describeRecipe('answerability');
+```
+
+The library description includes metadata and schemas; the CLI also includes fixture input. No MCP server or agent-specific integration is required.
+
+## Compose a support assistant
+
+The [support example](examples/support/README.md) connects all six recipes:
+
+```text
+handoff → clarify → route → rerank → answerability → your draft callback → verify
+```
+
+It stops when a person, clarification, better evidence, or review is needed. Each recipe remains usable on its own. The example uses a saved draft; replace that callback with your existing generator when adapting it to an app.
+
+```sh
+npm run example:support
+npm run example:support -- --live
+```
+
+The first command is offline. The second uses live Jev decisions and the same saved draft, loading the key from `.env`. Both identify their mode in the output.
 
 ## Run your own input
 
@@ -77,7 +120,7 @@ import { route } from 'jev-recipes/route';
 import { verify } from 'jev-recipes/verify';
 ```
 
-For another local project, run `npm pack` here and install the resulting `.tgz` file there. That exercises the same package contents npm will distribute. See [RELEASING.md](RELEASING.md) for the commands. This README does not assume the package is published on npm yet.
+For another local project, run `npm pack` here and install the resulting `.tgz` file there. That exercises the same package contents npm will distribute. See [RELEASING.md](RELEASING.md) for the commands. The published foundation can be installed with `npm install jev-recipes`. Use a tarball to try the unreleased additions.
 
 ### Client configuration
 
@@ -116,25 +159,19 @@ Transport, authentication, retries, and timeouts use the official `@typesafe-ai/
 
 ```text
 recipes/
-  route/
-  rerank/
-  verify/
+  route/  rerank/  verify/  answerability/  clarify/  handoff/
     index.ts          Recipe implementation
     schema.ts         Input/result schemas and z.infer types
+    metadata.ts       Description, category, tags, and limitations
     demo.json         Example input and an offline response fixture
     README.md         Usage and limits
-src/
-  client.ts           Thin adapter over the official SDK
-  answers.ts          Validate model responses
-  schema.ts           Shared Zod schemas and inferred types
-  index.ts            Public exports
-cli/
-  index.ts            Arguments, files, stdin, and output
-  recipes.ts          Explicit recipe registration
-  schema.ts           Command and demo validation
+src/                  Shared client, answer validation, schemas, and exports
+catalog/              Explicit recipe registration and discovery
+cli/                  Arguments, files, stdin, and output
+examples/support/     Application composition, separate from recipe logic
 ```
 
-Recipes depend on `src/`, never on one another or on the CLI. The CLI calls the public recipe functions. There is no application server, database, or background process.
+Recipes import only their own files and shared implementation modules. The catalog registers recipes explicitly; the CLI consumes that catalog. Application workflows belong in `examples/`, keeping orchestration out of the recipe functions. There is no application server, database, or background process.
 
 ## Development
 
@@ -144,15 +181,15 @@ npm run ci
 npm run pack:check
 ```
 
-`npm run ci` checks formatting, type-checks the source, makes a clean build, and runs the offline demos. GitHub runs the same checks on Node 22 and 24. The demos show request and result shapes; live model accuracy has not been measured for this initial release.
+`npm run ci` checks formatting, type-checks the source, makes a clean build, and runs all offline demos plus the support example. GitHub runs the same checks on Node 22 and 24. The demos show request and result shapes; live model accuracy has not been measured for this initial release.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for adding a recipe. Version 0.0.1 is the foundation: recipe installation into other projects, a user-data evaluation runner, and an MCP server are not included yet.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for adding a recipe. The catalog makes new recipes discoverable through one registration. A user-data evaluation runner, code installer, and MCP server are outside this release.
 
 ## Distribution
 
-`npm run build` compiles the TypeScript into ESM JavaScript and `.d.ts` declarations under `dist/`. `npm pack` creates a `.tgz` containing that output, the recipe demos and documentation, the changelog, and the license. npm installs the TypeSafe SDK and Zod as runtime dependencies. Consumers do not run a build.
+`npm run build` compiles the TypeScript into ESM JavaScript and `.d.ts` declarations under `dist/`. `npm pack` creates a `.tgz` containing that output, the recipe demos and documentation, the support example fixture and documentation, the changelog, and the license. npm installs the TypeSafe SDK and Zod as runtime dependencies. Consumers do not run a build.
 
-Use [RELEASING.md](RELEASING.md) to inspect the archive, try it in a separate project, run live evaluations, and publish version 0.0.1. Publishing is manual.
+Use [RELEASING.md](RELEASING.md) to inspect the archive, try it in a separate project, run live evaluations, and prepare the next version. Publishing and version selection remain manual.
 
 ## License
 

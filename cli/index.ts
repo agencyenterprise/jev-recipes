@@ -2,9 +2,10 @@
 import { readFile } from 'node:fs/promises';
 import { stdin, stdout, stderr } from 'node:process';
 import { z } from 'zod';
-import { recipes } from './recipes.js';
+import { recipes } from '../catalog/recipes.js';
+import { listRecipes, describeRecipe, recipeCategorySchema } from '../catalog/index.js';
 import { commandArgumentsSchema, demoFixtureSchema } from './schema.js';
-import type { RecipeName } from './schema.js';
+import type { RecipeName } from '../catalog/schema.js';
 
 async function main(): Promise<void> {
   const command = parseCommandArguments(process.argv.slice(2));
@@ -16,11 +17,13 @@ async function main(): Promise<void> {
     case '--version':
       return printVersion();
     case 'list':
-      return printRecipeList();
+      return printRecipeList(command.slice(1));
+    case 'describe':
+      return printRecipeDescription(command[1]);
     case 'example':
       return printExampleInput(command[1]);
     case 'demo':
-      return runOfflineRecipe(command[1]);
+      return runOfflineRecipes(command[1]);
     case 'run':
       return runLiveRecipe(command[1], command[2]);
   }
@@ -35,12 +38,15 @@ function parseCommandArguments(args: string[]) {
 function printHelp(): void {
   stdout.write(`jev-recipes
 
-  jev-recipes list                       List recipes
-  jev-recipes demo <recipe>              Run an offline fixture (no model call)
-  jev-recipes example <recipe>           Print example input as JSON
-  jev-recipes run <recipe> <file|->       Run live with a JSON file or stdin
+  jev-recipes list [query] [--category <category>]
+                                        Discover recipes (all search terms must match)
+  jev-recipes describe <recipe>         Print metadata, JSON schemas, and example input
+  jev-recipes demo <recipe|all>         Run offline fixtures (no model calls)
+  jev-recipes example <recipe>          Print example input as JSON
+  jev-recipes run <recipe> <file|->      Run live with a JSON file or stdin
   jev-recipes --version
 
+Categories: retrieval, conversation, workflow. Quote multi-word search queries.
 Live runs send your input to TypeSafe and require TYPESAFE_API_KEY.
 Output is JSON. Errors go to stderr and exit with code 1.
 Review outcomes are successful evaluations; inspect status before acting.
@@ -53,12 +59,17 @@ async function printVersion(): Promise<void> {
   stdout.write(`${version}\n`);
 }
 
-function printRecipeList(): void {
-  const recipeList = Object.entries(recipes).map(([id, recipe]) => ({
-    id,
-    description: recipe.description,
-  }));
-  printJson(recipeList);
+function printRecipeList(args: string[]): void {
+  const categoryPosition = args.indexOf('--category');
+  const query = args[0] === '--category' ? undefined : args[0];
+  const category =
+    categoryPosition === -1 ? undefined : recipeCategorySchema.parse(args[categoryPosition + 1]);
+  printJson(listRecipes({ query, category }));
+}
+
+async function printRecipeDescription(name: RecipeName): Promise<void> {
+  const fixture = await readDemoFixture(name);
+  printJson({ ...describeRecipe(name), example: fixture.input });
 }
 
 async function printExampleInput(name: RecipeName): Promise<void> {
@@ -66,16 +77,25 @@ async function printExampleInput(name: RecipeName): Promise<void> {
   printJson(fixture.input);
 }
 
-async function runOfflineRecipe(name: RecipeName): Promise<void> {
+async function runOfflineRecipes(name: RecipeName | 'all'): Promise<void> {
+  const output =
+    name === 'all'
+      ? await Promise.all(listRecipes().map((recipe) => evaluateOfflineRecipe(recipe.id)))
+      : await evaluateOfflineRecipe(name);
+  printJson(output);
+}
+
+async function evaluateOfflineRecipe(name: RecipeName) {
   const fixture = await readDemoFixture(name);
   const fixtureClient = { systemOne: async () => fixture.response };
   const result = await recipes[name].run(fixture.input, { client: fixtureClient });
 
-  printJson({
+  return {
     mode: 'demo',
+    recipe: name,
     note: 'Hand-authored fixture. No model was called; this does not measure accuracy.',
     result,
-  });
+  };
 }
 
 async function runLiveRecipe(name: RecipeName, source: string): Promise<void> {

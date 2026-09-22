@@ -29,6 +29,18 @@ export const recipeOptionsSchema = z.object({
   signal: z.instanceof(AbortSignal).optional(),
 });
 
+export const recipeCategorySchema = z.enum(['retrieval', 'conversation', 'workflow']);
+export const recipeMetadataSchema = z.object({
+  id: nonEmptyText,
+  title: nonEmptyText,
+  description: nonEmptyText,
+  category: recipeCategorySchema,
+  tags: z.array(nonEmptyText),
+  limitations: z.array(nonEmptyText),
+});
+export type RecipeMetadata = z.infer<typeof recipeMetadataSchema>;
+export type RecipeCategory = z.infer<typeof recipeCategorySchema>;
+
 export type DecisionClient = z.infer<typeof decisionClientSchema>;
 export type DecisionStatus = z.infer<typeof decisionStatusSchema>;
 export type RecipeOptions = z.infer<typeof recipeOptionsSchema>;

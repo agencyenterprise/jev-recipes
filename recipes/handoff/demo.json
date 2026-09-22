@@ -1,0 +1,30 @@
+{
+  "input": {
+    "request": "Please connect me with a person.",
+    "rules": [
+      {
+        "id": "requested-human",
+        "description": "The customer explicitly asks to speak with a human support representative."
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "rule_0": {
+        "type": "choice",
+        "choice": "matches",
+        "confidence": 0.96,
+        "probabilities": {
+          "matches": 0.97,
+          "does_not_match": 0.015,
+          "unclear": 0.015
+        }
+      }
+    }
+  }
+}

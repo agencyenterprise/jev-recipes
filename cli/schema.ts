@@ -1,21 +1,20 @@
 import { z } from 'zod';
-import { decisionResponseSchema } from '../src/schema.js';
-import { recipes } from './recipes.js';
+import { decisionResponseSchema, nonEmptyText, recipeCategorySchema } from '../src/schema.js';
+import { recipeNameSchema } from '../catalog/schema.js';
 
-const recipeNames = Object.keys(recipes) as [keyof typeof recipes, ...(keyof typeof recipes)[]];
-export const recipeNameSchema = z.enum(recipeNames);
-
+const searchQuery = nonEmptyText.refine(
+  (query) => !query.startsWith('--'),
+  'Expected a search query.',
+);
 export const commandArgumentsSchema = z.union([
   z.tuple([z.enum(['--help', '-h'])]),
   z.tuple([z.literal('--version')]),
   z.tuple([z.literal('list')]),
-  z.tuple([z.enum(['demo', 'example']), recipeNameSchema]),
-  z.tuple([z.literal('run'), recipeNameSchema, z.string().min(1)]),
+  z.tuple([z.literal('list'), searchQuery]),
+  z.tuple([z.literal('list'), z.literal('--category'), recipeCategorySchema]),
+  z.tuple([z.literal('list'), searchQuery, z.literal('--category'), recipeCategorySchema]),
+  z.tuple([z.literal('demo'), z.union([recipeNameSchema, z.literal('all')])]),
+  z.tuple([z.enum(['example', 'describe']), recipeNameSchema]),
+  z.tuple([z.literal('run'), recipeNameSchema, nonEmptyText]),
 ]);
-
-export const demoFixtureSchema = z.object({
-  input: z.unknown(),
-  response: decisionResponseSchema,
-});
-
-export type RecipeName = z.infer<typeof recipeNameSchema>;
+export const demoFixtureSchema = z.object({ input: z.unknown(), response: decisionResponseSchema });
