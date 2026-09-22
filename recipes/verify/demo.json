@@ -1,0 +1,35 @@
+{
+  "input": {
+    "claims": [
+      {
+        "id": "refund-window",
+        "claim": "Customers can request a refund within 60 days.",
+        "evidence": "Refunds are available only within 30 days of purchase."
+      },
+      {
+        "id": "support-hours",
+        "claim": "Support is available on weekdays.",
+        "evidence": "Contact our support team Monday through Friday, 9 am to 5 pm."
+      }
+    ],
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "claim_0": {
+        "type": "choice",
+        "choice": "contradicted",
+        "confidence": 0.94,
+        "probabilities": { "supported": 0.01, "contradicted": 0.97, "unsupported": 0.02 }
+      },
+      "claim_1": {
+        "type": "choice",
+        "choice": "supported",
+        "confidence": 0.92,
+        "probabilities": { "supported": 0.96, "contradicted": 0.01, "unsupported": 0.03 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "input": {
+    "request": "I was charged twice for my subscription. Can someone check the invoice?",
+    "routes": {
+      "billing": "Payments, invoices, subscriptions, and refunds",
+      "technical": "Errors, outages, and broken integrations"
+    },
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "route": {
+        "type": "choice",
+        "choice": "billing",
+        "confidence": 0.9,
+        "probabilities": { "billing": 0.95, "technical": 0.02, "__review__": 0.03 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

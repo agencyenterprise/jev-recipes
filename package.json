@@ -1,0 +1,90 @@
+{
+  "name": "jev-recipes",
+  "version": "0.0.1",
+  "description": "Small, composable Jev recipes for routing, reranking, and checking evidence.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agencyenterprise/jev-recipes.git"
+  },
+  "engines": {
+    "node": ">=22.9"
+  },
+  "sideEffects": false,
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./route": {
+      "types": "./dist/recipes/route/index.d.ts",
+      "import": "./dist/recipes/route/index.js"
+    },
+    "./rerank": {
+      "types": "./dist/recipes/rerank/index.d.ts",
+      "import": "./dist/recipes/rerank/index.js"
+    },
+    "./verify": {
+      "types": "./dist/recipes/verify/index.d.ts",
+      "import": "./dist/recipes/verify/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "jev-recipes": "dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "recipes/*/demo.json",
+    "recipes/*/README.md",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "demo": "node dist/cli/index.js demo route && node dist/cli/index.js demo rerank && node dist/cli/index.js demo verify",
+    "jev": "node --env-file-if-exists=.env dist/cli/index.js",
+    "ci": "npm run format:check && npm run typecheck && npm run build && npm run demo",
+    "pack:check": "npm pack --dry-run",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run ci"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "0.6.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "prettier": "3.9.8",
+    "rimraf": "6.1.3",
+    "typescript": "~5.9.3"
+  },
+  "homepage": "https://github.com/agencyenterprise/jev-recipes#readme",
+  "bugs": {
+    "url": "https://github.com/agencyenterprise/jev-recipes/issues"
+  },
+  "keywords": [
+    "jev",
+    "typesafe",
+    "recipes",
+    "ai",
+    "routing",
+    "reranking",
+    "rag",
+    "evidence",
+    "typescript",
+    "cli"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "input": {
+    "query": "How do I reset my password?",
+    "items": [
+      { "id": "billing", "text": "Invoices are available on the Billing page." },
+      {
+        "id": "reset",
+        "text": "Select Forgot password on the sign-in page. We will email you a reset link."
+      },
+      { "id": "security", "text": "Choose a strong password and enable two-factor authentication." }
+    ],
+    "topK": 2,
+    "minRelevance": 0.5
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "item_0": { "type": "noul", "noul": 0.02 },
+      "item_1": { "type": "noul", "noul": 0.97 },
+      "item_2": { "type": "noul", "noul": 0.28 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}
