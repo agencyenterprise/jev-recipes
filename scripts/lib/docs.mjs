@@ -17,16 +17,21 @@ export async function renderDocs(root, records) {
   const files = new Map();
   const count = records.length;
   const readme = await readFile(join(root, 'README.md'), 'utf8');
-  const summary = `${count} small TypeScript recipes for decisions inside an AI application. Route a request, select useful evidence, or check a claim with a function call.\n\n[Browse all ${count} recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md).`;
+  const summary = `${count} focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.`;
   const route = records.find((recipe) => recipe.id === 'route');
   let rootReadme = replaceSection(readme, 'summary', summary);
   if (route) {
     const { minConfidence: _minConfidence, ...input } = route.fixture.input;
     const snippet = await format(
-      `import { ${route.functionName} } from 'jev-recipes/route';\n\nconst result = await ${route.functionName}(${JSON.stringify(input)});\nconsole.log(result.status, result.route);\n`,
-      { parser: 'typescript', singleQuote: true },
+      `import { ${route.functionName} } from 'jev-recipes/route';\n\nconst result = await ${route.functionName}(${JSON.stringify(input)});\n\nif (result.status === 'ready') {\n  console.log('Send this message to:', result.route);\n} else {\n  console.log('Needs review: ask for more detail or send to a person.');\n}\n`,
+      { parser: 'babel', singleQuote: true },
     );
-    rootReadme = replaceSection(rootReadme, 'quickstart', `\`\`\`ts\n${snippet.trim()}\n\`\`\``);
+    rootReadme = replaceSection(rootReadme, 'quickstart', `\`\`\`js\n${snippet.trim()}\n\`\`\``);
+    const comparisonPath = 'docs/api-sdk-recipes.md';
+    files.set(
+      comparisonPath,
+      await renderComparison(await readFile(join(root, comparisonPath), 'utf8'), route),
+    );
   }
   files.set('README.md', rootReadme);
   const catalog = await readFile(join(root, 'recipes/README.md'), 'utf8');
@@ -67,6 +72,69 @@ export async function renderDocs(root, records) {
     files.set(path, updated);
   }
   return files;
+}
+
+async function renderComparison(original, route) {
+  if (route.requests.length !== 1 || route.requests[0].questions.route?.type !== 'choice') {
+    throw new Error('The API/SDK comparison expects one route choice request.');
+  }
+  const { request, routes, minConfidence = 0.8 } = route.fixture.input;
+  const question = route.requests[0].questions.route;
+  const instructions = JSON.stringify(question.instructions);
+  const criteria = `{ ...routes, __review__: ${JSON.stringify(question.criteria.__review__)} }`;
+  const interpret = `const answer = response.answers.route;
+const needsReview = answer.choice === '__review__' || answer.confidence < minConfidence;
+const result = {
+  status: needsReview ? 'review' : 'ready',
+  route: needsReview ? null : answer.choice,
+  confidence: answer.confidence,
+};
+console.log(result);`;
+  const snippets = {
+    'comparison-input': `const request = ${JSON.stringify(request)};
+const routes = ${JSON.stringify(routes)};
+const minConfidence = ${minConfidence};
+const model = 'jev-latest';`,
+    'comparison-api': `const apiKey = process.env.TYPESAFE_API_KEY;
+if (!apiKey) throw new Error('Set TYPESAFE_API_KEY before running this example.');
+const http = await fetch('https://api.typesafe.ai/v1/systemone', {
+  method: 'POST',
+  headers: { Authorization: 'Bearer ' + apiKey, 'Content-Type': 'application/json' },
+  signal: AbortSignal.timeout(30_000),
+  body: JSON.stringify({
+    model,
+    state: { request },
+    questions: {
+      route: { type: 'choice', instructions: ${instructions}, criteria: ${criteria} },
+    },
+  }),
+});
+if (!http.ok) throw new Error('TypeSafe request failed: HTTP ' + http.status);
+const response = await http.json();
+${interpret}`,
+    'comparison-sdk': `import { TypeSafeClient, choice } from '@typesafe-ai/sdk';
+const client = new TypeSafeClient({ timeout: 30_000 });
+const response = await client.systemOne({
+  model,
+  state: { request },
+  questions: { route: choice(${instructions}, ${criteria}) },
+});
+${interpret}`,
+    'comparison-recipe': `import { ${route.functionName} } from 'jev-recipes/route';
+const result = await ${route.functionName}({ request, routes, minConfidence }, { model });
+console.log({ status: result.status, route: result.route, confidence: result.confidence });`,
+  };
+  let updated = original;
+  for (const [marker, source] of Object.entries(snippets)) {
+    const code = await format(source, { parser: 'babel', singleQuote: true, printWidth: 90 });
+    updated = replaceSection(updated, marker, `\`\`\`js\n${code.trim()}\n\`\`\``);
+  }
+  const { status, route: selection, confidence } = route.result;
+  return replaceSection(
+    updated,
+    'comparison-result',
+    `\`\`\`json\n${JSON.stringify({ status, route: selection, confidence }, null, 2)}\n\`\`\``,
+  );
 }
 
 function schemaTable(schema) {

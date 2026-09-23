@@ -124,8 +124,14 @@ export async function readRecipes(root = projectRoot) {
         throw new Error(`Recipe folder ${id} disagrees with metadata ID ${metadata.id}.`);
       const fixture = JSON.parse(await readFile(join(root, 'recipes', id, 'demo.json'), 'utf8'));
       recipe[definition.inputName].parse(fixture.input);
+      const requests = [];
       const result = await recipe[definition.functionName](fixture.input, {
-        client: { systemOne: async () => fixture.response },
+        client: {
+          systemOne: async (request) => {
+            requests.push(structuredClone(request));
+            return fixture.response;
+          },
+        },
       });
       recipe[definition.resultName].parse(result);
       records.push({
@@ -133,6 +139,7 @@ export async function readRecipes(root = projectRoot) {
         metadata,
         fixture,
         result,
+        requests,
         dependencies: dependencies.get(id),
         inputSchema: z.toJSONSchema(recipe[definition.inputName], { io: 'input' }),
         resultSchema: z.toJSONSchema(recipe[definition.resultName]),

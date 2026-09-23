@@ -1,46 +1,39 @@
 # jev-recipes
 
-[![npm version](https://img.shields.io/npm/v/jev-recipes?logo=npm)](https://www.npmjs.com/package/jev-recipes)
+**Small AI decisions. Ready to use in your code.**
+
+[![npm version](https://img.shields.io/npm/v/jev-recipes)](https://www.npmjs.com/package/jev-recipes)
+[![CI](https://github.com/agencyenterprise/jev-recipes/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/agencyenterprise/jev-recipes/actions/workflows/ci.yml)
+[![Node.js version](https://img.shields.io/node/v/jev-recipes)](https://nodejs.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/agencyenterprise/jev-recipes/blob/main/LICENSE)
+
+[Quickstart](#use-a-recipe) | [Recipe catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md) | [API vs. SDK vs. recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/api-sdk-recipes.md) | [Contributing](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md)
 
 <!-- BEGIN GENERATED: summary -->
 
-72 small TypeScript recipes for decisions inside an AI application. Route a request, select useful evidence, or check a claim with a function call.
-
-[Browse all 72 recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md).
+72 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
 
 <!-- END GENERATED: summary -->
 
-[Jev](https://docs.typesafe.ai/introduction) makes the underlying decisions. This package supplies focused instructions, validated inputs and results, and clear review outcomes. Your application decides what to do next.
+Each recipe accepts your data, calls [Jev through TypeSafe's API](https://docs.typesafe.ai/introduction), and returns a structured decision. Use it in a Node.js backend, a script, or a research evaluation. Your application decides what happens next.
 
-## Try a decision
-
-With Node.js 22.9 or newer, run a saved illustration without an API key:
-
-```sh
-npx jev-recipes demo action-scope
-```
-
-It compares a request to explain a deployment failure with a proposed production deployment and returns `additional_work`. This is an offline fixture, not a live model assessment. To evaluate your own input, install the package and set a key below.
+For example, give `route` a support message and descriptions of your teams. It returns a team such as `billing`, or a review outcome when the choice is uncertain.
 
 ## Use a recipe
 
-Requires Node.js 22.9 or newer. Install in your application:
+Requires **Node.js 22.9 or newer**, ES modules, and a **[TypeSafe API key](https://console.typesafe.ai/keys)**. Live calls send the supplied input to TypeSafe and use API quota.
+
+**1. Install** in your project folder.
 
 ```sh
 npm install jev-recipes
 ```
 
-Set your API key in your server environment:
-
-```sh
-export TYPESAFE_API_KEY='your-api-key'
-```
-
-Choose a recipe, import it, and call it:
+**2. Create `route-message.mjs`** in the same folder. This is runnable JavaScript; TypeScript projects can use the same import with inferred types.
 
 <!-- BEGIN GENERATED: quickstart -->
 
-```ts
+```js
 import { route } from 'jev-recipes/route';
 
 const result = await route({
@@ -50,26 +43,82 @@ const result = await route({
     technical: 'Errors, outages, and broken integrations',
   },
 });
-console.log(result.status, result.route);
+
+if (result.status === 'ready') {
+  console.log('Send this message to:', result.route);
+} else {
+  console.log('Needs review: ask for more detail or send to a person.');
+}
 ```
 
 <!-- END GENERATED: quickstart -->
 
-For `route`, a `ready` result contains the chosen route. A `review` result has a null route: ask for clarification or involve a person. Invalid input, malformed responses, and provider failures throw errors.
+**3. Set your key and run.** Replace `your-api-key` with your TypeSafe key.
 
-Live calls send the supplied input to TypeSafe and use API quota. Keep the key on the server. No Makefile or build step is needed to use the installed package.
+```sh
+export TYPESAFE_API_KEY='your-api-key'
+node route-message.mjs
+```
 
-## Find the right recipe
+<details>
+<summary>Windows PowerShell</summary>
 
-| I want to…                                     | Start with                                                                                                       |
-| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Send a request to the right handler            | [`route`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/route/README.md)                     |
-| Select relevant passages                       | [`rerank`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/rerank/README.md)                   |
-| Check whether I have enough evidence to answer | [`answerability`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/answerability/README.md)     |
-| Check claims against evidence                  | [`verify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/verify/README.md)                   |
-| Check whether a draft answers each question    | [`answer-coverage`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/answer-coverage/README.md) |
+```powershell
+$env:TYPESAFE_API_KEY = 'your-api-key'
+node route-message.mjs
+```
 
-Search the catalog and inspect a recipe without an API key:
+</details>
+
+Example output:
+
+```text
+Send this message to: billing
+```
+
+A live result can differ. When the choice is uncertain, the script prints the review message instead.
+
+**Make it yours:** replace `request` with your incoming message and `routes` with your team's names and descriptions. Replace `console.log` with your queue or handler logic. Keep the key and live calls on the server.
+
+<a id="try-a-decision"></a>
+
+<details>
+<summary>Try the saved example without an API key</summary>
+
+```sh
+npx jev-recipes demo route
+```
+
+This runs an offline fixture and prints JSON with `result.status: "ready"` and `result.route: "billing"`. No model is called. Use it to inspect the interface before setting up a key.
+
+</details>
+
+## Why recipes?
+
+The TypeSafe SDK handles API calls and typed answers. Recipes add the instructions, input and response validation, confidence policy, and result handling for a specific decision.
+
+| Start with       | You provide                                                                |
+| ---------------- | -------------------------------------------------------------------------- |
+| **Raw API**      | HTTP handling, question, choices, validation, and review logic             |
+| **TypeSafe SDK** | Question, choices, task-specific validation, and review logic              |
+| **jev-recipes**  | `route({ request, routes })` and the application code that uses its result |
+
+[See the same task implemented all three ways](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/api-sdk-recipes.md). All three use the same service. Recipes reduce the decision logic you need to build, test, and maintain.
+
+<a id="find-the-right-recipe"></a>
+
+## Find your recipe
+
+| Your task                                      | Start with                                                                                                   |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Send a request to the right team               | [`route`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/route/README.md)                 |
+| Find useful passages                           | [`rerank`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/rerank/README.md)               |
+| Check whether the evidence is enough to answer | [`answerability`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/answerability/README.md) |
+| Check claims against supplied evidence         | [`verify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/verify/README.md)               |
+| Find missing or ambiguous requirements         | [`clarify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/clarify/README.md)             |
+| Label a response's stance toward a claim       | [`claim-stance`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/claim-stance/README.md)   |
+
+Search, inspect inputs, and try saved results without a key:
 
 ```sh
 npx jev-recipes list "enough evidence" --limit 5
@@ -77,42 +126,68 @@ npx jev-recipes describe answerability
 npx jev-recipes demo answerability
 ```
 
-`list` ranks matching recipes and supports `--category`. `describe` shows when to use a recipe, related alternatives, input and result schemas, and example input. `demo` runs a saved illustration without calling a model. CLI output is JSON, so it also works in scripts and agent tools.
+[Browse the complete catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md). Each guide includes an import, input reference, result behavior, limitations, and related recipes.
 
-## Run your own input from the terminal
+<a id="run-your-own-input-from-the-terminal"></a>
+
+## Use the terminal
+
+Create a JSON input file:
 
 ```sh
 npx jev-recipes example route > input.json
 ```
 
-Edit the file, then run it with your key set:
+Edit `request` and `routes` in `input.json`, then run with `TYPESAFE_API_KEY` set:
 
 ```sh
 npx jev-recipes run route input.json
 ```
 
-The installed CLI reads its environment; it does not load `.env` automatically. Errors go to stderr with exit code 1. A review outcome is a completed evaluation, so inspect the result before acting.
+Read `result.status` and `result.route` in the JSON output. Substitute another recipe's name in both commands to use a different decision. Run `npx jev-recipes --help` for all commands.
 
-## Understand the result
+The CLI reads environment variables; it does not automatically load `.env`. Errors go to stderr with exit code `1`. A review outcome is a completed evaluation, so inspect the result before acting.
 
-- Read the recipe's outcome as well as its confidence or review status. A confident assessment can identify an unsupported claim or missing information.
-- Batch recipes preserve individual checks. `verify` includes `allSupported` and per-claim statuses rather than one overall status.
-- Results include model and token usage. Confidence is not a guarantee of correctness.
-- Pass `{ client, model, signal }` as a second argument when you need to configure a call.
+<a id="understand-the-result"></a>
 
-Use direct imports such as `jev-recipes/route` to load a recipe and its dependencies. Root imports remain supported. Installation still downloads one package; direct imports do not selectively download files.
+## Work with results
 
-Your application owns retrieval, generation, storage, and actions. Each recipe returns a decision. See [shared behavior and limits](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#shared-options-and-behavior).
+| Result or condition                                    | What it means                                                                                                |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `route`: `status: 'ready'`                             | `route` contains the chosen name. Your application can use it to choose a handler.                           |
+| `route`: `status: 'review'`                            | `route` is `null`. Ask for clarification or involve a person.                                                |
+| Other recipe results                                   | Inspect the verdict and per-item checks. A confident result can identify a conflict or an unsupported claim. |
+| Invalid input, malformed response, or provider failure | The function throws. Handle errors in your application.                                                      |
+
+Batch recipes expose their own summaries, such as `verify.allSupported` and its per-claim checks. Every result includes model and token usage. Confidence is a signal for your policy, not a guarantee of correctness.
+
+Pass `{ client, model, signal }` as the optional second argument to configure a call. [Shared behavior and limits](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#shared-options-and-behavior) covers configuration, input limits, and uncertainty.
+
+## Verification and scope
+
+The [CI workflow](https://github.com/agencyenterprise/jev-recipes/actions/workflows/ci.yml) runs on Node.js 22 and 24. `make ci` checks types, formatting, generated-file consistency, recipe test coverage, tooling, and the installable package.
+
+- **Package checks:** create an npm archive, install it into a separate project, and exercise imports, declarations, and offline commands.
+- **Recipe checks:** validate software behavior using mocked responses, including invalid inputs, confidence boundaries, and malformed answers.
+- **Model evaluation:** offline tests and demos do not measure Jev's accuracy. Evaluate recipes on your own data for your intended use.
+
+The package contains compiled code, type declarations, catalog data, and offline demo assets. Tests, build tools, and source guides stay out of the npm archive. [Publishing details](https://github.com/agencyenterprise/jev-recipes/blob/main/RELEASING.md).
+
+Direct imports such as `jev-recipes/route` load the selected recipe and its dependencies. Installation downloads one package; it does not selectively download individual recipes.
 
 ## AI alignment research
 
-Use focused decisions to annotate model outputs for research. `claim-stance` labels a response's expressed agreement with a claim; `verify` checks supplied evidence; `draft-compare` compares responses under a rubric. These are candidate components of an evaluation, with uncertainty available for review.
+Recipes can serve as candidate annotation tools in controlled experiments. `claim-stance` labels expressed agreement, `verify` checks supplied evidence, and `draft-compare` compares responses under a rubric.
 
-The [AI alignment research guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/ai-alignment-research.md) outlines a controlled agreement study, human annotation checks, and ways to work with saved outputs. The recipes do not infer a model's internal motives or establish that it is aligned.
+The [research guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/ai-alignment-research.md) outlines a controlled agreement study and validation against human annotations. These labels describe observable outputs; they do not establish internal motives or prove that a model is aligned.
 
-## Contribute
+<a id="contribute"></a>
 
-The recipe folder owns its code, schemas, metadata, demo, and guide. Tests stay under `tests/recipe/` and are not published. Exports and the catalog are generated from the recipe folders.
+## Contributing and support
+
+[Report a bug or request a recipe](https://github.com/agencyenterprise/jev-recipes/issues). Include the recipe name, package and Node.js versions, and a minimal reproduction. Keep API keys and private inputs out of reports.
+
+To work on the repository:
 
 ```sh
 make setup
@@ -120,7 +195,9 @@ make docs
 make ci
 ```
 
-Run `make help` for all commands. [Contributing](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md) explains authoring and generation; [releasing](https://github.com/agencyenterprise/jev-recipes/blob/main/RELEASING.md) explains package checks and publishing.
+The recipe folder owns its implementation, schemas, metadata, demo, and guide. Exports and catalog entries are generated from those folders. Tests live under `tests/recipe/`.
+
+[Contributing guide](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md) | [Roadmap](https://github.com/agencyenterprise/jev-recipes/blob/main/RECIPE_ROADMAP.md) | [Changelog](https://github.com/agencyenterprise/jev-recipes/blob/main/CHANGELOG.md)
 
 ## License
 
