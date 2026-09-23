@@ -12,6 +12,7 @@ import {
 import ts from 'typescript';
 import { replaceSection, writeOutputs, renderExports } from '../../scripts/lib/generate.mjs';
 import { scaffoldRecipe } from '../../scripts/new-recipe.mjs';
+import { renderDocs } from '../../scripts/lib/docs.mjs';
 
 const recipe = (id, uses = [], related = []) => ({
   id,
@@ -55,6 +56,65 @@ test('documentation generation preserves authored prose and refuses ambiguous ma
   assert.equal(replaceSection(updated, 'test', 'New.'), updated);
   assert.throws(() => replaceSection('No markers.', 'test', 'New.'));
   assert.throws(() => replaceSection(original + original, 'test', 'New.'));
+});
+
+test('psychology documentation follows recipe tags without changing category membership or counts', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'jev-topic-docs-'));
+  try {
+    await mkdir(join(root, 'recipes'));
+    await writeFile(
+      join(root, 'README.md'),
+      '<!-- BEGIN GENERATED: summary -->\n<!-- END GENERATED: summary -->',
+    );
+    await writeFile(
+      join(root, 'recipes/README.md'),
+      '<!-- BEGIN GENERATED: catalog -->\n<!-- END GENERATED: catalog -->',
+    );
+    const records = ['tagged-example', 'other-example'].map((id, index) => ({
+      id,
+      functionName: index === 0 ? 'taggedExample' : 'otherExample',
+      metadata: {
+        category: index === 0 ? 'support' : 'conversation',
+        tags: index === 0 ? ['psychology'] : [],
+        description: 'An example decision.',
+        useWhen: 'You need an example.',
+        related: [],
+      },
+      fixture: { input: { text: 'Example input.' } },
+      result: {},
+      inputSchema: { type: 'object', properties: { text: { type: 'string' } } },
+    }));
+    for (const { id } of records) {
+      await mkdir(join(root, 'recipes', id));
+      await writeFile(
+        join(root, 'recipes', id, 'README.md'),
+        '<!-- BEGIN GENERATED: usage -->\n<!-- END GENERATED: usage -->\n' +
+          '<!-- BEGIN GENERATED: input -->\n<!-- END GENERATED: input -->',
+      );
+    }
+    const files = await renderDocs(root, records);
+    const catalog = files.get('recipes/README.md');
+    const [categories, collection] = catalog.split('## Psychology & behavior');
+    assert.match(files.get('README.md'), /2 focused recipes/);
+    assert.match(categories, /2 recipes\./);
+    assert.match(categories, /## Customer support[\s\S]*tagged-example/);
+    assert.match(collection, /tagged-example/);
+    assert.ok(!collection.includes('other-example'));
+
+    records[0].metadata.tags = [];
+    records[1].metadata.tags = ['psychology'];
+    const moved = (await renderDocs(root, records))
+      .get('recipes/README.md')
+      .split('## Psychology & behavior')[1];
+    assert.match(moved, /other-example/);
+    assert.ok(!moved.includes('tagged-example'));
+    records[1].metadata.tags = [];
+    assert.ok(
+      !(await renderDocs(root, records)).get('recipes/README.md').includes('## Psychology'),
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });
 
 test('check mode detects stale files without rewriting them, and generation is idempotent', async () => {

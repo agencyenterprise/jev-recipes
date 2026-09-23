@@ -72,6 +72,10 @@
       "types": "./dist/recipes/cancellation-check/index.d.ts",
       "import": "./dist/recipes/cancellation-check/index.js"
     },
+    "./causal-attribution": {
+      "types": "./dist/recipes/causal-attribution/index.d.ts",
+      "import": "./dist/recipes/causal-attribution/index.js"
+    },
     "./certainty-match": {
       "types": "./dist/recipes/certainty-match/index.d.ts",
       "import": "./dist/recipes/certainty-match/index.js"
@@ -196,6 +200,10 @@
       "types": "./dist/recipes/issue-impact/index.d.ts",
       "import": "./dist/recipes/issue-impact/index.js"
     },
+    "./issue-recurrence": {
+      "types": "./dist/recipes/issue-recurrence/index.d.ts",
+      "import": "./dist/recipes/issue-recurrence/index.js"
+    },
     "./memory-relation": {
       "types": "./dist/recipes/memory-relation/index.d.ts",
       "import": "./dist/recipes/memory-relation/index.js"
@@ -204,9 +212,21 @@
       "types": "./dist/recipes/memory-scope/index.d.ts",
       "import": "./dist/recipes/memory-scope/index.js"
     },
+    "./memory-subject": {
+      "types": "./dist/recipes/memory-subject/index.d.ts",
+      "import": "./dist/recipes/memory-subject/index.js"
+    },
     "./memory-value": {
       "types": "./dist/recipes/memory-value/index.d.ts",
       "import": "./dist/recipes/memory-value/index.js"
+    },
+    "./motivation-source": {
+      "types": "./dist/recipes/motivation-source/index.d.ts",
+      "import": "./dist/recipes/motivation-source/index.js"
+    },
+    "./outcome-framing": {
+      "types": "./dist/recipes/outcome-framing/index.d.ts",
+      "import": "./dist/recipes/outcome-framing/index.js"
     },
     "./passage-duplicate": {
       "types": "./dist/recipes/passage-duplicate/index.d.ts",
@@ -227,6 +247,10 @@
     "./query-specificity": {
       "types": "./dist/recipes/query-specificity/index.d.ts",
       "import": "./dist/recipes/query-specificity/index.js"
+    },
+    "./question-assumption": {
+      "types": "./dist/recipes/question-assumption/index.d.ts",
+      "import": "./dist/recipes/question-assumption/index.js"
     },
     "./question-leading": {
       "types": "./dist/recipes/question-leading/index.d.ts",

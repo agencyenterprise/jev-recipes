@@ -6,6 +6,7 @@ export const metadata = {
     "Label whether a question's wording favors, disfavors, or stays neutral toward a proposed answer.",
   category: 'conversation',
   tags: [
+    'psychology',
     'leading question',
     'wording',
     'answer pressure',
@@ -17,6 +18,15 @@ export const metadata = {
   useWhen:
     'You need to check leading questions or answer pressure in a survey, interview, or evaluation prompt.',
   related: [
+    {
+      id: 'outcome-framing',
+      reason: 'Use outcome-framing to label gains and losses in wording about a specified outcome.',
+    },
+    {
+      id: 'question-assumption',
+      reason:
+        'Use question-assumption to check whether a question takes a specific claim for granted.',
+    },
     {
       id: 'query-specificity',
       reason:

@@ -48,6 +48,8 @@ This saved response illustrates behavior; it is not a model accuracy measurement
 
 Related recipes:
 
+- [`outcome-framing`](../outcome-framing/README.md): Use outcome-framing to label gains and losses in wording about a specified outcome.
+- [`question-assumption`](../question-assumption/README.md): Use question-assumption to check whether a question takes a specific claim for granted.
 - [`query-specificity`](../query-specificity/README.md): Use query-specificity to check whether an information need is focused and unambiguous.
 - [`claim-stance`](../claim-stance/README.md): Use claim-stance to label the response's expressed position after a question has been answered.
 - [`tone-check`](../tone-check/README.md): Use tone-check to assess draft wording against caller-supplied writing criteria.

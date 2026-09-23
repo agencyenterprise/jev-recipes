@@ -9,6 +9,11 @@ export const metadata = {
   useWhen: 'You need to identify the narrowest supported scope of a fact or preference.',
   related: [
     {
+      id: 'memory-subject',
+      reason:
+        'Use memory-subject to identify whom a candidate memory describes before assessing its scope.',
+    },
+    {
       id: 'preference-kind',
       reason: 'Use preference-kind to distinguish ongoing preferences from temporary instructions.',
     },

@@ -47,6 +47,7 @@ This saved response illustrates behavior; it is not a model accuracy measurement
 
 Related recipes:
 
+- [`motivation-source`](../motivation-source/README.md): Use motivation-source to classify a stated reason for an activity rather than the kind of statement.
 - [`memory-scope`](../memory-scope/README.md): Use memory-scope to identify the supported scope of that preference.
 
 <!-- END GENERATED: usage -->

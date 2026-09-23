@@ -7,6 +7,7 @@ export const metadata = {
     'Label whether a response affirms, denies, mixes positions on, or does not address a supplied claim.',
   category: 'answer-quality',
   tags: [
+    'psychology',
     'claim',
     'stance',
     'agreement',

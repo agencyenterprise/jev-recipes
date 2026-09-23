@@ -47,6 +47,7 @@ This saved response illustrates behavior; it is not a model accuracy measurement
 
 Related recipes:
 
+- [`issue-recurrence`](../issue-recurrence/README.md): Use issue-recurrence to distinguish a first occurrence, an ongoing issue, and a return after reported recovery.
 - [`step-complete`](../step-complete/README.md): Use step-complete to assess evidence against a supplied completion condition.
 
 <!-- END GENERATED: usage -->

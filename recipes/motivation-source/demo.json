@@ -1,0 +1,27 @@
+{
+  "input": {
+    "activity": "Alex solves puzzles.",
+    "statement": "Alex says: \"I solve puzzles because I enjoy the challenge itself.\""
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "intrinsic",
+        "confidence": 0.96,
+        "probabilities": {
+          "intrinsic": 0.96,
+          "extrinsic": 0.01,
+          "mixed": 0.01,
+          "not_stated": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

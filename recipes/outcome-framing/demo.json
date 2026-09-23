@@ -1,0 +1,27 @@
+{
+  "input": {
+    "text": "You keep 80 of your 100 points.",
+    "outcome": "The player's points after the round; more points are better."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "gain",
+        "confidence": 0.96,
+        "probabilities": {
+          "gain": 0.96,
+          "loss": 0.01,
+          "mixed": 0.01,
+          "neutral": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

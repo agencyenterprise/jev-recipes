@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Add `outcome-framing`, `causal-attribution`, and `motivation-source`, bringing the source catalog to 87 recipes. Each classifies expressed wording using one logical Jev request, with documented psychology concepts, decision boundaries, and offline tests. No new runtime dependencies.
+- Generate a Psychology & behavior catalog subsection from recipe metadata tags, including relevant existing recipes, and add topic search and documentation checks.
+
+- Add `memory-subject`, `issue-recurrence`, and `question-assumption` to identify whom a memory describes, distinguish persistent and returning issues, and flag a specific assumption in a question. The source catalog now contains 84 recipes. Each uses one logical Jev request with no new runtime dependencies and includes a guide, offline fixture, contract tests, and discovery checks.
+
 - Add `checkers-move`: supply a structured board, player, and legal moves to receive a move ID in one logical Jev request. Includes American/English checkers instructions, board translation, input checks, and offline tests, bringing the source catalog to 81 recipes. No new runtime dependencies; live speed and playing strength remain unmeasured.
 
 - Add `take-turn` and `choose-action` for narrative turn eligibility and game action recommendations, with optional ordered player history, offline tests, and a gameplay composition guide. The source catalog now contains 80 recipes.

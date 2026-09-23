@@ -169,6 +169,11 @@ export const recipeMetadata: CatalogRecipe[] = [
       'You need to check who said a statement in a transcript or source excerpt, separately from whether it is true.',
     related: [
       {
+        id: 'causal-attribution',
+        reason:
+          'Use causal-attribution to classify the kind of cause in an explanation, rather than who made it.',
+      },
+      {
         id: 'citation-match',
         reason:
           'Use citation-match to check which passages support a claim, rather than who made it.',
@@ -232,6 +237,47 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'intent-change',
         reason: 'Use intent-change to assess broader changes to the current goal.',
+      },
+    ],
+  },
+  {
+    id: 'causal-attribution',
+    title: 'Identify personal and situational explanations',
+    description:
+      'Label whether an explanation attributes a specified behavior to the person, circumstances, both, or gives no cause.',
+    category: 'conversation',
+    tags: [
+      'psychology',
+      'behavior',
+      'causal attribution',
+      'personal cause',
+      'situational cause',
+      'dispositional',
+      'annotation',
+      'alignment-research',
+    ],
+    limitations: [
+      'Labels the supplied explanation, not the actual cause, blame, or a psychological trait of the actor.',
+      'Personal and situational refer to the focal actor, not the speaker or whoever is named in a cause.',
+      'A personal attribution alone does not establish bias or a fundamental attribution error.',
+    ],
+    useWhen:
+      'You need to label whether an explanation points to the person, the situation, or both.',
+    related: [
+      {
+        id: 'attribution-match',
+        reason:
+          'Use attribution-match to check who made or endorsed a statement, rather than what kind of cause it gives.',
+      },
+      {
+        id: 'motivation-source',
+        reason:
+          'Use motivation-source to distinguish enjoyment of an activity from pursuing a separate outcome in a stated reason.',
+      },
+      {
+        id: 'verify',
+        reason:
+          'Use verify to assess supplied evidence for a causal claim; causal-attribution does not establish causation.',
       },
     ],
   },
@@ -380,6 +426,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       'Label whether a response affirms, denies, mixes positions on, or does not address a supplied claim.',
     category: 'answer-quality',
     tags: [
+      'psychology',
       'claim',
       'stance',
       'agreement',
@@ -780,7 +827,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     title: 'Detect expressed frustration',
     description: 'Does message express frustration or dissatisfaction in its wording?',
     category: 'support',
-    tags: ['support', 'frustration', 'signal'],
+    tags: ['psychology', 'support', 'frustration', 'signal'],
     limitations: [
       'Classifies expressed language only. It does not diagnose emotions or determine customer importance or entitlement.',
     ],
@@ -896,6 +943,44 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'issue-recurrence',
+    title: 'Check whether an issue returned',
+    description:
+      'Label a reported issue as new, ongoing without resolution, or returned after reported recovery.',
+    category: 'support',
+    tags: [
+      'support',
+      'issue came back',
+      'recurring issue',
+      'reopened ticket',
+      'never fixed',
+      'reported recovery',
+    ],
+    limitations: [
+      'Classifies the supplied customer reports; it does not verify system health or prove a common root cause.',
+      'Missing history does not mean new, and a ticket closure or attempted fix does not prove recovery.',
+      'Callers supply chronology and issue identity; the recipe does not fetch history or update tickets.',
+    ],
+    useWhen:
+      'You need to distinguish a new problem, one that never stopped, and an issue that came back after recovery.',
+    related: [
+      {
+        id: 'resolution-check',
+        reason: 'Use resolution-check to check whether the current message reports resolution.',
+      },
+      {
+        id: 'ticket-match',
+        reason:
+          'Use ticket-match to compare whether two reports concern the same underlying issue.',
+      },
+      {
+        id: 'repeated-attempt',
+        reason:
+          'Use repeated-attempt to check whether a proposed troubleshooting step repeats an earlier attempt.',
+      },
+    ],
+  },
+  {
     id: 'memory-relation',
     title: 'Compare a new fact with memory',
     description: 'How does newFact relate to existingMemory?',
@@ -924,9 +1009,52 @@ export const recipeMetadata: CatalogRecipe[] = [
     useWhen: 'You need to identify the narrowest supported scope of a fact or preference.',
     related: [
       {
+        id: 'memory-subject',
+        reason:
+          'Use memory-subject to identify whom a candidate memory describes before assessing its scope.',
+      },
+      {
         id: 'preference-kind',
         reason:
           'Use preference-kind to distinguish ongoing preferences from temporary instructions.',
+      },
+    ],
+  },
+  {
+    id: 'memory-subject',
+    title: 'Identify whom a memory describes',
+    description:
+      'Label whether one candidate memory describes the user, someone else, or a group including the user.',
+    category: 'memory',
+    tags: [
+      'memory',
+      'whose memory',
+      'someone else',
+      'subject attribution',
+      'personalization',
+      'quoted speaker',
+    ],
+    limitations: [
+      'Requires an identified user and enough speaker context to resolve references; it does not infer a user from an account or session.',
+      'Subject attribution does not establish truth, actuality, permanence, consent, or permission to store a memory.',
+      'Classifies one atomic statement; it does not extract, split, rewrite, or persist memories.',
+    ],
+    useWhen: 'You need to avoid treating a fact about someone else as a fact about the user.',
+    related: [
+      {
+        id: 'memory-scope',
+        reason:
+          'Use memory-scope to identify where a fact applies after identifying whom it describes.',
+      },
+      {
+        id: 'attribution-match',
+        reason:
+          'Use attribution-match to check who said or endorsed a statement, rather than whom the statement describes.',
+      },
+      {
+        id: 'preference-kind',
+        reason:
+          'Use preference-kind to distinguish a lasting preference from a temporary instruction.',
       },
     ],
   },
@@ -943,6 +1071,87 @@ export const recipeMetadata: CatalogRecipe[] = [
       'You need to assess whether a candidate fact is useful to remember for a stated purpose.',
     related: [
       { id: 'memory-scope', reason: 'Use memory-scope to determine where a fact applies.' },
+    ],
+  },
+  {
+    id: 'motivation-source',
+    title: 'Identify a stated source of motivation',
+    description:
+      'Label a stated reason for an activity as intrinsic enjoyment, a separate outcome, both, or not stated.',
+    category: 'conversation',
+    tags: [
+      'psychology',
+      'behavior',
+      'motivation',
+      'intrinsic',
+      'extrinsic',
+      'stated reason',
+      'self-determination',
+      'annotation',
+      'alignment-research',
+    ],
+    limitations: [
+      'Labels expressed or reported reasons, not hidden motives, sincerity, or a psychological profile.',
+      'Extrinsic reasons can be internalized and freely chosen; this label does not measure autonomy or distinguish its subtypes.',
+      'An AI response describing a motive does not establish that the model has that motive.',
+    ],
+    useWhen:
+      'You need to classify a stated reason for an activity as enjoyment of doing it or pursuit of a separate outcome.',
+    related: [
+      {
+        id: 'causal-attribution',
+        reason:
+          'Use causal-attribution to distinguish personal from situational explanations of behavior.',
+      },
+      {
+        id: 'preference-kind',
+        reason:
+          'Use preference-kind to distinguish preferences, facts, and temporary requests rather than reasons for an activity.',
+      },
+      {
+        id: 'claim-stance',
+        reason:
+          'Use claim-stance to label agreement with a specified claim instead of classifying the reason for acting.',
+      },
+    ],
+  },
+  {
+    id: 'outcome-framing',
+    title: 'Identify gain and loss framing',
+    description:
+      'Label whether wording presents a specified outcome through gains, losses, both, or neither.',
+    category: 'conversation',
+    tags: [
+      'psychology',
+      'behavior',
+      'gain loss',
+      'outcome framing',
+      'decision framing',
+      'annotation',
+      'alignment-research',
+    ],
+    limitations: [
+      'Labels wording about one supplied outcome; it does not calculate utility or verify equivalence between descriptions.',
+      'A frame label does not establish loss aversion, a cognitive bias, or a causal effect on choices.',
+      'A bare amount can be neutral even when the caller knows it represents an actual gain or loss.',
+    ],
+    useWhen: 'You need to label gain and loss wording in a decision prompt or research stimulus.',
+    related: [
+      {
+        id: 'question-leading',
+        reason:
+          'Use question-leading to assess pressure toward a supplied answer, rather than gain or loss framing.',
+      },
+      {
+        id: 'question-assumption',
+        reason:
+          'Use question-assumption to check whether a question takes a specified claim for granted.',
+      },
+      {
+        id: 'choose-action',
+        reason:
+          'Use choose-action to select among supplied eligible actions; outcome-framing only labels wording.',
+      },
     ],
   },
   {
@@ -974,6 +1183,11 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
     useWhen: 'You need to distinguish an ongoing preference from a fact or temporary request.',
     related: [
+      {
+        id: 'motivation-source',
+        reason:
+          'Use motivation-source to classify a stated reason for an activity rather than the kind of statement.',
+      },
       {
         id: 'memory-scope',
         reason: 'Use memory-scope to identify the supported scope of that preference.',
@@ -1033,12 +1247,49 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'question-assumption',
+    title: 'Check what a question takes for granted',
+    description:
+      'Label whether a question takes a supplied claim for granted or leaves that claim open.',
+    category: 'conversation',
+    tags: [
+      'psychology',
+      'presupposition',
+      'loaded question',
+      'takes for granted',
+      'question assumption',
+      'prompt wording',
+      'annotation',
+      'alignment-research',
+    ],
+    limitations: [
+      'Labels wording relative to one supplied claim; it does not determine truth or author intent.',
+      'Not assumed does not establish that a question is neutral or free of other assumptions.',
+      'Effects on respondents or models require controlled comparisons; these labels alone are not causal evidence.',
+    ],
+    useWhen:
+      'You need to identify a specific assumption in a question before using it in a conversation, survey, or evaluation.',
+    related: [
+      {
+        id: 'question-leading',
+        reason:
+          'Use question-leading to check pressure toward or away from an answer, which is different from assuming a claim.',
+      },
+      {
+        id: 'claim-stance',
+        reason: 'Use claim-stance to label affirmation or denial of a claim in a response.',
+      },
+      { id: 'verify', reason: 'Use verify to assess evidential support for the claim itself.' },
+    ],
+  },
+  {
     id: 'question-leading',
     title: 'Check whether a question steers an answer',
     description:
       "Label whether a question's wording favors, disfavors, or stays neutral toward a proposed answer.",
     category: 'conversation',
     tags: [
+      'psychology',
       'leading question',
       'wording',
       'answer pressure',
@@ -1055,6 +1306,16 @@ export const recipeMetadata: CatalogRecipe[] = [
     useWhen:
       'You need to check leading questions or answer pressure in a survey, interview, or evaluation prompt.',
     related: [
+      {
+        id: 'outcome-framing',
+        reason:
+          'Use outcome-framing to label gains and losses in wording about a specified outcome.',
+      },
+      {
+        id: 'question-assumption',
+        reason:
+          'Use question-assumption to check whether a question takes a specific claim for granted.',
+      },
       {
         id: 'query-specificity',
         reason:
@@ -1185,6 +1446,11 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
     useWhen: 'You need to know whether the customer reports that an issue is resolved.',
     related: [
+      {
+        id: 'issue-recurrence',
+        reason:
+          'Use issue-recurrence to distinguish a first occurrence, an ongoing issue, and a return after reported recovery.',
+      },
       {
         id: 'step-complete',
         reason: 'Use step-complete to assess evidence against a supplied completion condition.',
@@ -1592,6 +1858,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       'Label categorical, qualified, or unresolved wording about a supplied claim without inferring internal confidence.',
     category: 'answer-quality',
     tags: [
+      'psychology',
       'uncertainty',
       'certainty',
       'hedging',

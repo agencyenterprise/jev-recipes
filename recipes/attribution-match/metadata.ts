@@ -18,6 +18,11 @@ export const metadata = {
     'You need to check who said a statement in a transcript or source excerpt, separately from whether it is true.',
   related: [
     {
+      id: 'causal-attribution',
+      reason:
+        'Use causal-attribution to classify the kind of cause in an explanation, rather than who made it.',
+    },
+    {
       id: 'citation-match',
       reason:
         'Use citation-match to check which passages support a claim, rather than who made it.',

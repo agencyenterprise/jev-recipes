@@ -49,6 +49,7 @@ This saved response illustrates behavior; it is not a model accuracy measurement
 
 Related recipes:
 
+- [`memory-subject`](../memory-subject/README.md): Use memory-subject to identify whom a candidate memory describes before assessing its scope.
 - [`preference-kind`](../preference-kind/README.md): Use preference-kind to distinguish ongoing preferences from temporary instructions.
 
 <!-- END GENERATED: usage -->

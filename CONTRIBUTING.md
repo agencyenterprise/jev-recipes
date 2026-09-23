@@ -69,6 +69,8 @@ Keep descriptions concrete enough that a developer can choose between similar re
 
 Import paths, function names, schemas, example input, and counts are derived from source. Do not duplicate them in metadata. The current categories are `retrieval`, `conversation`, `workflow`, `answer-quality`, `support`, `memory`, and `knowledge`; use tags for narrower topics.
 
+The generated catalog also includes a Psychology & behavior collection. Add the `psychology` tag to a relevant recipe's metadata to include it; keep its existing category. Collection membership does not create another recipe or change import paths.
+
 ## Dependencies and behavior
 
 Recipes use shared helpers under `src/` and may call another recipe through its public `index.js` export. Declare that reuse in `uses` and explain it in the guide. Recipes and shared helpers must not import the catalog, CLI, or root barrel. Keep side effects in the caller.

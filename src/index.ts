@@ -142,6 +142,17 @@ export type {
   CancellationCheckVerdict,
 } from '../recipes/cancellation-check/index.js';
 export {
+  causalAttribution,
+  causalAttributionInputSchema,
+  causalAttributionResultSchema,
+  causalAttributionVerdictSchema,
+} from '../recipes/causal-attribution/index.js';
+export type {
+  CausalAttributionInput,
+  CausalAttributionResult,
+  CausalAttributionVerdict,
+} from '../recipes/causal-attribution/index.js';
+export {
   certaintyMatch,
   certaintyMatchInputSchema,
   certaintyMatchResultSchema,
@@ -438,6 +449,17 @@ export type {
   IssueImpactVerdict,
 } from '../recipes/issue-impact/index.js';
 export {
+  issueRecurrence,
+  issueRecurrenceInputSchema,
+  issueRecurrenceResultSchema,
+  issueRecurrenceVerdictSchema,
+} from '../recipes/issue-recurrence/index.js';
+export type {
+  IssueRecurrenceInput,
+  IssueRecurrenceResult,
+  IssueRecurrenceVerdict,
+} from '../recipes/issue-recurrence/index.js';
+export {
   memoryRelation,
   memoryRelationInputSchema,
   memoryRelationResultSchema,
@@ -460,6 +482,17 @@ export type {
   MemoryScopeVerdict,
 } from '../recipes/memory-scope/index.js';
 export {
+  memorySubject,
+  memorySubjectInputSchema,
+  memorySubjectResultSchema,
+  memorySubjectVerdictSchema,
+} from '../recipes/memory-subject/index.js';
+export type {
+  MemorySubjectInput,
+  MemorySubjectResult,
+  MemorySubjectVerdict,
+} from '../recipes/memory-subject/index.js';
+export {
   memoryValue,
   memoryValueInputSchema,
   memoryValueResultSchema,
@@ -470,6 +503,28 @@ export type {
   MemoryValueResult,
   MemoryValueVerdict,
 } from '../recipes/memory-value/index.js';
+export {
+  motivationSource,
+  motivationSourceInputSchema,
+  motivationSourceResultSchema,
+  motivationSourceVerdictSchema,
+} from '../recipes/motivation-source/index.js';
+export type {
+  MotivationSourceInput,
+  MotivationSourceResult,
+  MotivationSourceVerdict,
+} from '../recipes/motivation-source/index.js';
+export {
+  outcomeFraming,
+  outcomeFramingInputSchema,
+  outcomeFramingResultSchema,
+  outcomeFramingVerdictSchema,
+} from '../recipes/outcome-framing/index.js';
+export type {
+  OutcomeFramingInput,
+  OutcomeFramingResult,
+  OutcomeFramingVerdict,
+} from '../recipes/outcome-framing/index.js';
 export {
   passageDuplicate,
   passageDuplicateInputSchema,
@@ -525,6 +580,17 @@ export type {
   QuerySpecificityResult,
   QuerySpecificityVerdict,
 } from '../recipes/query-specificity/index.js';
+export {
+  questionAssumption,
+  questionAssumptionInputSchema,
+  questionAssumptionResultSchema,
+  questionAssumptionVerdictSchema,
+} from '../recipes/question-assumption/index.js';
+export type {
+  QuestionAssumptionInput,
+  QuestionAssumptionResult,
+  QuestionAssumptionVerdict,
+} from '../recipes/question-assumption/index.js';
 export {
   questionLeading,
   questionLeadingInputSchema,

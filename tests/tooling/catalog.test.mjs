@@ -58,6 +58,25 @@ test('search finds task wording and supports category and limit without truncati
   assert.equal(listRecipes({ query: 'being tested', limit: 1 })[0].id, 'evaluation-mention');
   assert.equal(listRecipes({ query: 'who said', limit: 1 })[0].id, 'attribution-match');
   assert.equal(listRecipes({ query: 'leading questions', limit: 1 })[0].id, 'question-leading');
+  assert.equal(listRecipes({ query: 'whose memory', limit: 1 })[0].id, 'memory-subject');
+  assert.equal(listRecipes({ query: 'issue came back', limit: 1 })[0].id, 'issue-recurrence');
+  assert.equal(listRecipes({ query: 'presupposition', limit: 1 })[0].id, 'question-assumption');
+  assert.equal(listRecipes({ query: 'gain loss', limit: 1 })[0].id, 'outcome-framing');
+  assert.equal(listRecipes({ query: 'personal cause', limit: 1 })[0].id, 'causal-attribution');
+  assert.equal(listRecipes({ query: 'intrinsic', limit: 1 })[0].id, 'motivation-source');
+  const psychology = listRecipes({ query: 'psychology' }).map((recipe) => recipe.id);
+  for (const id of [
+    'outcome-framing',
+    'causal-attribution',
+    'motivation-source',
+    'question-leading',
+    'question-assumption',
+    'claim-stance',
+    'uncertainty-expression',
+    'frustration-signal',
+  ]) {
+    assert.ok(psychology.includes(id), `${id} should be discoverable through psychology`);
+  }
   assert.equal(
     listRecipes({ query: 'same underlying source', limit: 1 })[0].id,
     'evidence-independence',
@@ -134,6 +153,12 @@ export async function load(url, context, nextLoad) {
     for (const [name, allowed] of [
       ['route', 'route'],
       ['checkers-move', 'checkers-move'],
+      ['memory-subject', 'memory-subject'],
+      ['issue-recurrence', 'issue-recurrence'],
+      ['question-assumption', 'question-assumption'],
+      ['outcome-framing', 'outcome-framing'],
+      ['causal-attribution', 'causal-attribution'],
+      ['motivation-source', 'motivation-source'],
       ['citation-match', 'citation-match,verify'],
     ]) {
       const output = await run(process.execPath, ['--import', register, cli, 'demo', name], {

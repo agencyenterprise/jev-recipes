@@ -1,4 +1,4 @@
-.PHONY: help setup generate docs test ci pack-check build clean new
+.PHONY: help setup generate docs test ci pack-check build clean new format
 .DEFAULT_GOAL := help
 export RECIPE
 
@@ -12,6 +12,7 @@ help:
 	@echo "make pack-check             Build, inspect, and test the npm archive"
 	@echo "make new RECIPE=my-recipe   Scaffold a recipe and its test file"
 	@echo "make build / make clean     Build or remove compiled output"
+	@echo "make format                 Format the codebase"
 
 setup:
 	@npm ci --ignore-scripts
@@ -39,3 +40,6 @@ clean:
 
 new:
 	@node scripts/new-recipe.mjs
+
+format:
+	@npm run format

@@ -1,0 +1,27 @@
+{
+  "input": {
+    "issue": "CSV export fails with error E42.",
+    "message": "The same E42 error is back when I export a CSV.",
+    "history": "Monday, customer: CSV exports fail with E42. Tuesday, customer: CSV exports work again; E42 is gone."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "returned",
+        "confidence": 0.97,
+        "probabilities": {
+          "new": 0.01,
+          "ongoing": 0.01,
+          "returned": 0.97,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

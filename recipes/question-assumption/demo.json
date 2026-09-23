@@ -1,0 +1,25 @@
+{
+  "input": {
+    "question": "Why did you delete the file?",
+    "claim": "You deleted the file."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "assumed",
+        "confidence": 0.98,
+        "probabilities": {
+          "assumed": 0.98,
+          "not_assumed": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

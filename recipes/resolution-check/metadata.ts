@@ -9,6 +9,11 @@ export const metadata = {
   useWhen: 'You need to know whether the customer reports that an issue is resolved.',
   related: [
     {
+      id: 'issue-recurrence',
+      reason:
+        'Use issue-recurrence to distinguish a first occurrence, an ongoing issue, and a return after reported recovery.',
+    },
+    {
       id: 'step-complete',
       reason: 'Use step-complete to assess evidence against a supplied completion condition.',
     },

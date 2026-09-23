@@ -62,6 +62,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.cancellationCheck(recipe.cancellationCheckInputSchema.parse(input), options),
     ),
+  'causal-attribution': () =>
+    import('../../recipes/causal-attribution/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.causalAttribution(recipe.causalAttributionInputSchema.parse(input), options),
+    ),
   'certainty-match': () =>
     import('../../recipes/certainty-match/index.js').then(
       (recipe) => (input, options) =>
@@ -217,6 +222,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.issueImpact(recipe.issueImpactInputSchema.parse(input), options),
     ),
+  'issue-recurrence': () =>
+    import('../../recipes/issue-recurrence/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.issueRecurrence(recipe.issueRecurrenceInputSchema.parse(input), options),
+    ),
   'memory-relation': () =>
     import('../../recipes/memory-relation/index.js').then(
       (recipe) => (input, options) =>
@@ -227,10 +237,25 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.memoryScope(recipe.memoryScopeInputSchema.parse(input), options),
     ),
+  'memory-subject': () =>
+    import('../../recipes/memory-subject/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.memorySubject(recipe.memorySubjectInputSchema.parse(input), options),
+    ),
   'memory-value': () =>
     import('../../recipes/memory-value/index.js').then(
       (recipe) => (input, options) =>
         recipe.memoryValue(recipe.memoryValueInputSchema.parse(input), options),
+    ),
+  'motivation-source': () =>
+    import('../../recipes/motivation-source/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.motivationSource(recipe.motivationSourceInputSchema.parse(input), options),
+    ),
+  'outcome-framing': () =>
+    import('../../recipes/outcome-framing/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.outcomeFraming(recipe.outcomeFramingInputSchema.parse(input), options),
     ),
   'passage-duplicate': () =>
     import('../../recipes/passage-duplicate/index.js').then(
@@ -256,6 +281,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/query-specificity/index.js').then(
       (recipe) => (input, options) =>
         recipe.querySpecificity(recipe.querySpecificityInputSchema.parse(input), options),
+    ),
+  'question-assumption': () =>
+    import('../../recipes/question-assumption/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.questionAssumption(recipe.questionAssumptionInputSchema.parse(input), options),
     ),
   'question-leading': () =>
     import('../../recipes/question-leading/index.js').then(

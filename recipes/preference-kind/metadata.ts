@@ -10,6 +10,11 @@ export const metadata = {
   useWhen: 'You need to distinguish an ongoing preference from a fact or temporary request.',
   related: [
     {
+      id: 'motivation-source',
+      reason:
+        'Use motivation-source to classify a stated reason for an activity rather than the kind of statement.',
+    },
+    {
       id: 'memory-scope',
       reason: 'Use memory-scope to identify the supported scope of that preference.',
     },

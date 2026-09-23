@@ -4,7 +4,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 
 <!-- BEGIN GENERATED: catalog -->
 
-81 recipes. Each guide includes a working call, input reference, result behavior, and nearby alternatives.
+87 recipes. Each guide includes a working call, input reference, result behavior, and nearby alternatives.
 
 ## Answer quality
 
@@ -46,21 +46,25 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 
 ## Conversation
 
-| Recipe                                                 | Function             | Use when                                                                                             |
-| ------------------------------------------------------ | -------------------- | ---------------------------------------------------------------------------------------------------- |
-| [`cancellation-check`](cancellation-check/README.md)   | `cancellationCheck`  | You need to detect whether a message asks to stop, pause, or continue a task.                        |
-| [`clarify`](clarify/README.md)                         | `clarify`            | You need to check for missing or ambiguous requirements before proceeding.                           |
-| [`confirmation-match`](confirmation-match/README.md)   | `confirmationMatch`  | You need to know whether a response accepts or rejects an exact proposal.                            |
-| [`constraint-strength`](constraint-strength/README.md) | `constraintStrength` | You need to distinguish a hard requirement from a preference or an optional suggestion.              |
-| [`correction-target`](correction-target/README.md)     | `correctionTarget`   | You need to identify which supplied field or statement a message corrects.                           |
-| [`followup-link`](followup-link/README.md)             | `followupLink`       | You need to connect a follow-up message to one of the earlier requests.                              |
-| [`intent-change`](intent-change/README.md)             | `intentChange`       | You need to check whether a new message changes the current task or goal.                            |
-| [`question-leading`](question-leading/README.md)       | `questionLeading`    | You need to check leading questions or answer pressure in a survey, interview, or evaluation prompt. |
-| [`reference-resolve`](reference-resolve/README.md)     | `referenceResolve`   | You need to resolve a phrase such as this one to a supplied candidate.                               |
-| [`resolution-check`](resolution-check/README.md)       | `resolutionCheck`    | You need to know whether the customer reports that an issue is resolved.                             |
-| [`response-needed`](response-needed/README.md)         | `responseNeeded`     | You need to decide whether a message calls for a substantive reply.                                  |
-| [`topic-shift`](topic-shift/README.md)                 | `topicShift`         | You need to detect whether a message moves away from the current topic.                              |
-| [`turn-intent`](turn-intent/README.md)                 | `turnIntent`         | You need to classify a message as a request, answer, correction, cancellation, or acknowledgment.    |
+| Recipe                                                 | Function             | Use when                                                                                                           |
+| ------------------------------------------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| [`cancellation-check`](cancellation-check/README.md)   | `cancellationCheck`  | You need to detect whether a message asks to stop, pause, or continue a task.                                      |
+| [`causal-attribution`](causal-attribution/README.md)   | `causalAttribution`  | You need to label whether an explanation points to the person, the situation, or both.                             |
+| [`clarify`](clarify/README.md)                         | `clarify`            | You need to check for missing or ambiguous requirements before proceeding.                                         |
+| [`confirmation-match`](confirmation-match/README.md)   | `confirmationMatch`  | You need to know whether a response accepts or rejects an exact proposal.                                          |
+| [`constraint-strength`](constraint-strength/README.md) | `constraintStrength` | You need to distinguish a hard requirement from a preference or an optional suggestion.                            |
+| [`correction-target`](correction-target/README.md)     | `correctionTarget`   | You need to identify which supplied field or statement a message corrects.                                         |
+| [`followup-link`](followup-link/README.md)             | `followupLink`       | You need to connect a follow-up message to one of the earlier requests.                                            |
+| [`intent-change`](intent-change/README.md)             | `intentChange`       | You need to check whether a new message changes the current task or goal.                                          |
+| [`motivation-source`](motivation-source/README.md)     | `motivationSource`   | You need to classify a stated reason for an activity as enjoyment of doing it or pursuit of a separate outcome.    |
+| [`outcome-framing`](outcome-framing/README.md)         | `outcomeFraming`     | You need to label gain and loss wording in a decision prompt or research stimulus.                                 |
+| [`question-assumption`](question-assumption/README.md) | `questionAssumption` | You need to identify a specific assumption in a question before using it in a conversation, survey, or evaluation. |
+| [`question-leading`](question-leading/README.md)       | `questionLeading`    | You need to check leading questions or answer pressure in a survey, interview, or evaluation prompt.               |
+| [`reference-resolve`](reference-resolve/README.md)     | `referenceResolve`   | You need to resolve a phrase such as this one to a supplied candidate.                                             |
+| [`resolution-check`](resolution-check/README.md)       | `resolutionCheck`    | You need to know whether the customer reports that an issue is resolved.                                           |
+| [`response-needed`](response-needed/README.md)         | `responseNeeded`     | You need to decide whether a message calls for a substantive reply.                                                |
+| [`topic-shift`](topic-shift/README.md)                 | `topicShift`         | You need to detect whether a message moves away from the current topic.                                            |
+| [`turn-intent`](turn-intent/README.md)                 | `turnIntent`         | You need to classify a message as a request, answer, correction, cancellation, or acknowledgment.                  |
 
 ## Tools and tasks
 
@@ -87,18 +91,19 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 
 ## Customer support
 
-| Recipe                                                   | Function             | Use when                                                                                 |
-| -------------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------- |
-| [`attempted-step`](attempted-step/README.md)             | `attemptedStep`      | You need to know whether a customer already tried a troubleshooting step.                |
-| [`feedback-kind`](feedback-kind/README.md)               | `feedbackKind`       | You need to classify the kind of feedback expressed in a message.                        |
-| [`frustration-signal`](frustration-signal/README.md)     | `frustrationSignal`  | You need to detect frustration or dissatisfaction expressed in a message.                |
-| [`incident-match`](incident-match/README.md)             | `incidentMatch`      | You need to connect a support ticket to a supplied known incident.                       |
-| [`issue-impact`](issue-impact/README.md)                 | `issueImpact`        | You need to assess the practical impact explicitly described in a support message.       |
-| [`reply-template-match`](reply-template-match/README.md) | `replyTemplateMatch` | You want to select a supplied approved reply template for a request.                     |
-| [`ticket-match`](ticket-match/README.md)                 | `ticketMatch`        | You want to check whether two tickets describe the same underlying issue.                |
-| [`troubleshooting-fit`](troubleshooting-fit/README.md)   | `troubleshootingFit` | You need to choose whether a procedure fits the reported symptoms and circumstances.     |
-| [`urgency-signal`](urgency-signal/README.md)             | `urgencySignal`      | You need to detect whether a message explicitly asks for urgent attention.               |
-| [`workaround-fit`](workaround-fit/README.md)             | `workaroundFit`      | You need to check whether a workaround addresses an issue within the stated constraints. |
+| Recipe                                                   | Function             | Use when                                                                                                   |
+| -------------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [`attempted-step`](attempted-step/README.md)             | `attemptedStep`      | You need to know whether a customer already tried a troubleshooting step.                                  |
+| [`feedback-kind`](feedback-kind/README.md)               | `feedbackKind`       | You need to classify the kind of feedback expressed in a message.                                          |
+| [`frustration-signal`](frustration-signal/README.md)     | `frustrationSignal`  | You need to detect frustration or dissatisfaction expressed in a message.                                  |
+| [`incident-match`](incident-match/README.md)             | `incidentMatch`      | You need to connect a support ticket to a supplied known incident.                                         |
+| [`issue-impact`](issue-impact/README.md)                 | `issueImpact`        | You need to assess the practical impact explicitly described in a support message.                         |
+| [`issue-recurrence`](issue-recurrence/README.md)         | `issueRecurrence`    | You need to distinguish a new problem, one that never stopped, and an issue that came back after recovery. |
+| [`reply-template-match`](reply-template-match/README.md) | `replyTemplateMatch` | You want to select a supplied approved reply template for a request.                                       |
+| [`ticket-match`](ticket-match/README.md)                 | `ticketMatch`        | You want to check whether two tickets describe the same underlying issue.                                  |
+| [`troubleshooting-fit`](troubleshooting-fit/README.md)   | `troubleshootingFit` | You need to choose whether a procedure fits the reported symptoms and circumstances.                       |
+| [`urgency-signal`](urgency-signal/README.md)             | `urgencySignal`      | You need to detect whether a message explicitly asks for urgent attention.                                 |
+| [`workaround-fit`](workaround-fit/README.md)             | `workaroundFit`      | You need to check whether a workaround addresses an issue within the stated constraints.                   |
 
 ## Memory
 
@@ -107,6 +112,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 | [`fact-stability`](fact-stability/README.md)   | `factStability`  | You need to assess whether a fact is enduring or likely to change over time.            |
 | [`memory-relation`](memory-relation/README.md) | `memoryRelation` | You need to compare a new fact with an existing memory for agreement or change.         |
 | [`memory-scope`](memory-scope/README.md)       | `memoryScope`    | You need to identify the narrowest supported scope of a fact or preference.             |
+| [`memory-subject`](memory-subject/README.md)   | `memorySubject`  | You need to avoid treating a fact about someone else as a fact about the user.          |
 | [`memory-value`](memory-value/README.md)       | `memoryValue`    | You need to assess whether a candidate fact is useful to remember for a stated purpose. |
 | [`preference-kind`](preference-kind/README.md) | `preferenceKind` | You need to distinguish an ongoing preference from a fact or temporary request.         |
 
@@ -121,6 +127,23 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 | [`document-role`](document-role/README.md)                     | `documentRole`           | You need to identify the primary purpose of a document.                                                       |
 | [`field-select`](field-select/README.md)                       | `fieldSelect`            | You need to select which supplied candidate expresses a field value in a document.                            |
 | [`requirement-testability`](requirement-testability/README.md) | `requirementTestability` | You need to check whether a requirement has clear, observable acceptance criteria before building it.         |
+
+## Psychology & behavior
+
+Recipes for annotating expressed wording, explanations, and reasons. This collection spans the categories above; each recipe is counted once in the catalog. Membership comes from the `psychology` tag in recipe metadata.
+
+Search with `npx jev-recipes list psychology`. For research, validate labels against independent human annotations; see the [research guide](../docs/ai-alignment-research.md).
+
+| Recipe                                                       | Function                | Use when                                                                                                           |
+| ------------------------------------------------------------ | ----------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| [`causal-attribution`](causal-attribution/README.md)         | `causalAttribution`     | You need to label whether an explanation points to the person, the situation, or both.                             |
+| [`claim-stance`](claim-stance/README.md)                     | `claimStance`           | You need to label whether a response agrees or disagrees with a claim, including in AI alignment research.         |
+| [`frustration-signal`](frustration-signal/README.md)         | `frustrationSignal`     | You need to detect frustration or dissatisfaction expressed in a message.                                          |
+| [`motivation-source`](motivation-source/README.md)           | `motivationSource`      | You need to classify a stated reason for an activity as enjoyment of doing it or pursuit of a separate outcome.    |
+| [`outcome-framing`](outcome-framing/README.md)               | `outcomeFraming`        | You need to label gain and loss wording in a decision prompt or research stimulus.                                 |
+| [`question-assumption`](question-assumption/README.md)       | `questionAssumption`    | You need to identify a specific assumption in a question before using it in a conversation, survey, or evaluation. |
+| [`question-leading`](question-leading/README.md)             | `questionLeading`       | You need to check leading questions or answer pressure in a survey, interview, or evaluation prompt.               |
+| [`uncertainty-expression`](uncertainty-expression/README.md) | `uncertaintyExpression` | You need to label expressed certainty or hedging about one claim without an external truth assessment.             |
 
 <!-- END GENERATED: catalog -->
 

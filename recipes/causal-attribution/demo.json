@@ -1,0 +1,27 @@
+{
+  "input": {
+    "behavior": "Alex arrived late to the meeting.",
+    "explanation": "Alex arrived late because the train was cancelled."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "situational",
+        "confidence": 0.96,
+        "probabilities": {
+          "personal": 0.01,
+          "situational": 0.96,
+          "mixed": 0.01,
+          "none": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

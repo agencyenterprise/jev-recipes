@@ -1,6 +1,6 @@
 # Growing the recipe catalog
 
-Original review snapshot: September 22, 2026. That review found `jev-recipes@0.3.0` in the npm registry with 66 recipes. Two batches added six each; the gameplay pair and checkers decision below bring the source catalog to 81. The version above records the original review, not the current registry state. Recipe folders remain the source of truth; the [generated catalog](recipes/README.md) shows the current inventory.
+Original review snapshot: September 22, 2026. That review found `jev-recipes@0.3.0` in the npm registry with 66 recipes. The batches below bring the source catalog to 87. The version above records the original review, not the current registry state. Recipe folders remain the source of truth; the [generated catalog](recipes/README.md) shows the current inventory.
 
 ## What the review found
 
@@ -64,6 +64,28 @@ This pair takes the source catalog from 78 to 80. Both remain in the existing wo
 `checkers-move` accepts a structured board, acting player, and complete legal moves for 8x8 American/English checkers. Its nearest alternative is `choose-action`. The addition supplies a concrete board contract, piece and move translation, local material counts and promotion labels, and game-specific decision criteria. Callers do not author rules or move descriptions.
 
 This is a decision adapter, not a game engine. The existing game supplies legality, turn progression, and execution. The recipe uses one logical request and adds no runtime dependencies. Offline checks cover mapping, input validation, review handling, and packaging. A live A/B comparison with generic `choose-action` remains proposed: use identical positions and candidate moves, record latency and review rate, and assess move quality with an independent reference. No playing-strength or speed claim follows from the mocked tests.
+
+## Everyday decisions: 81 to 84
+
+| Recipe                | New decision                                                                            | Nearest alternative and distinction                                                                                                                                         |
+| --------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `memory-subject`      | Does a candidate memory describe the user, someone else, or a group including the user? | `memory-scope` checks where a fact applies; `attribution-match` checks who said it. Neither identifies whom the described property belongs to.                              |
+| `issue-recurrence`    | Is a reported issue new, continuously present, or back after reported recovery?         | `resolution-check` checks current reported resolution; `ticket-match` compares issue identity. Neither classifies recurrence over a supplied timeline.                      |
+| `question-assumption` | Does a question take one supplied claim for granted?                                    | `question-leading` checks pressure toward an answer. Pressure does not necessarily assume a claim, and an assumed claim need not favor a particular answer to the question. |
+
+These additions use existing categories and the shared choice helper, with one logical request per call and no new dependencies. Each guide defines intended boundaries and a review outcome for insufficient context. Tests and saved demos run offline; they do not establish model accuracy. Before using the labels in a study, compare them with independent human annotations, including cases that distinguish each recipe from its nearest alternative.
+
+## Psychology & behavior: 84 to 87
+
+| Recipe               | New decision                                                                           | Nearest alternative and distinction                                                                                                                             |
+| -------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `outcome-framing`    | Does wording describe a focal outcome through gains, losses, both, or neither?         | `question-leading` checks pressure toward a supplied answer. Framing labels do not require a question or proposed answer.                                       |
+| `causal-attribution` | Does an explanation point to personal factors, situational factors, both, or no cause? | `attribution-match` checks who made a statement. This recipe classifies the cause offered in it without judging whether it is true.                             |
+| `motivation-source`  | Is a stated reason enjoyment of the activity, a separate outcome, both, or not stated? | `preference-kind` classifies statement types. This recipe classifies reasons, distinguishing intrinsic enjoyment from personally valued but separable outcomes. |
+
+All three remain in the conversation category and use one logical choice request. The `psychology` metadata tag also gathers existing wording annotations into a generated Psychology & behavior subsection. No duplicate recipes, category migration, new runtime dependencies, or manual collection registry are needed.
+
+Each guide cites its conceptual basis and documents operational boundaries. Offline tests check contracts, review behavior, and discovery; they do not validate psychological measurements. A proposed first experiment compares equivalent gain/loss descriptions while holding the decision task and model settings fixed. Verify equivalence in caller code, validate frame labels against independent annotations, and measure choice differences separately from annotation confidence.
 
 ## Adoption experiments
 

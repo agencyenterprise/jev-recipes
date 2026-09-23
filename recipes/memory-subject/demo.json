@@ -1,0 +1,26 @@
+{
+  "input": {
+    "statement": "My brother is vegetarian.",
+    "user": "Alex, the speaker of the statement."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "other",
+        "confidence": 0.97,
+        "probabilities": {
+          "user": 0.01,
+          "other": 0.97,
+          "shared": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

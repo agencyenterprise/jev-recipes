@@ -11,7 +11,7 @@
 
 <!-- BEGIN GENERATED: summary -->
 
-81 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
+87 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
 
 <!-- END GENERATED: summary -->
 
@@ -139,6 +139,8 @@ npx jev-recipes demo answerability
 [Browse the complete catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md). Each guide includes an import, input reference, result behavior, limitations, and related recipes.
 
 For games, the [gameplay guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/gameplay.md) starts with a checkers decision using just the board, player, and legal moves. It also covers general action selection and narrative turn eligibility.
+
+For psychology, browse [Psychology & behavior](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#psychology--behavior) for gain/loss framing, causal explanations, stated motivation, and related wording annotations. Search with `npx jev-recipes list psychology`.
 
 <a id="run-your-own-input-from-the-terminal"></a>
 

@@ -38,16 +38,17 @@ export async function renderDocs(root, records) {
   const sections = Object.entries(categoryTitles).map(([category, title]) => {
     const matching = records.filter((recipe) => recipe.metadata.category === category);
     if (!matching.length) return '';
-    return (
-      `## ${title}\n\n| Recipe | Function | Use when |\n| --- | --- | --- |\n` +
-      matching
-        .map(
-          ({ id, functionName, metadata }) =>
-            `| [\`${id}\`](${id}/README.md) | \`${functionName}\` | ${cell(metadata.useWhen)} |`,
-        )
-        .join('\n')
-    );
+    return `## ${title}\n\n${recipeTable(matching)}`;
   });
+  const psychology = records.filter((recipe) => recipe.metadata.tags.includes('psychology'));
+  if (psychology.length) {
+    sections.push(
+      '## Psychology & behavior\n\n' +
+        'Recipes for annotating expressed wording, explanations, and reasons. This collection spans the categories above; each recipe is counted once in the catalog. Membership comes from the `psychology` tag in recipe metadata.\n\n' +
+        'Search with `npx jev-recipes list psychology`. For research, validate labels against independent human annotations; see the [research guide](../docs/ai-alignment-research.md).\n\n' +
+        recipeTable(psychology),
+    );
+  }
   files.set(
     'recipes/README.md',
     replaceSection(
@@ -72,6 +73,18 @@ export async function renderDocs(root, records) {
     files.set(path, updated);
   }
   return files;
+}
+
+function recipeTable(records) {
+  return (
+    '| Recipe | Function | Use when |\n| --- | --- | --- |\n' +
+    records
+      .map(
+        ({ id, functionName, metadata }) =>
+          `| [\`${id}\`](${id}/README.md) | \`${functionName}\` | ${cell(metadata.useWhen)} |`,
+      )
+      .join('\n')
+  );
 }
 
 async function renderComparison(original, route) {

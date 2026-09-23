@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Detect expressed frustration',
   description: 'Does message express frustration or dissatisfaction in its wording?',
   category: 'support',
-  tags: ['support', 'frustration', 'signal'],
+  tags: ['psychology', 'support', 'frustration', 'signal'],
   useWhen: 'You need to detect frustration or dissatisfaction expressed in a message.',
   related: [
     {

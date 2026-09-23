@@ -49,6 +49,7 @@ This saved response illustrates behavior; it is not a model accuracy measurement
 
 Related recipes:
 
+- [`causal-attribution`](../causal-attribution/README.md): Use causal-attribution to classify the kind of cause in an explanation, rather than who made it.
 - [`citation-match`](../citation-match/README.md): Use citation-match to check which passages support a claim, rather than who made it.
 - [`claim-stance`](../claim-stance/README.md): Use claim-stance to label a response's own position toward a claim, rather than verifying a named attribution.
 - [`reference-resolve`](../reference-resolve/README.md): Use reference-resolve to select the referent of an ambiguous expression from supplied candidates.

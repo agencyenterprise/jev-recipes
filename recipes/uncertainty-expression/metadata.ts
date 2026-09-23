@@ -6,6 +6,7 @@ export const metadata = {
     'Label categorical, qualified, or unresolved wording about a supplied claim without inferring internal confidence.',
   category: 'answer-quality',
   tags: [
+    'psychology',
     'uncertainty',
     'certainty',
     'hedging',
