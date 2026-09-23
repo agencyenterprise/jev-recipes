@@ -45,7 +45,7 @@ Tests remain outside recipe folders. Production builds exclude tests, and packag
 4. Complete `metadata.ts`, `demo.json`, and the author-maintained parts of `README.md`.
 5. Add tests for the actual decision rules, confidence boundaries, invalid inputs, and malformed responses. Use the existing helpers where appropriate. Starter tests are not a complete contribution test suite.
 6. Run `make docs`. Exports, catalog registration, schema descriptions, reference tables, and counts are generated automatically.
-7. Run `make ci`, inspect the changes, and update the changelog.
+7. Run `make ci` and inspect the changes.
 
 Do not hand-edit `src/index.ts`, `catalog/generated/`, the exports map in `package.json`, or documentation between generated markers. Generation is deterministic. Running it again without source changes produces no diff.
 
@@ -99,7 +99,7 @@ Publishing is manual. The [`files` allowlist](package.json) and [archive checks]
 
 The package check packs installed runtime dependencies for offline installation. When adding transitive dependencies, extend [the offline consumer setup](scripts/pack-check.mjs) to supply their archives too.
 
-1. Update the changelog, including any breaking changes, and review the release diff. Run `make setup`, `make docs`, `npm run format`, and `make ci`; commit the reviewed changes.
+1. Review the release diff, including any breaking changes. Run `make setup`, `make docs`, `npm run format`, and `make ci`; commit the reviewed changes.
 2. From the intended clean checkout, choose an unused version with `npm version patch`, `npm version minor`, or `npm version major`. Let CI pass for that version.
 3. Verify the npm account, inspect the dry run, and publish from the checked repository directory:
 
@@ -111,6 +111,6 @@ The package check packs installed runtime dependencies for offline installation.
    npm view jev-recipes version
    ```
 
-4. After publishing succeeds, push the version commit and tag, then create a GitHub release from the changelog.
+4. After publishing succeeds, push the version commit and tag, then create a GitHub release.
 
 `prepublishOnly` runs full CI; `prepack` checks generated files and builds. Publishing a previously packed archive does not rerun the checkout's checks. These hooks use npm directly; Make is optional.

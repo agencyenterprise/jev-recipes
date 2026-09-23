@@ -211,7 +211,7 @@ make ci
 
 The recipe folder owns its implementation, schemas, metadata, demo, and guide. Exports and catalog entries are generated from those folders. Tests live under `tests/recipe/`.
 
-[Contributing guide](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md) | [Changelog](https://github.com/agencyenterprise/jev-recipes/blob/main/CHANGELOG.md)
+[Contributing guide](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md)
 
 ## License
 

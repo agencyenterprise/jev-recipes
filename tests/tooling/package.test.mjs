@@ -39,7 +39,6 @@ const files = [
   'package.json',
   'README.md',
   'LICENSE',
-  'CHANGELOG.md',
   'dist/cli/index.js',
   'dist/src/index.js',
   'dist/src/index.d.ts',

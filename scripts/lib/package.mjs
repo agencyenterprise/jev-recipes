@@ -28,7 +28,7 @@ export function checkPackageContents(files, recipeIds, exports) {
     ) {
       throw new Error(`Unnecessary file in npm archive: ${path}`);
     }
-    const root = ['package.json', 'README.md', 'LICENSE', 'CHANGELOG.md'].includes(path);
+    const root = ['package.json', 'README.md', 'LICENSE'].includes(path);
     const compiled =
       /^dist\/(src|cli|catalog|recipes)\/.+\.(js|d\.ts)$/.test(path) &&
       !/^dist\/recipes\/[^/]+\/metadata\./.test(path);
@@ -38,7 +38,7 @@ export function checkPackageContents(files, recipeIds, exports) {
       throw new Error(`File is not on the npm allowlist: ${path}`);
     }
   }
-  const required = ['package.json', 'README.md', 'LICENSE', 'CHANGELOG.md', 'dist/cli/index.js'];
+  const required = ['package.json', 'README.md', 'LICENSE', 'dist/cli/index.js'];
   for (const value of Object.values(exports)) {
     for (const path of typeof value === 'string' ? [value] : Object.values(value))
       required.push(path.replace(/^\.\//, ''));
