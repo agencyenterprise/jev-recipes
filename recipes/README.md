@@ -4,7 +4,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 
 <!-- BEGIN GENERATED: catalog -->
 
-87 recipes. Each guide includes a working call, input reference, result behavior, and nearby alternatives.
+88 recipes. Each guide includes a working call, input reference, result behavior, and nearby alternatives.
 
 ## Answer quality
 
@@ -68,26 +68,27 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 
 ## Tools and tasks
 
-| Recipe                                                   | Function              | Use when                                                                                                                                |
-| -------------------------------------------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| [`action-scope`](action-scope/README.md)                 | `actionScope`         | You need to check whether a proposed action stays within the requested work and constraints.                                            |
-| [`argument-fit`](argument-fit/README.md)                 | `argumentFit`         | You need to check whether a proposed argument value matches the user request.                                                           |
-| [`checkers-move`](checkers-move/README.md)               | `checkersMove`        | Your checkers game already provides its board, acting player, and legal moves, and you want a move ID without writing decision prompts. |
-| [`choose-action`](choose-action/README.md)               | `chooseAction`        | You need to choose the next game action from a list using the current environment, game rules, and previous player actions.             |
-| [`failure-kind`](failure-kind/README.md)                 | `failureKind`         | You need to assign an observed failure to one of your supplied categories.                                                              |
-| [`handoff`](handoff/README.md)                           | `handoff`             | You need to decide whether your escalation rules call for a human.                                                                      |
-| [`instruction-conflict`](instruction-conflict/README.md) | `instructionConflict` | You need to detect conflicting instructions before carrying out a task.                                                                 |
-| [`instruction-fit`](instruction-fit/README.md)           | `instructionFit`      | You need to check whether an instruction applies to the current task and context.                                                       |
-| [`repeated-attempt`](repeated-attempt/README.md)         | `repeatedAttempt`     | You need to detect whether a proposed retry repeats an earlier approach.                                                                |
-| [`result-outcome`](result-outcome/README.md)             | `resultOutcome`       | You need to classify what a tool result reports happened during a task.                                                                 |
-| [`result-usefulness`](result-usefulness/README.md)       | `resultUsefulness`    | You need to assess whether a tool result provides useful information for a task.                                                        |
-| [`route`](route/README.md)                               | `route`               | You need to send a request to the right handler, team, or department.                                                                   |
-| [`step-complete`](step-complete/README.md)               | `stepComplete`        | You need to check whether supplied evidence establishes a completion condition.                                                         |
-| [`step-progress`](step-progress/README.md)               | `stepProgress`        | You need to compare a new observation with the previous state of a task.                                                                |
-| [`take-turn`](take-turn/README.md)                       | `takeTurn`            | You need to decide whether it is a player's turn to act or react using narrative game rules, state, and previous actions.               |
-| [`task-dependency`](task-dependency/README.md)           | `taskDependency`      | You need to decide whether two tasks can run in parallel or require a particular order.                                                 |
-| [`task-duplicate`](task-duplicate/README.md)             | `taskDuplicate`       | You need to detect duplicate tasks before adding more work to a queue or plan.                                                          |
-| [`tool-fit`](tool-fit/README.md)                         | `toolFit`             | You need to check whether a tool has the stated capability to perform a task.                                                           |
+| Recipe                                                   | Function              | Use when                                                                                                                                  |
+| -------------------------------------------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| [`action-scope`](action-scope/README.md)                 | `actionScope`         | You need to check whether a proposed action stays within the requested work and constraints.                                              |
+| [`argument-fit`](argument-fit/README.md)                 | `argumentFit`         | You need to check whether a proposed argument value matches the user request.                                                             |
+| [`checkers-move`](checkers-move/README.md)               | `checkersMove`        | Your checkers game already provides its board, acting player, and legal moves, and you want a move ID without writing decision prompts.   |
+| [`choose-action`](choose-action/README.md)               | `chooseAction`        | You need to choose the next game action from a list using the current environment, game rules, and previous player actions.               |
+| [`failure-kind`](failure-kind/README.md)                 | `failureKind`         | You need to assign an observed failure to one of your supplied categories.                                                                |
+| [`game-action`](game-action/README.md)                   | `gameAction`          | Your game already supplies JSON state and actions, and you want Jev to choose an action without formatting descriptions or assigning IDs. |
+| [`handoff`](handoff/README.md)                           | `handoff`             | You need to decide whether your escalation rules call for a human.                                                                        |
+| [`instruction-conflict`](instruction-conflict/README.md) | `instructionConflict` | You need to detect conflicting instructions before carrying out a task.                                                                   |
+| [`instruction-fit`](instruction-fit/README.md)           | `instructionFit`      | You need to check whether an instruction applies to the current task and context.                                                         |
+| [`repeated-attempt`](repeated-attempt/README.md)         | `repeatedAttempt`     | You need to detect whether a proposed retry repeats an earlier approach.                                                                  |
+| [`result-outcome`](result-outcome/README.md)             | `resultOutcome`       | You need to classify what a tool result reports happened during a task.                                                                   |
+| [`result-usefulness`](result-usefulness/README.md)       | `resultUsefulness`    | You need to assess whether a tool result provides useful information for a task.                                                          |
+| [`route`](route/README.md)                               | `route`               | You need to send a request to the right handler, team, or department.                                                                     |
+| [`step-complete`](step-complete/README.md)               | `stepComplete`        | You need to check whether supplied evidence establishes a completion condition.                                                           |
+| [`step-progress`](step-progress/README.md)               | `stepProgress`        | You need to compare a new observation with the previous state of a task.                                                                  |
+| [`take-turn`](take-turn/README.md)                       | `takeTurn`            | You need to decide whether it is a player's turn to act or react using narrative game rules, state, and previous actions.                 |
+| [`task-dependency`](task-dependency/README.md)           | `taskDependency`      | You need to decide whether two tasks can run in parallel or require a particular order.                                                   |
+| [`task-duplicate`](task-duplicate/README.md)             | `taskDuplicate`       | You need to detect duplicate tasks before adding more work to a queue or plan.                                                            |
+| [`tool-fit`](tool-fit/README.md)                         | `toolFit`             | You need to check whether a tool has the stated capability to perform a task.                                                             |
 
 ## Customer support
 
@@ -152,16 +153,16 @@ Search with `npx jev-recipes list psychology`. For research, validate labels aga
 - Pass `{ client, model, signal }` as an optional second argument to any recipe. The default client reads `TYPESAFE_API_KEY` from the process environment.
 - Recipes that accept `minConfidence` default it to `0.8`. Rerank uses `minRelevance`, defaulting to `0.5`. Each guide explains which outcomes require review and how individual checks affect the overall decision.
 - `ready` describes confidence in the assessment. Inspect the verdict too: a ready result can describe a conflict, missing information, or an unsuitable candidate.
-- Candidate selectors return `selection` only for a ready match. `suggestedSelection` preserves a low-confidence suggestion. Candidate probabilities use your supplied IDs; no candidate match and ambiguity are separate outcomes.
+- Recipes using the candidate-selection helper return `selection` only for a ready match. `suggestedSelection` preserves a low-confidence suggestion. Candidate probabilities use your supplied IDs; no candidate match and ambiguity are separate outcomes. [game-action](game-action/README.md) returns the original selected JSON action and Jev's confidence directly, with probabilities keyed by internal labels.
 - Item checks preserve each item's ID, verdict, confidence, and status. The coverage and tone recipes also provide `allAnswered`, `allPreserved`, or `allPassed` as appropriate.
-- Model and token usage accompany every result. Inputs and model responses are validated with Zod 4. Invalid input, malformed answers, and provider failures throw.
+- Model and token usage accompany model-backed results. An empty `game-action` action list returns `null` without a model call. Inputs and model responses are validated with Zod 4. Invalid input, malformed answers, and provider failures throw.
 - Shared `{ id, text }` lists accept 1 to 50 items with unique non-empty IDs. Route accepts up to 254 routes; rerank and verify accept up to 100 items. Each guide documents its input limits. Provider context limits may require smaller inputs; content is not silently truncated.
 
 ## Reuse and side effects
 
 Recipes share small helpers for choices, candidate selection, and item checks. Rerank uses independent yes/no relevance scores. Each recipe owns its question and decision rules. `citation-match` composes the public `verify` function; its guide and catalog `uses` field name that dependency.
 
-Each current recipe makes one logical Jev request per live invocation. Batch checks place their questions in that request. SDK retries can add transport attempts. The recipes return decisions without executing application actions. Applications compose recipes and decide which calls are needed.
+A model-backed invocation makes one logical Jev request. Batch checks place their questions in that request. SDK retries can add transport attempts. The recipes return decisions without executing application actions. Applications compose recipes and decide which calls are needed.
 
 ## Examples and limits
 

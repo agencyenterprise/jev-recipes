@@ -11,7 +11,7 @@
 
 <!-- BEGIN GENERATED: summary -->
 
-87 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
+88 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
 
 <!-- END GENERATED: summary -->
 
@@ -138,7 +138,7 @@ npx jev-recipes demo answerability
 
 [Browse the complete catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md). Each guide includes an import, input reference, result behavior, limitations, and related recipes.
 
-For games, start with [checkers-move](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/checkers-move/README.md) for a board, player, and legal moves, or see how to [combine turn eligibility and action selection](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/choose-action/README.md#check-turn-eligibility). The [checkers example](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/checkers/README.md) shows how to run the visual demo locally.
+For games, use [game-action](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/game-action/README.md) with your existing JSON state and actions. It returns the original selected action, preserving your game IDs. [checkers-move](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/checkers-move/README.md) accepts a structured checkers board and legal moves; the [checkers example](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/checkers/README.md) shows how to run its visual demo locally.
 
 For psychology, browse [Psychology & behavior](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#psychology--behavior) for gain/loss framing, causal explanations, stated motivation, and related wording annotations. Search with `npx jev-recipes list psychology`.
 

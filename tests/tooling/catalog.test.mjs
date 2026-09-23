@@ -53,6 +53,8 @@ test('search finds task wording and supports category and limit without truncati
   assert.ok(gameplay.includes('take-turn'));
   assert.ok(gameplay.includes('choose-action'));
   assert.ok(gameplay.includes('checkers-move'));
+  assert.ok(gameplay.includes('game-action'));
+  assert.equal(listRecipes({ query: 'agnostic', limit: 1 })[0].id, 'game-action');
   assert.equal(listRecipes({ query: 'missing access', limit: 1 })[0].id, 'response-refusal');
   assert.equal(listRecipes({ query: 'hedging', limit: 1 })[0].id, 'uncertainty-expression');
   assert.equal(listRecipes({ query: 'being tested', limit: 1 })[0].id, 'evaluation-mention');

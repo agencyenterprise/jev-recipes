@@ -391,6 +391,12 @@ export type {
   FrustrationSignalResult,
   FrustrationSignalVerdict,
 } from '../recipes/frustration-signal/index.js';
+export {
+  gameAction,
+  gameActionInputSchema,
+  gameActionResultSchema,
+} from '../recipes/game-action/index.js';
+export type { GameActionInput, GameActionResult } from '../recipes/game-action/index.js';
 export { handoff, handoffInputSchema, handoffResultSchema } from '../recipes/handoff/index.js';
 export type {
   HandoffInput,
