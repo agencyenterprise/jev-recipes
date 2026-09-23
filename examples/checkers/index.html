@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jev plays checkers</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Two AIs. One recipe.</h1>
+        <p>Press Play. Watch two AIs play a full game of checkers.</p>
+      </header>
+      <div class="players" aria-hidden="true">
+        <span id="red-player"><i class="red-dot"></i>Jev / Red</span>
+        <span id="black-player">Jev / Black<i class="black-dot"></i></span>
+      </div>
+      <div class="board-frame">
+        <div id="board" role="img" aria-label="Checkers board loading"></div>
+      </div>
+      <div class="result" aria-live="polite" aria-atomic="true">
+        <p id="status">Loading the board…</p>
+        <p id="detail">&nbsp;</p>
+      </div>
+      <button id="play" type="button" disabled>Play</button>
+      <footer><code>checkersMove({ board, player, legalMoves })</code></footer>
+    </main>
+  </body>
+</html>

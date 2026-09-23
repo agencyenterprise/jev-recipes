@@ -1,6 +1,6 @@
 # Growing the recipe catalog
 
-Original review snapshot: September 22, 2026. That review found `jev-recipes@0.3.0` in the npm registry with 66 recipes. Two batches added six each; the gameplay pair below brings the source catalog to 80. The version above records the original review, not the current registry state. Recipe folders remain the source of truth; the [generated catalog](recipes/README.md) shows the current inventory.
+Original review snapshot: September 22, 2026. That review found `jev-recipes@0.3.0` in the npm registry with 66 recipes. Two batches added six each; the gameplay pair and checkers decision below bring the source catalog to 81. The version above records the original review, not the current registry state. Recipe folders remain the source of truth; the [generated catalog](recipes/README.md) shows the current inventory.
 
 ## What the review found
 
@@ -58,6 +58,12 @@ The [gameplay guide](docs/gameplay.md) provides a concrete integration for the n
 | `choose-action` | Which supplied, eligible action best serves the player's objective in this state? | `tool-fit` checks one capability; candidate-selection helpers handle mechanics but do not supply game eligibility and strategy criteria.                   |
 
 This pair takes the source catalog from 78 to 80. Both remain in the existing workflow category with gameplay tags. They make no game actions, add no runtime dependencies, and can be used independently. Turn and legal-move checks remain in ordinary code when the game already provides them.
+
+## Checkers decision: 80 to 81
+
+`checkers-move` accepts a structured board, acting player, and complete legal moves for 8x8 American/English checkers. Its nearest alternative is `choose-action`. The addition supplies a concrete board contract, piece and move translation, local material counts and promotion labels, and game-specific decision criteria. Callers do not author rules or move descriptions.
+
+This is a decision adapter, not a game engine. The existing game supplies legality, turn progression, and execution. The recipe uses one logical request and adds no runtime dependencies. Offline checks cover mapping, input validation, review handling, and packaging. A live A/B comparison with generic `choose-action` remains proposed: use identical positions and candidate moves, record latency and review rate, and assess move quality with an independent reference. No playing-strength or speed claim follows from the mocked tests.
 
 ## Adoption experiments
 

@@ -67,6 +67,7 @@ This saved response illustrates behavior; it is not a model accuracy measurement
 
 Related recipes:
 
+- [`checkers-move`](../checkers-move/README.md): Use checkers-move for a structured American/English checkers board and legal moves, with built-in rules and move descriptions.
 - [`take-turn`](../take-turn/README.md): Use take-turn to assess whether the player has an opportunity to act now before selecting an action.
 - [`tool-fit`](../tool-fit/README.md): Use tool-fit to check one tool's capability for a task; it does not compare game actions under a goal and game rules.
 - [`step-progress`](../step-progress/README.md): Use step-progress to assess an observed outcome after a move; this recipe recommends a candidate before execution.

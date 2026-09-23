@@ -1,0 +1,58 @@
+{
+  "input": {
+    "board": [
+      {
+        "square": "c3",
+        "player": "red"
+      },
+      {
+        "square": "b4",
+        "player": "black"
+      },
+      {
+        "square": "d4",
+        "player": "black"
+      },
+      {
+        "square": "f6",
+        "player": "black",
+        "king": true
+      }
+    ],
+    "player": "red",
+    "legalMoves": [
+      {
+        "id": "capture-left",
+        "from": "c3",
+        "path": ["a5"],
+        "captures": ["b4"]
+      },
+      {
+        "id": "capture-right",
+        "from": "c3",
+        "path": ["e5", "g7"],
+        "captures": ["d4", "f6"]
+      }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_1",
+        "confidence": 0.94,
+        "probabilities": {
+          "candidate_0": 0.02,
+          "candidate_1": 0.94,
+          "none": 0.02,
+          "ambiguous": 0.02
+        }
+      }
+    }
+  }
+}
