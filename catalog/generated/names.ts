@@ -38,6 +38,7 @@ export const recipeNames = [
   'followup-link',
   'freshness-needed',
   'frustration-signal',
+  'game-action',
   'handoff',
   'incident-match',
   'instruction-conflict',

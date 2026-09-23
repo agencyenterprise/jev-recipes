@@ -115,7 +115,7 @@ These are intended policy examples, not measured gameplay results.
 
 ## Reuse
 
-Use [choose-action](../choose-action/README.md) to recommend a move after checking eligibility. Use [step-complete](../step-complete/README.md) to inspect evidence that a turn has already been completed. See the [gameplay guide](../../docs/gameplay.md) for composing decisions.
+Use [choose-action](../choose-action/README.md#check-turn-eligibility) to recommend a move after checking eligibility; its guide shows how to combine the calls. Use [step-complete](../step-complete/README.md) to inspect evidence that a turn has already been completed.
 
 Uses the shared choice helper and makes one logical Jev request. It does not invoke another recipe or perform game actions.
 

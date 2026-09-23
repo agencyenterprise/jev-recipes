@@ -1,0 +1,24 @@
+{
+  "input": {
+    "gameState": { "actionsRemaining": 1, "opponentScore": 9 },
+    "playerState": { "id": "blue", "score": 8, "energy": 1 },
+    "legalActions": [
+      { "id": "collect-points", "command": "collect", "energyCost": 1, "points": 2 },
+      { "command": "rest", "energyGain": 1, "points": 0 }
+    ],
+    "rules": "The game ends after this action. Highest score wins; unused energy has no value.",
+    "objective": "Finish with more points than the opponent."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "action_0",
+        "confidence": 0.9,
+        "probabilities": { "action_0": 0.95, "action_1": 0.05 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -192,6 +192,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.frustrationSignal(recipe.frustrationSignalInputSchema.parse(input), options),
     ),
+  'game-action': () =>
+    import('../../recipes/game-action/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.gameAction(recipe.gameActionInputSchema.parse(input), options),
+    ),
   handoff: () =>
     import('../../recipes/handoff/index.js').then(
       (recipe) => (input, options) =>

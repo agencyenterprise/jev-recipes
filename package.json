@@ -176,6 +176,10 @@
       "types": "./dist/recipes/frustration-signal/index.d.ts",
       "import": "./dist/recipes/frustration-signal/index.js"
     },
+    "./game-action": {
+      "types": "./dist/recipes/game-action/index.d.ts",
+      "import": "./dist/recipes/game-action/index.js"
+    },
     "./handoff": {
       "types": "./dist/recipes/handoff/index.d.ts",
       "import": "./dist/recipes/handoff/index.js"
@@ -388,7 +392,6 @@
     "dist/cli/*.d.ts",
     "dist/recipes/*/demo.json",
     "README.md",
-    "CHANGELOG.md",
     "LICENSE"
   ],
   "scripts": {

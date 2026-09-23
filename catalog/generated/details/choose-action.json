@@ -21,14 +21,13 @@
       },
       "actions": {
         "minItems": 1,
-        "maxItems": 50,
         "type": "array",
         "items": {
           "type": "object",
           "properties": { "id": { "type": "string" }, "text": { "type": "string" } },
           "required": ["id", "text"]
         },
-        "description": "One to fifty candidate actions with unique IDs and concrete action descriptions."
+        "description": "One or more candidate actions with unique IDs and concrete action descriptions."
       },
       "history": {
         "maxItems": 100,

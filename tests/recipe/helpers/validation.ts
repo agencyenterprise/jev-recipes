@@ -7,7 +7,7 @@ export function testInputValidation<Input extends Record<string, unknown>, Resul
   run: (input: Input, options?: RecipeOptions) => Promise<Result>,
   input: Input,
   optionalFields: readonly string[] = [],
-  itemLimit = 50,
+  itemLimit: number | null = 50,
   confidenceField = 'minConfidence',
 ) {
   describe('input validation', () => {
@@ -37,18 +37,21 @@ export function testInputValidation<Input extends Record<string, unknown>, Resul
       }
 
       if (Array.isArray(value)) {
-        it.each([
+        const invalidItems: [string, unknown[]][] = [
           ['empty', []],
           ['duplicate IDs', [value[0], value[0]]],
-          [
+          ['blank item ID', [{ ...value[0], id: ' ' }]],
+        ];
+        if (itemLimit !== null) {
+          invalidItems.push([
             'too many items',
             Array.from({ length: itemLimit + 1 }, (_, index) => ({
               ...value[0],
               id: String(index),
             })),
-          ],
-          ['blank item ID', [{ ...value[0], id: ' ' }]],
-        ])('rejects ' + field + ' with %s', async (_, items) => {
+          ]);
+        }
+        it.each(invalidItems)('rejects ' + field + ' with %s', async (_, items) => {
           const client = createJevClient();
           await expect(run({ ...input, [field]: items }, { client })).rejects.toBeInstanceOf(
             ZodError,

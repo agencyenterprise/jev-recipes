@@ -3,7 +3,7 @@ import {
   nonEmptyText,
   probability,
   selectionResultSchema,
-  textItemsSchema,
+  textItemSchema,
 } from '../../src/schema.js';
 
 export const chooseActionInputSchema = z.object({
@@ -17,9 +17,14 @@ export const chooseActionInputSchema = z.object({
   environment: nonEmptyText.describe(
     'The current game snapshot available to the player, after the supplied history.',
   ),
-  actions: textItemsSchema.describe(
-    'One to fifty candidate actions with unique IDs and concrete action descriptions.',
-  ),
+  actions: z
+    .array(textItemSchema)
+    .min(1)
+    .refine(
+      (actions) => new Set(actions.map((action) => action.id)).size === actions.length,
+      'Action IDs must be unique.',
+    )
+    .describe('One or more candidate actions with unique IDs and concrete action descriptions.'),
   history: z
     .array(
       z.object({

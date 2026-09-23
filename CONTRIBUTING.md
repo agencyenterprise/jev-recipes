@@ -2,7 +2,7 @@
 
 Keep each recipe focused on one bounded decision. Prefer a direct function and the existing shared helpers. Applications compose recipes in their own code.
 
-The [recipe roadmap](RECIPE_ROADMAP.md) records the current gap review and adoption experiments. Before adding a recipe, identify its nearest existing alternative and explain the distinct decision. The [AI alignment research guide](docs/ai-alignment-research.md) separates behavioral annotation from claims that require an experiment.
+The goal is 1,000 useful, distinct recipes. Before adding one, name its target user, bounded question, minimal input, output, and nearest existing alternative. Explain what new decision it provides. Avoid aliases, domain substitutions, deterministic checks better handled in code, and decisions already covered by composition. Add small reviewed batches based on actual use and missing decisions, rather than category quotas.
 
 ## Everyday commands
 
@@ -45,7 +45,7 @@ Tests remain outside recipe folders. Production builds exclude tests, and packag
 4. Complete `metadata.ts`, `demo.json`, and the author-maintained parts of `README.md`.
 5. Add tests for the actual decision rules, confidence boundaries, invalid inputs, and malformed responses. Use the existing helpers where appropriate. Starter tests are not a complete contribution test suite.
 6. Run `make docs`. Exports, catalog registration, schema descriptions, reference tables, and counts are generated automatically.
-7. Run `make ci`, inspect the changes, and update the changelog.
+7. Run `make ci` and inspect the changes.
 
 Do not hand-edit `src/index.ts`, `catalog/generated/`, the exports map in `package.json`, or documentation between generated markers. Generation is deterministic. Running it again without source changes produces no diff.
 
@@ -79,10 +79,38 @@ Accept `RecipeOptions` for an injected client, model, or abort signal. Validate 
 
 The catalog loads metadata only. `describeRecipe` reads one generated schema description synchronously. The CLI loads a selected execution module only for `run` or `demo`. Root imports remain compatible and export every recipe; direct imports are the lean execution path.
 
-## Tests, demos, and publishing
+## Documentation
+
+Keep each fact in one place: setup in the root README, contributor workflows here, decision behavior in the recipe guide, and example setup beside the example. Generate inventories, input tables, and usage examples from recipe source. Keep authored text for unique behavior and decision boundaries. Track future work in issues or discussions rather than adding separate planning or progress documents.
+
+## Tests and demos
 
 Recipe tests use mocked Jev responses. Generation validates and runs hand-authored demo responses with an injected fixture client. Neither measures live model accuracy. Tests must not load `.env` or use API quota. Live API calls require a separate explicit request.
 
-`make pack-check` creates a real archive, rejects development files, and installs it in a temporary consumer. It checks every recipe import, root exports, declarations, schemas, and offline CLI commands. Runtime dependencies are packed from the existing installation so this check works without registry access. See [RELEASING.md](RELEASING.md).
+Each recipe's test file owns its inputs and expected results, independently of packaged demo fixtures. Reuse [shared test helpers](tests/recipe/helpers/) for contracts; add focused cases for behavior specific to a recipe. Cover invalid inputs, malformed responses, provider errors, confidence boundaries, and caller ID mapping where relevant. Avoid reproducing the implementation inside a test helper.
+
+Use `npm run test:watch` while editing or `npm run test:coverage` for coverage reports. [vitest.config.ts](vitest.config.ts) owns the coverage scope and per-file thresholds; the HTML report is written to `coverage/index.html`. Separate tooling tests cover generation, discovery, import boundaries, CLI commands, packaging, and a synthetic 1,000-entry catalog. For research evaluation on real inputs, follow the [evaluator validation guide](docs/ai-alignment-research.md).
 
 Do not commit API keys, private inputs, generated `dist/`, coverage, archives, or `node_modules`. Commit generated source and documentation so reviewers can inspect them and CI can detect drift.
+
+## Releasing
+
+Publishing is manual. The [`files` allowlist](package.json) and [archive checks](scripts/lib/package.mjs) define what ships. `make pack-check` installs the actual archive in a separate project and verifies every recipe import, root export, declaration, schema, and offline CLI command. It reports archive size and rejects development files, tests, and examples. Detailed recipe guides remain on GitHub.
+
+The package check packs installed runtime dependencies for offline installation. When adding transitive dependencies, extend [the offline consumer setup](scripts/pack-check.mjs) to supply their archives too.
+
+1. Review the release diff, including any breaking changes. Run `make setup`, `make docs`, `npm run format`, and `make ci`; commit the reviewed changes.
+2. From the intended clean checkout, choose an unused version with `npm version patch`, `npm version minor`, or `npm version major`. Let CI pass for that version.
+3. Verify the npm account, inspect the dry run, and publish from the checked repository directory:
+
+   ```sh
+   npm login
+   npm whoami
+   npm publish --dry-run
+   npm publish
+   npm view jev-recipes version
+   ```
+
+4. After publishing succeeds, push the version commit and tag, then create a GitHub release.
+
+`prepublishOnly` runs full CI; `prepack` checks generated files and builds. Publishing a previously packed archive does not rerun the checkout's checks. These hooks use npm directly; Make is optional.
