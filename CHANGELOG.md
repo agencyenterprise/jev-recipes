@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add `checkers-move`: supply a structured board, player, and legal moves to receive a move ID in one logical Jev request. Includes American/English checkers instructions, board translation, input checks, and offline tests, bringing the source catalog to 81 recipes. No new runtime dependencies; live speed and playing strength remain unmeasured.
+
 - Add `take-turn` and `choose-action` for narrative turn eligibility and game action recommendations, with optional ordered player history, offline tests, and a gameplay composition guide. The source catalog now contains 80 recipes.
 - Clarify that `.mjs` is a standalone Node quickstart option; existing JavaScript ES module and TypeScript projects can use their normal file types and start commands.
 

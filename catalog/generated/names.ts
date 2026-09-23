@@ -14,6 +14,7 @@ export const recipeNames = [
   'cancellation-check',
   'certainty-match',
   'change-meaning',
+  'checkers-move',
   'choose-action',
   'citation-match',
   'citation-needed',

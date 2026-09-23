@@ -4,7 +4,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 
 <!-- BEGIN GENERATED: catalog -->
 
-80 recipes. Each guide includes a working call, input reference, result behavior, and nearby alternatives.
+81 recipes. Each guide includes a working call, input reference, result behavior, and nearby alternatives.
 
 ## Answer quality
 
@@ -64,25 +64,26 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 
 ## Tools and tasks
 
-| Recipe                                                   | Function              | Use when                                                                                                                    |
-| -------------------------------------------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| [`action-scope`](action-scope/README.md)                 | `actionScope`         | You need to check whether a proposed action stays within the requested work and constraints.                                |
-| [`argument-fit`](argument-fit/README.md)                 | `argumentFit`         | You need to check whether a proposed argument value matches the user request.                                               |
-| [`choose-action`](choose-action/README.md)               | `chooseAction`        | You need to choose the next game action from a list using the current environment, game rules, and previous player actions. |
-| [`failure-kind`](failure-kind/README.md)                 | `failureKind`         | You need to assign an observed failure to one of your supplied categories.                                                  |
-| [`handoff`](handoff/README.md)                           | `handoff`             | You need to decide whether your escalation rules call for a human.                                                          |
-| [`instruction-conflict`](instruction-conflict/README.md) | `instructionConflict` | You need to detect conflicting instructions before carrying out a task.                                                     |
-| [`instruction-fit`](instruction-fit/README.md)           | `instructionFit`      | You need to check whether an instruction applies to the current task and context.                                           |
-| [`repeated-attempt`](repeated-attempt/README.md)         | `repeatedAttempt`     | You need to detect whether a proposed retry repeats an earlier approach.                                                    |
-| [`result-outcome`](result-outcome/README.md)             | `resultOutcome`       | You need to classify what a tool result reports happened during a task.                                                     |
-| [`result-usefulness`](result-usefulness/README.md)       | `resultUsefulness`    | You need to assess whether a tool result provides useful information for a task.                                            |
-| [`route`](route/README.md)                               | `route`               | You need to send a request to the right handler, team, or department.                                                       |
-| [`step-complete`](step-complete/README.md)               | `stepComplete`        | You need to check whether supplied evidence establishes a completion condition.                                             |
-| [`step-progress`](step-progress/README.md)               | `stepProgress`        | You need to compare a new observation with the previous state of a task.                                                    |
-| [`take-turn`](take-turn/README.md)                       | `takeTurn`            | You need to decide whether it is a player's turn to act or react using narrative game rules, state, and previous actions.   |
-| [`task-dependency`](task-dependency/README.md)           | `taskDependency`      | You need to decide whether two tasks can run in parallel or require a particular order.                                     |
-| [`task-duplicate`](task-duplicate/README.md)             | `taskDuplicate`       | You need to detect duplicate tasks before adding more work to a queue or plan.                                              |
-| [`tool-fit`](tool-fit/README.md)                         | `toolFit`             | You need to check whether a tool has the stated capability to perform a task.                                               |
+| Recipe                                                   | Function              | Use when                                                                                                                                |
+| -------------------------------------------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| [`action-scope`](action-scope/README.md)                 | `actionScope`         | You need to check whether a proposed action stays within the requested work and constraints.                                            |
+| [`argument-fit`](argument-fit/README.md)                 | `argumentFit`         | You need to check whether a proposed argument value matches the user request.                                                           |
+| [`checkers-move`](checkers-move/README.md)               | `checkersMove`        | Your checkers game already provides its board, acting player, and legal moves, and you want a move ID without writing decision prompts. |
+| [`choose-action`](choose-action/README.md)               | `chooseAction`        | You need to choose the next game action from a list using the current environment, game rules, and previous player actions.             |
+| [`failure-kind`](failure-kind/README.md)                 | `failureKind`         | You need to assign an observed failure to one of your supplied categories.                                                              |
+| [`handoff`](handoff/README.md)                           | `handoff`             | You need to decide whether your escalation rules call for a human.                                                                      |
+| [`instruction-conflict`](instruction-conflict/README.md) | `instructionConflict` | You need to detect conflicting instructions before carrying out a task.                                                                 |
+| [`instruction-fit`](instruction-fit/README.md)           | `instructionFit`      | You need to check whether an instruction applies to the current task and context.                                                       |
+| [`repeated-attempt`](repeated-attempt/README.md)         | `repeatedAttempt`     | You need to detect whether a proposed retry repeats an earlier approach.                                                                |
+| [`result-outcome`](result-outcome/README.md)             | `resultOutcome`       | You need to classify what a tool result reports happened during a task.                                                                 |
+| [`result-usefulness`](result-usefulness/README.md)       | `resultUsefulness`    | You need to assess whether a tool result provides useful information for a task.                                                        |
+| [`route`](route/README.md)                               | `route`               | You need to send a request to the right handler, team, or department.                                                                   |
+| [`step-complete`](step-complete/README.md)               | `stepComplete`        | You need to check whether supplied evidence establishes a completion condition.                                                         |
+| [`step-progress`](step-progress/README.md)               | `stepProgress`        | You need to compare a new observation with the previous state of a task.                                                                |
+| [`take-turn`](take-turn/README.md)                       | `takeTurn`            | You need to decide whether it is a player's turn to act or react using narrative game rules, state, and previous actions.               |
+| [`task-dependency`](task-dependency/README.md)           | `taskDependency`      | You need to decide whether two tasks can run in parallel or require a particular order.                                                 |
+| [`task-duplicate`](task-duplicate/README.md)             | `taskDuplicate`       | You need to detect duplicate tasks before adding more work to a queue or plan.                                                          |
+| [`tool-fit`](tool-fit/README.md)                         | `toolFit`             | You need to check whether a tool has the stated capability to perform a task.                                                           |
 
 ## Customer support
 

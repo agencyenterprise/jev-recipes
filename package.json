@@ -80,6 +80,10 @@
       "types": "./dist/recipes/change-meaning/index.d.ts",
       "import": "./dist/recipes/change-meaning/index.js"
     },
+    "./checkers-move": {
+      "types": "./dist/recipes/checkers-move/index.d.ts",
+      "import": "./dist/recipes/checkers-move/index.js"
+    },
     "./choose-action": {
       "types": "./dist/recipes/choose-action/index.d.ts",
       "import": "./dist/recipes/choose-action/index.js"

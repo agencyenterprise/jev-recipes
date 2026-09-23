@@ -20,6 +20,11 @@ export const metadata = {
     'You need to choose the next game action from a list using the current environment, game rules, and previous player actions.',
   related: [
     {
+      id: 'checkers-move',
+      reason:
+        'Use checkers-move for a structured American/English checkers board and legal moves, with built-in rules and move descriptions.',
+    },
+    {
       id: 'take-turn',
       reason:
         'Use take-turn to assess whether the player has an opportunity to act now before selecting an action.',

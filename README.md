@@ -11,13 +11,17 @@
 
 <!-- BEGIN GENERATED: summary -->
 
-80 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
+81 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
 
 <!-- END GENERATED: summary -->
 
 Each recipe accepts your data, calls [Jev through TypeSafe's API](https://docs.typesafe.ai/introduction), and returns a structured decision. Use it in a Node.js backend, a script, or a research evaluation. Your application decides what happens next.
 
 For example, give `route` a support message and descriptions of your teams. It returns a team such as `billing`, or a review outcome when the choice is uncertain.
+
+## Watch Jev play checkers against Jev using the checkers-move recipe
+
+https://github.com/user-attachments/assets/4ac10e7b-b57c-4d73-a2fe-fee90cd1e58d
 
 ## Use a recipe
 
@@ -113,15 +117,16 @@ The TypeSafe SDK handles API calls and typed answers. Recipes add the instructio
 
 ## Find your recipe
 
-| Your task                                      | Start with                                                                                                   |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Send a request to the right team               | [`route`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/route/README.md)                 |
-| Find useful passages                           | [`rerank`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/rerank/README.md)               |
-| Check whether the evidence is enough to answer | [`answerability`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/answerability/README.md) |
-| Check claims against supplied evidence         | [`verify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/verify/README.md)               |
-| Find missing or ambiguous requirements         | [`clarify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/clarify/README.md)             |
-| Label a response's stance toward a claim       | [`claim-stance`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/claim-stance/README.md)   |
-| Choose a move from available game actions      | [`choose-action`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/choose-action/README.md) |
+| Your task                                              | Start with                                                                                                   |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| Send a request to the right team                       | [`route`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/route/README.md)                 |
+| Find useful passages                                   | [`rerank`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/rerank/README.md)               |
+| Check whether the evidence is enough to answer         | [`answerability`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/answerability/README.md) |
+| Check claims against supplied evidence                 | [`verify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/verify/README.md)               |
+| Find missing or ambiguous requirements                 | [`clarify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/clarify/README.md)             |
+| Label a response's stance toward a claim               | [`claim-stance`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/claim-stance/README.md)   |
+| Choose a move from available game actions              | [`choose-action`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/choose-action/README.md) |
+| Choose a checkers move from your board and legal moves | [`checkers-move`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/checkers-move/README.md) |
 
 Search, inspect inputs, and try saved results without a key:
 
@@ -133,7 +138,7 @@ npx jev-recipes demo answerability
 
 [Browse the complete catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md). Each guide includes an import, input reference, result behavior, limitations, and related recipes.
 
-For games, the [gameplay guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/gameplay.md) shows how to combine turn eligibility with action selection using rules, current state, and player history.
+For games, the [gameplay guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/gameplay.md) starts with a checkers decision using just the board, player, and legal moves. It also covers general action selection and narrative turn eligibility.
 
 <a id="run-your-own-input-from-the-terminal"></a>
 

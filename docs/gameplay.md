@@ -1,15 +1,53 @@
 # Gameplay decisions
 
-Use two independent decisions: **can this player act now?** and **which supplied action should they choose?** Your game owns the rules, state, legal moves, and execution.
+Give the recipe a game situation and available moves; read back a recommended move ID. Your game owns state, legal moves, turns, and execution.
 
 | Recipe                                                | Give it                                                                | Read back                                                        |
 | ----------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [`checkers-move`](../recipes/checkers-move/README.md) | Checkers board, acting player, and complete legal moves.               | A selected move ID or a review outcome.                          |
 | [`take-turn`](../recipes/take-turn/README.md)         | Player, rules, current environment, optional action history.           | `act`, `wait`, `inactive`, or `unclear`, plus review status.     |
 | [`choose-action`](../recipes/choose-action/README.md) | The same context, an objective, and actions with IDs and descriptions. | A selected action ID, no fitting action, or an ambiguous choice. |
 
 `take-turn` means assessing the current opportunity to act. It does not execute a turn or check whether a turn was already completed. For that retrospective question, use [`step-complete`](../recipes/step-complete/README.md) with an explicit completion condition and recorded evidence.
 
 If your engine can compute whose turn it is or which moves are legal, use those answers directly. The turn recipe is for narrative rules, reaction windows, and game states that need text interpretation. You can call `choose-action` by itself after the engine establishes eligibility.
+
+## A checkers decision in one call
+
+For 8x8 American/English checkers, supply just the board, player, and legal moves. The recipe provides the decision instructions and describes the position for Jev. Use this in your app with `TYPESAFE_API_KEY` set; see the [quickstart](../README.md#use-a-recipe) for setup.
+
+```js
+import { checkersMove } from 'jev-recipes/checkers-move';
+
+const legalMoves = [
+  { id: 'capture-left', from: 'c3', path: ['a5'], captures: ['b4'] },
+  { id: 'capture-right', from: 'c3', path: ['e5', 'g7'], captures: ['d4', 'f6'] },
+];
+
+const result = await checkersMove({
+  board: [
+    { square: 'c3', player: 'red' },
+    { square: 'b4', player: 'black' },
+    { square: 'd4', player: 'black' },
+    { square: 'f6', player: 'black', king: true },
+  ],
+  player: 'red',
+  legalMoves,
+});
+
+if (result.status === 'ready' && result.selection !== null) {
+  const move = legalMoves.find((candidate) => candidate.id === result.selection);
+  console.log('Recommended move:', move);
+} else {
+  console.log('No committed move:', result.status, result.verdict);
+}
+```
+
+Squares use a fixed orientation: `a1` is bottom left, red men move toward rank 8, and black men move toward rank 1. List every remaining piece; omitted squares are empty. Each move's `path` includes all landing squares, with corresponding `captures` in order. See the [board diagram and complete format](../recipes/checkers-move/README.md#board-and-player) when adapting your game's state.
+
+The saved fixture selects `capture-right`; this illustrates the result, not measured model performance. The recipe checks the input format and references, counts pieces in code, and makes one logical Jev request. It does not search future positions or generate legal moves. Skip the call when the game has ended or no move is available; with only one legal move, the game can use that move directly.
+
+Before executing a recommendation, verify that the board and turn are unchanged and the move remains legal. Use the shared `signal` option to cancel obsolete requests. Live latency and playing strength have not been measured; one logical request can still involve SDK retries. For other checkers variants or custom objectives, use `choose-action`.
 
 ## A challenge interrupts a normal turn
 
@@ -75,6 +113,7 @@ These recipes are part of the current source batch. From this checkout:
 make build
 node dist/cli/index.js demo take-turn
 node dist/cli/index.js demo choose-action
+node dist/cli/index.js demo checkers-move
 ```
 
-After installing a release that includes them, the equivalent commands are `npx jev-recipes demo take-turn` and `npx jev-recipes demo choose-action`. Demos use saved fixtures and make no model calls. Tests check schemas, result mapping, history preservation, confidence boundaries, and packaging. They do not measure playing strength, optimality, or the accuracy of rule interpretation.
+After installing a release that includes the selected recipe, run `npx jev-recipes demo <recipe-id>`, for example `npx jev-recipes demo checkers-move`. Demos use saved fixtures and make no model calls. Tests check schemas, board translation, result mapping, history preservation, confidence boundaries, and packaging. They do not measure playing strength, optimality, or the accuracy of rule interpretation.

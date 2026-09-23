@@ -164,6 +164,12 @@ export type {
   ChangeMeaningVerdict,
 } from '../recipes/change-meaning/index.js';
 export {
+  checkersMove,
+  checkersMoveInputSchema,
+  checkersMoveResultSchema,
+} from '../recipes/checkers-move/index.js';
+export type { CheckersMoveInput, CheckersMoveResult } from '../recipes/checkers-move/index.js';
+export {
   chooseAction,
   chooseActionInputSchema,
   chooseActionResultSchema,

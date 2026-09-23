@@ -72,6 +72,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.changeMeaning(recipe.changeMeaningInputSchema.parse(input), options),
     ),
+  'checkers-move': () =>
+    import('../../recipes/checkers-move/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.checkersMove(recipe.checkersMoveInputSchema.parse(input), options),
+    ),
   'choose-action': () =>
     import('../../recipes/choose-action/index.js').then(
       (recipe) => (input, options) =>
