@@ -9,6 +9,7 @@ export function testSelection<Input extends Record<string, unknown>>(
   input: Input,
   candidateField: keyof Input & string,
   optionalFields: readonly string[] = [],
+  itemLimit: number | null = 50,
 ) {
   describe(run.name, () => {
     const candidates = input[candidateField] as TextItem[];
@@ -136,6 +137,6 @@ export function testSelection<Input extends Record<string, unknown>>(
       await expect(run(input, { client })).rejects.toBe(failure);
     });
 
-    testInputValidation(run, input, optionalFields);
+    testInputValidation(run, input, optionalFields, itemLimit);
   });
 }

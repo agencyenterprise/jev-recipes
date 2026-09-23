@@ -60,12 +60,11 @@ export const checkersMoveInputSchema = z
     legalMoves: z
       .array(move)
       .min(1)
-      .max(50)
       .refine(
         (moves) => new Set(moves.map((value) => value.id)).size === moves.length,
         'Move IDs must be unique.',
       )
-      .describe('One to fifty complete legal moves from your game, with unique IDs.'),
+      .describe('One or more complete legal moves from your game, with unique IDs.'),
     minConfidence: probability.optional(),
   })
   .superRefine((input, context) => {

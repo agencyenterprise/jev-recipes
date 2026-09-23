@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Remove the 50-candidate cap from `choose-action` and `checkers-move`. Both send the full supplied list in one logical request, subject to provider limits; empty lists and duplicate IDs remain invalid.
+
+- Consolidate release, testing, and recipe selection guidance into Contributing; move the gameplay composition example into the choose-action guide. Remove four redundant documents and shorten the research guide to evaluator validation.
+
 - Add `outcome-framing`, `causal-attribution`, and `motivation-source`, bringing the source catalog to 87 recipes. Each classifies expressed wording using one logical Jev request, with documented psychology concepts, decision boundaries, and offline tests. No new runtime dependencies.
 - Generate a Psychology & behavior catalog subsection from recipe metadata tags, including relevant existing recipes, and add topic search and documentation checks.
 

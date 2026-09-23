@@ -130,7 +130,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 
 ## Psychology & behavior
 
-Recipes for annotating expressed wording, explanations, and reasons. This collection spans the categories above; each recipe is counted once in the catalog. Membership comes from the `psychology` tag in recipe metadata.
+Recipes for annotating expressed wording, explanations, and reasons, gathered from the categories above.
 
 Search with `npx jev-recipes list psychology`. For research, validate labels against independent human annotations; see the [research guide](../docs/ai-alignment-research.md).
 

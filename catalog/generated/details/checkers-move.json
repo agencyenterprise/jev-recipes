@@ -33,7 +33,6 @@
       },
       "legalMoves": {
         "minItems": 1,
-        "maxItems": 50,
         "type": "array",
         "items": {
           "type": "object",
@@ -72,7 +71,7 @@
           "required": ["id", "from", "path"],
           "additionalProperties": false
         },
-        "description": "One to fifty complete legal moves from your game, with unique IDs."
+        "description": "One or more complete legal moves from your game, with unique IDs."
       },
       "minConfidence": { "type": "number", "minimum": 0, "maximum": 1 }
     },

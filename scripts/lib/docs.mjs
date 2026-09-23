@@ -44,7 +44,7 @@ export async function renderDocs(root, records) {
   if (psychology.length) {
     sections.push(
       '## Psychology & behavior\n\n' +
-        'Recipes for annotating expressed wording, explanations, and reasons. This collection spans the categories above; each recipe is counted once in the catalog. Membership comes from the `psychology` tag in recipe metadata.\n\n' +
+        'Recipes for annotating expressed wording, explanations, and reasons, gathered from the categories above.\n\n' +
         'Search with `npx jev-recipes list psychology`. For research, validate labels against independent human annotations; see the [research guide](../docs/ai-alignment-research.md).\n\n' +
         recipeTable(psychology),
     );

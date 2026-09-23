@@ -70,12 +70,12 @@ Related recipes:
 
 <!-- BEGIN GENERATED: input -->
 
-| Field           | Required | Shape                                                              |
-| --------------- | -------- | ------------------------------------------------------------------ |
-| `board`         | Yes      | { square, player, king }[]; at least 1 items; at most 24 items     |
-| `player`        | Yes      | `red`, `black`                                                     |
-| `legalMoves`    | Yes      | { id, from, path, captures }[]; at least 1 items; at most 50 items |
-| `minConfidence` | No       | number; minimum 0; maximum 1                                       |
+| Field           | Required | Shape                                                          |
+| --------------- | -------- | -------------------------------------------------------------- |
+| `board`         | Yes      | { square, player, king }[]; at least 1 items; at most 24 items |
+| `player`        | Yes      | `red`, `black`                                                 |
+| `legalMoves`    | Yes      | { id, from, path, captures }[]; at least 1 items               |
+| `minConfidence` | No       | number; minimum 0; maximum 1                                   |
 
 This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
 
@@ -114,7 +114,7 @@ Each move is `{ id, from, path, captures? }`:
 
 For example, `{ id: 'jump', from: 'c3', path: ['e5', 'g7'], captures: ['d4', 'f6'] }` means jump over d4 to e5, then over f6 to g7. A king's path may return to a previously visited square, including its starting square; the captured squares must be unique.
 
-Supply one to fifty legal moves from the same board snapshot. Handle no-move and finished-game states in your game before calling. When there is only one legal move, your game can use it directly and avoid a model request. A valid recipe call always makes one logical request, even with one candidate. Lists above fifty are rejected, never silently shortened.
+Supply one or more legal moves from the same board snapshot. Handle no-move and finished-game states in your game before calling. When there is only one legal move, your game can use it directly and avoid a model request. A valid recipe call always makes one logical request, even with one candidate. The recipe imposes no move-count cap and sends the entire list; provider request limits still apply. It adds `none` and `ambiguous` as two additional choices.
 
 The schema checks playable coordinates, unique occupied squares, at most twelve pieces per player, unique IDs, path/capture lengths, starting-piece ownership, and captured-piece references. It rejects unknown fields to catch adapter mistakes. These are input consistency checks, not a legality proof: your game must enforce geometry, empty landing squares, compulsory captures, complete jump chains, promotion, turns, and game completion.
 
@@ -132,7 +132,7 @@ if (result.status === 'ready' && result.selection !== null) {
 }
 ```
 
-Use the ID to find the original move in your game's list; the [gameplay guide](../../docs/gameplay.md#a-checkers-decision-in-one-call) shows the complete flow. Before applying that move, check that the game is still on the same turn and board snapshot, and that the move is still legal. Discard stale results. The recipe never changes the board or executes a move. Handle validation and provider errors in your application's error path.
+Use the ID to find the original move in your game's list, for example `legalMoves.find((move) => move.id === result.selection)`. The [checkers example](../../examples/checkers/README.md) shows a working integration. Before applying that move, check that the game is still on the same turn and board snapshot, and that the move is still legal. Discard stale results. The recipe never changes the board or executes a move. Handle validation and provider errors in your application's error path.
 
 ## Result
 

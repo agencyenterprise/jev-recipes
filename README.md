@@ -138,7 +138,7 @@ npx jev-recipes demo answerability
 
 [Browse the complete catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md). Each guide includes an import, input reference, result behavior, limitations, and related recipes.
 
-For games, the [gameplay guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/gameplay.md) starts with a checkers decision using just the board, player, and legal moves. It also covers general action selection and narrative turn eligibility.
+For games, start with [checkers-move](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/checkers-move/README.md) for a board, player, and legal moves, or see how to [combine turn eligibility and action selection](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/choose-action/README.md#check-turn-eligibility). The [checkers example](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/checkers/README.md) shows how to run the visual demo locally.
 
 For psychology, browse [Psychology & behavior](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#psychology--behavior) for gain/loss framing, causal explanations, stated motivation, and related wording annotations. Search with `npx jev-recipes list psychology`.
 
@@ -185,7 +185,7 @@ The [CI workflow](https://github.com/agencyenterprise/jev-recipes/actions/workfl
 - **Recipe checks:** validate software behavior using mocked responses, including invalid inputs, confidence boundaries, and malformed answers.
 - **Model evaluation:** offline tests and demos do not measure Jev's accuracy. Evaluate recipes on your own data for your intended use.
 
-The package contains compiled code, type declarations, catalog data, and offline demo assets. Tests, build tools, and source guides stay out of the npm archive. [Publishing details](https://github.com/agencyenterprise/jev-recipes/blob/main/RELEASING.md).
+The package contains compiled code, type declarations, catalog data, and offline demo assets. Tests, build tools, and source guides stay out of the npm archive. [Publishing details](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md#releasing).
 
 Direct imports such as `jev-recipes/route` load the selected recipe and its dependencies. Installation downloads one package; it does not selectively download individual recipes.
 
@@ -193,7 +193,7 @@ Direct imports such as `jev-recipes/route` load the selected recipe and its depe
 
 Recipes can serve as candidate annotation tools in controlled experiments. `claim-stance` labels expressed agreement, `verify` checks supplied evidence, and `draft-compare` compares responses under a rubric.
 
-The [research guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/ai-alignment-research.md) outlines a controlled agreement study and validation against human annotations. These labels describe observable outputs; they do not establish internal motives or prove that a model is aligned.
+The [research guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/ai-alignment-research.md) covers validation against human annotations, handling uncertainty, and recording reproducible results. These labels describe observable outputs; they do not establish internal motives or prove that a model is aligned.
 
 <a id="contribute"></a>
 
@@ -211,7 +211,7 @@ make ci
 
 The recipe folder owns its implementation, schemas, metadata, demo, and guide. Exports and catalog entries are generated from those folders. Tests live under `tests/recipe/`.
 
-[Contributing guide](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md) | [Roadmap](https://github.com/agencyenterprise/jev-recipes/blob/main/RECIPE_ROADMAP.md) | [Changelog](https://github.com/agencyenterprise/jev-recipes/blob/main/CHANGELOG.md)
+[Contributing guide](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md) | [Changelog](https://github.com/agencyenterprise/jev-recipes/blob/main/CHANGELOG.md)
 
 ## License
 

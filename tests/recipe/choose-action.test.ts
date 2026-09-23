@@ -15,7 +15,7 @@ const input = {
   ],
 };
 const labels = ['candidate_0', 'candidate_1', 'none', 'ambiguous'];
-testSelection(chooseAction, input, 'actions');
+testSelection(chooseAction, input, 'actions', [], null);
 
 describe('choose-action history and review handling', () => {
   const histories = [
@@ -71,17 +71,28 @@ describe('choose-action history and review handling', () => {
     });
   });
 
-  it.each([1, 50])('maps a selected candidate from a list of %i actions', async (count) => {
-    const actions = Array.from({ length: count }, (_, index) => ({
-      id: `action-${index}`,
-      text: `Action ${index}`,
-    }));
-    const choices = [...actions.map((_, index) => `candidate_${index}`), 'none', 'ambiguous'];
-    const client = createJevClient(choiceAnswers('decision', choices, `candidate_${count - 1}`, 1));
-    await expect(
-      chooseAction({ ...input, actions, minConfidence: 1 }, { client }),
-    ).resolves.toMatchObject({ status: 'ready', selection: `action-${count - 1}` });
-  });
+  it.each([1, 50, 51, 253])(
+    'maps a selected candidate from a list of %i actions',
+    async (count) => {
+      const actions = Array.from({ length: count }, (_, index) => ({
+        id: `action-${index}`,
+        text: `Action ${index}`,
+      }));
+      const choices = [...actions.map((_, index) => `candidate_${index}`), 'none', 'ambiguous'];
+      const client = createJevClient(
+        choiceAnswers('decision', choices, `candidate_${count - 1}`, 1),
+      );
+      await expect(
+        chooseAction({ ...input, actions, minConfidence: 1 }, { client }),
+      ).resolves.toMatchObject({ status: 'ready', selection: `action-${count - 1}` });
+      expect(client.systemOne).toHaveBeenCalledTimes(1);
+      expect(client.systemOne.mock.calls[0]?.[0].questions.decision?.criteria).toEqual({
+        ...Object.fromEntries(actions.map((action, index) => [`candidate_${index}`, action.text])),
+        none: expect.any(String),
+        ambiguous: expect.any(String),
+      });
+    },
+  );
 
   it.each([
     undefined,

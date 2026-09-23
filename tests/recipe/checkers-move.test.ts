@@ -24,6 +24,29 @@ const input: CheckersMoveInput = {
 const labels = ['candidate_0', 'candidate_1', 'none', 'ambiguous'];
 
 describe('checkers-move', () => {
+  it.each([51, 253])('forwards all %i candidates and maps the last selection', async (count) => {
+    const legalMoves = Array.from({ length: count }, (_, index) => ({
+      ...input.legalMoves[0]!,
+      id: `move-${index}`,
+    }));
+    const choices = [...legalMoves.map((_, index) => `candidate_${index}`), 'none', 'ambiguous'];
+    const client = createJevClient(choiceAnswers('decision', choices, `candidate_${count - 1}`, 1));
+    const result = await checkersMove({ ...input, legalMoves }, { client });
+    expect(result).toMatchObject({ status: 'ready', selection: `move-${count - 1}` });
+    expect(Object.keys(result.probabilities.candidates)).toEqual(legalMoves.map((move) => move.id));
+    expect(client.systemOne).toHaveBeenCalledTimes(1);
+    expect(client.systemOne.mock.calls[0]?.[0].questions.decision?.criteria).toEqual({
+      ...Object.fromEntries(
+        legalMoves.map((_, index) => [
+          `candidate_${index}`,
+          'Move your man from c3 to a5. Captures: opponent man at b4.',
+        ]),
+      ),
+      none: expect.any(String),
+      ambiguous: expect.any(String),
+    });
+  });
+
   it.each([0, 1])('maps candidate_%i back to the caller ID in one request', async (index) => {
     const answer = choiceAnswer(labels, `candidate_${index}`);
     const client = createJevClient({ decision: answer });
@@ -294,16 +317,6 @@ describe('checkers input validation before inference', () => {
     ['missing piece owner', { ...input, board: [{ square: 'c3' }] }],
     ['unknown piece field', { ...input, board: [{ square: 'c3', player: 'red', isKing: true }] }],
     ['empty moves', { ...input, legalMoves: [] }],
-    [
-      'too many moves',
-      {
-        ...input,
-        legalMoves: Array.from({ length: 51 }, (_, index) => ({
-          ...input.legalMoves[0],
-          id: `move-${index}`,
-        })),
-      },
-    ],
     ['duplicate IDs', { ...input, legalMoves: [input.legalMoves[0], input.legalMoves[0]] }],
   ];
   const invalidMoves: [string, unknown][] = [

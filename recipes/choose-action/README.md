@@ -78,21 +78,21 @@ Related recipes:
 
 <!-- BEGIN GENERATED: input -->
 
-| Field           | Required | Shape                                              |
-| --------------- | -------- | -------------------------------------------------- |
-| `player`        | Yes      | string                                             |
-| `objective`     | Yes      | string                                             |
-| `rules`         | Yes      | string                                             |
-| `environment`   | Yes      | string                                             |
-| `actions`       | Yes      | { id, text }[]; at least 1 items; at most 50 items |
-| `history`       | No       | { player, action }[]; at most 100 items            |
-| `minConfidence` | No       | number; minimum 0; maximum 1                       |
+| Field           | Required | Shape                                   |
+| --------------- | -------- | --------------------------------------- |
+| `player`        | Yes      | string                                  |
+| `objective`     | Yes      | string                                  |
+| `rules`         | Yes      | string                                  |
+| `environment`   | Yes      | string                                  |
+| `actions`       | Yes      | { id, text }[]; at least 1 items        |
+| `history`       | No       | { player, action }[]; at most 100 items |
+| `minConfidence` | No       | number; minimum 0; maximum 1            |
 
 This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
 
 <!-- END GENERATED: input -->
 
-Describe the player, objective, applicable rules, and current environment in non-empty text. The objective defines what makes one action better than another. Pass one to fifty actions as `{ id, text }` objects with non-empty, unique IDs and non-empty descriptions.
+Describe the player, objective, applicable rules, and current environment in non-empty text. The objective defines what makes one action better than another. Pass one or more actions as `{ id, text }` objects with non-empty, unique IDs and non-empty descriptions. The recipe imposes no action-count cap and sends the entire list in one logical request; provider request limits still apply. It adds `none` and `ambiguous` as two additional choices.
 
 Optional `history` contains at most 100 `{ player, action }` entries, oldest first. Each field must be non-empty text. Repeated actions are allowed; a player can take the same action on different turns. An empty list is valid and does not prove this is the first turn. Describe the current snapshot after those events in `environment`, including relevant phase and resource information. Include only information available to the acting player.
 
@@ -129,9 +129,57 @@ These are intended policy examples, not measured gameplay results.
 
 ## Reuse
 
-Use [take-turn](../take-turn/README.md) for narrative turn or reaction eligibility, then call this recipe when the player can act. Keep the two calls independent; this recipe does not invoke take-turn. See the [gameplay guide](../../docs/gameplay.md) for the full flow.
+Use [take-turn](../take-turn/README.md) for narrative turn or reaction eligibility, then call this recipe when the player can act. The example below combines the calls; this recipe does not invoke take-turn itself.
 
 Uses the shared candidate-selection helper for ID mapping, probability validation, and review handling. Each call makes one logical Jev request and performs no game action.
+
+## Check turn eligibility
+
+If your engine knows whose turn it is, use that answer directly. For narrative turn or reaction rules, combine `take-turn` and `choose-action` as below.
+
+Red is taking a normal turn, but a challenge gives Blue a response window. Blue can spend a shield or lose points. Supply that context, then compare moves against Blue's objective.
+
+Use the following in your JavaScript or TypeScript app with `TYPESAFE_API_KEY` set. See the [quickstart](../../README.md#use-a-recipe) for standalone setup. The example recommends a move; your game validates and applies it.
+
+```js
+import { takeTurn } from 'jev-recipes/take-turn';
+import { chooseAction } from 'jev-recipes/choose-action';
+
+const game = {
+  player: 'Blue',
+  rules:
+    'A challenge pauses the normal turn. The challenged player must defend by spending one shield or concede and lose two points. Defending prevents the point loss.',
+  environment:
+    "Red's normal turn is paused while Blue answers a challenge. Blue has one shield and five points. This is the final round.",
+  history: [
+    { player: 'Red', action: "Challenged Blue; the challenge is awaiting Blue's response." },
+  ],
+};
+
+const turn = await takeTurn(game);
+
+if (turn.status === 'ready' && turn.verdict === 'act') {
+  const move = await chooseAction({
+    ...game,
+    objective:
+      'Finish the final round with as many points as possible. Unused shields have no score.',
+    actions: [
+      { id: 'defend', text: 'Spend one shield to defend against the current challenge.' },
+      { id: 'concede', text: 'Accept the current challenge and lose two points.' },
+    ],
+  });
+
+  if (move.status === 'ready' && move.selection !== null) {
+    console.log('Recommended action:', move.selection);
+  } else {
+    console.log('No committed action:', move.status, move.verdict);
+  }
+} else {
+  console.log('No move requested:', turn.status, turn.verdict);
+}
+```
+
+A saved demo response recommends `defend`. A live recommendation can differ. The two recipes each make one logical request when called; the example skips action selection when the turn assessment is not ready to act. Handle thrown validation or provider errors in your application's error path.
 
 ## Limits
 
