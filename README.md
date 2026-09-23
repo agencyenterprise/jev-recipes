@@ -21,7 +21,7 @@ For example, give `route` a support message and descriptions of your teams. It r
 
 ## Watch Jev play checkers against Jev using the checkers-move recipe
 
-https://github.com/user-attachments/assets/4ac10e7b-b57c-4d73-a2fe-fee90cd1e58d
+[![Jev plays checkers against Jev using the checkers-move recipe](https://raw.githubusercontent.com/agencyenterprise/jev-recipes/main/examples/checkers/jev-vs-jev.gif)](https://www.youtube.com/shorts/Z282rGKysTg)
 
 ## Use a recipe
 
