@@ -1,6 +1,6 @@
 # Growing the recipe catalog
 
-Review snapshot: September 22, 2026. The npm registry reports `jev-recipes@0.3.0`; its catalog contains 66 recipes. This working batch adds six, bringing the source catalog to 72. Release state and counts here describe this review, not a second registry. Recipe folders remain the source of truth.
+Original review snapshot: September 22, 2026. That review found `jev-recipes@0.3.0` in the npm registry with 66 recipes. Two batches added six each; the gameplay pair below brings the source catalog to 80. The version above records the original review, not the current registry state. Recipe folders remain the source of truth; the [generated catalog](recipes/README.md) shows the current inventory.
 
 ## What the review found
 
@@ -16,7 +16,7 @@ Review snapshot: September 22, 2026. The npm registry reports `jev-recipes@0.3.0
 
 The current foundation already generates registration and documentation, loads selected recipes, checks the npm archive, and exercises a synthetic 1,000-entry catalog. That capacity test does not measure model quality. The next work is distinct decisions, discoverability, and research usefulness.
 
-## This batch
+## First batch: 66 to 72
 
 | Recipe                    | New decision                                          | Closest existing recipe and difference                                                                      |
 | ------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -33,18 +33,31 @@ Each addition has its own schemas, metadata, fixture, guide, uncertainty outcome
 
 The research direction is reusable behavioral annotation for experiments, rather than calling application controls an alignment solution. Start with controlled agreement studies, factual reporting, preference comparisons, and observable reward/objective discrepancies. The [research guide](docs/ai-alignment-research.md) defines a first sycophancy-related study, evaluator checks, and integration options.
 
-Potential next decisions need review and human-labeled boundary cases before implementation:
+## Second batch: 72 to 78
 
-| Candidate                | Observable question                                                                             | Difference to check before accepting                                                                                           |
-| ------------------------ | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `response-refusal`       | Does a response explicitly decline a specified request, comply, or do both?                     | `answer-relevance` assesses relevance, not refusal behavior. Distinguish inability and lack of information.                    |
-| `uncertainty-expression` | What degree of certainty does the response explicitly express about one claim?                  | `certainty-match` requires an external assessment to compare against. Avoid guessing internal confidence.                      |
-| `evaluation-mention`     | Does a response explicitly refer to being tested or evaluated?                                  | Label textual mention, not hidden evaluation awareness. Compare quotations and hypothetical discussion.                        |
-| `attribution-match`      | Does a response attribute a supplied statement to the speaker or source that actually made it?  | `citation-match` checks support, not ownership of a statement. Keep attribution separate from truth.                           |
-| `question-leading`       | Does a question's wording favor a specified answer over alternatives?                           | `query-specificity` checks focus and clarity. Define leading wording without inferring the writer's motive.                    |
-| `evidence-independence`  | Do the supplied provenance descriptions show two reports relying on the same underlying source? | `passage-duplicate` compares information overlap. Independence needs provenance and cannot be inferred from different wording. |
+These six recipes add observable annotation decisions using the existing schemas, choice helper, and categories. Each guide specifies intended boundaries, including quotations, missing context, and uncertainty. The boundary examples are authored policy cases, not human-adjudicated research labels. The implementations and fixtures are checked offline; independent human annotation and live evaluator validation remain required before using these labels as research evidence.
+
+| Recipe                   | Observable question                                                                              | Nearest alternative and distinction                                                                                           |
+| ------------------------ | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `response-refusal`       | Does a response refuse a request, attempt it, do both, or report an inability?                   | `answer-relevance` assesses relevance, not refusal behavior. A textual attempt does not prove successful execution.           |
+| `uncertainty-expression` | What degree of certainty does the response explicitly express about one claim?                   | `certainty-match` requires an external assessment to compare against. Avoid guessing internal confidence.                     |
+| `evaluation-mention`     | Does a response refer to its own current evaluation or discuss model evaluation generally?       | `claim-stance` can label affirmation or denial of a claim; this recipe identifies the mention and its scope.                  |
+| `attribution-match`      | Does supplied source text attribute a statement to the claimed speaker or source?                | `citation-match` checks evidential support, not who made or endorsed a statement. Attribution does not authenticate a source. |
+| `question-leading`       | Does a question's wording favor a specified answer over alternatives?                            | `query-specificity` checks focus and clarity. Define leading wording without inferring the writer's motive.                   |
+| `evidence-independence`  | Do provenance descriptions establish shared or separate origins for evidence supporting a claim? | `passage-duplicate` compares information overlap. Separate origins do not establish statistical independence.                 |
 
 Reuse existing recipes for broad claims such as "the model lied," "the agent reward hacked," or "the answer is sycophantic." Decompose those research hypotheses into observable facts and controlled comparisons. A new label should not disguise an unsupported inference about intent.
+
+## Gameplay pair: 78 to 80
+
+The [gameplay guide](docs/gameplay.md) provides a concrete integration for the next two recipes:
+
+| Recipe          | New decision                                                                      | Closest alternative and difference                                                                                                                         |
+| --------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `take-turn`     | Does a player have a current turn or reaction opportunity under narrative rules?  | `response-needed` checks conversational follow-through; `step-complete` checks a past completion condition. Use exact engine flags instead when available. |
+| `choose-action` | Which supplied, eligible action best serves the player's objective in this state? | `tool-fit` checks one capability; candidate-selection helpers handle mechanics but do not supply game eligibility and strategy criteria.                   |
+
+This pair takes the source catalog from 78 to 80. Both remain in the existing workflow category with gameplay tags. They make no game actions, add no runtime dependencies, and can be used independently. Turn and legal-move checks remain in ordinary code when the game already provides them.
 
 ## Adoption experiments
 

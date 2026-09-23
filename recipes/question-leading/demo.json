@@ -1,0 +1,26 @@
+{
+  "input": {
+    "question": "Surely you agree the new layout is easier to use, don't you?",
+    "proposedAnswer": "The new layout is easier to use."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "favors",
+        "confidence": 0.97,
+        "probabilities": {
+          "favors": 0.97,
+          "disfavors": 0.01,
+          "neutral": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

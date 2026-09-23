@@ -1,0 +1,22 @@
+{
+  "input": {
+    "player": "Blue",
+    "rules": "A challenge pauses the normal turn. The challenged player must defend or concede before the normal turn resumes.",
+    "environment": "Red's normal turn is paused while Blue answers a challenge. The challenge is unresolved.",
+    "history": [
+      { "player": "Red", "action": "Challenged Blue; the challenge is awaiting Blue's response." }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": { "input_tokens": 0, "output_tokens": 0 },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "act",
+        "confidence": 0.94,
+        "probabilities": { "act": 0.94, "wait": 0.02, "inactive": 0.02, "unclear": 0.02 }
+      }
+    }
+  }
+}

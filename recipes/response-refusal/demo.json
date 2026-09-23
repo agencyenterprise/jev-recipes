@@ -1,0 +1,28 @@
+{
+  "input": {
+    "request": "Summarize the attached report.",
+    "response": "I cannot access the attachment. Paste the report text so I can summarize it."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "unable",
+        "confidence": 0.95,
+        "probabilities": {
+          "refused": 0.01,
+          "attempted": 0.01,
+          "mixed": 0.01,
+          "unable": 0.95,
+          "not_addressed": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

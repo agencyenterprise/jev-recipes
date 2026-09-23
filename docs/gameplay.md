@@ -1,0 +1,80 @@
+# Gameplay decisions
+
+Use two independent decisions: **can this player act now?** and **which supplied action should they choose?** Your game owns the rules, state, legal moves, and execution.
+
+| Recipe                                                | Give it                                                                | Read back                                                        |
+| ----------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [`take-turn`](../recipes/take-turn/README.md)         | Player, rules, current environment, optional action history.           | `act`, `wait`, `inactive`, or `unclear`, plus review status.     |
+| [`choose-action`](../recipes/choose-action/README.md) | The same context, an objective, and actions with IDs and descriptions. | A selected action ID, no fitting action, or an ambiguous choice. |
+
+`take-turn` means assessing the current opportunity to act. It does not execute a turn or check whether a turn was already completed. For that retrospective question, use [`step-complete`](../recipes/step-complete/README.md) with an explicit completion condition and recorded evidence.
+
+If your engine can compute whose turn it is or which moves are legal, use those answers directly. The turn recipe is for narrative rules, reaction windows, and game states that need text interpretation. You can call `choose-action` by itself after the engine establishes eligibility.
+
+## A challenge interrupts a normal turn
+
+Red is taking a normal turn, but a challenge gives Blue a response window. Blue can spend a shield or lose points. Supply that context, then compare moves against Blue's objective.
+
+Use the following in your JavaScript or TypeScript app with `TYPESAFE_API_KEY` set. See the [quickstart](../README.md#use-a-recipe) for standalone setup. The example recommends a move; your game validates and applies it.
+
+```js
+import { takeTurn } from 'jev-recipes/take-turn';
+import { chooseAction } from 'jev-recipes/choose-action';
+
+const game = {
+  player: 'Blue',
+  rules:
+    'A challenge pauses the normal turn. The challenged player must defend by spending one shield or concede and lose two points. Defending prevents the point loss.',
+  environment:
+    "Red's normal turn is paused while Blue answers a challenge. Blue has one shield and five points. This is the final round.",
+  history: [
+    { player: 'Red', action: "Challenged Blue; the challenge is awaiting Blue's response." },
+  ],
+};
+
+const turn = await takeTurn(game);
+
+if (turn.status === 'ready' && turn.verdict === 'act') {
+  const move = await chooseAction({
+    ...game,
+    objective:
+      'Finish the final round with as many points as possible. Unused shields have no score.',
+    actions: [
+      { id: 'defend', text: 'Spend one shield to defend against the current challenge.' },
+      { id: 'concede', text: 'Accept the current challenge and lose two points.' },
+    ],
+  });
+
+  if (move.status === 'ready' && move.selection !== null) {
+    console.log('Recommended action:', move.selection);
+  } else {
+    console.log('No committed action:', move.status, move.verdict);
+  }
+} else {
+  console.log('No move requested:', turn.status, turn.verdict);
+}
+```
+
+A saved demo response recommends `defend`. A live recommendation can differ. The two recipes each make one logical request when called; the example skips action selection when the turn assessment is not ready to act. Handle thrown validation or provider errors in your application's error path.
+
+## Describe the game, then own the result
+
+- **Rules:** include applicable turn, reaction, resource, and scoring constraints. Player dialogue in the history does not become a new rule.
+- **Environment:** describe the current snapshot after the listed actions, including decision-critical facts. Supply only information the player is allowed to know.
+- **History:** optionally pass up to 100 `{ player, action }` entries, oldest first, from any players. Include observed outcomes where useful. Summarize older relevant events into the current environment.
+- **Actions:** pass one to fifty `{ id, text }` candidates with unique IDs. Describe concrete moves, including targets and costs. Include pass or wait explicitly if they are available choices. If the engine provides no actions, handle that state directly instead of making a selection call.
+- **Objective:** say what “best” means for this player, such as retaining points, cooperating, surviving, or following a play style. A reward objective and a rule constraint play different roles.
+
+`ready` means the annotation or recommendation met the confidence policy. It can accompany `wait`, `inactive`, or no selected action. A low-confidence selection keeps `suggestedSelection` for inspection but leaves `selection` null. Your game should recheck the chosen ID against current legal moves before applying it, since state can change during a request.
+
+## Try the saved decisions
+
+These recipes are part of the current source batch. From this checkout:
+
+```sh
+make build
+node dist/cli/index.js demo take-turn
+node dist/cli/index.js demo choose-action
+```
+
+After installing a release that includes them, the equivalent commands are `npx jev-recipes demo take-turn` and `npx jev-recipes demo choose-action`. Demos use saved fixtures and make no model calls. Tests check schemas, result mapping, history preservation, confidence boundaries, and packaging. They do not measure playing strength, optimality, or the accuracy of rule interpretation.

@@ -42,6 +42,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.attemptedStep(recipe.attemptedStepInputSchema.parse(input), options),
     ),
+  'attribution-match': () =>
+    import('../../recipes/attribution-match/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.attributionMatch(recipe.attributionMatchInputSchema.parse(input), options),
+    ),
   'audience-fit': () =>
     import('../../recipes/audience-fit/index.js').then(
       (recipe) => (input, options) =>
@@ -66,6 +71,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/change-meaning/index.js').then(
       (recipe) => (input, options) =>
         recipe.changeMeaning(recipe.changeMeaningInputSchema.parse(input), options),
+    ),
+  'choose-action': () =>
+    import('../../recipes/choose-action/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.chooseAction(recipe.chooseActionInputSchema.parse(input), options),
     ),
   'citation-match': () =>
     import('../../recipes/citation-match/index.js').then(
@@ -117,10 +127,20 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.draftCompare(recipe.draftCompareInputSchema.parse(input), options),
     ),
+  'evaluation-mention': () =>
+    import('../../recipes/evaluation-mention/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.evaluationMention(recipe.evaluationMentionInputSchema.parse(input), options),
+    ),
   'evidence-conflict': () =>
     import('../../recipes/evidence-conflict/index.js').then(
       (recipe) => (input, options) =>
         recipe.evidenceConflict(recipe.evidenceConflictInputSchema.parse(input), options),
+    ),
+  'evidence-independence': () =>
+    import('../../recipes/evidence-independence/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.evidenceIndependence(recipe.evidenceIndependenceInputSchema.parse(input), options),
     ),
   'evidence-novelty': () =>
     import('../../recipes/evidence-novelty/index.js').then(
@@ -232,6 +252,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.querySpecificity(recipe.querySpecificityInputSchema.parse(input), options),
     ),
+  'question-leading': () =>
+    import('../../recipes/question-leading/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.questionLeading(recipe.questionLeadingInputSchema.parse(input), options),
+    ),
   'reference-resolve': () =>
     import('../../recipes/reference-resolve/index.js').then(
       (recipe) => (input, options) =>
@@ -268,6 +293,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/response-needed/index.js').then(
       (recipe) => (input, options) =>
         recipe.responseNeeded(recipe.responseNeededInputSchema.parse(input), options),
+    ),
+  'response-refusal': () =>
+    import('../../recipes/response-refusal/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.responseRefusal(recipe.responseRefusalInputSchema.parse(input), options),
     ),
   'result-outcome': () =>
     import('../../recipes/result-outcome/index.js').then(
@@ -308,6 +338,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.summaryCoverage(recipe.summaryCoverageInputSchema.parse(input), options),
     ),
+  'take-turn': () =>
+    import('../../recipes/take-turn/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.takeTurn(recipe.takeTurnInputSchema.parse(input), options),
+    ),
   'task-dependency': () =>
     import('../../recipes/task-dependency/index.js').then(
       (recipe) => (input, options) =>
@@ -347,6 +382,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/turn-intent/index.js').then(
       (recipe) => (input, options) =>
         recipe.turnIntent(recipe.turnIntentInputSchema.parse(input), options),
+    ),
+  'uncertainty-expression': () =>
+    import('../../recipes/uncertainty-expression/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.uncertaintyExpression(recipe.uncertaintyExpressionInputSchema.parse(input), options),
     ),
   'urgency-signal': () =>
     import('../../recipes/urgency-signal/index.js').then(

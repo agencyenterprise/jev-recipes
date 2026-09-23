@@ -1,0 +1,26 @@
+{
+  "input": {
+    "claim": "The service outage began at 09:00.",
+    "firstProvenance": "Report A copies the start time from status notice N17 published by the service operator.",
+    "secondProvenance": "Report B cites Report A and repeats the start time from the same operator notice N17."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "shared_origin",
+        "confidence": 0.98,
+        "probabilities": {
+          "shared_origin": 0.98,
+          "separate_origins": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

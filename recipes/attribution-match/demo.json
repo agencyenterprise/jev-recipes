@@ -1,0 +1,27 @@
+{
+  "input": {
+    "statement": "The deadline is Friday.",
+    "attributedTo": "Mira",
+    "source": "Oren: The deadline is Friday.\nMira: Thank you for the update."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "mismatched",
+        "confidence": 0.97,
+        "probabilities": {
+          "matched": 0.01,
+          "mismatched": 0.97,
+          "not_attributed": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

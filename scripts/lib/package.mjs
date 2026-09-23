@@ -1,3 +1,20 @@
+export function parsePackedArchive(output, expectedName) {
+  const parsed = JSON.parse(output);
+  // npm 12 keys pack reports by package name; earlier versions return an array.
+  const reports = Array.isArray(parsed) ? parsed : Object.values(parsed ?? {});
+  const report = reports[0];
+  if (
+    reports.length !== 1 ||
+    report?.name !== expectedName ||
+    typeof report.filename !== 'string' ||
+    !report.filename ||
+    !Array.isArray(report.files)
+  ) {
+    throw new Error(`Expected one npm pack report for ${expectedName}.`);
+  }
+  return report;
+}
+
 export function checkPackageContents(files, recipeIds, exports) {
   const paths = new Set(files.map((file) => (typeof file === 'string' ? file : file.path)));
   const ids = new Set(recipeIds);

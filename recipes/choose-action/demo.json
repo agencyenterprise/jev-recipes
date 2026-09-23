@@ -1,0 +1,32 @@
+{
+  "input": {
+    "player": "Blue",
+    "objective": "Finish the final round with as many points as possible. Unused shields have no score.",
+    "rules": "A challenge pauses the normal turn. The challenged player must defend by spending one shield or concede and lose two points. Defending prevents the point loss.",
+    "environment": "Red's normal turn is paused while Blue answers a challenge. Blue has one shield and five points. This is the final round.",
+    "actions": [
+      { "id": "defend", "text": "Spend one shield to defend against the current challenge." },
+      { "id": "concede", "text": "Accept the current challenge and lose two points." }
+    ],
+    "history": [
+      { "player": "Red", "action": "Challenged Blue; the challenge is awaiting Blue's response." }
+    ]
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": { "input_tokens": 0, "output_tokens": 0 },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_0",
+        "confidence": 0.94,
+        "probabilities": {
+          "candidate_0": 0.94,
+          "candidate_1": 0.02,
+          "none": 0.02,
+          "ambiguous": 0.02
+        }
+      }
+    }
+  }
+}

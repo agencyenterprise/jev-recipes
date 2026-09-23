@@ -146,6 +146,46 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'attribution-match',
+    title: "Check a statement's attributed source",
+    description:
+      'Check whether supplied source text attributes a statement to the claimed speaker or source.',
+    category: 'knowledge',
+    tags: [
+      'attribution',
+      'speaker',
+      'who said',
+      'source ownership',
+      'quotation',
+      'annotation',
+      'alignment-research',
+    ],
+    limitations: [
+      'Checks only the supplied attribution record. It does not authenticate a source or establish original authorship, truth, or copyright ownership.',
+      'Missing statements and unresolved speaker identities require review; absence from an excerpt is not proof of false attribution.',
+      'Nested quotation and endorsement are distinct. Include enough surrounding text to establish who is speaking.',
+    ],
+    useWhen:
+      'You need to check who said a statement in a transcript or source excerpt, separately from whether it is true.',
+    related: [
+      {
+        id: 'citation-match',
+        reason:
+          'Use citation-match to check which passages support a claim, rather than who made it.',
+      },
+      {
+        id: 'claim-stance',
+        reason:
+          "Use claim-stance to label a response's own position toward a claim, rather than verifying a named attribution.",
+      },
+      {
+        id: 'reference-resolve',
+        reason:
+          'Use reference-resolve to select the referent of an ambiguous expression from supplied candidates.',
+      },
+    ],
+  },
+  {
     id: 'audience-fit',
     title: 'Check audience fit',
     description:
@@ -224,6 +264,47 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'answer-invalidation',
         reason: 'Use answer-invalidation to assess how changed evidence affects a saved claim.',
+      },
+    ],
+  },
+  {
+    id: 'choose-action',
+    title: 'Choose a game action from supplied candidates',
+    description:
+      'Recommend one eligible game action against a supplied goal, using rules, current state, and optional player history.',
+    category: 'workflow',
+    tags: [
+      'gameplay',
+      'game',
+      'choose action',
+      'best move',
+      'strategy',
+      'players',
+      'turn',
+      'simulation',
+    ],
+    limitations: [
+      'Produces a model judgment, not a game solver, legality proof, or guarantee of optimal play. Use an authoritative game engine for exact legality checks.',
+      'Uses only supplied player-visible information. It does not fetch state, simulate future turns, or execute the chosen action.',
+      'History may be incomplete. Supply decision-critical facts in the current environment; ties or unresolved constraints require review.',
+    ],
+    useWhen:
+      'You need to choose the next game action from a list using the current environment, game rules, and previous player actions.',
+    related: [
+      {
+        id: 'take-turn',
+        reason:
+          'Use take-turn to assess whether the player has an opportunity to act now before selecting an action.',
+      },
+      {
+        id: 'tool-fit',
+        reason:
+          "Use tool-fit to check one tool's capability for a task; it does not compare game actions under a goal and game rules.",
+      },
+      {
+        id: 'step-progress',
+        reason:
+          'Use step-progress to assess an observed outcome after a move; this recipe recommends a candidate before execution.',
       },
     ],
   },
@@ -437,6 +518,46 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'evaluation-mention',
+    title: 'Label explicit mentions of model evaluation',
+    description:
+      'Distinguish a response referring to its own evaluation from general evaluation discussion or no such mention.',
+    category: 'answer-quality',
+    tags: [
+      'evaluation',
+      'being tested',
+      'benchmark',
+      'graded',
+      'self reference',
+      'annotation',
+      'alignment-research',
+    ],
+    limitations: [
+      'Detects explicit wording only. It does not infer hidden evaluation awareness, strategic behavior, or internal goals.',
+      'Self-reference includes uncertainty and denial. It does not establish that evaluation is occurring or that the model believes it is.',
+      'A missing mention does not show absence of awareness. Quoted or hypothetical first-person text needs careful attribution.',
+    ],
+    useWhen:
+      'You need to find explicit mentions of being tested, graded, or evaluated in saved model responses.',
+    related: [
+      {
+        id: 'claim-stance',
+        reason:
+          'Use claim-stance to distinguish affirming from denying a specific evaluation claim.',
+      },
+      {
+        id: 'context-role',
+        reason:
+          'Use context-role to classify the role of supplied text rather than mentions inside a response.',
+      },
+      {
+        id: 'uncertainty-expression',
+        reason:
+          'Use uncertainty-expression to label how certain the response sounds about a specific evaluation claim.',
+      },
+    ],
+  },
+  {
     id: 'evidence-conflict',
     title: 'Compare evidence for conflicts',
     description:
@@ -451,6 +572,46 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'answer-consistency',
         reason: 'Use answer-consistency to compare two statements directly.',
+      },
+    ],
+  },
+  {
+    id: 'evidence-independence',
+    title: 'Compare the origins of two pieces of evidence',
+    description:
+      'Check whether supplied provenance shows shared or separate evidence origins for one claim, or leaves their relationship unresolved.',
+    category: 'retrieval',
+    tags: [
+      'evidence independence',
+      'provenance',
+      'shared source',
+      'corroboration',
+      'origin',
+      'annotation',
+      'alignment-research',
+    ],
+    limitations: [
+      'Evaluates supplied provenance descriptions only. It does not fetch sources, verify provenance, or discover hidden dependencies.',
+      'Separate origins are not a guarantee of statistical independence, reliability, or truth.',
+      'The claim scopes material overlap. Shared background unrelated to the claim is not sufficient for a shared-origin label.',
+    ],
+    useWhen:
+      'You need to check whether two reports rely on the same underlying source before treating them as corroboration.',
+    related: [
+      {
+        id: 'passage-duplicate',
+        reason:
+          'Use passage-duplicate to compare information overlap in passages, not the origins of their evidence.',
+      },
+      {
+        id: 'attribution-match',
+        reason:
+          'Use attribution-match to check a named statement attribution against a source excerpt.',
+      },
+      {
+        id: 'evidence-conflict',
+        reason:
+          'Use evidence-conflict to compare what sources say; conflicting reports can still share an origin.',
       },
     ],
   },
@@ -840,6 +1001,45 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'question-leading',
+    title: 'Check whether a question steers an answer',
+    description:
+      "Label whether a question's wording favors, disfavors, or stays neutral toward a proposed answer.",
+    category: 'conversation',
+    tags: [
+      'leading question',
+      'wording',
+      'answer pressure',
+      'survey',
+      'prompt bias',
+      'annotation',
+      'alignment-research',
+    ],
+    limitations: [
+      'Labels directional wording relative to one proposed answer, not author intent, factual correctness, or observed persuasion.',
+      'Neutral does not establish that a prompt or experiment is unbiased in every respect.',
+      'Actual effects on model or human answers require controlled comparisons; wording labels alone are not causal evidence.',
+    ],
+    useWhen:
+      'You need to check leading questions or answer pressure in a survey, interview, or evaluation prompt.',
+    related: [
+      {
+        id: 'query-specificity',
+        reason:
+          'Use query-specificity to check whether an information need is focused and unambiguous.',
+      },
+      {
+        id: 'claim-stance',
+        reason:
+          "Use claim-stance to label the response's expressed position after a question has been answered.",
+      },
+      {
+        id: 'tone-check',
+        reason: 'Use tone-check to assess draft wording against caller-supplied writing criteria.',
+      },
+    ],
+  },
+  {
     id: 'reference-resolve',
     title: 'Resolve a reference',
     description: 'Which supplied candidate does reference refer to in message and context?',
@@ -973,6 +1173,46 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'turn-intent',
         reason: 'Use turn-intent to classify the message purpose in more detail.',
+      },
+    ],
+  },
+  {
+    id: 'response-refusal',
+    title: 'Label refusal behavior in a response',
+    description:
+      'Distinguish an explicit refusal, a substantive attempt, mixed behavior, and a stated inability to fulfill a request.',
+    category: 'answer-quality',
+    tags: [
+      'refusal',
+      'refuses',
+      'decline',
+      'compliance',
+      'inability',
+      'annotation',
+      'alignment-research',
+    ],
+    limitations: [
+      'Labels textual behavior, not policy compliance, harmlessness, or whether a refusal was warranted.',
+      'An attempted answer or reported action may be incorrect or incomplete. No action is executed or verified.',
+      'A refusal label alone does not establish an alignment property. Validate labels against independent human annotations for the study.',
+    ],
+    useWhen:
+      'You need to label whether a response refuses a request, attempts it, or reports missing access or information.',
+    related: [
+      {
+        id: 'answer-relevance',
+        reason:
+          'Use answer-relevance to check whether a response addresses the requested subject, regardless of refusal.',
+      },
+      {
+        id: 'answer-coverage',
+        reason:
+          'Use answer-coverage to check which requested points a draft covers; an attempt need not be complete.',
+      },
+      {
+        id: 'result-outcome',
+        reason:
+          'Use result-outcome to interpret an observed task result instead of a response claiming to perform it.',
       },
     ],
   },
@@ -1111,6 +1351,48 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'answer-coverage',
         reason: 'Use answer-coverage when the checklist contains questions to answer.',
+      },
+    ],
+  },
+  {
+    id: 'take-turn',
+    title: 'Assess whether a player can act now',
+    description:
+      "Interpret game rules and current state to label a player's turn or reaction opportunity as act, wait, inactive, or unclear.",
+    category: 'workflow',
+    tags: [
+      'gameplay',
+      'game',
+      'take turn',
+      'whose turn',
+      'act now',
+      'wait',
+      'reaction',
+      'players',
+      'simulation',
+    ],
+    limitations: [
+      'Assesses narrative turn eligibility, not a legality proof. When a game engine provides an exact turn or reaction flag, use that directly.',
+      'Does not take a turn, select an action, update state, or verify that a player already completed a turn.',
+      'Act includes optional reactions and does not mean using that opportunity is strategically best. Missing or conflicting facts require review.',
+    ],
+    useWhen:
+      "You need to decide whether it is a player's turn to act or react using narrative game rules, state, and previous actions.",
+    related: [
+      {
+        id: 'choose-action',
+        reason:
+          'Use choose-action to compare candidate moves after establishing the player can act.',
+      },
+      {
+        id: 'step-complete',
+        reason:
+          'Use step-complete to check whether a defined turn-completion condition was met; take-turn assesses the current opportunity to act.',
+      },
+      {
+        id: 'response-needed',
+        reason:
+          'Use response-needed for conversational follow-through, rather than turn and reaction eligibility under game rules.',
       },
     ],
   },
@@ -1268,6 +1550,46 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'intent-change',
         reason: 'Use intent-change to assess how the message changes an existing goal.',
+      },
+    ],
+  },
+  {
+    id: 'uncertainty-expression',
+    title: 'Label expressed certainty about a claim',
+    description:
+      'Label categorical, qualified, or unresolved wording about a supplied claim without inferring internal confidence.',
+    category: 'answer-quality',
+    tags: [
+      'uncertainty',
+      'certainty',
+      'hedging',
+      'expressed confidence',
+      'calibration',
+      'annotation',
+      'alignment-research',
+    ],
+    limitations: [
+      'Labels wording about one proposition, not internal confidence, truth, calibration, or evidential support.',
+      'The result confidence describes the annotation decision. It is not the certainty expressed by the response or a calibrated truth probability.',
+      'Uncertain is a substantive label and can be ready. Only unclear or confidence below the threshold requires review.',
+    ],
+    useWhen:
+      'You need to label expressed certainty or hedging about one claim without an external truth assessment.',
+    related: [
+      {
+        id: 'certainty-match',
+        reason:
+          "Use certainty-match to compare a draft's certainty with a supplied evidence assessment.",
+      },
+      {
+        id: 'claim-stance',
+        reason:
+          'Use claim-stance to label affirmation or denial separately from the strength of commitment.',
+      },
+      {
+        id: 'verify',
+        reason:
+          'Use verify to check supplied evidence for a claim; expressed certainty is not evidence of truth.',
       },
     ],
   },

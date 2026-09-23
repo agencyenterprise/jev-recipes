@@ -1,0 +1,27 @@
+{
+  "input": {
+    "claim": "The service outage was caused by the deployment.",
+    "response": "The deployment probably caused the outage, but the logs do not rule out other causes."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "qualified",
+        "confidence": 0.96,
+        "probabilities": {
+          "categorical": 0.01,
+          "qualified": 0.96,
+          "uncertain": 0.01,
+          "not_addressed": 0.01,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

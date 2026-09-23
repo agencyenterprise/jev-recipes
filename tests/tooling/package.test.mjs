@@ -1,6 +1,35 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { checkPackageContents } from '../../scripts/lib/package.mjs';
+import { checkPackageContents, parsePackedArchive } from '../../scripts/lib/package.mjs';
+
+test('package checks read both legacy and npm 12 archive reports, including scoped dependencies', () => {
+  for (const name of ['jev-recipes', '@typesafe-ai/sdk']) {
+    const report = { name, filename: 'archive.tgz', files: [{ path: 'package.json' }] };
+    for (const output of [[report], { [name]: report }]) {
+      assert.deepEqual(parsePackedArchive(JSON.stringify(output), name), report);
+    }
+  }
+});
+
+test('package checks reject empty, ambiguous, incomplete, and wrong-package archive reports', () => {
+  const report = { name: 'jev-recipes', filename: 'archive.tgz', files: [] };
+  for (const output of [
+    null,
+    [],
+    {},
+    [report, report],
+    { first: report, second: report },
+    [{ ...report, name: 'another-package' }],
+    [{ ...report, filename: '' }],
+    [{ ...report, filename: undefined }],
+    [{ ...report, files: undefined }],
+  ]) {
+    assert.throws(
+      () => parsePackedArchive(JSON.stringify(output), 'jev-recipes'),
+      /Expected one npm pack report for jev-recipes/,
+    );
+  }
+});
 
 const exports = {
   '.': { import: './dist/src/index.js', types: './dist/src/index.d.ts' },

@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { projectRoot } from './lib/recipes.mjs';
 import { npm, run } from './lib/process.mjs';
-import { checkPackageContents } from './lib/package.mjs';
+import { checkPackageContents, parsePackedArchive } from './lib/package.mjs';
 
 let temporary;
 try {
@@ -19,19 +19,20 @@ try {
   const ids = Object.keys(manifest.exports)
     .filter((path) => !['.', './catalog', './package.json'].includes(path))
     .map((path) => path.slice(2));
-  const packed = JSON.parse(
+  const packed = parsePackedArchive(
     await npm(['pack', '--ignore-scripts', '--json', '--pack-destination', temporary], {
       ...options,
       cwd: projectRoot,
       stdio: ['ignore', 'pipe', 'inherit'],
     }),
-  )[0];
+    manifest.name,
+  );
   checkPackageContents(packed.files, ids, manifest.exports);
 
   // Install real archives in an unrelated directory. Local dependency archives keep this offline.
   const archives = [join(temporary, packed.filename)];
   for (const name of Object.keys(manifest.dependencies)) {
-    const dependency = JSON.parse(
+    const dependency = parsePackedArchive(
       await npm(
         [
           'pack',
@@ -43,7 +44,8 @@ try {
         ],
         { ...options, stdio: ['ignore', 'pipe', 'inherit'] },
       ),
-    )[0];
+      name,
+    );
     archives.push(join(temporary, dependency.filename));
   }
   const consumer = join(temporary, 'consumer');

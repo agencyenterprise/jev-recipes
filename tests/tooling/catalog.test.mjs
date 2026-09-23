@@ -45,6 +45,20 @@ test('search finds task wording and supports category and limit without truncati
     'instruction-conflict',
   );
   assert.equal(listRecipes({ query: 'claim stance', limit: 1 })[0].id, 'claim-stance');
+  assert.equal(listRecipes({ query: 'whose turn', limit: 1 })[0].id, 'take-turn');
+  assert.equal(listRecipes({ query: 'best move', limit: 1 })[0].id, 'choose-action');
+  const gameplay = listRecipes({ query: 'gameplay' }).map((recipe) => recipe.id);
+  assert.ok(gameplay.includes('take-turn'));
+  assert.ok(gameplay.includes('choose-action'));
+  assert.equal(listRecipes({ query: 'missing access', limit: 1 })[0].id, 'response-refusal');
+  assert.equal(listRecipes({ query: 'hedging', limit: 1 })[0].id, 'uncertainty-expression');
+  assert.equal(listRecipes({ query: 'being tested', limit: 1 })[0].id, 'evaluation-mention');
+  assert.equal(listRecipes({ query: 'who said', limit: 1 })[0].id, 'attribution-match');
+  assert.equal(listRecipes({ query: 'leading questions', limit: 1 })[0].id, 'question-leading');
+  assert.equal(
+    listRecipes({ query: 'same underlying source', limit: 1 })[0].id,
+    'evidence-independence',
+  );
   const research = listRecipes({ query: 'alignment research' });
   assert.ok(research.some((recipe) => recipe.id === 'claim-stance'));
   assert.ok(research.some((recipe) => recipe.id === 'verify'));

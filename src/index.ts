@@ -98,6 +98,17 @@ export type {
   AttemptedStepVerdict,
 } from '../recipes/attempted-step/index.js';
 export {
+  attributionMatch,
+  attributionMatchInputSchema,
+  attributionMatchResultSchema,
+  attributionMatchVerdictSchema,
+} from '../recipes/attribution-match/index.js';
+export type {
+  AttributionMatchInput,
+  AttributionMatchResult,
+  AttributionMatchVerdict,
+} from '../recipes/attribution-match/index.js';
+export {
   audienceFit,
   audienceFitInputSchema,
   audienceFitResultSchema,
@@ -152,6 +163,12 @@ export type {
   ChangeMeaningResult,
   ChangeMeaningVerdict,
 } from '../recipes/change-meaning/index.js';
+export {
+  chooseAction,
+  chooseActionInputSchema,
+  chooseActionResultSchema,
+} from '../recipes/choose-action/index.js';
+export type { ChooseActionInput, ChooseActionResult } from '../recipes/choose-action/index.js';
 export {
   citationMatch,
   citationMatchInputSchema,
@@ -252,6 +269,17 @@ export type {
   DraftCompareVerdict,
 } from '../recipes/draft-compare/index.js';
 export {
+  evaluationMention,
+  evaluationMentionInputSchema,
+  evaluationMentionResultSchema,
+  evaluationMentionVerdictSchema,
+} from '../recipes/evaluation-mention/index.js';
+export type {
+  EvaluationMentionInput,
+  EvaluationMentionResult,
+  EvaluationMentionVerdict,
+} from '../recipes/evaluation-mention/index.js';
+export {
   evidenceConflict,
   evidenceConflictInputSchema,
   evidenceConflictResultSchema,
@@ -262,6 +290,17 @@ export type {
   EvidenceConflictResult,
   EvidenceConflictVerdict,
 } from '../recipes/evidence-conflict/index.js';
+export {
+  evidenceIndependence,
+  evidenceIndependenceInputSchema,
+  evidenceIndependenceResultSchema,
+  evidenceIndependenceVerdictSchema,
+} from '../recipes/evidence-independence/index.js';
+export type {
+  EvidenceIndependenceInput,
+  EvidenceIndependenceResult,
+  EvidenceIndependenceVerdict,
+} from '../recipes/evidence-independence/index.js';
 export {
   evidenceNovelty,
   evidenceNoveltyInputSchema,
@@ -481,6 +520,17 @@ export type {
   QuerySpecificityVerdict,
 } from '../recipes/query-specificity/index.js';
 export {
+  questionLeading,
+  questionLeadingInputSchema,
+  questionLeadingResultSchema,
+  questionLeadingVerdictSchema,
+} from '../recipes/question-leading/index.js';
+export type {
+  QuestionLeadingInput,
+  QuestionLeadingResult,
+  QuestionLeadingVerdict,
+} from '../recipes/question-leading/index.js';
+export {
   referenceResolve,
   referenceResolveInputSchema,
   referenceResolveResultSchema,
@@ -544,6 +594,17 @@ export type {
   ResponseNeededResult,
   ResponseNeededVerdict,
 } from '../recipes/response-needed/index.js';
+export {
+  responseRefusal,
+  responseRefusalInputSchema,
+  responseRefusalResultSchema,
+  responseRefusalVerdictSchema,
+} from '../recipes/response-refusal/index.js';
+export type {
+  ResponseRefusalInput,
+  ResponseRefusalResult,
+  ResponseRefusalVerdict,
+} from '../recipes/response-refusal/index.js';
 export {
   resultOutcome,
   resultOutcomeInputSchema,
@@ -623,6 +684,13 @@ export type {
   SummaryCoverageResult,
   SummaryCoverageVerdict,
 } from '../recipes/summary-coverage/index.js';
+export {
+  takeTurn,
+  takeTurnInputSchema,
+  takeTurnResultSchema,
+  takeTurnVerdictSchema,
+} from '../recipes/take-turn/index.js';
+export type { TakeTurnInput, TakeTurnResult, TakeTurnVerdict } from '../recipes/take-turn/index.js';
 export {
   taskDependency,
   taskDependencyInputSchema,
@@ -707,6 +775,17 @@ export type {
   TurnIntentResult,
   TurnIntentVerdict,
 } from '../recipes/turn-intent/index.js';
+export {
+  uncertaintyExpression,
+  uncertaintyExpressionInputSchema,
+  uncertaintyExpressionResultSchema,
+  uncertaintyExpressionVerdictSchema,
+} from '../recipes/uncertainty-expression/index.js';
+export type {
+  UncertaintyExpressionInput,
+  UncertaintyExpressionResult,
+  UncertaintyExpressionVerdict,
+} from '../recipes/uncertainty-expression/index.js';
 export {
   urgencySignal,
   urgencySignalInputSchema,

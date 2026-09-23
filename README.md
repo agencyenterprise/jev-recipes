@@ -11,7 +11,7 @@
 
 <!-- BEGIN GENERATED: summary -->
 
-72 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
+80 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
 
 <!-- END GENERATED: summary -->
 
@@ -29,7 +29,9 @@ Requires **Node.js 22.9 or newer**, ES modules, and a **[TypeSafe API key](https
 npm install jev-recipes
 ```
 
-**2. Create `route-message.mjs`** in the same folder. This is runnable JavaScript; TypeScript projects can use the same import with inferred types.
+**2. Add the code below to your app**, or save it as `route-message.mjs` in the same folder to try a standalone Node example.
+
+The `.mjs` extension is optional. We suggest it for this example because Node recognizes it as an ES module without changing your project settings. Existing apps can use `.js` with `"type": "module"` in `package.json`, or `.ts` with their usual TypeScript setup. See [Node's module formats](https://nodejs.org/api/packages.html#type).
 
 <!-- BEGIN GENERATED: quickstart -->
 
@@ -53,12 +55,14 @@ if (result.status === 'ready') {
 
 <!-- END GENERATED: quickstart -->
 
-**3. Set your key and run.** Replace `your-api-key` with your TypeSafe key.
+**3. Set your key and run.** Replace `your-api-key` with your TypeSafe key. For the standalone example:
 
 ```sh
 export TYPESAFE_API_KEY='your-api-key'
 node route-message.mjs
 ```
+
+If you saved it as `route-message.js` in an ES module project, run `node route-message.js`. For an existing app or TypeScript project, use its normal start command.
 
 <details>
 <summary>Windows PowerShell</summary>
@@ -117,6 +121,7 @@ The TypeSafe SDK handles API calls and typed answers. Recipes add the instructio
 | Check claims against supplied evidence         | [`verify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/verify/README.md)               |
 | Find missing or ambiguous requirements         | [`clarify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/clarify/README.md)             |
 | Label a response's stance toward a claim       | [`claim-stance`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/claim-stance/README.md)   |
+| Choose a move from available game actions      | [`choose-action`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/choose-action/README.md) |
 
 Search, inspect inputs, and try saved results without a key:
 
@@ -127,6 +132,8 @@ npx jev-recipes demo answerability
 ```
 
 [Browse the complete catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md). Each guide includes an import, input reference, result behavior, limitations, and related recipes.
+
+For games, the [gameplay guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/gameplay.md) shows how to combine turn eligibility with action selection using rules, current state, and player history.
 
 <a id="run-your-own-input-from-the-terminal"></a>
 

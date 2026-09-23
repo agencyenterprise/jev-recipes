@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Add `take-turn` and `choose-action` for narrative turn eligibility and game action recommendations, with optional ordered player history, offline tests, and a gameplay composition guide. The source catalog now contains 80 recipes.
+- Clarify that `.mjs` is a standalone Node quickstart option; existing JavaScript ES module and TypeScript projects can use their normal file types and start commands.
+
+- Add six annotation recipes: `response-refusal`, `uncertainty-expression`, `evaluation-mention`, `attribution-match`, `question-leading`, and `evidence-independence`, bringing the source catalog to 78 recipes.
+- Document their decision boundaries and research limitations; add offline contract, review-policy, discovery, and package checks without new runtime dependencies.
+- Fix the package checker to accept both legacy npm archive reports and the npm 12 object format, including dependency archives.
+
 - Add six focused recipes: `instruction-conflict`, `task-dependency`, `task-duplicate`, `constraint-strength`, `requirement-testability`, and `claim-stance`.
 - Add a catalog growth roadmap, an AI alignment research protocol, research discovery tags, and an offline first-use command in the README.
 

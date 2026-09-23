@@ -8,7 +8,9 @@ All three approaches below ask Jev to route the same support message. They use t
 
 ## Shared inputs
 
-Use Node.js 22.9 or newer and set `TYPESAFE_API_KEY` in your environment. Choose one of the three approaches. Save its JavaScript in a `.mjs` file together with these shared inputs, then run it with `node <filename>.mjs`.
+Use Node.js 22.9 or newer and set `TYPESAFE_API_KEY` in your environment. Choose one of the three approaches and include these shared inputs. Use your existing app's JavaScript or TypeScript setup, or save a standalone `.mjs` file and run it with `node <filename>.mjs`.
+
+`.mjs` is a convenience for standalone Node examples, not a package requirement. A `.js` file works in a project with `"type": "module"` in `package.json`; `.ts` works with your usual TypeScript setup. See [Node's module formats](https://nodejs.org/api/packages.html#type).
 
 <!-- BEGIN GENERATED: comparison-input -->
 

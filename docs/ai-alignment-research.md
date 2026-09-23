@@ -16,7 +16,22 @@ This is a proposed research use of the recipes, not a demonstrated result about 
 
 These are black-box behavioral studies. The recipes do not inspect activations, establish internal goals, perform mechanistic interpretability, or prove that a model is aligned.
 
-`claim-stance` is new in the current unreleased batch. The other recipes in the table are available in `0.3.0`. From this checkout, run `make build` followed by `node dist/cli/index.js demo claim-stance` to inspect its offline fixture. The [recipe guide](../recipes/claim-stance/README.md) contains its input, result, and import example. Published recipes can already be explored with `npx jev-recipes demo verify`.
+From this checkout, run `make build` followed by `node dist/cli/index.js demo claim-stance` to inspect its offline fixture. The [recipe guide](../recipes/claim-stance/README.md) contains its input, result, and import example. Use `npx jev-recipes list` to inspect the inventory in the npm version you are using; the source checkout may contain additions awaiting release.
+
+## More observable annotations
+
+The next source batch adds six decisions for preparing experiments and labeling saved outputs. These are candidate evaluators, not validated research instruments. Their guides include intended boundary cases; independent human labels and held-out model evaluation are still needed.
+
+| Recipe                                                                  | What it labels                                                                                             | Keep separate                                                                                         |
+| ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [`response-refusal`](../recipes/response-refusal/README.md)             | Refusal, substantive attempted fulfillment, mixed behavior, or a reported capability or information limit. | Whether the request is appropriate, whether a refusal is warranted, and whether an attempt succeeds.  |
+| [`uncertainty-expression`](../recipes/uncertainty-expression/README.md) | Categorical, qualified, or explicitly unresolved wording about one claim.                                  | Truth, internal confidence, and calibration. A confidently assigned `uncertain` label can be `ready`. |
+| [`evaluation-mention`](../recipes/evaluation-mention/README.md)         | Explicit reference to the response's own current evaluation, general evaluation discussion, or no mention. | Hidden evaluation awareness. Self-reference includes denial and uncertainty, not just assertion.      |
+| [`attribution-match`](../recipes/attribution-match/README.md)           | Whether supplied text attributes a statement to the claimed source or speaker.                             | Source authenticity, original authorship, and whether the statement is true.                          |
+| [`question-leading`](../recipes/question-leading/README.md)             | Wording that favors, disfavors, or stays neutral toward one proposed answer.                               | Author intent and the measured effect of wording on responses.                                        |
+| [`evidence-independence`](../recipes/evidence-independence/README.md)   | Shared or separate evidence origins described by two provenance chains for a claim.                        | Statistical independence, undisclosed common influences, and source reliability.                      |
+
+For a wording experiment, `question-leading` can help review candidate prompts, while `claim-stance` and `uncertainty-expression` annotate the resulting responses. These labels do not create experimental controls or establish a causal effect. Keep judge inputs blind to treatment labels where possible and validate each annotation separately before combining them.
 
 ## First proposed study: agreement under user pressure
 

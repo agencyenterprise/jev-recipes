@@ -56,6 +56,10 @@
       "types": "./dist/recipes/attempted-step/index.d.ts",
       "import": "./dist/recipes/attempted-step/index.js"
     },
+    "./attribution-match": {
+      "types": "./dist/recipes/attribution-match/index.d.ts",
+      "import": "./dist/recipes/attribution-match/index.js"
+    },
     "./audience-fit": {
       "types": "./dist/recipes/audience-fit/index.d.ts",
       "import": "./dist/recipes/audience-fit/index.js"
@@ -75,6 +79,10 @@
     "./change-meaning": {
       "types": "./dist/recipes/change-meaning/index.d.ts",
       "import": "./dist/recipes/change-meaning/index.js"
+    },
+    "./choose-action": {
+      "types": "./dist/recipes/choose-action/index.d.ts",
+      "import": "./dist/recipes/choose-action/index.js"
     },
     "./citation-match": {
       "types": "./dist/recipes/citation-match/index.d.ts",
@@ -116,9 +124,17 @@
       "types": "./dist/recipes/draft-compare/index.d.ts",
       "import": "./dist/recipes/draft-compare/index.js"
     },
+    "./evaluation-mention": {
+      "types": "./dist/recipes/evaluation-mention/index.d.ts",
+      "import": "./dist/recipes/evaluation-mention/index.js"
+    },
     "./evidence-conflict": {
       "types": "./dist/recipes/evidence-conflict/index.d.ts",
       "import": "./dist/recipes/evidence-conflict/index.js"
+    },
+    "./evidence-independence": {
+      "types": "./dist/recipes/evidence-independence/index.d.ts",
+      "import": "./dist/recipes/evidence-independence/index.js"
     },
     "./evidence-novelty": {
       "types": "./dist/recipes/evidence-novelty/index.d.ts",
@@ -208,6 +224,10 @@
       "types": "./dist/recipes/query-specificity/index.d.ts",
       "import": "./dist/recipes/query-specificity/index.js"
     },
+    "./question-leading": {
+      "types": "./dist/recipes/question-leading/index.d.ts",
+      "import": "./dist/recipes/question-leading/index.js"
+    },
     "./reference-resolve": {
       "types": "./dist/recipes/reference-resolve/index.d.ts",
       "import": "./dist/recipes/reference-resolve/index.js"
@@ -235,6 +255,10 @@
     "./response-needed": {
       "types": "./dist/recipes/response-needed/index.d.ts",
       "import": "./dist/recipes/response-needed/index.js"
+    },
+    "./response-refusal": {
+      "types": "./dist/recipes/response-refusal/index.d.ts",
+      "import": "./dist/recipes/response-refusal/index.js"
     },
     "./result-outcome": {
       "types": "./dist/recipes/result-outcome/index.d.ts",
@@ -268,6 +292,10 @@
       "types": "./dist/recipes/summary-coverage/index.d.ts",
       "import": "./dist/recipes/summary-coverage/index.js"
     },
+    "./take-turn": {
+      "types": "./dist/recipes/take-turn/index.d.ts",
+      "import": "./dist/recipes/take-turn/index.js"
+    },
     "./task-dependency": {
       "types": "./dist/recipes/task-dependency/index.d.ts",
       "import": "./dist/recipes/task-dependency/index.js"
@@ -299,6 +327,10 @@
     "./turn-intent": {
       "types": "./dist/recipes/turn-intent/index.d.ts",
       "import": "./dist/recipes/turn-intent/index.js"
+    },
+    "./uncertainty-expression": {
+      "types": "./dist/recipes/uncertainty-expression/index.d.ts",
+      "import": "./dist/recipes/uncertainty-expression/index.js"
     },
     "./urgency-signal": {
       "types": "./dist/recipes/urgency-signal/index.d.ts",
