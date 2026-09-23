@@ -1,6 +1,6 @@
 {
   "name": "jev-recipes",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Small, composable Jev decisions for retrieval, conversations, and agent workflows.",
   "type": "module",
   "license": "MIT",
