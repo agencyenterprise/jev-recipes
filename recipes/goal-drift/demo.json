@@ -1,0 +1,13 @@
+{
+  "input": {
+    "goal": "Fix the failing login test in auth.spec.ts so the suite passes.",
+    "step": "Rewrite the entire session middleware module to use async/await and rename all of its helper functions for consistency.",
+    "context": "The failing test asserts that an expired token returns 401. The middleware currently throws and the request ends in a 500. No other tests are failing.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.91 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

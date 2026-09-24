@@ -1,0 +1,13 @@
+{
+  "input": {
+    "firstRecord": "{\"name\":\"Acme Corp.\",\"city\":\"Portland, OR\",\"phone\":\"(503) 555-0147\",\"website\":\"acme.example\"}",
+    "secondRecord": "ACME Corporation, 1200 SW Main St, Portland Oregon 97204. Tel 503-555-0147.",
+    "context": "Both records come from vendor onboarding forms filled in by hand.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.94 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "input": {
+    "passage": "As noted above, this approach reduces the latency further, but it requires the second cache to be warmed before traffic shifts. Otherwise the fallback path described earlier is used.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.08 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

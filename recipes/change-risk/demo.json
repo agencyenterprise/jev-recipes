@@ -1,0 +1,19 @@
+{
+  "input": {
+    "change": "Replace the session-token validation in the auth middleware with the new JWT verifier, and drop the fallback to the legacy cookie session for all API routes.",
+    "context": "The middleware runs on every authenticated request. About 5% of active users still hold legacy cookie sessions.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.9,
+        "confidence": 0.8,
+        "probabilities": { "0": 0, "1": 0.02, "2": 0.12, "3": 0.8, "4": 0.06 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

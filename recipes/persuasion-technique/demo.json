@@ -1,0 +1,28 @@
+{
+  "input": {
+    "message": "Only 3 seats left at this price, and the offer closes at midnight tonight. Book now before they are gone."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "scarcity",
+        "confidence": 0.91,
+        "probabilities": {
+          "authority": 0,
+          "scarcity": 0.91,
+          "social_proof": 0.02,
+          "reciprocity": 0,
+          "emotional_appeal": 0.04,
+          "none": 0.01,
+          "unclear": 0.02
+        }
+      }
+    }
+  }
+}

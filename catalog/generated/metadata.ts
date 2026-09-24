@@ -2,6 +2,27 @@
 import type { CatalogRecipe } from '../index.js';
 export const recipeMetadata: CatalogRecipe[] = [
   {
+    id: 'action-reversibility',
+    title: 'Grade action reversibility',
+    description:
+      'How reversible is action, given any context, from a trivial undo to an irreversible external effect?',
+    category: 'workflow',
+    tags: ['agent', 'safety', 'action', 'reversibility', 'approval'],
+    limitations: [
+      'Grades the action as described. It does not know which undo, backup, or recall facilities your system actually provides unless context says so.',
+      'Reversibility is not permission. An irreversible action may be exactly what the user asked for, and a trivial one may still be out of scope.',
+    ],
+    useWhen:
+      'You need to decide whether an agent may proceed on its own or must pause for approval before a step that cannot be taken back.',
+    related: [
+      {
+        id: 'action-scope',
+        reason:
+          'Use action-scope to check whether the action stays within the requested work before grading how reversible it is.',
+      },
+    ],
+  },
+  {
     id: 'action-scope',
     title: 'Check proposed action scope',
     description: 'Is proposedAction within the work requested in request and constraints?',
@@ -16,6 +37,31 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'instruction-fit',
         reason: 'Use instruction-fit to decide whether a particular instruction applies.',
+      },
+    ],
+  },
+  {
+    id: 'age-appropriateness',
+    title: 'Grade audience age suitability',
+    description:
+      'What is the youngest general audience for which content is appropriate, on a five-level rubric?',
+    category: 'conversation',
+    tags: ['moderation', 'content-rating', 'age', 'audience', 'safety', 'rubric', 'score'],
+    limitations: [
+      'Not a legal or regulatory rating. It approximates common content-rating conventions and does not replace an official classification.',
+      'The score is an expected value over rubric levels. Application code chooses cutoffs.',
+    ],
+    useWhen:
+      'You need to route, filter, or label user-generated or model-generated content by audience age before publishing it.',
+    related: [
+      {
+        id: 'audience-fit',
+        reason:
+          'Use audience-fit to check whether content suits a specific named audience rather than an age band.',
+      },
+      {
+        id: 'policy-severity',
+        reason: 'Use policy-severity to grade how seriously content breaches a stated policy.',
       },
     ],
   },
@@ -206,6 +252,58 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'breaking-change-signal',
+    title: 'Detect breaking changes',
+    description:
+      'Does change indicate a change that would break existing callers, integrations, stored data, or documented behavior?',
+    category: 'workflow',
+    tags: ['code-review', 'breaking-change', 'compatibility', 'api', 'versioning', 'gate'],
+    limitations: [
+      'Judges the change as described, not the actual code or its consumers. It cannot know which fields callers really depend on.',
+      'Does not choose a version number or write migration notes. Semantic versioning policy belongs in application code.',
+    ],
+    useWhen:
+      'You need to flag changes that require a major version bump, a migration note, or downstream coordination before they merge.',
+    related: [
+      {
+        id: 'change-meaning',
+        reason:
+          'Use change-meaning to decide whether an edit to documentation or contract text alters its meaning.',
+      },
+      {
+        id: 'instruction-conflict',
+        reason:
+          'Use instruction-conflict when a change may disagree with an existing documented rule or requirement.',
+      },
+    ],
+  },
+  {
+    id: 'bug-report-completeness',
+    title: 'Grade bug report completeness',
+    description:
+      'How complete is report for someone to reproduce and triage it, on a five-level rubric?',
+    category: 'workflow',
+    tags: ['code-review', 'bug-report', 'triage', 'issue', 'reproduction', 'rubric'],
+    limitations: [
+      'Grades the presence of reproduction elements, not their accuracy. A report can be complete and still describe the wrong cause.',
+      'Does not judge severity or priority. Route and escalation rules belong in application code.',
+    ],
+    useWhen:
+      'You need to decide whether an incoming bug report can go straight to triage or needs a follow-up request for details first.',
+    related: [
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify to name the specific missing or ambiguous details once a report grades incomplete.',
+      },
+      {
+        id: 'requirement-testability',
+        reason:
+          'Use requirement-testability to check whether a described expected behavior can be verified.',
+      },
+    ],
+  },
+  {
     id: 'cache-match',
     title: 'Check a cached answer',
     description:
@@ -310,6 +408,31 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'answer-invalidation',
         reason: 'Use answer-invalidation to assess how changed evidence affects a saved claim.',
+      },
+    ],
+  },
+  {
+    id: 'change-risk',
+    title: 'Grade change risk',
+    description: 'How risky is change to ship, given context, on a five-level rubric?',
+    category: 'workflow',
+    tags: ['code-review', 'risk', 'change', 'deployment', 'pull-request'],
+    limitations: [
+      'Grades the change as described, not the actual diff. An incomplete or misleading description produces a misleading grade.',
+      'Does not verify test coverage or rollback tooling. Map levels to review and rollout policies in application code.',
+    ],
+    useWhen:
+      'You need to size the risk of a described code change before choosing reviewers, test depth, rollout strategy, or approval requirements.',
+    related: [
+      {
+        id: 'task-complexity',
+        reason:
+          'Use task-complexity to grade how hard the work is, rather than how dangerous shipping it is.',
+      },
+      {
+        id: 'action-scope',
+        reason:
+          'Use action-scope to check whether a change stays within the work that was requested.',
       },
     ],
   },
@@ -477,6 +600,57 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'commit-message-fit',
+    title: 'Check commit message accuracy',
+    description:
+      'Does message accurately describe change, neither omitting a material part nor claiming work not present?',
+    category: 'workflow',
+    tags: ['code-review', 'commit', 'message', 'pull-request', 'gate', 'changelog'],
+    limitations: [
+      'Compares the message against the supplied change description, not the repository. A misleading change summary produces a misleading verdict.',
+      'Does not judge message style, ticket references, or conventional-commit formatting.',
+    ],
+    useWhen:
+      'You need to flag commit or pull request titles that understate, overstate, or misdescribe the change they accompany before merge or changelog generation.',
+    related: [
+      {
+        id: 'summary-coverage',
+        reason:
+          'Use summary-coverage to check whether a longer description preserves each specific point of a change.',
+      },
+      {
+        id: 'change-meaning',
+        reason:
+          'Use change-meaning to decide whether an edit to text alters its meaning or is editorial only.',
+      },
+    ],
+  },
+  {
+    id: 'commitment-strength',
+    title: 'Grade commitment strength',
+    description:
+      'How firmly does statement commit its speaker to an action or outcome, on a five-level rubric?',
+    category: 'conversation',
+    tags: ['psychology', 'commitment', 'promise', 'intention', 'rubric', 'score'],
+    limitations: [
+      "Grades expressed wording, not the speaker's sincerity, authority, or likelihood of following through.",
+      'The score is an expected value over rubric levels. Application code chooses cutoffs.',
+    ],
+    useWhen:
+      'You need to grade how strongly a message commits someone to act before tracking it as a promise or follow-up.',
+    related: [
+      {
+        id: 'promise-check',
+        reason: 'Use promise-check to detect whether a message contains a promise at all.',
+      },
+      {
+        id: 'certainty-match',
+        reason:
+          'Use certainty-match to compare expressed certainty with the evidence rather than commitment to act.',
+      },
+    ],
+  },
+  {
     id: 'confirmation-match',
     title: 'Interpret a confirmation',
     description: 'Does response clearly agree to or reject this exact proposal?',
@@ -593,6 +767,54 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'tone-check',
         reason: 'Use tone-check to evaluate each writing criterion for one draft.',
+      },
+    ],
+  },
+  {
+    id: 'emotion-kind',
+    title: 'Identify expressed emotion',
+    description: 'What primary emotion does the wording of message express?',
+    category: 'conversation',
+    tags: ['psychology', 'emotion', 'sentiment', 'affect', 'annotation', 'conversation'],
+    limitations: [
+      "Labels expressed wording, not the writer's internal emotional state, sincerity, or mood over time.",
+      'Mixed emotions collapse to the dominant one or to unclear. The recipe does not return multiple labels.',
+    ],
+    useWhen:
+      'You need a coarse emotion label for a message to route it, annotate a dataset, or adapt a reply.',
+    related: [
+      {
+        id: 'frustration-signal',
+        reason:
+          'Use frustration-signal for a categorical read on expressed frustration specifically.',
+      },
+      {
+        id: 'uncertainty-expression',
+        reason: 'Use uncertainty-expression to detect hedging and doubt rather than emotion.',
+      },
+    ],
+  },
+  {
+    id: 'entity-match',
+    title: 'Match records to one entity',
+    description:
+      'Do firstRecord and secondRecord describe the same real-world entity despite formatting, abbreviation, or partial fields?',
+    category: 'knowledge',
+    tags: ['deduplication', 'entity-resolution', 'records', 'data-quality', 'matching'],
+    limitations: [
+      'Judges identity from the supplied fields only. It does not look records up or verify that either one is accurate.',
+      'Merge, survivorship, and which fields win remain application rules.',
+    ],
+    useWhen:
+      'You need to decide whether two customer, vendor, product, or place records should be merged or linked.',
+    related: [
+      {
+        id: 'ticket-match',
+        reason: 'Use ticket-match to decide whether two support tickets report the same issue.',
+      },
+      {
+        id: 'task-duplicate',
+        reason: 'Use task-duplicate to catch a task that repeats one already on the list.',
       },
     ],
   },
@@ -739,6 +961,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'extraction-fidelity',
+    title: 'Grade extraction fidelity',
+    description:
+      'How faithfully does extracted represent the facts in source, without invented, altered, or dropped values, on a five-level rubric?',
+    category: 'knowledge',
+    tags: ['extraction', 'structured-data', 'fidelity', 'hallucination', 'rubric', 'score'],
+    limitations: [
+      'Grades agreement with source only. It does not check whether source itself is accurate.',
+      'Reports a single grade, not which values are wrong or missing. Pair it with per-field checks when you need locations.',
+    ],
+    useWhen:
+      'You need to grade a structured extraction against its source document before trusting, storing, or acting on the values.',
+    related: [
+      {
+        id: 'field-select',
+        reason:
+          'Use field-select to pick which field a value belongs to before grading the result.',
+      },
+      {
+        id: 'summary-coverage',
+        reason:
+          'Use summary-coverage when the output is prose that should cover the source, not a set of fields.',
+      },
+    ],
+  },
+  {
     id: 'fact-stability',
     title: 'Assess fact stability',
     description:
@@ -829,6 +1077,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'format-fit',
+    title: 'Check requested format compliance',
+    description:
+      'Does response follow the structure or format request explicitly asks for, such as a list, table, JSON, item count, sections, or language?',
+    category: 'answer-quality',
+    tags: ['format', 'structure', 'instruction-following', 'output', 'gate', 'evaluation'],
+    limitations: [
+      'Judges structure semantically. Strict machine formats such as JSON or CSV should also be validated in code.',
+      'Checks only format instructions stated in the request. It does not judge content accuracy or implied conventions.',
+    ],
+    useWhen:
+      'You need a yes/no check that a generated response honored the format the prompt or user explicitly asked for.',
+    related: [
+      {
+        id: 'instruction-fit',
+        reason:
+          'Use instruction-fit to check the response against all instructions, not only format.',
+      },
+      {
+        id: 'tone-check',
+        reason:
+          'Use tone-check when the requirement is about voice or register rather than structure.',
+      },
+    ],
+  },
+  {
     id: 'freshness-needed',
     title: 'Check information freshness needs',
     description:
@@ -887,6 +1161,58 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'checkers-move',
         reason:
           'Use checkers-move for its American/English checkers board format and built-in checkers instructions.',
+      },
+    ],
+  },
+  {
+    id: 'goal-drift',
+    title: 'Detect goal drift',
+    description:
+      'Does step still serve goal, or has work drifted to something goal did not ask for?',
+    category: 'workflow',
+    tags: ['agent', 'goal', 'drift', 'scope', 'monitoring', 'gate'],
+    limitations: [
+      'Judges a single step against the stated goal. It does not know whether the user later widened or changed the goal unless context says so.',
+      'Reports drift, not whether the drifted work is harmful or valuable. Stopping, asking, or continuing is an application decision.',
+    ],
+    useWhen:
+      'You need a yes/no check on each step of a long-running agent so it stops before spending effort on work nobody asked for.',
+    related: [
+      {
+        id: 'step-progress',
+        reason:
+          'Use step-progress to grade how much an observed result moved the objective forward, rather than whether the next step still belongs to it.',
+      },
+      {
+        id: 'intent-change',
+        reason:
+          'Use intent-change when the user may have redirected the goal, so a step that looks drifted is actually following a new instruction.',
+      },
+    ],
+  },
+  {
+    id: 'grounding-level',
+    title: 'Grade draft grounding',
+    description:
+      'How much of the substantive content in draft is backed by evidence, on a five-level rubric?',
+    category: 'answer-quality',
+    tags: ['grounding', 'hallucination', 'evidence', 'rag', 'rubric', 'score'],
+    limitations: [
+      'Reports how much is grounded, not which statements are unsupported. Use verify per claim to locate them.',
+      'Grades support from the supplied evidence only. A true statement from outside knowledge still counts as unsupported.',
+    ],
+    useWhen:
+      'You need one graded measure of how well a generated answer sticks to its retrieved sources before sending or ranking it.',
+    related: [
+      {
+        id: 'verify',
+        reason:
+          'Use verify for a supported, contradicted, or unsupported verdict on a single claim.',
+      },
+      {
+        id: 'answer-relevance',
+        reason:
+          'Use answer-relevance to check that the draft addresses the question, not just the sources.',
       },
     ],
   },
@@ -1052,6 +1378,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'repeated-attempt',
         reason:
           'Use repeated-attempt to check whether a proposed troubleshooting step repeats an earlier attempt.',
+      },
+    ],
+  },
+  {
+    id: 'length-fit',
+    title: 'Check response length fit',
+    description: 'Is the length and detail of response proportionate to what request asks for?',
+    category: 'answer-quality',
+    tags: ['length', 'verbosity', 'concision', 'response-quality', 'evaluation'],
+    limitations: [
+      'Judges proportion only. It does not check whether the response is correct, complete on substance, or well written.',
+      'Style guides and hard word limits remain application rules; encode them in code and use this recipe for the judgment call.',
+    ],
+    useWhen:
+      'You need to catch answers that are padded or truncated relative to the question before sending or scoring them.',
+    related: [
+      {
+        id: 'audience-fit',
+        reason:
+          'Use audience-fit to check that the response matches who is asking, not how much they asked for.',
+      },
+      {
+        id: 'answer-relevance',
+        reason: 'Use answer-relevance to check that the response addresses the question at all.',
       },
     ],
   },
@@ -1247,6 +1597,56 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'passage-standalone',
+    title: 'Check passage self-containment',
+    description:
+      'Can passage be understood on its own, without unresolved references to surrounding text?',
+    category: 'retrieval',
+    tags: ['chunking', 'retrieval', 'embedding', 'context', 'passage'],
+    limitations: [
+      'Judges whether the passage is self-contained, not whether it is accurate, relevant, or well chunked.',
+      'Does not say which references are unresolved or rewrite the passage. Repair and re-chunking belong in application code.',
+    ],
+    useWhen:
+      'You need to check chunks before embedding them, or decide whether a retrieved passage needs its neighbors to be useful.',
+    related: [
+      {
+        id: 'context-role',
+        reason:
+          'Use context-role to decide what part a passage plays in answering a specific question.',
+      },
+      {
+        id: 'query-specificity',
+        reason:
+          'Use query-specificity to check the other side of retrieval: whether the query is clear enough to match.',
+      },
+    ],
+  },
+  {
+    id: 'persuasion-technique',
+    title: 'Identify a persuasion technique',
+    description: 'Which persuasion technique, if any, does the wording of message primarily use?',
+    category: 'conversation',
+    tags: ['psychology', 'persuasion', 'influence', 'rhetoric', 'marketing', 'annotation'],
+    limitations: [
+      "Labels expressed wording, not the writer's intent, honesty, or the effect on readers.",
+      'Returns the single dominant technique. Messages that combine several collapse to one or to unclear.',
+    ],
+    useWhen:
+      'You need to annotate or flag how a message tries to persuade, for moderation, research, or review of outgoing drafts.',
+    related: [
+      {
+        id: 'motivation-source',
+        reason:
+          'Use motivation-source to classify a stated reason for acting rather than a technique aimed at a reader.',
+      },
+      {
+        id: 'question-leading',
+        reason: 'Use question-leading to detect a question that steers toward a particular answer.',
+      },
+    ],
+  },
+  {
     id: 'pii-presence',
     title: 'Detect personal information',
     description: 'Does text contain information identifying a specific private individual?',
@@ -1271,6 +1671,31 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'plan-completeness',
+    title: 'Grade plan completeness',
+    description: 'How completely does plan cover what task requires, on a five-level rubric?',
+    category: 'workflow',
+    tags: ['agent', 'plan', 'completeness', 'planning', 'rubric', 'score'],
+    limitations: [
+      'Grades coverage of stated and clearly implied requirements. It does not judge whether the planned steps would actually work.',
+      'The top level requires a verification step. A plan that covers everything but never checks the result grades one level lower by design.',
+    ],
+    useWhen:
+      'You need to check an agent-written plan against the task before execution starts, so missing requirements are caught while they are cheap to add.',
+    related: [
+      {
+        id: 'answer-coverage',
+        reason:
+          'Use answer-coverage to check a finished draft against explicit questions rather than a plan against a task.',
+      },
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify when the task itself is ambiguous, since a plan cannot cover requirements the task never made clear.',
+      },
+    ],
+  },
+  {
     id: 'policy-severity',
     title: 'Grade a policy violation',
     description: 'How severely does content violate the supplied policy, on a five-level rubric?',
@@ -1290,6 +1715,31 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'promise-check',
         reason: 'Use promise-check to catch replies that commit beyond what your rules allow.',
+      },
+    ],
+  },
+  {
+    id: 'politeness-level',
+    title: 'Grade expressed politeness',
+    description:
+      'How polite is the wording of message toward its recipient, on a five-level rubric?',
+    category: 'conversation',
+    tags: ['psychology', 'politeness', 'tone', 'courtesy', 'rubric', 'score'],
+    limitations: [
+      "Grades expressed wording, not the writer's attitude or how the recipient will perceive it.",
+      'Politeness norms vary by culture and register. The rubric reflects general written conventions.',
+    ],
+    useWhen:
+      'You need a graded politeness signal to adapt reply tone, flag hostile messages, or audit outgoing drafts.',
+    related: [
+      {
+        id: 'tone-check',
+        reason:
+          'Use tone-check to verify a draft matches a specified tone rather than grading politeness.',
+      },
+      {
+        id: 'frustration-signal',
+        reason: 'Use frustration-signal for a categorical read on expressed frustration.',
       },
     ],
   },
@@ -1654,6 +2104,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'result-plausibility',
+    title: 'Check result plausibility',
+    description:
+      'Is result a plausible, internally consistent answer to request rather than an error, placeholder, empty, or unrelated output dressed as data?',
+    category: 'workflow',
+    tags: ['agent', 'tool-result', 'plausibility', 'validation', 'quality', 'gate'],
+    limitations: [
+      'Judges internal consistency and fit to the request, not factual accuracy. A plausible result can still be wrong.',
+      'A genuine empty answer, such as a search that legitimately found nothing, is only plausible if the result says so rather than returning blank output.',
+    ],
+    useWhen:
+      'You need a yes/no check on a tool or subagent output before an agent trusts it, stores it, or builds the next step on it.',
+    related: [
+      {
+        id: 'result-usefulness',
+        reason:
+          'Use result-usefulness once a result is plausible to decide whether it actually carries information the task needs.',
+      },
+      {
+        id: 'result-outcome',
+        reason:
+          'Use result-outcome to classify what a result reports happened, such as success or failure, rather than whether it is real.',
+      },
+    ],
+  },
+  {
     id: 'result-usefulness',
     title: 'Check tool result usefulness',
     description: 'Does result provide information useful for task?',
@@ -1688,6 +2164,56 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'retry-worthwhile',
+    title: 'Decide whether to retry',
+    description:
+      'Does failure describe a transient condition where an identical retry could succeed, given any attempt history?',
+    category: 'workflow',
+    tags: ['agent', 'retry', 'failure', 'resilience', 'transient', 'gate'],
+    limitations: [
+      'Judges the failure text as written. It does not know your retry budget, backoff policy, or whether the action is safe to repeat.',
+      'Says whether an identical retry could succeed, not whether a modified attempt would. Fixing inputs or permissions is a different decision.',
+    ],
+    useWhen:
+      'You need a yes/no decision after a tool call or request fails and the error text, not a status code, is the only signal you have.',
+    related: [
+      {
+        id: 'failure-kind',
+        reason:
+          'Use failure-kind to place the failure in one of your own categories when you need more than a retry or stop answer.',
+      },
+      {
+        id: 'repeated-attempt',
+        reason:
+          'Use repeated-attempt to check whether a proposed next attempt is really a fresh approach rather than the same one again.',
+      },
+    ],
+  },
+  {
+    id: 'review-comment-kind',
+    title: 'Classify review comment kind',
+    description: 'What is the primary kind of comment?',
+    category: 'workflow',
+    tags: ['code-review', 'comment', 'classification', 'pull-request', 'triage'],
+    limitations: [
+      'Classifies what the comment says, not whether it is correct or whether the author must act on it. Blocking and merge rules belong in application code.',
+    ],
+    useWhen:
+      'You need to sort code review comments so blocking defects surface first and optional polish can be batched or deferred.',
+    related: [
+      {
+        id: 'feedback-kind',
+        reason:
+          'Use feedback-kind to classify general product or service feedback outside code review.',
+      },
+      {
+        id: 'turn-intent',
+        reason:
+          'Use turn-intent to classify the communicative purpose of a conversational message.',
+      },
+    ],
+  },
+  {
     id: 'route',
     title: 'Route a request',
     description: 'Choose a named handler or return a review decision.',
@@ -1706,6 +2232,56 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'satisfaction-signal',
+    title: 'Grade expressed satisfaction',
+    description:
+      'How much satisfaction with the outcome does message express at the close of an interaction, on a five-level rubric?',
+    category: 'support',
+    tags: ['support', 'satisfaction', 'csat', 'sentiment', 'rubric', 'score'],
+    limitations: [
+      'Grades expressed wording at the close of an interaction, not actual satisfaction, retention, or survey scores.',
+      'The score is an expected value over rubric levels. Application code chooses cutoffs.',
+    ],
+    useWhen:
+      'You need a graded satisfaction signal from closing messages when no survey response is available.',
+    related: [
+      {
+        id: 'resolution-check',
+        reason:
+          'Use resolution-check to decide whether the customer reported the issue itself resolved.',
+      },
+      {
+        id: 'frustration-signal',
+        reason:
+          'Use frustration-signal for a categorical read on expressed frustration in any message.',
+      },
+    ],
+  },
+  {
+    id: 'sentiment-shift',
+    title: 'Compare sentiment across messages',
+    description:
+      'How does the sentiment expressed in laterMessage compare with earlierMessage from the same person?',
+    category: 'support',
+    tags: ['support', 'sentiment', 'trend', 'conversation', 'signal', 'escalation'],
+    limitations: [
+      "Compares expressed wording in two messages, not the person's actual feelings or the state of their issue.",
+      'A shift does not establish its cause. Pair the verdict with the intervening turns in application code.',
+    ],
+    useWhen:
+      "You need to know whether a customer's expressed sentiment moved during a conversation, for example after an agent reply or a handoff.",
+    related: [
+      {
+        id: 'frustration-signal',
+        reason: 'Use frustration-signal for a categorical read on frustration in a single message.',
+      },
+      {
+        id: 'resolution-check',
+        reason: 'Use resolution-check to decide whether the customer reported the issue resolved.',
+      },
+    ],
+  },
+  {
     id: 'source-applicability',
     title: 'Check source applicability',
     description: 'Does the scope described in passage apply to scenario?',
@@ -1719,6 +2295,30 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'evidence-conflict',
         reason: 'Use evidence-conflict to compare two applicable sources for disagreement.',
+      },
+    ],
+  },
+  {
+    id: 'spam-signal',
+    title: 'Detect spam content',
+    description:
+      'Is message unsolicited promotional, scam, or bulk content rather than a genuine contribution?',
+    category: 'conversation',
+    tags: ['moderation', 'spam', 'abuse', 'filtering', 'community', 'gate'],
+    limitations: [
+      'Judges content semantically. It does not check sender reputation, posting frequency, or where links lead.',
+      'Removal, hiding, and appeal decisions belong in application code.',
+    ],
+    useWhen:
+      'You need a yes/no gate before publishing, forwarding, or replying to community posts, comments, or inbound messages.',
+    related: [
+      {
+        id: 'turn-intent',
+        reason: 'Use turn-intent to classify what a genuine message is trying to do.',
+      },
+      {
+        id: 'response-needed',
+        reason: 'Use response-needed to decide whether a genuine message calls for a reply.',
       },
     ],
   },

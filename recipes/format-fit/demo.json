@@ -1,0 +1,12 @@
+{
+  "input": {
+    "request": "Give me three benefits of unit testing as a numbered list, one sentence each.",
+    "response": "1. Unit tests catch regressions close to the change that caused them.\n2. They document how each function is expected to behave.\n3. They make refactoring safer because failures point to a specific unit.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.95 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

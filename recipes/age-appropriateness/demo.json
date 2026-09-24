@@ -1,0 +1,19 @@
+{
+  "input": {
+    "content": "The two friends raced their bikes down the hill, laughing as the wind whipped past. At the bottom, Maya skidded and scraped her knee, but she grinned and said it was the best ride ever.",
+    "context": "Short story submitted to a reading app for young readers.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 0.21,
+        "confidence": 0.82,
+        "probabilities": { "0": 0.82, "1": 0.15, "2": 0.03, "3": 0.0, "4": 0.0 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

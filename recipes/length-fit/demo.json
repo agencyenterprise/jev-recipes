@@ -1,0 +1,19 @@
+{
+  "input": {
+    "request": "What is the capital of Australia? One word is fine.",
+    "response": "The capital of Australia is Canberra. Many people assume it is Sydney or Melbourne, since those are the largest cities, but Canberra was purpose-built as a compromise between the two and became the seat of government in 1927. It sits in the Australian Capital Territory, has a population of around 460,000, and is home to Parliament House, the High Court, and many national institutions.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "long",
+        "confidence": 0.9,
+        "probabilities": { "short": 0.01, "fits": 0.07, "long": 0.9, "unclear": 0.02 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

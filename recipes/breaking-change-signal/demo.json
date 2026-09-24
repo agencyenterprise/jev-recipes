@@ -1,0 +1,12 @@
+{
+  "input": {
+    "change": "Rename the userId field in the /v1/orders response to customerId and remove the deprecated legacyStatus field from the same payload.",
+    "context": "Public REST API consumed by three partner integrations and the mobile app.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.95 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

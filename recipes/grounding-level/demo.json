@@ -1,0 +1,19 @@
+{
+  "input": {
+    "draft": "Your Starter plan includes 5 GB of storage and unlimited collaborators. Files larger than 2 GB must be uploaded through the desktop app, and deleted files can be restored for 30 days.",
+    "evidence": "Starter plan: 5 GB storage, up to 10 collaborators. Uploads larger than 2 GB require the desktop application. Deleted files can be restored for 30 days.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.91,
+        "confidence": 0.85,
+        "probabilities": { "0": 0.0, "1": 0.02, "2": 0.09, "3": 0.85, "4": 0.04 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

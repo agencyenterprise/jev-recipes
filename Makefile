@@ -1,6 +1,6 @@
 .PHONY: help setup generate docs test ci pack-check build clean new format
 .DEFAULT_GOAL := help
-export RECIPE
+export RECIPE KIND
 
 help:
 	@echo "make setup                  Install locked development dependencies"
@@ -10,7 +10,7 @@ help:
 	@echo "make test RECIPE=route      Run one recipe's tests"
 	@echo "make ci                     Run all checks, including the npm archive"
 	@echo "make pack-check             Build, inspect, and test the npm archive"
-	@echo "make new RECIPE=my-recipe   Scaffold a recipe and its test file"
+	@echo "make new RECIPE=my-recipe   Scaffold a recipe and its test file (KIND=choice|score|gate)"
 	@echo "make build / make clean     Build or remove compiled output"
 	@echo "make format                 Format the codebase"
 
