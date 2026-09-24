@@ -50,8 +50,9 @@ export async function performanceFeedbackFacets(
         instruction:
           'Does feedback address expression or phrasing, such as musical shape, direction, character, style, rubato, or communicating the mood of the piece?',
         criteria: {
-          true: 'The feedback comments on phrasing, musical shape, character, style, or emotional communication.',
-          false: 'The feedback says nothing about phrasing, shape, character, or musical meaning.',
+          true: 'The feedback comments on phrasing, musical shape, character, style, or emotional communication beyond raw volume.',
+          false:
+            'The feedback says nothing about phrasing, shape, character, or musical meaning; comments on volume levels, balance, or dynamic contrast alone are dynamics, not expression.',
         },
       },
     },

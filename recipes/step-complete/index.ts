@@ -13,8 +13,10 @@ export async function stepComplete(
     'Does evidence establish that condition has been met? A plan, attempted action, or unsupported assertion of completion is not enough unless the condition specifically concerns that report.',
     {
       met: 'The evidence establishes the full condition is satisfied.',
-      unmet: 'The evidence establishes the condition is not fully satisfied.',
-      unclear: 'The evidence does not establish whether the condition is satisfied.',
+      unmet:
+        'The evidence affirmatively shows the condition failed or has not happened; mere absence of confirmation is not enough.',
+      unclear:
+        'The evidence does not say whether the condition is satisfied, including when the outcome is simply unconfirmed.',
     },
     options,
   );

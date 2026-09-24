@@ -1,4 +1,4 @@
-.PHONY: help setup generate docs test ci pack-check build clean new format
+.PHONY: help setup generate docs test ci pack-check build clean new format evals
 .DEFAULT_GOAL := help
 export RECIPE KIND
 
@@ -11,6 +11,7 @@ help:
 	@echo "make ci                     Run all checks, including the npm archive"
 	@echo "make pack-check             Build, inspect, and test the npm archive"
 	@echo "make new RECIPE=my-recipe   Scaffold a recipe and its test file (KIND=choice|score|gate|comparison|labels)"
+	@echo "make evals                  Run golden evals against the live model (needs TYPESAFE_API_KEY)"
 	@echo "make build / make clean     Build or remove compiled output"
 	@echo "make format                 Format the codebase"
 
@@ -40,6 +41,10 @@ clean:
 
 new:
 	@node scripts/new-recipe.mjs
+
+evals:
+	@npm run eval:validate
+	@npm run eval
 
 format:
 	@npm run format

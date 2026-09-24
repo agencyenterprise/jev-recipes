@@ -13,7 +13,7 @@ import { performanceFeedbackFacets } from 'jev-recipes/performance-feedback-face
 
 const result = await performanceFeedbackFacets({
   feedback:
-    'Good work this week. The dotted eighths in bars 9 to 12 are still rushing, so put the metronome on and count the sixteenth underneath. The high F-sharp in bar 14 was flat every time; check it against the open E before you start. I liked the contrast between the quiet opening and the forte at the return of the theme, keep that.',
+    'Good work this week. The dotted eighths in bars 9 to 12 are still rushing, so put the metronome on and count the sixteenth underneath. The high F-sharp in bar 14 was flat every time; check it against the open E before you start. The forte at the return of the theme was too loud next to the quiet opening; bring it down one level.',
   minConfidence: 0.8,
 });
 console.log(result);

@@ -13,7 +13,7 @@ import { stepComplete } from 'jev-recipes/step-complete';
 
 const result = await stepComplete({
   condition: 'The customer has received a reset email.',
-  evidence: 'A reset email was queued for delivery. Delivery has not been confirmed.',
+  evidence: 'A reset email was queued for delivery. No delivery status has been reported yet.',
 });
 console.log(result);
 ```

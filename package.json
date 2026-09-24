@@ -997,6 +997,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "demo": "node dist/cli/index.js demo all",
+    "eval": "node --env-file-if-exists=.env evals/run.mjs",
+    "eval:smoke": "node --env-file-if-exists=.env evals/smoke.mjs",
+    "eval:validate": "node evals/validate.mjs",
     "jev-recipes": "node --env-file-if-exists=.env dist/cli/index.js",
     "ci": "node scripts/ci.mjs",
     "pack:check": "node scripts/pack-check.mjs",
@@ -1009,8 +1012,8 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@typesafe-ai/sdk": "0.6.0",
-    "zod": "4.6.5"
+    "@typesafe-ai/sdk": "^0.6.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

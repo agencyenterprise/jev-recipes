@@ -1,0 +1,143 @@
+{
+  "recipe": "answerability",
+  "model": "jev-1.13.0",
+  "cases": 50,
+  "accuracy": 0.96,
+  "contestedAccuracy": 0.75,
+  "adversarialAccuracy": 1,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 5,
+      "accuracy": 0.6
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 1,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 6,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 38,
+      "accuracy": 1
+    }
+  ],
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0.1,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0.1,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.1,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.1,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.1,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.1,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.12,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.16,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.24,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.28,
+      "readyAccuracy": 1
+    }
+  ],
+  "suggestedMinConfidence": 0.5,
+  "confusion": {
+    "{\"verdict\":\"conflicting\"}": {
+      "total": 11,
+      "correct": 11,
+      "misses": {}
+    },
+    "{\"verdict\":\"insufficient\"}": {
+      "total": 12,
+      "correct": 11,
+      "misses": {
+        "{\"verdict\":\"partial\"}": 1
+      }
+    },
+    "{\"verdict\":\"partial\"}": {
+      "total": 13,
+      "correct": 13,
+      "misses": {}
+    },
+    "{\"verdict\":\"sufficient\"}": {
+      "total": 14,
+      "correct": 13,
+      "misses": {
+        "{\"verdict\":\"partial\"}": 1
+      }
+    }
+  },
+  "failures": [
+    {
+      "id": "sale-item-return-implicit",
+      "expected": {
+        "verdict": "sufficient"
+      },
+      "actual": {
+        "verdict": "partial"
+      },
+      "confidence": 0.47,
+      "contested": true
+    },
+    {
+      "id": "export-delete-vague-pointer",
+      "expected": {
+        "verdict": "insufficient"
+      },
+      "actual": {
+        "verdict": "partial"
+      },
+      "confidence": 0.38,
+      "contested": true
+    }
+  ]
+}

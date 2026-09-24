@@ -15,9 +15,9 @@ export async function clarify(
       `Is the information described by requirements[${index}].description supplied in the request or context?`,
     {
       present: 'The required information is explicitly supplied or unambiguously implied.',
-      missing: 'The required information is absent.',
+      missing: 'Nothing in the request or context refers to this information at all.',
       ambiguous:
-        'Relevant information is supplied, but has multiple plausible meanings or conflicting values.',
+        'The request or context refers to this information, but it is vague, underspecified, conflicting, or open to multiple readings, so a follow-up question is needed to pin it down.',
     },
     options,
     'requirement',

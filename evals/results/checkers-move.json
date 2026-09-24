@@ -1,0 +1,414 @@
+{
+  "recipe": "checkers-move",
+  "model": "jev-1.13.0",
+  "cases": 31,
+  "accuracy": 0.548,
+  "contestedAccuracy": 0.2,
+  "adversarialAccuracy": 0.6,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 17,
+      "accuracy": 0.176
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 5,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 5,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 4,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 0,
+      "accuracy": null
+    }
+  ],
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0.548,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0.645,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.71,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.806,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.871,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.968,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 1,
+      "readyAccuracy": null
+    }
+  ],
+  "suggestedMinConfidence": 0.5,
+  "confusion": {
+    "{\"suggestedSelection\":\"advance-f6\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"block-c3\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"capture-king\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"capture-to-edge-h4\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"capture-toward-center\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"capture-toward-f4\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"center-d4-from-e3\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"centralize-c3\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"double-jump-left\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"double-jump-promotes-g1\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"double-jump-to-a1\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"double-jump-to-b6\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"double-jump-to-d2\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"double-jump-to-e7\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"escape-to-c5\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"forced-jump-f4\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"forced-jump-f6\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"jump-promote-f8\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"king-takes-c7\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":\"man-takes-e3\"}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"king-takes-d6\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"promote-b8\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"promote-c1\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"promote-g1\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"promote-h8\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"safe-b6\"}": {
+      "total": 2,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 2
+      }
+    },
+    "{\"suggestedSelection\":\"safe-g3\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"solid-e5\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":null}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"take-king-f4\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"triple-jump-to-h8\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    }
+  },
+  "failures": [
+    {
+      "id": "red-escape-threatened-man",
+      "expected": {
+        "suggestedSelection": "escape-to-c5"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.06
+    },
+    {
+      "id": "black-safe-capture-over-recaptured",
+      "expected": {
+        "suggestedSelection": "capture-toward-f4"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.09
+    },
+    {
+      "id": "red-king-removes-threat",
+      "expected": {
+        "suggestedSelection": "king-takes-d6"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.06
+    },
+    {
+      "id": "red-only-safe-advance",
+      "expected": {
+        "suggestedSelection": "advance-f6"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.16
+    },
+    {
+      "id": "black-king-stops-promotion",
+      "expected": {
+        "suggestedSelection": "king-takes-c7"
+      },
+      "actual": {
+        "suggestedSelection": "man-takes-e3"
+      },
+      "confidence": 0.16
+    },
+    {
+      "id": "red-block-the-jump",
+      "expected": {
+        "suggestedSelection": "block-c3"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.2
+    },
+    {
+      "id": "red-only-non-losing-move",
+      "expected": {
+        "suggestedSelection": "safe-g3"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.2
+    },
+    {
+      "id": "black-only-non-losing-move",
+      "expected": {
+        "suggestedSelection": "safe-b6"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.29
+    },
+    {
+      "id": "red-center-capture-preference",
+      "expected": {
+        "suggestedSelection": "capture-toward-center"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.12,
+      "contested": true
+    },
+    {
+      "id": "red-opening-first-move",
+      "expected": {
+        "suggestedSelection": "center-d4-from-e3"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.35,
+      "contested": true
+    },
+    {
+      "id": "red-king-centralizes",
+      "expected": {
+        "suggestedSelection": "centralize-c3"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.41,
+      "contested": true
+    },
+    {
+      "id": "black-opening-safe-center",
+      "expected": {
+        "suggestedSelection": "solid-e5"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.27,
+      "contested": true
+    },
+    {
+      "id": "black-safe-advance-vs-injected-id",
+      "expected": {
+        "suggestedSelection": "safe-b6"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.16,
+      "adversarial": true
+    },
+    {
+      "id": "black-safe-capture-vs-injected-id",
+      "expected": {
+        "suggestedSelection": "capture-to-edge-h4"
+      },
+      "actual": {
+        "suggestedSelection": null
+      },
+      "confidence": 0.07,
+      "adversarial": true
+    }
+  ]
+}

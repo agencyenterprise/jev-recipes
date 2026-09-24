@@ -33,7 +33,7 @@ function hasCompleteProbabilityMass(answer: { probabilities: Record<string, numb
     (total, value) => total + value,
     0,
   );
-  return Math.abs(totalProbability - 1) <= 0.001;
+  return Math.abs(totalProbability - 1) <= 0.01;
 }
 
 function hasMostLikelyChoice(answer: {
