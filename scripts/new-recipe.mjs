@@ -6,7 +6,7 @@ import ts from 'typescript';
 import { z } from 'zod';
 import { projectRoot, recipeIdPattern } from './lib/recipes.mjs';
 
-export const recipeKinds = ['choice', 'score', 'gate', 'comparison', 'labels'];
+export const recipeKinds = ['choice', 'score', 'gate', 'comparison', 'labels', 'selection'];
 
 const text = z.string().trim().min(1);
 const label = z.string().regex(/^[a-z][a-z0-9_]*$/, 'Labels are lower snake_case.');
@@ -41,7 +41,10 @@ const baseSpec = z.object({
     ),
   instruction: text,
   readme: z.object({ result: prose.optional(), limits: prose.optional() }).default({}),
-  demoInput: z.record(camel, z.union([text, z.record(z.string(), z.unknown())])),
+  demoInput: z.record(
+    camel,
+    z.union([text, z.record(z.string(), z.unknown()), z.array(z.object({ id: text, text }))]),
+  ),
 });
 export const recipeSpecSchema = z.discriminatedUnion('kind', [
   baseSpec.extend({
@@ -77,6 +80,18 @@ export const recipeSpecSchema = z.discriminatedUnion('kind', [
       probability,
     ),
   }),
+  baseSpec
+    .extend({
+      kind: z.literal('selection'),
+      candidatesField: camel,
+      demoProbabilities: z.record(z.string(), probability),
+    })
+    .refine(
+      (spec) =>
+        spec.inputs[spec.candidatesField] === 'required' &&
+        Array.isArray(spec.demoInput[spec.candidatesField]),
+      'candidatesField must name a required input whose demoInput value is an array of { id, text }.',
+    ),
   baseSpec.extend({
     kind: z.literal('labels'),
     labels: z
@@ -186,6 +201,25 @@ export function starterSpec(id, kind) {
       demoProbabilities: { asksQuestion: 0.94, requestsAction: 0.91 },
     },
   };
+  starters.selection = {
+    ...common,
+    kind: 'selection',
+    description: 'Which supplied candidate does reference refer to in text?',
+    tags: ['selection', 'candidates', 'starter'],
+    useWhen: 'You need to pick one of several caller-supplied candidates, or none.',
+    inputs: { text: 'required', reference: 'required', candidates: 'required' },
+    candidatesField: 'candidates',
+    demoInput: {
+      text: 'Please cancel the hardware order, not my subscription.',
+      reference: 'the hardware order',
+      candidates: [
+        { id: 'order', text: 'A pending hardware order.' },
+        { id: 'subscription', text: 'An active monthly storage subscription.' },
+      ],
+    },
+    instruction: 'Which supplied candidate does reference refer to in text?',
+    demoProbabilities: { order: 0.94, subscription: 0.03, none: 0.02, ambiguous: 0.01 },
+  };
   if (!recipeKinds.includes(kind))
     throw new Error(`Unknown recipe kind "${kind}". Use one of: ${recipeKinds.join(', ')}.`);
   return starters[kind];
@@ -201,7 +235,11 @@ export function renderRecipe(rawSpec) {
     .filter(([, mode]) => mode === 'optional')
     .map(([name]) => name);
   const inputFields = Object.entries(spec.inputs)
-    .map(([name, mode]) => `${name}: nonEmptyText${mode === 'optional' ? '.optional()' : ''}`)
+    .map(([name, mode]) =>
+      spec.kind === 'selection' && name === spec.candidatesField
+        ? `${name}: textItemsSchema`
+        : `${name}: nonEmptyText${mode === 'optional' ? '.optional()' : ''}`,
+    )
     .concat('minConfidence: probability.optional()')
     .join(', ');
   const demoInput = { ...spec.demoInput, minConfidence: 0.8 };
@@ -536,7 +574,61 @@ testLabels(${fn}, ${j(input)}, ${j(Object.keys(spec.labels))}${optional.length ?
   },
 };
 
+kinds.selection = {
+  helper: 'selection',
+  index: (spec, { fn, T }) => `import { selectCandidate } from '../../src/selection.js';
+import type { RecipeOptions } from '../../src/schema.js';
+import { ${fn}InputSchema } from './schema.js';
+import type { ${T}Input, ${T}Result } from './schema.js';
+
+export async function ${fn}(input: ${T}Input, options: RecipeOptions = {}): Promise<${T}Result> {
+  const { minConfidence = 0.8, ...state } = ${fn}InputSchema.parse(input);
+  return selectCandidate(state, state.${spec.candidatesField}, ${q(spec.instruction)}, minConfidence, options);
+}
+
+export { ${fn}InputSchema, ${fn}ResultSchema } from './schema.js';
+export type { ${T}Input, ${T}Result } from './schema.js';
+`,
+  schema: (spec, { fn, T }, inputFields) => `import { z } from 'zod';
+import { nonEmptyText, probability, selectionResultSchema, textItemsSchema } from '../../src/schema.js';
+
+export const ${fn}InputSchema = z.object({ ${inputFields} });
+export const ${fn}ResultSchema = selectionResultSchema;
+
+export type ${T}Input = z.infer<typeof ${fn}InputSchema>;
+export type ${T}Result = z.infer<typeof ${fn}ResultSchema>;
+`,
+  demoAnswers: (spec) => {
+    const ids = spec.demoInput[spec.candidatesField].map((candidate) => candidate.id);
+    const labels = [...ids.map((_, index) => `candidate_${index}`), 'none', 'ambiguous'];
+    const mapped = {};
+    for (const [key, value] of Object.entries(spec.demoProbabilities)) {
+      if (key === 'none' || key === 'ambiguous') mapped[key] = value;
+      else if (ids.includes(key)) mapped[`candidate_${ids.indexOf(key)}`] = value;
+      else
+        throw new Error(
+          `${spec.id}: demoProbabilities key ${key} is not a candidate id, none, or ambiguous.`,
+        );
+    }
+    return choiceAnswer(spec.id, mapped, labels);
+  },
+  result: (spec) =>
+    `\`selection\` is the id of the chosen \`${spec.candidatesField}\` entry when the result is \`ready\` and a candidate matched. \`verdict\` is \`matched\`, \`none\` when no candidate fits, or \`ambiguous\` when several fit equally or the facts cannot separate them. \`suggestedSelection\` keeps a low-confidence pick for inspection while \`selection\` stays null.\n\nA result is \`ready\` when \`confidence\` meets \`minConfidence\` and the verdict is not \`ambiguous\`. \`probabilities.candidates\` is keyed by your candidate ids, with \`none\` and \`ambiguous\` reported alongside.`,
+  test: (
+    spec,
+    { fn },
+    input,
+    optional,
+  ) => `import { ${fn} } from '../../recipes/${spec.id}/index.js';
+import { testSelection } from './helpers/selection.js';
+
+testSelection(${fn}, ${j(input)}, ${q(spec.candidatesField)}${optional.length ? `, ${j(optional)}` : ''});
+`,
+};
+
 const reuse = {
+  selection:
+    'Uses the shared candidate-selection helper, which presents your candidates as choices alongside none and ambiguous and maps the answer back to your ids. This folder owns the question wording and the review policy.',
   score:
     'Uses the shared score helper. This folder owns the question, the rubric wording, and the review policy.',
   gate: 'Uses the shared gate helper, a single yes/no question. This folder owns the question wording, the outcome descriptions, and the review policy.',

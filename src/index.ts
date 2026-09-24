@@ -585,6 +585,17 @@ export type {
   ContextRoleVerdict,
 } from '../recipes/context-role/index.js';
 export {
+  continuationCompare,
+  continuationCompareInputSchema,
+  continuationCompareResultSchema,
+  continuationCompareVerdictSchema,
+} from '../recipes/continuation-compare/index.js';
+export type {
+  ContinuationCompareInput,
+  ContinuationCompareResult,
+  ContinuationCompareVerdict,
+} from '../recipes/continuation-compare/index.js';
+export {
   correctionTarget,
   correctionTargetInputSchema,
   correctionTargetResultSchema,
@@ -604,6 +615,17 @@ export type {
   CorrectiveActionFitResult,
   CorrectiveActionFitVerdict,
 } from '../recipes/corrective-action-fit/index.js';
+export {
+  dawRequestKind,
+  dawRequestKindInputSchema,
+  dawRequestKindResultSchema,
+  dawRequestKindVerdictSchema,
+} from '../recipes/daw-request-kind/index.js';
+export type {
+  DawRequestKindInput,
+  DawRequestKindResult,
+  DawRequestKindVerdict,
+} from '../recipes/daw-request-kind/index.js';
 export {
   deadlineRisk,
   deadlineRiskInputSchema,
@@ -681,6 +703,17 @@ export type {
   DraftCompareResult,
   DraftCompareVerdict,
 } from '../recipes/draft-compare/index.js';
+export {
+  dynamicChange,
+  dynamicChangeInputSchema,
+  dynamicChangeResultSchema,
+  dynamicChangeVerdictSchema,
+} from '../recipes/dynamic-change/index.js';
+export type {
+  DynamicChangeInput,
+  DynamicChangeResult,
+  DynamicChangeVerdict,
+} from '../recipes/dynamic-change/index.js';
 export {
   eligibilityFacets,
   eligibilityFacetsInputSchema,
@@ -791,6 +824,15 @@ export type {
   EvidenceStrengthResult,
   EvidenceStrengthVerdict,
 } from '../recipes/evidence-strength/index.js';
+export {
+  exerciseSelect,
+  exerciseSelectInputSchema,
+  exerciseSelectResultSchema,
+} from '../recipes/exercise-select/index.js';
+export type {
+  ExerciseSelectInput,
+  ExerciseSelectResult,
+} from '../recipes/exercise-select/index.js';
 export {
   expenseCategory,
   expenseCategoryInputSchema,
@@ -1115,6 +1157,28 @@ export type {
   InstructionReadabilityVerdict,
 } from '../recipes/instruction-readability/index.js';
 export {
+  instrumentIssueKind,
+  instrumentIssueKindInputSchema,
+  instrumentIssueKindResultSchema,
+  instrumentIssueKindVerdictSchema,
+} from '../recipes/instrument-issue-kind/index.js';
+export type {
+  InstrumentIssueKindInput,
+  InstrumentIssueKindResult,
+  InstrumentIssueKindVerdict,
+} from '../recipes/instrument-issue-kind/index.js';
+export {
+  instrumentReportFacets,
+  instrumentReportFacetsInputSchema,
+  instrumentReportFacetsLabelSchema,
+  instrumentReportFacetsResultSchema,
+} from '../recipes/instrument-report-facets/index.js';
+export type {
+  InstrumentReportFacetsInput,
+  InstrumentReportFacetsLabel,
+  InstrumentReportFacetsResult,
+} from '../recipes/instrument-report-facets/index.js';
+export {
   intakeQuestionFit,
   intakeQuestionFitInputSchema,
   intakeQuestionFitResultSchema,
@@ -1203,6 +1267,17 @@ export type {
   LengthFitVerdict,
 } from '../recipes/length-fit/index.js';
 export {
+  listenerRequestKind,
+  listenerRequestKindInputSchema,
+  listenerRequestKindResultSchema,
+  listenerRequestKindVerdictSchema,
+} from '../recipes/listener-request-kind/index.js';
+export type {
+  ListenerRequestKindInput,
+  ListenerRequestKindResult,
+  ListenerRequestKindVerdict,
+} from '../recipes/listener-request-kind/index.js';
+export {
   listingCompare,
   listingCompareInputSchema,
   listingCompareResultSchema,
@@ -1246,6 +1321,17 @@ export type {
   LossCauseKindResult,
   LossCauseKindVerdict,
 } from '../recipes/loss-cause-kind/index.js';
+export {
+  lyricMoodFit,
+  lyricMoodFitInputSchema,
+  lyricMoodFitResultSchema,
+  lyricMoodFitVerdictSchema,
+} from '../recipes/lyric-mood-fit/index.js';
+export type {
+  LyricMoodFitInput,
+  LyricMoodFitResult,
+  LyricMoodFitVerdict,
+} from '../recipes/lyric-mood-fit/index.js';
 export {
   maintenanceHazardWording,
   maintenanceHazardWordingInputSchema,
@@ -1335,6 +1421,39 @@ export type {
   MethodsFacetsResult,
 } from '../recipes/methods-facets/index.js';
 export {
+  modulationMoment,
+  modulationMomentInputSchema,
+  modulationMomentResultSchema,
+  modulationMomentVerdictSchema,
+} from '../recipes/modulation-moment/index.js';
+export type {
+  ModulationMomentInput,
+  ModulationMomentResult,
+  ModulationMomentVerdict,
+} from '../recipes/modulation-moment/index.js';
+export {
+  moodMatch,
+  moodMatchInputSchema,
+  moodMatchResultSchema,
+  moodMatchVerdictSchema,
+} from '../recipes/mood-match/index.js';
+export type {
+  MoodMatchInput,
+  MoodMatchResult,
+  MoodMatchVerdict,
+} from '../recipes/mood-match/index.js';
+export {
+  moodRequest,
+  moodRequestInputSchema,
+  moodRequestResultSchema,
+  moodRequestVerdictSchema,
+} from '../recipes/mood-request/index.js';
+export type {
+  MoodRequestInput,
+  MoodRequestResult,
+  MoodRequestVerdict,
+} from '../recipes/mood-request/index.js';
+export {
   motivationSource,
   motivationSourceInputSchema,
   motivationSourceResultSchema,
@@ -1367,6 +1486,20 @@ export type {
   NarrativeConsistencyResult,
   NarrativeConsistencyVerdict,
 } from '../recipes/narrative-consistency/index.js';
+export {
+  nextChord,
+  nextChordInputSchema,
+  nextChordResultSchema,
+} from '../recipes/next-chord/index.js';
+export type { NextChordInput, NextChordResult } from '../recipes/next-chord/index.js';
+export {
+  nextDuration,
+  nextDurationInputSchema,
+  nextDurationResultSchema,
+} from '../recipes/next-duration/index.js';
+export type { NextDurationInput, NextDurationResult } from '../recipes/next-duration/index.js';
+export { nextNote, nextNoteInputSchema, nextNoteResultSchema } from '../recipes/next-note/index.js';
+export type { NextNoteInput, NextNoteResult } from '../recipes/next-note/index.js';
 export {
   noticeFacets,
   noticeFacetsInputSchema,
@@ -1445,6 +1578,17 @@ export type {
   PassageCompareVerdict,
 } from '../recipes/passage-compare/index.js';
 export {
+  passageDifficulty,
+  passageDifficultyInputSchema,
+  passageDifficultyResultSchema,
+  passageDifficultyVerdictSchema,
+} from '../recipes/passage-difficulty/index.js';
+export type {
+  PassageDifficultyInput,
+  PassageDifficultyResult,
+  PassageDifficultyVerdict,
+} from '../recipes/passage-difficulty/index.js';
+export {
   passageDuplicate,
   passageDuplicateInputSchema,
   passageDuplicateResultSchema,
@@ -1455,6 +1599,17 @@ export type {
   PassageDuplicateResult,
   PassageDuplicateVerdict,
 } from '../recipes/passage-duplicate/index.js';
+export {
+  passageMood,
+  passageMoodInputSchema,
+  passageMoodResultSchema,
+  passageMoodVerdictSchema,
+} from '../recipes/passage-mood/index.js';
+export type {
+  PassageMoodInput,
+  PassageMoodResult,
+  PassageMoodVerdict,
+} from '../recipes/passage-mood/index.js';
 export {
   passageStandalone,
   passageStandaloneInputSchema,
@@ -1467,6 +1622,17 @@ export type {
   PassageStandaloneVerdict,
 } from '../recipes/passage-standalone/index.js';
 export {
+  performanceFeedbackFacets,
+  performanceFeedbackFacetsInputSchema,
+  performanceFeedbackFacetsLabelSchema,
+  performanceFeedbackFacetsResultSchema,
+} from '../recipes/performance-feedback-facets/index.js';
+export type {
+  PerformanceFeedbackFacetsInput,
+  PerformanceFeedbackFacetsLabel,
+  PerformanceFeedbackFacetsResult,
+} from '../recipes/performance-feedback-facets/index.js';
+export {
   persuasionTechnique,
   persuasionTechniqueInputSchema,
   persuasionTechniqueResultSchema,
@@ -1477,6 +1643,17 @@ export type {
   PersuasionTechniqueResult,
   PersuasionTechniqueVerdict,
 } from '../recipes/persuasion-technique/index.js';
+export {
+  phraseComplete,
+  phraseCompleteInputSchema,
+  phraseCompleteResultSchema,
+  phraseCompleteVerdictSchema,
+} from '../recipes/phrase-complete/index.js';
+export type {
+  PhraseCompleteInput,
+  PhraseCompleteResult,
+  PhraseCompleteVerdict,
+} from '../recipes/phrase-complete/index.js';
 export {
   piiPresence,
   piiPresenceInputSchema,
@@ -1717,6 +1894,17 @@ export type {
   RepeatedAttemptResult,
   RepeatedAttemptVerdict,
 } from '../recipes/repeated-attempt/index.js';
+export {
+  repetitionLevel,
+  repetitionLevelInputSchema,
+  repetitionLevelResultSchema,
+  repetitionLevelVerdictSchema,
+} from '../recipes/repetition-level/index.js';
+export type {
+  RepetitionLevelInput,
+  RepetitionLevelResult,
+  RepetitionLevelVerdict,
+} from '../recipes/repetition-level/index.js';
 export {
   replyTemplateMatch,
   replyTemplateMatchInputSchema,
@@ -2002,6 +2190,17 @@ export {
 } from '../recipes/slot-fit/index.js';
 export type { SlotFitInput, SlotFitResult, SlotFitVerdict } from '../recipes/slot-fit/index.js';
 export {
+  soundMatch,
+  soundMatchInputSchema,
+  soundMatchResultSchema,
+  soundMatchVerdictSchema,
+} from '../recipes/sound-match/index.js';
+export type {
+  SoundMatchInput,
+  SoundMatchResult,
+  SoundMatchVerdict,
+} from '../recipes/sound-match/index.js';
+export {
   sourceApplicability,
   sourceApplicabilityInputSchema,
   sourceApplicabilityResultSchema,
@@ -2056,6 +2255,17 @@ export type {
   StepProgressResult,
   StepProgressVerdict,
 } from '../recipes/step-progress/index.js';
+export {
+  styleKind,
+  styleKindInputSchema,
+  styleKindResultSchema,
+  styleKindVerdictSchema,
+} from '../recipes/style-kind/index.js';
+export type {
+  StyleKindInput,
+  StyleKindResult,
+  StyleKindVerdict,
+} from '../recipes/style-kind/index.js';
 export {
   summaryCoverage,
   summaryCoverageInputSchema,
@@ -2129,6 +2339,28 @@ export type {
   TaskOverlapResult,
   TaskOverlapVerdict,
 } from '../recipes/task-overlap/index.js';
+export {
+  tempoChange,
+  tempoChangeInputSchema,
+  tempoChangeResultSchema,
+  tempoChangeVerdictSchema,
+} from '../recipes/tempo-change/index.js';
+export type {
+  TempoChangeInput,
+  TempoChangeResult,
+  TempoChangeVerdict,
+} from '../recipes/tempo-change/index.js';
+export {
+  tensionLevel,
+  tensionLevelInputSchema,
+  tensionLevelResultSchema,
+  tensionLevelVerdictSchema,
+} from '../recipes/tension-level/index.js';
+export type {
+  TensionLevelInput,
+  TensionLevelResult,
+  TensionLevelVerdict,
+} from '../recipes/tension-level/index.js';
 export {
   ticketMatch,
   ticketMatchInputSchema,

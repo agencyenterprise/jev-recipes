@@ -1,0 +1,26 @@
+{
+  "input": {
+    "passage": "D minor, slow tempo around 52 bpm, melody in the low-middle register moving mostly by step and descending at the end of each phrase, sustained chords in the left hand, dynamics piano throughout, frequent suspensions that resolve downward.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "sad",
+        "confidence": 0.88,
+        "probabilities": {
+          "happy": 0,
+          "sad": 0.88,
+          "calm": 0.07,
+          "energetic": 0,
+          "tense": 0.02,
+          "romantic": 0.02,
+          "unclear": 0.01
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

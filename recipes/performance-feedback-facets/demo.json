@@ -1,0 +1,17 @@
+{
+  "input": {
+    "feedback": "Good work this week. The dotted eighths in bars 9 to 12 are still rushing, so put the metronome on and count the sixteenth underneath. The high F-sharp in bar 14 was flat every time; check it against the open E before you start. I liked the contrast between the quiet opening and the forte at the return of the theme, keep that.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "mentionsRhythm": { "type": "noul", "noul": 0.96 },
+      "mentionsPitch": { "type": "noul", "noul": 0.95 },
+      "mentionsDynamics": { "type": "noul", "noul": 0.91 },
+      "mentionsTechnique": { "type": "noul", "noul": 0.06 },
+      "mentionsExpression": { "type": "noul", "noul": 0.08 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

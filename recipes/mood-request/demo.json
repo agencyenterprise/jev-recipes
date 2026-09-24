@@ -1,0 +1,26 @@
+{
+  "input": {
+    "message": "long day, can we get something soft and dreamy? trying to wind down before bed",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "calm",
+        "confidence": 0.9,
+        "probabilities": {
+          "happy": 0.01,
+          "sad": 0.02,
+          "calm": 0.9,
+          "energetic": 0.01,
+          "tense": 0.01,
+          "romantic": 0.03,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "input": {
+    "message": "can you slow it down a bit? feels kinda frantic rn",
+    "context": "Live piano stream. The current passage is a fast run of sixteenth notes in C minor at roughly 150 bpm.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "tempo",
+        "confidence": 0.9,
+        "probabilities": {
+          "mood": 0.03,
+          "tempo": 0.9,
+          "style": 0.02,
+          "specific_piece": 0.01,
+          "dynamics": 0.02,
+          "stop": 0.01,
+          "unclear": 0.01
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

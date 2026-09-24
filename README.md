@@ -11,7 +11,7 @@
 
 <!-- BEGIN GENERATED: summary -->
 
-212 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
+235 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
 
 <!-- END GENERATED: summary -->
 
@@ -141,6 +141,8 @@ npx jev-recipes demo answerability
 For games, use [game-action](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/game-action/README.md) with your existing JSON state and actions. It returns the original selected action, preserving your game IDs. [checkers-move](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/checkers-move/README.md) accepts a structured checkers board and legal moves; the [checkers example](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/checkers/README.md) shows how to run its visual demo locally.
 
 For psychology, browse [Psychology & behavior](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#psychology--behavior) for gain/loss framing, causal explanations, stated motivation, and related wording annotations. Search with `npx jev-recipes list psychology`.
+
+For music, browse [Music & sound](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#music--sound) for generation-loop decisions such as `next-note` and `phrase-complete`, listener steering such as `listener-request-kind`, and instrument or music-software tooling. Pass musical state as text or JSON. Search with `npx jev-recipes list music`.
 
 <a id="run-your-own-input-from-the-terminal"></a>
 

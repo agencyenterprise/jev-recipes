@@ -1,0 +1,27 @@
+{
+  "input": {
+    "context": "G major, 4/4. Opening motif: G4 A4 B4 D5 | B4 A4 G4 (half). A rising line to the fifth answered by a stepwise descent home.",
+    "firstContinuation": "D5 E5 F#5 A5 | F#5 E5 D5 (half). The motif transposed up a fifth, same rhythm, same rise-and-fall contour.",
+    "secondContinuation": "C#4 (eighth) G#5 (eighth) Bb3 (quarter) rest | Eb5 (dotted half). Wide chromatic leaps in a new, jagged rhythm.",
+    "style": "Celtic air, lyrical and unhurried",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "first",
+        "confidence": 0.91,
+        "probabilities": {
+          "first": 0.91,
+          "second": 0.02,
+          "tie": 0.02,
+          "neither": 0.03,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

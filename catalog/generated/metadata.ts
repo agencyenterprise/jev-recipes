@@ -1338,6 +1338,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     related: [{ id: 'rerank', reason: 'Use rerank to select and order passages by relevance.' }],
   },
   {
+    id: 'continuation-compare',
+    title: 'Compare two musical continuations',
+    description:
+      'Which of firstContinuation and secondContinuation better follows the musical context in motif, contour, harmony, and any style supplied?',
+    category: 'workflow',
+    tags: ['music', 'generation', 'comparison', 'pairwise', 'melody', 'composition'],
+    limitations: [
+      'Compares the two continuations as written. It does not verify key membership, count beats, or check voice leading; do those exactly in application code and describe the results in the text.',
+      'A preferred continuation is only better than the other one supplied; neither may be good.',
+      'Style preference is a judgment, so continuations that fit similarly well can tie or swap on different runs.',
+    ],
+    useWhen:
+      'A generation loop has produced two candidate continuations for a passage and wants a head-to-head preference before committing to one.',
+    related: [
+      {
+        id: 'draft-compare',
+        reason:
+          'Use draft-compare to choose between two text drafts under a rubric, not between two musical continuations of a passage.',
+      },
+      {
+        id: 'action-compare',
+        reason:
+          'Use action-compare to compare two next steps against a goal and constraints, rather than two continuations against a musical context.',
+      },
+    ],
+  },
+  {
     id: 'correction-target',
     title: 'Locate a correction target',
     description: 'Which supplied field or statement is message correcting?',
@@ -1379,6 +1406,33 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'troubleshooting-fit',
         reason:
           'Use troubleshooting-fit to assess a diagnostic procedure rather than a proposed fix.',
+      },
+    ],
+  },
+  {
+    id: 'daw-request-kind',
+    title: 'Classify a request to a music program',
+    description:
+      'What does request ask a DAW or music program to do: record, edit, mix, apply an effect, arrange, export, or unclear?',
+    category: 'workflow',
+    tags: ['music', 'daw', 'audio', 'voice-control', 'routing', 'classification'],
+    limitations: [
+      'Classifies the kind of operation requested, not its parameters. Extract track names, times, values, and file formats in a separate step.',
+      'A request that chains several operations is classified by the one it asks for first or presses most. Split compound requests in code when each step needs its own handler.',
+      'Does not judge whether the operation is possible in the current project or safe to perform without confirmation.',
+    ],
+    useWhen:
+      'You are building voice or chat control for a DAW, notation program, or recording app and need to route each spoken or typed request to the handler that owns that kind of operation.',
+    related: [
+      {
+        id: 'route',
+        reason:
+          'Use route when the destinations are your own caller-defined list rather than this fixed set of music production operations.',
+      },
+      {
+        id: 'turn-intent',
+        reason:
+          'Use turn-intent to classify the conversational role of a turn, such as a question or a correction, rather than which production operation it asks for.',
       },
     ],
   },
@@ -1545,6 +1599,33 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'tone-check',
         reason: 'Use tone-check to evaluate each writing criterion for one draft.',
+      },
+    ],
+  },
+  {
+    id: 'dynamic-change',
+    title: 'Steer the loudness',
+    description:
+      'Should the upcoming phrase be softer, equally loud, or louder, judged from audience remarks about volume in context and the dynamics written in recentMaterial?',
+    category: 'workflow',
+    tags: ['music', 'dynamics', 'live-performance', 'steering', 'workflow', 'decision'],
+    limitations: [
+      'Chooses a direction only. It does not pick a dynamic marking, velocity, or gain value; application code owns the amount.',
+      'Weighs the requests stated in context as written and does not know which listeners matter more unless context says so.',
+      'Reads recentMaterial as described; it cannot hear audio or verify the loudness that was actually played.',
+    ],
+    useWhen:
+      'Your player must pick a volume level for the next phrase from requests for quiet or power.',
+    related: [
+      {
+        id: 'intent-change',
+        reason:
+          'Use intent-change to detect that a listener has changed what they want, rather than to choose a dynamics direction from the whole context.',
+      },
+      {
+        id: 'tone-check',
+        reason:
+          'Use tone-check to check a draft against caller-defined writing criteria; this recipe steers loudness, not prose.',
       },
     ],
   },
@@ -1815,6 +1896,33 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'answerability',
         reason: 'Use answerability to decide whether evidence can answer a whole question.',
+      },
+    ],
+  },
+  {
+    id: 'exercise-select',
+    title: 'Select the practice exercise that addresses feedback',
+    description:
+      "Which candidate practice exercise in candidates best addresses the problems raised in feedback, given the player's goal?",
+    category: 'workflow',
+    tags: ['music', 'practice', 'exercises', 'education', 'selection', 'recommendation'],
+    limitations: [
+      'Chooses among the supplied candidates only; it does not invent exercises or judge whether the library is adequate.',
+      "Judges fit to the problems as worded in feedback. It does not know the player's history, schedule, or physical limits.",
+      'Supply 1 to 50 candidates, each with a unique non-empty ID and non-empty text.',
+    ],
+    useWhen:
+      "You are building a practice app that turns a teacher's or an automated assessor's feedback into a concrete assignment chosen from your own exercise library.",
+    related: [
+      {
+        id: 'choose-action',
+        reason:
+          'Use choose-action to pick the next step from a list of general actions, rather than a practice exercise from an exercise library.',
+      },
+      {
+        id: 'troubleshooting-fit',
+        reason:
+          'Use troubleshooting-fit to check whether one supplied procedure addresses a reported problem, rather than to pick the best of several.',
       },
     ],
   },
@@ -2571,6 +2679,60 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'instrument-issue-kind',
+    title: 'Classify an instrument problem report',
+    description:
+      'What kind of problem does report describe with a musical instrument: tuning, buzz or rattle, no sound, intonation, mechanical, cosmetic, or unclear?',
+    category: 'support',
+    tags: ['music', 'instruments', 'repair', 'support', 'classification', 'triage'],
+    limitations: [
+      'Classifies the symptom as the player describes it, not the underlying cause. A buzz can come from frets, a nut, or loose hardware, and a tuning problem can come from strings, pegs, or a cracked neck; diagnosis is a separate step.',
+      'A report that describes several problems is classified by the one it presses most. Split multi-problem reports in code when each needs its own ticket.',
+      'Does not judge urgency, cost, or whether the instrument is under warranty.',
+    ],
+    useWhen:
+      'You take in repair requests or support messages from players and need to route each one to the right technician, help article, or intake form based on the kind of problem described.',
+    related: [
+      {
+        id: 'failure-kind',
+        reason:
+          'Use failure-kind when the categories are your own list rather than this fixed set of instrument problem types.',
+      },
+      {
+        id: 'issue-impact',
+        reason:
+          'Use issue-impact to grade how badly the problem affects the player, rather than what kind of problem it is.',
+      },
+    ],
+  },
+  {
+    id: 'instrument-report-facets',
+    title: 'Label the facets of an instrument repair message',
+    description:
+      'Which of these does message state about an instrument problem: the instrument and model, the symptom, when it started, recent changes, and the environment it is kept in?',
+    category: 'support',
+    tags: ['music', 'instruments', 'repair', 'support', 'labels', 'multi-label', 'facets'],
+    limitations: [
+      'Labels are independent, so a message can state several facets or none.',
+      'Detects that a detail is stated, not that it is accurate. A model name can be wrong and a stated onset can be misremembered.',
+      'Does not diagnose the problem or judge its severity. Parse dates, humidity figures, and model identifiers in application code.',
+    ],
+    useWhen:
+      'You take in repair or support messages from players and want to know which standard intake details are already supplied so you can pre-fill a ticket or ask only for what is missing.',
+    related: [
+      {
+        id: 'symptom-facets',
+        reason:
+          "Use symptom-facets for the analogous intake check on a patient's description of a medical symptom.",
+      },
+      {
+        id: 'bug-report-completeness',
+        reason:
+          'Use bug-report-completeness for software bug reports, where the expected parts are reproduction steps, expected and actual behavior, and environment.',
+      },
+    ],
+  },
+  {
     id: 'intake-question-fit',
     title: 'Check an intake question against its purpose',
     description:
@@ -2773,6 +2935,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'listener-request-kind',
+    title: "Classify a listener's request",
+    description: "What does a listener's message ask of the performance?",
+    category: 'conversation',
+    tags: ['music', 'live-performance', 'chat', 'intent', 'classification', 'conversation'],
+    limitations: [
+      'Classifies what the message asks for, not whether the performer should comply or whether the request is feasible.',
+      'A message that asks for several things is classified by the request it presses most; split multi-part messages in code when each matters.',
+      'Chatter, reactions, and questions that ask nothing of the performance land on unclear rather than being guessed into a control.',
+    ],
+    useWhen:
+      'Chat messages steer a live or generated musical performance and you need to know which control each message reaches for before deciding what to change.',
+    related: [
+      {
+        id: 'turn-intent',
+        reason:
+          'Use turn-intent for the general communicative purpose of a message rather than which aspect of a performance it asks to change.',
+      },
+      {
+        id: 'route',
+        reason:
+          'Use route when the destinations are caller-defined handlers rather than this fixed set of performance controls.',
+      },
+    ],
+  },
+  {
     id: 'listing-compare',
     title: 'Compare two listings for a request',
     description: 'Which of firstListing and secondListing better satisfies request?',
@@ -2873,6 +3061,32 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'shipment-issue-kind',
         reason:
           'Use shipment-issue-kind for what went wrong with a delivery; this recipe classifies the peril behind a property or vehicle loss.',
+      },
+    ],
+  },
+  {
+    id: 'lyric-mood-fit',
+    title: 'Check lyrics against the mood of the music',
+    description: 'Do lyrics fit the mood and pacing of the music described in music?',
+    category: 'knowledge',
+    tags: ['music', 'lyrics', 'songwriting', 'mood', 'gate', 'creative'],
+    limitations: [
+      'Judges mood and pacing fit only. It does not check rhyme, syllable count, meter, or whether the lyrics scan against a melody.',
+      'The music is known only from its description; the verdict cannot hear the track.',
+      'Does not judge lyric quality, originality, or whether the lyrics are appropriate for an audience.',
+    ],
+    useWhen:
+      'You generate, suggest, or review lyrics for a described track and want to catch lines whose mood or pacing clashes with the music before showing them to a writer.',
+    related: [
+      {
+        id: 'audience-fit',
+        reason:
+          'Use audience-fit to judge whether content suits a described audience, rather than whether lyrics suit a described piece of music.',
+      },
+      {
+        id: 'certainty-match',
+        reason:
+          'Use certainty-match for the analogous check that the confidence of a statement matches its evidence.',
       },
     ],
   },
@@ -3073,6 +3287,85 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'modulation-moment',
+    title: 'Check whether now is a moment to change key',
+    description:
+      'Is now a musically suitable moment to modulate away from key, judged on the phrase position, cadence, and stability described in recentMaterial?',
+    category: 'workflow',
+    tags: ['music', 'harmony', 'modulation', 'key', 'generation', 'gate'],
+    limitations: [
+      'Judges suitability from the phrase position, cadence, and stability described in the text. It does not identify the current key, find pivot chords, or plan the new key; those belong in application code or a later step.',
+      'A suitable moment is a seam, not an obligation; staying in key can be the better choice.',
+      'Styles differ in how abruptly they modulate, so a moment unsuitable for a chorale can suit a film cue.',
+    ],
+    useWhen:
+      'A generation loop wants to introduce a key change and needs to know whether the current point is a natural seam, such as the end of a phrase or a settled cadence, or whether a change now would cut a line off mid-thought.',
+    related: [
+      {
+        id: 'topic-shift',
+        reason:
+          'Use topic-shift to detect whether a conversation message moves to a new topic, not whether a passage is ready to move to a new key.',
+      },
+      {
+        id: 'step-complete',
+        reason:
+          'Use step-complete when supplied evidence must establish a stated completion condition, rather than judging a musical seam from the passage itself.',
+      },
+    ],
+  },
+  {
+    id: 'mood-match',
+    title: 'Check a passage against a requested mood',
+    description: 'Does the described passage deliver requestedMood?',
+    category: 'workflow',
+    tags: ['music', 'mood', 'live-performance', 'gate', 'steering', 'workflow'],
+    limitations: [
+      'Compares two texts as written. It cannot hear the passage and does not know whether the description matches what was played.',
+      'Judges conventional musical affect, not the reaction of any particular listener, who may hear the same passage differently.',
+      'A mismatched verdict flags the passage for a change; it does not say what to change.',
+    ],
+    useWhen:
+      'A listener asked for a mood and a passage has been generated or described, and you want to check the passage delivers that mood before playing or committing to it.',
+    related: [
+      {
+        id: 'audience-fit',
+        reason:
+          'Use audience-fit to check material against a described audience rather than a described musical passage against a requested mood.',
+      },
+      {
+        id: 'instruction-fit',
+        reason:
+          "Use instruction-fit to check whether an instruction's scope covers a task, rather than whether music delivers a feeling.",
+      },
+    ],
+  },
+  {
+    id: 'mood-request',
+    title: 'Identify a requested mood',
+    description: "What mood does the listener's message ask to hear?",
+    category: 'conversation',
+    tags: ['music', 'psychology', 'mood', 'live-performance', 'chat', 'conversation'],
+    limitations: [
+      'Labels the mood the message asks for, not the mood the listener is in. A listener who says they are sad may be asking for cheerful music.',
+      'Messages that ask for a tempo, style, or piece without naming a feeling land on unclear rather than being translated into a mood.',
+      'Mixed or contradictory requests collapse to the mood pressed most or to unclear; the recipe returns one label.',
+    ],
+    useWhen:
+      "A listener's message asks for a feeling from a musical performance and you need one of a fixed set of moods to steer the next passage.",
+    related: [
+      {
+        id: 'emotion-kind',
+        reason:
+          'Use emotion-kind to label the emotion the writer expresses, rather than the mood they ask the music to take on.',
+      },
+      {
+        id: 'turn-intent',
+        reason:
+          'Use turn-intent to find out what a message is doing conversationally before asking which mood it requests.',
+      },
+    ],
+  },
+  {
     id: 'motivation-source',
     title: 'Identify a stated source of motivation',
     description:
@@ -3163,6 +3456,87 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'answer-consistency',
         reason:
           'Use answer-consistency to compare two discrete statements rather than to scan a single narrative for internal contradictions.',
+      },
+    ],
+  },
+  {
+    id: 'next-chord',
+    title: 'Pick the next chord',
+    description:
+      'Which candidate chord best continues progression, given any key and style supplied?',
+    category: 'workflow',
+    tags: ['music', 'harmony', 'chords', 'generation', 'selection', 'composition'],
+    limitations: [
+      'Judges harmonic sense from chord symbols and descriptions. It does not verify that a chord belongs to the key, spell voicings, or check voice leading; do those in application code before supplying candidates.',
+      'Style expectations differ, so a progression that sounds inevitable in one genre may sound dull in another; supply style when it matters.',
+      'A pick names a chord, not its voicing, rhythm, or duration.',
+    ],
+    useWhen:
+      'A generation loop has a chord progression so far, application code has enumerated a few chords it could play next, and you want a musical judgment of which continuation a listener in the stated style would expect or enjoy.',
+    related: [
+      {
+        id: 'game-action',
+        reason:
+          'Use game-action when the choice is among generic JSON game actions rather than chords judged for harmonic sense.',
+      },
+      {
+        id: 'choose-action',
+        reason:
+          'Use choose-action when an explicit goal and rulebook govern the pick instead of harmonic continuity in a key and style.',
+      },
+    ],
+  },
+  {
+    id: 'next-duration',
+    title: 'Pick the next rhythmic value',
+    description:
+      'Which candidate rhythmic value best continues recentRhythm within meter, given any style supplied?',
+    category: 'workflow',
+    tags: ['music', 'rhythm', 'meter', 'generation', 'selection', 'composition'],
+    limitations: [
+      'Judges rhythmic feel from written durations and a meter. It does not add up beats or verify that a candidate fits in the remaining bar; do that arithmetic in application code before supplying candidates.',
+      'Groove is style-dependent, so the same pattern can want a long note in a ballad and a short one in a dance; supply style when it matters.',
+      'A pick names a duration, not a pitch, articulation, or dynamic.',
+    ],
+    useWhen:
+      'A generation loop has chosen the next pitch and must decide how long to hold it, application code has enumerated a few legal durations, and you want a musical judgment of which one continues the rhythmic feel.',
+    related: [
+      {
+        id: 'game-action',
+        reason:
+          'Use game-action when the choice is among generic JSON game actions rather than durations judged for rhythmic sense.',
+      },
+      {
+        id: 'take-turn',
+        reason:
+          'Use take-turn to decide whether a player may act at all under game rules, rather than how long the next musical event should last.',
+      },
+    ],
+  },
+  {
+    id: 'next-note',
+    title: 'Pick the next melody note',
+    description:
+      'Which candidate note best continues the melody in recentNotes, given any key and style supplied?',
+    category: 'workflow',
+    tags: ['music', 'melody', 'generation', 'selection', 'piano', 'composition'],
+    limitations: [
+      'Judges melodic sense from note names and descriptions. It does not verify that a candidate is in the key or compute intervals exactly; do those checks in application code before supplying candidates.',
+      'Taste in a style is a judgment, not a rule. Two runs on the same input can prefer different candidates when they fit similarly well.',
+      'A pick says nothing about duration, dynamics, or harmony under the note; supply or decide those separately.',
+    ],
+    useWhen:
+      'A generation loop such as an infinite piano player has produced the last few notes, application code has enumerated a handful of legal next notes, and you want a musical judgment of which one continues the line best, or whether a rest is better.',
+    related: [
+      {
+        id: 'game-action',
+        reason:
+          'Use game-action when the choice is among generic JSON game actions rather than notes judged for melodic sense.',
+      },
+      {
+        id: 'choose-action',
+        reason:
+          'Use choose-action when an explicit goal and rulebook govern the pick instead of melodic continuity in a key and style.',
       },
     ],
   },
@@ -3360,6 +3734,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'passage-difficulty',
+    title: 'Grade the difficulty of a musical passage',
+    description:
+      'How hard is the passage described in passage for a player of instrument, from beginner to virtuoso?',
+    category: 'knowledge',
+    tags: ['music', 'practice', 'difficulty', 'education', 'score', 'grading'],
+    limitations: [
+      'Grades the passage as described in text, not from a score or recording. Tempo, key, range, and technique count only when the description states them.',
+      'Difficulty is relative to typical players of the named instrument; when instrument is omitted the grade assumes whatever instrument the description implies.',
+      "Does not know a particular student's level. Matching a grade to a player belongs in application code.",
+    ],
+    useWhen:
+      "You are building a practice app, lesson planner, or repertoire search and need to grade described passages or pieces so they can be matched to a player's level.",
+    related: [
+      {
+        id: 'task-complexity',
+        reason:
+          'Use task-complexity to grade how involved a general task is, rather than how hard a musical passage is to play.',
+      },
+      {
+        id: 'audience-fit',
+        reason:
+          'Use audience-fit to check whether content suits a described audience, rather than to place a passage on a difficulty scale.',
+      },
+    ],
+  },
+  {
     id: 'passage-duplicate',
     title: 'Compare passages for duplication',
     description: 'How much material information do firstPassage and secondPassage share?',
@@ -3373,6 +3774,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'evidence-novelty',
         reason: 'Use evidence-novelty to compare a passage with the evidence already collected.',
+      },
+    ],
+  },
+  {
+    id: 'passage-mood',
+    title: "Identify a passage's mood",
+    description: 'What mood does the described musical passage express?',
+    category: 'knowledge',
+    tags: ['music', 'psychology', 'mood', 'analysis', 'knowledge', 'live-performance'],
+    limitations: [
+      'Judges the described musical features only. It does not know how any listener felt or what the performer intended.',
+      'Reads the description as written and cannot hear audio; an inaccurate description yields a mood about the description, not the sound.',
+      'Passages whose described features point in opposite directions, such as a bright major melody over a driving dissonant bass, resolve to the dominant mood or to unclear.',
+    ],
+    useWhen:
+      'A musical passage is described in text, such as mode, tempo, register, and dynamics, and you need one of a fixed set of moods to compare against a request or to log what was played.',
+    related: [
+      {
+        id: 'emotion-kind',
+        reason:
+          'Use emotion-kind to label the emotion a writer expresses in a message, rather than the mood a described piece of music conveys.',
+      },
+      {
+        id: 'outcome-framing',
+        reason:
+          'Use outcome-framing to label gain and loss wording about an outcome, not the affect of a musical description.',
       },
     ],
   },
@@ -3403,6 +3830,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'performance-feedback-facets',
+    title: 'Label the aspects performance feedback addresses',
+    description:
+      'Which aspects of a musical performance does feedback address: rhythm, pitch or intonation, dynamics, technique, and expression or phrasing?',
+    category: 'answer-quality',
+    tags: ['music', 'practice', 'feedback', 'education', 'labels', 'multi-label'],
+    limitations: [
+      'Labels are independent, so feedback can address several aspects or none.',
+      'Detects that an aspect is addressed, not whether the comment is correct, fair, or useful.',
+      'Does not measure the performance itself. Deciding which aspects a lesson should cover belongs in application code or with the teacher.',
+    ],
+    useWhen:
+      'You are building a practice app or lesson tool and want to know which musical aspects a piece of teacher or automated feedback covers, so you can track what a student hears about over time or flag feedback that neglects an aspect.',
+    related: [
+      {
+        id: 'feedback-actionability',
+        reason:
+          'Use feedback-actionability to grade whether the feedback tells the student what to do, rather than which aspects it covers.',
+      },
+      {
+        id: 'tone-check',
+        reason:
+          'Use tone-check to judge whether feedback meets a tone requirement such as encouraging or direct.',
+      },
+    ],
+  },
+  {
     id: 'persuasion-technique',
     title: 'Identify a persuasion technique',
     description: 'Which persuasion technique, if any, does the wording of message primarily use?',
@@ -3423,6 +3877,33 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'question-leading',
         reason: 'Use question-leading to detect a question that steers toward a particular answer.',
+      },
+    ],
+  },
+  {
+    id: 'phrase-complete',
+    title: 'Check whether a phrase has closed',
+    description:
+      'Does recentNotes form a complete musical phrase that is ready to cadence or rest, or is it still open, given any meter supplied?',
+    category: 'workflow',
+    tags: ['music', 'melody', 'phrase', 'cadence', 'generation', 'gate'],
+    limitations: [
+      'Judges closure from note names, rhythms, and any annotations in the text. It does not identify the key, compute scale degrees, or count beats; state the key and bar position in the text when they matter.',
+      'A phrase can be heard as complete and still be musically better continued. The verdict reports readiness to close, not whether closing is the best choice.',
+      'Phrase conventions vary by style; a blues line and a chorale close differently.',
+    ],
+    useWhen:
+      'A generation loop needs to know whether the line it has produced can pause, cadence, or hand off to a new idea, or whether it should keep the phrase going.',
+    related: [
+      {
+        id: 'step-complete',
+        reason:
+          'Use step-complete when supplied evidence must establish a stated completion condition, rather than judging musical closure from the notes themselves.',
+      },
+      {
+        id: 'resolution-check',
+        reason:
+          'Use resolution-check to detect whether a customer reports an issue as resolved, not whether a melody has come to rest.',
       },
     ],
   },
@@ -3980,6 +4461,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'step-progress',
         reason: 'Use step-progress to assess what an attempted step actually changed.',
+      },
+    ],
+  },
+  {
+    id: 'repetition-level',
+    title: 'Grade how repetitive recent material is',
+    description: 'How repetitive is recentMaterial, from varied to stuck on one idea?',
+    category: 'workflow',
+    tags: ['music', 'generation', 'repetition', 'monitoring', 'score', 'composition'],
+    limitations: [
+      'Grades repetition as written in the note names, rhythms, and annotations. It does not detect transpositions, inversions, or rhythmic augmentations exactly; describe them in the text when they matter.',
+      'Repetition is not a fault in itself. Ostinatos, riffs, and minimalism repeat by design, so the threshold for intervening belongs in application code.',
+      'Only the supplied material is graded; earlier material the caller left out does not count.',
+    ],
+    useWhen:
+      'A generation loop such as an infinite piano player should notice when it has fallen into a loop or frozen on one figure, so it can inject variation or change direction.',
+    related: [
+      {
+        id: 'repeated-attempt',
+        reason:
+          'Use repeated-attempt to check whether one proposed attempt repeats a previous approach to a task, rather than grading the repetition across a stretch of music.',
+      },
+      {
+        id: 'progress-stall',
+        reason:
+          'Use progress-stall to detect an agent circling on a task objective, not a melody circling on one figure.',
       },
     ],
   },
@@ -4669,6 +5176,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'sound-match',
+    title: 'Check a patch against a requested sound',
+    description:
+      'Does the patch or preset described in patch deliver the sound character asked for in request?',
+    category: 'knowledge',
+    tags: ['music', 'synth', 'presets', 'sound-design', 'gate', 'matching'],
+    limitations: [
+      'Judges the patch as described in text, not as it sounds. A description can be inaccurate or incomplete, and parameter values only imply a sound.',
+      'A mismatched verdict does not say which quality is missing or how to adjust the patch.',
+      'Does not consider the synth, plugin, or sample library the patch needs, or whether the user has it.',
+    ],
+    useWhen:
+      'You are building a preset browser, sound search, or patch recommender and need to check whether a candidate patch description actually delivers what the user asked for before showing or loading it.',
+    related: [
+      {
+        id: 'product-match',
+        reason:
+          'Use product-match to check a product listing against a shopping request, rather than a synth patch against a described sound.',
+      },
+      {
+        id: 'audience-fit',
+        reason:
+          'Use audience-fit to judge whether content suits a described audience, rather than whether a patch produces a described sound.',
+      },
+    ],
+  },
+  {
     id: 'source-applicability',
     title: 'Check source applicability',
     description: 'Does the scope described in passage apply to scenario?',
@@ -4763,6 +5297,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'step-complete',
         reason: 'Use step-complete to check whether the completion condition has been met.',
+      },
+    ],
+  },
+  {
+    id: 'style-kind',
+    title: 'Identify a musical style',
+    description: 'What style does the described passage or request evoke?',
+    category: 'knowledge',
+    tags: ['music', 'style', 'genre', 'classification', 'knowledge', 'live-performance'],
+    limitations: [
+      'Labels the style the description evokes, not the historical or commercial genre of any real recording. Sub-genres and fusions collapse to the nearest broad style or to unclear.',
+      'Reads the words of description only; it cannot hear audio or check that the description is accurate.',
+      'A description that lists notes and chords without any stylistic markers lands on unclear rather than being guessed.',
+    ],
+    useWhen:
+      "A passage or a listener's request is described in text and you need one of a fixed set of broad styles to steer what comes next or to label what was played.",
+    related: [
+      {
+        id: 'document-role',
+        reason:
+          'Use document-role to identify the purpose of a document rather than the musical style a description evokes.',
+      },
+      {
+        id: 'audience-fit',
+        reason:
+          'Use audience-fit to check whether material suits a described audience rather than which style it belongs to.',
       },
     ],
   },
@@ -4949,6 +5509,60 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'task-dependency',
         reason:
           'Use task-dependency to check whether one task must finish before the other can start, which overlap does not imply.',
+      },
+    ],
+  },
+  {
+    id: 'tempo-change',
+    title: 'Steer the tempo',
+    description:
+      'Should the beat slow down, hold, or speed up next, given what listeners said about pace in context and how fast recentMaterial moved?',
+    category: 'workflow',
+    tags: ['music', 'tempo', 'live-performance', 'steering', 'workflow', 'decision'],
+    limitations: [
+      'Chooses a direction only. It does not pick a beats-per-minute value or a rate of change; application code owns the amount.',
+      'Weighs the requests stated in context as written and does not know which listeners matter more unless context says so.',
+      'Reads recentMaterial as described; it cannot hear audio or verify that the description matches what was played.',
+    ],
+    useWhen:
+      'A live loop has read chat about speed and must choose one pacing direction for the coming bars.',
+    related: [
+      {
+        id: 'intent-change',
+        reason:
+          'Use intent-change to detect that a listener has changed what they want, rather than to choose a tempo direction from the whole context.',
+      },
+      {
+        id: 'step-progress',
+        reason:
+          'Use step-progress to judge movement toward a caller-defined objective rather than a tempo adjustment.',
+      },
+    ],
+  },
+  {
+    id: 'tension-level',
+    title: 'Grade harmonic tension',
+    description:
+      'How much harmonic tension does the current point in progression carry, from fully resolved to a peak demanding resolution, given any key supplied?',
+    category: 'workflow',
+    tags: ['music', 'harmony', 'tension', 'generation', 'score', 'composition'],
+    limitations: [
+      'Grades the tension implied by chord symbols and annotations at the last point in progression. It does not analyze voicings, compute scale degrees, or identify the key; supply key and describe suspensions or holds in the text.',
+      'Tension is heard relative to a style; a dominant seventh that demands resolution in a hymn is a resting chord in a blues. State the style in the text when it matters.',
+      'The grade is not a decision about what to play next.',
+    ],
+    useWhen:
+      'A generation loop or accompaniment engine wants to know whether the harmony is at rest, building, or begging for resolution, so it can decide whether to release, hold, or push further.',
+    related: [
+      {
+        id: 'urgency-signal',
+        reason:
+          'Use urgency-signal to detect an explicit request for urgent attention in a message, not the pull of an unresolved chord.',
+      },
+      {
+        id: 'step-progress',
+        reason:
+          'Use step-progress to judge whether a new observation advances a task objective, rather than how far a harmony is from its home chord.',
       },
     ],
   },

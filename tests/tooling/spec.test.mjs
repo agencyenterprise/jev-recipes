@@ -89,6 +89,32 @@ test('array limits prose, zero-default choice labels, and review-level demo reje
   assert.throws(() => renderRecipe({ ...spec, tags: ['one'] }));
 });
 
+test('a selection spec renders the candidate helper and maps demo ids to internal labels', () => {
+  const selection = renderRecipe(starterSpec('pick-one', 'selection'));
+  assert.match(selection.files.get('index.ts'), /selectCandidate\(state, state\.candidates,/);
+  assert.match(selection.files.get('schema.ts'), /candidates: textItemsSchema/);
+  const demo = JSON.parse(selection.files.get('demo.json'));
+  assert.deepEqual(demo.response.answers.decision.probabilities, {
+    candidate_0: 0.94,
+    candidate_1: 0.03,
+    none: 0.02,
+    ambiguous: 0.01,
+  });
+  assert.equal(demo.response.answers.decision.choice, 'candidate_0');
+  assert.match(selection.test, /testSelection\(pickOne, /);
+  assert.throws(
+    () =>
+      renderRecipe({
+        ...starterSpec('pick-one', 'selection'),
+        demoProbabilities: { nope: 0.9, none: 0.1 },
+      }),
+    /not a candidate id/,
+  );
+  assert.throws(() =>
+    renderRecipe({ ...starterSpec('pick-one', 'selection'), candidatesField: 'text' }),
+  );
+});
+
 test('specs with wrong demo probabilities or unknown kinds are rejected', () => {
   assert.throws(() => renderRecipe({ ...spec, demoProbabilities: [0.5, 0.5, 0.5] }), /sum to/);
   assert.throws(

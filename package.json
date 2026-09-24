@@ -240,6 +240,10 @@
       "types": "./dist/recipes/context-role/index.d.ts",
       "import": "./dist/recipes/context-role/index.js"
     },
+    "./continuation-compare": {
+      "types": "./dist/recipes/continuation-compare/index.d.ts",
+      "import": "./dist/recipes/continuation-compare/index.js"
+    },
     "./correction-target": {
       "types": "./dist/recipes/correction-target/index.d.ts",
       "import": "./dist/recipes/correction-target/index.js"
@@ -247,6 +251,10 @@
     "./corrective-action-fit": {
       "types": "./dist/recipes/corrective-action-fit/index.d.ts",
       "import": "./dist/recipes/corrective-action-fit/index.js"
+    },
+    "./daw-request-kind": {
+      "types": "./dist/recipes/daw-request-kind/index.d.ts",
+      "import": "./dist/recipes/daw-request-kind/index.js"
     },
     "./deadline-risk": {
       "types": "./dist/recipes/deadline-risk/index.d.ts",
@@ -275,6 +283,10 @@
     "./draft-compare": {
       "types": "./dist/recipes/draft-compare/index.d.ts",
       "import": "./dist/recipes/draft-compare/index.js"
+    },
+    "./dynamic-change": {
+      "types": "./dist/recipes/dynamic-change/index.d.ts",
+      "import": "./dist/recipes/dynamic-change/index.js"
     },
     "./eligibility-facets": {
       "types": "./dist/recipes/eligibility-facets/index.d.ts",
@@ -315,6 +327,10 @@
     "./evidence-strength": {
       "types": "./dist/recipes/evidence-strength/index.d.ts",
       "import": "./dist/recipes/evidence-strength/index.js"
+    },
+    "./exercise-select": {
+      "types": "./dist/recipes/exercise-select/index.d.ts",
+      "import": "./dist/recipes/exercise-select/index.js"
     },
     "./expense-category": {
       "types": "./dist/recipes/expense-category/index.d.ts",
@@ -444,6 +460,14 @@
       "types": "./dist/recipes/instruction-readability/index.d.ts",
       "import": "./dist/recipes/instruction-readability/index.js"
     },
+    "./instrument-issue-kind": {
+      "types": "./dist/recipes/instrument-issue-kind/index.d.ts",
+      "import": "./dist/recipes/instrument-issue-kind/index.js"
+    },
+    "./instrument-report-facets": {
+      "types": "./dist/recipes/instrument-report-facets/index.d.ts",
+      "import": "./dist/recipes/instrument-report-facets/index.js"
+    },
     "./intake-question-fit": {
       "types": "./dist/recipes/intake-question-fit/index.d.ts",
       "import": "./dist/recipes/intake-question-fit/index.js"
@@ -476,6 +500,10 @@
       "types": "./dist/recipes/length-fit/index.d.ts",
       "import": "./dist/recipes/length-fit/index.js"
     },
+    "./listener-request-kind": {
+      "types": "./dist/recipes/listener-request-kind/index.d.ts",
+      "import": "./dist/recipes/listener-request-kind/index.js"
+    },
     "./listing-compare": {
       "types": "./dist/recipes/listing-compare/index.d.ts",
       "import": "./dist/recipes/listing-compare/index.js"
@@ -491,6 +519,10 @@
     "./loss-cause-kind": {
       "types": "./dist/recipes/loss-cause-kind/index.d.ts",
       "import": "./dist/recipes/loss-cause-kind/index.js"
+    },
+    "./lyric-mood-fit": {
+      "types": "./dist/recipes/lyric-mood-fit/index.d.ts",
+      "import": "./dist/recipes/lyric-mood-fit/index.js"
     },
     "./maintenance-hazard-wording": {
       "types": "./dist/recipes/maintenance-hazard-wording/index.d.ts",
@@ -524,6 +556,18 @@
       "types": "./dist/recipes/methods-facets/index.d.ts",
       "import": "./dist/recipes/methods-facets/index.js"
     },
+    "./modulation-moment": {
+      "types": "./dist/recipes/modulation-moment/index.d.ts",
+      "import": "./dist/recipes/modulation-moment/index.js"
+    },
+    "./mood-match": {
+      "types": "./dist/recipes/mood-match/index.d.ts",
+      "import": "./dist/recipes/mood-match/index.js"
+    },
+    "./mood-request": {
+      "types": "./dist/recipes/mood-request/index.d.ts",
+      "import": "./dist/recipes/mood-request/index.js"
+    },
     "./motivation-source": {
       "types": "./dist/recipes/motivation-source/index.d.ts",
       "import": "./dist/recipes/motivation-source/index.js"
@@ -535,6 +579,18 @@
     "./narrative-consistency": {
       "types": "./dist/recipes/narrative-consistency/index.d.ts",
       "import": "./dist/recipes/narrative-consistency/index.js"
+    },
+    "./next-chord": {
+      "types": "./dist/recipes/next-chord/index.d.ts",
+      "import": "./dist/recipes/next-chord/index.js"
+    },
+    "./next-duration": {
+      "types": "./dist/recipes/next-duration/index.d.ts",
+      "import": "./dist/recipes/next-duration/index.js"
+    },
+    "./next-note": {
+      "types": "./dist/recipes/next-note/index.d.ts",
+      "import": "./dist/recipes/next-note/index.js"
     },
     "./notice-facets": {
       "types": "./dist/recipes/notice-facets/index.d.ts",
@@ -564,17 +620,33 @@
       "types": "./dist/recipes/passage-compare/index.d.ts",
       "import": "./dist/recipes/passage-compare/index.js"
     },
+    "./passage-difficulty": {
+      "types": "./dist/recipes/passage-difficulty/index.d.ts",
+      "import": "./dist/recipes/passage-difficulty/index.js"
+    },
     "./passage-duplicate": {
       "types": "./dist/recipes/passage-duplicate/index.d.ts",
       "import": "./dist/recipes/passage-duplicate/index.js"
+    },
+    "./passage-mood": {
+      "types": "./dist/recipes/passage-mood/index.d.ts",
+      "import": "./dist/recipes/passage-mood/index.js"
     },
     "./passage-standalone": {
       "types": "./dist/recipes/passage-standalone/index.d.ts",
       "import": "./dist/recipes/passage-standalone/index.js"
     },
+    "./performance-feedback-facets": {
+      "types": "./dist/recipes/performance-feedback-facets/index.d.ts",
+      "import": "./dist/recipes/performance-feedback-facets/index.js"
+    },
     "./persuasion-technique": {
       "types": "./dist/recipes/persuasion-technique/index.d.ts",
       "import": "./dist/recipes/persuasion-technique/index.js"
+    },
+    "./phrase-complete": {
+      "types": "./dist/recipes/phrase-complete/index.d.ts",
+      "import": "./dist/recipes/phrase-complete/index.js"
     },
     "./pii-presence": {
       "types": "./dist/recipes/pii-presence/index.d.ts",
@@ -663,6 +735,10 @@
     "./repeated-attempt": {
       "types": "./dist/recipes/repeated-attempt/index.d.ts",
       "import": "./dist/recipes/repeated-attempt/index.js"
+    },
+    "./repetition-level": {
+      "types": "./dist/recipes/repetition-level/index.d.ts",
+      "import": "./dist/recipes/repetition-level/index.js"
     },
     "./reply-template-match": {
       "types": "./dist/recipes/reply-template-match/index.d.ts",
@@ -776,6 +852,10 @@
       "types": "./dist/recipes/slot-fit/index.d.ts",
       "import": "./dist/recipes/slot-fit/index.js"
     },
+    "./sound-match": {
+      "types": "./dist/recipes/sound-match/index.d.ts",
+      "import": "./dist/recipes/sound-match/index.js"
+    },
     "./source-applicability": {
       "types": "./dist/recipes/source-applicability/index.d.ts",
       "import": "./dist/recipes/source-applicability/index.js"
@@ -795,6 +875,10 @@
     "./step-progress": {
       "types": "./dist/recipes/step-progress/index.d.ts",
       "import": "./dist/recipes/step-progress/index.js"
+    },
+    "./style-kind": {
+      "types": "./dist/recipes/style-kind/index.d.ts",
+      "import": "./dist/recipes/style-kind/index.js"
     },
     "./summary-coverage": {
       "types": "./dist/recipes/summary-coverage/index.d.ts",
@@ -823,6 +907,14 @@
     "./task-overlap": {
       "types": "./dist/recipes/task-overlap/index.d.ts",
       "import": "./dist/recipes/task-overlap/index.js"
+    },
+    "./tempo-change": {
+      "types": "./dist/recipes/tempo-change/index.d.ts",
+      "import": "./dist/recipes/tempo-change/index.js"
+    },
+    "./tension-level": {
+      "types": "./dist/recipes/tension-level/index.d.ts",
+      "import": "./dist/recipes/tension-level/index.js"
     },
     "./ticket-match": {
       "types": "./dist/recipes/ticket-match/index.d.ts",

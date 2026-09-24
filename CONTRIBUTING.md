@@ -77,7 +77,7 @@ Generation also rejects near-duplicate recipes: two recipes whose title, descrip
 
 Import paths, function names, schemas, example input, and counts are derived from source. Do not duplicate them in metadata. The current categories are `retrieval`, `conversation`, `workflow`, `answer-quality`, `support`, `memory`, and `knowledge`; use tags for narrower topics.
 
-The generated catalog also includes a Psychology & behavior collection. Add the `psychology` tag to a relevant recipe's metadata to include it; keep its existing category. Collection membership does not create another recipe or change import paths.
+The generated catalog also includes tag-driven collections: Psychology & behavior (`psychology` tag) and Music & sound (`music` tag). Add the tag to a relevant recipe's metadata to include it; keep its existing category. Collection membership does not create another recipe or change import paths. Collections are defined in [scripts/lib/docs.mjs](scripts/lib/docs.mjs).
 
 ## Dependencies and behavior
 

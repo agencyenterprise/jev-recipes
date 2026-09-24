@@ -1,0 +1,34 @@
+{
+  "input": {
+    "feedback": "You are rushing the sixteenth-note runs in the development section, and the left hand loses its evenness whenever the right hand takes the melody in bars 41 to 56.",
+    "goal": "Perform the first movement at the studio recital in six weeks.",
+    "candidates": [
+      {
+        "id": "dev-section-metronome",
+        "text": "Development section (bars 41 to 56) hands separately with the metronome clicking sixteenths at half tempo, then hands together, raising the tempo 4 bpm after each clean pass."
+      },
+      {
+        "id": "scales-in-thirds",
+        "text": "Major scales in thirds, both hands, four octaves, all keys, at a steady moderate tempo."
+      }
+    ],
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_0",
+        "confidence": 0.9,
+        "probabilities": {
+          "candidate_0": 0.9,
+          "candidate_1": 0.06,
+          "none": 0.03,
+          "ambiguous": 0.01
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "input": {
+    "progression": "C - Am - F - G",
+    "key": "C major",
+    "style": "pop ballad, end of the first verse",
+    "candidates": [
+      { "id": "c", "text": "C (return to the tonic)" },
+      { "id": "am", "text": "Am (deceptive move to the submediant)" }
+    ],
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_0",
+        "confidence": 0.88,
+        "probabilities": {
+          "candidate_0": 0.88,
+          "candidate_1": 0.08,
+          "none": 0.02,
+          "ambiguous": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

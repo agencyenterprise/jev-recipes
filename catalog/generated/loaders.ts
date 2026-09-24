@@ -281,6 +281,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.contextRole(recipe.contextRoleInputSchema.parse(input), options),
     ),
+  'continuation-compare': () =>
+    import('../../recipes/continuation-compare/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.continuationCompare(recipe.continuationCompareInputSchema.parse(input), options),
+    ),
   'correction-target': () =>
     import('../../recipes/correction-target/index.js').then(
       (recipe) => (input, options) =>
@@ -290,6 +295,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/corrective-action-fit/index.js').then(
       (recipe) => (input, options) =>
         recipe.correctiveActionFit(recipe.correctiveActionFitInputSchema.parse(input), options),
+    ),
+  'daw-request-kind': () =>
+    import('../../recipes/daw-request-kind/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.dawRequestKind(recipe.dawRequestKindInputSchema.parse(input), options),
     ),
   'deadline-risk': () =>
     import('../../recipes/deadline-risk/index.js').then(
@@ -325,6 +335,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/draft-compare/index.js').then(
       (recipe) => (input, options) =>
         recipe.draftCompare(recipe.draftCompareInputSchema.parse(input), options),
+    ),
+  'dynamic-change': () =>
+    import('../../recipes/dynamic-change/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.dynamicChange(recipe.dynamicChangeInputSchema.parse(input), options),
     ),
   'eligibility-facets': () =>
     import('../../recipes/eligibility-facets/index.js').then(
@@ -375,6 +390,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/evidence-strength/index.js').then(
       (recipe) => (input, options) =>
         recipe.evidenceStrength(recipe.evidenceStrengthInputSchema.parse(input), options),
+    ),
+  'exercise-select': () =>
+    import('../../recipes/exercise-select/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.exerciseSelect(recipe.exerciseSelectInputSchema.parse(input), options),
     ),
   'expense-category': () =>
     import('../../recipes/expense-category/index.js').then(
@@ -545,6 +565,19 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
           options,
         ),
     ),
+  'instrument-issue-kind': () =>
+    import('../../recipes/instrument-issue-kind/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.instrumentIssueKind(recipe.instrumentIssueKindInputSchema.parse(input), options),
+    ),
+  'instrument-report-facets': () =>
+    import('../../recipes/instrument-report-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.instrumentReportFacets(
+          recipe.instrumentReportFacetsInputSchema.parse(input),
+          options,
+        ),
+    ),
   'intake-question-fit': () =>
     import('../../recipes/intake-question-fit/index.js').then(
       (recipe) => (input, options) =>
@@ -585,6 +618,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.lengthFit(recipe.lengthFitInputSchema.parse(input), options),
     ),
+  'listener-request-kind': () =>
+    import('../../recipes/listener-request-kind/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.listenerRequestKind(recipe.listenerRequestKindInputSchema.parse(input), options),
+    ),
   'listing-compare': () =>
     import('../../recipes/listing-compare/index.js').then(
       (recipe) => (input, options) =>
@@ -607,6 +645,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/loss-cause-kind/index.js').then(
       (recipe) => (input, options) =>
         recipe.lossCauseKind(recipe.lossCauseKindInputSchema.parse(input), options),
+    ),
+  'lyric-mood-fit': () =>
+    import('../../recipes/lyric-mood-fit/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.lyricMoodFit(recipe.lyricMoodFitInputSchema.parse(input), options),
     ),
   'maintenance-hazard-wording': () =>
     import('../../recipes/maintenance-hazard-wording/index.js').then(
@@ -651,6 +694,21 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.methodsFacets(recipe.methodsFacetsInputSchema.parse(input), options),
     ),
+  'modulation-moment': () =>
+    import('../../recipes/modulation-moment/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.modulationMoment(recipe.modulationMomentInputSchema.parse(input), options),
+    ),
+  'mood-match': () =>
+    import('../../recipes/mood-match/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.moodMatch(recipe.moodMatchInputSchema.parse(input), options),
+    ),
+  'mood-request': () =>
+    import('../../recipes/mood-request/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.moodRequest(recipe.moodRequestInputSchema.parse(input), options),
+    ),
   'motivation-source': () =>
     import('../../recipes/motivation-source/index.js').then(
       (recipe) => (input, options) =>
@@ -665,6 +723,21 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/narrative-consistency/index.js').then(
       (recipe) => (input, options) =>
         recipe.narrativeConsistency(recipe.narrativeConsistencyInputSchema.parse(input), options),
+    ),
+  'next-chord': () =>
+    import('../../recipes/next-chord/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.nextChord(recipe.nextChordInputSchema.parse(input), options),
+    ),
+  'next-duration': () =>
+    import('../../recipes/next-duration/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.nextDuration(recipe.nextDurationInputSchema.parse(input), options),
+    ),
+  'next-note': () =>
+    import('../../recipes/next-note/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.nextNote(recipe.nextNoteInputSchema.parse(input), options),
     ),
   'notice-facets': () =>
     import('../../recipes/notice-facets/index.js').then(
@@ -701,20 +774,43 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.passageCompare(recipe.passageCompareInputSchema.parse(input), options),
     ),
+  'passage-difficulty': () =>
+    import('../../recipes/passage-difficulty/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.passageDifficulty(recipe.passageDifficultyInputSchema.parse(input), options),
+    ),
   'passage-duplicate': () =>
     import('../../recipes/passage-duplicate/index.js').then(
       (recipe) => (input, options) =>
         recipe.passageDuplicate(recipe.passageDuplicateInputSchema.parse(input), options),
+    ),
+  'passage-mood': () =>
+    import('../../recipes/passage-mood/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.passageMood(recipe.passageMoodInputSchema.parse(input), options),
     ),
   'passage-standalone': () =>
     import('../../recipes/passage-standalone/index.js').then(
       (recipe) => (input, options) =>
         recipe.passageStandalone(recipe.passageStandaloneInputSchema.parse(input), options),
     ),
+  'performance-feedback-facets': () =>
+    import('../../recipes/performance-feedback-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.performanceFeedbackFacets(
+          recipe.performanceFeedbackFacetsInputSchema.parse(input),
+          options,
+        ),
+    ),
   'persuasion-technique': () =>
     import('../../recipes/persuasion-technique/index.js').then(
       (recipe) => (input, options) =>
         recipe.persuasionTechnique(recipe.persuasionTechniqueInputSchema.parse(input), options),
+    ),
+  'phrase-complete': () =>
+    import('../../recipes/phrase-complete/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.phraseComplete(recipe.phraseCompleteInputSchema.parse(input), options),
     ),
   'pii-presence': () =>
     import('../../recipes/pii-presence/index.js').then(
@@ -825,6 +921,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/repeated-attempt/index.js').then(
       (recipe) => (input, options) =>
         recipe.repeatedAttempt(recipe.repeatedAttemptInputSchema.parse(input), options),
+    ),
+  'repetition-level': () =>
+    import('../../recipes/repetition-level/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.repetitionLevel(recipe.repetitionLevelInputSchema.parse(input), options),
     ),
   'reply-template-match': () =>
     import('../../recipes/reply-template-match/index.js').then(
@@ -970,6 +1071,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.slotFit(recipe.slotFitInputSchema.parse(input), options),
     ),
+  'sound-match': () =>
+    import('../../recipes/sound-match/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.soundMatch(recipe.soundMatchInputSchema.parse(input), options),
+    ),
   'source-applicability': () =>
     import('../../recipes/source-applicability/index.js').then(
       (recipe) => (input, options) =>
@@ -994,6 +1100,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/step-progress/index.js').then(
       (recipe) => (input, options) =>
         recipe.stepProgress(recipe.stepProgressInputSchema.parse(input), options),
+    ),
+  'style-kind': () =>
+    import('../../recipes/style-kind/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.styleKind(recipe.styleKindInputSchema.parse(input), options),
     ),
   'summary-coverage': () =>
     import('../../recipes/summary-coverage/index.js').then(
@@ -1029,6 +1140,16 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/task-overlap/index.js').then(
       (recipe) => (input, options) =>
         recipe.taskOverlap(recipe.taskOverlapInputSchema.parse(input), options),
+    ),
+  'tempo-change': () =>
+    import('../../recipes/tempo-change/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.tempoChange(recipe.tempoChangeInputSchema.parse(input), options),
+    ),
+  'tension-level': () =>
+    import('../../recipes/tension-level/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.tensionLevel(recipe.tensionLevelInputSchema.parse(input), options),
     ),
   'ticket-match': () =>
     import('../../recipes/ticket-match/index.js').then(

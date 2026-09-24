@@ -1,0 +1,29 @@
+{
+  "input": {
+    "recentNotes": "C4 E4 G4 E4 D4",
+    "key": "C major",
+    "style": "gentle lullaby",
+    "candidates": [
+      { "id": "c5", "text": "C5 (octave leap up to the tonic)" },
+      { "id": "b3", "text": "B3 (leading tone just below)" }
+    ],
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_1",
+        "confidence": 0.9,
+        "probabilities": {
+          "candidate_0": 0.05,
+          "candidate_1": 0.9,
+          "none": 0.03,
+          "ambiguous": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}
