@@ -48,3 +48,32 @@ export function batchAnswers(
     ]),
   );
 }
+
+export function scoreAnswer(levelCount: number, level: number, confidence = 0.9) {
+  if (level < 0 || level >= levelCount) throw new Error('The level must index a rubric entry.');
+  const remainingProbability = (1 - confidence) / (levelCount - 1);
+  const probabilities = Object.fromEntries(
+    Array.from({ length: levelCount }, (_, index) => [
+      String(index),
+      index === level ? confidence : remainingProbability,
+    ]),
+  );
+  const score = Object.entries(probabilities).reduce(
+    (total, [index, probability]) => total + Number(index) * probability,
+    0,
+  );
+  return { type: 'score', score, confidence, probabilities };
+}
+
+export function scoreAnswers(
+  questionName: string,
+  levelCount: number,
+  level: number,
+  confidence = 0.9,
+) {
+  return { [questionName]: scoreAnswer(levelCount, level, confidence) };
+}
+
+export function noulAnswer(probability: number) {
+  return { type: 'noul', noul: probability };
+}

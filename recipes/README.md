@@ -4,7 +4,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 
 <!-- BEGIN GENERATED: catalog -->
 
-88 recipes. Each guide includes a working call, input reference, result behavior, and nearby alternatives.
+93 recipes. Each guide includes a working call, input reference, result behavior, and nearby alternatives.
 
 ## Answer quality
 
@@ -35,6 +35,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 | [`evidence-conflict`](evidence-conflict/README.md)         | `evidenceConflict`     | You have two passages and need to check for conflicting evidence about a question.                              |
 | [`evidence-independence`](evidence-independence/README.md) | `evidenceIndependence` | You need to check whether two reports rely on the same underlying source before treating them as corroboration. |
 | [`evidence-novelty`](evidence-novelty/README.md)           | `evidenceNovelty`      | You need to decide whether a new passage adds useful information to existing evidence.                          |
+| [`evidence-strength`](evidence-strength/README.md)         | `evidenceStrength`     | You need a graded strength for weighting or ranking evidence, not just a supported or unsupported label.        |
 | [`freshness-needed`](freshness-needed/README.md)           | `freshnessNeeded`      | You need to know whether a question depends on current or changing information.                                 |
 | [`passage-duplicate`](passage-duplicate/README.md)         | `passageDuplicate`     | You want to detect duplicate or overlapping information in two passages.                                        |
 | [`query-equivalence`](query-equivalence/README.md)         | `queryEquivalence`     | You need to check whether two questions ask for the same information.                                           |
@@ -58,6 +59,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 | [`intent-change`](intent-change/README.md)             | `intentChange`       | You need to check whether a new message changes the current task or goal.                                          |
 | [`motivation-source`](motivation-source/README.md)     | `motivationSource`   | You need to classify a stated reason for an activity as enjoyment of doing it or pursuit of a separate outcome.    |
 | [`outcome-framing`](outcome-framing/README.md)         | `outcomeFraming`     | You need to label gain and loss wording in a decision prompt or research stimulus.                                 |
+| [`policy-severity`](policy-severity/README.md)         | `policySeverity`     | You need a graded severity against your own written policy to choose between allow, flag, hide, or escalate.       |
 | [`question-assumption`](question-assumption/README.md) | `questionAssumption` | You need to identify a specific assumption in a question before using it in a conversation, survey, or evaluation. |
 | [`question-leading`](question-leading/README.md)       | `questionLeading`    | You need to check leading questions or answer pressure in a survey, interview, or evaluation prompt.               |
 | [`reference-resolve`](reference-resolve/README.md)     | `referenceResolve`   | You need to resolve a phrase such as this one to a supplied candidate.                                             |
@@ -77,8 +79,10 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 | [`failure-kind`](failure-kind/README.md)                 | `failureKind`         | You need to assign an observed failure to one of your supplied categories.                                                                |
 | [`game-action`](game-action/README.md)                   | `gameAction`          | Your game already supplies JSON state and actions, and you want Jev to choose an action without formatting descriptions or assigning IDs. |
 | [`handoff`](handoff/README.md)                           | `handoff`             | You need to decide whether your escalation rules call for a human.                                                                        |
+| [`injection-signal`](injection-signal/README.md)         | `injectionSignal`     | You need to screen retrieved documents, tool results, or user uploads before an agent reads them as context.                              |
 | [`instruction-conflict`](instruction-conflict/README.md) | `instructionConflict` | You need to detect conflicting instructions before carrying out a task.                                                                   |
 | [`instruction-fit`](instruction-fit/README.md)           | `instructionFit`      | You need to check whether an instruction applies to the current task and context.                                                         |
+| [`pii-presence`](pii-presence/README.md)                 | `piiPresence`         | You need a yes/no gate before storing, logging, sharing, or sending text that might contain personal data.                                |
 | [`repeated-attempt`](repeated-attempt/README.md)         | `repeatedAttempt`     | You need to detect whether a proposed retry repeats an earlier approach.                                                                  |
 | [`result-outcome`](result-outcome/README.md)             | `resultOutcome`       | You need to classify what a tool result reports happened during a task.                                                                   |
 | [`result-usefulness`](result-usefulness/README.md)       | `resultUsefulness`    | You need to assess whether a tool result provides useful information for a task.                                                          |
@@ -86,6 +90,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 | [`step-complete`](step-complete/README.md)               | `stepComplete`        | You need to check whether supplied evidence establishes a completion condition.                                                           |
 | [`step-progress`](step-progress/README.md)               | `stepProgress`        | You need to compare a new observation with the previous state of a task.                                                                  |
 | [`take-turn`](take-turn/README.md)                       | `takeTurn`            | You need to decide whether it is a player's turn to act or react using narrative game rules, state, and previous actions.                 |
+| [`task-complexity`](task-complexity/README.md)           | `taskComplexity`      | You need to size a task before choosing a model, a plan depth, a time budget, or whether to ask for help.                                 |
 | [`task-dependency`](task-dependency/README.md)           | `taskDependency`      | You need to decide whether two tasks can run in parallel or require a particular order.                                                   |
 | [`task-duplicate`](task-duplicate/README.md)             | `taskDuplicate`       | You need to detect duplicate tasks before adding more work to a queue or plan.                                                            |
 | [`tool-fit`](tool-fit/README.md)                         | `toolFit`             | You need to check whether a tool has the stated capability to perform a task.                                                             |

@@ -715,6 +715,30 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'evidence-strength',
+    title: 'Grade evidence strength',
+    description: 'How strongly does evidence support the entire claim, on a five-level rubric?',
+    category: 'retrieval',
+    tags: ['evidence', 'strength', 'grading', 'rubric', 'score'],
+    limitations: [
+      'Grades support only. Contradiction lands at the lowest level; use verify to distinguish it.',
+      'The score is an expected value over rubric levels. Application code chooses cutoffs.',
+    ],
+    useWhen:
+      'You need a graded strength for weighting or ranking evidence, not just a supported or unsupported label.',
+    related: [
+      {
+        id: 'verify',
+        reason:
+          'Use verify for a categorical supported, contradicted, or unsupported verdict per claim.',
+      },
+      {
+        id: 'answerability',
+        reason: 'Use answerability to decide whether evidence can answer a whole question.',
+      },
+    ],
+  },
+  {
     id: 'fact-stability',
     title: 'Assess fact stability',
     description:
@@ -893,6 +917,30 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
     useWhen: 'You need to connect a support ticket to a supplied known incident.',
     related: [{ id: 'ticket-match', reason: 'Use ticket-match to compare two tickets directly.' }],
+  },
+  {
+    id: 'injection-signal',
+    title: 'Detect agent-directed instructions',
+    description: 'Does text contain instructions aimed at steering an AI system or agent?',
+    category: 'workflow',
+    tags: ['security', 'prompt-injection', 'agent', 'safety', 'gate', 'retrieval'],
+    limitations: [
+      'Detects instruction-like content aimed at machines. It does not judge whether the instructions would succeed or are malicious.',
+      'Quarantine, stripping, and logging decisions belong in application code.',
+    ],
+    useWhen:
+      'You need to screen retrieved documents, tool results, or user uploads before an agent reads them as context.',
+    related: [
+      {
+        id: 'pii-presence',
+        reason:
+          'Use pii-presence to screen the same text for personal data before storing or sharing it.',
+      },
+      {
+        id: 'instruction-conflict',
+        reason: 'Use instruction-conflict when two legitimate instructions may disagree.',
+      },
+    ],
   },
   {
     id: 'instruction-conflict',
@@ -1195,6 +1243,53 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'evidence-novelty',
         reason: 'Use evidence-novelty to compare a passage with the evidence already collected.',
+      },
+    ],
+  },
+  {
+    id: 'pii-presence',
+    title: 'Detect personal information',
+    description: 'Does text contain information identifying a specific private individual?',
+    category: 'workflow',
+    tags: ['privacy', 'pii', 'redaction', 'compliance', 'gate', 'security'],
+    limitations: [
+      'Reports presence, not location. Pair it with a pattern-based redactor to remove specific spans.',
+      'Semantic judgment only. Regulatory definitions of personal data vary and belong in your policy code.',
+    ],
+    useWhen:
+      'You need a yes/no gate before storing, logging, sharing, or sending text that might contain personal data.',
+    related: [
+      {
+        id: 'injection-signal',
+        reason:
+          'Use injection-signal to screen the same text for instructions aimed at an AI agent.',
+      },
+      {
+        id: 'memory-scope',
+        reason: 'Use memory-scope to decide how narrowly a fact about a person should be stored.',
+      },
+    ],
+  },
+  {
+    id: 'policy-severity',
+    title: 'Grade a policy violation',
+    description: 'How severely does content violate the supplied policy, on a five-level rubric?',
+    category: 'conversation',
+    tags: ['moderation', 'policy', 'safety', 'severity', 'rubric', 'score'],
+    limitations: [
+      'Judges only against the supplied policy text. It has no built-in content rules.',
+      'Severity is a semantic grade. Enforcement actions, appeals, and legal obligations belong in application code.',
+    ],
+    useWhen:
+      'You need a graded severity against your own written policy to choose between allow, flag, hide, or escalate.',
+    related: [
+      {
+        id: 'handoff',
+        reason: 'Use handoff to decide whether a case matches your human escalation rules.',
+      },
+      {
+        id: 'promise-check',
+        reason: 'Use promise-check to catch replies that commit beyond what your rules allow.',
       },
     ],
   },
@@ -1718,6 +1813,28 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'response-needed',
         reason:
           'Use response-needed for conversational follow-through, rather than turn and reaction eligibility under game rules.',
+      },
+    ],
+  },
+  {
+    id: 'task-complexity',
+    title: 'Grade task complexity',
+    description:
+      'How complex is task, from a single lookup to open-ended work, on a five-level rubric?',
+    category: 'workflow',
+    tags: ['task', 'complexity', 'planning', 'budget', 'rubric', 'score', 'agent'],
+    limitations: [
+      'Grades the described work, not the effort a specific system will spend. Map levels to budgets in code.',
+      'Does not detect whether the task is possible or permitted.',
+    ],
+    useWhen:
+      'You need to size a task before choosing a model, a plan depth, a time budget, or whether to ask for help.',
+    related: [
+      { id: 'route', reason: 'Use route to pick a named handler once the task is sized.' },
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify to find missing requirements in a task that grades complex or open-ended.',
       },
     ],
   },

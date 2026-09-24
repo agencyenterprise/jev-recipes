@@ -1,0 +1,19 @@
+{
+  "input": {
+    "content": "If you buy from this seller you deserve to get scammed, idiot. Everyone knows their address is 14 Elm Street, go tell them yourself.",
+    "policy": "Community posts may criticize sellers and products. Posts must not insult other members, and must not share a private individual's home address or other personal contact details.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.02,
+        "confidence": 0.82,
+        "probabilities": { "0": 0.01, "1": 0.02, "2": 0.1, "3": 0.82, "4": 0.05 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

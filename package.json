@@ -148,6 +148,10 @@
       "types": "./dist/recipes/evidence-novelty/index.d.ts",
       "import": "./dist/recipes/evidence-novelty/index.js"
     },
+    "./evidence-strength": {
+      "types": "./dist/recipes/evidence-strength/index.d.ts",
+      "import": "./dist/recipes/evidence-strength/index.js"
+    },
     "./fact-stability": {
       "types": "./dist/recipes/fact-stability/index.d.ts",
       "import": "./dist/recipes/fact-stability/index.js"
@@ -187,6 +191,10 @@
     "./incident-match": {
       "types": "./dist/recipes/incident-match/index.d.ts",
       "import": "./dist/recipes/incident-match/index.js"
+    },
+    "./injection-signal": {
+      "types": "./dist/recipes/injection-signal/index.d.ts",
+      "import": "./dist/recipes/injection-signal/index.js"
     },
     "./instruction-conflict": {
       "types": "./dist/recipes/instruction-conflict/index.d.ts",
@@ -235,6 +243,14 @@
     "./passage-duplicate": {
       "types": "./dist/recipes/passage-duplicate/index.d.ts",
       "import": "./dist/recipes/passage-duplicate/index.js"
+    },
+    "./pii-presence": {
+      "types": "./dist/recipes/pii-presence/index.d.ts",
+      "import": "./dist/recipes/pii-presence/index.js"
+    },
+    "./policy-severity": {
+      "types": "./dist/recipes/policy-severity/index.d.ts",
+      "import": "./dist/recipes/policy-severity/index.js"
     },
     "./preference-kind": {
       "types": "./dist/recipes/preference-kind/index.d.ts",
@@ -327,6 +343,10 @@
     "./take-turn": {
       "types": "./dist/recipes/take-turn/index.d.ts",
       "import": "./dist/recipes/take-turn/index.js"
+    },
+    "./task-complexity": {
+      "types": "./dist/recipes/task-complexity/index.d.ts",
+      "import": "./dist/recipes/task-complexity/index.js"
     },
     "./task-dependency": {
       "types": "./dist/recipes/task-dependency/index.d.ts",

@@ -157,6 +157,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.evidenceNovelty(recipe.evidenceNoveltyInputSchema.parse(input), options),
     ),
+  'evidence-strength': () =>
+    import('../../recipes/evidence-strength/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.evidenceStrength(recipe.evidenceStrengthInputSchema.parse(input), options),
+    ),
   'fact-stability': () =>
     import('../../recipes/fact-stability/index.js').then(
       (recipe) => (input, options) =>
@@ -206,6 +211,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/incident-match/index.js').then(
       (recipe) => (input, options) =>
         recipe.incidentMatch(recipe.incidentMatchInputSchema.parse(input), options),
+    ),
+  'injection-signal': () =>
+    import('../../recipes/injection-signal/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.injectionSignal(recipe.injectionSignalInputSchema.parse(input), options),
     ),
   'instruction-conflict': () =>
     import('../../recipes/instruction-conflict/index.js').then(
@@ -266,6 +276,16 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/passage-duplicate/index.js').then(
       (recipe) => (input, options) =>
         recipe.passageDuplicate(recipe.passageDuplicateInputSchema.parse(input), options),
+    ),
+  'pii-presence': () =>
+    import('../../recipes/pii-presence/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.piiPresence(recipe.piiPresenceInputSchema.parse(input), options),
+    ),
+  'policy-severity': () =>
+    import('../../recipes/policy-severity/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.policySeverity(recipe.policySeverityInputSchema.parse(input), options),
     ),
   'preference-kind': () =>
     import('../../recipes/preference-kind/index.js').then(
@@ -382,6 +402,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/take-turn/index.js').then(
       (recipe) => (input, options) =>
         recipe.takeTurn(recipe.takeTurnInputSchema.parse(input), options),
+    ),
+  'task-complexity': () =>
+    import('../../recipes/task-complexity/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.taskComplexity(recipe.taskComplexityInputSchema.parse(input), options),
     ),
   'task-dependency': () =>
     import('../../recipes/task-dependency/index.js').then(

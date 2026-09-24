@@ -330,6 +330,17 @@ export type {
   EvidenceNoveltyVerdict,
 } from '../recipes/evidence-novelty/index.js';
 export {
+  evidenceStrength,
+  evidenceStrengthInputSchema,
+  evidenceStrengthResultSchema,
+  evidenceStrengthVerdictSchema,
+} from '../recipes/evidence-strength/index.js';
+export type {
+  EvidenceStrengthInput,
+  EvidenceStrengthResult,
+  EvidenceStrengthVerdict,
+} from '../recipes/evidence-strength/index.js';
+export {
   factStability,
   factStabilityInputSchema,
   factStabilityResultSchema,
@@ -410,6 +421,17 @@ export {
   incidentMatchResultSchema,
 } from '../recipes/incident-match/index.js';
 export type { IncidentMatchInput, IncidentMatchResult } from '../recipes/incident-match/index.js';
+export {
+  injectionSignal,
+  injectionSignalInputSchema,
+  injectionSignalResultSchema,
+  injectionSignalVerdictSchema,
+} from '../recipes/injection-signal/index.js';
+export type {
+  InjectionSignalInput,
+  InjectionSignalResult,
+  InjectionSignalVerdict,
+} from '../recipes/injection-signal/index.js';
 export {
   instructionConflict,
   instructionConflictInputSchema,
@@ -542,6 +564,28 @@ export type {
   PassageDuplicateResult,
   PassageDuplicateVerdict,
 } from '../recipes/passage-duplicate/index.js';
+export {
+  piiPresence,
+  piiPresenceInputSchema,
+  piiPresenceResultSchema,
+  piiPresenceVerdictSchema,
+} from '../recipes/pii-presence/index.js';
+export type {
+  PiiPresenceInput,
+  PiiPresenceResult,
+  PiiPresenceVerdict,
+} from '../recipes/pii-presence/index.js';
+export {
+  policySeverity,
+  policySeverityInputSchema,
+  policySeverityResultSchema,
+  policySeverityVerdictSchema,
+} from '../recipes/policy-severity/index.js';
+export type {
+  PolicySeverityInput,
+  PolicySeverityResult,
+  PolicySeverityVerdict,
+} from '../recipes/policy-severity/index.js';
 export {
   preferenceKind,
   preferenceKindInputSchema,
@@ -769,6 +813,17 @@ export {
   takeTurnVerdictSchema,
 } from '../recipes/take-turn/index.js';
 export type { TakeTurnInput, TakeTurnResult, TakeTurnVerdict } from '../recipes/take-turn/index.js';
+export {
+  taskComplexity,
+  taskComplexityInputSchema,
+  taskComplexityResultSchema,
+  taskComplexityVerdictSchema,
+} from '../recipes/task-complexity/index.js';
+export type {
+  TaskComplexityInput,
+  TaskComplexityResult,
+  TaskComplexityVerdict,
+} from '../recipes/task-complexity/index.js';
 export {
   taskDependency,
   taskDependencyInputSchema,
