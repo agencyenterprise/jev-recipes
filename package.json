@@ -372,6 +372,10 @@
       "types": "./dist/recipes/financial-advice-signal/index.d.ts",
       "import": "./dist/recipes/financial-advice-signal/index.js"
     },
+    "./finger-actions": {
+      "types": "./dist/recipes/finger-actions/index.d.ts",
+      "import": "./dist/recipes/finger-actions/index.js"
+    },
     "./followup-link": {
       "types": "./dist/recipes/followup-link/index.d.ts",
       "import": "./dist/recipes/followup-link/index.js"

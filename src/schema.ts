@@ -154,3 +154,37 @@ export type LabelQuestions = z.infer<typeof labelQuestionsSchema>;
 export type LabelVerdict = z.infer<typeof labelVerdictSchema>;
 export type LabelCheck = z.infer<typeof labelCheckSchema>;
 export type LabelsResult = z.infer<typeof labelsResultSchema>;
+
+export const optionSlotSchema = z.object({
+  id: nonEmptyText,
+  text: nonEmptyText,
+  options: textItemsSchema,
+});
+export const optionSlotsSchema = z
+  .array(optionSlotSchema)
+  .min(1)
+  .max(20)
+  .refine(
+    (slots) => new Set(slots.map((slot) => slot.id)).size === slots.length,
+    'Slot IDs must be unique.',
+  );
+export const assignmentSchema = z.object({
+  id: nonEmptyText,
+  status: decisionStatusSchema,
+  verdict: z.enum(['chosen', 'rest', 'ambiguous']),
+  action: nonEmptyText.nullable(),
+  suggestedAction: nonEmptyText.nullable(),
+  confidence: probability,
+  probabilities: z.object({
+    options: z.record(nonEmptyText, probability),
+    rest: probability,
+    ambiguous: probability,
+  }),
+});
+export const assignmentsResultSchema = resultMetadataSchema.extend({
+  status: decisionStatusSchema,
+  assignments: z.array(assignmentSchema).min(1).max(20),
+});
+export type OptionSlot = z.infer<typeof optionSlotSchema>;
+export type Assignment = z.infer<typeof assignmentSchema>;
+export type AssignmentsResult = z.infer<typeof assignmentsResultSchema>;

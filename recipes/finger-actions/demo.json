@@ -1,0 +1,58 @@
+{
+  "input": {
+    "music": "Key C major, 72 bpm, gentle ballad. Last bar: right hand melody E4 D4 C4 (quarter, quarter, half) over a C major chord held in the left hand. The phrase just ended on the tonic.",
+    "beat": "Bar 5, eighth 1, start of a new phrase",
+    "fingers": [
+      {
+        "id": "rh-thumb",
+        "text": "Right thumb, resting on C4, free to move",
+        "options": [
+          { "id": "c4", "text": "Press C4 to restate the tonic" },
+          { "id": "hold", "text": "Keep C4 sounding from the previous bar" }
+        ]
+      },
+      {
+        "id": "rh-index",
+        "text": "Right index, hovering over D4 and E4",
+        "options": [
+          { "id": "e4", "text": "Press E4 to start the melody a third above" },
+          { "id": "d4", "text": "Press D4 to start stepwise" }
+        ]
+      },
+      {
+        "id": "lh-pinky",
+        "text": "Left pinky, on C3 which is currently sounding",
+        "options": [
+          { "id": "c3", "text": "Re-strike C3 for a fresh bass note" },
+          { "id": "g2", "text": "Move down to G2 for a dominant pedal" }
+        ]
+      }
+    ],
+    "style": "Keep the texture sparse; melody on top, single bass notes below.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "finger_0": {
+        "type": "choice",
+        "choice": "rest",
+        "confidence": 0.84,
+        "probabilities": { "option_0": 0.08, "option_1": 0.06, "rest": 0.84, "ambiguous": 0.02 }
+      },
+      "finger_1": {
+        "type": "choice",
+        "choice": "option_0",
+        "confidence": 0.86,
+        "probabilities": { "option_0": 0.86, "option_1": 0.1, "rest": 0.03, "ambiguous": 0.01 }
+      },
+      "finger_2": {
+        "type": "choice",
+        "choice": "option_0",
+        "confidence": 0.9,
+        "probabilities": { "option_0": 0.9, "option_1": 0.06, "rest": 0.03, "ambiguous": 0.01 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}
