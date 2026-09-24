@@ -8,17 +8,19 @@ The goal is 1,000 useful, distinct recipes. Before adding one, name its target u
 
 Requires Node.js 22.9 or newer. Make is optional; every task has an npm equivalent. The Makefile works with GNU Make 3.81 and newer and is only for contributors.
 
-| Task                               | Make                        | npm equivalent                                       |
-| ---------------------------------- | --------------------------- | ---------------------------------------------------- |
-| Install development dependencies   | `make setup`                | `npm ci --ignore-scripts`                            |
-| Generate exports and catalog data  | `make generate`             | `npm run generate`                                   |
-| Generate code and documentation    | `make docs`                 | `npm run docs`                                       |
-| Run offline tests                  | `make test`                 | `npm test`                                           |
-| Test one recipe                    | `make test RECIPE=route`    | `npm run test:recipes -- tests/recipe/route.test.ts` |
-| Run the full verification pipeline | `make ci`                   | `npm run ci`                                         |
-| Check the installable archive      | `make pack-check`           | `npm run pack:check`                                 |
-| Scaffold a recipe                  | `make new RECIPE=my-recipe` | `npm run new -- my-recipe`                           |
-| Compile or clean                   | `make build` / `make clean` | `npm run build` / `npm run clean`                    |
+| Task                               | Make                                   | npm equivalent                                       |
+| ---------------------------------- | -------------------------------------- | ---------------------------------------------------- |
+| Install development dependencies   | `make setup`                           | `npm ci --ignore-scripts`                            |
+| Generate exports and catalog data  | `make generate`                        | `npm run generate`                                   |
+| Generate code and documentation    | `make docs`                            | `npm run docs`                                       |
+| Run offline tests                  | `make test`                            | `npm test`                                           |
+| Test one recipe                    | `make test RECIPE=route`               | `npm run test:recipes -- tests/recipe/route.test.ts` |
+| Run the full verification pipeline | `make ci`                              | `npm run ci`                                         |
+| Check the installable archive      | `make pack-check`                      | `npm run pack:check`                                 |
+| Scaffold a recipe                  | `make new RECIPE=my-recipe`            | `npm run new -- my-recipe`                           |
+| Scaffold a score or gate recipe    | `make new RECIPE=my-recipe KIND=score` | `npm run new -- my-recipe gate`                      |
+| Scaffold from a spec file          | `npm run new -- --spec spec.json`      | `node scripts/new-recipe.mjs --spec a.json b.json`   |
+| Compile or clean                   | `make build` / `make clean`            | `npm run build` / `npm run clean`                    |
 
 `make ci` checks generated files without changing them, checks formatting and types, runs recipe coverage, builds, tests the tooling, and tests the actual npm archive. It makes no live Jev calls. Fix stale generated files with `make docs`; format author-maintained files with `npm run format`.
 
@@ -39,13 +41,17 @@ Tests remain outside recipe folders. Production builds exclude tests, and packag
 
 ## Add a recipe
 
-1. Run `make new RECIPE=my-recipe`. This creates the five recipe files and `tests/recipe/my-recipe.test.ts`. The starter is a generic requirement check; replace it with the intended decision before contributing it.
+1. Run `make new RECIPE=my-recipe`, adding `KIND=score` for an ordered rubric, `KIND=gate` for a yes/no question, `KIND=comparison` for a first/second/tie/neither choice between two candidates, or `KIND=labels` for several independent yes/no labels in one call. The default kind is `choice`. This creates the five recipe files and `tests/recipe/my-recipe.test.ts`, wired to the matching shared helper and test helper. The starter is a generic requirement check; replace it with the intended decision before contributing it.
 2. Define inputs and results in `schema.ts` using Zod. Infer types from those schemas. Keep defaults, instructions, and decision rules in `index.ts`.
 3. Export one recipe function, one schema whose name ends in `InputSchema`, and one ending in `ResultSchema` from `index.ts`. Export its public types there too. Keep kebab-case recipe IDs and camelCase functions.
 4. Complete `metadata.ts`, `demo.json`, and the author-maintained parts of `README.md`.
 5. Add tests for the actual decision rules, confidence boundaries, invalid inputs, and malformed responses. Use the existing helpers where appropriate. Starter tests are not a complete contribution test suite.
 6. Run `make docs`. Exports, catalog registration, schema descriptions, reference tables, and counts are generated automatically.
 7. Run `make ci` and inspect the changes.
+
+### Spec-driven scaffolding
+
+When you already know the decision, write it as a JSON spec and run `node scripts/new-recipe.mjs --spec my-recipe.json`. The spec carries the metadata, input names (`required` or `optional`), the instruction, the kind-specific criteria (a `rubric` with `labelField` for score, `verdicts` and `criteria` for gate, `criteria` for choice and comparison, `labels` for labels), a demo input, and demo probabilities. The scaffolder validates the spec, computes the demo fixture arithmetic, and renders all five recipe files plus the test file in the house style, so only the guide prose may need editing. It rejects a demo whose most likely outcome is below 0.8, since that fixture would render as a review result in the guide. Choice and comparison demo probabilities may omit labels, which default to zero. `readme.limits` accepts a string or an array of sentences. The schema lives in `recipeSpecSchema` in [scripts/new-recipe.mjs](scripts/new-recipe.mjs); `tests/tooling/spec.test.mjs` shows a complete example. Spec files are authoring input, not part of the recipe; do not commit them.
 
 Do not hand-edit `src/index.ts`, `catalog/generated/`, the exports map in `package.json`, or documentation between generated markers. Generation is deterministic. Running it again without source changes produces no diff.
 
@@ -65,11 +71,13 @@ Keep descriptions concrete enough that a developer can choose between similar re
 | `limitations` | What the decision does not establish                                              |
 | `uses`        | IDs of recipes imported at runtime; omit when none                                |
 
+Generation also rejects near-duplicate recipes: two recipes whose title, description, and `useWhen` wording overlap heavily, or that share identical input fields and outcome labels with noticeably similar wording. Sharpen the description toward the specific decision, or merge the recipes. The thresholds live in [scripts/lib/distinct.mjs](scripts/lib/distinct.mjs).
+
 `useWhen` and `related` are required by the authoring checks. They are optional in the public metadata schema to keep older metadata objects valid. References must resolve, dependencies must match imports, and dependency cycles are rejected. Related recipes are navigation links, not execution dependencies.
 
 Import paths, function names, schemas, example input, and counts are derived from source. Do not duplicate them in metadata. The current categories are `retrieval`, `conversation`, `workflow`, `answer-quality`, `support`, `memory`, and `knowledge`; use tags for narrower topics.
 
-The generated catalog also includes a Psychology & behavior collection. Add the `psychology` tag to a relevant recipe's metadata to include it; keep its existing category. Collection membership does not create another recipe or change import paths.
+The generated catalog also includes tag-driven collections: Psychology & behavior (`psychology` tag) and Music & sound (`music` tag). Add the tag to a relevant recipe's metadata to include it; keep its existing category. Collection membership does not create another recipe or change import paths. Collections are defined in [scripts/lib/docs.mjs](scripts/lib/docs.mjs).
 
 ## Dependencies and behavior
 

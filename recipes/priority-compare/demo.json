@@ -1,0 +1,26 @@
+{
+  "input": {
+    "criteria": "Customer-facing outages come first. Then anything blocking another team. Internal refactors are scheduled last and only when nothing else is waiting.",
+    "firstTask": "Rename the internal config helpers for consistency across the billing service.",
+    "secondTask": "Fix the checkout page returning a 500 for customers paying with a saved card.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "second",
+        "confidence": 0.93,
+        "probabilities": {
+          "first": 0.02,
+          "second": 0.93,
+          "tie": 0.02,
+          "neither": 0.01,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

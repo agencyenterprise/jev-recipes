@@ -17,7 +17,7 @@ export function testClassification<Input extends Record<string, unknown>>(
   input: Input,
   verdicts: readonly string[],
   optionalFields: readonly string[] = [],
-  reviewVerdict = 'unclear',
+  reviewVerdict: string | null = 'unclear',
 ) {
   describe(run.name, () => {
     it.each(verdicts)('preserves the %s verdict and its probabilities', async (verdict) => {

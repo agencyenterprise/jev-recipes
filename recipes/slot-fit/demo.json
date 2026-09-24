@@ -1,0 +1,12 @@
+{
+  "input": {
+    "proposal": "How about Friday at 3:00 PM for the kickoff call?",
+    "constraints": "I am available weekday afternoons from 1 PM to 5 PM, except Fridays, which I keep meeting-free.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.06 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

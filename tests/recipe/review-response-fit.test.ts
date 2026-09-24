@@ -1,0 +1,13 @@
+import { reviewResponseFit } from '../../recipes/review-response-fit/index.js';
+import { testGate } from './helpers/gate.js';
+
+testGate(
+  reviewResponseFit,
+  {
+    review:
+      'Three stars. The rooftop pool and the breakfast were genuinely excellent, and the front desk upgraded us without asking. But the air conditioning in room 412 rattled all night and maintenance never showed up after we called twice. We also waited 40 minutes for the airport shuttle that was supposed to run every 15.',
+    response:
+      'Thank you for staying with us and for the kind words about the rooftop pool and breakfast; I have passed your compliment to the front desk team. I am sorry about the noisy air conditioning unit in 412 and that maintenance did not respond after two calls; that unit has now been replaced and we are reviewing how after-hours requests are dispatched. The shuttle delay is not the service we promise, and we have added a second vehicle during peak hours. I hope you will give us another chance.',
+  },
+  ['addresses', 'generic'],
+);

@@ -1,0 +1,18 @@
+{
+  "input": {
+    "report": "Steps: 1. Open the Reports tab. 2. Choose a date range ending today. 3. Click Export CSV. Expected: a CSV downloads with rows for the whole range. Actual: the download contains only rows up to yesterday and today's rows are missing.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.92,
+        "confidence": 0.85,
+        "probabilities": { "0": 0, "1": 0.01, "2": 0.1, "3": 0.85, "4": 0.04 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "input": {
+    "comment": "This returns undefined when the list is empty because items[0] is read before the length check. Guard on items.length first.",
+    "context": "Comment left on a helper function in a pull request that adds a formatting utility."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "bug",
+        "confidence": 0.91,
+        "probabilities": {
+          "bug": 0.91,
+          "design": 0.04,
+          "style": 0.01,
+          "question": 0.01,
+          "nit": 0.02,
+          "praise": 0,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

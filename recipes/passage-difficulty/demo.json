@@ -1,0 +1,19 @@
+{
+  "input": {
+    "passage": "Continuous sixteenth-note arpeggios across all four strings at quarter note = 144, in E-flat major, moving from first position up to seventh position and back every two bars, with string crossings on every beat and a two-octave leap into the final bar.",
+    "instrument": "violin",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.95,
+        "confidence": 0.84,
+        "probabilities": { "0": 0, "1": 0.01, "2": 0.09, "3": 0.84, "4": 0.06 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

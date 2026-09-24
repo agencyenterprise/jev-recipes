@@ -1,0 +1,29 @@
+{
+  "input": {
+    "meter": "3/4",
+    "recentRhythm": "quarter quarter quarter | quarter quarter",
+    "style": "steady waltz accompaniment",
+    "candidates": [
+      { "id": "quarter", "text": "quarter note (keeps the one-two-three)" },
+      { "id": "half", "text": "half note (held across the bar line)" }
+    ],
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_0",
+        "confidence": 0.9,
+        "probabilities": {
+          "candidate_0": 0.9,
+          "candidate_1": 0.05,
+          "none": 0.03,
+          "ambiguous": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

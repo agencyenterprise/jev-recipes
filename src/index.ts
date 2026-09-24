@@ -11,6 +11,39 @@ export type {
   RecipeDescription,
 } from '../catalog/index.js';
 export {
+  actionCompare,
+  actionCompareInputSchema,
+  actionCompareResultSchema,
+  actionCompareVerdictSchema,
+} from '../recipes/action-compare/index.js';
+export type {
+  ActionCompareInput,
+  ActionCompareResult,
+  ActionCompareVerdict,
+} from '../recipes/action-compare/index.js';
+export {
+  actionEffects,
+  actionEffectsInputSchema,
+  actionEffectsLabelSchema,
+  actionEffectsResultSchema,
+} from '../recipes/action-effects/index.js';
+export type {
+  ActionEffectsInput,
+  ActionEffectsLabel,
+  ActionEffectsResult,
+} from '../recipes/action-effects/index.js';
+export {
+  actionReversibility,
+  actionReversibilityInputSchema,
+  actionReversibilityResultSchema,
+  actionReversibilityVerdictSchema,
+} from '../recipes/action-reversibility/index.js';
+export type {
+  ActionReversibilityInput,
+  ActionReversibilityResult,
+  ActionReversibilityVerdict,
+} from '../recipes/action-reversibility/index.js';
+export {
   actionScope,
   actionScopeInputSchema,
   actionScopeResultSchema,
@@ -21,6 +54,28 @@ export type {
   ActionScopeResult,
   ActionScopeVerdict,
 } from '../recipes/action-scope/index.js';
+export {
+  ageAppropriateness,
+  ageAppropriatenessInputSchema,
+  ageAppropriatenessResultSchema,
+  ageAppropriatenessVerdictSchema,
+} from '../recipes/age-appropriateness/index.js';
+export type {
+  AgeAppropriatenessInput,
+  AgeAppropriatenessResult,
+  AgeAppropriatenessVerdict,
+} from '../recipes/age-appropriateness/index.js';
+export {
+  alertActionability,
+  alertActionabilityInputSchema,
+  alertActionabilityResultSchema,
+  alertActionabilityVerdictSchema,
+} from '../recipes/alert-actionability/index.js';
+export type {
+  AlertActionabilityInput,
+  AlertActionabilityResult,
+  AlertActionabilityVerdict,
+} from '../recipes/alert-actionability/index.js';
 export {
   answerConsistency,
   answerConsistencyInputSchema,
@@ -43,6 +98,28 @@ export type {
   AnswerCoverageResult,
   AnswerCoverageVerdict,
 } from '../recipes/answer-coverage/index.js';
+export {
+  answerDisclosures,
+  answerDisclosuresInputSchema,
+  answerDisclosuresLabelSchema,
+  answerDisclosuresResultSchema,
+} from '../recipes/answer-disclosures/index.js';
+export type {
+  AnswerDisclosuresInput,
+  AnswerDisclosuresLabel,
+  AnswerDisclosuresResult,
+} from '../recipes/answer-disclosures/index.js';
+export {
+  answerGrade,
+  answerGradeInputSchema,
+  answerGradeResultSchema,
+  answerGradeVerdictSchema,
+} from '../recipes/answer-grade/index.js';
+export type {
+  AnswerGradeInput,
+  AnswerGradeResult,
+  AnswerGradeVerdict,
+} from '../recipes/answer-grade/index.js';
 export {
   answerInvalidation,
   answerInvalidationInputSchema,
@@ -75,6 +152,28 @@ export type {
   AnswerabilityResult,
   AnswerabilityVerdict,
 } from '../recipes/answerability/index.js';
+export {
+  appealGroundsKind,
+  appealGroundsKindInputSchema,
+  appealGroundsKindResultSchema,
+  appealGroundsKindVerdictSchema,
+} from '../recipes/appeal-grounds-kind/index.js';
+export type {
+  AppealGroundsKindInput,
+  AppealGroundsKindResult,
+  AppealGroundsKindVerdict,
+} from '../recipes/appeal-grounds-kind/index.js';
+export {
+  appointmentRequestKind,
+  appointmentRequestKindInputSchema,
+  appointmentRequestKindResultSchema,
+  appointmentRequestKindVerdictSchema,
+} from '../recipes/appointment-request-kind/index.js';
+export type {
+  AppointmentRequestKindInput,
+  AppointmentRequestKindResult,
+  AppointmentRequestKindVerdict,
+} from '../recipes/appointment-request-kind/index.js';
 export {
   argumentFit,
   argumentFitInputSchema,
@@ -120,6 +219,61 @@ export type {
   AudienceFitVerdict,
 } from '../recipes/audience-fit/index.js';
 export {
+  breakingChangeSignal,
+  breakingChangeSignalInputSchema,
+  breakingChangeSignalResultSchema,
+  breakingChangeSignalVerdictSchema,
+} from '../recipes/breaking-change-signal/index.js';
+export type {
+  BreakingChangeSignalInput,
+  BreakingChangeSignalResult,
+  BreakingChangeSignalVerdict,
+} from '../recipes/breaking-change-signal/index.js';
+export {
+  budgetFit,
+  budgetFitInputSchema,
+  budgetFitResultSchema,
+  budgetFitVerdictSchema,
+} from '../recipes/budget-fit/index.js';
+export type {
+  BudgetFitInput,
+  BudgetFitResult,
+  BudgetFitVerdict,
+} from '../recipes/budget-fit/index.js';
+export {
+  budgetNarrativeFit,
+  budgetNarrativeFitInputSchema,
+  budgetNarrativeFitResultSchema,
+  budgetNarrativeFitVerdictSchema,
+} from '../recipes/budget-narrative-fit/index.js';
+export type {
+  BudgetNarrativeFitInput,
+  BudgetNarrativeFitResult,
+  BudgetNarrativeFitVerdict,
+} from '../recipes/budget-narrative-fit/index.js';
+export {
+  bugReportCompleteness,
+  bugReportCompletenessInputSchema,
+  bugReportCompletenessResultSchema,
+  bugReportCompletenessVerdictSchema,
+} from '../recipes/bug-report-completeness/index.js';
+export type {
+  BugReportCompletenessInput,
+  BugReportCompletenessResult,
+  BugReportCompletenessVerdict,
+} from '../recipes/bug-report-completeness/index.js';
+export {
+  buyingIntent,
+  buyingIntentInputSchema,
+  buyingIntentResultSchema,
+  buyingIntentVerdictSchema,
+} from '../recipes/buying-intent/index.js';
+export type {
+  BuyingIntentInput,
+  BuyingIntentResult,
+  BuyingIntentVerdict,
+} from '../recipes/buying-intent/index.js';
+export {
   cacheMatch,
   cacheMatchInputSchema,
   cacheMatchResultSchema,
@@ -142,6 +296,28 @@ export type {
   CancellationCheckVerdict,
 } from '../recipes/cancellation-check/index.js';
 export {
+  careUrgencyWording,
+  careUrgencyWordingInputSchema,
+  careUrgencyWordingResultSchema,
+  careUrgencyWordingVerdictSchema,
+} from '../recipes/care-urgency-wording/index.js';
+export type {
+  CareUrgencyWordingInput,
+  CareUrgencyWordingResult,
+  CareUrgencyWordingVerdict,
+} from '../recipes/care-urgency-wording/index.js';
+export {
+  categoryFit,
+  categoryFitInputSchema,
+  categoryFitResultSchema,
+  categoryFitVerdictSchema,
+} from '../recipes/category-fit/index.js';
+export type {
+  CategoryFitInput,
+  CategoryFitResult,
+  CategoryFitVerdict,
+} from '../recipes/category-fit/index.js';
+export {
   causalAttribution,
   causalAttributionInputSchema,
   causalAttributionResultSchema,
@@ -152,6 +328,17 @@ export type {
   CausalAttributionResult,
   CausalAttributionVerdict,
 } from '../recipes/causal-attribution/index.js';
+export {
+  causalLanguageStrength,
+  causalLanguageStrengthInputSchema,
+  causalLanguageStrengthResultSchema,
+  causalLanguageStrengthVerdictSchema,
+} from '../recipes/causal-language-strength/index.js';
+export type {
+  CausalLanguageStrengthInput,
+  CausalLanguageStrengthResult,
+  CausalLanguageStrengthVerdict,
+} from '../recipes/causal-language-strength/index.js';
 export {
   certaintyMatch,
   certaintyMatchInputSchema,
@@ -174,6 +361,28 @@ export type {
   ChangeMeaningResult,
   ChangeMeaningVerdict,
 } from '../recipes/change-meaning/index.js';
+export {
+  changeRisk,
+  changeRiskInputSchema,
+  changeRiskResultSchema,
+  changeRiskVerdictSchema,
+} from '../recipes/change-risk/index.js';
+export type {
+  ChangeRiskInput,
+  ChangeRiskResult,
+  ChangeRiskVerdict,
+} from '../recipes/change-risk/index.js';
+export {
+  changeWindowFit,
+  changeWindowFitInputSchema,
+  changeWindowFitResultSchema,
+  changeWindowFitVerdictSchema,
+} from '../recipes/change-window-fit/index.js';
+export type {
+  ChangeWindowFitInput,
+  ChangeWindowFitResult,
+  ChangeWindowFitVerdict,
+} from '../recipes/change-window-fit/index.js';
 export {
   checkersMove,
   checkersMoveInputSchema,
@@ -204,6 +413,17 @@ export type {
   CitationNeededVerdict,
 } from '../recipes/citation-needed/index.js';
 export {
+  claimFacets,
+  claimFacetsInputSchema,
+  claimFacetsLabelSchema,
+  claimFacetsResultSchema,
+} from '../recipes/claim-facets/index.js';
+export type {
+  ClaimFacetsInput,
+  ClaimFacetsLabel,
+  ClaimFacetsResult,
+} from '../recipes/claim-facets/index.js';
+export {
   claimStance,
   claimStanceInputSchema,
   claimStanceResultSchema,
@@ -222,6 +442,72 @@ export type {
   RequirementVerdict,
 } from '../recipes/clarify/index.js';
 export {
+  clauseConflict,
+  clauseConflictInputSchema,
+  clauseConflictResultSchema,
+  clauseConflictVerdictSchema,
+} from '../recipes/clause-conflict/index.js';
+export type {
+  ClauseConflictInput,
+  ClauseConflictResult,
+  ClauseConflictVerdict,
+} from '../recipes/clause-conflict/index.js';
+export {
+  clauseKind,
+  clauseKindInputSchema,
+  clauseKindResultSchema,
+  clauseKindVerdictSchema,
+} from '../recipes/clause-kind/index.js';
+export type {
+  ClauseKindInput,
+  ClauseKindResult,
+  ClauseKindVerdict,
+} from '../recipes/clause-kind/index.js';
+export {
+  clickbaitLevel,
+  clickbaitLevelInputSchema,
+  clickbaitLevelResultSchema,
+  clickbaitLevelVerdictSchema,
+} from '../recipes/clickbait-level/index.js';
+export type {
+  ClickbaitLevelInput,
+  ClickbaitLevelResult,
+  ClickbaitLevelVerdict,
+} from '../recipes/clickbait-level/index.js';
+export {
+  commitMessageFit,
+  commitMessageFitInputSchema,
+  commitMessageFitResultSchema,
+  commitMessageFitVerdictSchema,
+} from '../recipes/commit-message-fit/index.js';
+export type {
+  CommitMessageFitInput,
+  CommitMessageFitResult,
+  CommitMessageFitVerdict,
+} from '../recipes/commit-message-fit/index.js';
+export {
+  commitmentStrength,
+  commitmentStrengthInputSchema,
+  commitmentStrengthResultSchema,
+  commitmentStrengthVerdictSchema,
+} from '../recipes/commitment-strength/index.js';
+export type {
+  CommitmentStrengthInput,
+  CommitmentStrengthResult,
+  CommitmentStrengthVerdict,
+} from '../recipes/commitment-strength/index.js';
+export {
+  comparableFit,
+  comparableFitInputSchema,
+  comparableFitResultSchema,
+  comparableFitVerdictSchema,
+} from '../recipes/comparable-fit/index.js';
+export type {
+  ComparableFitInput,
+  ComparableFitResult,
+  ComparableFitVerdict,
+} from '../recipes/comparable-fit/index.js';
+export {
   confirmationMatch,
   confirmationMatchInputSchema,
   confirmationMatchResultSchema,
@@ -232,6 +518,28 @@ export type {
   ConfirmationMatchResult,
   ConfirmationMatchVerdict,
 } from '../recipes/confirmation-match/index.js';
+export {
+  consentRequest,
+  consentRequestInputSchema,
+  consentRequestResultSchema,
+  consentRequestVerdictSchema,
+} from '../recipes/consent-request/index.js';
+export type {
+  ConsentRequestInput,
+  ConsentRequestResult,
+  ConsentRequestVerdict,
+} from '../recipes/consent-request/index.js';
+export {
+  consentScopeFit,
+  consentScopeFitInputSchema,
+  consentScopeFitResultSchema,
+  consentScopeFitVerdictSchema,
+} from '../recipes/consent-scope-fit/index.js';
+export type {
+  ConsentScopeFitInput,
+  ConsentScopeFitResult,
+  ConsentScopeFitVerdict,
+} from '../recipes/consent-scope-fit/index.js';
 export {
   constraintStrength,
   constraintStrengthInputSchema,
@@ -244,6 +552,28 @@ export type {
   ConstraintStrengthVerdict,
 } from '../recipes/constraint-strength/index.js';
 export {
+  contentFacets,
+  contentFacetsInputSchema,
+  contentFacetsLabelSchema,
+  contentFacetsResultSchema,
+} from '../recipes/content-facets/index.js';
+export type {
+  ContentFacetsInput,
+  ContentFacetsLabel,
+  ContentFacetsResult,
+} from '../recipes/content-facets/index.js';
+export {
+  contentFreshnessSignal,
+  contentFreshnessSignalInputSchema,
+  contentFreshnessSignalResultSchema,
+  contentFreshnessSignalVerdictSchema,
+} from '../recipes/content-freshness-signal/index.js';
+export type {
+  ContentFreshnessSignalInput,
+  ContentFreshnessSignalResult,
+  ContentFreshnessSignalVerdict,
+} from '../recipes/content-freshness-signal/index.js';
+export {
   contextRole,
   contextRoleInputSchema,
   contextRoleResultSchema,
@@ -255,6 +585,17 @@ export type {
   ContextRoleVerdict,
 } from '../recipes/context-role/index.js';
 export {
+  continuationCompare,
+  continuationCompareInputSchema,
+  continuationCompareResultSchema,
+  continuationCompareVerdictSchema,
+} from '../recipes/continuation-compare/index.js';
+export type {
+  ContinuationCompareInput,
+  ContinuationCompareResult,
+  ContinuationCompareVerdict,
+} from '../recipes/continuation-compare/index.js';
+export {
   correctionTarget,
   correctionTargetInputSchema,
   correctionTargetResultSchema,
@@ -263,6 +604,83 @@ export type {
   CorrectionTargetInput,
   CorrectionTargetResult,
 } from '../recipes/correction-target/index.js';
+export {
+  correctiveActionFit,
+  correctiveActionFitInputSchema,
+  correctiveActionFitResultSchema,
+  correctiveActionFitVerdictSchema,
+} from '../recipes/corrective-action-fit/index.js';
+export type {
+  CorrectiveActionFitInput,
+  CorrectiveActionFitResult,
+  CorrectiveActionFitVerdict,
+} from '../recipes/corrective-action-fit/index.js';
+export {
+  dawRequestKind,
+  dawRequestKindInputSchema,
+  dawRequestKindResultSchema,
+  dawRequestKindVerdictSchema,
+} from '../recipes/daw-request-kind/index.js';
+export type {
+  DawRequestKindInput,
+  DawRequestKindResult,
+  DawRequestKindVerdict,
+} from '../recipes/daw-request-kind/index.js';
+export {
+  deadlineRisk,
+  deadlineRiskInputSchema,
+  deadlineRiskResultSchema,
+  deadlineRiskVerdictSchema,
+} from '../recipes/deadline-risk/index.js';
+export type {
+  DeadlineRiskInput,
+  DeadlineRiskResult,
+  DeadlineRiskVerdict,
+} from '../recipes/deadline-risk/index.js';
+export {
+  defectReportFacets,
+  defectReportFacetsInputSchema,
+  defectReportFacetsLabelSchema,
+  defectReportFacetsResultSchema,
+} from '../recipes/defect-report-facets/index.js';
+export type {
+  DefectReportFacetsInput,
+  DefectReportFacetsLabel,
+  DefectReportFacetsResult,
+} from '../recipes/defect-report-facets/index.js';
+export {
+  delegationFit,
+  delegationFitInputSchema,
+  delegationFitResultSchema,
+  delegationFitVerdictSchema,
+} from '../recipes/delegation-fit/index.js';
+export type {
+  DelegationFitInput,
+  DelegationFitResult,
+  DelegationFitVerdict,
+} from '../recipes/delegation-fit/index.js';
+export {
+  disclosureFacets,
+  disclosureFacetsInputSchema,
+  disclosureFacetsLabelSchema,
+  disclosureFacetsResultSchema,
+} from '../recipes/disclosure-facets/index.js';
+export type {
+  DisclosureFacetsInput,
+  DisclosureFacetsLabel,
+  DisclosureFacetsResult,
+} from '../recipes/disclosure-facets/index.js';
+export {
+  disputeKind,
+  disputeKindInputSchema,
+  disputeKindResultSchema,
+  disputeKindVerdictSchema,
+} from '../recipes/dispute-kind/index.js';
+export type {
+  DisputeKindInput,
+  DisputeKindResult,
+  DisputeKindVerdict,
+} from '../recipes/dispute-kind/index.js';
 export {
   documentRole,
   documentRoleInputSchema,
@@ -285,6 +703,72 @@ export type {
   DraftCompareResult,
   DraftCompareVerdict,
 } from '../recipes/draft-compare/index.js';
+export {
+  dynamicChange,
+  dynamicChangeInputSchema,
+  dynamicChangeResultSchema,
+  dynamicChangeVerdictSchema,
+} from '../recipes/dynamic-change/index.js';
+export type {
+  DynamicChangeInput,
+  DynamicChangeResult,
+  DynamicChangeVerdict,
+} from '../recipes/dynamic-change/index.js';
+export {
+  eligibilityFacets,
+  eligibilityFacetsInputSchema,
+  eligibilityFacetsLabelSchema,
+  eligibilityFacetsResultSchema,
+} from '../recipes/eligibility-facets/index.js';
+export type {
+  EligibilityFacetsInput,
+  EligibilityFacetsLabel,
+  EligibilityFacetsResult,
+} from '../recipes/eligibility-facets/index.js';
+export {
+  emotionKind,
+  emotionKindInputSchema,
+  emotionKindResultSchema,
+  emotionKindVerdictSchema,
+} from '../recipes/emotion-kind/index.js';
+export type {
+  EmotionKindInput,
+  EmotionKindResult,
+  EmotionKindVerdict,
+} from '../recipes/emotion-kind/index.js';
+export {
+  entityMatch,
+  entityMatchInputSchema,
+  entityMatchResultSchema,
+  entityMatchVerdictSchema,
+} from '../recipes/entity-match/index.js';
+export type {
+  EntityMatchInput,
+  EntityMatchResult,
+  EntityMatchVerdict,
+} from '../recipes/entity-match/index.js';
+export {
+  errorAcknowledgment,
+  errorAcknowledgmentInputSchema,
+  errorAcknowledgmentResultSchema,
+  errorAcknowledgmentVerdictSchema,
+} from '../recipes/error-acknowledgment/index.js';
+export type {
+  ErrorAcknowledgmentInput,
+  ErrorAcknowledgmentResult,
+  ErrorAcknowledgmentVerdict,
+} from '../recipes/error-acknowledgment/index.js';
+export {
+  escalationWording,
+  escalationWordingInputSchema,
+  escalationWordingResultSchema,
+  escalationWordingVerdictSchema,
+} from '../recipes/escalation-wording/index.js';
+export type {
+  EscalationWordingInput,
+  EscalationWordingResult,
+  EscalationWordingVerdict,
+} from '../recipes/escalation-wording/index.js';
 export {
   evaluationMention,
   evaluationMentionInputSchema,
@@ -330,6 +814,59 @@ export type {
   EvidenceNoveltyVerdict,
 } from '../recipes/evidence-novelty/index.js';
 export {
+  evidenceStrength,
+  evidenceStrengthInputSchema,
+  evidenceStrengthResultSchema,
+  evidenceStrengthVerdictSchema,
+} from '../recipes/evidence-strength/index.js';
+export type {
+  EvidenceStrengthInput,
+  EvidenceStrengthResult,
+  EvidenceStrengthVerdict,
+} from '../recipes/evidence-strength/index.js';
+export {
+  exerciseSelect,
+  exerciseSelectInputSchema,
+  exerciseSelectResultSchema,
+} from '../recipes/exercise-select/index.js';
+export type {
+  ExerciseSelectInput,
+  ExerciseSelectResult,
+} from '../recipes/exercise-select/index.js';
+export {
+  expenseCategory,
+  expenseCategoryInputSchema,
+  expenseCategoryResultSchema,
+  expenseCategoryVerdictSchema,
+} from '../recipes/expense-category/index.js';
+export type {
+  ExpenseCategoryInput,
+  ExpenseCategoryResult,
+  ExpenseCategoryVerdict,
+} from '../recipes/expense-category/index.js';
+export {
+  explanationLevel,
+  explanationLevelInputSchema,
+  explanationLevelResultSchema,
+  explanationLevelVerdictSchema,
+} from '../recipes/explanation-level/index.js';
+export type {
+  ExplanationLevelInput,
+  ExplanationLevelResult,
+  ExplanationLevelVerdict,
+} from '../recipes/explanation-level/index.js';
+export {
+  extractionFidelity,
+  extractionFidelityInputSchema,
+  extractionFidelityResultSchema,
+  extractionFidelityVerdictSchema,
+} from '../recipes/extraction-fidelity/index.js';
+export type {
+  ExtractionFidelityInput,
+  ExtractionFidelityResult,
+  ExtractionFidelityVerdict,
+} from '../recipes/extraction-fidelity/index.js';
+export {
   factStability,
   factStabilityInputSchema,
   factStabilityResultSchema,
@@ -346,6 +883,28 @@ export {
   failureKindResultSchema,
 } from '../recipes/failure-kind/index.js';
 export type { FailureKindInput, FailureKindResult } from '../recipes/failure-kind/index.js';
+export {
+  fairHousingWording,
+  fairHousingWordingInputSchema,
+  fairHousingWordingResultSchema,
+  fairHousingWordingVerdictSchema,
+} from '../recipes/fair-housing-wording/index.js';
+export type {
+  FairHousingWordingInput,
+  FairHousingWordingResult,
+  FairHousingWordingVerdict,
+} from '../recipes/fair-housing-wording/index.js';
+export {
+  feedbackActionability,
+  feedbackActionabilityInputSchema,
+  feedbackActionabilityResultSchema,
+  feedbackActionabilityVerdictSchema,
+} from '../recipes/feedback-actionability/index.js';
+export type {
+  FeedbackActionabilityInput,
+  FeedbackActionabilityResult,
+  FeedbackActionabilityVerdict,
+} from '../recipes/feedback-actionability/index.js';
 export {
   feedbackKind,
   feedbackKindInputSchema,
@@ -364,11 +923,44 @@ export {
 } from '../recipes/field-select/index.js';
 export type { FieldSelectInput, FieldSelectResult } from '../recipes/field-select/index.js';
 export {
+  financialAdviceSignal,
+  financialAdviceSignalInputSchema,
+  financialAdviceSignalResultSchema,
+  financialAdviceSignalVerdictSchema,
+} from '../recipes/financial-advice-signal/index.js';
+export type {
+  FinancialAdviceSignalInput,
+  FinancialAdviceSignalResult,
+  FinancialAdviceSignalVerdict,
+} from '../recipes/financial-advice-signal/index.js';
+export {
   followupLink,
   followupLinkInputSchema,
   followupLinkResultSchema,
 } from '../recipes/followup-link/index.js';
 export type { FollowupLinkInput, FollowupLinkResult } from '../recipes/followup-link/index.js';
+export {
+  forecastConfidenceWording,
+  forecastConfidenceWordingInputSchema,
+  forecastConfidenceWordingResultSchema,
+  forecastConfidenceWordingVerdictSchema,
+} from '../recipes/forecast-confidence-wording/index.js';
+export type {
+  ForecastConfidenceWordingInput,
+  ForecastConfidenceWordingResult,
+  ForecastConfidenceWordingVerdict,
+} from '../recipes/forecast-confidence-wording/index.js';
+export {
+  formatFit,
+  formatFitInputSchema,
+  formatFitResultSchema,
+  formatFitVerdictSchema,
+} from '../recipes/format-fit/index.js';
+export type {
+  FormatFitInput,
+  FormatFitResult,
+  FormatFitVerdict,
+} from '../recipes/format-fit/index.js';
 export {
   freshnessNeeded,
   freshnessNeededInputSchema,
@@ -392,11 +984,66 @@ export type {
   FrustrationSignalVerdict,
 } from '../recipes/frustration-signal/index.js';
 export {
+  funderFit,
+  funderFitInputSchema,
+  funderFitResultSchema,
+  funderFitVerdictSchema,
+} from '../recipes/funder-fit/index.js';
+export type {
+  FunderFitInput,
+  FunderFitResult,
+  FunderFitVerdict,
+} from '../recipes/funder-fit/index.js';
+export {
   gameAction,
   gameActionInputSchema,
   gameActionResultSchema,
 } from '../recipes/game-action/index.js';
 export type { GameActionInput, GameActionResult } from '../recipes/game-action/index.js';
+export {
+  gamePhase,
+  gamePhaseInputSchema,
+  gamePhaseResultSchema,
+  gamePhaseVerdictSchema,
+} from '../recipes/game-phase/index.js';
+export type {
+  GamePhaseInput,
+  GamePhaseResult,
+  GamePhaseVerdict,
+} from '../recipes/game-phase/index.js';
+export {
+  goalDrift,
+  goalDriftInputSchema,
+  goalDriftResultSchema,
+  goalDriftVerdictSchema,
+} from '../recipes/goal-drift/index.js';
+export type {
+  GoalDriftInput,
+  GoalDriftResult,
+  GoalDriftVerdict,
+} from '../recipes/goal-drift/index.js';
+export {
+  groundingLevel,
+  groundingLevelInputSchema,
+  groundingLevelResultSchema,
+  groundingLevelVerdictSchema,
+} from '../recipes/grounding-level/index.js';
+export type {
+  GroundingLevelInput,
+  GroundingLevelResult,
+  GroundingLevelVerdict,
+} from '../recipes/grounding-level/index.js';
+export {
+  guestRequestFacets,
+  guestRequestFacetsInputSchema,
+  guestRequestFacetsLabelSchema,
+  guestRequestFacetsResultSchema,
+} from '../recipes/guest-request-facets/index.js';
+export type {
+  GuestRequestFacetsInput,
+  GuestRequestFacetsLabel,
+  GuestRequestFacetsResult,
+} from '../recipes/guest-request-facets/index.js';
 export { handoff, handoffInputSchema, handoffResultSchema } from '../recipes/handoff/index.js';
 export type {
   HandoffInput,
@@ -405,11 +1052,66 @@ export type {
   HandoffVerdict,
 } from '../recipes/handoff/index.js';
 export {
+  handoffCompleteness,
+  handoffCompletenessInputSchema,
+  handoffCompletenessResultSchema,
+  handoffCompletenessVerdictSchema,
+} from '../recipes/handoff-completeness/index.js';
+export type {
+  HandoffCompletenessInput,
+  HandoffCompletenessResult,
+  HandoffCompletenessVerdict,
+} from '../recipes/handoff-completeness/index.js';
+export {
+  headlineFit,
+  headlineFitInputSchema,
+  headlineFitResultSchema,
+  headlineFitVerdictSchema,
+} from '../recipes/headline-fit/index.js';
+export type {
+  HeadlineFitInput,
+  HeadlineFitResult,
+  HeadlineFitVerdict,
+} from '../recipes/headline-fit/index.js';
+export {
   incidentMatch,
   incidentMatchInputSchema,
   incidentMatchResultSchema,
 } from '../recipes/incident-match/index.js';
 export type { IncidentMatchInput, IncidentMatchResult } from '../recipes/incident-match/index.js';
+export {
+  incidentSeverityWording,
+  incidentSeverityWordingInputSchema,
+  incidentSeverityWordingResultSchema,
+  incidentSeverityWordingVerdictSchema,
+} from '../recipes/incident-severity-wording/index.js';
+export type {
+  IncidentSeverityWordingInput,
+  IncidentSeverityWordingResult,
+  IncidentSeverityWordingVerdict,
+} from '../recipes/incident-severity-wording/index.js';
+export {
+  injectionSignal,
+  injectionSignalInputSchema,
+  injectionSignalResultSchema,
+  injectionSignalVerdictSchema,
+} from '../recipes/injection-signal/index.js';
+export type {
+  InjectionSignalInput,
+  InjectionSignalResult,
+  InjectionSignalVerdict,
+} from '../recipes/injection-signal/index.js';
+export {
+  instructionClarity,
+  instructionClarityInputSchema,
+  instructionClarityResultSchema,
+  instructionClarityVerdictSchema,
+} from '../recipes/instruction-clarity/index.js';
+export type {
+  InstructionClarityInput,
+  InstructionClarityResult,
+  InstructionClarityVerdict,
+} from '../recipes/instruction-clarity/index.js';
 export {
   instructionConflict,
   instructionConflictInputSchema,
@@ -433,6 +1135,61 @@ export type {
   InstructionFitVerdict,
 } from '../recipes/instruction-fit/index.js';
 export {
+  instructionPriority,
+  instructionPriorityInputSchema,
+  instructionPriorityResultSchema,
+  instructionPriorityVerdictSchema,
+} from '../recipes/instruction-priority/index.js';
+export type {
+  InstructionPriorityInput,
+  InstructionPriorityResult,
+  InstructionPriorityVerdict,
+} from '../recipes/instruction-priority/index.js';
+export {
+  instructionReadability,
+  instructionReadabilityInputSchema,
+  instructionReadabilityResultSchema,
+  instructionReadabilityVerdictSchema,
+} from '../recipes/instruction-readability/index.js';
+export type {
+  InstructionReadabilityInput,
+  InstructionReadabilityResult,
+  InstructionReadabilityVerdict,
+} from '../recipes/instruction-readability/index.js';
+export {
+  instrumentIssueKind,
+  instrumentIssueKindInputSchema,
+  instrumentIssueKindResultSchema,
+  instrumentIssueKindVerdictSchema,
+} from '../recipes/instrument-issue-kind/index.js';
+export type {
+  InstrumentIssueKindInput,
+  InstrumentIssueKindResult,
+  InstrumentIssueKindVerdict,
+} from '../recipes/instrument-issue-kind/index.js';
+export {
+  instrumentReportFacets,
+  instrumentReportFacetsInputSchema,
+  instrumentReportFacetsLabelSchema,
+  instrumentReportFacetsResultSchema,
+} from '../recipes/instrument-report-facets/index.js';
+export type {
+  InstrumentReportFacetsInput,
+  InstrumentReportFacetsLabel,
+  InstrumentReportFacetsResult,
+} from '../recipes/instrument-report-facets/index.js';
+export {
+  intakeQuestionFit,
+  intakeQuestionFitInputSchema,
+  intakeQuestionFitResultSchema,
+  intakeQuestionFitVerdictSchema,
+} from '../recipes/intake-question-fit/index.js';
+export type {
+  IntakeQuestionFitInput,
+  IntakeQuestionFitResult,
+  IntakeQuestionFitVerdict,
+} from '../recipes/intake-question-fit/index.js';
+export {
   intentChange,
   intentChangeInputSchema,
   intentChangeResultSchema,
@@ -443,6 +1200,17 @@ export type {
   IntentChangeResult,
   IntentChangeVerdict,
 } from '../recipes/intent-change/index.js';
+export {
+  invoiceFacets,
+  invoiceFacetsInputSchema,
+  invoiceFacetsLabelSchema,
+  invoiceFacetsResultSchema,
+} from '../recipes/invoice-facets/index.js';
+export type {
+  InvoiceFacetsInput,
+  InvoiceFacetsLabel,
+  InvoiceFacetsResult,
+} from '../recipes/invoice-facets/index.js';
 export {
   issueImpact,
   issueImpactInputSchema,
@@ -465,6 +1233,127 @@ export type {
   IssueRecurrenceResult,
   IssueRecurrenceVerdict,
 } from '../recipes/issue-recurrence/index.js';
+export {
+  itineraryFeasibility,
+  itineraryFeasibilityInputSchema,
+  itineraryFeasibilityResultSchema,
+  itineraryFeasibilityVerdictSchema,
+} from '../recipes/itinerary-feasibility/index.js';
+export type {
+  ItineraryFeasibilityInput,
+  ItineraryFeasibilityResult,
+  ItineraryFeasibilityVerdict,
+} from '../recipes/itinerary-feasibility/index.js';
+export {
+  jobPostFacets,
+  jobPostFacetsInputSchema,
+  jobPostFacetsLabelSchema,
+  jobPostFacetsResultSchema,
+} from '../recipes/job-post-facets/index.js';
+export type {
+  JobPostFacetsInput,
+  JobPostFacetsLabel,
+  JobPostFacetsResult,
+} from '../recipes/job-post-facets/index.js';
+export {
+  lengthFit,
+  lengthFitInputSchema,
+  lengthFitResultSchema,
+  lengthFitVerdictSchema,
+} from '../recipes/length-fit/index.js';
+export type {
+  LengthFitInput,
+  LengthFitResult,
+  LengthFitVerdict,
+} from '../recipes/length-fit/index.js';
+export {
+  listenerRequestKind,
+  listenerRequestKindInputSchema,
+  listenerRequestKindResultSchema,
+  listenerRequestKindVerdictSchema,
+} from '../recipes/listener-request-kind/index.js';
+export type {
+  ListenerRequestKindInput,
+  ListenerRequestKindResult,
+  ListenerRequestKindVerdict,
+} from '../recipes/listener-request-kind/index.js';
+export {
+  listingCompare,
+  listingCompareInputSchema,
+  listingCompareResultSchema,
+  listingCompareVerdictSchema,
+} from '../recipes/listing-compare/index.js';
+export type {
+  ListingCompareInput,
+  ListingCompareResult,
+  ListingCompareVerdict,
+} from '../recipes/listing-compare/index.js';
+export {
+  listingFactConsistency,
+  listingFactConsistencyInputSchema,
+  listingFactConsistencyResultSchema,
+  listingFactConsistencyVerdictSchema,
+} from '../recipes/listing-fact-consistency/index.js';
+export type {
+  ListingFactConsistencyInput,
+  ListingFactConsistencyResult,
+  ListingFactConsistencyVerdict,
+} from '../recipes/listing-fact-consistency/index.js';
+export {
+  logLineKind,
+  logLineKindInputSchema,
+  logLineKindResultSchema,
+  logLineKindVerdictSchema,
+} from '../recipes/log-line-kind/index.js';
+export type {
+  LogLineKindInput,
+  LogLineKindResult,
+  LogLineKindVerdict,
+} from '../recipes/log-line-kind/index.js';
+export {
+  lossCauseKind,
+  lossCauseKindInputSchema,
+  lossCauseKindResultSchema,
+  lossCauseKindVerdictSchema,
+} from '../recipes/loss-cause-kind/index.js';
+export type {
+  LossCauseKindInput,
+  LossCauseKindResult,
+  LossCauseKindVerdict,
+} from '../recipes/loss-cause-kind/index.js';
+export {
+  lyricMoodFit,
+  lyricMoodFitInputSchema,
+  lyricMoodFitResultSchema,
+  lyricMoodFitVerdictSchema,
+} from '../recipes/lyric-mood-fit/index.js';
+export type {
+  LyricMoodFitInput,
+  LyricMoodFitResult,
+  LyricMoodFitVerdict,
+} from '../recipes/lyric-mood-fit/index.js';
+export {
+  maintenanceHazardWording,
+  maintenanceHazardWordingInputSchema,
+  maintenanceHazardWordingResultSchema,
+  maintenanceHazardWordingVerdictSchema,
+} from '../recipes/maintenance-hazard-wording/index.js';
+export type {
+  MaintenanceHazardWordingInput,
+  MaintenanceHazardWordingResult,
+  MaintenanceHazardWordingVerdict,
+} from '../recipes/maintenance-hazard-wording/index.js';
+export {
+  medicationMention,
+  medicationMentionInputSchema,
+  medicationMentionResultSchema,
+  medicationMentionVerdictSchema,
+} from '../recipes/medication-mention/index.js';
+export type {
+  MedicationMentionInput,
+  MedicationMentionResult,
+  MedicationMentionVerdict,
+} from '../recipes/medication-mention/index.js';
 export {
   memoryRelation,
   memoryRelationInputSchema,
@@ -510,6 +1399,61 @@ export type {
   MemoryValueVerdict,
 } from '../recipes/memory-value/index.js';
 export {
+  messageFacets,
+  messageFacetsInputSchema,
+  messageFacetsLabelSchema,
+  messageFacetsResultSchema,
+} from '../recipes/message-facets/index.js';
+export type {
+  MessageFacetsInput,
+  MessageFacetsLabel,
+  MessageFacetsResult,
+} from '../recipes/message-facets/index.js';
+export {
+  methodsFacets,
+  methodsFacetsInputSchema,
+  methodsFacetsLabelSchema,
+  methodsFacetsResultSchema,
+} from '../recipes/methods-facets/index.js';
+export type {
+  MethodsFacetsInput,
+  MethodsFacetsLabel,
+  MethodsFacetsResult,
+} from '../recipes/methods-facets/index.js';
+export {
+  modulationMoment,
+  modulationMomentInputSchema,
+  modulationMomentResultSchema,
+  modulationMomentVerdictSchema,
+} from '../recipes/modulation-moment/index.js';
+export type {
+  ModulationMomentInput,
+  ModulationMomentResult,
+  ModulationMomentVerdict,
+} from '../recipes/modulation-moment/index.js';
+export {
+  moodMatch,
+  moodMatchInputSchema,
+  moodMatchResultSchema,
+  moodMatchVerdictSchema,
+} from '../recipes/mood-match/index.js';
+export type {
+  MoodMatchInput,
+  MoodMatchResult,
+  MoodMatchVerdict,
+} from '../recipes/mood-match/index.js';
+export {
+  moodRequest,
+  moodRequestInputSchema,
+  moodRequestResultSchema,
+  moodRequestVerdictSchema,
+} from '../recipes/mood-request/index.js';
+export type {
+  MoodRequestInput,
+  MoodRequestResult,
+  MoodRequestVerdict,
+} from '../recipes/mood-request/index.js';
+export {
   motivationSource,
   motivationSourceInputSchema,
   motivationSourceResultSchema,
@@ -520,6 +1464,97 @@ export type {
   MotivationSourceResult,
   MotivationSourceVerdict,
 } from '../recipes/motivation-source/index.js';
+export {
+  moveExplanationFit,
+  moveExplanationFitInputSchema,
+  moveExplanationFitResultSchema,
+  moveExplanationFitVerdictSchema,
+} from '../recipes/move-explanation-fit/index.js';
+export type {
+  MoveExplanationFitInput,
+  MoveExplanationFitResult,
+  MoveExplanationFitVerdict,
+} from '../recipes/move-explanation-fit/index.js';
+export {
+  narrativeConsistency,
+  narrativeConsistencyInputSchema,
+  narrativeConsistencyResultSchema,
+  narrativeConsistencyVerdictSchema,
+} from '../recipes/narrative-consistency/index.js';
+export type {
+  NarrativeConsistencyInput,
+  NarrativeConsistencyResult,
+  NarrativeConsistencyVerdict,
+} from '../recipes/narrative-consistency/index.js';
+export {
+  nextChord,
+  nextChordInputSchema,
+  nextChordResultSchema,
+} from '../recipes/next-chord/index.js';
+export type { NextChordInput, NextChordResult } from '../recipes/next-chord/index.js';
+export {
+  nextDuration,
+  nextDurationInputSchema,
+  nextDurationResultSchema,
+} from '../recipes/next-duration/index.js';
+export type { NextDurationInput, NextDurationResult } from '../recipes/next-duration/index.js';
+export { nextNote, nextNoteInputSchema, nextNoteResultSchema } from '../recipes/next-note/index.js';
+export type { NextNoteInput, NextNoteResult } from '../recipes/next-note/index.js';
+export {
+  noticeFacets,
+  noticeFacetsInputSchema,
+  noticeFacetsLabelSchema,
+  noticeFacetsResultSchema,
+} from '../recipes/notice-facets/index.js';
+export type {
+  NoticeFacetsInput,
+  NoticeFacetsLabel,
+  NoticeFacetsResult,
+} from '../recipes/notice-facets/index.js';
+export {
+  noveltyClaimLevel,
+  noveltyClaimLevelInputSchema,
+  noveltyClaimLevelResultSchema,
+  noveltyClaimLevelVerdictSchema,
+} from '../recipes/novelty-claim-level/index.js';
+export type {
+  NoveltyClaimLevelInput,
+  NoveltyClaimLevelResult,
+  NoveltyClaimLevelVerdict,
+} from '../recipes/novelty-claim-level/index.js';
+export {
+  objectionKind,
+  objectionKindInputSchema,
+  objectionKindResultSchema,
+  objectionKindVerdictSchema,
+} from '../recipes/objection-kind/index.js';
+export type {
+  ObjectionKindInput,
+  ObjectionKindResult,
+  ObjectionKindVerdict,
+} from '../recipes/objection-kind/index.js';
+export {
+  objectiveFit,
+  objectiveFitInputSchema,
+  objectiveFitResultSchema,
+  objectiveFitVerdictSchema,
+} from '../recipes/objective-fit/index.js';
+export type {
+  ObjectiveFitInput,
+  ObjectiveFitResult,
+  ObjectiveFitVerdict,
+} from '../recipes/objective-fit/index.js';
+export {
+  offerTermsFacets,
+  offerTermsFacetsInputSchema,
+  offerTermsFacetsLabelSchema,
+  offerTermsFacetsResultSchema,
+} from '../recipes/offer-terms-facets/index.js';
+export type {
+  OfferTermsFacetsInput,
+  OfferTermsFacetsLabel,
+  OfferTermsFacetsResult,
+} from '../recipes/offer-terms-facets/index.js';
 export {
   outcomeFraming,
   outcomeFramingInputSchema,
@@ -532,6 +1567,28 @@ export type {
   OutcomeFramingVerdict,
 } from '../recipes/outcome-framing/index.js';
 export {
+  passageCompare,
+  passageCompareInputSchema,
+  passageCompareResultSchema,
+  passageCompareVerdictSchema,
+} from '../recipes/passage-compare/index.js';
+export type {
+  PassageCompareInput,
+  PassageCompareResult,
+  PassageCompareVerdict,
+} from '../recipes/passage-compare/index.js';
+export {
+  passageDifficulty,
+  passageDifficultyInputSchema,
+  passageDifficultyResultSchema,
+  passageDifficultyVerdictSchema,
+} from '../recipes/passage-difficulty/index.js';
+export type {
+  PassageDifficultyInput,
+  PassageDifficultyResult,
+  PassageDifficultyVerdict,
+} from '../recipes/passage-difficulty/index.js';
+export {
   passageDuplicate,
   passageDuplicateInputSchema,
   passageDuplicateResultSchema,
@@ -542,6 +1599,127 @@ export type {
   PassageDuplicateResult,
   PassageDuplicateVerdict,
 } from '../recipes/passage-duplicate/index.js';
+export {
+  passageMood,
+  passageMoodInputSchema,
+  passageMoodResultSchema,
+  passageMoodVerdictSchema,
+} from '../recipes/passage-mood/index.js';
+export type {
+  PassageMoodInput,
+  PassageMoodResult,
+  PassageMoodVerdict,
+} from '../recipes/passage-mood/index.js';
+export {
+  passageStandalone,
+  passageStandaloneInputSchema,
+  passageStandaloneResultSchema,
+  passageStandaloneVerdictSchema,
+} from '../recipes/passage-standalone/index.js';
+export type {
+  PassageStandaloneInput,
+  PassageStandaloneResult,
+  PassageStandaloneVerdict,
+} from '../recipes/passage-standalone/index.js';
+export {
+  performanceFeedbackFacets,
+  performanceFeedbackFacetsInputSchema,
+  performanceFeedbackFacetsLabelSchema,
+  performanceFeedbackFacetsResultSchema,
+} from '../recipes/performance-feedback-facets/index.js';
+export type {
+  PerformanceFeedbackFacetsInput,
+  PerformanceFeedbackFacetsLabel,
+  PerformanceFeedbackFacetsResult,
+} from '../recipes/performance-feedback-facets/index.js';
+export {
+  persuasionTechnique,
+  persuasionTechniqueInputSchema,
+  persuasionTechniqueResultSchema,
+  persuasionTechniqueVerdictSchema,
+} from '../recipes/persuasion-technique/index.js';
+export type {
+  PersuasionTechniqueInput,
+  PersuasionTechniqueResult,
+  PersuasionTechniqueVerdict,
+} from '../recipes/persuasion-technique/index.js';
+export {
+  phraseComplete,
+  phraseCompleteInputSchema,
+  phraseCompleteResultSchema,
+  phraseCompleteVerdictSchema,
+} from '../recipes/phrase-complete/index.js';
+export type {
+  PhraseCompleteInput,
+  PhraseCompleteResult,
+  PhraseCompleteVerdict,
+} from '../recipes/phrase-complete/index.js';
+export {
+  piiPresence,
+  piiPresenceInputSchema,
+  piiPresenceResultSchema,
+  piiPresenceVerdictSchema,
+} from '../recipes/pii-presence/index.js';
+export type {
+  PiiPresenceInput,
+  PiiPresenceResult,
+  PiiPresenceVerdict,
+} from '../recipes/pii-presence/index.js';
+export {
+  planCompleteness,
+  planCompletenessInputSchema,
+  planCompletenessResultSchema,
+  planCompletenessVerdictSchema,
+} from '../recipes/plan-completeness/index.js';
+export type {
+  PlanCompletenessInput,
+  PlanCompletenessResult,
+  PlanCompletenessVerdict,
+} from '../recipes/plan-completeness/index.js';
+export {
+  policyCompliance,
+  policyComplianceInputSchema,
+  policyComplianceResultSchema,
+  policyComplianceVerdictSchema,
+} from '../recipes/policy-compliance/index.js';
+export type {
+  PolicyComplianceInput,
+  PolicyComplianceResult,
+  PolicyComplianceVerdict,
+} from '../recipes/policy-compliance/index.js';
+export {
+  policySeverity,
+  policySeverityInputSchema,
+  policySeverityResultSchema,
+  policySeverityVerdictSchema,
+} from '../recipes/policy-severity/index.js';
+export type {
+  PolicySeverityInput,
+  PolicySeverityResult,
+  PolicySeverityVerdict,
+} from '../recipes/policy-severity/index.js';
+export {
+  politenessLevel,
+  politenessLevelInputSchema,
+  politenessLevelResultSchema,
+  politenessLevelVerdictSchema,
+} from '../recipes/politeness-level/index.js';
+export type {
+  PolitenessLevelInput,
+  PolitenessLevelResult,
+  PolitenessLevelVerdict,
+} from '../recipes/politeness-level/index.js';
+export {
+  postmortemFacets,
+  postmortemFacetsInputSchema,
+  postmortemFacetsLabelSchema,
+  postmortemFacetsResultSchema,
+} from '../recipes/postmortem-facets/index.js';
+export type {
+  PostmortemFacetsInput,
+  PostmortemFacetsLabel,
+  PostmortemFacetsResult,
+} from '../recipes/postmortem-facets/index.js';
 export {
   preferenceKind,
   preferenceKindInputSchema,
@@ -554,6 +1732,50 @@ export type {
   PreferenceKindVerdict,
 } from '../recipes/preference-kind/index.js';
 export {
+  priorityCompare,
+  priorityCompareInputSchema,
+  priorityCompareResultSchema,
+  priorityCompareVerdictSchema,
+} from '../recipes/priority-compare/index.js';
+export type {
+  PriorityCompareInput,
+  PriorityCompareResult,
+  PriorityCompareVerdict,
+} from '../recipes/priority-compare/index.js';
+export {
+  privacyNoticeFacets,
+  privacyNoticeFacetsInputSchema,
+  privacyNoticeFacetsLabelSchema,
+  privacyNoticeFacetsResultSchema,
+} from '../recipes/privacy-notice-facets/index.js';
+export type {
+  PrivacyNoticeFacetsInput,
+  PrivacyNoticeFacetsLabel,
+  PrivacyNoticeFacetsResult,
+} from '../recipes/privacy-notice-facets/index.js';
+export {
+  productMatch,
+  productMatchInputSchema,
+  productMatchResultSchema,
+  productMatchVerdictSchema,
+} from '../recipes/product-match/index.js';
+export type {
+  ProductMatchInput,
+  ProductMatchResult,
+  ProductMatchVerdict,
+} from '../recipes/product-match/index.js';
+export {
+  progressStall,
+  progressStallInputSchema,
+  progressStallResultSchema,
+  progressStallVerdictSchema,
+} from '../recipes/progress-stall/index.js';
+export type {
+  ProgressStallInput,
+  ProgressStallResult,
+  ProgressStallVerdict,
+} from '../recipes/progress-stall/index.js';
+export {
   promiseCheck,
   promiseCheckInputSchema,
   promiseCheckResultSchema,
@@ -564,6 +1786,28 @@ export type {
   PromiseCheckResult,
   PromiseCheckVerdict,
 } from '../recipes/promise-check/index.js';
+export {
+  proposalFacets,
+  proposalFacetsInputSchema,
+  proposalFacetsLabelSchema,
+  proposalFacetsResultSchema,
+} from '../recipes/proposal-facets/index.js';
+export type {
+  ProposalFacetsInput,
+  ProposalFacetsLabel,
+  ProposalFacetsResult,
+} from '../recipes/proposal-facets/index.js';
+export {
+  qualificationEvidence,
+  qualificationEvidenceInputSchema,
+  qualificationEvidenceResultSchema,
+  qualificationEvidenceVerdictSchema,
+} from '../recipes/qualification-evidence/index.js';
+export type {
+  QualificationEvidenceInput,
+  QualificationEvidenceResult,
+  QualificationEvidenceVerdict,
+} from '../recipes/qualification-evidence/index.js';
 export {
   queryEquivalence,
   queryEquivalenceInputSchema,
@@ -609,6 +1853,28 @@ export type {
   QuestionLeadingVerdict,
 } from '../recipes/question-leading/index.js';
 export {
+  questionRelevance,
+  questionRelevanceInputSchema,
+  questionRelevanceResultSchema,
+  questionRelevanceVerdictSchema,
+} from '../recipes/question-relevance/index.js';
+export type {
+  QuestionRelevanceInput,
+  QuestionRelevanceResult,
+  QuestionRelevanceVerdict,
+} from '../recipes/question-relevance/index.js';
+export {
+  reconciliationMatch,
+  reconciliationMatchInputSchema,
+  reconciliationMatchResultSchema,
+  reconciliationMatchVerdictSchema,
+} from '../recipes/reconciliation-match/index.js';
+export type {
+  ReconciliationMatchInput,
+  ReconciliationMatchResult,
+  ReconciliationMatchVerdict,
+} from '../recipes/reconciliation-match/index.js';
+export {
   referenceResolve,
   referenceResolveInputSchema,
   referenceResolveResultSchema,
@@ -629,6 +1895,17 @@ export type {
   RepeatedAttemptVerdict,
 } from '../recipes/repeated-attempt/index.js';
 export {
+  repetitionLevel,
+  repetitionLevelInputSchema,
+  repetitionLevelResultSchema,
+  repetitionLevelVerdictSchema,
+} from '../recipes/repetition-level/index.js';
+export type {
+  RepetitionLevelInput,
+  RepetitionLevelResult,
+  RepetitionLevelVerdict,
+} from '../recipes/repetition-level/index.js';
+export {
   replyTemplateMatch,
   replyTemplateMatchInputSchema,
   replyTemplateMatchResultSchema,
@@ -637,6 +1914,17 @@ export type {
   ReplyTemplateMatchInput,
   ReplyTemplateMatchResult,
 } from '../recipes/reply-template-match/index.js';
+export {
+  reportFacets,
+  reportFacetsInputSchema,
+  reportFacetsLabelSchema,
+  reportFacetsResultSchema,
+} from '../recipes/report-facets/index.js';
+export type {
+  ReportFacetsInput,
+  ReportFacetsLabel,
+  ReportFacetsResult,
+} from '../recipes/report-facets/index.js';
 export {
   requirementTestability,
   requirementTestabilityInputSchema,
@@ -695,6 +1983,17 @@ export type {
   ResultOutcomeVerdict,
 } from '../recipes/result-outcome/index.js';
 export {
+  resultPlausibility,
+  resultPlausibilityInputSchema,
+  resultPlausibilityResultSchema,
+  resultPlausibilityVerdictSchema,
+} from '../recipes/result-plausibility/index.js';
+export type {
+  ResultPlausibilityInput,
+  ResultPlausibilityResult,
+  ResultPlausibilityVerdict,
+} from '../recipes/result-plausibility/index.js';
+export {
   resultUsefulness,
   resultUsefulnessInputSchema,
   resultUsefulnessResultSchema,
@@ -716,8 +2015,191 @@ export type {
   RetrievalNeededResult,
   RetrievalNeededVerdict,
 } from '../recipes/retrieval-needed/index.js';
+export {
+  retryWorthwhile,
+  retryWorthwhileInputSchema,
+  retryWorthwhileResultSchema,
+  retryWorthwhileVerdictSchema,
+} from '../recipes/retry-worthwhile/index.js';
+export type {
+  RetryWorthwhileInput,
+  RetryWorthwhileResult,
+  RetryWorthwhileVerdict,
+} from '../recipes/retry-worthwhile/index.js';
+export {
+  reviewCommentKind,
+  reviewCommentKindInputSchema,
+  reviewCommentKindResultSchema,
+  reviewCommentKindVerdictSchema,
+} from '../recipes/review-comment-kind/index.js';
+export type {
+  ReviewCommentKindInput,
+  ReviewCommentKindResult,
+  ReviewCommentKindVerdict,
+} from '../recipes/review-comment-kind/index.js';
+export {
+  reviewFacets,
+  reviewFacetsInputSchema,
+  reviewFacetsLabelSchema,
+  reviewFacetsResultSchema,
+} from '../recipes/review-facets/index.js';
+export type {
+  ReviewFacetsInput,
+  ReviewFacetsLabel,
+  ReviewFacetsResult,
+} from '../recipes/review-facets/index.js';
+export {
+  reviewRecommendationKind,
+  reviewRecommendationKindInputSchema,
+  reviewRecommendationKindResultSchema,
+  reviewRecommendationKindVerdictSchema,
+} from '../recipes/review-recommendation-kind/index.js';
+export type {
+  ReviewRecommendationKindInput,
+  ReviewRecommendationKindResult,
+  ReviewRecommendationKindVerdict,
+} from '../recipes/review-recommendation-kind/index.js';
+export {
+  reviewResponseFit,
+  reviewResponseFitInputSchema,
+  reviewResponseFitResultSchema,
+  reviewResponseFitVerdictSchema,
+} from '../recipes/review-response-fit/index.js';
+export type {
+  ReviewResponseFitInput,
+  ReviewResponseFitResult,
+  ReviewResponseFitVerdict,
+} from '../recipes/review-response-fit/index.js';
+export {
+  rollbackSignal,
+  rollbackSignalInputSchema,
+  rollbackSignalResultSchema,
+  rollbackSignalVerdictSchema,
+} from '../recipes/rollback-signal/index.js';
+export type {
+  RollbackSignalInput,
+  RollbackSignalResult,
+  RollbackSignalVerdict,
+} from '../recipes/rollback-signal/index.js';
+export {
+  rootCauseDepth,
+  rootCauseDepthInputSchema,
+  rootCauseDepthResultSchema,
+  rootCauseDepthVerdictSchema,
+} from '../recipes/root-cause-depth/index.js';
+export type {
+  RootCauseDepthInput,
+  RootCauseDepthResult,
+  RootCauseDepthVerdict,
+} from '../recipes/root-cause-depth/index.js';
 export { route, routeInputSchema, routeResultSchema } from '../recipes/route/index.js';
 export type { RouteInput, RouteResult } from '../recipes/route/index.js';
+export {
+  ruleCompliance,
+  ruleComplianceInputSchema,
+  ruleComplianceResultSchema,
+  ruleComplianceVerdictSchema,
+} from '../recipes/rule-compliance/index.js';
+export type {
+  RuleComplianceInput,
+  RuleComplianceResult,
+  RuleComplianceVerdict,
+} from '../recipes/rule-compliance/index.js';
+export {
+  runbookFit,
+  runbookFitInputSchema,
+  runbookFitResultSchema,
+  runbookFitVerdictSchema,
+} from '../recipes/runbook-fit/index.js';
+export type {
+  RunbookFitInput,
+  RunbookFitResult,
+  RunbookFitVerdict,
+} from '../recipes/runbook-fit/index.js';
+export {
+  safetyIncidentKind,
+  safetyIncidentKindInputSchema,
+  safetyIncidentKindResultSchema,
+  safetyIncidentKindVerdictSchema,
+} from '../recipes/safety-incident-kind/index.js';
+export type {
+  SafetyIncidentKindInput,
+  SafetyIncidentKindResult,
+  SafetyIncidentKindVerdict,
+} from '../recipes/safety-incident-kind/index.js';
+export {
+  satisfactionSignal,
+  satisfactionSignalInputSchema,
+  satisfactionSignalResultSchema,
+  satisfactionSignalVerdictSchema,
+} from '../recipes/satisfaction-signal/index.js';
+export type {
+  SatisfactionSignalInput,
+  SatisfactionSignalResult,
+  SatisfactionSignalVerdict,
+} from '../recipes/satisfaction-signal/index.js';
+export {
+  searchIntentKind,
+  searchIntentKindInputSchema,
+  searchIntentKindResultSchema,
+  searchIntentKindVerdictSchema,
+} from '../recipes/search-intent-kind/index.js';
+export type {
+  SearchIntentKindInput,
+  SearchIntentKindResult,
+  SearchIntentKindVerdict,
+} from '../recipes/search-intent-kind/index.js';
+export {
+  sentimentShift,
+  sentimentShiftInputSchema,
+  sentimentShiftResultSchema,
+  sentimentShiftVerdictSchema,
+} from '../recipes/sentiment-shift/index.js';
+export type {
+  SentimentShiftInput,
+  SentimentShiftResult,
+  SentimentShiftVerdict,
+} from '../recipes/sentiment-shift/index.js';
+export {
+  settlementOfferFacets,
+  settlementOfferFacetsInputSchema,
+  settlementOfferFacetsLabelSchema,
+  settlementOfferFacetsResultSchema,
+} from '../recipes/settlement-offer-facets/index.js';
+export type {
+  SettlementOfferFacetsInput,
+  SettlementOfferFacetsLabel,
+  SettlementOfferFacetsResult,
+} from '../recipes/settlement-offer-facets/index.js';
+export {
+  shipmentIssueKind,
+  shipmentIssueKindInputSchema,
+  shipmentIssueKindResultSchema,
+  shipmentIssueKindVerdictSchema,
+} from '../recipes/shipment-issue-kind/index.js';
+export type {
+  ShipmentIssueKindInput,
+  ShipmentIssueKindResult,
+  ShipmentIssueKindVerdict,
+} from '../recipes/shipment-issue-kind/index.js';
+export {
+  slotFit,
+  slotFitInputSchema,
+  slotFitResultSchema,
+  slotFitVerdictSchema,
+} from '../recipes/slot-fit/index.js';
+export type { SlotFitInput, SlotFitResult, SlotFitVerdict } from '../recipes/slot-fit/index.js';
+export {
+  soundMatch,
+  soundMatchInputSchema,
+  soundMatchResultSchema,
+  soundMatchVerdictSchema,
+} from '../recipes/sound-match/index.js';
+export type {
+  SoundMatchInput,
+  SoundMatchResult,
+  SoundMatchVerdict,
+} from '../recipes/sound-match/index.js';
 export {
   sourceApplicability,
   sourceApplicabilityInputSchema,
@@ -729,6 +2211,28 @@ export type {
   SourceApplicabilityResult,
   SourceApplicabilityVerdict,
 } from '../recipes/source-applicability/index.js';
+export {
+  spamSignal,
+  spamSignalInputSchema,
+  spamSignalResultSchema,
+  spamSignalVerdictSchema,
+} from '../recipes/spam-signal/index.js';
+export type {
+  SpamSignalInput,
+  SpamSignalResult,
+  SpamSignalVerdict,
+} from '../recipes/spam-signal/index.js';
+export {
+  stageEvidence,
+  stageEvidenceInputSchema,
+  stageEvidenceResultSchema,
+  stageEvidenceVerdictSchema,
+} from '../recipes/stage-evidence/index.js';
+export type {
+  StageEvidenceInput,
+  StageEvidenceResult,
+  StageEvidenceVerdict,
+} from '../recipes/stage-evidence/index.js';
 export {
   stepComplete,
   stepCompleteInputSchema,
@@ -752,6 +2256,17 @@ export type {
   StepProgressVerdict,
 } from '../recipes/step-progress/index.js';
 export {
+  styleKind,
+  styleKindInputSchema,
+  styleKindResultSchema,
+  styleKindVerdictSchema,
+} from '../recipes/style-kind/index.js';
+export type {
+  StyleKindInput,
+  StyleKindResult,
+  StyleKindVerdict,
+} from '../recipes/style-kind/index.js';
+export {
   summaryCoverage,
   summaryCoverageInputSchema,
   summaryCoverageResultSchema,
@@ -763,12 +2278,34 @@ export type {
   SummaryCoverageVerdict,
 } from '../recipes/summary-coverage/index.js';
 export {
+  symptomFacets,
+  symptomFacetsInputSchema,
+  symptomFacetsLabelSchema,
+  symptomFacetsResultSchema,
+} from '../recipes/symptom-facets/index.js';
+export type {
+  SymptomFacetsInput,
+  SymptomFacetsLabel,
+  SymptomFacetsResult,
+} from '../recipes/symptom-facets/index.js';
+export {
   takeTurn,
   takeTurnInputSchema,
   takeTurnResultSchema,
   takeTurnVerdictSchema,
 } from '../recipes/take-turn/index.js';
 export type { TakeTurnInput, TakeTurnResult, TakeTurnVerdict } from '../recipes/take-turn/index.js';
+export {
+  taskComplexity,
+  taskComplexityInputSchema,
+  taskComplexityResultSchema,
+  taskComplexityVerdictSchema,
+} from '../recipes/task-complexity/index.js';
+export type {
+  TaskComplexityInput,
+  TaskComplexityResult,
+  TaskComplexityVerdict,
+} from '../recipes/task-complexity/index.js';
 export {
   taskDependency,
   taskDependencyInputSchema,
@@ -792,6 +2329,39 @@ export type {
   TaskDuplicateVerdict,
 } from '../recipes/task-duplicate/index.js';
 export {
+  taskOverlap,
+  taskOverlapInputSchema,
+  taskOverlapResultSchema,
+  taskOverlapVerdictSchema,
+} from '../recipes/task-overlap/index.js';
+export type {
+  TaskOverlapInput,
+  TaskOverlapResult,
+  TaskOverlapVerdict,
+} from '../recipes/task-overlap/index.js';
+export {
+  tempoChange,
+  tempoChangeInputSchema,
+  tempoChangeResultSchema,
+  tempoChangeVerdictSchema,
+} from '../recipes/tempo-change/index.js';
+export type {
+  TempoChangeInput,
+  TempoChangeResult,
+  TempoChangeVerdict,
+} from '../recipes/tempo-change/index.js';
+export {
+  tensionLevel,
+  tensionLevelInputSchema,
+  tensionLevelResultSchema,
+  tensionLevelVerdictSchema,
+} from '../recipes/tension-level/index.js';
+export type {
+  TensionLevelInput,
+  TensionLevelResult,
+  TensionLevelVerdict,
+} from '../recipes/tension-level/index.js';
+export {
   ticketMatch,
   ticketMatchInputSchema,
   ticketMatchResultSchema,
@@ -814,6 +2384,17 @@ export type {
   ToneCheckVerdict,
 } from '../recipes/tone-check/index.js';
 export {
+  toolCompare,
+  toolCompareInputSchema,
+  toolCompareResultSchema,
+  toolCompareVerdictSchema,
+} from '../recipes/tool-compare/index.js';
+export type {
+  ToolCompareInput,
+  ToolCompareResult,
+  ToolCompareVerdict,
+} from '../recipes/tool-compare/index.js';
+export {
   toolFit,
   toolFitInputSchema,
   toolFitResultSchema,
@@ -831,6 +2412,17 @@ export type {
   TopicShiftResult,
   TopicShiftVerdict,
 } from '../recipes/topic-shift/index.js';
+export {
+  tripPurposeKind,
+  tripPurposeKindInputSchema,
+  tripPurposeKindResultSchema,
+  tripPurposeKindVerdictSchema,
+} from '../recipes/trip-purpose-kind/index.js';
+export type {
+  TripPurposeKindInput,
+  TripPurposeKindResult,
+  TripPurposeKindVerdict,
+} from '../recipes/trip-purpose-kind/index.js';
 export {
   troubleshootingFit,
   troubleshootingFitInputSchema,

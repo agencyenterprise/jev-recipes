@@ -1,0 +1,12 @@
+{
+  "input": {
+    "failure": "HTTP 429 Too Many Requests: rate limit exceeded for this API key. Retry-After: 30.",
+    "attempt": "First attempt, issued immediately after a batch of 50 similar calls to the same endpoint.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.95 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

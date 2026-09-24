@@ -150,12 +150,45 @@ test('scaffolding keeps tests separate and never overwrites an existing recipe',
     assert.match(source, /export async function sampleCheck/);
     assert.match(
       await readFile(join(root, 'tests/recipe/sample-check.test.ts'), 'utf8'),
-      /mock|createJevClient/,
+      /testClassification|createJevClient/,
     );
     await assert.rejects(scaffoldRecipe(root, 'sample-check'), /Already exists/);
     assert.equal(await readFile(join(root, 'recipes/sample-check/index.ts'), 'utf8'), source);
     await assert.rejects(scaffoldRecipe(root, '../escape'), /kebab-case/);
     await assert.rejects(scaffoldRecipe(root, 'default'), /valid TypeScript/);
+    await assert.rejects(scaffoldRecipe(root, 'odd-kind', 'ranking'), /Unknown recipe kind/);
+    await scaffoldRecipe(root, 'sample-score', 'score');
+    assert.match(
+      await readFile(join(root, 'recipes/sample-score/index.ts'), 'utf8'),
+      /evaluateScore/,
+    );
+    assert.match(
+      await readFile(join(root, 'tests/recipe/sample-score.test.ts'), 'utf8'),
+      /testScore/,
+    );
+    await scaffoldRecipe(root, 'sample-gate', 'gate');
+    assert.match(
+      await readFile(join(root, 'recipes/sample-gate/index.ts'), 'utf8'),
+      /evaluateGate/,
+    );
+    assert.match(
+      await readFile(join(root, 'tests/recipe/sample-gate.test.ts'), 'utf8'),
+      /testGate/,
+    );
+    await scaffoldRecipe(root, 'sample-compare', 'comparison');
+    assert.match(
+      await readFile(join(root, 'recipes/sample-compare/index.ts'), 'utf8'),
+      /evaluateComparison/,
+    );
+    await scaffoldRecipe(root, 'sample-labels', 'labels');
+    assert.match(
+      await readFile(join(root, 'recipes/sample-labels/index.ts'), 'utf8'),
+      /evaluateLabels/,
+    );
+    assert.match(
+      await readFile(join(root, 'tests/recipe/sample-labels.test.ts'), 'utf8'),
+      /testLabels/,
+    );
     const exports = renderExports([{ id: 'sample-check' }]);
     assert.deepEqual(exports['./sample-check'], {
       types: './dist/recipes/sample-check/index.d.ts',

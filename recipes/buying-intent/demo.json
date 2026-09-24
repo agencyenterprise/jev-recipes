@@ -1,0 +1,19 @@
+{
+  "input": {
+    "message": "We've narrowed it down to you and one other vendor. Can you confirm whether the Team plan includes SSO, and what the annual price would be for 40 seats?",
+    "context": "Reply from a prospect who attended a product demo last week.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.06,
+        "confidence": 0.84,
+        "probabilities": { "0": 0.01, "1": 0.04, "2": 0.84, "3": 0.1, "4": 0.01 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

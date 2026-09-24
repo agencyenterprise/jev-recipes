@@ -1,0 +1,19 @@
+{
+  "input": {
+    "context": "Two chat messages: 'I'm studying, could you keep it quieter?' and 'seconded, the big chords are a lot'. No requests for more volume in the last five minutes. Stream goal: follow chat when requests agree.",
+    "recentMaterial": "Forte chords in both hands, octaves in the bass, accented downbeats, marked fortissimo for the last eight bars, sustain pedal held through each bar.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "softer",
+        "confidence": 0.9,
+        "probabilities": { "softer": 0.9, "same": 0.04, "louder": 0.01, "unclear": 0.05 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

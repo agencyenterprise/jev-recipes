@@ -1,0 +1,26 @@
+{
+  "input": {
+    "question": "How long do refunds take to appear on a card?",
+    "firstPassage": "Refunds are issued to the original payment method and typically appear within 5 to 10 business days, depending on the card issuer.",
+    "secondPassage": "You can request a refund from the Orders page by selecting the item and choosing Return.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "first",
+        "confidence": 0.9,
+        "probabilities": {
+          "first": 0.9,
+          "second": 0.03,
+          "tie": 0.03,
+          "neither": 0.02,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

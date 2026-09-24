@@ -1,0 +1,19 @@
+{
+  "input": {
+    "action": "Send the drafted outage apology email to the 1,200 customers on the affected-accounts list.",
+    "context": "The draft has been approved. The send goes through the marketing platform, which has no recall feature once a campaign is dispatched.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.85,
+        "confidence": 0.89,
+        "probabilities": { "0": 0.0, "1": 0.01, "2": 0.02, "3": 0.08, "4": 0.89 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

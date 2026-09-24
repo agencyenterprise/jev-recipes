@@ -1,0 +1,12 @@
+{
+  "input": {
+    "recentNotes": "C major. E4 D4 C4 D4 | E4 E4 E4 (half) | D4 D4 E4 D4 | C4 (whole note, held)",
+    "meter": "4/4",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.91 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

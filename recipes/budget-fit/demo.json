@@ -1,0 +1,12 @@
+{
+  "input": {
+    "plan": "1. Clone the repository and install dependencies. 2. Run the full test suite to record the baseline (about 12 minutes). 3. For each of the 9 failing tests, read the test, read the code under test, propose a fix, apply it, and rerun the full suite. 4. Open a pull request with a summary of every fix.",
+    "budget": "At most 20 tool calls and 30 minutes of wall-clock time. No more than 5 full test-suite runs.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.08 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

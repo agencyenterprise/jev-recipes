@@ -1,0 +1,111 @@
+{
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "message": { "type": "string" },
+      "minConfidence": { "type": "number", "minimum": 0, "maximum": 1 }
+    },
+    "required": ["message"]
+  },
+  "resultSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "model": { "type": "string" },
+      "usage": {
+        "type": "object",
+        "properties": {
+          "input_tokens": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+          "output_tokens": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 }
+        },
+        "required": ["input_tokens", "output_tokens"],
+        "additionalProperties": false
+      },
+      "status": { "type": "string", "enum": ["ready", "review"] },
+      "detected": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "statesInstrument",
+            "statesSymptom",
+            "statesOnset",
+            "statesRecentChanges",
+            "statesEnvironment"
+          ]
+        }
+      },
+      "labels": {
+        "type": "object",
+        "properties": {
+          "statesInstrument": {
+            "type": "object",
+            "properties": {
+              "status": { "type": "string", "enum": ["ready", "review"] },
+              "verdict": { "type": "string", "enum": ["present", "absent"] },
+              "probability": { "type": "number", "minimum": 0, "maximum": 1 },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+            },
+            "required": ["status", "verdict", "probability", "confidence"],
+            "additionalProperties": false
+          },
+          "statesSymptom": {
+            "type": "object",
+            "properties": {
+              "status": { "type": "string", "enum": ["ready", "review"] },
+              "verdict": { "type": "string", "enum": ["present", "absent"] },
+              "probability": { "type": "number", "minimum": 0, "maximum": 1 },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+            },
+            "required": ["status", "verdict", "probability", "confidence"],
+            "additionalProperties": false
+          },
+          "statesOnset": {
+            "type": "object",
+            "properties": {
+              "status": { "type": "string", "enum": ["ready", "review"] },
+              "verdict": { "type": "string", "enum": ["present", "absent"] },
+              "probability": { "type": "number", "minimum": 0, "maximum": 1 },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+            },
+            "required": ["status", "verdict", "probability", "confidence"],
+            "additionalProperties": false
+          },
+          "statesRecentChanges": {
+            "type": "object",
+            "properties": {
+              "status": { "type": "string", "enum": ["ready", "review"] },
+              "verdict": { "type": "string", "enum": ["present", "absent"] },
+              "probability": { "type": "number", "minimum": 0, "maximum": 1 },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+            },
+            "required": ["status", "verdict", "probability", "confidence"],
+            "additionalProperties": false
+          },
+          "statesEnvironment": {
+            "type": "object",
+            "properties": {
+              "status": { "type": "string", "enum": ["ready", "review"] },
+              "verdict": { "type": "string", "enum": ["present", "absent"] },
+              "probability": { "type": "number", "minimum": 0, "maximum": 1 },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+            },
+            "required": ["status", "verdict", "probability", "confidence"],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "statesInstrument",
+          "statesSymptom",
+          "statesOnset",
+          "statesRecentChanges",
+          "statesEnvironment"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": ["model", "usage", "status", "detected", "labels"],
+    "additionalProperties": false
+  }
+}

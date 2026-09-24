@@ -1,0 +1,12 @@
+{
+  "input": {
+    "record": "2024-03-14 | Adobe Creative Cloud team subscription, monthly, design team | Vendor: Adobe Inc.",
+    "statementLine": "03/16 ADOBE *CREATIVE CLD 800-833-6687 CA PURCHASE",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.9 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

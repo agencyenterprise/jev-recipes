@@ -93,3 +93,64 @@ function hasDecisionMethod(client: unknown): boolean {
     typeof client.systemOne === 'function'
   );
 }
+
+export const rubricSchema = z.tuple([nonEmptyText, nonEmptyText]).rest(nonEmptyText);
+export const scoreResultSchema = resultMetadataSchema.extend({
+  status: decisionStatusSchema,
+  score: z.number().nonnegative(),
+  level: z.number().int().nonnegative(),
+  confidence: probability,
+  probabilities: z.record(z.string(), probability),
+});
+export type Rubric = z.infer<typeof rubricSchema>;
+export type ScoreResult = z.infer<typeof scoreResultSchema>;
+
+export const gateCriteriaSchema = z.object({ true: nonEmptyText, false: nonEmptyText });
+export const gateResultSchema = resultMetadataSchema.extend({
+  status: decisionStatusSchema,
+  probability,
+  confidence: probability,
+});
+export type GateCriteria = z.infer<typeof gateCriteriaSchema>;
+export type GateResult = z.infer<typeof gateResultSchema>;
+
+export const comparisonVerdictSchema = z.enum(['first', 'second', 'tie', 'neither', 'unclear']);
+export const comparisonCriteriaSchema = z.object({
+  first: nonEmptyText,
+  second: nonEmptyText,
+  tie: nonEmptyText,
+  neither: nonEmptyText,
+});
+export const comparisonResultSchema = resultMetadataSchema.extend({
+  status: decisionStatusSchema,
+  verdict: comparisonVerdictSchema,
+  confidence: probability,
+  probabilities: z.record(comparisonVerdictSchema, probability),
+});
+export type ComparisonVerdict = z.infer<typeof comparisonVerdictSchema>;
+export type ComparisonCriteria = z.infer<typeof comparisonCriteriaSchema>;
+export type ComparisonResult = z.infer<typeof comparisonResultSchema>;
+
+export const labelQuestionSchema = z.object({
+  instruction: nonEmptyText,
+  criteria: gateCriteriaSchema,
+});
+export const labelQuestionsSchema = z
+  .record(nonEmptyText, labelQuestionSchema)
+  .refine((labels) => Object.keys(labels).length >= 1, 'Provide at least one label.');
+export const labelVerdictSchema = z.enum(['present', 'absent']);
+export const labelCheckSchema = z.object({
+  status: decisionStatusSchema,
+  verdict: labelVerdictSchema,
+  probability,
+  confidence: probability,
+});
+export const labelsResultSchema = resultMetadataSchema.extend({
+  status: decisionStatusSchema,
+  detected: z.array(nonEmptyText),
+});
+export type LabelQuestion = z.infer<typeof labelQuestionSchema>;
+export type LabelQuestions = z.infer<typeof labelQuestionsSchema>;
+export type LabelVerdict = z.infer<typeof labelVerdictSchema>;
+export type LabelCheck = z.infer<typeof labelCheckSchema>;
+export type LabelsResult = z.infer<typeof labelsResultSchema>;

@@ -1,0 +1,28 @@
+{
+  "input": {
+    "message": "I am really worried about tomorrow's deployment. If the migration fails again we lose the whole weekend and I do not know how to explain that to the client."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "fear",
+        "confidence": 0.85,
+        "probabilities": {
+          "joy": 0,
+          "anger": 0.02,
+          "sadness": 0.05,
+          "fear": 0.85,
+          "surprise": 0.01,
+          "neutral": 0.01,
+          "unclear": 0.06
+        }
+      }
+    }
+  }
+}

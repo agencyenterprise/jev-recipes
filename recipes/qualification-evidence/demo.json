@@ -1,0 +1,12 @@
+{
+  "input": {
+    "requirement": "At least three years of experience operating Kubernetes clusters in production.",
+    "profile": "Platform Engineer, Northwind Logistics, 2020 to present. Own the production Kubernetes platform (EKS, 12 clusters, 400 services). Led the migration from self-managed clusters to EKS in 2022 with zero customer-facing downtime. On-call rotation for cluster incidents; wrote the runbooks for node pool upgrades and etcd recovery. Skills: Kubernetes, Terraform, Go, Prometheus.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.94 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

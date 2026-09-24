@@ -1,0 +1,12 @@
+{
+  "input": {
+    "message": "Congratulations!! You have been selected for a $500 gift card. Claim now at bit.ly/claim-prize-4421 before it expires tonight!!!",
+    "context": "Reply posted in a community forum thread about troubleshooting a printer driver.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.97 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

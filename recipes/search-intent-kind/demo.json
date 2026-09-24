@@ -1,0 +1,25 @@
+{
+  "input": {
+    "query": "best noise cancelling headphones under 200 vs sony wh-1000xm5",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "commercial",
+        "confidence": 0.86,
+        "probabilities": {
+          "informational": 0.03,
+          "navigational": 0.01,
+          "transactional": 0.06,
+          "commercial": 0.86,
+          "local": 0.01,
+          "unclear": 0.03
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

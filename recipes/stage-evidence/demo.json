@@ -1,0 +1,12 @@
+{
+  "input": {
+    "stage": "Proposal sent: a written proposal with pricing has been delivered to the decision maker and they have acknowledged receiving it.",
+    "evidence": "Call on Tuesday with Priya (VP Operations) to review requirements. She asked for a formal proposal covering the 40-seat rollout. Rep noted: will draft proposal this week and send Friday. No further activity logged.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.07 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

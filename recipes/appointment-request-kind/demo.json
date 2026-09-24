@@ -1,0 +1,26 @@
+{
+  "input": {
+    "message": "Hi, I am scheduled with Dr. Nguyen on Thursday at 2pm but my work shift changed. Is there anything available Friday morning instead?",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "reschedule",
+        "confidence": 0.9,
+        "probabilities": {
+          "schedule": 0.05,
+          "reschedule": 0.9,
+          "cancel": 0.02,
+          "results": 0.01,
+          "refill": 0,
+          "question": 0.01,
+          "unclear": 0.01
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

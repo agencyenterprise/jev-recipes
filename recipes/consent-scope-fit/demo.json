@@ -1,0 +1,12 @@
+{
+  "input": {
+    "consent": "I authorize Riverside Family Clinic to share my visit summaries and lab results with my cardiologist, Dr. Anita Patel, for the purpose of coordinating my heart care. This authorization expires one year from the date signed.",
+    "use": "Send the patient's lab results to a pharmaceutical company's research registry for a hypertension study.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.03 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

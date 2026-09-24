@@ -1,0 +1,11 @@
+import { defectReportFacets } from '../../recipes/defect-report-facets/index.js';
+import { testLabels } from './helpers/labels.js';
+
+testLabels(
+  defectReportFacets,
+  {
+    report:
+      'NCR-2041. Part 88-3312-B mounting bracket, supplier lot L26091 from Kestrel Metalworks. Flange thickness measured 2.68 to 2.74 mm on all 6 sampled pieces against the drawing callout of 3.0 mm +/- 0.1 mm. Found at incoming inspection, receiving dock 2, during the standard AQL sample on 2026-09-22. Lot quantity received: 1,200 pieces; the whole lot is suspect since every sample failed. Requesting disposition from engineering.',
+  },
+  ['statesPartId', 'statesDefect', 'statesDetectionPoint', 'statesQuantity', 'statesContainment'],
+);

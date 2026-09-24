@@ -1,0 +1,19 @@
+{
+  "input": {
+    "claim": "Guests can export reports as CSV.",
+    "evidence": "Guest accounts may export any report they can view. Export formats include CSV and PDF.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.83,
+        "confidence": 0.86,
+        "probabilities": { "0": 0.01, "1": 0.01, "2": 0.03, "3": 0.09, "4": 0.86 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

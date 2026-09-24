@@ -1,0 +1,12 @@
+{
+  "input": {
+    "item": "Replacement HEPA filter for the AirPure 300 series purifier. Two-pack, captures 99.97% of particles down to 0.3 microns. Compatible with models AP-300, AP-310, and AP-320.",
+    "category": "Air Purifiers: standalone air purifying appliances for home or office use. Excludes replacement filters, parts, and accessories, which belong under Air Purifier Accessories.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.04 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

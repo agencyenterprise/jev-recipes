@@ -1,0 +1,12 @@
+{
+  "input": {
+    "incident": "Consumer lag on the notifications-worker Kafka group has climbed past 500k messages over the last 20 minutes. Email and push notifications are arriving up to 40 minutes late. No deploys to the worker today.",
+    "runbook": "Runbook: notifications-worker consumer lag. Trigger: consumer lag alert for group notifications-worker, or user reports of delayed email or push. Steps: 1) Check worker pod count and restart counts in the notifications namespace. 2) Check SMTP and APNs error rates on the delivery dashboard. 3) If pods are healthy and downstream is clean, scale the deployment to twice its current replicas. 4) If lag keeps growing, check partition skew on the notifications topic.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.93 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "input": {
+    "requestedMood": "calm, something to relax to",
+    "passage": "Fast tempo around 160 bpm, driving repeated sixteenth notes in the left hand, diminished and augmented chords with frequent chromatic shifts, sudden accents on off-beats, fortissimo throughout, melody leaping in the high register.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.04 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

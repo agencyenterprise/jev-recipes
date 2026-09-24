@@ -1,0 +1,17 @@
+{
+  "input": {
+    "review": "The blender itself is solid and crushes ice with no trouble, and for the sale price it was a steal. Unfortunately the box arrived dented and the lid gasket was torn, so it leaks. Support sent a replacement gasket within two days, which I appreciated.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "mentionsQuality": { "type": "noul", "noul": 0.95 },
+      "mentionsPrice": { "type": "noul", "noul": 0.93 },
+      "mentionsShipping": { "type": "noul", "noul": 0.88 },
+      "mentionsService": { "type": "noul", "noul": 0.96 },
+      "reportsDefect": { "type": "noul", "noul": 0.94 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

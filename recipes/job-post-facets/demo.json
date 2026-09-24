@@ -1,0 +1,17 @@
+{
+  "input": {
+    "posting": "Senior Backend Engineer, Berlin (hybrid, 2 days in office). EUR 85,000 to 105,000 plus equity. You have 5+ years building distributed systems in Go or Java and have run PostgreSQL in production. Fluent English required.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesSalary": { "type": "noul", "noul": 0.97 },
+      "statesLocation": { "type": "noul", "noul": 0.96 },
+      "statesRemotePolicy": { "type": "noul", "noul": 0.94 },
+      "statesExperienceLevel": { "type": "noul", "noul": 0.95 },
+      "statesQualifications": { "type": "noul", "noul": 0.93 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

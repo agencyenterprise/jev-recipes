@@ -1,0 +1,16 @@
+{
+  "input": {
+    "draft": "Based on the 2024 pricing page, the Team plan includes SSO. I am not certain this still applies to accounts created before March, and I have not checked the enterprise tier. I am assuming you are on a monthly plan.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesUncertainty": { "type": "noul", "noul": 0.95 },
+      "statesLimitations": { "type": "noul", "noul": 0.9 },
+      "citesSources": { "type": "noul", "noul": 0.88 },
+      "statesAssumptions": { "type": "noul", "noul": 0.94 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

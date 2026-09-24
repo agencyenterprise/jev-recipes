@@ -1,0 +1,19 @@
+{
+  "input": {
+    "source": "Invoice INV-2041 issued 3 March 2026 to Harbor Lighting Ltd for 12 LED fixtures at $85.00 each. Subtotal $1,020.00, tax $81.60, total $1,101.60. Payment due 2 April 2026.",
+    "extracted": "{\"invoiceNumber\":\"INV-2041\",\"issued\":\"2026-03-03\",\"customer\":\"Harbor Lighting Ltd\",\"total\":1101.6,\"due\":\"2026-04-02\"}",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.04,
+        "confidence": 0.81,
+        "probabilities": { "0": 0.0, "1": 0.01, "2": 0.06, "3": 0.81, "4": 0.12 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

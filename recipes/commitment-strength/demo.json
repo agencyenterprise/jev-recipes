@@ -1,0 +1,18 @@
+{
+  "input": {
+    "statement": "I will have the revised contract in your inbox by 5pm Thursday, and I will call you as soon as it is sent.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.85,
+        "confidence": 0.87,
+        "probabilities": { "0": 0.0, "1": 0.0, "2": 0.02, "3": 0.11, "4": 0.87 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

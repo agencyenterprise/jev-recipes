@@ -1,0 +1,19 @@
+{
+  "input": {
+    "message": "That fixed it, thank you so much for staying on this with me. Really appreciate the quick turnaround.",
+    "context": "Final customer message after an agent reissued a failed refund.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.84,
+        "confidence": 0.88,
+        "probabilities": { "0": 0.0, "1": 0.01, "2": 0.02, "3": 0.09, "4": 0.88 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

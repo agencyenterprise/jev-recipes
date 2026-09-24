@@ -1,0 +1,13 @@
+import { rollbackSignal } from '../../recipes/rollback-signal/index.js';
+import { testGate } from './helpers/gate.js';
+
+testGate(
+  rollbackSignal,
+  {
+    symptoms:
+      'Starting at 09:42 UTC the error rate on POST /orders jumped from 0.2% to 8%. Every failure is a null reference in PricingService.applyDiscount. GET endpoints and the cart service are unaffected.',
+    change:
+      'Deployed at 09:40 UTC: PricingService now loads discount rules lazily from the new promotions table instead of the in-memory cache. Only the pricing module was touched; no schema or infrastructure changes.',
+  },
+  ['implicated', 'unrelated'],
+);

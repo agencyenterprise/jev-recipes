@@ -1,0 +1,12 @@
+{
+  "input": {
+    "request": "Looking for a stainless steel water bottle, at least 32 oz, that fits a standard car cup holder. Must be dishwasher safe. A straw lid would be nice but is not required.",
+    "listing": "Summit 40 oz Insulated Bottle. 18/8 stainless steel, double-wall vacuum insulation. Tapered base fits most car cup holders. Dishwasher safe (top rack). Includes screw-top lid; straw lid sold separately.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.91 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

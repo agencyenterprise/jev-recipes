@@ -1,0 +1,17 @@
+{
+  "input": {
+    "message": "Hi, I have a Martin D-18 (2019) and the B string has started buzzing on the 2nd and 3rd frets. Open it is fine. This began about ten days ago, right after I changed to a set of light-gauge phosphor bronze strings and lowered the saddle a little myself. I have not changed anything else. Can someone take a look?",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesInstrument": { "type": "noul", "noul": 0.97 },
+      "statesSymptom": { "type": "noul", "noul": 0.96 },
+      "statesOnset": { "type": "noul", "noul": 0.93 },
+      "statesRecentChanges": { "type": "noul", "noul": 0.95 },
+      "statesEnvironment": { "type": "noul", "noul": 0.05 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

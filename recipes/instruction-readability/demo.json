@@ -1,0 +1,19 @@
+{
+  "input": {
+    "instructions": "Administer 500 mg PO BID with food x 10 days. Do not discontinue prematurely. If a dose is missed, take it as soon as possible unless the next dose is imminent. Contact the clinic for any rash or swelling.",
+    "audience": "Adult patient with no medical background, reading the after-visit summary at home.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 1.14,
+        "confidence": 0.82,
+        "probabilities": { "0": 0.04, "1": 0.82, "2": 0.11, "3": 0.02, "4": 0.01 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

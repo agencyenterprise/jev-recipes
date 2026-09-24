@@ -13,6 +13,23 @@ const categoryTitles = {
   knowledge: 'Knowledge maintenance',
 };
 
+export const collections = [
+  {
+    tag: 'psychology',
+    title: 'Psychology & behavior',
+    intro:
+      'Recipes for annotating expressed wording, explanations, and reasons, gathered from the categories above.\n\n' +
+      'Search with `npx jev-recipes list psychology`. For research, validate labels against independent human annotations; see the [research guide](../docs/ai-alignment-research.md).',
+  },
+  {
+    tag: 'music',
+    title: 'Music & sound',
+    intro:
+      'Recipes for performance loops, listener steering, and instrument or music-software tooling, gathered from the categories above. Pass musical state as text or JSON; exact theory checks belong in code.\n\n' +
+      'Search with `npx jev-recipes list music`.',
+  },
+];
+
 export async function renderDocs(root, records) {
   const files = new Map();
   const count = records.length;
@@ -40,14 +57,9 @@ export async function renderDocs(root, records) {
     if (!matching.length) return '';
     return `## ${title}\n\n${recipeTable(matching)}`;
   });
-  const psychology = records.filter((recipe) => recipe.metadata.tags.includes('psychology'));
-  if (psychology.length) {
-    sections.push(
-      '## Psychology & behavior\n\n' +
-        'Recipes for annotating expressed wording, explanations, and reasons, gathered from the categories above.\n\n' +
-        'Search with `npx jev-recipes list psychology`. For research, validate labels against independent human annotations; see the [research guide](../docs/ai-alignment-research.md).\n\n' +
-        recipeTable(psychology),
-    );
+  for (const { tag, title, intro } of collections) {
+    const matching = records.filter((recipe) => recipe.metadata.tags.includes(tag));
+    if (matching.length) sections.push(`## ${title}\n\n${intro}\n\n${recipeTable(matching)}`);
   }
   files.set(
     'recipes/README.md',

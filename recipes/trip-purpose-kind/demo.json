@@ -1,0 +1,27 @@
+{
+  "input": {
+    "message": "We are moving to Lisbon for good at the end of October. My partner's job transfers her there permanently and the kids start school in January. I need one-way flights for the four of us and somewhere to stay for the first three weeks until our long-term lease begins on 20 November.",
+    "context": "Traveler previously asked this assistant about shipping household goods overseas.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "relocation",
+        "confidence": 0.9,
+        "probabilities": {
+          "business": 0.02,
+          "leisure": 0.01,
+          "family_visit": 0.02,
+          "medical": 0.01,
+          "relocation": 0.9,
+          "event": 0.01,
+          "unclear": 0.03
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

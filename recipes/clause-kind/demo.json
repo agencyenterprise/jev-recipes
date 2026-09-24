@@ -1,0 +1,26 @@
+{
+  "input": {
+    "clause": "The Supplier shall deliver the Goods to the Delivery Address no later than thirty (30) days after receipt of a Purchase Order.",
+    "context": "Clause 4.2 of a goods supply agreement between a manufacturer and a retailer.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "obligation",
+        "confidence": 0.92,
+        "probabilities": {
+          "obligation": 0.92,
+          "right": 0.02,
+          "prohibition": 0.01,
+          "condition": 0.03,
+          "definition": 0.01,
+          "unclear": 0.01
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

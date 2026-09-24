@@ -1,0 +1,18 @@
+{
+  "input": {
+    "recentMaterial": "C4 E4 G4 E4 | C4 E4 G4 E4 | C4 E4 G4 E4 | C4 E4 G4 E4 | C4 E4 G4 E4 | C4 E4 G4 E4 (all quarter notes, same dynamic, no rests)",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.94,
+        "confidence": 0.85,
+        "probabilities": { "0": 0.01, "1": 0.01, "2": 0.07, "3": 0.85, "4": 0.06 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

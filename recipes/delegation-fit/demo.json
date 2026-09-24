@@ -1,0 +1,12 @@
+{
+  "input": {
+    "subtask": "Find the three most recent production incidents involving the checkout service, pull their postmortem documents from the wiki, and summarize the root causes in a short table.",
+    "capabilities": "Read-only access to the code repository and its git history. Can run the test suite and static analysis. No network access, no wiki or ticketing access, no production logs.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.06 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

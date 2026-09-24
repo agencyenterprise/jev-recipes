@@ -44,3 +44,33 @@ function hasMostLikelyChoice(answer: {
   const highestProbability = Math.max(...Object.values(answer.probabilities));
   return selectedProbability !== undefined && selectedProbability >= highestProbability - 1e-9;
 }
+
+export function parseScoreAnswer(answer: unknown, levelCount: number) {
+  const levels = Array.from({ length: levelCount }, (_, index) => String(index));
+  const scoreAnswerSchema = z
+    .object({
+      type: z.literal('score'),
+      score: z
+        .number()
+        .min(0)
+        .max(levelCount - 1),
+      confidence: probability,
+      probabilities: z.record(z.enum(levels), probability),
+    })
+    .refine(hasCompleteProbabilityMass, 'Jev probabilities must sum to 1.')
+    .refine(
+      (parsed) => Object.keys(parsed.probabilities).length === levelCount,
+      'Jev must report a probability for every rubric level.',
+    );
+  const parsed = scoreAnswerSchema.parse(answer);
+  const [mostLikelyLevel] = Object.entries(parsed.probabilities).reduce((best, entry) =>
+    entry[1] > best[1] ? entry : best,
+  );
+
+  return {
+    score: parsed.score,
+    level: Number(mostLikelyLevel),
+    confidence: parsed.confidence,
+    probabilities: parsed.probabilities,
+  };
+}

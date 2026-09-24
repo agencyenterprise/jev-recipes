@@ -1,0 +1,26 @@
+{
+  "input": {
+    "earlierMessage": "I have been waiting three days for a reply and my order still has not shipped. This is ridiculous.",
+    "laterMessage": "Thanks for sorting that out so quickly, the tracking number just arrived. Really appreciate it."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "improved",
+        "confidence": 0.94,
+        "probabilities": {
+          "improved": 0.94,
+          "unchanged": 0.02,
+          "worsened": 0.01,
+          "unclear": 0.03
+        }
+      }
+    }
+  }
+}

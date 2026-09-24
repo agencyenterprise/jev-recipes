@@ -1,0 +1,12 @@
+{
+  "input": {
+    "message": "Fix off-by-one in pagination cursor and add regression test",
+    "change": "In paginate() in src/api/list.ts, changed the end index from offset + limit to offset + limit - 1 so the last page no longer repeats the first row of the next page. Added the test 'returns the last page without a duplicate row' to tests/list.test.ts.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.93 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

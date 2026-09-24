@@ -1,0 +1,12 @@
+{
+  "input": {
+    "objective": "Students will be able to apply Newton's second law to compute the net force on an object given its mass and acceleration.",
+    "question": "State Newton's second law of motion in words and give the name of the unit of force.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.08 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

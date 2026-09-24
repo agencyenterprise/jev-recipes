@@ -1,0 +1,19 @@
+{
+  "input": {
+    "progression": "Am - F - Dm7 - G7 - G7(b9) with the melody suspended on C over the bass, held for two full bars and swelling (current chord)",
+    "key": "C major",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.76,
+        "confidence": 0.83,
+        "probabilities": { "0": 0.01, "1": 0.01, "2": 0.02, "3": 0.13, "4": 0.83 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -5,6 +5,7 @@ import { pathToFileURL, fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import { z } from 'zod';
 import { TypeSafeClient } from '@typesafe-ai/sdk';
+import { assertDistinctRecipes } from './distinct.mjs';
 
 export const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
 export const recipeIdPattern = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
@@ -146,6 +147,7 @@ export async function readRecipes(root = projectRoot) {
       });
     }
     validateRecipeGraph(records);
+    assertDistinctRecipes(records);
     return records;
   } finally {
     globalThis.fetch = previousFetch;

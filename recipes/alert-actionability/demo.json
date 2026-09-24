@@ -1,0 +1,19 @@
+{
+  "input": {
+    "alert": "HIGH: payments-gateway 5xx rate is 6.4% over the last 5 minutes (threshold 2%) in prod-eu-west-1. Upstream dependency stripe-proxy is returning 502s for 40% of calls.",
+    "context": "payments-gateway is the public API in front of card processing. stripe-proxy is an internal sidecar that batches calls to Stripe.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.96,
+        "confidence": 0.78,
+        "probabilities": { "0": 0, "1": 0.02, "2": 0.1, "3": 0.78, "4": 0.1 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

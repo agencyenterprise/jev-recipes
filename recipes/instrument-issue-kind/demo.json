@@ -1,0 +1,26 @@
+{
+  "input": {
+    "report": "My Telecaster has developed a metallic buzz on the low E and A strings whenever I fret anything between the 5th and 9th frets. Open strings are fine and it still tunes up normally. It only started after I swapped to a heavier string set last week.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "buzz_or_rattle",
+        "confidence": 0.9,
+        "probabilities": {
+          "tuning": 0.02,
+          "buzz_or_rattle": 0.9,
+          "no_sound": 0.01,
+          "intonation": 0.02,
+          "mechanical": 0.03,
+          "cosmetic": 0,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "input": {
+    "text": "Before we enable call recording on your account, we need your permission. Do you agree to have your support calls recorded for quality review? Reply YES to agree or NO to keep recording off.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.95 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

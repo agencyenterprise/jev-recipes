@@ -1,0 +1,11 @@
+{
+  "input": {
+    "text": "Hi, this is Dana Whitfield. My account number is 44-9921 and you can reach me at 555-0142 about the refund.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.96 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

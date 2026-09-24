@@ -1,0 +1,20 @@
+{
+  "input": {
+    "question": "Explain why the sky appears blue during the day.",
+    "answer": "Sunlight contains all colors. When it passes through the atmosphere, gas molecules scatter shorter wavelengths like blue much more than longer wavelengths like red, so blue light reaches our eyes from every direction in the sky.",
+    "rubric": "Full credit requires: (1) sunlight is made of many wavelengths; (2) atmospheric molecules scatter light; (3) shorter wavelengths scatter more strongly (Rayleigh scattering); (4) explains why violet is not the dominant perceived color.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.95,
+        "confidence": 0.81,
+        "probabilities": { "0": 0.0, "1": 0.02, "2": 0.09, "3": 0.81, "4": 0.08 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

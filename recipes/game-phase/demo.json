@@ -1,0 +1,25 @@
+{
+  "input": {
+    "state": "Chess. White: king g1, rook d1, pawns a2, f2, g2. Black: king g8, rook e8, pawns a7, h6. Move 52, White to move. No queens or minor pieces remain. Neither side is in check.",
+    "rules": "Standard chess. The game ends by checkmate, stalemate, agreed draw, resignation, or the fifty-move and threefold repetition rules.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "endgame",
+        "confidence": 0.85,
+        "probabilities": {
+          "opening": 0.01,
+          "midgame": 0.09,
+          "endgame": 0.85,
+          "terminal": 0.02,
+          "unclear": 0.03
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

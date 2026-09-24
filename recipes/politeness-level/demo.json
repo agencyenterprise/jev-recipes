@@ -1,0 +1,18 @@
+{
+  "input": {
+    "message": "Hi Priya, thanks for turning this around so quickly. When you have a moment, could you also attach the updated invoice? No rush at all.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.13,
+        "confidence": 0.81,
+        "probabilities": { "0": 0.0, "1": 0.0, "2": 0.03, "3": 0.81, "4": 0.16 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

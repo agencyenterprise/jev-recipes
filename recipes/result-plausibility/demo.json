@@ -1,0 +1,12 @@
+{
+  "input": {
+    "request": "List the three most recent production deploys with their commit SHAs and deploy times.",
+    "result": "[{\"id\": 1, \"sha\": \"abc123\", \"deployed_at\": \"2024-01-01T00:00:00Z\"}, {\"id\": 2, \"sha\": \"abc123\", \"deployed_at\": \"2024-01-01T00:00:00Z\"}, {\"id\": 3, \"sha\": \"abc123\", \"deployed_at\": \"2024-01-01T00:00:00Z\"}]",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.07 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}
