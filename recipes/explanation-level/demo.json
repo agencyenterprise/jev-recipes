@@ -1,0 +1,19 @@
+{
+  "input": {
+    "question": "A train leaves at 9:40 and travels 150 km at 60 km/h. When does it arrive?",
+    "answer": "Time is distance over speed: 150 / 60 = 2.5 hours, which is 2 hours 30 minutes. Adding that to 9:40 gives 12:10. Check: 60 km/h for 2 hours covers 120 km, and the remaining 30 km takes half an hour, so 2.5 hours is right. The train arrives at 12:10.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.87,
+        "confidence": 0.89,
+        "probabilities": { "0": 0.0, "1": 0.0, "2": 0.02, "3": 0.09, "4": 0.89 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

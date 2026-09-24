@@ -1,0 +1,19 @@
+{
+  "input": {
+    "instruction": "Clean up the flaky tests in the payments module and make sure CI is green.",
+    "context": "The payments module has 214 tests across 18 files. Three tests were quarantined last week with a skip marker and a link to issue #882. CI currently fails on main because of an unrelated lint error in the docs build.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 1.99,
+        "confidence": 0.83,
+        "probabilities": { "0": 0.01, "1": 0.08, "2": 0.83, "3": 0.07, "4": 0.01 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

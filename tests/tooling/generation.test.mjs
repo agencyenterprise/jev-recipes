@@ -175,6 +175,20 @@ test('scaffolding keeps tests separate and never overwrites an existing recipe',
       await readFile(join(root, 'tests/recipe/sample-gate.test.ts'), 'utf8'),
       /testGate/,
     );
+    await scaffoldRecipe(root, 'sample-compare', 'comparison');
+    assert.match(
+      await readFile(join(root, 'recipes/sample-compare/index.ts'), 'utf8'),
+      /evaluateComparison/,
+    );
+    await scaffoldRecipe(root, 'sample-labels', 'labels');
+    assert.match(
+      await readFile(join(root, 'recipes/sample-labels/index.ts'), 'utf8'),
+      /evaluateLabels/,
+    );
+    assert.match(
+      await readFile(join(root, 'tests/recipe/sample-labels.test.ts'), 'utf8'),
+      /testLabels/,
+    );
     const exports = renderExports([{ id: 'sample-check' }]);
     assert.deepEqual(exports['./sample-check'], {
       types: './dist/recipes/sample-check/index.d.ts',

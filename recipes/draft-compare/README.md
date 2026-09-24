@@ -89,7 +89,7 @@ Results include model and token usage. Decisions below `minConfidence` require r
 
 ## Reuse and calls
 
-Uses the shared choice helper for the Jev call and response parsing. This folder owns its question, verdict criteria, and review policy. A live invocation makes one logical Jev request; SDK retries can add transport attempts.
+Uses the shared comparison helper for the Jev call and response parsing. This folder owns its question, verdict criteria, and review policy. A live invocation makes one logical Jev request; SDK retries can add transport attempts.
 
 ## Limits
 

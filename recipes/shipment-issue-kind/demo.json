@@ -1,0 +1,27 @@
+{
+  "input": {
+    "message": "Tracking says my order was delivered yesterday at 2:14 PM but there is nothing on my porch, in the mailbox, or with my neighbors. I have checked everywhere. Order #A81-2290.",
+    "context": "Customer message submitted through the order help form for a small parcel shipment.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "lost",
+        "confidence": 0.9,
+        "probabilities": {
+          "delayed": 0.04,
+          "damaged": 0.01,
+          "lost": 0.9,
+          "wrong_item": 0.01,
+          "address": 0.02,
+          "none": 0.01,
+          "unclear": 0.01
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "input": {
+    "firstClause": "The Customer shall pay each undisputed invoice within thirty (30) days of the invoice date.",
+    "secondClause": "All invoices are payable in full within fourteen (14) days of the invoice date, and no invoice may be disputed after payment is due.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.89 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

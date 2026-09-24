@@ -1,0 +1,17 @@
+{
+  "input": {
+    "notice": "When you create an account we collect your name, email address, and billing details. We use this information to provide the service, process payments, and send account notices. We share billing details with our payment processor and do not sell your data. Questions about your data can be sent to privacy@example.com.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesDataCollected": { "type": "noul", "noul": 0.97 },
+      "statesPurpose": { "type": "noul", "noul": 0.95 },
+      "statesRetention": { "type": "noul", "noul": 0.04 },
+      "statesSharing": { "type": "noul", "noul": 0.93 },
+      "statesContact": { "type": "noul", "noul": 0.96 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

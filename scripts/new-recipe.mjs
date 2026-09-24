@@ -5,7 +5,7 @@ import { format } from 'prettier';
 import ts from 'typescript';
 import { projectRoot, recipeIdPattern } from './lib/recipes.mjs';
 
-export const recipeKinds = ['choice', 'score', 'gate'];
+export const recipeKinds = ['choice', 'score', 'gate', 'comparison', 'labels'];
 
 export async function scaffoldRecipe(root, id, kind = 'choice') {
   if (!recipeIdPattern.test(id ?? '') || id === 'catalog')
@@ -301,6 +301,172 @@ testGate(
 `;
     return { files, test };
   },
+};
+
+templates.comparison = ({ id, functionName, typeName }) => {
+  const files = new Map([
+    [
+      'index.ts',
+      `import { evaluateComparison } from '../../src/comparisons.js';
+import type { RecipeOptions } from '../../src/schema.js';
+import { ${functionName}InputSchema, ${functionName}ResultSchema } from './schema.js';
+import type { ${typeName}Input, ${typeName}Result } from './schema.js';
+
+export async function ${functionName}(input: ${typeName}Input, options: RecipeOptions = {}): Promise<${typeName}Result> {
+  const { minConfidence = 0.8, ...state } = ${functionName}InputSchema.parse(input);
+  const decision = await evaluateComparison(state, 'Which candidate better meets requirement?', {
+    first: 'Only the first candidate meets the requirement, or it clearly meets it better.',
+    second: 'Only the second candidate meets the requirement, or it clearly meets it better.',
+    tie: 'Both candidates meet the requirement about equally.',
+    neither: 'Neither candidate meets the requirement.',
+  }, options);
+  return ${functionName}ResultSchema.parse({
+    ...decision,
+    status: decision.confidence < minConfidence || decision.verdict === 'unclear' ? 'review' : 'ready',
+  });
+}
+export { ${functionName}InputSchema, ${functionName}ResultSchema, ${functionName}VerdictSchema } from './schema.js';
+export type { ${typeName}Input, ${typeName}Result, ${typeName}Verdict } from './schema.js';
+`,
+    ],
+    [
+      'schema.ts',
+      `import { z } from 'zod';
+import { comparisonResultSchema, comparisonVerdictSchema, nonEmptyText, probability } from '../../src/schema.js';
+export const ${functionName}VerdictSchema = comparisonVerdictSchema;
+export const ${functionName}InputSchema = z.object({ requirement: nonEmptyText, firstCandidate: nonEmptyText, secondCandidate: nonEmptyText, minConfidence: probability.optional() });
+export const ${functionName}ResultSchema = comparisonResultSchema;
+export type ${typeName}Verdict = z.infer<typeof ${functionName}VerdictSchema>;
+export type ${typeName}Input = z.infer<typeof ${functionName}InputSchema>;
+export type ${typeName}Result = z.infer<typeof ${functionName}ResultSchema>;
+`,
+    ],
+    [
+      'metadata.ts',
+      metadata(
+        id,
+        'Which candidate better meets requirement?',
+        'You need to pick between two candidates under one requirement.',
+        ['comparison', 'pairwise'],
+      ),
+    ],
+    [
+      'demo.json',
+      demo(
+        {
+          requirement: 'The text requests an invoice.',
+          firstCandidate: 'Please send the invoice.',
+          secondCandidate: 'Thanks for the update.',
+        },
+        {
+          decision: {
+            type: 'choice',
+            choice: 'first',
+            confidence: 0.9,
+            probabilities: { first: 0.9, second: 0.03, tie: 0.03, neither: 0.02, unclear: 0.02 },
+          },
+        },
+      ),
+    ],
+    [
+      'README.md',
+      readme(
+        id,
+        'verdict is first, second, tie, neither, or unclear. Presentation order is declared irrelevant to Jev. The result is ready when confidence meets minConfidence and the verdict is not unclear.',
+      ),
+    ],
+  ]);
+  const test = `import { ${functionName} } from '../../recipes/${id}/index.js';
+import { testComparison } from './helpers/comparison.js';
+
+testComparison(${functionName}, {
+  requirement: 'The text requests an invoice.',
+  firstCandidate: 'Please send the invoice.',
+  secondCandidate: 'Thanks for the update.',
+});
+`;
+  return { files, test };
+};
+
+templates.labels = ({ id, functionName, typeName }) => {
+  const files = new Map([
+    [
+      'index.ts',
+      `import { evaluateLabels, resolveLabels } from '../../src/labels.js';
+import type { RecipeOptions } from '../../src/schema.js';
+import { ${functionName}InputSchema, ${functionName}ResultSchema } from './schema.js';
+import type { ${typeName}Input, ${typeName}Result } from './schema.js';
+
+export async function ${functionName}(input: ${typeName}Input, options: RecipeOptions = {}): Promise<${typeName}Result> {
+  const { minConfidence = 0.8, ...state } = ${functionName}InputSchema.parse(input);
+  const evaluation = await evaluateLabels(state, {
+    asksQuestion: {
+      instruction: 'Does text ask a question that expects an answer?',
+      criteria: { true: 'The text asks a question.', false: 'The text asks no question.' },
+    },
+    requestsAction: {
+      instruction: 'Does text ask the reader to do something?',
+      criteria: { true: 'The text requests an action.', false: 'The text requests no action.' },
+    },
+  }, options);
+  return ${functionName}ResultSchema.parse({
+    ...resolveLabels(evaluation.labels, minConfidence),
+    model: evaluation.model,
+    usage: evaluation.usage,
+  });
+}
+export { ${functionName}InputSchema, ${functionName}ResultSchema, ${functionName}LabelSchema } from './schema.js';
+export type { ${typeName}Input, ${typeName}Result, ${typeName}Label } from './schema.js';
+`,
+    ],
+    [
+      'schema.ts',
+      `import { z } from 'zod';
+import { labelCheckSchema, labelsResultSchema, nonEmptyText, probability } from '../../src/schema.js';
+export const ${functionName}LabelSchema = z.enum(['asksQuestion', 'requestsAction']);
+export const ${functionName}InputSchema = z.object({ text: nonEmptyText, minConfidence: probability.optional() });
+export const ${functionName}ResultSchema = labelsResultSchema.extend({
+  detected: z.array(${functionName}LabelSchema),
+  labels: z.object({ asksQuestion: labelCheckSchema, requestsAction: labelCheckSchema }),
+});
+export type ${typeName}Label = z.infer<typeof ${functionName}LabelSchema>;
+export type ${typeName}Input = z.infer<typeof ${functionName}InputSchema>;
+export type ${typeName}Result = z.infer<typeof ${functionName}ResultSchema>;
+`,
+    ],
+    [
+      'metadata.ts',
+      metadata(
+        id,
+        'Which of several independent properties does text have?',
+        'You need several yes/no labels on one text in a single call.',
+        ['labels', 'multi-label'],
+      ),
+    ],
+    [
+      'demo.json',
+      demo(
+        { text: 'Could you send the invoice today?' },
+        {
+          asksQuestion: { type: 'noul', noul: 0.94 },
+          requestsAction: { type: 'noul', noul: 0.91 },
+        },
+      ),
+    ],
+    [
+      'README.md',
+      readme(
+        id,
+        'labels holds one check per label with verdict present or absent, the yes probability, confidence, and status. detected lists the present labels in declaration order. The overall status is review when any label is below minConfidence.',
+      ),
+    ],
+  ]);
+  const test = `import { ${functionName} } from '../../recipes/${id}/index.js';
+import { testLabels } from './helpers/labels.js';
+
+testLabels(${functionName}, { text: 'Could you send the invoice today?' }, ['asksQuestion', 'requestsAction']);
+`;
+  return { files, test };
 };
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

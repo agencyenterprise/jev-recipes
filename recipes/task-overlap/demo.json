@@ -1,0 +1,12 @@
+{
+  "input": {
+    "firstTask": "Add input validation to the user registration form so that email and password fields show inline errors before submit.",
+    "secondTask": "Refactor the registration form to use the shared FormField component and wire up its built-in error display for every field.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.93 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

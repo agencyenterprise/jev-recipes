@@ -24,6 +24,10 @@
       "import": "./dist/catalog/index.js"
     },
     "./package.json": "./package.json",
+    "./action-compare": {
+      "types": "./dist/recipes/action-compare/index.d.ts",
+      "import": "./dist/recipes/action-compare/index.js"
+    },
     "./action-reversibility": {
       "types": "./dist/recipes/action-reversibility/index.d.ts",
       "import": "./dist/recipes/action-reversibility/index.js"
@@ -43,6 +47,14 @@
     "./answer-coverage": {
       "types": "./dist/recipes/answer-coverage/index.d.ts",
       "import": "./dist/recipes/answer-coverage/index.js"
+    },
+    "./answer-disclosures": {
+      "types": "./dist/recipes/answer-disclosures/index.d.ts",
+      "import": "./dist/recipes/answer-disclosures/index.js"
+    },
+    "./answer-grade": {
+      "types": "./dist/recipes/answer-grade/index.d.ts",
+      "import": "./dist/recipes/answer-grade/index.js"
     },
     "./answer-invalidation": {
       "types": "./dist/recipes/answer-invalidation/index.d.ts",
@@ -76,9 +88,17 @@
       "types": "./dist/recipes/breaking-change-signal/index.d.ts",
       "import": "./dist/recipes/breaking-change-signal/index.js"
     },
+    "./budget-fit": {
+      "types": "./dist/recipes/budget-fit/index.d.ts",
+      "import": "./dist/recipes/budget-fit/index.js"
+    },
     "./bug-report-completeness": {
       "types": "./dist/recipes/bug-report-completeness/index.d.ts",
       "import": "./dist/recipes/bug-report-completeness/index.js"
+    },
+    "./buying-intent": {
+      "types": "./dist/recipes/buying-intent/index.d.ts",
+      "import": "./dist/recipes/buying-intent/index.js"
     },
     "./cache-match": {
       "types": "./dist/recipes/cache-match/index.d.ts",
@@ -87,6 +107,10 @@
     "./cancellation-check": {
       "types": "./dist/recipes/cancellation-check/index.d.ts",
       "import": "./dist/recipes/cancellation-check/index.js"
+    },
+    "./category-fit": {
+      "types": "./dist/recipes/category-fit/index.d.ts",
+      "import": "./dist/recipes/category-fit/index.js"
     },
     "./causal-attribution": {
       "types": "./dist/recipes/causal-attribution/index.d.ts",
@@ -128,6 +152,14 @@
       "types": "./dist/recipes/clarify/index.d.ts",
       "import": "./dist/recipes/clarify/index.js"
     },
+    "./clause-conflict": {
+      "types": "./dist/recipes/clause-conflict/index.d.ts",
+      "import": "./dist/recipes/clause-conflict/index.js"
+    },
+    "./clause-kind": {
+      "types": "./dist/recipes/clause-kind/index.d.ts",
+      "import": "./dist/recipes/clause-kind/index.js"
+    },
     "./commit-message-fit": {
       "types": "./dist/recipes/commit-message-fit/index.d.ts",
       "import": "./dist/recipes/commit-message-fit/index.js"
@@ -140,6 +172,10 @@
       "types": "./dist/recipes/confirmation-match/index.d.ts",
       "import": "./dist/recipes/confirmation-match/index.js"
     },
+    "./consent-request": {
+      "types": "./dist/recipes/consent-request/index.d.ts",
+      "import": "./dist/recipes/consent-request/index.js"
+    },
     "./constraint-strength": {
       "types": "./dist/recipes/constraint-strength/index.d.ts",
       "import": "./dist/recipes/constraint-strength/index.js"
@@ -151,6 +187,10 @@
     "./correction-target": {
       "types": "./dist/recipes/correction-target/index.d.ts",
       "import": "./dist/recipes/correction-target/index.js"
+    },
+    "./delegation-fit": {
+      "types": "./dist/recipes/delegation-fit/index.d.ts",
+      "import": "./dist/recipes/delegation-fit/index.js"
     },
     "./document-role": {
       "types": "./dist/recipes/document-role/index.d.ts",
@@ -188,6 +228,10 @@
       "types": "./dist/recipes/evidence-strength/index.d.ts",
       "import": "./dist/recipes/evidence-strength/index.js"
     },
+    "./explanation-level": {
+      "types": "./dist/recipes/explanation-level/index.d.ts",
+      "import": "./dist/recipes/explanation-level/index.js"
+    },
     "./extraction-fidelity": {
       "types": "./dist/recipes/extraction-fidelity/index.d.ts",
       "import": "./dist/recipes/extraction-fidelity/index.js"
@@ -199,6 +243,10 @@
     "./failure-kind": {
       "types": "./dist/recipes/failure-kind/index.d.ts",
       "import": "./dist/recipes/failure-kind/index.js"
+    },
+    "./feedback-actionability": {
+      "types": "./dist/recipes/feedback-actionability/index.d.ts",
+      "import": "./dist/recipes/feedback-actionability/index.js"
     },
     "./feedback-kind": {
       "types": "./dist/recipes/feedback-kind/index.d.ts",
@@ -240,6 +288,10 @@
       "types": "./dist/recipes/handoff/index.d.ts",
       "import": "./dist/recipes/handoff/index.js"
     },
+    "./handoff-completeness": {
+      "types": "./dist/recipes/handoff-completeness/index.d.ts",
+      "import": "./dist/recipes/handoff-completeness/index.js"
+    },
     "./incident-match": {
       "types": "./dist/recipes/incident-match/index.d.ts",
       "import": "./dist/recipes/incident-match/index.js"
@@ -247,6 +299,10 @@
     "./injection-signal": {
       "types": "./dist/recipes/injection-signal/index.d.ts",
       "import": "./dist/recipes/injection-signal/index.js"
+    },
+    "./instruction-clarity": {
+      "types": "./dist/recipes/instruction-clarity/index.d.ts",
+      "import": "./dist/recipes/instruction-clarity/index.js"
     },
     "./instruction-conflict": {
       "types": "./dist/recipes/instruction-conflict/index.d.ts",
@@ -268,9 +324,17 @@
       "types": "./dist/recipes/issue-recurrence/index.d.ts",
       "import": "./dist/recipes/issue-recurrence/index.js"
     },
+    "./job-post-facets": {
+      "types": "./dist/recipes/job-post-facets/index.d.ts",
+      "import": "./dist/recipes/job-post-facets/index.js"
+    },
     "./length-fit": {
       "types": "./dist/recipes/length-fit/index.d.ts",
       "import": "./dist/recipes/length-fit/index.js"
+    },
+    "./listing-compare": {
+      "types": "./dist/recipes/listing-compare/index.d.ts",
+      "import": "./dist/recipes/listing-compare/index.js"
     },
     "./memory-relation": {
       "types": "./dist/recipes/memory-relation/index.d.ts",
@@ -288,13 +352,29 @@
       "types": "./dist/recipes/memory-value/index.d.ts",
       "import": "./dist/recipes/memory-value/index.js"
     },
+    "./message-facets": {
+      "types": "./dist/recipes/message-facets/index.d.ts",
+      "import": "./dist/recipes/message-facets/index.js"
+    },
     "./motivation-source": {
       "types": "./dist/recipes/motivation-source/index.d.ts",
       "import": "./dist/recipes/motivation-source/index.js"
     },
+    "./objection-kind": {
+      "types": "./dist/recipes/objection-kind/index.d.ts",
+      "import": "./dist/recipes/objection-kind/index.js"
+    },
+    "./objective-fit": {
+      "types": "./dist/recipes/objective-fit/index.d.ts",
+      "import": "./dist/recipes/objective-fit/index.js"
+    },
     "./outcome-framing": {
       "types": "./dist/recipes/outcome-framing/index.d.ts",
       "import": "./dist/recipes/outcome-framing/index.js"
+    },
+    "./passage-compare": {
+      "types": "./dist/recipes/passage-compare/index.d.ts",
+      "import": "./dist/recipes/passage-compare/index.js"
     },
     "./passage-duplicate": {
       "types": "./dist/recipes/passage-duplicate/index.d.ts",
@@ -328,9 +408,29 @@
       "types": "./dist/recipes/preference-kind/index.d.ts",
       "import": "./dist/recipes/preference-kind/index.js"
     },
+    "./priority-compare": {
+      "types": "./dist/recipes/priority-compare/index.d.ts",
+      "import": "./dist/recipes/priority-compare/index.js"
+    },
+    "./privacy-notice-facets": {
+      "types": "./dist/recipes/privacy-notice-facets/index.d.ts",
+      "import": "./dist/recipes/privacy-notice-facets/index.js"
+    },
+    "./product-match": {
+      "types": "./dist/recipes/product-match/index.d.ts",
+      "import": "./dist/recipes/product-match/index.js"
+    },
+    "./progress-stall": {
+      "types": "./dist/recipes/progress-stall/index.d.ts",
+      "import": "./dist/recipes/progress-stall/index.js"
+    },
     "./promise-check": {
       "types": "./dist/recipes/promise-check/index.d.ts",
       "import": "./dist/recipes/promise-check/index.js"
+    },
+    "./qualification-evidence": {
+      "types": "./dist/recipes/qualification-evidence/index.d.ts",
+      "import": "./dist/recipes/qualification-evidence/index.js"
     },
     "./query-equivalence": {
       "types": "./dist/recipes/query-equivalence/index.d.ts",
@@ -348,6 +448,10 @@
       "types": "./dist/recipes/question-leading/index.d.ts",
       "import": "./dist/recipes/question-leading/index.js"
     },
+    "./question-relevance": {
+      "types": "./dist/recipes/question-relevance/index.d.ts",
+      "import": "./dist/recipes/question-relevance/index.js"
+    },
     "./reference-resolve": {
       "types": "./dist/recipes/reference-resolve/index.d.ts",
       "import": "./dist/recipes/reference-resolve/index.js"
@@ -359,6 +463,10 @@
     "./reply-template-match": {
       "types": "./dist/recipes/reply-template-match/index.d.ts",
       "import": "./dist/recipes/reply-template-match/index.js"
+    },
+    "./report-facets": {
+      "types": "./dist/recipes/report-facets/index.d.ts",
+      "import": "./dist/recipes/report-facets/index.js"
     },
     "./requirement-testability": {
       "types": "./dist/recipes/requirement-testability/index.d.ts",
@@ -404,6 +512,10 @@
       "types": "./dist/recipes/review-comment-kind/index.d.ts",
       "import": "./dist/recipes/review-comment-kind/index.js"
     },
+    "./review-facets": {
+      "types": "./dist/recipes/review-facets/index.d.ts",
+      "import": "./dist/recipes/review-facets/index.js"
+    },
     "./route": {
       "types": "./dist/recipes/route/index.d.ts",
       "import": "./dist/recipes/route/index.js"
@@ -416,6 +528,14 @@
       "types": "./dist/recipes/sentiment-shift/index.d.ts",
       "import": "./dist/recipes/sentiment-shift/index.js"
     },
+    "./shipment-issue-kind": {
+      "types": "./dist/recipes/shipment-issue-kind/index.d.ts",
+      "import": "./dist/recipes/shipment-issue-kind/index.js"
+    },
+    "./slot-fit": {
+      "types": "./dist/recipes/slot-fit/index.d.ts",
+      "import": "./dist/recipes/slot-fit/index.js"
+    },
     "./source-applicability": {
       "types": "./dist/recipes/source-applicability/index.d.ts",
       "import": "./dist/recipes/source-applicability/index.js"
@@ -423,6 +543,10 @@
     "./spam-signal": {
       "types": "./dist/recipes/spam-signal/index.d.ts",
       "import": "./dist/recipes/spam-signal/index.js"
+    },
+    "./stage-evidence": {
+      "types": "./dist/recipes/stage-evidence/index.d.ts",
+      "import": "./dist/recipes/stage-evidence/index.js"
     },
     "./step-complete": {
       "types": "./dist/recipes/step-complete/index.d.ts",
@@ -451,6 +575,10 @@
     "./task-duplicate": {
       "types": "./dist/recipes/task-duplicate/index.d.ts",
       "import": "./dist/recipes/task-duplicate/index.js"
+    },
+    "./task-overlap": {
+      "types": "./dist/recipes/task-overlap/index.d.ts",
+      "import": "./dist/recipes/task-overlap/index.js"
     },
     "./ticket-match": {
       "types": "./dist/recipes/ticket-match/index.d.ts",

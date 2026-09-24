@@ -1,0 +1,85 @@
+# Check an item against its category
+
+<!-- BEGIN GENERATED: usage -->
+
+Does the product described by item belong under category as defined?
+
+Use when: You need to audit catalog placements or gate seller-submitted listings so items do not land in the wrong category.
+
+Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
+
+```ts
+import { categoryFit } from 'jev-recipes/category-fit';
+
+const result = await categoryFit({
+  item: 'Replacement HEPA filter for the AirPure 300 series purifier. Two-pack, captures 99.97% of particles down to 0.3 microns. Compatible with models AP-300, AP-310, and AP-320.',
+  category:
+    'Air Purifiers: standalone air purifying appliances for home or office use. Excludes replacement filters, parts, and accessories, which belong under Air Purifier Accessories.',
+  minConfidence: 0.8,
+});
+console.log(result);
+```
+
+Try the saved example without an API key: `npx jev-recipes demo category-fit`.
+
+<details>
+<summary>Illustrative result from the offline fixture</summary>
+
+```json
+{
+  "model": "demo-fixture",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0
+  },
+  "status": "ready",
+  "probability": 0.04,
+  "confidence": 0.96,
+  "verdict": "misfiled"
+}
+```
+
+This saved response illustrates behavior; it is not a model accuracy measurement.
+
+</details>
+
+Related recipes:
+
+- [`document-role`](../document-role/README.md): Use document-role to classify what kind of document a text is rather than where a product belongs.
+- [`route`](../route/README.md): Use route to pick the best category from several candidates instead of checking one.
+
+<!-- END GENERATED: usage -->
+
+## Input
+
+<!-- BEGIN GENERATED: input -->
+
+| Field           | Required | Shape                        |
+| --------------- | -------- | ---------------------------- |
+| `item`          | Yes      | string                       |
+| `category`      | Yes      | string                       |
+| `minConfidence` | No       | number; minimum 0; maximum 1 |
+
+This table is generated from the input schema. Additional text, uniqueness, and policy checks are described below and in the shared options.
+
+<!-- END GENERATED: input -->
+
+See [shared options and behavior](../README.md#shared-options-and-behavior) for client configuration, validation, and errors. Types are inferred from this folder's Zod 4 schemas.
+
+## Result
+
+`verdict` is `fits` when Jev's yes probability is at least 0.5 and `misfiled` otherwise. `probability` is that yes probability. `confidence` is the probability of the chosen side, so a 0.1 yes probability yields `misfiled` with 0.9 confidence.
+
+A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `review`. Treat a review result as unknown and queue the item for a human check rather than moving it automatically.
+
+## Reuse and calls
+
+Uses the shared gate helper, a single yes/no question. This folder owns the question wording, the outcome descriptions, and the review policy. A live invocation makes one logical Jev request.
+
+## Limits
+
+The recipe checks one item against one category definition. A `misfiled` verdict says the item does not belong there, not where it does belong; use [`route`](../route/README.md) to choose among candidate categories. The judgment is only as sharp as the definition supplied in `category`, so include the inclusions and exclusions that matter, especially for accessories and parts. It reads the item description as given and cannot detect a description that misstates the product.
+
+## Example input
+
+[demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo category-fit` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe category-fit` to inspect the input and result schemas.

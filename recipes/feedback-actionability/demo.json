@@ -1,0 +1,18 @@
+{
+  "input": {
+    "feedback": "Your introduction buries the thesis in the fourth sentence, so a reader does not know what you are arguing until the paragraph is almost over. Move the thesis to the first or second sentence. For example, open with 'Remote work raised productivity for knowledge workers but widened the gap for new hires,' then use the rest of the paragraph to preview your three sections.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.84,
+        "confidence": 0.88,
+        "probabilities": { "0": 0.0, "1": 0.01, "2": 0.02, "3": 0.09, "4": 0.88 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

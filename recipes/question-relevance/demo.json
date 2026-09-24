@@ -1,0 +1,12 @@
+{
+  "input": {
+    "question": "You mentioned you have young kids. How would you handle the on-call rotation, and do you plan to have more children in the next couple of years?",
+    "role": "Site Reliability Engineer. Requirements: 3+ years running production services, experience with incident response, participation in a weekly on-call rotation, strong Linux and networking fundamentals.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.05 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "input": {
+    "message": "Thanks for the proposal. Honestly the numbers came in well above what we budgeted for this year, so unless there is room to move on the per-seat rate I don't think we can make it work.",
+    "context": "Reply from a prospect after receiving a quote for 25 seats."
+  },
+  "response": {
+    "model": "demo-fixture",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "price",
+        "confidence": 0.9,
+        "probabilities": {
+          "price": 0.9,
+          "timing": 0.05,
+          "authority": 0.01,
+          "need": 0.01,
+          "trust": 0.01,
+          "competitor": 0.01,
+          "none": 0,
+          "unclear": 0.01
+        }
+      }
+    }
+  }
+}

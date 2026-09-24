@@ -1,0 +1,17 @@
+{
+  "input": {
+    "message": "Following up on ticket 4821: the export still fails with a timeout. Can you escalate this? We need it working before our board meeting on Friday.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "asksQuestion": { "type": "noul", "noul": 0.86 },
+      "reportsProblem": { "type": "noul", "noul": 0.97 },
+      "requestsAction": { "type": "noul", "noul": 0.95 },
+      "statesDeadline": { "type": "noul", "noul": 0.93 },
+      "referencesPriorContact": { "type": "noul", "noul": 0.96 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

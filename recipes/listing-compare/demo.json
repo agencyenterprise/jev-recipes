@@ -1,0 +1,26 @@
+{
+  "input": {
+    "request": "Wireless over-ear headphones with active noise cancelling and at least 30 hours of battery. Must fold flat for travel.",
+    "firstListing": "AeroSound X3 over-ear wireless headphones. Hybrid active noise cancelling, 40-hour battery, foldable design with travel case. Bluetooth 5.3.",
+    "secondListing": "PulseBeat Studio wired over-ear headphones. Passive noise isolation, detachable 3 m cable, rigid headband. Studio-grade 50 mm drivers.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "first",
+        "confidence": 0.93,
+        "probabilities": {
+          "first": 0.93,
+          "second": 0.01,
+          "tie": 0.01,
+          "neither": 0.03,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

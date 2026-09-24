@@ -1,0 +1,17 @@
+{
+  "input": {
+    "report": "Migrated 4 of the 6 legacy endpoints to the new router; all 38 tests in tests/api pass (run log attached). The remaining two endpoints depend on the auth middleware rewrite, which is still blocked on the token format decision from the platform team. Next I will stub the middleware so the last two endpoints can be migrated behind a feature flag.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesOutcome": { "type": "noul", "noul": 0.95 },
+      "providesEvidence": { "type": "noul", "noul": 0.88 },
+      "statesBlockers": { "type": "noul", "noul": 0.91 },
+      "statesNextStep": { "type": "noul", "noul": 0.93 },
+      "raisesQuestions": { "type": "noul", "noul": 0.12 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

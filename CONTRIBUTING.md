@@ -40,7 +40,7 @@ Tests remain outside recipe folders. Production builds exclude tests, and packag
 
 ## Add a recipe
 
-1. Run `make new RECIPE=my-recipe`, adding `KIND=score` for an ordered rubric or `KIND=gate` for a yes/no question. The default kind is `choice`. This creates the five recipe files and `tests/recipe/my-recipe.test.ts`, wired to the matching shared helper and test helper. The starter is a generic requirement check; replace it with the intended decision before contributing it.
+1. Run `make new RECIPE=my-recipe`, adding `KIND=score` for an ordered rubric, `KIND=gate` for a yes/no question, `KIND=comparison` for a first/second/tie/neither choice between two candidates, or `KIND=labels` for several independent yes/no labels in one call. The default kind is `choice`. This creates the five recipe files and `tests/recipe/my-recipe.test.ts`, wired to the matching shared helper and test helper. The starter is a generic requirement check; replace it with the intended decision before contributing it.
 2. Define inputs and results in `schema.ts` using Zod. Infer types from those schemas. Keep defaults, instructions, and decision rules in `index.ts`.
 3. Export one recipe function, one schema whose name ends in `InputSchema`, and one ending in `ResultSchema` from `index.ts`. Export its public types there too. Keep kebab-case recipe IDs and camelCase functions.
 4. Complete `metadata.ts`, `demo.json`, and the author-maintained parts of `README.md`.
@@ -65,6 +65,8 @@ Keep descriptions concrete enough that a developer can choose between similar re
 | `related`     | `{ id, reason }` alternatives explaining when to use another recipe; may be empty |
 | `limitations` | What the decision does not establish                                              |
 | `uses`        | IDs of recipes imported at runtime; omit when none                                |
+
+Generation also rejects near-duplicate recipes: two recipes whose title, description, and `useWhen` wording overlap heavily, or that share identical input fields and outcome labels with noticeably similar wording. Sharpen the description toward the specific decision, or merge the recipes. The thresholds live in [scripts/lib/distinct.mjs](scripts/lib/distinct.mjs).
 
 `useWhen` and `related` are required by the authoring checks. They are optional in the public metadata schema to keep older metadata objects valid. References must resolve, dependencies must match imports, and dependency cycles are rejected. Related recipes are navigation links, not execution dependencies.
 

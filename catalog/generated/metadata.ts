@@ -2,6 +2,30 @@
 import type { CatalogRecipe } from '../index.js';
 export const recipeMetadata: CatalogRecipe[] = [
   {
+    id: 'action-compare',
+    title: 'Compare two candidate actions',
+    description: 'Which of firstAction and secondAction better advances goal within constraints?',
+    category: 'workflow',
+    tags: ['agent', 'planning', 'comparison', 'pairwise', 'action', 'decision'],
+    limitations: [
+      'Compares two described actions. It does not execute, simulate, or authorize either one.',
+      'Constraints are judged as written; permissions and safety rules belong in application code.',
+    ],
+    useWhen:
+      'An agent has narrowed to two next steps and needs a head-to-head preference under the stated goal and constraints.',
+    related: [
+      {
+        id: 'choose-action',
+        reason: 'Use choose-action to select one action from a longer list of candidates.',
+      },
+      {
+        id: 'action-scope',
+        reason:
+          'Use action-scope to check whether a single action stays within the requested work.',
+      },
+    ],
+  },
+  {
     id: 'action-reversibility',
     title: 'Grade action reversibility',
     description:
@@ -99,6 +123,58 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'answer-relevance',
         reason:
           'Use answer-relevance to assess how directly the draft addresses the overall request.',
+      },
+    ],
+  },
+  {
+    id: 'answer-disclosures',
+    title: 'Label the disclosures in an answer',
+    description:
+      'Which of these does draft include: stated uncertainty, stated limitations, cited sources, stated assumptions?',
+    category: 'answer-quality',
+    tags: ['answer-quality', 'disclosure', 'labels', 'multi-label', 'transparency', 'evaluation'],
+    limitations: [
+      'Detects that a disclosure is present, not that it is accurate or sufficient.',
+      'A cited source is detected by attribution wording. Verify the source exists in code.',
+    ],
+    useWhen:
+      'You need to audit or gate model answers on transparency habits in a single call, for evaluation sets or response policies.',
+    related: [
+      {
+        id: 'uncertainty-expression',
+        reason: 'Use uncertainty-expression to grade how certain a single claim sounds.',
+      },
+      {
+        id: 'citation-needed',
+        reason:
+          'Use citation-needed to decide whether a statement requires evidence under your rules.',
+      },
+    ],
+  },
+  {
+    id: 'answer-grade',
+    title: 'Grade an answer against a rubric',
+    description:
+      'How well does answer meet rubric as a response to question, on a five-level rubric from no credit to full credit?',
+    category: 'answer-quality',
+    tags: ['education', 'grading', 'rubric', 'assessment', 'score'],
+    limitations: [
+      'Grades against the supplied rubric only. A vague rubric yields a vague grade.',
+      'Does not check factual accuracy beyond what the rubric states; a confidently wrong answer can meet a weak rubric.',
+      'The score is an expected value over levels. Map it to points or letters in application code.',
+    ],
+    useWhen:
+      'You grade free-text answers against a written rubric and want a graded level with a confidence you can route to a human grader when low.',
+    related: [
+      {
+        id: 'draft-compare',
+        reason:
+          'Use draft-compare to rank two answers against the same rubric instead of grading one.',
+      },
+      {
+        id: 'grounding-level',
+        reason:
+          'Use grounding-level when the criterion is fidelity to a source passage rather than a rubric.',
       },
     ],
   },
@@ -278,6 +354,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'budget-fit',
+    title: 'Check plan against budget',
+    description:
+      'Does plan, as described, plausibly fit within budget, the stated limits on steps, time, cost, or calls?',
+    category: 'workflow',
+    tags: ['agent', 'planning', 'budget', 'limits', 'gate'],
+    limitations: [
+      'A semantic estimate from the plan and budget as written, not a measurement. Enforce hard limits in code.',
+      'Reports that the plan plausibly fits or exceeds, not by how much or which step to cut.',
+    ],
+    useWhen:
+      'You need a yes/no check before an agent starts executing a plan under a step, time, cost, or call limit, so it can trim or ask instead of running out midway.',
+    related: [
+      {
+        id: 'task-complexity',
+        reason:
+          'Use task-complexity to size a task on a rubric before a budget exists, rather than checking a plan against a stated one.',
+      },
+      {
+        id: 'plan-completeness',
+        reason:
+          'Use plan-completeness to check that the plan covers its goal; a plan can fit the budget by leaving work out.',
+      },
+    ],
+  },
+  {
     id: 'bug-report-completeness',
     title: 'Grade bug report completeness',
     description:
@@ -300,6 +402,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'requirement-testability',
         reason:
           'Use requirement-testability to check whether a described expected behavior can be verified.',
+      },
+    ],
+  },
+  {
+    id: 'buying-intent',
+    title: 'Grade buying intent',
+    description: 'How strong is the purchase intent expressed in message, on a five-level rubric?',
+    category: 'conversation',
+    tags: ['sales', 'crm', 'intent', 'lead', 'qualification'],
+    limitations: [
+      'Grades expressed intent only. It does not estimate budget, authority, or whether the deal will close.',
+      'The score is an expected value over rubric levels. Application code chooses routing cutoffs.',
+    ],
+    useWhen:
+      'You need to rank or route inbound leads and replies by how close the sender is to buying, not just whether they are interested.',
+    related: [
+      {
+        id: 'turn-intent',
+        reason:
+          'Use turn-intent to classify the communicative purpose of a message outside a sales context.',
+      },
+      {
+        id: 'commitment-strength',
+        reason: 'Use commitment-strength to grade how firmly a message commits to a stated action.',
       },
     ],
   },
@@ -335,6 +461,31 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'intent-change',
         reason: 'Use intent-change to assess broader changes to the current goal.',
+      },
+    ],
+  },
+  {
+    id: 'category-fit',
+    title: 'Check an item against its category',
+    description: 'Does the product described by item belong under category as defined?',
+    category: 'knowledge',
+    tags: ['catalog', 'taxonomy', 'classification', 'e-commerce', 'data-quality'],
+    limitations: [
+      'Checks one item against one category definition. It does not say which category the item belongs in instead.',
+      'The judgment depends on the supplied definition, so a vague category description yields vague results.',
+    ],
+    useWhen:
+      'You need to audit catalog placements or gate seller-submitted listings so items do not land in the wrong category.',
+    related: [
+      {
+        id: 'document-role',
+        reason:
+          'Use document-role to classify what kind of document a text is rather than where a product belongs.',
+      },
+      {
+        id: 'route',
+        reason:
+          'Use route to pick the best category from several candidates instead of checking one.',
       },
     ],
   },
@@ -600,6 +751,57 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'clause-conflict',
+    title: 'Detect conflicting clauses',
+    description:
+      'Do firstClause and secondClause impose requirements that cannot both be satisfied?',
+    category: 'knowledge',
+    tags: ['contracts', 'legal', 'conflict', 'consistency', 'compliance'],
+    limitations: [
+      'Judges whether both clauses can be satisfied as written. It is not legal advice and does not decide which clause prevails, whether a precedence rule applies, or how a court would read them.',
+      'Compares two clauses in isolation. Definitions or exceptions elsewhere in the document are unknown unless included in the clause text.',
+    ],
+    useWhen:
+      'You need a yes/no check that two clauses from a contract, policy set, or amendment can both be honored before flagging them for review.',
+    related: [
+      {
+        id: 'instruction-conflict',
+        reason:
+          'Use instruction-conflict to compare two operational instructions rather than contract or policy clauses, with a separate different-scope outcome.',
+      },
+      {
+        id: 'evidence-conflict',
+        reason:
+          'Use evidence-conflict to check whether two factual statements contradict each other rather than whether two requirements can both be met.',
+      },
+    ],
+  },
+  {
+    id: 'clause-kind',
+    title: 'Classify contract clause kind',
+    description: 'What does clause primarily do?',
+    category: 'knowledge',
+    tags: ['contracts', 'legal', 'clause', 'classification', 'compliance'],
+    limitations: [
+      'Classifies the operative effect of the clause as written. It is not legal advice and does not establish whether the clause is enforceable or which party it favors.',
+      'A clause that mixes effects is graded by its primary one. Split compound clauses in code when each part matters.',
+    ],
+    useWhen:
+      'You need to sort contract or policy clauses by what they do so obligations and prohibitions can be tracked separately from rights and definitions.',
+    related: [
+      {
+        id: 'constraint-strength',
+        reason:
+          'Use constraint-strength to grade how binding a single stated constraint is rather than what kind of clause it is.',
+      },
+      {
+        id: 'document-role',
+        reason:
+          'Use document-role to classify the purpose of a whole document rather than one clause.',
+      },
+    ],
+  },
+  {
     id: 'commit-message-fit',
     title: 'Check commit message accuracy',
     description:
@@ -664,6 +866,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'cancellation-check',
         reason: 'Use cancellation-check to assess instructions to stop or pause a task.',
+      },
+    ],
+  },
+  {
+    id: 'consent-request',
+    title: 'Detect an explicit consent request',
+    description:
+      'Does text explicitly ask the reader for agreement or permission before something proceeds?',
+    category: 'conversation',
+    tags: ['consent', 'compliance', 'privacy', 'wording', 'gate'],
+    limitations: [
+      'Detects that agreement is asked for, not whether the request is clear, specific, or freely given enough to count as valid consent under any law.',
+      'Judges the supplied text alone. It does not know whether the action was in fact gated on the answer.',
+    ],
+    useWhen:
+      'You need a yes/no check that a message, prompt, or notice actually asks for consent instead of announcing or assuming it before an action proceeds.',
+    related: [
+      {
+        id: 'confirmation-match',
+        reason:
+          'Use confirmation-match to check whether a reply actually grants the consent that was requested.',
+      },
+      {
+        id: 'promise-check',
+        reason:
+          'Use promise-check to detect commitments the text makes to the reader rather than permission it asks of them.',
       },
     ],
   },
@@ -733,6 +961,31 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'reference-resolve',
         reason: 'Use reference-resolve for references that are not corrections.',
+      },
+    ],
+  },
+  {
+    id: 'delegation-fit',
+    title: 'Check delegation fit',
+    description: 'Does subtask fall within the capabilities described for the delegate?',
+    category: 'workflow',
+    tags: ['agent', 'delegation', 'capabilities', 'routing', 'multi-agent'],
+    limitations: [
+      'Judges fit against the capabilities as written. Abilities the delegate has but the description omits count as missing.',
+      'Reports whether the subtask is within scope, not whether the delegate would do it well or how long it would take.',
+    ],
+    useWhen:
+      'You need a yes/no check before handing a subtask to a specific sub-agent or worker whose tools, access, or permissions are described in text.',
+    related: [
+      {
+        id: 'tool-fit',
+        reason:
+          'Use tool-fit to check whether a single tool matches a request, rather than whether a whole subtask matches a delegate.',
+      },
+      {
+        id: 'route',
+        reason:
+          'Use route to choose among several named delegates at once when more than one might fit.',
       },
     ],
   },
@@ -961,6 +1214,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'explanation-level',
+    title: 'Grade shown reasoning',
+    description:
+      'How much reasoning does answer show for its conclusion to question, on a five-level rubric from bare conclusion to rigorous chain?',
+    category: 'answer-quality',
+    tags: ['education', 'reasoning', 'explanation', 'assessment', 'score'],
+    limitations: [
+      'Grades the visible reasoning, not its correctness; a complete chain can rest on a false premise.',
+      'Rewards shown steps, so a correct one-line answer to a trivial question grades bare.',
+      'The score is an expected value over levels. Application code chooses cutoffs.',
+    ],
+    useWhen:
+      'You assess whether students or assistants showed their work, separately from whether the final answer is right.',
+    related: [
+      {
+        id: 'answer-relevance',
+        reason: 'Use answer-relevance to check that the answer addresses the question at all.',
+      },
+      {
+        id: 'certainty-match',
+        reason:
+          'Use certainty-match to check whether the confidence expressed fits the reasoning given.',
+      },
+    ],
+  },
+  {
     id: 'extraction-fidelity',
     title: 'Grade extraction fidelity',
     description:
@@ -1019,6 +1298,33 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'result-outcome',
         reason: 'Use result-outcome when first determining what a result reports.',
+      },
+    ],
+  },
+  {
+    id: 'feedback-actionability',
+    title: 'Grade feedback actionability',
+    description:
+      'How actionable is feedback for its recipient, on a five-level rubric from no direction to a specific change with reason and example?',
+    category: 'answer-quality',
+    tags: ['education', 'feedback', 'review', 'coaching', 'score'],
+    limitations: [
+      'Grades clarity of direction, not whether the advice is correct or appropriate.',
+      'Judges the feedback text alone; it cannot see the work being reviewed.',
+      'The score is an expected value over levels. Application code chooses cutoffs.',
+    ],
+    useWhen:
+      'You review teacher comments, code review notes, or peer feedback before delivery and want to flag items the recipient could not act on.',
+    related: [
+      {
+        id: 'requirement-testability',
+        reason:
+          'Use requirement-testability to check whether a stated requirement can be verified.',
+      },
+      {
+        id: 'tone-check',
+        reason:
+          'Use tone-check to judge the wording of the same feedback against writing criteria.',
       },
     ],
   },
@@ -1232,6 +1538,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'handoff-completeness',
+    title: 'Grade handoff completeness',
+    description:
+      'How ready is item, a work description being handed to another agent or person, to be picked up without asking questions, on a five-level rubric?',
+    category: 'workflow',
+    tags: ['agent', 'delegation', 'handoff', 'completeness', 'multi-agent'],
+    limitations: [
+      'Grades what the item states, not whether the stated goal is correct, feasible, or worth doing.',
+      'Cannot know what the recipient already knows, so shared context that is not written into the item counts as missing.',
+      'The score is an expected value over rubric levels. Application code chooses the level at which to hand off.',
+    ],
+    useWhen:
+      'You need to grade a task description before delegating it, so an orchestrator can enrich it or ask for missing pieces instead of handing off something a worker will bounce back.',
+    related: [
+      {
+        id: 'plan-completeness',
+        reason:
+          'Use plan-completeness to grade whether a plan covers its goal, rather than whether a single work item is ready to hand off.',
+      },
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify to find the specific missing requirements once an item grades below complete.',
+      },
+    ],
+  },
+  {
     id: 'incident-match',
     title: 'Match a known incident',
     description: 'Which supplied incident is supported as a match for ticket?',
@@ -1265,6 +1598,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'instruction-conflict',
         reason: 'Use instruction-conflict when two legitimate instructions may disagree.',
+      },
+    ],
+  },
+  {
+    id: 'instruction-clarity',
+    title: 'Grade instruction clarity',
+    description:
+      'How unambiguous is instruction for a delegate who has only context, on a five-level rubric?',
+    category: 'workflow',
+    tags: ['agent', 'delegation', 'instruction', 'clarity', 'score'],
+    limitations: [
+      "Grades ambiguity from the delegate's point of view using only instruction and context. It cannot know what the delegate already knows unless context says so.",
+      "Reports how clear the instruction is, not whether the instructed work is sensible, safe, or within the delegate's abilities.",
+    ],
+    useWhen:
+      'You need to grade an instruction before sending it to a sub-agent or teammate, so an orchestrator can rewrite it or ask a question instead of letting the delegate guess.',
+    related: [
+      {
+        id: 'query-specificity',
+        reason:
+          'Use query-specificity to grade how narrowly a search query pins down what is wanted, rather than how clearly an instruction directs work.',
+      },
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify to list the specific questions a delegate would need answered when the instruction grades below clear.',
       },
     ],
   },
@@ -1382,6 +1741,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'job-post-facets',
+    title: 'Label what a job posting states',
+    description:
+      'Which of these does posting state: salary or range, work location, remote policy, experience level, required qualifications?',
+    category: 'workflow',
+    tags: ['recruiting', 'job-posting', 'labels', 'multi-label', 'completeness'],
+    limitations: [
+      'Labels report that a facet is stated, not its value. Extract the salary or location in code.',
+      'Labels are independent, so a posting can carry several or none.',
+      'Does not judge whether the stated details are lawful or accurate for the jurisdiction.',
+    ],
+    useWhen:
+      'You check job postings for completeness before publishing, or normalize scraped postings into structured fields.',
+    related: [
+      {
+        id: 'clarify',
+        reason: 'Use clarify to list which required details are missing or ambiguous in free text.',
+      },
+      {
+        id: 'requirement-testability',
+        reason:
+          'Use requirement-testability to check whether a stated qualification can be verified.',
+      },
+    ],
+  },
+  {
     id: 'length-fit',
     title: 'Check response length fit',
     description: 'Is the length and detail of response proportionate to what request asks for?',
@@ -1402,6 +1787,30 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'answer-relevance',
         reason: 'Use answer-relevance to check that the response addresses the question at all.',
+      },
+    ],
+  },
+  {
+    id: 'listing-compare',
+    title: 'Compare two listings for a request',
+    description: 'Which of firstListing and secondListing better satisfies request?',
+    category: 'knowledge',
+    tags: ['e-commerce', 'catalog', 'comparison', 'pairwise', 'product', 'ranking'],
+    limitations: [
+      'Compares two listings only. Order is declared irrelevant, but run both orders when calibrating.',
+      'Judges fit to the request from listing text alone, not price competitiveness, stock, or seller reputation unless the request asks about them.',
+    ],
+    useWhen:
+      'You need a head-to-head preference between two product listings for a shopper request, for tie-breaking, recommendation evaluation, or ranker calibration.',
+    related: [
+      {
+        id: 'passage-compare',
+        reason:
+          'Use passage-compare for the same pairwise judgment over text passages and a question.',
+      },
+      {
+        id: 'rerank',
+        reason: 'Use rerank to score many listings independently against one request.',
       },
     ],
   },
@@ -1499,6 +1908,30 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'message-facets',
+    title: 'Label the facets of a message',
+    description:
+      'Which of these does message do: ask a question, report a problem, request an action, state a deadline, reference prior contact?',
+    category: 'support',
+    tags: ['support', 'triage', 'labels', 'multi-label', 'intake', 'facets'],
+    limitations: [
+      'Labels are independent, so a message can carry several or none.',
+      'Deadline detection reports that a deadline is stated. Parse the actual date in code.',
+    ],
+    useWhen:
+      'You need several independent yes/no labels on an incoming message in one call, for triage rules or form pre-fill.',
+    related: [
+      {
+        id: 'turn-intent',
+        reason: 'Use turn-intent when you need the single primary purpose of a message.',
+      },
+      {
+        id: 'urgency-signal',
+        reason: 'Use urgency-signal to detect an explicit request for urgent attention.',
+      },
+    ],
+  },
+  {
     id: 'motivation-source',
     title: 'Identify a stated source of motivation',
     description:
@@ -1541,6 +1974,56 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'objection-kind',
+    title: 'Classify sales objection kind',
+    description: 'What primary sales objection does message raise?',
+    category: 'conversation',
+    tags: ['sales', 'crm', 'objection', 'classification', 'deal', 'triage'],
+    limitations: [
+      'Classifies the primary objection the message states. A reply that mixes several objections is graded by the one it leads with, and stated reasons may not be the real ones.',
+    ],
+    useWhen:
+      'You need to tag prospect replies by objection so reps get the right playbook and pipeline reports show why deals stall.',
+    related: [
+      {
+        id: 'feedback-kind',
+        reason:
+          'Use feedback-kind to classify general product or service feedback from existing users.',
+      },
+      {
+        id: 'constraint-strength',
+        reason: 'Use constraint-strength to grade how binding a stated requirement or limit is.',
+      },
+    ],
+  },
+  {
+    id: 'objective-fit',
+    title: 'Check question alignment to a learning objective',
+    description:
+      'Does question assess the skill or knowledge stated in objective, rather than something adjacent?',
+    category: 'answer-quality',
+    tags: ['education', 'assessment', 'alignment', 'learning-objective', 'questions'],
+    limitations: [
+      'Judges alignment only; an aligned question can still be too easy, too hard, or ambiguous.',
+      'Depends on how precisely objective states the skill and cognitive level.',
+      'Does not check whether the question has a correct answer or whether its answer key is right.',
+    ],
+    useWhen:
+      'You generate or review quiz and exam items and want to catch questions that test recall or a neighboring topic instead of the stated objective.',
+    related: [
+      {
+        id: 'instruction-fit',
+        reason:
+          'Use instruction-fit to check whether a written instruction covers a given task and context.',
+      },
+      {
+        id: 'query-specificity',
+        reason:
+          'Use query-specificity to check whether a question identifies a focused information need.',
+      },
+    ],
+  },
+  {
     id: 'outcome-framing',
     title: 'Identify gain and loss framing',
     description:
@@ -1576,6 +2059,29 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'choose-action',
         reason:
           'Use choose-action to select among supplied eligible actions; outcome-framing only labels wording.',
+      },
+    ],
+  },
+  {
+    id: 'passage-compare',
+    title: 'Compare two passages for a question',
+    description: 'Which of firstPassage and secondPassage better helps answer question?',
+    category: 'retrieval',
+    tags: ['retrieval', 'comparison', 'pairwise', 'passage', 'ranking', 'evaluation'],
+    limitations: [
+      'Compares two passages only. Order is declared irrelevant, but run both orders when calibrating.',
+      'Judges helpfulness for the question, not the factual accuracy of either passage.',
+    ],
+    useWhen:
+      'You need a head-to-head preference between two retrieved passages, for tie-breaking, evaluation data, or reranker calibration.',
+    related: [
+      {
+        id: 'rerank',
+        reason: 'Use rerank to score many passages independently against one query.',
+      },
+      {
+        id: 'context-role',
+        reason: 'Use context-role to label what one passage contributes to a question.',
       },
     ],
   },
@@ -1767,6 +2273,109 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'priority-compare',
+    title: 'Compare two tasks for priority',
+    description: 'Which of firstTask and secondTask should be done first under criteria?',
+    category: 'workflow',
+    tags: ['prioritization', 'planning', 'comparison', 'pairwise', 'workflow'],
+    limitations: [
+      'Orders two tasks under the criteria as written. It does not check that the criteria are sensible or complete, and it does not know about tasks outside the pair.',
+      'A neither verdict means the criteria rule both tasks out; it does not mean they are impossible or harmful.',
+    ],
+    useWhen:
+      'A planner or agent must order two competing tasks and the team has written down how priority should be decided.',
+    related: [
+      {
+        id: 'action-compare',
+        reason:
+          'Use action-compare to choose which of two next steps better advances a goal rather than which of two tasks to schedule first.',
+      },
+      {
+        id: 'task-dependency',
+        reason:
+          'Use task-dependency to establish whether one task must finish before the other can start, which is a hard ordering rather than a priority call.',
+      },
+    ],
+  },
+  {
+    id: 'privacy-notice-facets',
+    title: 'Label the statements in a privacy notice',
+    description:
+      'Which of these does notice state: what data is collected, why it is used, how long it is kept, who it is shared with, how to contact the controller?',
+    category: 'knowledge',
+    tags: ['privacy', 'compliance', 'notice', 'labels', 'multi-label'],
+    limitations: [
+      'Each label reports the presence of a statement, not its legal adequacy, accuracy, or compliance with any regulation.',
+      'Labels are independent, so a notice can carry several or none.',
+    ],
+    useWhen:
+      'You need several independent yes/no checks on a privacy notice in one call, to spot missing statements before a review or publication.',
+    related: [
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify to decide whether a request about the notice is too ambiguous to answer, rather than what the notice states.',
+      },
+      {
+        id: 'pii-presence',
+        reason:
+          'Use pii-presence to detect personal data in a text rather than statements about how personal data is handled.',
+      },
+    ],
+  },
+  {
+    id: 'product-match',
+    title: 'Check a listing against a request',
+    description:
+      'Does listing describe a product that satisfies what request asks for, including stated must-have attributes?',
+    category: 'knowledge',
+    tags: ['e-commerce', 'catalog', 'search', 'matching', 'product'],
+    limitations: [
+      'Judges the listing text against the request text. It cannot verify stock, price accuracy, or attributes the listing omits.',
+      'A listing silent on a required attribute is treated as mismatched, which favors precision over recall.',
+    ],
+    useWhen:
+      'You need a yes/no filter on search or recommendation results so shoppers only see listings that meet their stated requirements.',
+    related: [
+      {
+        id: 'rerank',
+        reason:
+          'Use rerank to order many listings by relevance to one query rather than gate each one.',
+      },
+      {
+        id: 'tool-fit',
+        reason:
+          'Use tool-fit for the analogous check of whether a tool satisfies a task description.',
+      },
+    ],
+  },
+  {
+    id: 'progress-stall',
+    title: 'Detect a stalled agent',
+    description:
+      'Does transcript, the recent agent steps, show the agent failing to make progress toward objective by repeating actions, circling, or reprocessing the same information?',
+    category: 'workflow',
+    tags: ['agent', 'monitoring', 'loop', 'stall', 'safety'],
+    limitations: [
+      'Judges the window of steps supplied in transcript. A loop longer than the window, or progress made before it, is invisible.',
+      'Reports that the agent is stalled, not why or what it should do instead. Interrupting, redirecting, or escalating is an application decision.',
+    ],
+    useWhen:
+      'You need a yes/no check on a running agent every few steps so a supervisor can interrupt a loop before it burns the remaining budget.',
+    related: [
+      {
+        id: 'repeated-attempt',
+        reason:
+          'Use repeated-attempt to check whether one new action is a retry of a specific earlier one, rather than whether a whole window of steps has stalled.',
+      },
+      {
+        id: 'step-progress',
+        reason:
+          'Use step-progress to grade how much a single observed result moved the objective forward.',
+      },
+    ],
+  },
+  {
     id: 'promise-check',
     title: 'Check reply commitments',
     description: 'Does reply promise actions or outcomes beyond allowedCommitments?',
@@ -1780,6 +2389,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'action-scope',
         reason: 'Use action-scope to check a proposed action against the requested work.',
+      },
+    ],
+  },
+  {
+    id: 'qualification-evidence',
+    title: 'Check evidence for a qualification',
+    description:
+      'Does profile contain concrete evidence that the candidate meets requirement, not just matching keywords?',
+    category: 'workflow',
+    tags: ['recruiting', 'hiring', 'screening', 'qualification', 'evidence'],
+    limitations: [
+      'Judges whether the profile describes evidence, not whether that evidence is true or verifiable.',
+      'One requirement per call. Loop over requirements or aggregate in application code.',
+      'A profile can be evidenced for a requirement and still be a poor fit overall; this is not a hiring decision.',
+    ],
+    useWhen:
+      'You screen resumes or candidate summaries against one requirement at a time and want to separate demonstrated experience from keyword matches.',
+    related: [
+      {
+        id: 'step-complete',
+        reason:
+          'Use step-complete for the general form: does evidence establish that a condition is met.',
+      },
+      {
+        id: 'verify',
+        reason: 'Use verify to check several candidate claims against paired evidence in one call.',
       },
     ],
   },
@@ -1905,6 +2540,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'question-relevance',
+    title: 'Check interview question relevance',
+    description:
+      'Does question ask only about matters relevant to the requirements of role, rather than personal circumstances unrelated to the work?',
+    category: 'workflow',
+    tags: ['recruiting', 'interview', 'screening', 'fairness', 'questions'],
+    limitations: [
+      'Not legal advice. Which topics are prohibited varies by jurisdiction and belongs in application policy.',
+      'Judges relevance to the stated role only; a relevant question can still be poorly worded or leading.',
+      'Cannot see how the interviewer will use the answer, only what the question asks.',
+    ],
+    useWhen:
+      'You generate or review screening and interview questions and want to flag ones that stray from the job into personal territory before they reach a candidate.',
+    related: [
+      {
+        id: 'question-leading',
+        reason:
+          'Use question-leading to check whether a question steers the candidate toward an answer.',
+      },
+      {
+        id: 'instruction-fit',
+        reason:
+          'Use instruction-fit to check whether a written policy or rubric covers a given task.',
+      },
+    ],
+  },
+  {
     id: 'reference-resolve',
     title: 'Resolve a reference',
     description: 'Which supplied candidate does reference refer to in message and context?',
@@ -1953,6 +2615,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     useWhen: 'You want to select a supplied approved reply template for a request.',
     related: [
       { id: 'route', reason: 'Use route to select a handler rather than a response template.' },
+    ],
+  },
+  {
+    id: 'report-facets',
+    title: 'Label the facets of a progress report',
+    description:
+      'Which of these does report include: an outcome statement, supporting evidence, blockers, a next step, open questions?',
+    category: 'workflow',
+    tags: ['agent', 'reporting', 'labels', 'multi-label', 'status'],
+    limitations: [
+      'Labels are independent, so a report can carry several or none.',
+      'Detects that a facet is present, not that it is accurate. Evidence can be cited and still be wrong.',
+    ],
+    useWhen:
+      'You need to check an agent progress report for the parts a supervisor expects before accepting it, routing it, or asking the agent to fill in what is missing.',
+    related: [
+      {
+        id: 'result-outcome',
+        reason:
+          'Use result-outcome to classify what a reported result actually was, once the report is known to state one.',
+      },
+      {
+        id: 'step-progress',
+        reason:
+          'Use step-progress to grade how far the reported work moved the objective, rather than what the report contains.',
+      },
     ],
   },
   {
@@ -2214,6 +2902,30 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'review-facets',
+    title: 'Label the aspects of a product review',
+    description:
+      'Which of these does review comment on: quality, price, shipping, service, or a defect?',
+    category: 'knowledge',
+    tags: ['e-commerce', 'reviews', 'labels', 'multi-label', 'aspects'],
+    limitations: [
+      'Labels are independent, so a review can carry several or none.',
+      'Labels say which aspects are mentioned, not whether the comment is positive or negative.',
+    ],
+    useWhen:
+      'You need to tag product reviews by the aspects they discuss in one call, for aspect-level ratings, routing defect reports, or filtering review feeds.',
+    related: [
+      {
+        id: 'feedback-kind',
+        reason: 'Use feedback-kind when you need the single primary kind of a piece of feedback.',
+      },
+      {
+        id: 'issue-impact',
+        reason: 'Use issue-impact to grade how badly a reported defect blocks the customer.',
+      },
+    ],
+  },
+  {
     id: 'route',
     title: 'Route a request',
     description: 'Choose a named handler or return a review decision.',
@@ -2282,6 +2994,57 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'shipment-issue-kind',
+    title: 'Classify a reported shipping problem',
+    description: 'What shipping problem does message report?',
+    category: 'support',
+    tags: ['logistics', 'shipping', 'support', 'classification', 'delivery'],
+    limitations: [
+      'Classifies what the customer reports, not what the carrier record shows. Verify against tracking data before issuing a refund or replacement.',
+      'A message that reports several problems is graded by the main one; the remedy the customer asks for is not part of the decision.',
+    ],
+    useWhen:
+      'You need to route delivery complaints to the right workflow, such as a carrier trace, a replacement, or an address correction, from the words the customer used.',
+    related: [
+      {
+        id: 'failure-kind',
+        reason:
+          'Use failure-kind to classify why a technical operation failed rather than what went wrong with a physical delivery.',
+      },
+      {
+        id: 'issue-impact',
+        reason:
+          'Use issue-impact to grade how badly the reported problem affects the customer rather than what kind of problem it is.',
+      },
+    ],
+  },
+  {
+    id: 'slot-fit',
+    title: 'Check a proposed slot against constraints',
+    description:
+      'Does the time or slot proposed in proposal satisfy the availability constraints written in constraints?',
+    category: 'workflow',
+    tags: ['scheduling', 'calendar', 'availability', 'constraints', 'gate'],
+    limitations: [
+      'Judges the wording of the proposal against the wording of the constraints. Parse concrete dates, durations, and time zones in code; the recipe does not compute calendar arithmetic.',
+      'Constraints are taken as written. It does not know about other commitments, holidays, or availability not stated in constraints.',
+    ],
+    useWhen:
+      'A scheduling assistant has a candidate time and the availability of a person described in plain language, and needs a yes/no check before offering the slot.',
+    related: [
+      {
+        id: 'constraint-strength',
+        reason:
+          'Use constraint-strength to decide whether an availability statement is a hard requirement or a preference before treating it as a constraint.',
+      },
+      {
+        id: 'step-complete',
+        reason:
+          'Use step-complete to check whether a scheduling step has finished rather than whether a slot is allowed.',
+      },
+    ],
+  },
+  {
     id: 'source-applicability',
     title: 'Check source applicability',
     description: 'Does the scope described in passage apply to scenario?',
@@ -2319,6 +3082,29 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'response-needed',
         reason: 'Use response-needed to decide whether a genuine message calls for a reply.',
+      },
+    ],
+  },
+  {
+    id: 'stage-evidence',
+    title: 'Check deal stage against evidence',
+    description: 'Does evidence support that the deal is at stage as described?',
+    category: 'workflow',
+    tags: ['sales', 'crm', 'pipeline', 'stage', 'hygiene'],
+    limitations: [
+      'Judges only the supplied evidence against the supplied stage description. Missing activity makes a stage unsupported, not wrong.',
+      'Does not decide which stage the deal should be at; it only checks the one given.',
+    ],
+    useWhen:
+      'You need to audit pipeline hygiene by checking whether the conversation or activity on a deal justifies the stage a rep set.',
+    related: [
+      {
+        id: 'step-complete',
+        reason: 'Use step-complete to check whether a single workflow step was actually finished.',
+      },
+      {
+        id: 'resolution-check',
+        reason: 'Use resolution-check to decide whether a support conversation reached resolution.',
       },
     ],
   },
@@ -2487,6 +3273,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'ticket-match',
         reason: 'Use ticket-match to compare reported issues rather than requested work.',
+      },
+    ],
+  },
+  {
+    id: 'task-overlap',
+    title: 'Detect overlapping tasks',
+    description:
+      'Do firstTask and secondTask cover overlapping work, such that two workers would duplicate or collide?',
+    category: 'workflow',
+    tags: ['agent', 'coordination', 'overlap', 'planning', 'multi-agent'],
+    limitations: [
+      'Judges overlap from the task descriptions alone. Tasks that touch the same files without saying so will look disjoint.',
+      'Reports that overlap exists, not which task should absorb the shared work or how to split it.',
+    ],
+    useWhen:
+      'You are about to fan work out to several agents or people and need a yes/no check that two assignments will not step on each other.',
+    related: [
+      {
+        id: 'task-duplicate',
+        reason:
+          'Use task-duplicate when the question is whether two items are the same request, rather than whether distinct requests share work.',
+      },
+      {
+        id: 'task-dependency',
+        reason:
+          'Use task-dependency to check whether one task must finish before the other can start, which overlap does not imply.',
       },
     ],
   },

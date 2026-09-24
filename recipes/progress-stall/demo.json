@@ -1,0 +1,12 @@
+{
+  "input": {
+    "transcript": "Step 14: ran `npm test` -> 3 failures in date-utils.test.ts (timezone offset). Step 15: opened src/date-utils.ts, read formatDate. Step 16: ran `npm test` -> same 3 failures. Step 17: opened src/date-utils.ts, read formatDate again. Step 18: ran `npm test` -> same 3 failures. Step 19: opened src/date-utils.ts, read formatDate. Step 20: ran `npm test` -> same 3 failures.",
+    "objective": "Make the date-utils test suite pass without changing the expected values in the tests.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.94 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "input": {
+    "item": "Add rate limiting to the public /search endpoint. Use the existing RateLimiter middleware in src/middleware/rate-limit.ts and the Redis instance already configured for sessions. Done when requests beyond 60 per minute per API key return 429 with a Retry-After header and the integration test in tests/api/search.test.ts covers the limit.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.96,
+        "confidence": 0.82,
+        "probabilities": { "0": 0.0, "1": 0.02, "2": 0.08, "3": 0.82, "4": 0.08 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

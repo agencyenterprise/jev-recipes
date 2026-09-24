@@ -1,0 +1,27 @@
+{
+  "input": {
+    "goal": "Find out why the nightly export job failed last night.",
+    "firstAction": "Open the job's log for last night's run and read the last 200 lines.",
+    "secondAction": "Re-run the export job now and see if it fails again.",
+    "constraints": "Do not trigger production jobs during business hours.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "first",
+        "confidence": 0.88,
+        "probabilities": {
+          "first": 0.88,
+          "second": 0.04,
+          "tie": 0.04,
+          "neither": 0.02,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}
