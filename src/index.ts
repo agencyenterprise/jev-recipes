@@ -934,6 +934,12 @@ export type {
   FinancialAdviceSignalVerdict,
 } from '../recipes/financial-advice-signal/index.js';
 export {
+  fingerActions,
+  fingerActionsInputSchema,
+  fingerActionsResultSchema,
+} from '../recipes/finger-actions/index.js';
+export type { FingerActionsInput, FingerActionsResult } from '../recipes/finger-actions/index.js';
+export {
   followupLink,
   followupLinkInputSchema,
   followupLinkResultSchema,

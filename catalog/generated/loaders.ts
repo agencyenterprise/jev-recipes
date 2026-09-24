@@ -446,6 +446,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.financialAdviceSignal(recipe.financialAdviceSignalInputSchema.parse(input), options),
     ),
+  'finger-actions': () =>
+    import('../../recipes/finger-actions/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.fingerActions(recipe.fingerActionsInputSchema.parse(input), options),
+    ),
   'followup-link': () =>
     import('../../recipes/followup-link/index.js').then(
       (recipe) => (input, options) =>

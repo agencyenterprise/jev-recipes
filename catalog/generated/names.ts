@@ -87,6 +87,7 @@ export const recipeNames = [
   'feedback-kind',
   'field-select',
   'financial-advice-signal',
+  'finger-actions',
   'followup-link',
   'forecast-confidence-wording',
   'format-fit',
