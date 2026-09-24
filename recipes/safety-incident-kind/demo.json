@@ -1,0 +1,26 @@
+{
+  "input": {
+    "report": "Warehouse B, 14:20. A forklift reversing out of aisle 7 came within about a metre of a contractor walking through the marked pedestrian crossing. The driver stopped when the spotter shouted. No contact, no injuries, nothing damaged. The contractor was not wearing a high-visibility vest and the mirror at the aisle end is missing.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "near_miss",
+        "confidence": 0.87,
+        "probabilities": {
+          "near_miss": 0.87,
+          "first_aid": 0.01,
+          "medical_treatment": 0.01,
+          "property_damage": 0.01,
+          "environmental_release": 0.01,
+          "unsafe_condition": 0.07,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

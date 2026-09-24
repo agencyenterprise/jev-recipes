@@ -1,0 +1,13 @@
+import { budgetNarrativeFit } from '../../recipes/budget-narrative-fit/index.js';
+import { testGate } from './helpers/gate.js';
+
+testGate(
+  budgetNarrativeFit,
+  {
+    lineItems:
+      'Program coordinator salary (0.5 FTE): $30,000\nBooks and materials: $9,000\nTutor training and background checks: $4,000\nSnacks and family reading nights: $5,000\nTotal: $48,000',
+    narrative:
+      "Personnel. A half-time program coordinator ($30,000) will recruit and schedule tutors, coordinate with the three partner schools, and track attendance. Books and materials ($9,000) cover levelled readers for 90 students, reading logs, and consumables for the school year. Tutor training and background checks ($4,000) fund a two-day orientation and state background screening for 12 volunteers. Travel ($2,400) reimburses the coordinator's mileage between the three school sites at the standard rate.",
+  },
+  ['aligned', 'misaligned'],
+);

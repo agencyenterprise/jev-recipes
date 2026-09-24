@@ -1,0 +1,17 @@
+{
+  "input": {
+    "claim": "On the night of Sunday 8 March, sometime after we went to bed around 11 pm, a pipe in the upstairs bathroom at our home at 27 Alder Court burst. By the time we woke at 6 am, water had come through the ceiling of the living room directly below. The living room ceiling plaster has collapsed in two places, the hardwood floor is warped across roughly half the room, and the sofa and a wool rug are soaked. We shut off the main and called a plumber, who replaced the split section of pipe that morning.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesWhen": { "type": "noul", "noul": 0.96 },
+      "statesWhere": { "type": "noul", "noul": 0.95 },
+      "statesCause": { "type": "noul", "noul": 0.94 },
+      "statesDamages": { "type": "noul", "noul": 0.96 },
+      "statesEvidence": { "type": "noul", "noul": 0.08 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

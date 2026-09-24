@@ -26,6 +26,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'action-effects',
+    title: 'Label the side effects of an action',
+    description:
+      'Which side effects does the described action involve: writing or modifying data, sending a message or notification, spending or moving money, deleting something, or calling an external service?',
+    category: 'workflow',
+    tags: ['agent', 'safety', 'action', 'side-effects', 'approval', 'labels'],
+    limitations: [
+      'Labels the effects the action description states or plainly entails. It does not know what your tools actually do behind the description.',
+      'Read-only lookups against an external API still count as external calls; whether that is acceptable is a policy decision for application code.',
+      'Permission checks, spending limits, and confirmation prompts belong in application code that consumes these labels.',
+    ],
+    useWhen:
+      'An agent is about to execute a step and your approval policy differs by effect, so you want to gate auto-execution per side effect rather than with one blanket risk score.',
+    related: [
+      {
+        id: 'action-reversibility',
+        reason:
+          'Use action-reversibility to grade how hard the action is to undo, rather than which kinds of effect it has.',
+      },
+      {
+        id: 'action-scope',
+        reason:
+          'Use action-scope to check whether the action stays within the work that was requested.',
+      },
+    ],
+  },
+  {
     id: 'action-reversibility',
     title: 'Grade action reversibility',
     description:
@@ -260,6 +287,40 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'appeal-grounds-kind',
+    title: 'Classify the ground an appeal asserts',
+    description:
+      'What ground does appeal primarily assert: a factual error, a procedural error, new evidence, hardship, a misapplied rule, or something else?',
+    category: 'workflow',
+    tags: [
+      'public-sector',
+      'appeals',
+      'adjudication',
+      'classification',
+      'workflow',
+      'case-management',
+    ],
+    limitations: [
+      'Classifies the argument the appellant makes, not whether it is correct or whether the appeal should succeed. Merits review belongs to the adjudicator.',
+      'An appeal that asserts several grounds is classified by the one it presses most; split multi-ground appeals in code when each needs its own review.',
+      'Does not check timeliness, standing, or whether the ground is one the process allows.',
+    ],
+    useWhen:
+      'You need to sort incoming appeals of a benefits, permit, enforcement, or academic decision by the kind of argument they make, so each reaches the right reviewer or template before anyone reads the file.',
+    related: [
+      {
+        id: 'correction-target',
+        reason:
+          'Use correction-target to identify what part of a prior output a correction points at, rather than what kind of ground an appeal asserts.',
+      },
+      {
+        id: 'feedback-kind',
+        reason:
+          'Use feedback-kind to classify general feedback on a product or service, rather than a formal appeal of a decision.',
+      },
+    ],
+  },
+  {
     id: 'appointment-request-kind',
     title: "Classify a patient's appointment request",
     description:
@@ -429,6 +490,33 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'plan-completeness',
         reason:
           'Use plan-completeness to check that the plan covers its goal; a plan can fit the budget by leaving work out.',
+      },
+    ],
+  },
+  {
+    id: 'budget-narrative-fit',
+    title: 'Check a budget narrative against its line items',
+    description:
+      'Does narrative explain each line item in lineItems and nothing that lineItems does not list?',
+    category: 'knowledge',
+    tags: ['nonprofit', 'grants', 'budget', 'proposal', 'gate', 'review'],
+    limitations: [
+      'Judges coverage in both directions, not arithmetic. Whether narrative amounts match the table or sum to the total is checked in application code.',
+      "Does not judge whether costs are reasonable, allowable, or within a funder's rules.",
+      'A misaligned verdict says the two texts do not cover the same items; it does not say which side is wrong.',
+    ],
+    useWhen:
+      'You review grant budgets before submission and want to catch a narrative that skips a line item or justifies an expense the budget table does not contain.',
+    related: [
+      {
+        id: 'summary-coverage',
+        reason:
+          'Use summary-coverage to check that a summary preserves each supplied source point in one direction, rather than two-way alignment between a table and its narrative.',
+      },
+      {
+        id: 'commit-message-fit',
+        reason:
+          'Use commit-message-fit for the analogous check that a commit message describes the change it accompanies.',
       },
     ],
   },
@@ -606,6 +694,40 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'verify',
         reason:
           'Use verify to assess supplied evidence for a causal claim; causal-attribution does not establish causation.',
+      },
+    ],
+  },
+  {
+    id: 'causal-language-strength',
+    title: 'Grade the strength of causal language',
+    description:
+      'How strong is the causal claim in the wording of statement, from no relationship claimed to causation stated as fact?',
+    category: 'conversation',
+    tags: [
+      'research',
+      'academic-writing',
+      'causal-claims',
+      'science-communication',
+      'psychology',
+      'score',
+    ],
+    limitations: [
+      'Grades the wording only. It does not know the study design and cannot say whether the causal strength is warranted.',
+      'Judges one statement at a time; a paper that hedges in the discussion and asserts in the abstract must be checked sentence by sentence.',
+      'Distinguishes causal from associational language, not true from false; a strongly asserted claim can be correct.',
+    ],
+    useWhen:
+      'You are checking abstracts, press releases, or summaries of studies for causal overreach, so that wording can be compared with what the study design supports.',
+    related: [
+      {
+        id: 'causal-attribution',
+        reason:
+          'Use causal-attribution to label whether an explanation blames the person or the situation, rather than how strongly any causal link is asserted.',
+      },
+      {
+        id: 'uncertainty-expression',
+        reason:
+          'Use uncertainty-expression to grade how hedged a statement is overall, rather than the strength of its causal claim specifically.',
       },
     ],
   },
@@ -800,6 +922,40 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'claim-facets',
+    title: 'Label the facets an insurance claim narrative states',
+    description:
+      'Which of these does claim state: when the incident happened, where it happened, what caused it, what was damaged or lost, and whether there are witnesses or evidence?',
+    category: 'support',
+    tags: [
+      'insurance',
+      'claims',
+      'intake',
+      'first-notice-of-loss',
+      'labels',
+      'multi-label',
+      'facets',
+    ],
+    limitations: [
+      'Reports only whether the wording states each facet, not whether the details are true, covered, or plausible. It makes no coverage, liability, or fraud judgment.',
+      'Labels are independent, so a narrative can state several facets or none. Parse actual dates, addresses, and amounts in application code.',
+    ],
+    useWhen:
+      'A claims intake assistant receives a free-form loss description and needs to know which standard first-notice details are already present so it can pre-fill the claim and ask only for what is missing.',
+    related: [
+      {
+        id: 'symptom-facets',
+        reason:
+          "Use symptom-facets for the parallel intake check on a patient's symptom description rather than an insurance loss narrative.",
+      },
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify to decide whether to ask the claimant a follow-up question about the facets this recipe finds missing.',
+      },
+    ],
+  },
+  {
     id: 'claim-stance',
     title: "Label a response's stance toward a claim",
     description:
@@ -981,6 +1137,33 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'certainty-match',
         reason:
           'Use certainty-match to compare expressed certainty with the evidence rather than commitment to act.',
+      },
+    ],
+  },
+  {
+    id: 'comparable-fit',
+    title: 'Check whether a comparable property fits the subject',
+    description:
+      'Is comparable similar enough to subject in type, size, age, condition, and location wording to support a valuation comparison?',
+    category: 'knowledge',
+    tags: ['real-estate', 'valuation', 'comparables', 'appraisal', 'gate', 'similarity'],
+    limitations: [
+      'Judges described attributes only, not market data. Sale prices, dates, distances, and adjustments belong in valuation code.',
+      'Does not know your tolerance bands for size, age, or distance; it applies a general standard of similarity, so encode specific thresholds in code.',
+      'A comparable can fit on described attributes and still be a poor choice because of a stale sale date or unusual sale conditions the description omits.',
+    ],
+    useWhen:
+      "You need to screen candidate comparable sales or rentals against a subject property from their descriptions, so that only plausible comparables reach a valuation model or an appraiser's review.",
+    related: [
+      {
+        id: 'entity-match',
+        reason:
+          'Use entity-match to decide whether two records describe the same property, rather than whether two different properties are similar enough to compare.',
+      },
+      {
+        id: 'passage-compare',
+        reason:
+          'Use passage-compare to pick which of two passages better answers a question, rather than to judge similarity between two property descriptions.',
       },
     ],
   },
@@ -1173,6 +1356,87 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'corrective-action-fit',
+    title: 'Check a corrective action against its root cause',
+    description:
+      'Does action address the cause stated in rootCause rather than only the symptom or the affected items?',
+    category: 'workflow',
+    tags: ['manufacturing', 'quality', 'capa', 'corrective-action', 'gate', 'review'],
+    limitations: [
+      'Judges the fit between two texts as written. It does not know whether rootCause is the true cause or whether action will work in practice.',
+      'An action can address the cause and still be incomplete, unowned, or late. Owners, due dates, and effectiveness checks belong in application code.',
+      'A misses verdict is a flag for a reviewer, not a rejection.',
+    ],
+    useWhen:
+      'You review corrective action plans in a CAPA or nonconformance workflow and want to flag actions that rework parts, add inspection, or retrain people while leaving the stated cause in place.',
+    related: [
+      {
+        id: 'workaround-fit',
+        reason:
+          'Use workaround-fit to check whether a temporary workaround addresses an issue within stated constraints, rather than whether a permanent action removes a cause.',
+      },
+      {
+        id: 'troubleshooting-fit',
+        reason:
+          'Use troubleshooting-fit to assess a diagnostic procedure rather than a proposed fix.',
+      },
+    ],
+  },
+  {
+    id: 'deadline-risk',
+    title: 'Grade the risk of missing a deadline',
+    description:
+      'How at risk is the work of missing deadline given progress, from on track to already missed or impossible?',
+    category: 'workflow',
+    tags: ['agent', 'planning', 'deadline', 'progress', 'risk', 'score'],
+    limitations: [
+      'Judges described progress against the described deadline. Date arithmetic, calendar lookups, and working-hour calculations belong in application code; state the time remaining in the text.',
+      'Trusts the progress report as written. Optimistic or stale reports produce optimistic grades.',
+      'A grade is not a plan. Escalation and replanning decisions belong to the caller.',
+    ],
+    useWhen:
+      'A supervisor or planner has a stated deadline and a progress report and needs a graded read on whether to escalate, replan, or leave the work alone.',
+    related: [
+      {
+        id: 'step-progress',
+        reason:
+          'Use step-progress to judge whether a single new observation moved the task forward, rather than how the whole effort stands against a deadline.',
+      },
+      {
+        id: 'task-complexity',
+        reason:
+          'Use task-complexity to grade how hard a task is before it starts, rather than how it is tracking once underway.',
+      },
+    ],
+  },
+  {
+    id: 'defect-report-facets',
+    title: 'Label the facets of a defect report',
+    description:
+      'Which of these does report state: the part or lot identifier, a description of the defect, where it was detected, the quantity affected, a containment action?',
+    category: 'workflow',
+    tags: ['manufacturing', 'quality', 'defect', 'nonconformance', 'labels', 'multi-label'],
+    limitations: [
+      'Labels are independent, so a report can carry several or none.',
+      'Detects that a fact is stated, not that it is correct. A part number can be mistyped and a stated quantity can be wrong.',
+      'Does not check the report against part masters, lot records, or your nonconformance form. Validate identifiers and quantities in application code.',
+    ],
+    useWhen:
+      'You need to check an incoming nonconformance or defect report for the facts a quality process expects before it is accepted, or to tell the reporter which facts are missing.',
+    related: [
+      {
+        id: 'bug-report-completeness',
+        reason:
+          'Use bug-report-completeness for software bug reports, where the expected parts are reproduction steps, expected and actual behavior, and environment.',
+      },
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify to phrase the follow-up question once a report is known to be missing a facet.',
+      },
+    ],
+  },
+  {
     id: 'delegation-fit',
     title: 'Check delegation fit',
     description: 'Does subtask fall within the capabilities described for the delegate?',
@@ -1194,6 +1458,33 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'route',
         reason:
           'Use route to choose among several named delegates at once when more than one might fit.',
+      },
+    ],
+  },
+  {
+    id: 'disclosure-facets',
+    title: 'Label what a property disclosure addresses',
+    description:
+      'Which of these does disclosure address: known defects, prior repairs, environmental hazards, boundary or easement issues, association rules?',
+    category: 'knowledge',
+    tags: ['real-estate', 'disclosures', 'labels', 'multi-label', 'transactions', 'due-diligence'],
+    limitations: [
+      'Each label reports whether the disclosure addresses the topic, not whether what it says is true, complete, or sufficient under local disclosure law.',
+      'A statement that the seller knows of no issue counts as addressing the topic. Silence does not.',
+      'Labels are independent, so a disclosure can carry several, all, or none.',
+    ],
+    useWhen:
+      "You need several independent checks on a seller's or landlord's disclosure text in one call, to see which topics it covers and which it is silent on before a buyer, tenant, or reviewer relies on it.",
+    related: [
+      {
+        id: 'privacy-notice-facets',
+        reason:
+          'Use privacy-notice-facets for the same coverage-check pattern over a privacy notice instead of a property disclosure.',
+      },
+      {
+        id: 'clarify',
+        reason:
+          "Use clarify to decide whether a buyer's question about the disclosure is too ambiguous to answer, rather than what the disclosure itself addresses.",
       },
     ],
   },
@@ -1258,6 +1549,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'eligibility-facets',
+    title: 'Label what an applicant statement addresses',
+    description:
+      'Which of these does statement address: residency, income, household size, identity documents, prior benefits received?',
+    category: 'workflow',
+    tags: ['public-sector', 'benefits', 'eligibility', 'intake', 'labels', 'multi-label'],
+    limitations: [
+      'Each label reports whether the statement addresses the topic, not whether the applicant is eligible or whether what they say is true.',
+      'Amounts, dates, and household counts are not validated against program rules or records. Apply eligibility rules in code.',
+      'Labels are independent, so a statement can carry several, all, or none.',
+    ],
+    useWhen:
+      "You need several independent checks on an applicant's free-text statement in one call, to see which eligibility topics it already covers and which a caseworker still needs to ask about.",
+    related: [
+      {
+        id: 'job-post-facets',
+        reason:
+          'Use job-post-facets for the same coverage-check pattern over a job posting instead of a benefits application statement.',
+      },
+      {
+        id: 'clarify',
+        reason:
+          "Use clarify to decide whether an applicant's question is too ambiguous to answer, rather than which eligibility topics their statement addresses.",
+      },
+    ],
+  },
+  {
     id: 'emotion-kind',
     title: 'Identify expressed emotion',
     description: 'What primary emotion does the wording of message express?',
@@ -1302,6 +1620,33 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'task-duplicate',
         reason: 'Use task-duplicate to catch a task that repeats one already on the list.',
+      },
+    ],
+  },
+  {
+    id: 'error-acknowledgment',
+    title: 'Check whether a message acknowledges a mistake',
+    description:
+      'Does message explicitly acknowledge an earlier mistake and state a correction, rather than silently changing course or ignoring it?',
+    category: 'conversation',
+    tags: ['agent', 'self-monitoring', 'correction', 'honesty', 'conversation', 'gate'],
+    limitations: [
+      'Judges the wording of message, not whether the earlier statement really was wrong or whether the stated correction is right.',
+      'Without context, the recipe cannot tell whether an acknowledgment refers to a real earlier turn; it judges only that the message names a mistake and a correction.',
+      'Does not judge tone. A curt acknowledgment passes, and an effusive apology with no stated correction fails.',
+    ],
+    useWhen:
+      'An agent has been shown to be wrong earlier in a conversation and you want to verify that its follow-up owns the error and states the fix, rather than quietly switching answers.',
+    related: [
+      {
+        id: 'correction-target',
+        reason:
+          'Use correction-target to identify which earlier statement a correction refers to, rather than whether the message acknowledges an error at all.',
+      },
+      {
+        id: 'uncertainty-expression',
+        reason:
+          'Use uncertainty-expression to grade how the message hedges, rather than whether it admits a prior mistake.',
       },
     ],
   },
@@ -1589,6 +1934,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'fair-housing-wording',
+    title: 'Flag applicant-preference wording in a listing',
+    description:
+      'Does listing express a preference for, or limitation on, applicants based on personal characteristics rather than describing the property?',
+    category: 'conversation',
+    tags: ['real-estate', 'fair-housing', 'listings', 'compliance', 'gate', 'wording'],
+    limitations: [
+      'Judges wording only. Whether a phrase is unlawful depends on jurisdiction, exemptions, and context, so legal determinations belong to counsel and jurisdiction rules in application code.',
+      'Flags statements about who should apply or live there, not neutral descriptions of the property, neighborhood, or nearby institutions.',
+      'Does not detect discrimination that happens outside the listing text, such as in replies to inquiries or showing decisions.',
+    ],
+    useWhen:
+      'You need to screen rental or sale listings before publication for wording that steers, prefers, or excludes people by family status, religion, national origin, disability, or similar characteristics, so a human reviewer can look at the flagged ones.',
+    related: [
+      {
+        id: 'question-relevance',
+        reason:
+          'Use question-relevance to check whether a screening question asked of an applicant is pertinent, rather than whether listing copy itself expresses a preference.',
+      },
+      {
+        id: 'policy-severity',
+        reason:
+          'Use policy-severity to grade how serious a confirmed violation is against a supplied policy, rather than to detect the wording in the first place.',
+      },
+    ],
+  },
+  {
     id: 'feedback-actionability',
     title: 'Grade feedback actionability',
     description:
@@ -1785,6 +2157,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'funder-fit',
+    title: 'Compare two funding opportunities for a program',
+    description:
+      'Which of firstOpportunity and secondOpportunity better fits program in purpose, eligibility wording, and scope?',
+    category: 'knowledge',
+    tags: ['nonprofit', 'grants', 'fundraising', 'prospecting', 'comparison', 'eligibility'],
+    limitations: [
+      'Compares the opportunity descriptions as written against the program as described. It does not know deadlines, past awards, or eligibility facts that are not in the text.',
+      'Fit is not likelihood of award. Competitiveness, relationships, and funder priorities outside the text are not judged.',
+      'Amount ranges are read as stated; comparing a budget figure to a range and computing dates belong in application code.',
+    ],
+    useWhen:
+      'You are shortlisting funding opportunities for a described program and want a head-to-head read on which of two calls fits it better before a development officer reads the full guidelines.',
+    related: [
+      {
+        id: 'listing-compare',
+        reason:
+          'Use listing-compare for the same pairwise judgment over product listings and a shopper request.',
+      },
+      {
+        id: 'passage-compare',
+        reason:
+          'Use passage-compare for the same pairwise judgment over text passages and a question.',
+      },
+    ],
+  },
+  {
     id: 'game-action',
     title: 'Choose a game action from JSON',
     description:
@@ -1884,6 +2283,32 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'answer-relevance',
         reason:
           'Use answer-relevance to check that the draft addresses the question, not just the sources.',
+      },
+    ],
+  },
+  {
+    id: 'guest-request-facets',
+    title: 'Label the booking facets a guest request states',
+    description:
+      'Which of these does request state: travel dates, party size, accessibility needs, a budget, or a special occasion?',
+    category: 'support',
+    tags: ['hospitality', 'booking', 'intake', 'guest-request', 'labels', 'multi-label', 'facets'],
+    limitations: [
+      'Reports only whether the wording states each facet, not whether the dates are available, the party fits a room, or the budget is realistic. Parse actual dates, counts, and amounts in application code.',
+      'Labels are independent, so a request can state several facets or none. It does not judge urgency or sentiment.',
+    ],
+    useWhen:
+      'A reservations or concierge assistant receives a free-form guest inquiry and needs to know which standard booking details are already present so it can pre-fill the request and ask only for what is missing.',
+    related: [
+      {
+        id: 'message-facets',
+        reason:
+          'Use message-facets for the general communicative facets of a message, such as questions, deadlines, and requests, rather than booking-specific details.',
+      },
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify to decide whether to ask the guest a follow-up question about the facets this recipe finds missing.',
       },
     ],
   },
@@ -2086,6 +2511,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'instruction-priority',
+    title: 'Decide which conflicting instruction wins',
+    description:
+      'When firstInstruction and secondInstruction conflict, which should take precedence under the stated policy?',
+    category: 'workflow',
+    tags: ['agent', 'instructions', 'policy', 'precedence', 'comparison', 'safety'],
+    limitations: [
+      'Applies the policy as written. It does not decide whether the policy itself is sensible or whether the instructions really conflict.',
+      'Depends on each instruction stating or implying its source; if the policy ranks by source and the source is not given, the result is unclear.',
+      'A winning instruction is not thereby safe or permitted. Content policies and hard limits are enforced in application code.',
+    ],
+    useWhen:
+      'An agent holds two instructions that cannot both be followed and your system has a written precedence policy, such as system over developer over user, or a rule about ignoring instructions embedded in retrieved content.',
+    related: [
+      {
+        id: 'instruction-conflict',
+        reason:
+          'Use instruction-conflict first to decide whether the two instructions actually conflict; this recipe assumes they do.',
+      },
+      {
+        id: 'priority-compare',
+        reason:
+          'Use priority-compare to order two tasks by importance, rather than to rank two instructions by the authority the policy grants them.',
+      },
+    ],
+  },
+  {
     id: 'instruction-readability',
     title: 'Grade how easy patient instructions are to follow',
     description:
@@ -2245,6 +2697,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'itinerary-feasibility',
+    title: 'Check whether an itinerary is feasible in sequence',
+    description:
+      'Can the consecutive items in itinerary be carried out in the order described: enough transfer time between them, each location reachable from the previous one, and no overlapping commitments?',
+    category: 'workflow',
+    tags: ['travel', 'itinerary', 'scheduling', 'feasibility', 'hospitality', 'gate'],
+    limitations: [
+      'Judges the wording of the itinerary: stated times, places, and durations. Compute exact travel times, distances, and time zone conversions in application code; the recipe does not know real transit schedules.',
+      'Takes the itinerary as written. It does not know about opening hours, booking availability, or delays not mentioned in itinerary.',
+    ],
+    useWhen:
+      'A travel or concierge assistant has drafted or received a day-by-day itinerary in plain language and needs a yes/no sanity check that the sequence hangs together before presenting or booking it.',
+    related: [
+      {
+        id: 'slot-fit',
+        reason:
+          'Use slot-fit to check one proposed time against stated availability constraints rather than a whole sequence of items against each other.',
+      },
+      {
+        id: 'clause-conflict',
+        reason:
+          'Use clause-conflict when the question is whether two written requirements can both be satisfied, rather than whether a sequence of timed items can be carried out.',
+      },
+    ],
+  },
+  {
     id: 'job-post-facets',
     title: 'Label what a job posting states',
     description:
@@ -2319,6 +2797,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'listing-fact-consistency',
+    title: 'Check a listing description against its fact sheet',
+    description:
+      'Does the free-text description contradict the structured facts about the property?',
+    category: 'knowledge',
+    tags: ['real-estate', 'listings', 'consistency', 'data-quality', 'gate', 'contradiction'],
+    limitations: [
+      'Reports a single verdict, not which fact is contradicted. Pair it with per-field checks when you need locations.',
+      'Judges only what the description says against what facts states. Neither input is checked against the real property or public records.',
+      'Rounding, unit conversion, and how much tolerance to allow are application decisions; the recipe treats a clear numeric mismatch as a contradiction.',
+    ],
+    useWhen:
+      'You need to catch a marketing description that disagrees with the structured listing data on bedrooms, size, year built, or features before the listing is published or syndicated.',
+    related: [
+      {
+        id: 'headline-fit',
+        reason:
+          'Use headline-fit to check whether a title represents its body fairly, rather than whether prose contradicts a structured fact sheet.',
+      },
+      {
+        id: 'extraction-fidelity',
+        reason:
+          'Use extraction-fidelity to grade how faithfully structured values were pulled from a source document, the reverse direction of this check.',
+      },
+    ],
+  },
+  {
     id: 'log-line-kind',
     title: 'Classify what a log line reports',
     description:
@@ -2342,6 +2847,59 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'result-outcome',
         reason:
           'Use result-outcome to classify how a reported task or job ended, rather than what kind of log line it is.',
+      },
+    ],
+  },
+  {
+    id: 'loss-cause-kind',
+    title: 'Identify the cause of loss in a claim narrative',
+    description:
+      'What cause of loss does narrative describe: weather, fire, water, theft, collision, wear and tear, vandalism, or something else?',
+    category: 'knowledge',
+    tags: ['insurance', 'claims', 'cause-of-loss', 'classification', 'peril', 'triage'],
+    limitations: [
+      'Names the cause the narrative describes, not the cause an investigation would establish, and makes no coverage or exclusion determination.',
+      'Returns the primary cause only. Chains such as a storm that causes a flood resolve to the initiating cause the narrative emphasizes, or to unclear when the narrative gives no dominant cause.',
+    ],
+    useWhen:
+      'A claims intake or routing system needs to sort a free-form loss description into a cause-of-loss category so it can pick the right adjuster queue, forms, or follow-up questions.',
+    related: [
+      {
+        id: 'failure-kind',
+        reason:
+          'Use failure-kind to classify why a technical operation failed rather than what caused an insured loss.',
+      },
+      {
+        id: 'shipment-issue-kind',
+        reason:
+          'Use shipment-issue-kind for what went wrong with a delivery; this recipe classifies the peril behind a property or vehicle loss.',
+      },
+    ],
+  },
+  {
+    id: 'maintenance-hazard-wording',
+    title: 'Flag a maintenance request that describes a safety hazard',
+    description:
+      'Does request describe a safety hazard such as a gas smell, active water intrusion, exposed wiring, structural damage, no heat in cold weather, or a blocked exit?',
+    category: 'support',
+    tags: ['property-management', 'maintenance', 'safety', 'triage', 'gate', 'hazard'],
+    limitations: [
+      'Judges the wording of the request, not the actual condition of the property. Only an inspection establishes whether a hazard exists.',
+      'Applies a fixed set of hazard types drawn from common habitability standards; local codes and lease obligations belong in application rules.',
+      'Does not rank hazards against each other or decide dispatch timing.',
+    ],
+    useWhen:
+      'You need to pull tenant maintenance requests that describe a hazard out of the routine queue for immediate dispatch, based on what the request says before anyone inspects.',
+    related: [
+      {
+        id: 'urgency-signal',
+        reason:
+          'Use urgency-signal to detect whether the tenant explicitly asks for urgent attention, rather than whether the described problem is a hazard regardless of how it is asked.',
+      },
+      {
+        id: 'issue-impact',
+        reason:
+          'Use issue-impact to grade how badly a reported problem affects the reporter, rather than whether it is a safety hazard.',
       },
     ],
   },
@@ -2488,6 +3046,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'methods-facets',
+    title: 'Label what a methods section states',
+    description:
+      'Which of these does methods state: sample size, data source, analysis method, limitations, and preregistration or a protocol?',
+    category: 'knowledge',
+    tags: ['research', 'methods', 'reporting', 'academic-writing', 'reproducibility', 'labels'],
+    limitations: [
+      'Labels whether each element is stated, not whether the sample is adequate, the source is reliable, or the analysis is appropriate.',
+      'Judges only the supplied text. Details reported elsewhere in the paper, in supplements, or in a linked registration are invisible unless pasted in.',
+      'Compliance with a specific reporting checklist, such as CONSORT or PRISMA, is a mapping that belongs in application code.',
+    ],
+    useWhen:
+      'You screen manuscripts, preprints, or study summaries for reporting completeness before deciding which ones need a request for missing methodological detail.',
+    related: [
+      {
+        id: 'answer-disclosures',
+        reason:
+          'Use answer-disclosures to label the caveats and disclosures in an answer, rather than the reporting elements of a methods section.',
+      },
+      {
+        id: 'content-facets',
+        reason:
+          'Use content-facets to label the structural elements of an article, rather than the methodological details of a study.',
+      },
+    ],
+  },
+  {
     id: 'motivation-source',
     title: 'Identify a stated source of motivation',
     description:
@@ -2556,6 +3141,86 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'narrative-consistency',
+    title: 'Check a narrative for internal contradictions',
+    description:
+      'Are the statements within narrative consistent with each other in timeline, cause, and extent, with no statement contradicting another in the same account?',
+    category: 'knowledge',
+    tags: ['insurance', 'claims', 'consistency', 'contradiction', 'narrative', 'gate'],
+    limitations: [
+      'Checks internal consistency only. A narrative can be perfectly consistent and false, or contain a contradiction that is an innocent slip; it does not judge truth, credibility, or intent.',
+      'Judges wording. Exact date arithmetic, unit conversions, and comparisons against external records belong in application code.',
+    ],
+    useWhen:
+      'A claims, incident, or intake system receives a single free-form account and needs to flag accounts that contradict themselves before a person reviews them or a downstream step relies on them.',
+    related: [
+      {
+        id: 'evidence-conflict',
+        reason:
+          'Use evidence-conflict when you have two separate passages and need to know whether they conflict about a question; this recipe checks one account against itself.',
+      },
+      {
+        id: 'answer-consistency',
+        reason:
+          'Use answer-consistency to compare two discrete statements rather than to scan a single narrative for internal contradictions.',
+      },
+    ],
+  },
+  {
+    id: 'notice-facets',
+    title: 'Label what an official notice states',
+    description:
+      'Which of these does notice state: an action the recipient must take, a deadline, the consequence of inaction, a contact for questions, a right to appeal?',
+    category: 'knowledge',
+    tags: ['public-sector', 'notices', 'correspondence', 'labels', 'multi-label', 'plain-language'],
+    limitations: [
+      'Each label reports whether the notice states the element, not whether the element is correct, lawful, or adequately explained.',
+      'Dates and deadlines are not computed or checked against the notice date. Parse them in code.',
+      'Labels are independent, so a notice can carry several, all, or none.',
+    ],
+    useWhen:
+      'You need several independent checks on a government or institutional notice in one call, to catch letters that tell recipients nothing about what to do, by when, or how to contest a decision before they are sent or when they are received.',
+    related: [
+      {
+        id: 'message-facets',
+        reason:
+          'Use message-facets for the same presence-check pattern over a general message rather than an official notice.',
+      },
+      {
+        id: 'response-needed',
+        reason:
+          'Use response-needed to decide whether a message requires a reply at all, rather than which elements a notice states.',
+      },
+    ],
+  },
+  {
+    id: 'novelty-claim-level',
+    title: 'Grade how strongly a statement claims novelty',
+    description:
+      'How strongly does the wording of statement claim novelty for a contribution, from no novelty claim to first-ever or unprecedented?',
+    category: 'conversation',
+    tags: ['research', 'academic-writing', 'novelty', 'claims', 'psychology', 'score'],
+    limitations: [
+      'Grades the wording only. It does not know the literature and cannot say whether the claimed novelty is real.',
+      "A statement can claim little novelty and still be original, or claim a first and be correct; comparing the claim against related work is the reviewer's job.",
+      'Judges one statement at a time. Aggregating over a whole paper belongs in application code.',
+    ],
+    useWhen:
+      'You are reviewing abstracts, introductions, grant text, or press copy and want to flag how hard the wording sells the contribution as new, so overclaiming can be checked against the actual related work.',
+    related: [
+      {
+        id: 'certainty-match',
+        reason:
+          'Use certainty-match to check whether stated confidence matches the evidence, rather than how much novelty the wording claims.',
+      },
+      {
+        id: 'outcome-framing',
+        reason:
+          'Use outcome-framing to label how a result is framed as gain or loss, rather than how new it is said to be.',
+      },
+    ],
+  },
+  {
     id: 'objection-kind',
     title: 'Classify sales objection kind',
     description: 'What primary sales objection does message raise?',
@@ -2602,6 +3267,33 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'query-specificity',
         reason:
           'Use query-specificity to check whether a question identifies a focused information need.',
+      },
+    ],
+  },
+  {
+    id: 'offer-terms-facets',
+    title: 'Label what a property offer states',
+    description:
+      'Which of these does offer state: a price, financing, contingencies, a closing or move-in date, an earnest money or security deposit?',
+    category: 'knowledge',
+    tags: ['real-estate', 'offers', 'leasing', 'labels', 'multi-label', 'transactions'],
+    limitations: [
+      'Each label reports whether the offer text states the term, not whether the stated value is reasonable, complete, or acceptable.',
+      'Amounts, percentages, and dates are not validated or compared to a listing. Parse and check them in code.',
+      'Labels are independent, so an offer can carry several, all, or none.',
+    ],
+    useWhen:
+      'You need several independent presence checks on a purchase or lease offer in one call, to spot missing terms before it is countersigned, countered, or entered into a transaction system.',
+    related: [
+      {
+        id: 'clarify',
+        reason:
+          "Use clarify to decide whether a buyer's or tenant's request is too ambiguous to act on, rather than which terms a written offer states.",
+      },
+      {
+        id: 'invoice-facets',
+        reason:
+          'Use invoice-facets for the same presence-check pattern over invoice text instead of offer terms.',
       },
     ],
   },
@@ -3024,6 +3716,33 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'action-scope',
         reason: 'Use action-scope to check a proposed action against the requested work.',
+      },
+    ],
+  },
+  {
+    id: 'proposal-facets',
+    title: 'Label the facets of a grant proposal',
+    description:
+      'Which of these does proposal include: a statement of need, measurable objectives, planned activities, a budget, an evaluation plan?',
+    category: 'knowledge',
+    tags: ['nonprofit', 'grants', 'proposal', 'fundraising', 'labels', 'multi-label'],
+    limitations: [
+      'Labels are independent, so a proposal can carry several or none.',
+      'Detects that a facet is present, not that it is convincing. A stated need can be unsupported and a budget can be unrealistic.',
+      "Does not check the proposal against a funder's guidelines, page limits, or required attachments. Enforce format rules in application code.",
+    ],
+    useWhen:
+      'You screen draft or submitted grant proposals for the sections a funder or an internal reviewer expects, or you want to tell a writer which parts are missing before a deadline.',
+    related: [
+      {
+        id: 'plan-completeness',
+        reason:
+          'Use plan-completeness to grade how completely a plan covers a specific task, rather than which standard sections a proposal contains.',
+      },
+      {
+        id: 'content-facets',
+        reason:
+          'Use content-facets for the structural elements of an article, such as a thesis and evidence, rather than the parts of a funding request.',
       },
     ],
   },
@@ -3588,6 +4307,66 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'review-recommendation-kind',
+    title: "Classify a peer review's recommendation",
+    description:
+      'What recommendation does the wording of review express: accept, minor revision, major revision, or reject?',
+    category: 'knowledge',
+    tags: [
+      'research',
+      'peer-review',
+      'academic-writing',
+      'editorial',
+      'classification',
+      'recommendation',
+    ],
+    limitations: [
+      "Reads the recommendation the wording expresses, not whether the reviewer's assessment is fair or the paper is any good.",
+      'A review that mixes praise and severe objections is classified by the disposition its wording commits to; when it commits to none, the result is unclear.',
+      'Journal-specific decision categories, such as reject and resubmit, must be mapped from these four in application code.',
+    ],
+    useWhen:
+      'An editor or review-management tool needs to read the recommendation implied by a free-text review, for example when the reviewer skipped the form field or when the text and the ticked box disagree.',
+    related: [
+      {
+        id: 'draft-compare',
+        reason:
+          'Use draft-compare to judge which of two revisions is better, rather than what a reviewer recommended.',
+      },
+      {
+        id: 'feedback-kind',
+        reason:
+          'Use feedback-kind to classify general user feedback, rather than the recommendation in a formal peer review.',
+      },
+    ],
+  },
+  {
+    id: 'review-response-fit',
+    title: 'Check whether a review response addresses the review',
+    description:
+      'Does response engage with the specific complaints and praise raised in review, rather than offering a generic thank-you or apology?',
+    category: 'support',
+    tags: ['hospitality', 'reviews', 'customer-response', 'reputation', 'support', 'gate'],
+    limitations: [
+      'Judges whether the response refers to the specific points in the review. It does not judge whether the response is polite, accurate, or whether any promised remedy was delivered.',
+      'A response can address the review and still be a poor reply; tone, policy compliance, and legal wording need separate checks.',
+    ],
+    useWhen:
+      'A hospitality or support team drafts public replies to guest reviews and wants to catch templated responses that ignore what the reviewer actually said before they are posted.',
+    related: [
+      {
+        id: 'answer-coverage',
+        reason:
+          'Use answer-coverage when you have an explicit list of questions and need to know which ones a draft answers, rather than whether a reply engages with a free-form review.',
+      },
+      {
+        id: 'resolution-check',
+        reason:
+          "Use resolution-check to learn whether a customer says a problem is fixed; this recipe judges only whether the business's reply speaks to the review.",
+      },
+    ],
+  },
+  {
     id: 'rollback-signal',
     title: 'Check whether symptoms implicate a recent change',
     description:
@@ -3611,6 +4390,33 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'change-risk',
         reason:
           'Use change-risk before deploying to grade how likely a change is to cause trouble, rather than after the fact to check whether it did.',
+      },
+    ],
+  },
+  {
+    id: 'root-cause-depth',
+    title: 'Grade the depth of a root cause analysis',
+    description:
+      'How deep does analysis go in explaining a failure, on a five-level rubric from restating the symptom to naming a verified systemic cause?',
+    category: 'workflow',
+    tags: ['manufacturing', 'quality', 'root-cause', 'capa', 'score', 'review'],
+    limitations: [
+      'Grades how far the stated chain of causes reaches, not whether any link in it is true. A deep analysis can be deeply wrong.',
+      'Rewards what analysis states, so a correct cause left implicit grades shallow.',
+      'Does not know your CAPA procedure or which depth is required for a given defect class. Acceptance thresholds belong in application code.',
+    ],
+    useWhen:
+      'You review corrective action requests, nonconformance dispositions, or incident write-ups and want to flag analyses that stop at the symptom or the immediate cause before a quality reviewer accepts them.',
+    related: [
+      {
+        id: 'causal-attribution',
+        reason:
+          'Use causal-attribution to label whether an explanation blames the person or the situation, rather than how deep the causal chain goes.',
+      },
+      {
+        id: 'explanation-level',
+        reason:
+          'Use explanation-level to grade how much reasoning an answer shows for a conclusion, rather than how far a failure analysis traces its causes.',
       },
     ],
   },
@@ -3679,6 +4485,33 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'source-applicability',
         reason:
           'Use source-applicability to check whether a general document applies to a situation, when neither side is an incident or a runbook.',
+      },
+    ],
+  },
+  {
+    id: 'safety-incident-kind',
+    title: 'Classify a safety event',
+    description:
+      'What kind of safety event does report describe: a near miss, a first-aid injury, a medical-treatment injury, property damage, an environmental release, or an unsafe condition?',
+    category: 'workflow',
+    tags: ['manufacturing', 'safety', 'ehs', 'incident', 'classification', 'choice'],
+    limitations: [
+      'Classifies what the report describes, not what happened. An understated report yields an understated kind.',
+      'Does not decide recordability, reportability, or lost-time status under any regulation. Map kinds to your regulatory and notification rules in application code.',
+      'A report describing several events is classified by the most consequential one; split multi-event reports in code when each matters.',
+    ],
+    useWhen:
+      'You need to sort free-text safety reports from workers, supervisors, or contractors into a fixed set of event kinds so each can be routed to the right investigation, form, or notification path.',
+    related: [
+      {
+        id: 'incident-severity-wording',
+        reason:
+          'Use incident-severity-wording to grade how severe an operational outage is, rather than what kind of workplace safety event occurred.',
+      },
+      {
+        id: 'failure-kind',
+        reason:
+          'Use failure-kind when the categories are caller-supplied rather than this fixed set of safety event kinds.',
       },
     ],
   },
@@ -3755,6 +4588,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'resolution-check',
         reason: 'Use resolution-check to decide whether the customer reported the issue resolved.',
+      },
+    ],
+  },
+  {
+    id: 'settlement-offer-facets',
+    title: 'Label the facets a settlement offer letter states',
+    description:
+      'Which of these does offer state: the settlement amount, the basis for that amount, a deadline to respond, release terms, and how to dispute or appeal?',
+    category: 'knowledge',
+    tags: ['insurance', 'claims', 'settlement', 'letter', 'labels', 'multi-label', 'facets'],
+    limitations: [
+      'Reports only whether the wording states each element, not whether the amount is fair, the basis is correct, the deadline is lawful, or the release is enforceable. It makes no legal determination.',
+      'Labels are independent, so a letter can state several elements or none. Parse actual amounts, dates, and deadlines in application code.',
+    ],
+    useWhen:
+      'A claims quality or consumer-advocacy tool reviews settlement offer letters and needs to know which standard elements each letter contains before checking it against a policy or template.',
+    related: [
+      {
+        id: 'invoice-facets',
+        reason:
+          'Use invoice-facets for the parallel completeness check on an invoice rather than a settlement offer letter.',
+      },
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify to decide whether to ask the sender for the elements this recipe finds missing.',
       },
     ],
   },
@@ -4129,6 +4988,31 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'tool-compare',
+    title: 'Compare two tools for a task',
+    description:
+      'Which of firstTool and secondTool, as described by their stated capabilities, better fits task?',
+    category: 'workflow',
+    tags: ['agent', 'tool-use', 'comparison', 'pairwise', 'planning', 'workflow'],
+    limitations: [
+      'Compares the capability descriptions as written. It does not invoke either tool, check credentials, or know about tools not supplied.',
+      'A tool can fit the task better and still be unavailable, rate-limited, or forbidden; availability and permission belong in application code.',
+    ],
+    useWhen:
+      'An agent has two candidate tools for one step and needs a head-to-head preference based on the capability descriptions it has been given.',
+    related: [
+      {
+        id: 'tool-fit',
+        reason: 'Use tool-fit to check whether a single tool can perform the task at all.',
+      },
+      {
+        id: 'action-compare',
+        reason:
+          'Use action-compare to compare two next steps against a goal, rather than two tools against one task.',
+      },
+    ],
+  },
+  {
     id: 'tool-fit',
     title: 'Check a tool fit',
     description: 'Can the capabilities explicitly described in tool perform task?',
@@ -4160,6 +5044,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'intent-change',
         reason: 'Use intent-change when the important question is whether the goal changed.',
+      },
+    ],
+  },
+  {
+    id: 'trip-purpose-kind',
+    title: 'Identify the purpose of a trip',
+    description:
+      "What purpose does the traveler's message express for the trip: business, leisure, a family visit, medical care, relocation, or attending an event?",
+    category: 'conversation',
+    tags: ['travel', 'hospitality', 'intent', 'classification', 'conversation', 'trip-purpose'],
+    limitations: [
+      'Names the primary purpose the wording expresses. Mixed trips return the dominant purpose or unclear; it does not split a trip into segments.',
+      'Does not verify the stated purpose or infer one the traveler did not express. Corporate travel policy and eligibility decisions belong in application code.',
+    ],
+    useWhen:
+      "A travel assistant needs to route a traveler's message to the right search defaults, policy, or recommendations based on why they are traveling, using only what the message and any prior context say.",
+    related: [
+      {
+        id: 'turn-intent',
+        reason:
+          'Use turn-intent to classify what a message is doing conversationally, such as requesting or correcting, rather than why the person is traveling.',
+      },
+      {
+        id: 'buying-intent',
+        reason:
+          'Use buying-intent to judge how close the traveler is to booking; this recipe identifies only the reason for the trip.',
       },
     ],
   },

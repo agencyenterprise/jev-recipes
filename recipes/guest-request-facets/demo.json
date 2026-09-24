@@ -1,0 +1,17 @@
+{
+  "input": {
+    "request": "Hello, we are hoping to book two rooms from Friday 14 November to Sunday 16 November for my parents' 40th wedding anniversary. There will be six of us: my parents, my husband and me, and our two teenagers. My father uses a walker, so one of the rooms needs to be step-free with a roll-in shower and close to the elevator. Could you also let us know whether the restaurant can do a small celebration dinner on the Saturday?",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesDates": { "type": "noul", "noul": 0.96 },
+      "statesPartySize": { "type": "noul", "noul": 0.95 },
+      "statesAccessibilityNeeds": { "type": "noul", "noul": 0.93 },
+      "statesBudget": { "type": "noul", "noul": 0.07 },
+      "statesOccasion": { "type": "noul", "noul": 0.94 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "input": {
+    "analysis": "Line 3 stopped twice this week because the conveyor drive motor tripped on overtemperature. The motor overheated because the cooling fan intake was packed with cardboard dust. The intake was clogged because the weekly intake cleaning task was not performed for about eleven weeks. That task was dropped when the preventive maintenance schedule was migrated to the new CMMS in June: the migration checklist had no step to reconcile task counts between the old and new systems, and no one was assigned to own the migration, so the missing task was never noticed.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.88,
+        "confidence": 0.82,
+        "probabilities": { "0": 0.01, "1": 0.02, "2": 0.1, "3": 0.82, "4": 0.05 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

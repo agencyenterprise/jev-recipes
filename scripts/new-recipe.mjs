@@ -13,6 +13,9 @@ const label = z.string().regex(/^[a-z][a-z0-9_]*$/, 'Labels are lower snake_case
 const camel = z.string().regex(/^[a-z][A-Za-z0-9]*$/, 'Names are camelCase.');
 const probability = z.number().min(0).max(1);
 const yesNo = z.object({ true: text, false: text });
+const prose = z
+  .union([text, z.array(text).min(1)])
+  .transform((value) => (Array.isArray(value) ? value.join(' ') : value));
 const baseSpec = z.object({
   id: z.string().regex(recipeIdPattern, 'Recipe IDs are kebab-case.'),
   title: text,
@@ -26,10 +29,10 @@ const baseSpec = z.object({
     'memory',
     'knowledge',
   ]),
-  tags: z.array(text).min(1),
+  tags: z.array(text).min(3).max(8),
   useWhen: text,
   related: z.array(z.object({ id: text, reason: text })),
-  limitations: z.array(text).min(1),
+  limitations: z.array(text).min(1).max(4),
   inputs: z
     .record(camel, z.enum(['required', 'optional']))
     .refine(
@@ -37,7 +40,7 @@ const baseSpec = z.object({
       'Provide at least one input; minConfidence is added automatically.',
     ),
   instruction: text,
-  readme: z.object({ result: text.optional(), limits: text.optional() }).default({}),
+  readme: z.object({ result: prose.optional(), limits: prose.optional() }).default({}),
   demoInput: z.record(camel, z.union([text, z.record(z.string(), z.unknown())])),
 });
 export const recipeSpecSchema = z.discriminatedUnion('kind', [
@@ -98,7 +101,7 @@ export function starterSpec(id, kind) {
       ...common,
       kind: 'choice',
       description: 'Check text against a supplied requirement.',
-      tags: ['requirement'],
+      tags: ['requirement', 'check', 'starter'],
       useWhen: 'You need to check text against an explicit requirement.',
       instruction: 'Does text meet the supplied requirement?',
       criteria: {
@@ -130,7 +133,7 @@ export function starterSpec(id, kind) {
       ...common,
       kind: 'gate',
       description: 'Does text meet a supplied requirement?',
-      tags: ['requirement', 'gate'],
+      tags: ['requirement', 'gate', 'starter'],
       useWhen: 'You need a yes/no gate on text.',
       instruction: 'Does text meet the supplied requirement?',
       verdicts: { yes: 'present', no: 'absent' },
@@ -144,7 +147,7 @@ export function starterSpec(id, kind) {
       ...common,
       kind: 'comparison',
       description: 'Which candidate better meets requirement?',
-      tags: ['comparison', 'pairwise'],
+      tags: ['comparison', 'pairwise', 'starter'],
       useWhen: 'You need to pick between two candidates under one requirement.',
       inputs: { requirement: 'required', firstCandidate: 'required', secondCandidate: 'required' },
       demoInput: {
@@ -165,7 +168,7 @@ export function starterSpec(id, kind) {
       ...common,
       kind: 'labels',
       description: 'Which of several independent properties does text have?',
-      tags: ['labels', 'multi-label'],
+      tags: ['labels', 'multi-label', 'starter'],
       useWhen: 'You need several yes/no labels on one text in a single call.',
       inputs: { text: 'required' },
       demoInput: { text: 'Could you send the invoice today?' },
@@ -264,6 +267,7 @@ export type ${T}Result = z.infer<typeof ${fn}ResultSchema>;
       if (p.length !== spec.rubric.length)
         throw new Error(`${spec.id}: demoProbabilities must have one entry per rubric level.`);
       assertMass(spec.id, p);
+      assertConfident(spec.id, Math.max(...p));
       const score = Math.round(p.reduce((sum, value, index) => sum + index * value, 0) * 100) / 100;
       return {
         score: {
@@ -321,7 +325,10 @@ export type ${T}Verdict = z.infer<typeof ${fn}VerdictSchema>;
 export type ${T}Input = z.infer<typeof ${fn}InputSchema>;
 export type ${T}Result = z.infer<typeof ${fn}ResultSchema>;
 `,
-    demoAnswers: (spec) => ({ gate: { type: 'noul', noul: spec.demoProbability } }),
+    demoAnswers: (spec) => {
+      assertConfident(spec.id, Math.max(spec.demoProbability, 1 - spec.demoProbability));
+      return { gate: { type: 'noul', noul: spec.demoProbability } };
+    },
     result: (spec) =>
       `\`verdict\` is \`${spec.verdicts.yes}\` when Jev's yes probability is at least 0.5 and \`${spec.verdicts.no}\` otherwise. \`probability\` is that yes probability. \`confidence\` is the probability of the chosen side, so a 0.1 yes probability yields \`${spec.verdicts.no}\` with 0.9 confidence.\n\nA result is \`ready\` when \`confidence\` meets \`minConfidence\`. Otherwise it is \`review\`. Treat a review result as unknown and fall back to your safe default.`,
     test: (
@@ -502,6 +509,10 @@ export type ${T}Result = z.infer<typeof ${fn}ResultSchema>;
       const missing = names.filter((name) => !(name in spec.demoProbabilities));
       if (missing.length)
         throw new Error(`${spec.id}: demoProbabilities missing ${missing.join(', ')}.`);
+      for (const name of names) {
+        const probability = spec.demoProbabilities[name];
+        assertConfident(`${spec.id}.${name}`, Math.max(probability, 1 - probability));
+      }
       return Object.fromEntries(
         names.map((name) => [name, { type: 'noul', noul: spec.demoProbabilities[name] }]),
       );
@@ -592,15 +603,23 @@ ${spec.readme.limits ?? spec.limitations.join(' ')}
 }
 
 function choiceAnswer(id, probabilities, labels) {
-  const missing = labels.filter((name) => !(name in probabilities));
   const extra = Object.keys(probabilities).filter((name) => !labels.includes(name));
-  if (missing.length || extra.length)
-    throw new Error(`${id}: demoProbabilities must cover exactly ${labels.join(', ')}.`);
-  assertMass(id, Object.values(probabilities));
-  const [choice, confidence] = Object.entries(probabilities).reduce((best, entry) =>
+  if (extra.length)
+    throw new Error(`${id}: demoProbabilities names unknown labels ${extra.join(', ')}.`);
+  const complete = Object.fromEntries(labels.map((name) => [name, probabilities[name] ?? 0]));
+  assertMass(id, Object.values(complete));
+  const [choice, confidence] = Object.entries(complete).reduce((best, entry) =>
     entry[1] > best[1] ? entry : best,
   );
-  return { decision: { type: 'choice', choice, confidence, probabilities } };
+  assertConfident(id, confidence);
+  return { decision: { type: 'choice', choice, confidence, probabilities: complete } };
+}
+
+function assertConfident(id, confidence) {
+  if (confidence < 0.8)
+    throw new Error(
+      `${id}: the demo would show status review (confidence ${confidence}); pick probabilities whose most likely outcome is at least 0.8.`,
+    );
 }
 
 function assertMass(id, values) {

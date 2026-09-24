@@ -1,0 +1,17 @@
+{
+  "input": {
+    "offer": "Re: Claim 44-01927, water damage at 27 Alder Court. Dear Ms. Okafor, we have completed our review and are pleased to offer $18,640.00 in full settlement of this claim. This figure reflects the contractor's repair estimate of $21,140.00, less your $2,500.00 policy deductible. Please sign and return the enclosed acceptance form within 30 days of the date of this letter. By accepting this payment you agree that it constitutes full and final settlement of all claims arising from the 8 March incident and release Northbridge Mutual from any further liability in connection with it. Payment will be issued within 10 business days of receiving your signed form.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesAmount": { "type": "noul", "noul": 0.97 },
+      "statesBasis": { "type": "noul", "noul": 0.94 },
+      "statesDeadline": { "type": "noul", "noul": 0.95 },
+      "statesReleaseTerms": { "type": "noul", "noul": 0.93 },
+      "statesDisputePath": { "type": "noul", "noul": 0.06 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

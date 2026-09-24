@@ -1,0 +1,28 @@
+{
+  "input": {
+    "narrative": "We returned from a long weekend on Monday evening and found the back door forced open, with the frame splintered around the deadbolt. Two laptops, my wife's jewelry box, a camera bag, and the cash we kept in the desk drawer were gone. Drawers were pulled out in every bedroom. We called the police that night and have a report number; the neighbor's doorbell camera shows two people in the yard at around 3 am on Sunday.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "theft",
+        "confidence": 0.91,
+        "probabilities": {
+          "weather": 0.01,
+          "fire": 0,
+          "water": 0.01,
+          "theft": 0.91,
+          "collision": 0,
+          "wear_and_tear": 0,
+          "vandalism": 0.04,
+          "other": 0.01,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

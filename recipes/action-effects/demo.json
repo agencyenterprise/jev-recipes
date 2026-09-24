@@ -1,0 +1,17 @@
+{
+  "input": {
+    "action": "Send the weekly product digest to all 1,240 subscribers on the newsletter list through the SendGrid API, then set last_digest_sent_at to now on each subscriber row in the users table.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "writesData": { "type": "noul", "noul": 0.94 },
+      "sendsMessage": { "type": "noul", "noul": 0.97 },
+      "spendsMoney": { "type": "noul", "noul": 0.04 },
+      "deletesData": { "type": "noul", "noul": 0.02 },
+      "callsExternal": { "type": "noul", "noul": 0.93 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

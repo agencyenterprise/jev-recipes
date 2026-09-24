@@ -1,0 +1,17 @@
+{
+  "input": {
+    "statement": "I have lived at 214 Elm Street, Apt 2, Dayton, Ohio for about six years. I work part time as a cashier at Riverside Market and bring home around $1,400 a month; my hours were cut in July. There are four of us in the household: me, my wife Rosa, and our two kids, ages 7 and 10. I have attached copies of my driver's license and my Social Security card. Please let me know if you need anything else.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesResidency": { "type": "noul", "noul": 0.97 },
+      "statesIncome": { "type": "noul", "noul": 0.96 },
+      "statesHouseholdSize": { "type": "noul", "noul": 0.96 },
+      "statesIdentityDocuments": { "type": "noul", "noul": 0.94 },
+      "statesPriorBenefits": { "type": "noul", "noul": 0.05 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

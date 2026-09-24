@@ -1,0 +1,18 @@
+{
+  "input": {
+    "statement": "To the best of our knowledge, this is the first study to demonstrate that the effect transfers across species, a result no existing theoretical framework predicted.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.86,
+        "confidence": 0.9,
+        "probabilities": { "0": 0, "1": 0.01, "2": 0.02, "3": 0.07, "4": 0.9 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

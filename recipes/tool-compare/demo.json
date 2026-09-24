@@ -1,0 +1,26 @@
+{
+  "input": {
+    "task": "Extract every line-item table from a batch of 40 scanned supplier invoices, delivered as image-only PDFs, into CSV rows with the page number each row came from.",
+    "firstTool": "pdf_text_extract: returns the embedded text layer of a PDF as a single plain-text string per page. Does not perform OCR and returns empty output for scanned or image-only pages.",
+    "secondTool": "document_ocr_tables: runs OCR on scanned or image-based PDFs and returns detected tables as structured rows, each with cell text, a table index, and the source page number.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "second",
+        "confidence": 0.93,
+        "probabilities": {
+          "first": 0.02,
+          "second": 0.93,
+          "tie": 0.02,
+          "neither": 0.02,
+          "unclear": 0.01
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

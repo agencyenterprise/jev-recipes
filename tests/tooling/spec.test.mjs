@@ -16,7 +16,8 @@ const spec = {
   title: "Grade a reviewer's tone",
   description: 'How harsh is comment?',
   category: 'workflow',
-  tags: ['probe'],
+  tags: ['probe', 'tone', 'review'],
+  readme: { limits: ['First sentence.', 'Second sentence.'] },
   useWhen: 'Testing "quotes" and apostrophes.',
   related: [{ id: 'tone-check', reason: 'Caller-defined criteria.' }],
   limitations: ["It's only a probe."],
@@ -28,7 +29,7 @@ const spec = {
     { label: 'blunt', description: 'Direct.' },
     { label: 'hostile', description: 'Insulting.' },
   ],
-  demoProbabilities: [0.1, 0.7, 0.2],
+  demoProbabilities: [0.1, 0.8, 0.1],
   demoInput: { comment: 'Read the docs.', context: 'Open-source review.' },
 };
 
@@ -48,13 +49,44 @@ test('a score spec renders exact files with computed demo arithmetic', () => {
   assert.match(files.get('schema.ts'), /context: nonEmptyText\.optional\(\)/);
   const demo = JSON.parse(files.get('demo.json'));
   assert.deepEqual(demo.input, { ...spec.demoInput, minConfidence: 0.8 });
-  assert.equal(demo.response.answers.score.score, 1.1);
-  assert.equal(demo.response.answers.score.confidence, 0.7);
-  assert.deepEqual(demo.response.answers.score.probabilities, { 0: 0.1, 1: 0.7, 2: 0.2 });
+  assert.equal(demo.response.answers.score.score, 1);
+  assert.equal(demo.response.answers.score.confidence, 0.8);
+  assert.deepEqual(demo.response.answers.score.probabilities, { 0: 0.1, 1: 0.8, 2: 0.1 });
   assert.match(files.get('README.md'), /`context` is optional/);
   assert.match(files.get('metadata.ts'), /useWhen: 'Testing "quotes" and apostrophes\.'/);
   assert.ok(testSource.includes('testScore(specProbe, {"comment":"Read the docs."}'));
   assert.ok(testSource.includes('\'harshness\', ["context"]'));
+});
+
+test('array limits prose, zero-default choice labels, and review-level demo rejection', () => {
+  const { files } = renderRecipe(spec);
+  assert.match(files.get('README.md'), /First sentence\. Second sentence\./);
+  const choice = renderRecipe({
+    ...spec,
+    kind: 'choice',
+    criteria: { a: 'A.', b: 'B.', unclear: 'Unclear.' },
+    demoProbabilities: { a: 0.9, unclear: 0.1 },
+  });
+  assert.deepEqual(
+    JSON.parse(choice.files.get('demo.json')).response.answers.decision.probabilities,
+    { a: 0.9, b: 0, unclear: 0.1 },
+  );
+  assert.throws(
+    () => renderRecipe({ ...spec, demoProbabilities: [0.3, 0.5, 0.2] }),
+    /status review/,
+  );
+  assert.throws(
+    () =>
+      renderRecipe({
+        ...spec,
+        kind: 'gate',
+        verdicts: { yes: 'y', no: 'n' },
+        criteria: { true: 'Y.', false: 'N.' },
+        demoProbability: 0.6,
+      }),
+    /status review/,
+  );
+  assert.throws(() => renderRecipe({ ...spec, tags: ['one'] }));
 });
 
 test('specs with wrong demo probabilities or unknown kinds are rejected', () => {
@@ -74,9 +106,9 @@ test('specs with wrong demo probabilities or unknown kinds are rejected', () => 
         ...spec,
         kind: 'choice',
         criteria: { a: 'A.', b: 'B.', unclear: 'Unclear.' },
-        demoProbabilities: { a: 0.9, b: 0.1 },
+        demoProbabilities: { a: 0.9, b: 0.1, zzz: 0 },
       }),
-    /cover exactly/,
+    /unknown labels/,
   );
   assert.throws(
     () =>

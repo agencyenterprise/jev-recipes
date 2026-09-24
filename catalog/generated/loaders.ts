@@ -7,6 +7,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.actionCompare(recipe.actionCompareInputSchema.parse(input), options),
     ),
+  'action-effects': () =>
+    import('../../recipes/action-effects/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.actionEffects(recipe.actionEffectsInputSchema.parse(input), options),
+    ),
   'action-reversibility': () =>
     import('../../recipes/action-reversibility/index.js').then(
       (recipe) => (input, options) =>
@@ -62,6 +67,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.answerability(recipe.answerabilityInputSchema.parse(input), options),
     ),
+  'appeal-grounds-kind': () =>
+    import('../../recipes/appeal-grounds-kind/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.appealGroundsKind(recipe.appealGroundsKindInputSchema.parse(input), options),
+    ),
   'appointment-request-kind': () =>
     import('../../recipes/appointment-request-kind/index.js').then(
       (recipe) => (input, options) =>
@@ -100,6 +110,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.budgetFit(recipe.budgetFitInputSchema.parse(input), options),
     ),
+  'budget-narrative-fit': () =>
+    import('../../recipes/budget-narrative-fit/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.budgetNarrativeFit(recipe.budgetNarrativeFitInputSchema.parse(input), options),
+    ),
   'bug-report-completeness': () =>
     import('../../recipes/bug-report-completeness/index.js').then(
       (recipe) => (input, options) =>
@@ -134,6 +149,14 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/causal-attribution/index.js').then(
       (recipe) => (input, options) =>
         recipe.causalAttribution(recipe.causalAttributionInputSchema.parse(input), options),
+    ),
+  'causal-language-strength': () =>
+    import('../../recipes/causal-language-strength/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.causalLanguageStrength(
+          recipe.causalLanguageStrengthInputSchema.parse(input),
+          options,
+        ),
     ),
   'certainty-match': () =>
     import('../../recipes/certainty-match/index.js').then(
@@ -175,6 +198,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.citationNeeded(recipe.citationNeededInputSchema.parse(input), options),
     ),
+  'claim-facets': () =>
+    import('../../recipes/claim-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.claimFacets(recipe.claimFacetsInputSchema.parse(input), options),
+    ),
   'claim-stance': () =>
     import('../../recipes/claim-stance/index.js').then(
       (recipe) => (input, options) =>
@@ -209,6 +237,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/commitment-strength/index.js').then(
       (recipe) => (input, options) =>
         recipe.commitmentStrength(recipe.commitmentStrengthInputSchema.parse(input), options),
+    ),
+  'comparable-fit': () =>
+    import('../../recipes/comparable-fit/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.comparableFit(recipe.comparableFitInputSchema.parse(input), options),
     ),
   'confirmation-match': () =>
     import('../../recipes/confirmation-match/index.js').then(
@@ -253,10 +286,30 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.correctionTarget(recipe.correctionTargetInputSchema.parse(input), options),
     ),
+  'corrective-action-fit': () =>
+    import('../../recipes/corrective-action-fit/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.correctiveActionFit(recipe.correctiveActionFitInputSchema.parse(input), options),
+    ),
+  'deadline-risk': () =>
+    import('../../recipes/deadline-risk/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.deadlineRisk(recipe.deadlineRiskInputSchema.parse(input), options),
+    ),
+  'defect-report-facets': () =>
+    import('../../recipes/defect-report-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.defectReportFacets(recipe.defectReportFacetsInputSchema.parse(input), options),
+    ),
   'delegation-fit': () =>
     import('../../recipes/delegation-fit/index.js').then(
       (recipe) => (input, options) =>
         recipe.delegationFit(recipe.delegationFitInputSchema.parse(input), options),
+    ),
+  'disclosure-facets': () =>
+    import('../../recipes/disclosure-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.disclosureFacets(recipe.disclosureFacetsInputSchema.parse(input), options),
     ),
   'dispute-kind': () =>
     import('../../recipes/dispute-kind/index.js').then(
@@ -273,6 +326,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.draftCompare(recipe.draftCompareInputSchema.parse(input), options),
     ),
+  'eligibility-facets': () =>
+    import('../../recipes/eligibility-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.eligibilityFacets(recipe.eligibilityFacetsInputSchema.parse(input), options),
+    ),
   'emotion-kind': () =>
     import('../../recipes/emotion-kind/index.js').then(
       (recipe) => (input, options) =>
@@ -282,6 +340,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/entity-match/index.js').then(
       (recipe) => (input, options) =>
         recipe.entityMatch(recipe.entityMatchInputSchema.parse(input), options),
+    ),
+  'error-acknowledgment': () =>
+    import('../../recipes/error-acknowledgment/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.errorAcknowledgment(recipe.errorAcknowledgmentInputSchema.parse(input), options),
     ),
   'escalation-wording': () =>
     import('../../recipes/escalation-wording/index.js').then(
@@ -338,6 +401,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.failureKind(recipe.failureKindInputSchema.parse(input), options),
     ),
+  'fair-housing-wording': () =>
+    import('../../recipes/fair-housing-wording/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.fairHousingWording(recipe.fairHousingWordingInputSchema.parse(input), options),
+    ),
   'feedback-actionability': () =>
     import('../../recipes/feedback-actionability/index.js').then(
       (recipe) => (input, options) =>
@@ -386,6 +454,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.frustrationSignal(recipe.frustrationSignalInputSchema.parse(input), options),
     ),
+  'funder-fit': () =>
+    import('../../recipes/funder-fit/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.funderFit(recipe.funderFitInputSchema.parse(input), options),
+    ),
   'game-action': () =>
     import('../../recipes/game-action/index.js').then(
       (recipe) => (input, options) =>
@@ -405,6 +478,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/grounding-level/index.js').then(
       (recipe) => (input, options) =>
         recipe.groundingLevel(recipe.groundingLevelInputSchema.parse(input), options),
+    ),
+  'guest-request-facets': () =>
+    import('../../recipes/guest-request-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.guestRequestFacets(recipe.guestRequestFacetsInputSchema.parse(input), options),
     ),
   handoff: () =>
     import('../../recipes/handoff/index.js').then(
@@ -454,6 +532,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.instructionFit(recipe.instructionFitInputSchema.parse(input), options),
     ),
+  'instruction-priority': () =>
+    import('../../recipes/instruction-priority/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.instructionPriority(recipe.instructionPriorityInputSchema.parse(input), options),
+    ),
   'instruction-readability': () =>
     import('../../recipes/instruction-readability/index.js').then(
       (recipe) => (input, options) =>
@@ -487,6 +570,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.issueRecurrence(recipe.issueRecurrenceInputSchema.parse(input), options),
     ),
+  'itinerary-feasibility': () =>
+    import('../../recipes/itinerary-feasibility/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.itineraryFeasibility(recipe.itineraryFeasibilityInputSchema.parse(input), options),
+    ),
   'job-post-facets': () =>
     import('../../recipes/job-post-facets/index.js').then(
       (recipe) => (input, options) =>
@@ -502,10 +590,31 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.listingCompare(recipe.listingCompareInputSchema.parse(input), options),
     ),
+  'listing-fact-consistency': () =>
+    import('../../recipes/listing-fact-consistency/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.listingFactConsistency(
+          recipe.listingFactConsistencyInputSchema.parse(input),
+          options,
+        ),
+    ),
   'log-line-kind': () =>
     import('../../recipes/log-line-kind/index.js').then(
       (recipe) => (input, options) =>
         recipe.logLineKind(recipe.logLineKindInputSchema.parse(input), options),
+    ),
+  'loss-cause-kind': () =>
+    import('../../recipes/loss-cause-kind/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.lossCauseKind(recipe.lossCauseKindInputSchema.parse(input), options),
+    ),
+  'maintenance-hazard-wording': () =>
+    import('../../recipes/maintenance-hazard-wording/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.maintenanceHazardWording(
+          recipe.maintenanceHazardWordingInputSchema.parse(input),
+          options,
+        ),
     ),
   'medication-mention': () =>
     import('../../recipes/medication-mention/index.js').then(
@@ -537,6 +646,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.messageFacets(recipe.messageFacetsInputSchema.parse(input), options),
     ),
+  'methods-facets': () =>
+    import('../../recipes/methods-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.methodsFacets(recipe.methodsFacetsInputSchema.parse(input), options),
+    ),
   'motivation-source': () =>
     import('../../recipes/motivation-source/index.js').then(
       (recipe) => (input, options) =>
@@ -547,6 +661,21 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.moveExplanationFit(recipe.moveExplanationFitInputSchema.parse(input), options),
     ),
+  'narrative-consistency': () =>
+    import('../../recipes/narrative-consistency/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.narrativeConsistency(recipe.narrativeConsistencyInputSchema.parse(input), options),
+    ),
+  'notice-facets': () =>
+    import('../../recipes/notice-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.noticeFacets(recipe.noticeFacetsInputSchema.parse(input), options),
+    ),
+  'novelty-claim-level': () =>
+    import('../../recipes/novelty-claim-level/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.noveltyClaimLevel(recipe.noveltyClaimLevelInputSchema.parse(input), options),
+    ),
   'objection-kind': () =>
     import('../../recipes/objection-kind/index.js').then(
       (recipe) => (input, options) =>
@@ -556,6 +685,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/objective-fit/index.js').then(
       (recipe) => (input, options) =>
         recipe.objectiveFit(recipe.objectiveFitInputSchema.parse(input), options),
+    ),
+  'offer-terms-facets': () =>
+    import('../../recipes/offer-terms-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.offerTermsFacets(recipe.offerTermsFacetsInputSchema.parse(input), options),
     ),
   'outcome-framing': () =>
     import('../../recipes/outcome-framing/index.js').then(
@@ -641,6 +775,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/promise-check/index.js').then(
       (recipe) => (input, options) =>
         recipe.promiseCheck(recipe.promiseCheckInputSchema.parse(input), options),
+    ),
+  'proposal-facets': () =>
+    import('../../recipes/proposal-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.proposalFacets(recipe.proposalFacetsInputSchema.parse(input), options),
     ),
   'qualification-evidence': () =>
     import('../../recipes/qualification-evidence/index.js').then(
@@ -759,10 +898,28 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.reviewFacets(recipe.reviewFacetsInputSchema.parse(input), options),
     ),
+  'review-recommendation-kind': () =>
+    import('../../recipes/review-recommendation-kind/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.reviewRecommendationKind(
+          recipe.reviewRecommendationKindInputSchema.parse(input),
+          options,
+        ),
+    ),
+  'review-response-fit': () =>
+    import('../../recipes/review-response-fit/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.reviewResponseFit(recipe.reviewResponseFitInputSchema.parse(input), options),
+    ),
   'rollback-signal': () =>
     import('../../recipes/rollback-signal/index.js').then(
       (recipe) => (input, options) =>
         recipe.rollbackSignal(recipe.rollbackSignalInputSchema.parse(input), options),
+    ),
+  'root-cause-depth': () =>
+    import('../../recipes/root-cause-depth/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.rootCauseDepth(recipe.rootCauseDepthInputSchema.parse(input), options),
     ),
   route: () =>
     import('../../recipes/route/index.js').then(
@@ -778,6 +935,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.runbookFit(recipe.runbookFitInputSchema.parse(input), options),
     ),
+  'safety-incident-kind': () =>
+    import('../../recipes/safety-incident-kind/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.safetyIncidentKind(recipe.safetyIncidentKindInputSchema.parse(input), options),
+    ),
   'satisfaction-signal': () =>
     import('../../recipes/satisfaction-signal/index.js').then(
       (recipe) => (input, options) =>
@@ -792,6 +954,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/sentiment-shift/index.js').then(
       (recipe) => (input, options) =>
         recipe.sentimentShift(recipe.sentimentShiftInputSchema.parse(input), options),
+    ),
+  'settlement-offer-facets': () =>
+    import('../../recipes/settlement-offer-facets/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.settlementOfferFacets(recipe.settlementOfferFacetsInputSchema.parse(input), options),
     ),
   'shipment-issue-kind': () =>
     import('../../recipes/shipment-issue-kind/index.js').then(
@@ -873,6 +1040,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.toneCheck(recipe.toneCheckInputSchema.parse(input), options),
     ),
+  'tool-compare': () =>
+    import('../../recipes/tool-compare/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.toolCompare(recipe.toolCompareInputSchema.parse(input), options),
+    ),
   'tool-fit': () =>
     import('../../recipes/tool-fit/index.js').then(
       (recipe) => (input, options) =>
@@ -882,6 +1054,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/topic-shift/index.js').then(
       (recipe) => (input, options) =>
         recipe.topicShift(recipe.topicShiftInputSchema.parse(input), options),
+    ),
+  'trip-purpose-kind': () =>
+    import('../../recipes/trip-purpose-kind/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.tripPurposeKind(recipe.tripPurposeKindInputSchema.parse(input), options),
     ),
   'troubleshooting-fit': () =>
     import('../../recipes/troubleshooting-fit/index.js').then(

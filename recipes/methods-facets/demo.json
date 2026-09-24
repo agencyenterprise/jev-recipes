@@ -1,0 +1,17 @@
+{
+  "input": {
+    "methods": "We recruited 312 undergraduates (mean age 19.4, 58% women) from the university psychology participant pool between March and May 2023. Each participant completed the task in a single 40-minute lab session. Responses were analyzed with mixed-effects logistic regression in R using lme4, with participant as a random intercept and condition as a fixed effect. The hypotheses, design, and analysis plan were preregistered on OSF before data collection began.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesSampleSize": { "type": "noul", "noul": 0.97 },
+      "statesDataSource": { "type": "noul", "noul": 0.92 },
+      "statesAnalysisMethod": { "type": "noul", "noul": 0.96 },
+      "statesLimitations": { "type": "noul", "noul": 0.05 },
+      "statesPreregistration": { "type": "noul", "noul": 0.95 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

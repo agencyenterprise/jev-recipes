@@ -1,0 +1,11 @@
+{
+  "input": {
+    "request": "Unit 4B. Since this morning there's a strong gas smell in the kitchen, strongest near the stove even with all the burners off. I opened the windows. Can someone come take a look when they get a chance? Thanks.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.96 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

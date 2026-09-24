@@ -1,0 +1,26 @@
+{
+  "input": {
+    "appeal": "I am appealing the denial dated September 3. The letter says my household income is $4,200 per month, which is over the limit. That number includes my adult son's wages, but he moved out in March and no longer lives with me; I told the office this at my interview. My actual household income is my own $2,600 per month. Please correct the income figure and reconsider my application.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "factual_error",
+        "confidence": 0.86,
+        "probabilities": {
+          "factual_error": 0.86,
+          "procedural_error": 0.01,
+          "new_evidence": 0.06,
+          "hardship": 0.02,
+          "misapplied_rule": 0.03,
+          "other": 0.01,
+          "unclear": 0.01
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

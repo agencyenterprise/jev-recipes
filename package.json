@@ -28,6 +28,10 @@
       "types": "./dist/recipes/action-compare/index.d.ts",
       "import": "./dist/recipes/action-compare/index.js"
     },
+    "./action-effects": {
+      "types": "./dist/recipes/action-effects/index.d.ts",
+      "import": "./dist/recipes/action-effects/index.js"
+    },
     "./action-reversibility": {
       "types": "./dist/recipes/action-reversibility/index.d.ts",
       "import": "./dist/recipes/action-reversibility/index.js"
@@ -72,6 +76,10 @@
       "types": "./dist/recipes/answerability/index.d.ts",
       "import": "./dist/recipes/answerability/index.js"
     },
+    "./appeal-grounds-kind": {
+      "types": "./dist/recipes/appeal-grounds-kind/index.d.ts",
+      "import": "./dist/recipes/appeal-grounds-kind/index.js"
+    },
     "./appointment-request-kind": {
       "types": "./dist/recipes/appointment-request-kind/index.d.ts",
       "import": "./dist/recipes/appointment-request-kind/index.js"
@@ -100,6 +108,10 @@
       "types": "./dist/recipes/budget-fit/index.d.ts",
       "import": "./dist/recipes/budget-fit/index.js"
     },
+    "./budget-narrative-fit": {
+      "types": "./dist/recipes/budget-narrative-fit/index.d.ts",
+      "import": "./dist/recipes/budget-narrative-fit/index.js"
+    },
     "./bug-report-completeness": {
       "types": "./dist/recipes/bug-report-completeness/index.d.ts",
       "import": "./dist/recipes/bug-report-completeness/index.js"
@@ -127,6 +139,10 @@
     "./causal-attribution": {
       "types": "./dist/recipes/causal-attribution/index.d.ts",
       "import": "./dist/recipes/causal-attribution/index.js"
+    },
+    "./causal-language-strength": {
+      "types": "./dist/recipes/causal-language-strength/index.d.ts",
+      "import": "./dist/recipes/causal-language-strength/index.js"
     },
     "./certainty-match": {
       "types": "./dist/recipes/certainty-match/index.d.ts",
@@ -160,6 +176,10 @@
       "types": "./dist/recipes/citation-needed/index.d.ts",
       "import": "./dist/recipes/citation-needed/index.js"
     },
+    "./claim-facets": {
+      "types": "./dist/recipes/claim-facets/index.d.ts",
+      "import": "./dist/recipes/claim-facets/index.js"
+    },
     "./claim-stance": {
       "types": "./dist/recipes/claim-stance/index.d.ts",
       "import": "./dist/recipes/claim-stance/index.js"
@@ -187,6 +207,10 @@
     "./commitment-strength": {
       "types": "./dist/recipes/commitment-strength/index.d.ts",
       "import": "./dist/recipes/commitment-strength/index.js"
+    },
+    "./comparable-fit": {
+      "types": "./dist/recipes/comparable-fit/index.d.ts",
+      "import": "./dist/recipes/comparable-fit/index.js"
     },
     "./confirmation-match": {
       "types": "./dist/recipes/confirmation-match/index.d.ts",
@@ -220,9 +244,25 @@
       "types": "./dist/recipes/correction-target/index.d.ts",
       "import": "./dist/recipes/correction-target/index.js"
     },
+    "./corrective-action-fit": {
+      "types": "./dist/recipes/corrective-action-fit/index.d.ts",
+      "import": "./dist/recipes/corrective-action-fit/index.js"
+    },
+    "./deadline-risk": {
+      "types": "./dist/recipes/deadline-risk/index.d.ts",
+      "import": "./dist/recipes/deadline-risk/index.js"
+    },
+    "./defect-report-facets": {
+      "types": "./dist/recipes/defect-report-facets/index.d.ts",
+      "import": "./dist/recipes/defect-report-facets/index.js"
+    },
     "./delegation-fit": {
       "types": "./dist/recipes/delegation-fit/index.d.ts",
       "import": "./dist/recipes/delegation-fit/index.js"
+    },
+    "./disclosure-facets": {
+      "types": "./dist/recipes/disclosure-facets/index.d.ts",
+      "import": "./dist/recipes/disclosure-facets/index.js"
     },
     "./dispute-kind": {
       "types": "./dist/recipes/dispute-kind/index.d.ts",
@@ -236,6 +276,10 @@
       "types": "./dist/recipes/draft-compare/index.d.ts",
       "import": "./dist/recipes/draft-compare/index.js"
     },
+    "./eligibility-facets": {
+      "types": "./dist/recipes/eligibility-facets/index.d.ts",
+      "import": "./dist/recipes/eligibility-facets/index.js"
+    },
     "./emotion-kind": {
       "types": "./dist/recipes/emotion-kind/index.d.ts",
       "import": "./dist/recipes/emotion-kind/index.js"
@@ -243,6 +287,10 @@
     "./entity-match": {
       "types": "./dist/recipes/entity-match/index.d.ts",
       "import": "./dist/recipes/entity-match/index.js"
+    },
+    "./error-acknowledgment": {
+      "types": "./dist/recipes/error-acknowledgment/index.d.ts",
+      "import": "./dist/recipes/error-acknowledgment/index.js"
     },
     "./escalation-wording": {
       "types": "./dist/recipes/escalation-wording/index.d.ts",
@@ -288,6 +336,10 @@
       "types": "./dist/recipes/failure-kind/index.d.ts",
       "import": "./dist/recipes/failure-kind/index.js"
     },
+    "./fair-housing-wording": {
+      "types": "./dist/recipes/fair-housing-wording/index.d.ts",
+      "import": "./dist/recipes/fair-housing-wording/index.js"
+    },
     "./feedback-actionability": {
       "types": "./dist/recipes/feedback-actionability/index.d.ts",
       "import": "./dist/recipes/feedback-actionability/index.js"
@@ -324,6 +376,10 @@
       "types": "./dist/recipes/frustration-signal/index.d.ts",
       "import": "./dist/recipes/frustration-signal/index.js"
     },
+    "./funder-fit": {
+      "types": "./dist/recipes/funder-fit/index.d.ts",
+      "import": "./dist/recipes/funder-fit/index.js"
+    },
     "./game-action": {
       "types": "./dist/recipes/game-action/index.d.ts",
       "import": "./dist/recipes/game-action/index.js"
@@ -339,6 +395,10 @@
     "./grounding-level": {
       "types": "./dist/recipes/grounding-level/index.d.ts",
       "import": "./dist/recipes/grounding-level/index.js"
+    },
+    "./guest-request-facets": {
+      "types": "./dist/recipes/guest-request-facets/index.d.ts",
+      "import": "./dist/recipes/guest-request-facets/index.js"
     },
     "./handoff": {
       "types": "./dist/recipes/handoff/index.d.ts",
@@ -376,6 +436,10 @@
       "types": "./dist/recipes/instruction-fit/index.d.ts",
       "import": "./dist/recipes/instruction-fit/index.js"
     },
+    "./instruction-priority": {
+      "types": "./dist/recipes/instruction-priority/index.d.ts",
+      "import": "./dist/recipes/instruction-priority/index.js"
+    },
     "./instruction-readability": {
       "types": "./dist/recipes/instruction-readability/index.d.ts",
       "import": "./dist/recipes/instruction-readability/index.js"
@@ -400,6 +464,10 @@
       "types": "./dist/recipes/issue-recurrence/index.d.ts",
       "import": "./dist/recipes/issue-recurrence/index.js"
     },
+    "./itinerary-feasibility": {
+      "types": "./dist/recipes/itinerary-feasibility/index.d.ts",
+      "import": "./dist/recipes/itinerary-feasibility/index.js"
+    },
     "./job-post-facets": {
       "types": "./dist/recipes/job-post-facets/index.d.ts",
       "import": "./dist/recipes/job-post-facets/index.js"
@@ -412,9 +480,21 @@
       "types": "./dist/recipes/listing-compare/index.d.ts",
       "import": "./dist/recipes/listing-compare/index.js"
     },
+    "./listing-fact-consistency": {
+      "types": "./dist/recipes/listing-fact-consistency/index.d.ts",
+      "import": "./dist/recipes/listing-fact-consistency/index.js"
+    },
     "./log-line-kind": {
       "types": "./dist/recipes/log-line-kind/index.d.ts",
       "import": "./dist/recipes/log-line-kind/index.js"
+    },
+    "./loss-cause-kind": {
+      "types": "./dist/recipes/loss-cause-kind/index.d.ts",
+      "import": "./dist/recipes/loss-cause-kind/index.js"
+    },
+    "./maintenance-hazard-wording": {
+      "types": "./dist/recipes/maintenance-hazard-wording/index.d.ts",
+      "import": "./dist/recipes/maintenance-hazard-wording/index.js"
     },
     "./medication-mention": {
       "types": "./dist/recipes/medication-mention/index.d.ts",
@@ -440,6 +520,10 @@
       "types": "./dist/recipes/message-facets/index.d.ts",
       "import": "./dist/recipes/message-facets/index.js"
     },
+    "./methods-facets": {
+      "types": "./dist/recipes/methods-facets/index.d.ts",
+      "import": "./dist/recipes/methods-facets/index.js"
+    },
     "./motivation-source": {
       "types": "./dist/recipes/motivation-source/index.d.ts",
       "import": "./dist/recipes/motivation-source/index.js"
@@ -448,6 +532,18 @@
       "types": "./dist/recipes/move-explanation-fit/index.d.ts",
       "import": "./dist/recipes/move-explanation-fit/index.js"
     },
+    "./narrative-consistency": {
+      "types": "./dist/recipes/narrative-consistency/index.d.ts",
+      "import": "./dist/recipes/narrative-consistency/index.js"
+    },
+    "./notice-facets": {
+      "types": "./dist/recipes/notice-facets/index.d.ts",
+      "import": "./dist/recipes/notice-facets/index.js"
+    },
+    "./novelty-claim-level": {
+      "types": "./dist/recipes/novelty-claim-level/index.d.ts",
+      "import": "./dist/recipes/novelty-claim-level/index.js"
+    },
     "./objection-kind": {
       "types": "./dist/recipes/objection-kind/index.d.ts",
       "import": "./dist/recipes/objection-kind/index.js"
@@ -455,6 +551,10 @@
     "./objective-fit": {
       "types": "./dist/recipes/objective-fit/index.d.ts",
       "import": "./dist/recipes/objective-fit/index.js"
+    },
+    "./offer-terms-facets": {
+      "types": "./dist/recipes/offer-terms-facets/index.d.ts",
+      "import": "./dist/recipes/offer-terms-facets/index.js"
     },
     "./outcome-framing": {
       "types": "./dist/recipes/outcome-framing/index.d.ts",
@@ -523,6 +623,10 @@
     "./promise-check": {
       "types": "./dist/recipes/promise-check/index.d.ts",
       "import": "./dist/recipes/promise-check/index.js"
+    },
+    "./proposal-facets": {
+      "types": "./dist/recipes/proposal-facets/index.d.ts",
+      "import": "./dist/recipes/proposal-facets/index.js"
     },
     "./qualification-evidence": {
       "types": "./dist/recipes/qualification-evidence/index.d.ts",
@@ -616,9 +720,21 @@
       "types": "./dist/recipes/review-facets/index.d.ts",
       "import": "./dist/recipes/review-facets/index.js"
     },
+    "./review-recommendation-kind": {
+      "types": "./dist/recipes/review-recommendation-kind/index.d.ts",
+      "import": "./dist/recipes/review-recommendation-kind/index.js"
+    },
+    "./review-response-fit": {
+      "types": "./dist/recipes/review-response-fit/index.d.ts",
+      "import": "./dist/recipes/review-response-fit/index.js"
+    },
     "./rollback-signal": {
       "types": "./dist/recipes/rollback-signal/index.d.ts",
       "import": "./dist/recipes/rollback-signal/index.js"
+    },
+    "./root-cause-depth": {
+      "types": "./dist/recipes/root-cause-depth/index.d.ts",
+      "import": "./dist/recipes/root-cause-depth/index.js"
     },
     "./route": {
       "types": "./dist/recipes/route/index.d.ts",
@@ -632,6 +748,10 @@
       "types": "./dist/recipes/runbook-fit/index.d.ts",
       "import": "./dist/recipes/runbook-fit/index.js"
     },
+    "./safety-incident-kind": {
+      "types": "./dist/recipes/safety-incident-kind/index.d.ts",
+      "import": "./dist/recipes/safety-incident-kind/index.js"
+    },
     "./satisfaction-signal": {
       "types": "./dist/recipes/satisfaction-signal/index.d.ts",
       "import": "./dist/recipes/satisfaction-signal/index.js"
@@ -643,6 +763,10 @@
     "./sentiment-shift": {
       "types": "./dist/recipes/sentiment-shift/index.d.ts",
       "import": "./dist/recipes/sentiment-shift/index.js"
+    },
+    "./settlement-offer-facets": {
+      "types": "./dist/recipes/settlement-offer-facets/index.d.ts",
+      "import": "./dist/recipes/settlement-offer-facets/index.js"
     },
     "./shipment-issue-kind": {
       "types": "./dist/recipes/shipment-issue-kind/index.d.ts",
@@ -708,6 +832,10 @@
       "types": "./dist/recipes/tone-check/index.d.ts",
       "import": "./dist/recipes/tone-check/index.js"
     },
+    "./tool-compare": {
+      "types": "./dist/recipes/tool-compare/index.d.ts",
+      "import": "./dist/recipes/tool-compare/index.js"
+    },
     "./tool-fit": {
       "types": "./dist/recipes/tool-fit/index.d.ts",
       "import": "./dist/recipes/tool-fit/index.js"
@@ -715,6 +843,10 @@
     "./topic-shift": {
       "types": "./dist/recipes/topic-shift/index.d.ts",
       "import": "./dist/recipes/topic-shift/index.js"
+    },
+    "./trip-purpose-kind": {
+      "types": "./dist/recipes/trip-purpose-kind/index.d.ts",
+      "import": "./dist/recipes/trip-purpose-kind/index.js"
     },
     "./troubleshooting-fit": {
       "types": "./dist/recipes/troubleshooting-fit/index.d.ts",
