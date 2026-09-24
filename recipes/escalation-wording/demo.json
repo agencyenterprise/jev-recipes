@@ -1,0 +1,11 @@
+{
+  "input": {
+    "message": "I have been going back and forth with support for a week and the billing error is still not fixed. Please escalate this to your engineering team or have a supervisor contact me directly today.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.96 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

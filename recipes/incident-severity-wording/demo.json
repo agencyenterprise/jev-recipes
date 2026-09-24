@@ -1,0 +1,18 @@
+{
+  "input": {
+    "report": "Since 14:05 UTC, about 30% of requests to the search endpoint on the EU shard return 503. Search results fail to load for mobile users in the EU; web checkout, account pages, and all other regions are unaffected. No data loss observed.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.12,
+        "confidence": 0.8,
+        "probabilities": { "0": 0, "1": 0.05, "2": 0.8, "3": 0.13, "4": 0.02 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

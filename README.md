@@ -11,7 +11,7 @@
 
 <!-- BEGIN GENERATED: summary -->
 
-149 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
+179 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
 
 <!-- END GENERATED: summary -->
 

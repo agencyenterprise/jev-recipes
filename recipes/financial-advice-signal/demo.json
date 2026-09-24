@@ -1,0 +1,11 @@
+{
+  "input": {
+    "text": "Honestly, at your age you should just put the whole $20k into VTI and forget about it. Bonds are a waste right now. Sell the individual tech stocks you mentioned and move that money over too.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.91 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

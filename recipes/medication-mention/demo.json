@@ -1,0 +1,11 @@
+{
+  "input": {
+    "message": "I have been taking 20 mg of lisinopril every morning and started a magnesium supplement last week. Since then I feel dizzy when I stand up. Is that normal, or should I stop one of them?",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": { "gate": { "type": "noul", "noul": 0.97 } },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

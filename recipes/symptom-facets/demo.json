@@ -1,0 +1,17 @@
+{
+  "input": {
+    "message": "My lower back started hurting on Saturday after I moved some boxes, so it has been about five days now. It gets worse when I sit for a long time and eases up when I walk around. I have been taking ibuprofen twice a day and using a heating pad at night, but it is not really improving. Should I come in?",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesOnset": { "type": "noul", "noul": 0.95 },
+      "statesSeverity": { "type": "noul", "noul": 0.12 },
+      "statesDuration": { "type": "noul", "noul": 0.93 },
+      "statesModifiers": { "type": "noul", "noul": 0.94 },
+      "statesPriorTreatment": { "type": "noul", "noul": 0.96 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

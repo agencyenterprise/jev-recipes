@@ -1,0 +1,17 @@
+{
+  "input": {
+    "article": "Why every small team should ship a status page\n\nAfter running infrastructure for three startups over eight years, I am convinced that a public status page is the highest-leverage reliability investment a small team can make. When we added one at my last company, support tickets during incidents dropped from an average of 41 to 9, because customers could see we already knew. It also forced us to define what \"degraded\" meant, which improved our own alerting. Start today: pick a hosted provider, list your five most visible services, and link the page from your app footer before the next incident finds you.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesThesis": { "type": "noul", "noul": 0.93 },
+      "providesEvidence": { "type": "noul", "noul": 0.9 },
+      "addressesCounterarguments": { "type": "noul", "noul": 0.12 },
+      "includesCallToAction": { "type": "noul", "noul": 0.88 },
+      "signalsExpertise": { "type": "noul", "noul": 0.91 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

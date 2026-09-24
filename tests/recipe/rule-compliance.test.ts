@@ -1,0 +1,13 @@
+import { ruleCompliance } from '../../recipes/rule-compliance/index.js';
+import { testGate } from './helpers/gate.js';
+
+testGate(
+  ruleCompliance,
+  {
+    action:
+      'On my turn I play a Draw Two card on top of a red 7 that is showing on the discard pile. My Draw Two is blue.',
+    rules:
+      'UNO. On your turn you must play a card that matches the top discard by color, number, or symbol. Draw Two, Reverse, and Skip cards may be played on a top card of the same color or on another card of the same symbol. Wild cards may be played on anything. If you cannot play, draw one card; if it is playable you may play it immediately.',
+  },
+  ['legal', 'illegal'],
+);

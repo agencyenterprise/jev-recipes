@@ -1,0 +1,18 @@
+{
+  "input": {
+    "headline": "This One Kitchen Habit Is Secretly Destroying Your Health - Doctors Are Stunned",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.92,
+        "confidence": 0.62,
+        "probabilities": { "0": 0.01, "1": 0.04, "2": 0.15, "3": 0.62, "4": 0.18 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

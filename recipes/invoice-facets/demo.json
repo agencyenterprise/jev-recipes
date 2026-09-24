@@ -1,0 +1,17 @@
+{
+  "input": {
+    "invoice": "Northwind Design Studio\n412 Harbor St, Portland OR\n\nINVOICE #2024-0187\nBill to: Acme Robotics, Attn: Accounts Payable\n\n1. Landing page redesign, 24 hrs @ $120/hr ........ $2,880.00\n2. Icon set (32 icons) ................................ $640.00\n\nSubtotal: $3,520.00\nTax (0%): $0.00\nTotal due: $3,520.00\n\nThank you for your business.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "statesVendor": { "type": "noul", "noul": 0.97 },
+      "statesInvoiceNumber": { "type": "noul", "noul": 0.95 },
+      "statesDueDate": { "type": "noul", "noul": 0.12 },
+      "statesLineItems": { "type": "noul", "noul": 0.93 },
+      "statesTotals": { "type": "noul", "noul": 0.96 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

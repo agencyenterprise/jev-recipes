@@ -19,6 +19,7 @@ Requires Node.js 22.9 or newer. Make is optional; every task has an npm equivale
 | Check the installable archive      | `make pack-check`                      | `npm run pack:check`                                 |
 | Scaffold a recipe                  | `make new RECIPE=my-recipe`            | `npm run new -- my-recipe`                           |
 | Scaffold a score or gate recipe    | `make new RECIPE=my-recipe KIND=score` | `npm run new -- my-recipe gate`                      |
+| Scaffold from a spec file          | `npm run new -- --spec spec.json`      | `node scripts/new-recipe.mjs --spec a.json b.json`   |
 | Compile or clean                   | `make build` / `make clean`            | `npm run build` / `npm run clean`                    |
 
 `make ci` checks generated files without changing them, checks formatting and types, runs recipe coverage, builds, tests the tooling, and tests the actual npm archive. It makes no live Jev calls. Fix stale generated files with `make docs`; format author-maintained files with `npm run format`.
@@ -47,6 +48,10 @@ Tests remain outside recipe folders. Production builds exclude tests, and packag
 5. Add tests for the actual decision rules, confidence boundaries, invalid inputs, and malformed responses. Use the existing helpers where appropriate. Starter tests are not a complete contribution test suite.
 6. Run `make docs`. Exports, catalog registration, schema descriptions, reference tables, and counts are generated automatically.
 7. Run `make ci` and inspect the changes.
+
+### Spec-driven scaffolding
+
+When you already know the decision, write it as a JSON spec and run `node scripts/new-recipe.mjs --spec my-recipe.json`. The spec carries the metadata, input names (`required` or `optional`), the instruction, the kind-specific criteria (a `rubric` with `labelField` for score, `verdicts` and `criteria` for gate, `criteria` for choice and comparison, `labels` for labels), a demo input, and demo probabilities. The scaffolder validates the spec, computes the demo fixture arithmetic, and renders all five recipe files plus the test file in the house style, so only the guide prose may need editing. The schema lives in `recipeSpecSchema` in [scripts/new-recipe.mjs](scripts/new-recipe.mjs); `tests/tooling/spec.test.mjs` shows a complete example. Spec files are authoring input, not part of the recipe; do not commit them.
 
 Do not hand-edit `src/index.ts`, `catalog/generated/`, the exports map in `package.json`, or documentation between generated markers. Generation is deterministic. Running it again without source changes produces no diff.
 

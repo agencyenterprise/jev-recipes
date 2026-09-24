@@ -90,6 +90,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'alert-actionability',
+    title: 'Grade how actionable an alert is',
+    description:
+      'How actionable is alert for the on-call engineer who receives it, on a five-level rubric from pure noise to a guided first step?',
+    category: 'workflow',
+    tags: ['on-call', 'alerting', 'incident-response', 'devops', 'score', 'monitoring'],
+    limitations: [
+      'Grades what the alert text tells the responder, not whether the alert is true or whether the named component is really at fault.',
+      'Does not know your service topology or runbooks. Context can supply that, but the grade stays a judgment about the wording.',
+      'Deduplication, paging policy, and escalation timers belong in application code.',
+    ],
+    useWhen:
+      'You need to triage or audit alert text before paging someone: to route noisy alerts to a digest, to flag vague alerts for rewriting, or to rank a flood of alerts by how much they tell the responder.',
+    related: [
+      {
+        id: 'feedback-actionability',
+        reason:
+          'Use feedback-actionability for review comments and user feedback rather than operational alerts.',
+      },
+      {
+        id: 'issue-impact',
+        reason:
+          'Use issue-impact to grade how much a reported problem matters, rather than how well the alert tells you what to do about it.',
+      },
+    ],
+  },
+  {
     id: 'answer-consistency',
     title: 'Check answer consistency',
     description:
@@ -229,6 +256,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'answer-coverage',
         reason: 'Use answer-coverage after drafting to check whether each question was addressed.',
+      },
+    ],
+  },
+  {
+    id: 'appointment-request-kind',
+    title: "Classify a patient's appointment request",
+    description:
+      'What does the patient primarily want from message: to schedule, reschedule, or cancel an appointment, get results, get a refill, or ask a question?',
+    category: 'support',
+    tags: ['healthcare', 'patient-message', 'scheduling', 'intent', 'routing', 'choice'],
+    limitations: [
+      'Returns the primary request only. A message that both cancels and asks a question gets one label; split multi-request messages in code.',
+      'Does not verify that the referenced appointment, prescription, or test exists in your system or belongs to the sender.',
+    ],
+    useWhen:
+      'You need to route incoming patient portal messages or voicemail transcripts to the scheduling, results, or pharmacy queue by the main thing the patient asks for.',
+    related: [
+      {
+        id: 'turn-intent',
+        reason:
+          'Use turn-intent for the general communicative purpose of a message outside the appointment domain.',
+      },
+      {
+        id: 'cancellation-check',
+        reason:
+          'Use cancellation-check when you only need to know whether a message cancels something.',
       },
     ],
   },
@@ -465,6 +518,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'care-urgency-wording',
+    title: "Grade the urgency a patient's wording asks for",
+    description:
+      "How urgent is the care that message asks for, from routine to emergency, judged on what the patient's wording says rather than on medical assessment?",
+    category: 'support',
+    tags: ['healthcare', 'patient-message', 'urgency', 'scheduling', 'rubric', 'score'],
+    limitations: [
+      'Grades the urgency the wording asks for, not medical triage. Enforce emergency routing in code by protocol regardless of this result.',
+      'Reads stated timing only; a calm message about a serious symptom grades as the patient worded it, and an anxious message about a minor one grades high.',
+    ],
+    useWhen:
+      'You need to sort patient messages into scheduling or response-time queues by the timeline the patient asks for, before or alongside clinical triage handled by protocol.',
+    related: [
+      {
+        id: 'urgency-signal',
+        reason:
+          'Use urgency-signal when you only need a yes/no check that a message explicitly asks for urgent attention.',
+      },
+      {
+        id: 'handoff',
+        reason:
+          'Use handoff to decide whether a message should leave the automated flow for a human, such as a nurse line.',
+      },
+    ],
+  },
+  {
     id: 'category-fit',
     title: 'Check an item against its category',
     description: 'Does the product described by item belong under category as defined?',
@@ -584,6 +663,33 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'action-scope',
         reason:
           'Use action-scope to check whether a change stays within the work that was requested.',
+      },
+    ],
+  },
+  {
+    id: 'change-window-fit',
+    title: 'Check a change against a change-window policy',
+    description:
+      'Does the described change fall within the written change-window or freeze policy?',
+    category: 'workflow',
+    tags: ['change-management', 'deployment', 'devops', 'policy', 'gate', 'on-call'],
+    limitations: [
+      'Dates, times, time zones, and business-day arithmetic must be compared in application code. The recipe reads the texts as written and does not compute calendar facts.',
+      'Judges the change as described against the policy as written. It does not know about approvals, exceptions, or freeze calendars that are not in policy.',
+      'A blocked verdict is a flag for an approver, not an enforcement decision.',
+    ],
+    useWhen:
+      'A deploy or infrastructure change is proposed in free text and you want a first read on whether it is permitted under a written change-window or freeze policy before a human approver looks at it.',
+    related: [
+      {
+        id: 'slot-fit',
+        reason:
+          'Use slot-fit to check whether a proposed time matches a stated availability window in scheduling contexts, rather than a deployment policy.',
+      },
+      {
+        id: 'action-scope',
+        reason:
+          'Use action-scope to check whether an action stays within what was requested, rather than whether its timing is allowed.',
       },
     ],
   },
@@ -802,6 +908,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'clickbait-level',
+    title: 'Grade clickbait level',
+    description:
+      'How much does headline rely on curiosity gaps, exaggeration, or emotional bait instead of stating what the content is?',
+    category: 'conversation',
+    tags: ['content', 'headline', 'clickbait', 'seo', 'psychology', 'score'],
+    limitations: [
+      'Grades the wording of the headline alone; it does not see the article and cannot say whether the headline is accurate.',
+      'Does not measure click-through rate or reader trust. Publishing thresholds and rewrite policies belong in code.',
+    ],
+    useWhen:
+      'You want to rank, flag, or reject headlines that manipulate readers into clicking rather than telling them what they will get.',
+    related: [
+      {
+        id: 'outcome-framing',
+        reason:
+          'Use outcome-framing to judge whether a message frames a result as a gain or a loss.',
+      },
+      {
+        id: 'question-leading',
+        reason:
+          'Use question-leading to detect questions that push the reader toward a particular answer.',
+      },
+    ],
+  },
+  {
     id: 'commit-message-fit',
     title: 'Check commit message accuracy',
     description:
@@ -896,6 +1028,31 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'consent-scope-fit',
+    title: 'Check whether consent wording covers a use',
+    description: 'Does the wording of consent cover the described use?',
+    category: 'knowledge',
+    tags: ['healthcare', 'consent', 'authorization', 'privacy', 'scope', 'gate'],
+    limitations: [
+      'Compares wording only. It does not determine legal sufficiency, whether the consent was validly obtained, or whether it has expired or been revoked.',
+      'Dates, revocation status, and the identity of the named parties belong in application records, not in this check.',
+    ],
+    useWhen:
+      "You hold the text of a patient's consent or authorization and need to check, before sharing or using their information, whether the described use falls within what the wording permits.",
+    related: [
+      {
+        id: 'consent-request',
+        reason:
+          'Use consent-request to check that a message actually asks for consent, before there is any consent wording to compare against.',
+      },
+      {
+        id: 'source-applicability',
+        reason:
+          'Use source-applicability to check whether a policy or source document applies to a situation at all.',
+      },
+    ],
+  },
+  {
     id: 'constraint-strength',
     title: 'Distinguish requirements from preferences',
     description: 'Classify a stated constraint as required, preferred, optional, or unclear.',
@@ -931,6 +1088,57 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'instruction-conflict',
         reason: 'Use instruction-conflict to compare the requirements of two instructions.',
+      },
+    ],
+  },
+  {
+    id: 'content-facets',
+    title: 'Label article facets',
+    description:
+      'Which of these does article include: a clear thesis, supporting evidence, counterarguments, a call to action, and signals of author expertise?',
+    category: 'knowledge',
+    tags: ['content', 'seo', 'article', 'editorial', 'quality', 'labels'],
+    limitations: [
+      'Labels what the article contains; it does not judge whether the thesis is correct, the evidence is sound, or the expertise is genuine.',
+      'Long articles are read as one text. Section-level analysis and scoring rules belong in code.',
+    ],
+    useWhen:
+      'You audit published or drafted articles for structural completeness before deciding whether they need more evidence, a stance, or a conclusion.',
+    related: [
+      {
+        id: 'answer-disclosures',
+        reason:
+          'Use answer-disclosures to label the caveats and disclosures an answer contains rather than the structure of an article.',
+      },
+      {
+        id: 'argument-fit',
+        reason: 'Use argument-fit to judge whether a specific argument supports a specific claim.',
+      },
+    ],
+  },
+  {
+    id: 'content-freshness-signal',
+    title: 'Detect perishable content',
+    description:
+      'Does content contain claims that are likely to go stale, such as prices, versions, dates, current events, or latest wording?',
+    category: 'knowledge',
+    tags: ['content', 'seo', 'freshness', 'maintenance', 'evergreen', 'gate'],
+    limitations: [
+      'Flags the presence of perishable claims; it does not say whether they are currently accurate or when they will expire.',
+      "Does not know today's date. Review schedules and expiry calculations belong in code.",
+    ],
+    useWhen:
+      'You schedule content reviews, decide which pages need dated review notes, or want to flag articles that will silently become wrong.',
+    related: [
+      {
+        id: 'fact-stability',
+        reason:
+          'Use fact-stability to judge a single stored fact rather than a whole piece of content.',
+      },
+      {
+        id: 'freshness-needed',
+        reason:
+          'Use freshness-needed to decide whether a question requires current information to answer.',
       },
     ],
   },
@@ -986,6 +1194,32 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'route',
         reason:
           'Use route to choose among several named delegates at once when more than one might fit.',
+      },
+    ],
+  },
+  {
+    id: 'dispute-kind',
+    title: 'Classify a billing dispute',
+    description: 'What kind of billing dispute does message raise?',
+    category: 'support',
+    tags: ['billing', 'disputes', 'support', 'classification', 'payments', 'finance'],
+    limitations: [
+      'Classifies what the customer claims, not whether the claim is valid. Verify charges, refunds, and cancellations against your billing records in code.',
+      'A message that raises several disputes is classified by the one it presses most; split multi-issue messages in code when each matters.',
+      "Amounts and dates in the message are treated as part of the customer's claim, not checked.",
+    ],
+    useWhen:
+      'You need to sort incoming billing complaints into a fixed set of dispute types so each can be routed to the right handler or template.',
+    related: [
+      {
+        id: 'issue-impact',
+        reason:
+          'Use issue-impact to grade how badly a reported problem affects the customer, rather than what kind of billing dispute it is.',
+      },
+      {
+        id: 'route',
+        reason:
+          'Use route when the destinations are caller-defined queues rather than this fixed set of billing dispute types.',
       },
     ],
   },
@@ -1068,6 +1302,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'task-duplicate',
         reason: 'Use task-duplicate to catch a task that repeats one already on the list.',
+      },
+    ],
+  },
+  {
+    id: 'escalation-wording',
+    title: 'Check whether a message asks for escalation',
+    description:
+      'Does message explicitly ask for escalation to a higher tier, a manager, or on-call engineering?',
+    category: 'support',
+    tags: ['support', 'escalation', 'routing', 'gate', 'on-call', 'customer-service'],
+    limitations: [
+      'Detects an explicit request, not a need. A frustrated message that deserves escalation but does not ask for it yields absent.',
+      'Does not decide whether the request should be granted or who the right recipient is. Routing rules belong in application code.',
+    ],
+    useWhen:
+      'You are routing inbound support messages or internal chat and need to catch explicit escalation requests so they reach a supervisor, a higher support tier, or the on-call engineer.',
+    related: [
+      {
+        id: 'urgency-signal',
+        reason:
+          'Use urgency-signal to grade how urgent a message sounds, whether or not it asks for escalation.',
+      },
+      {
+        id: 'handoff',
+        reason:
+          'Use handoff to decide whether a conversation should move to a human at all, rather than whether the writer asked for a higher tier.',
       },
     ],
   },
@@ -1210,6 +1470,33 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'answerability',
         reason: 'Use answerability to decide whether evidence can answer a whole question.',
+      },
+    ],
+  },
+  {
+    id: 'expense-category',
+    title: 'Match an expense to a category list',
+    description:
+      "Does expense clearly fall under one of the caller's categories, under several equally, under none, or is it unclear?",
+    category: 'knowledge',
+    tags: ['expenses', 'accounting', 'categorization', 'finance', 'routing'],
+    limitations: [
+      'Reports which situation holds (matched, multiple, none, unclear), not the name of the matched category. Extract the category name in a follow-up step once the result is matched.',
+      "Judges the expense description against the category definitions as written. It does not know the caller's chart of accounts, tax treatment, or which category is preferred when definitions overlap.",
+      'Amounts, dates, and receipt validity are not considered and must be checked in code.',
+    ],
+    useWhen:
+      'You need to know whether a described expense can be filed under one of your own category definitions before an agent picks the category or asks the submitter for more detail.',
+    related: [
+      {
+        id: 'route',
+        reason:
+          'Use route to pick one destination from a fixed list of routes rather than to check whether a category list covers an expense at all.',
+      },
+      {
+        id: 'field-select',
+        reason:
+          'Use field-select to choose which field of a record holds a value, rather than which category definition a described purchase satisfies.',
       },
     ],
   },
@@ -1364,6 +1651,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'financial-advice-signal',
+    title: 'Detect specific financial advice',
+    description:
+      'Does text give a specific recommendation to buy, sell, hold, or allocate money, rather than general education?',
+    category: 'conversation',
+    tags: ['finance', 'advice', 'compliance', 'safety', 'gate', 'assistant-output'],
+    limitations: [
+      'Detects wording that recommends a specific action, not whether the text legally constitutes financial advice in any jurisdiction or whether the speaker is licensed.',
+      'Judges the text alone. A recommendation framed as hypothetical or quoted from someone else still counts if the text presents it as what the reader should do.',
+      'Does not assess whether the advice is sound.',
+    ],
+    useWhen:
+      "You need a yes/no check on whether an assistant's or user's text crosses from explaining financial concepts into recommending a specific action with money, so the response can be disclaimed, softened, or routed for review.",
+    related: [
+      {
+        id: 'response-refusal',
+        reason:
+          'Use response-refusal to detect whether a reply declined a request, rather than whether it contains a specific financial recommendation.',
+      },
+      {
+        id: 'certainty-match',
+        reason:
+          "Use certainty-match to check whether a reply's stated confidence fits its evidence, rather than whether it recommends a financial action.",
+      },
+    ],
+  },
+  {
     id: 'followup-link',
     title: 'Link a follow-up request',
     description: 'Which supplied earlier request does message follow up on?',
@@ -1379,6 +1693,33 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'reference-resolve',
         reason:
           'Use reference-resolve to identify a referenced item rather than an earlier request.',
+      },
+    ],
+  },
+  {
+    id: 'forecast-confidence-wording',
+    title: 'Grade the certainty of a financial projection',
+    description:
+      'How certain is the wording of statement, a financial projection, from explicitly speculative to stated as fact?',
+    category: 'conversation',
+    tags: ['finance', 'forecast', 'certainty', 'psychology', 'rubric', 'assistant-output'],
+    limitations: [
+      'Grades the wording only. It does not know whether the projection is accurate, reasonable, or supported by data outside the statement.',
+      'A statement with mixed signals is graded by its overall posture; separate distinct claims in code when each matters.',
+      'Not a compliance or suitability determination.',
+    ],
+    useWhen:
+      'You need to grade how confidently a projection about revenue, prices, returns, or growth is worded, so overconfident statements can be softened or disclaimed before they reach a reader.',
+    related: [
+      {
+        id: 'uncertainty-expression',
+        reason:
+          'Use uncertainty-expression to grade hedging in any statement, rather than specifically the certainty with which a financial projection is asserted.',
+      },
+      {
+        id: 'certainty-match',
+        reason:
+          "Use certainty-match to check whether stated confidence fits the supporting evidence, rather than to grade the wording's certainty on its own.",
       },
     ],
   },
@@ -1467,6 +1808,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'checkers-move',
         reason:
           'Use checkers-move for its American/English checkers board format and built-in checkers instructions.',
+      },
+    ],
+  },
+  {
+    id: 'game-phase',
+    title: 'Classify game phase',
+    description:
+      'Which phase of the game does state describe: opening, midgame, endgame, or game over?',
+    category: 'workflow',
+    tags: ['game', 'phase', 'state', 'agent', 'classification', 'simulation'],
+    limitations: [
+      'Classifies from the textual state description; it does not simulate the game. Compute exact win, loss, and draw conditions in code.',
+      'Phase boundaries are fuzzy in many games. Use the probabilities when opening and midgame or midgame and endgame are both plausible.',
+    ],
+    useWhen:
+      'An agent adapts its strategy, prompts, or time budget by game phase and you have a textual state description rather than a structured engine.',
+    related: [
+      {
+        id: 'game-action',
+        reason: 'Use game-action to choose a move from JSON game state and available actions.',
+      },
+      {
+        id: 'step-progress',
+        reason: 'Use step-progress to judge how far a non-game task has advanced.',
       },
     ],
   },
@@ -1565,6 +1930,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'headline-fit',
+    title: 'Check headline fit',
+    description:
+      'Does headline accurately represent what body says, without promising more than the body delivers?',
+    category: 'knowledge',
+    tags: ['content', 'headline', 'seo', 'editorial', 'accuracy', 'gate'],
+    limitations: [
+      'Judges the headline against the supplied body only; it does not check whether the body itself is true.',
+      'Does not measure engagement, search ranking, or style. Editorial house rules and length limits belong in code.',
+    ],
+    useWhen:
+      'You publish or review articles and want to catch headlines that overstate, contradict, or misdirect from the body before they go live.',
+    related: [
+      {
+        id: 'summary-coverage',
+        reason:
+          'Use summary-coverage to judge whether a longer summary captures the main points of a source.',
+      },
+      {
+        id: 'attribution-match',
+        reason:
+          'Use attribution-match to check whether a quoted claim is attributed to the source that actually made it.',
+      },
+    ],
+  },
+  {
     id: 'incident-match',
     title: 'Match a known incident',
     description: 'Which supplied incident is supported as a match for ticket?',
@@ -1576,6 +1967,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
     useWhen: 'You need to connect a support ticket to a supplied known incident.',
     related: [{ id: 'ticket-match', reason: 'Use ticket-match to compare two tickets directly.' }],
+  },
+  {
+    id: 'incident-severity-wording',
+    title: 'Grade the severity an incident report describes',
+    description:
+      'What severity does the wording of report describe, on a five-level rubric from no user impact to total outage or data loss?',
+    category: 'workflow',
+    tags: ['incident-response', 'severity', 'on-call', 'devops', 'score', 'triage'],
+    limitations: [
+      'Grades what the report says, not measured impact. An understated report yields an understated grade.',
+      'Does not know your severity matrix or SLAs. Map levels to your own SEV scale and paging rules in application code.',
+      'Does not distinguish a report written during an incident from one written after recovery.',
+    ],
+    useWhen:
+      'You need a first severity estimate from a free-text incident report, alert summary, or status update before a human incident commander confirms it, or you want to check that a declared severity matches how the report describes the impact.',
+    related: [
+      {
+        id: 'issue-impact',
+        reason:
+          'Use issue-impact for bug reports and feature requests where the question is how many users a problem affects rather than how large an outage is.',
+      },
+      {
+        id: 'policy-severity',
+        reason:
+          'Use policy-severity to grade how serious a policy violation is, rather than how serious an operational incident is.',
+      },
+    ],
   },
   {
     id: 'injection-signal',
@@ -1668,6 +2086,65 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'instruction-readability',
+    title: 'Grade how easy patient instructions are to follow',
+    description:
+      'How easy are instructions to follow for a general reader, from dense jargon to plain and stepwise?',
+    category: 'answer-quality',
+    tags: [
+      'healthcare',
+      'patient-instructions',
+      'readability',
+      'plain-language',
+      'rubric',
+      'score',
+    ],
+    limitations: [
+      'Grades readability of the wording, not medical accuracy, completeness, or whether the instructions are right for the patient.',
+      'Does not compute a formal reading-grade score; use a readability formula in code if you need a metric.',
+    ],
+    useWhen:
+      'You are generating or reviewing after-visit instructions, discharge notes, or medication directions and need to catch wording a patient cannot act on.',
+    related: [
+      {
+        id: 'audience-fit',
+        reason:
+          'Use audience-fit to judge whether the whole text suits a named audience beyond how easy the steps are to follow.',
+      },
+      {
+        id: 'tone-check',
+        reason:
+          'Use tone-check to judge the register and tone of the instructions rather than their readability.',
+      },
+    ],
+  },
+  {
+    id: 'intake-question-fit',
+    title: 'Check an intake question against its purpose',
+    description:
+      'Does question ask only for what purpose needs, avoiding unrelated personal detail?',
+    category: 'workflow',
+    tags: ['healthcare', 'intake', 'forms', 'data-minimization', 'privacy', 'gate'],
+    limitations: [
+      'Judges relevance to the stated purpose only, not legal permissibility, consent requirements, or minimum-necessary compliance under any regulation.',
+      'Depends on how precisely purpose is described; a vague purpose makes almost any question fit.',
+    ],
+    useWhen:
+      'You are drafting or reviewing intake form questions and want a check that each one collects only what its stated purpose requires.',
+    related: [
+      {
+        id: 'question-relevance',
+        reason:
+          'Use question-relevance to check whether a question is on topic for a conversation rather than scoped to a data-collection purpose.',
+      },
+      {
+        id: 'instruction-fit',
+        reason:
+          'Use instruction-fit to check whether a drafted question follows the form-writing instructions you gave.',
+      },
+    ],
+  },
+  {
     id: 'intent-change',
     title: 'Detect a change of intent',
     description: 'How does message change currentGoal?',
@@ -1682,6 +2159,33 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'cancellation-check',
         reason:
           'Use cancellation-check for the narrower question of stopping, pausing, or continuing.',
+      },
+    ],
+  },
+  {
+    id: 'invoice-facets',
+    title: 'Label what an invoice states',
+    description:
+      'Which of these does invoice state: vendor identity, an invoice number, a due date, line items, a tax or total breakdown?',
+    category: 'knowledge',
+    tags: ['invoices', 'accounting', 'accounts-payable', 'labels', 'multi-label', 'finance'],
+    limitations: [
+      'Each label reports whether the invoice text states the item, not whether the stated value is correct, consistent, or matches a purchase order.',
+      'Numbers, dates, and totals are not validated. Parse and check them in code.',
+      'Labels are independent, so an invoice can carry several, all, or none.',
+    ],
+    useWhen:
+      'You need several independent presence checks on invoice text in one call, to spot missing fields before routing it for approval or entry.',
+    related: [
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify to decide whether a request about an invoice is too ambiguous to act on, rather than what the invoice text itself states.',
+      },
+      {
+        id: 'field-select',
+        reason:
+          'Use field-select to pick which field of a record a value belongs to, rather than to check which fields the invoice text contains at all.',
       },
     ],
   },
@@ -1811,6 +2315,58 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'rerank',
         reason: 'Use rerank to score many listings independently against one request.',
+      },
+    ],
+  },
+  {
+    id: 'log-line-kind',
+    title: 'Classify what a log line reports',
+    description:
+      'What does line report: an error, a warning, a lifecycle event, a handled request, a metric, or debug output?',
+    category: 'workflow',
+    tags: ['logging', 'observability', 'devops', 'classification', 'on-call', 'triage'],
+    limitations: [
+      'Classifies one line from its wording. Lines that only make sense with neighbouring lines or a stack trace may come back unclear.',
+      'Does not trust or ignore a printed level token by rule; it weighs the token against what the line describes.',
+      'Timestamps, request IDs, and numeric values are not parsed. Extract them in application code.',
+    ],
+    useWhen:
+      'You are grouping or filtering unstructured log lines from mixed sources and cannot rely on a level field being present or accurate.',
+    related: [
+      {
+        id: 'failure-kind',
+        reason:
+          'Use failure-kind once a line is known to report an error and you need to say what kind of failure it was.',
+      },
+      {
+        id: 'result-outcome',
+        reason:
+          'Use result-outcome to classify how a reported task or job ended, rather than what kind of log line it is.',
+      },
+    ],
+  },
+  {
+    id: 'medication-mention',
+    title: 'Detect a medication or dosage mention',
+    description: 'Does message mention a medication, supplement, or dosage?',
+    category: 'support',
+    tags: ['healthcare', 'patient-message', 'medication', 'routing', 'gate'],
+    limitations: [
+      'Detects that a medication, supplement, or dose is named. It does not extract the name, confirm the product exists, or judge whether the dosing is appropriate.',
+      'Reads the supplied text only; it does not check the mention against a medication list or patient record.',
+    ],
+    useWhen:
+      'You need to route patient messages that name a drug, supplement, or dose toward pharmacy or prescriber review, or flag them for careful handling before storage.',
+    related: [
+      {
+        id: 'pii-presence',
+        reason:
+          'Use pii-presence to detect personal identifiers that need protected handling alongside medication details.',
+      },
+      {
+        id: 'memory-subject',
+        reason:
+          'Use memory-subject to decide whose record a stated medication fact belongs to before storing it.',
       },
     ],
   },
@@ -1970,6 +2526,32 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'claim-stance',
         reason:
           'Use claim-stance to label agreement with a specified claim instead of classifying the reason for acting.',
+      },
+    ],
+  },
+  {
+    id: 'move-explanation-fit',
+    title: 'Check move explanation fit',
+    description:
+      'Does explanation give a reason for move that is consistent with the described game state?',
+    category: 'workflow',
+    tags: ['game', 'explanation', 'consistency', 'agent', 'reasoning', 'gate'],
+    limitations: [
+      "Judges consistency of the explanation's wording with the described state, not whether the move is strong or the best available.",
+      'Relies on the state description as written; it cannot detect a state description that is itself wrong. Exact position validation belongs in game code.',
+    ],
+    useWhen:
+      'An agent or player justifies a move in text and you want to catch explanations that cite pieces, threats, or resources the state does not contain.',
+    related: [
+      {
+        id: 'game-action',
+        reason:
+          'Use game-action to have Jev choose a move from JSON game state and available actions.',
+      },
+      {
+        id: 'causal-attribution',
+        reason:
+          'Use causal-attribution to judge whether a stated cause is supported by the described outcome outside a game context.',
       },
     ],
   },
@@ -2202,6 +2784,32 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'policy-compliance',
+    title: 'Check an expense against a written policy',
+    description: 'Does expense, as described, comply with the written policy?',
+    category: 'workflow',
+    tags: ['expenses', 'policy', 'compliance', 'accounting', 'finance', 'gate'],
+    limitations: [
+      'Judges the described facts against the written rules. Amounts, per-diem limits, dates, and receipt thresholds must be compared in code; the recipe treats stated numbers as facts to match against the text, not as arithmetic to perform.',
+      "A rule the policy does not mention is treated as permitting the expense. The recipe does not know the organization's unwritten norms or approval history.",
+      'Compliance with the wording is not an approval decision or an enforcement outcome.',
+    ],
+    useWhen:
+      'You need a yes/no check on whether a described expense follows the rules in an expense policy before it is approved, flagged, or sent back to the submitter.',
+    related: [
+      {
+        id: 'policy-severity',
+        reason:
+          'Use policy-severity to grade how serious a known violation is, rather than to decide whether the expense violates the policy at all.',
+      },
+      {
+        id: 'action-scope',
+        reason:
+          "Use action-scope to check whether an agent's proposed action stays within its permitted scope, rather than whether a submitted expense follows a spending policy.",
+      },
+    ],
+  },
+  {
     id: 'policy-severity',
     title: 'Grade a policy violation',
     description: 'How severely does content violate the supplied policy, on a five-level rubric?',
@@ -2246,6 +2854,33 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'frustration-signal',
         reason: 'Use frustration-signal for a categorical read on expressed frustration.',
+      },
+    ],
+  },
+  {
+    id: 'postmortem-facets',
+    title: 'Label the facets of a postmortem',
+    description:
+      'Which of these does postmortem include: a timeline, a root cause, customer impact, contributing factors, action items?',
+    category: 'workflow',
+    tags: ['incident-response', 'postmortem', 'labels', 'multi-label', 'devops', 'review'],
+    limitations: [
+      'Labels are independent, so a postmortem can carry several or none.',
+      'Detects that a facet is present, not that it is correct. A stated root cause can be wrong, and an action item can be unowned or vague.',
+      'Does not check section headings, templates, or length. Enforce document structure in application code.',
+    ],
+    useWhen:
+      'You need to check an incident postmortem for the sections a review process expects before accepting it, or to tell the author which parts are missing.',
+    related: [
+      {
+        id: 'report-facets',
+        reason:
+          'Use report-facets for agent progress reports, where the expected parts are an outcome, evidence, blockers, and next steps.',
+      },
+      {
+        id: 'summary-coverage',
+        reason:
+          'Use summary-coverage to check whether a summary covers a source document, rather than whether a document contains expected sections.',
       },
     ],
   },
@@ -2563,6 +3198,33 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'instruction-fit',
         reason:
           'Use instruction-fit to check whether a written policy or rubric covers a given task.',
+      },
+    ],
+  },
+  {
+    id: 'reconciliation-match',
+    title: 'Match a ledger record to a statement line',
+    description:
+      'Do record and statementLine describe the same transaction, judging payee, purpose, and timing wording?',
+    category: 'knowledge',
+    tags: ['reconciliation', 'accounting', 'bookkeeping', 'matching', 'finance', 'gate'],
+    limitations: [
+      'Judges payee, purpose, and timing as worded. Amounts and dates must be compared exactly in code; the recipe does not do arithmetic or calendar math.',
+      'Statement descriptors are often abbreviated or use a processor name instead of the merchant, so a different verdict means the wording does not support a match, not that the transactions are proven distinct.',
+      'Not a substitute for a completed reconciliation or an audit conclusion.',
+    ],
+    useWhen:
+      'You need a yes/no judgment on whether a bookkeeping entry and a bank or card statement line refer to the same transaction, after exact amount and date checks in code have narrowed the candidates.',
+    related: [
+      {
+        id: 'entity-match',
+        reason:
+          'Use entity-match to decide whether two descriptions name the same organization or person, rather than whether two records describe the same transaction.',
+      },
+      {
+        id: 'ticket-match',
+        reason:
+          'Use ticket-match to decide whether two support tickets report the same issue, rather than whether a ledger entry matches a statement line.',
       },
     ],
   },
@@ -2926,6 +3588,33 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'rollback-signal',
+    title: 'Check whether symptoms implicate a recent change',
+    description:
+      'Do symptoms plausibly point at the recently deployed change as the cause, judged on the timing and scope each describes?',
+    category: 'workflow',
+    tags: ['incident-response', 'rollback', 'deployment', 'on-call', 'devops', 'gate'],
+    limitations: [
+      'Judges plausibility from the two descriptions, not root cause. A plausible match can still be a coincidence.',
+      'Does not compare timestamps arithmetically or read diffs. Compute deploy-to-onset gaps in application code and pass them in the text.',
+      'A negative verdict does not clear the change; it means the described timing and scope do not line up.',
+    ],
+    useWhen:
+      'An incident is open shortly after a deploy and you need a fast read on whether the change is a plausible cause, to decide whether to propose a rollback or keep looking elsewhere.',
+    related: [
+      {
+        id: 'causal-attribution',
+        reason:
+          'Use causal-attribution to classify how a text attributes a cause in general, rather than to check whether a specific change fits an incident.',
+      },
+      {
+        id: 'change-risk',
+        reason:
+          'Use change-risk before deploying to grade how likely a change is to cause trouble, rather than after the fact to check whether it did.',
+      },
+    ],
+  },
+  {
     id: 'route',
     title: 'Route a request',
     description: 'Choose a named handler or return a review decision.',
@@ -2940,6 +3629,56 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'turn-intent',
         reason: 'Use turn-intent to identify what a message is doing before choosing a handler.',
+      },
+    ],
+  },
+  {
+    id: 'rule-compliance',
+    title: 'Check rule compliance',
+    description: 'Is the described action permitted by the written rules?',
+    category: 'workflow',
+    tags: ['game', 'rules', 'legality', 'agent', 'compliance', 'gate'],
+    limitations: [
+      'Judges a described action against written rules; it does not generate legal moves or verify board state. Exact legality belongs in game code.',
+      'Only the supplied rules count. Unwritten conventions or rules omitted from the input cannot be applied.',
+    ],
+    useWhen:
+      "An agent proposes a move or action in natural language and you want a quick check against the game's written rules before spending engine time or accepting it.",
+    related: [
+      {
+        id: 'game-action',
+        reason:
+          'Use game-action to have Jev choose among actions your code has already generated as legal.',
+      },
+      {
+        id: 'action-scope',
+        reason:
+          'Use action-scope to check whether an agent action stays within a granted permission rather than a game rule set.',
+      },
+    ],
+  },
+  {
+    id: 'runbook-fit',
+    title: 'Check whether a runbook applies to an incident',
+    description: 'Does runbook address the symptoms and component described in incident?',
+    category: 'workflow',
+    tags: ['incident-response', 'runbook', 'on-call', 'devops', 'gate', 'retrieval'],
+    limitations: [
+      'Checks that the runbook targets the described symptoms and component, not that following it will resolve the incident.',
+      'Does not check whether the runbook is current or whether its steps are safe. Ownership and freshness belong in application code.',
+    ],
+    useWhen:
+      'You retrieve candidate runbooks for a live incident and need to filter out ones that cover a different component or a different failure mode before surfacing them to the responder.',
+    related: [
+      {
+        id: 'troubleshooting-fit',
+        reason:
+          "Use troubleshooting-fit for end-user support articles and a customer's described problem, rather than operational runbooks and incidents.",
+      },
+      {
+        id: 'source-applicability',
+        reason:
+          'Use source-applicability to check whether a general document applies to a situation, when neither side is an incident or a runbook.',
       },
     ],
   },
@@ -2966,6 +3705,32 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'frustration-signal',
         reason:
           'Use frustration-signal for a categorical read on expressed frustration in any message.',
+      },
+    ],
+  },
+  {
+    id: 'search-intent-kind',
+    title: 'Classify search intent',
+    description:
+      'What is the searcher behind query trying to do: learn, reach a site, buy, compare before buying, or find something nearby?',
+    category: 'knowledge',
+    tags: ['search', 'seo', 'intent', 'query', 'content', 'classification'],
+    limitations: [
+      'Classifies from the wording of the query alone; it does not see search history, location, or result pages.',
+      'Short or ambiguous queries often carry several intents. Treat the probabilities, not only the verdict, as the signal.',
+    ],
+    useWhen:
+      'You map keywords to page types, route queries to different result layouts, or audit whether content matches the intent behind the terms it targets.',
+    related: [
+      {
+        id: 'turn-intent',
+        reason:
+          'Use turn-intent to classify what a user wants from a single message in a conversation.',
+      },
+      {
+        id: 'query-specificity',
+        reason:
+          'Use query-specificity to judge how narrow or broad a query is rather than what the searcher wants to do.',
       },
     ],
   },
@@ -3157,6 +3922,32 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'answer-coverage',
         reason: 'Use answer-coverage when the checklist contains questions to answer.',
+      },
+    ],
+  },
+  {
+    id: 'symptom-facets',
+    title: 'Label the symptom facets a patient message states',
+    description:
+      'Which of these does message state about a symptom: when it began, how bad it is, how long it has lasted, what makes it better or worse, what the patient has already tried?',
+    category: 'support',
+    tags: ['healthcare', 'intake', 'patient-message', 'labels', 'multi-label', 'facets'],
+    limitations: [
+      'Reports intake completeness only: whether the wording states each facet, not whether the details are accurate or clinically meaningful. It makes no diagnosis or triage judgment.',
+      'Labels are independent, so a message can state several facets or none. Parse actual dates, durations, and doses in code.',
+    ],
+    useWhen:
+      'You need to know which standard intake details a patient message already supplies so you can pre-fill a form or ask only for what is missing.',
+    related: [
+      {
+        id: 'message-facets',
+        reason:
+          'Use message-facets for the general communicative facets of a message, such as questions, deadlines, and requests.',
+      },
+      {
+        id: 'clarify',
+        reason:
+          'Use clarify to decide whether to ask the patient a follow-up question about the facets this recipe finds missing.',
       },
     ],
   },

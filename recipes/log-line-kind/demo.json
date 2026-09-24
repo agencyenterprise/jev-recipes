@@ -1,0 +1,26 @@
+{
+  "input": {
+    "line": "2026-09-23T14:02:11Z WARN db.pool: connection pool at 87% capacity, above the 80% threshold; new requests may queue",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "warning",
+        "confidence": 0.82,
+        "probabilities": {
+          "error": 0.03,
+          "warning": 0.82,
+          "lifecycle": 0.01,
+          "request": 0.01,
+          "metric": 0.1,
+          "debug": 0.02,
+          "unclear": 0.01
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

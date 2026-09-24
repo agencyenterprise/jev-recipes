@@ -1,0 +1,18 @@
+{
+  "input": {
+    "message": "My daughter has had a fever of 101 since last night and now she says her ear really hurts. She is drinking fine and otherwise seems okay. Can someone see her today or tomorrow? I do not think it is an emergency, but I would rather not wait until next week.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 2.02,
+        "confidence": 0.82,
+        "probabilities": { "0": 0.02, "1": 0.06, "2": 0.82, "3": 0.08, "4": 0.02 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

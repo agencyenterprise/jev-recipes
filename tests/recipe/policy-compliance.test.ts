@@ -1,0 +1,13 @@
+import { policyCompliance } from '../../recipes/policy-compliance/index.js';
+import { testGate } from './helpers/gate.js';
+
+testGate(
+  policyCompliance,
+  {
+    expense:
+      'Team dinner on Thursday for 4 engineers at a steakhouse after the release. Included two bottles of wine. Total $412, paid on my personal card, receipt attached. No client was present.',
+    policy:
+      "Meals: Team meals are reimbursable when approved in advance by the manager and when they mark a project milestone. Alcohol is reimbursable only at client-facing events. Meals over $75 per person require a manager's written approval before submission. Receipts are required for any expense over $25.",
+  },
+  ['compliant', 'noncompliant'],
+);

@@ -1,0 +1,18 @@
+{
+  "input": {
+    "statement": "Revenue will hit $4.2M next quarter and the stock is going to double by year end. This is the bottom, so anyone waiting is leaving money on the table.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "score": {
+        "type": "score",
+        "score": 3.38,
+        "confidence": 0.6,
+        "probabilities": { "0": 0.02, "1": 0.04, "2": 0.08, "3": 0.26, "4": 0.6 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}
