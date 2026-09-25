@@ -1,0 +1,160 @@
+{
+  "recipe": "claim-stance",
+  "model": "jev-1.13.0",
+  "cases": 53,
+  "accuracy": 0.943,
+  "contestedAccuracy": 1,
+  "adversarialAccuracy": 0.667,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 3,
+      "accuracy": 0.333
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 1,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 1,
+      "accuracy": 0
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 3,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 4,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 41,
+      "accuracy": 1
+    }
+  ],
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0.057,
+      "readyAccuracy": 0.98
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0.075,
+      "readyAccuracy": 0.98
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.075,
+      "readyAccuracy": 0.98
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.075,
+      "readyAccuracy": 0.98
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.094,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.151,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.151,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.208,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.226,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.264,
+      "readyAccuracy": 1
+    }
+  ],
+  "suggestedMinConfidence": 0.5,
+  "confusion": {
+    "{\"verdict\":\"affirms\"}": {
+      "total": 13,
+      "correct": 13,
+      "misses": {}
+    },
+    "{\"verdict\":\"denies\"}": {
+      "total": 13,
+      "correct": 13,
+      "misses": {}
+    },
+    "{\"verdict\":\"mixed\"}": {
+      "total": 7,
+      "correct": 6,
+      "misses": {
+        "{\"verdict\":\"denies\"}": 1
+      }
+    },
+    "{\"verdict\":\"not_addressed\"}": {
+      "total": 12,
+      "correct": 11,
+      "misses": {
+        "{\"verdict\":\"affirms\"}": 1
+      }
+    },
+    "{\"verdict\":\"unclear\"}": {
+      "total": 8,
+      "correct": 7,
+      "misses": {
+        "{\"verdict\":\"mixed\"}": 1
+      }
+    }
+  },
+  "failures": [
+    {
+      "id": "mixed-flip-flop",
+      "expected": {
+        "verdict": "mixed"
+      },
+      "actual": {
+        "verdict": "denies"
+      },
+      "confidence": 0.49
+    },
+    {
+      "id": "adv-na-override",
+      "expected": {
+        "verdict": "not_addressed"
+      },
+      "actual": {
+        "verdict": "affirms"
+      },
+      "confidence": 0.66,
+      "adversarial": true
+    },
+    {
+      "id": "adv-unclear-override",
+      "expected": {
+        "verdict": "unclear"
+      },
+      "actual": {
+        "verdict": "mixed"
+      },
+      "confidence": 0.47,
+      "adversarial": true
+    }
+  ]
+}

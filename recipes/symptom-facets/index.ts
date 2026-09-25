@@ -19,10 +19,11 @@ export async function symptomFacets(
         },
       },
       statesSeverity: {
-        instruction: 'Does message describe how bad the symptom is?',
+        instruction: 'Does message grade how intense or limiting the symptom is?',
         criteria: {
-          true: 'The message gives a rating, an intensity word, or a concrete effect on daily activity that conveys how bad the symptom is.',
-          false: 'The message gives no indication of how bad the symptom is.',
+          true: 'The message gives a pain rating, an explicit intensity word such as mild, severe, or unbearable, or says the symptom prevents or limits an activity.',
+          false:
+            'The message describes the symptom without grading its intensity; triggers, relief, timing, or treatments alone do not convey severity.',
         },
       },
       statesDuration: {

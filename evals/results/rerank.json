@@ -1,0 +1,381 @@
+{
+  "recipe": "rerank",
+  "model": "jev-1.13.0",
+  "cases": 57,
+  "accuracy": 1,
+  "contestedAccuracy": 1,
+  "adversarialAccuracy": 1,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 0,
+      "accuracy": null
+    }
+  ],
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 1,
+      "readyAccuracy": null
+    }
+  ],
+  "suggestedMinConfidence": null,
+  "confusion": {
+    "{\"items.0.id\":\"adoption-date\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"april-deadline\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"big-dipper-method\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"bite-firstaid\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"boiling-100\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"break-fee\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"brew-install\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"brewed-95mg\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"browns-greens\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"canberra\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"chicken-temp\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"cmd-shift-4\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"cost-range\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"crown-cost\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"dash-difference\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"eadg\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"echolocation\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"element-melting\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"flexbox-center\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"food-sources\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"gauge-steps\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"gil-explained\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"gosling\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"gpu-minutes\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"hatha-recommendation\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"height-fact\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"inputs-list\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"intake-guidance\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"jaguar-cat\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"light-strategy\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"moon-distance-fact\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"nectar-ratio\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"nitrogen-deficiency\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"november-stats\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"online-steps\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"parameterized\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"payback-years\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"policy-weeks\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"press-ratio\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"reboot-steps\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"refraction\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"reset-soft\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"reset-steps\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"return-days\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"room-temp-schedule\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"sakura-window\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"seasoning-mix\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"server-error-def\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"shade-list\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"short-race-guidance\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"soak-time\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"sol-length\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"theobromine\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"tip-percent\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"venv-command\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"windowpane-test\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.id\":\"within-24h\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    }
+  },
+  "failures": []
+}

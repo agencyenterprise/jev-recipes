@@ -1,0 +1,538 @@
+{
+  "recipe": "clarify",
+  "model": "jev-1.13.0",
+  "cases": 50,
+  "accuracy": 0.9,
+  "contestedAccuracy": 0.875,
+  "adversarialAccuracy": 1,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 0,
+      "accuracy": null
+    }
+  ],
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 1,
+      "readyAccuracy": null
+    }
+  ],
+  "suggestedMinConfidence": null,
+  "confusion": {
+    "{\"checks\":[{\"id\":\"account\",\"verdict\":\"missing\"},{\"id\":\"action\",\"verdict\":\"present\"}]}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"account\",\"verdict\":\"present\"},{\"id\":\"action\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"accounts\",\"verdict\":\"present\"},{\"id\":\"amount\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"address\",\"verdict\":\"ambiguous\"},{\"id\":\"item\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"address\",\"verdict\":\"ambiguous\"}]}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"checks\":[{\"id\":\"address\",\"status\":\"review\",\"verdict\":\"missing\",\"confidence\":0.57,\"probabilities\":{\"present\":0,\"missing\":0.72,\"ambiguous\":0.28}}]}": 1
+      }
+    },
+    "{\"checks\":[{\"id\":\"amount\",\"verdict\":\"missing\"},{\"id\":\"destination\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"attendees\",\"verdict\":\"present\"},{\"id\":\"duration\",\"verdict\":\"present\"},{\"id\":\"datetime\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"checks\":[{\"id\":\"attendees\",\"status\":\"review\",\"verdict\":\"ambiguous\",\"confidence\":0.36,\"probabilities\":{\"present\":0.03,\"missing\":0.4,\"ambiguous\":0.57}},{\"id\":\"duration\",\"status\":\"ready\",\"verdict\":\"present\",\"confidence\":1,\"probabilities\":{\"present\":1,\"missing\":0,\"ambiguous\":0}},{\"id\":\"datetime\",\"status\":\"ready\",\"verdict\":\"missing\",\"confidence\":0.94,\"probabilities\":{\"present\":0.01,\"missing\":0.95,\"ambiguous\":0.04}}]}": 1
+      }
+    },
+    "{\"checks\":[{\"id\":\"city\",\"verdict\":\"present\"},{\"id\":\"dates\",\"verdict\":\"present\"},{\"id\":\"guests\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"client\",\"verdict\":\"present\"},{\"id\":\"amount\",\"verdict\":\"present\"},{\"id\":\"due\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"dataset\",\"verdict\":\"missing\"},{\"id\":\"analysis\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"date\",\"verdict\":\"ambiguous\"}]}": {
+      "total": 2,
+      "correct": 1,
+      "misses": {
+        "{\"checks\":[{\"id\":\"date\",\"status\":\"review\",\"verdict\":\"present\",\"confidence\":0.34,\"probabilities\":{\"present\":0.56,\"missing\":0.08,\"ambiguous\":0.36}}]}": 1
+      }
+    },
+    "{\"checks\":[{\"id\":\"date\",\"verdict\":\"present\"},{\"id\":\"partysize\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"deliverable\",\"verdict\":\"present\"},{\"id\":\"deadline\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"destination\",\"verdict\":\"missing\"},{\"id\":\"dates\",\"verdict\":\"missing\"},{\"id\":\"budget\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"document\",\"verdict\":\"present\"},{\"id\":\"audience\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"domain\",\"verdict\":\"present\"},{\"id\":\"duration\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"duration\",\"verdict\":\"present\"},{\"id\":\"attendees\",\"verdict\":\"present\"},{\"id\":\"datetime\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"file\",\"verdict\":\"ambiguous\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"file\",\"verdict\":\"present\"},{\"id\":\"copies\",\"verdict\":\"present\"},{\"id\":\"options\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"item\",\"verdict\":\"missing\"},{\"id\":\"quantity\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"item\",\"verdict\":\"present\"},{\"id\":\"address\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"member\",\"verdict\":\"missing\"},{\"id\":\"effective\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"order\",\"verdict\":\"missing\"},{\"id\":\"reason\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"order\",\"verdict\":\"present\"},{\"id\":\"address\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"order\",\"verdict\":\"present\"},{\"id\":\"reason\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"origin\",\"verdict\":\"present\"},{\"id\":\"destination\",\"verdict\":\"present\"},{\"id\":\"date\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"origin\",\"verdict\":\"present\"},{\"id\":\"destination\",\"verdict\":\"present\"},{\"id\":\"date\",\"verdict\":\"present\"},{\"id\":\"cabin\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"origin\",\"verdict\":\"present\"},{\"id\":\"destination\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"person\",\"verdict\":\"ambiguous\"},{\"id\":\"project\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"plan\",\"verdict\":\"missing\"},{\"id\":\"effective\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"price\",\"verdict\":\"ambiguous\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"product\",\"verdict\":\"missing\"},{\"id\":\"symptom\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"checks\":[{\"id\":\"product\",\"status\":\"ready\",\"verdict\":\"missing\",\"confidence\":0.94,\"probabilities\":{\"present\":0,\"missing\":0.96,\"ambiguous\":0.04}},{\"id\":\"symptom\",\"status\":\"review\",\"verdict\":\"ambiguous\",\"confidence\":0.73,\"probabilities\":{\"present\":0.02,\"missing\":0.16,\"ambiguous\":0.82}}]}": 1
+      }
+    },
+    "{\"checks\":[{\"id\":\"product\",\"verdict\":\"present\"},{\"id\":\"quantity\",\"verdict\":\"missing\"},{\"id\":\"destination\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"provider\",\"verdict\":\"present\"},{\"id\":\"service\",\"verdict\":\"present\"},{\"id\":\"date\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"quantity\",\"verdict\":\"ambiguous\"},{\"id\":\"item\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"checks\":[{\"id\":\"quantity\",\"status\":\"review\",\"verdict\":\"present\",\"confidence\":0.44,\"probabilities\":{\"present\":0.63,\"missing\":0,\"ambiguous\":0.37}},{\"id\":\"item\",\"status\":\"ready\",\"verdict\":\"present\",\"confidence\":0.99,\"probabilities\":{\"present\":1,\"missing\":0,\"ambiguous\":0}}]}": 1
+      }
+    },
+    "{\"checks\":[{\"id\":\"recipient\",\"verdict\":\"missing\"},{\"id\":\"budget\",\"verdict\":\"missing\"},{\"id\":\"occasion\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"recipient\",\"verdict\":\"missing\"},{\"id\":\"content\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"report\",\"verdict\":\"present\"},{\"id\":\"daterange\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"size\",\"verdict\":\"present\"},{\"id\":\"toppings\",\"verdict\":\"present\"},{\"id\":\"address\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"source\",\"verdict\":\"present\"},{\"id\":\"target\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"symptom\",\"verdict\":\"present\"},{\"id\":\"version\",\"verdict\":\"present\"},{\"id\":\"device\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"target\",\"verdict\":\"ambiguous\"},{\"id\":\"action\",\"verdict\":\"present\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"task\",\"verdict\":\"missing\"},{\"id\":\"site\",\"verdict\":\"missing\"},{\"id\":\"deadline\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"time\",\"verdict\":\"ambiguous\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"time\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"usecase\",\"verdict\":\"present\"},{\"id\":\"budget\",\"verdict\":\"ambiguous\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"variant\",\"verdict\":\"ambiguous\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"venue\",\"verdict\":\"missing\"},{\"id\":\"date\",\"verdict\":\"missing\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    }
+  },
+  "failures": [
+    {
+      "id": "mis-meeting-no-time",
+      "expected": {
+        "checks": [
+          {
+            "id": "attendees",
+            "verdict": "present"
+          },
+          {
+            "id": "duration",
+            "verdict": "present"
+          },
+          {
+            "id": "datetime",
+            "verdict": "missing"
+          }
+        ]
+      },
+      "actual": {
+        "checks": [
+          {
+            "id": "attendees",
+            "status": "review",
+            "verdict": "ambiguous",
+            "confidence": 0.36,
+            "probabilities": {
+              "present": 0.03,
+              "missing": 0.4,
+              "ambiguous": 0.57
+            }
+          },
+          {
+            "id": "duration",
+            "status": "ready",
+            "verdict": "present",
+            "confidence": 1,
+            "probabilities": {
+              "present": 1,
+              "missing": 0,
+              "ambiguous": 0
+            }
+          },
+          {
+            "id": "datetime",
+            "status": "ready",
+            "verdict": "missing",
+            "confidence": 0.94,
+            "probabilities": {
+              "present": 0.01,
+              "missing": 0.95,
+              "ambiguous": 0.04
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "vag-fix-it",
+      "expected": {
+        "checks": [
+          {
+            "id": "product",
+            "verdict": "missing"
+          },
+          {
+            "id": "symptom",
+            "verdict": "missing"
+          }
+        ]
+      },
+      "actual": {
+        "checks": [
+          {
+            "id": "product",
+            "status": "ready",
+            "verdict": "missing",
+            "confidence": 0.94,
+            "probabilities": {
+              "present": 0,
+              "missing": 0.96,
+              "ambiguous": 0.04
+            }
+          },
+          {
+            "id": "symptom",
+            "status": "review",
+            "verdict": "ambiguous",
+            "confidence": 0.73,
+            "probabilities": {
+              "present": 0.02,
+              "missing": 0.16,
+              "ambiguous": 0.82
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "amb-next-friday",
+      "expected": {
+        "checks": [
+          {
+            "id": "date",
+            "verdict": "ambiguous"
+          }
+        ]
+      },
+      "actual": {
+        "checks": [
+          {
+            "id": "date",
+            "status": "review",
+            "verdict": "present",
+            "confidence": 0.34,
+            "probabilities": {
+              "present": 0.56,
+              "missing": 0.08,
+              "ambiguous": 0.36
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "amb-conflicting-quantity",
+      "expected": {
+        "checks": [
+          {
+            "id": "quantity",
+            "verdict": "ambiguous"
+          },
+          {
+            "id": "item",
+            "verdict": "present"
+          }
+        ]
+      },
+      "actual": {
+        "checks": [
+          {
+            "id": "quantity",
+            "status": "review",
+            "verdict": "present",
+            "confidence": 0.44,
+            "probabilities": {
+              "present": 0.63,
+              "missing": 0,
+              "ambiguous": 0.37
+            }
+          },
+          {
+            "id": "item",
+            "status": "ready",
+            "verdict": "present",
+            "confidence": 0.99,
+            "probabilities": {
+              "present": 1,
+              "missing": 0,
+              "ambiguous": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cst-partial-address",
+      "expected": {
+        "checks": [
+          {
+            "id": "address",
+            "verdict": "ambiguous"
+          }
+        ]
+      },
+      "actual": {
+        "checks": [
+          {
+            "id": "address",
+            "status": "review",
+            "verdict": "missing",
+            "confidence": 0.57,
+            "probabilities": {
+              "present": 0,
+              "missing": 0.72,
+              "ambiguous": 0.28
+            }
+          }
+        ]
+      },
+      "contested": true
+    }
+  ]
+}

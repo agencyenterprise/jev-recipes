@@ -1,0 +1,281 @@
+{
+  "recipe": "route",
+  "model": "jev-1.13.0",
+  "cases": 50,
+  "accuracy": 1,
+  "contestedAccuracy": 1,
+  "adversarialAccuracy": 1,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 2,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 2,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 1,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 45,
+      "accuracy": 1
+    }
+  ],
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.02,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.04,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.06,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.08,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.08,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.1,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.16,
+      "readyAccuracy": 1
+    }
+  ],
+  "suggestedMinConfidence": 0.5,
+  "confusion": {
+    "{\"suggestedRoute\":\"access\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"account\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"baggage\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"billing\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"bookings\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"business\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"catering\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"claims\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"criminal_defense\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"emergency\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"employment_law\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"family_law\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"financial_aid\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"fraud\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"hardware\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"housing\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"loans\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"mental_health\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"network\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"orders\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"payroll\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"pharmacy\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"policy_changes\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"primary_care\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"product_questions\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"quotes\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"real_estate_law\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"reservations\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"returns\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"sales\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"shipping\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"software\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"special_assistance\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"sports\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"technical\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":\"waste\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedRoute\":null}": {
+      "total": 6,
+      "correct": 6,
+      "misses": {}
+    }
+  },
+  "failures": []
+}

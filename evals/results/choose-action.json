@@ -1,0 +1,270 @@
+{
+  "recipe": "choose-action",
+  "model": "jev-1.13.0",
+  "cases": 32,
+  "accuracy": 0.969,
+  "contestedAccuracy": 0.8,
+  "adversarialAccuracy": 1,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 3,
+      "accuracy": 0.667
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 1,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 1,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 3,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 24,
+      "accuracy": 1
+    }
+  ],
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0.094,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0.125,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.125,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.125,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.125,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.156,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.156,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.219,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.25,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.281,
+      "readyAccuracy": 1
+    }
+  ],
+  "suggestedMinConfidence": 0.5,
+  "confusion": {
+    "{\"suggestedSelection\":\"acknowledge-page\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"assign-lena\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"build-farm\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"build-house\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"buy-tavern\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"cast-meteor\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"cook-custard-today\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"drink-potion\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"finish-nearly-done-item\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"fire-torpedo\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"fix-failing-tests\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"march-north\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"mulligan-hand\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"play-seven-hearts\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"recall-batch-12\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"repair-north-wall\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"repay-loan\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"rollback-release\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"run-to-cover\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"sell-goods-now\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"send-scout\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"spin-up-hydro\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"take-gamble-card\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"suggestedSelection\":\"take-safe-card\"}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"take-highway\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"take-silver-sword\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"use-boost\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"use-key\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"use-keycard\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"use-zipline\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"wait-and-snipe\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"wait-then-retry\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"water-crops\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    }
+  },
+  "failures": [
+    {
+      "id": "expected-value-gamble",
+      "expected": {
+        "suggestedSelection": "take-gamble-card"
+      },
+      "actual": {
+        "suggestedSelection": "take-safe-card"
+      },
+      "confidence": 0.28,
+      "contested": true
+    }
+  ]
+}

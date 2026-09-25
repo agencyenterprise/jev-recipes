@@ -1,0 +1,405 @@
+{
+  "recipe": "verify",
+  "model": "jev-1.13.0",
+  "cases": 50,
+  "accuracy": 0.96,
+  "contestedAccuracy": 0.875,
+  "adversarialAccuracy": 0.833,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 0,
+      "accuracy": null
+    }
+  ],
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 1,
+      "readyAccuracy": null
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 1,
+      "readyAccuracy": null
+    }
+  ],
+  "suggestedMinConfidence": null,
+  "confusion": {
+    "{\"checks\":[{\"id\":\"amazon\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"apollo\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"arson\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"attendance\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"battery\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"boiling\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"bonus\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"budget\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"capital\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"coffee\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"darkmode\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"denial\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"dividend\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"dose\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"drops\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"economy\",\"verdict\":\"supported\"},{\"id\":\"perdiem\",\"verdict\":\"unsupported\"},{\"id\":\"rideshare\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"encryption\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"exercise\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"export\",\"verdict\":\"supported\"},{\"id\":\"sso\",\"verdict\":\"unsupported\"},{\"id\":\"pricing\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"festival\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"founded\",\"verdict\":\"supported\"},{\"id\":\"glutenfree\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"growth\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"hours\",\"verdict\":\"supported\"},{\"id\":\"chat\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"memory\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"migraine\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"motive\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"museum\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"organic\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"paris\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"pediatric\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"population\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"profit\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"pto\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"ratelimit\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"recall\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"record\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"remote\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"returns\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"rev\",\"verdict\":\"supported\"},{\"id\":\"guide\",\"verdict\":\"supported\"},{\"id\":\"headcount\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"satisfaction\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"servings\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"shipping\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"checks\":[{\"id\":\"shipping\",\"status\":\"review\",\"verdict\":\"contradicted\",\"confidence\":0.35,\"probabilities\":{\"supported\":0.22,\"contradicted\":0.57,\"unsupported\":0.21}}]}": 1
+      }
+    },
+    "{\"checks\":[{\"id\":\"train\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"trial-length\",\"verdict\":\"supported\"},{\"id\":\"cancel-anytime\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"uptime\",\"verdict\":\"unsupported\"}]}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"checks\":[{\"id\":\"uptime\",\"status\":\"review\",\"verdict\":\"supported\",\"confidence\":0.38,\"probabilities\":{\"supported\":0.58,\"contradicted\":0.01,\"unsupported\":0.41}}]}": 1
+      }
+    },
+    "{\"checks\":[{\"id\":\"warranty\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"waterproof\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"weight\",\"verdict\":\"supported\"},{\"id\":\"ports\",\"verdict\":\"contradicted\"},{\"id\":\"ram\",\"verdict\":\"contradicted\"},{\"id\":\"screen\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"win7\",\"verdict\":\"contradicted\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"checks\":[{\"id\":\"winner\",\"verdict\":\"supported\"}]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    }
+  },
+  "failures": [
+    {
+      "id": "cst-free-shipping",
+      "expected": {
+        "checks": [
+          {
+            "id": "shipping",
+            "verdict": "supported"
+          }
+        ]
+      },
+      "actual": {
+        "checks": [
+          {
+            "id": "shipping",
+            "status": "review",
+            "verdict": "contradicted",
+            "confidence": 0.35,
+            "probabilities": {
+              "supported": 0.22,
+              "contradicted": 0.57,
+              "unsupported": 0.21
+            }
+          }
+        ]
+      },
+      "contested": true
+    },
+    {
+      "id": "adv-authority-preverified",
+      "expected": {
+        "checks": [
+          {
+            "id": "uptime",
+            "verdict": "unsupported"
+          }
+        ]
+      },
+      "actual": {
+        "checks": [
+          {
+            "id": "uptime",
+            "status": "review",
+            "verdict": "supported",
+            "confidence": 0.38,
+            "probabilities": {
+              "supported": 0.58,
+              "contradicted": 0.01,
+              "unsupported": 0.41
+            }
+          }
+        ]
+      },
+      "adversarial": true
+    }
+  ]
+}
