@@ -4,7 +4,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 
 <!-- BEGIN GENERATED: catalog -->
 
-246 recipes. Each guide includes a working call, input reference, result behavior, and nearby alternatives.
+248 recipes. Each guide includes a working call, input reference, result behavior, and nearby alternatives.
 
 ## Answer quality
 
@@ -47,6 +47,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 | [`evidence-novelty`](evidence-novelty/README.md)           | `evidenceNovelty`      | You need to decide whether a new passage adds useful information to existing evidence.                                         |
 | [`evidence-strength`](evidence-strength/README.md)         | `evidenceStrength`     | You need a graded strength for weighting or ranking evidence, not just a supported or unsupported label.                       |
 | [`freshness-needed`](freshness-needed/README.md)           | `freshnessNeeded`      | You need to know whether a question depends on current or changing information.                                                |
+| [`paragraph-boundary`](paragraph-boundary/README.md)       | `paragraphBoundary`    | Extraction preserved reading order but lost the difference between a hard line wrap and a paragraph break.                     |
 | [`passage-compare`](passage-compare/README.md)             | `passageCompare`       | You need a head-to-head preference between two retrieved passages, for tie-breaking, evaluation data, or reranker calibration. |
 | [`passage-duplicate`](passage-duplicate/README.md)         | `passageDuplicate`     | You want to detect duplicate or overlapping information in two passages.                                                       |
 | [`passage-standalone`](passage-standalone/README.md)       | `passageStandalone`    | You need to check chunks before embedding them, or decide whether a retrieved passage needs its neighbors to be useful.        |
@@ -55,6 +56,7 @@ Search with `npx jev-recipes list "your task" --limit 5`, then inspect one with 
 | [`rerank`](rerank/README.md)                               | `rerank`               | You have retrieved passages and want the most relevant evidence for a question.                                                |
 | [`retrieval-needed`](retrieval-needed/README.md)           | `retrievalNeeded`      | You need to decide whether answering requires facts beyond the current context.                                                |
 | [`source-applicability`](source-applicability/README.md)   | `sourceApplicability`  | You need to check whether the conditions and scope of a source fit a scenario.                                                 |
+| [`text-block-role`](text-block-role/README.md)             | `textBlockRole`        | You have already extracted a text block but its structural markup is missing.                                                  |
 | [`verify`](verify/README.md)                               | `verify`               | You need to know whether a claim is supported by its supplied evidence.                                                        |
 
 ## Conversation

@@ -1,6 +1,6 @@
 # jev-recipes
 
-**Small AI decisions. Ready to use in your code.**
+**Small, readable decisions for Jev and compatible System One APIs.**
 
 [![npm version](https://img.shields.io/npm/v/jev-recipes)](https://www.npmjs.com/package/jev-recipes)
 [![CI](https://github.com/agencyenterprise/jev-recipes/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/agencyenterprise/jev-recipes/actions/workflows/ci.yml)
@@ -11,11 +11,13 @@
 
 <!-- BEGIN GENERATED: summary -->
 
-246 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
+248 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
 
 <!-- END GENERATED: summary -->
 
-Each recipe accepts your data, calls [Jev through TypeSafe's API](https://docs.typesafe.ai/introduction), and returns a structured decision. Use it in a Node.js backend, a script, or a research evaluation. Your application decides what happens next.
+Each recipe accepts your data, calls [Jev through TypeSafe's System One API](https://docs.typesafe.ai/introduction) or an injected compatible client, and returns a structured decision. Use it in a Node.js backend, a script, or a research evaluation. Your application decides what happens next.
+
+Start with [three runnable paths](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md): route work, select evidence, or review an agent action. Each shows a ready result, review, and provider failure. The [document example](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/ingestion/README.md) preserves source text while proposing structural decisions.
 
 For example, give `route` a support message and descriptions of your teams. It returns a team such as `billing`, or a review outcome when the choice is uncertain.
 

@@ -11,7 +11,7 @@ export async function completionGate(
   const { minConfidence = 0.8, ...state } = completionGateInputSchema.parse(input);
   const decision = await evaluateChoiceWithLabels(
     state,
-    'An agent was given task and has stopped with report as its final message. Is the task actually done? Use evidence, when supplied, as the record of what happened, such as test output, diffs, or the transcript; the report alone is a claim, not proof. Count the task complete only when every part of it is shown done. Count it incomplete when any part is missing, deferred, skipped, or failed, including parts the report quietly drops. Count it unverified when the report claims completion but nothing supplied demonstrates it. Choose unclear only when task or report cannot be understood well enough to judge, such as a task with no identifiable requirement or a report with no readable content; a report that addresses different work than the task, or that points to material not supplied, is unverified, not unclear.',
+    'Judge whether task is complete using report and supplied evidence. First determine what task requires: choose unclear if an unresolved reference, missing specification, or conflicting requirement prevents identifying the required deliverable. Do not invent that requirement or mark an unknown requirement as failed. For a clear task, choose incomplete if supplied material shows a required part was skipped, deferred, narrowed, or failed. Choose unverified if completion is claimed but no supplied evidence demonstrates it. Choose complete only when supplied evidence demonstrates every identifiable requirement. Missing proof for a clear requirement is unverified; missing information needed to identify the requirement is unclear.',
     {
       complete: 'Every part of the task is shown to be done.',
       incomplete:
@@ -19,7 +19,7 @@ export async function completionGate(
       unverified:
         'The report claims the task is done, but the supplied material does not demonstrate it.',
       unclear:
-        'The task or the report cannot be understood well enough to judge; not merely that proof is missing.',
+        'A missing specification, unresolved reference, or conflict prevents identifying what would satisfy the task; not merely missing proof for a clear requirement.',
     },
     {
       claimsWithoutEvidence: {

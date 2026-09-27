@@ -8,9 +8,13 @@ test('the static catalog contains valid source entries, executable fixtures, and
   await run(process.execPath, ['site/build.mjs'], { stdio: ['ignore', 'pipe', 'pipe'] });
   const catalog = JSON.parse(await readFile('site/dist/catalog.json', 'utf8'));
   assert.equal(catalog.recipes.length, listRecipes().length);
+  const evidenceByRecipe = new Map(listRecipes().map((recipe) => [recipe.id, recipe.evidence]));
   for (const entry of catalog.recipes) {
     const detail = JSON.parse(await readFile(`site/dist/recipes/${entry.id}.json`, 'utf8'));
     assert.equal(detail.id, entry.id);
+    assert.deepEqual(entry.evidenceDetails, evidenceByRecipe.get(entry.id));
+    assert.deepEqual(detail.evidenceDetails, evidenceByRecipe.get(entry.id));
+    assert.equal(detail.evidence, entry.evidence);
     assert.ok(detail.functionName);
     assert.ok(detail.inputSchema.properties);
     assert.ok(detail.resultSchema.properties || detail.resultSchema.anyOf, entry.id);

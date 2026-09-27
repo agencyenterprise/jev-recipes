@@ -91,7 +91,7 @@ export async function renderDocs(root, records) {
     updated = replaceSection(updated, 'input', schemaTable(recipe.inputSchema));
     const snapshot = await readSnapshot(root, recipe.id);
     if (snapshot) {
-      updated = renderMeasuredAccuracy(recipe.id, updated, snapshot);
+      updated = renderMeasuredAccuracy(recipe.id, updated, snapshot, recipe.evidence);
     } else if (original.includes('<!-- BEGIN GENERATED: accuracy -->')) {
       updated = replaceSection(
         updated,
@@ -104,12 +104,15 @@ export async function renderDocs(root, records) {
   return files;
 }
 
-export function renderMeasuredAccuracy(id, guide, report) {
+export function renderMeasuredAccuracy(id, guide, report, evidence) {
   if (!guide.includes('<!-- BEGIN GENERATED: accuracy -->'))
     throw new Error(
       `recipes/${id}/README.md: evals/results/${id}.json exists, so add a "## Measured accuracy" heading with accuracy markers.`,
     );
-  return replaceSection(guide, 'accuracy', accuracySection(id, report));
+  const status = evidence
+    ? `**${evidence.label}${evidence.experimental ? '; experimental' : ''}.**\n\n`
+    : '';
+  return replaceSection(guide, 'accuracy', status + accuracySection(id, report));
 }
 
 async function readSnapshot(root, id) {

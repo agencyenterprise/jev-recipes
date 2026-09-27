@@ -1,0 +1,386 @@
+{
+  "evidence": {
+    "runId": "e243b03f-ce07-4829-a164-68d859dbe85c",
+    "evaluatedAt": "2026-09-27T21:21:33.447Z",
+    "packageVersion": "0.8.1",
+    "recipeFingerprint": "4740e3077ceb0727eb06a35d4c4e3c56e01da0c117fbc378b8f7e940b53c9bfa",
+    "datasetFingerprint": "c5a38a7a68e9e4b4ff2661beccfb6aaee58f5b087f35b25254e7a1cc9b12ec26",
+    "split": "held-out",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8,
+      "selectedOn": {
+        "runId": "0f417565-224c-4e07-86d5-f80e27bffc8e",
+        "datasetFingerprint": "e1a6928c7c05552d47a930818c0b81130f2dad2ca64407cdb5c4d88a318bf4b3",
+        "recipeFingerprint": "4740e3077ceb0727eb06a35d4c4e3c56e01da0c117fbc378b8f7e940b53c9bfa",
+        "model": "typesafe-ai/jev",
+        "split": "development"
+      }
+    },
+    "provenance": [
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/async_context.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/buffer.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/cli.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/console.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/events.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/fs.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/http.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/https.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/net.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/path.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/perf_hooks.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/querystring.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/readline.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/stream.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/string_decoder.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 7
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/test.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/tty.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/url.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/v8.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/worker_threads.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/zlib.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      }
+    ]
+  },
+  "recipe": "paragraph-boundary",
+  "model": "typesafe-ai/jev",
+  "models": ["typesafe-ai/jev"],
+  "cases": 167,
+  "completed": 167,
+  "failed": 0,
+  "correct": 155,
+  "wrong": 12,
+  "ready": 82,
+  "review": 85,
+  "accuracy": 0.928,
+  "completedAccuracy": 0.928,
+  "accuracyInterval95": [0.8786, 0.9584],
+  "readyAccuracy": 0.988,
+  "readyAccuracyInterval95": [0.9341, 0.9978],
+  "reviewRate": 0.509,
+  "contestedAccuracy": null,
+  "adversarialAccuracy": null,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 47,
+      "accuracy": 0.766
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 14,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 11,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 13,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 6,
+      "accuracy": 0.833
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 76,
+      "accuracy": 1
+    }
+  ],
+  "thresholdEvaluation": "frozen-policy",
+  "thresholds": [],
+  "suggestedMinConfidence": null,
+  "latencyMs": {
+    "p50": 242.82,
+    "p95": 347.69,
+    "totalCaseTime": 42641.84
+  },
+  "usage": {
+    "requests": 167,
+    "input_tokens": 90864,
+    "output_tokens": 6993,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["typesafe-ai/jev"]
+  },
+  "cost": {
+    "model": "typesafe-ai/jev",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://ai-gateway.vercel.sh/v1/models",
+    "estimated": 0.00381629
+  },
+  "confusion": {
+    "{\"verdict\":\"continue\"}": {
+      "total": 84,
+      "correct": 83,
+      "misses": {
+        "{\"verdict\":\"separate\"}": 1
+      }
+    },
+    "{\"verdict\":\"separate\"}": {
+      "total": 83,
+      "correct": 72,
+      "misses": {
+        "{\"verdict\":\"continue\"}": 11
+      }
+    }
+  },
+  "failures": [
+    {
+      "id": "node-v22.20.0-async_context.md-separate-128",
+      "expected": {
+        "verdict": "separate"
+      },
+      "actual": {
+        "verdict": "continue"
+      },
+      "confidence": 0.42
+    },
+    {
+      "id": "node-v22.20.0-console.md-separate-71",
+      "expected": {
+        "verdict": "separate"
+      },
+      "actual": {
+        "verdict": "continue"
+      },
+      "confidence": 0.25
+    },
+    {
+      "id": "node-v22.20.0-http.md-separate-208",
+      "expected": {
+        "verdict": "separate"
+      },
+      "actual": {
+        "verdict": "continue"
+      },
+      "confidence": 0.34
+    },
+    {
+      "id": "node-v22.20.0-http.md-separate-230",
+      "expected": {
+        "verdict": "separate"
+      },
+      "actual": {
+        "verdict": "continue"
+      },
+      "confidence": 0.38
+    },
+    {
+      "id": "node-v22.20.0-net.md-continue-52",
+      "expected": {
+        "verdict": "continue"
+      },
+      "actual": {
+        "verdict": "separate"
+      },
+      "confidence": 0.88
+    },
+    {
+      "id": "node-v22.20.0-readline.md-separate-68",
+      "expected": {
+        "verdict": "separate"
+      },
+      "actual": {
+        "verdict": "continue"
+      },
+      "confidence": 0.37
+    },
+    {
+      "id": "node-v22.20.0-url.md-separate-80",
+      "expected": {
+        "verdict": "separate"
+      },
+      "actual": {
+        "verdict": "continue"
+      },
+      "confidence": 0.34
+    },
+    {
+      "id": "node-v22.20.0-v8.md-separate-34",
+      "expected": {
+        "verdict": "separate"
+      },
+      "actual": {
+        "verdict": "continue"
+      },
+      "confidence": 0.45
+    },
+    {
+      "id": "node-v22.20.0-v8.md-separate-92",
+      "expected": {
+        "verdict": "separate"
+      },
+      "actual": {
+        "verdict": "continue"
+      },
+      "confidence": 0.22
+    },
+    {
+      "id": "node-v22.20.0-zlib.md-separate-220",
+      "expected": {
+        "verdict": "separate"
+      },
+      "actual": {
+        "verdict": "continue"
+      },
+      "confidence": 0.41
+    },
+    {
+      "id": "node-v22.20.0-zlib.md-separate-486",
+      "expected": {
+        "verdict": "separate"
+      },
+      "actual": {
+        "verdict": "continue"
+      },
+      "confidence": 0.3
+    },
+    {
+      "id": "node-v22.20.0-zlib.md-separate-496",
+      "expected": {
+        "verdict": "separate"
+      },
+      "actual": {
+        "verdict": "continue"
+      },
+      "confidence": 0.3
+    }
+  ],
+  "documentEvaluation": {
+    "baseline": "Frozen syntax/punctuation rules in evals/lib/ingestion-metrics.mjs",
+    "baselineAccuracy": 0.9760479041916168,
+    "documentCount": 21,
+    "perLabel": [
+      {
+        "label": "continue",
+        "cases": 84,
+        "precision": 0.8829787234042553,
+        "recall": 0.9880952380952381,
+        "f1": 0.9325842696629213
+      },
+      {
+        "label": "separate",
+        "cases": 83,
+        "precision": 0.9863013698630136,
+        "recall": 0.8674698795180723,
+        "f1": 0.9230769230769231
+      }
+    ],
+    "macroF1": 0.9278305963699223,
+    "readyCoverage": 0.49101796407185627,
+    "acceptedDecisions": 81,
+    "acceptedDocuments": 21,
+    "acceptedPrecision": 1,
+    "acceptedPrecisionInterval95": [1, 1],
+    "acceptedContinuationRecall": 0.9642857142857143,
+    "baselineImprovementInterval95": [-0.10119047619047619, 0],
+    "intervalMethod": "Deterministic percentile bootstrap of whole source documents, 2000 replicates. Sparse/all-correct samples can yield degenerate intervals; these are descriptive, not guarantees."
+  },
+  "acceptance": {
+    "met": false,
+    "checks": {
+      "noProviderFailures": true,
+      "beatsFrozenBaseline": false,
+      "acceptedJoinPrecision": true,
+      "precisionLowerBound": true,
+      "continuationRecall": true,
+      "reviewRate": false,
+      "acceptedJoins": false,
+      "acceptedDocuments": false
+    },
+    "label": "Experimental: declared document acceptance policy not met"
+  },
+  "gatewayIdentity": "Gateway returned the alias typesafe-ai/jev; backend version and BYOK credential use are not independently established."
+}

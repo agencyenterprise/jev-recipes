@@ -91,6 +91,8 @@ This is a language decision, not a consent registry. Never treat none as permiss
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement.**
+
 Measured on 40 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 80%, adversarial cases 100%).
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `cf942449ed8153c6445d9bf776146328e9d17bffef15889a4280357e0e83d640`.

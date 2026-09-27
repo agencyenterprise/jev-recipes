@@ -112,6 +112,8 @@ Write observable rules and supply the facts needed to evaluate them. Compute exa
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement.**
+
 Measured on 40 golden cases against `jev-1.13.0`: **90% accurate** overall (contested cases 80%, adversarial cases 90%).
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `a6b4ea63f7fd7fa621bad8ebdac68421b2db9ccbf35efc7fd32ca34bc4f712c5`.

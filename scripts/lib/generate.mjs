@@ -29,7 +29,7 @@ export function renderCode(records) {
   );
   files.set(
     'catalog/generated/metadata.ts',
-    `${generated}import type { CatalogRecipe } from '../index.js';\nexport const recipeMetadata: CatalogRecipe[] = ${JSON.stringify(records.map(({ metadata }) => metadata))};\n`,
+    `${generated}import type { CatalogRecipe } from '../index.js';\nexport const recipeMetadata: CatalogRecipe[] = ${JSON.stringify(records.map(({ metadata, evidence }) => ({ ...metadata, evidence })))};\n`,
   );
   files.set(
     'catalog/generated/loaders.ts',

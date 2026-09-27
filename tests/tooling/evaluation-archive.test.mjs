@@ -225,3 +225,67 @@ test('expected fields can traverse a union result schema', async () => {
     /unknown result field/,
   );
 });
+
+test('numeric action parameters determine correctness, including nested objects and arrays', async () => {
+  const expectedAction = { command: 'move', x: 1, path: [{ y: 2 }, 3] };
+  const actions = [
+    expectedAction,
+    { ...expectedAction, x: 9 },
+    { ...expectedAction, path: [{ y: 9 }, 3] },
+    { ...expectedAction, path: [{ y: 2 }, 9] },
+  ];
+  for (const [selected, action] of actions.entries()) {
+    const run = await evaluate(
+      'game-action',
+      [
+        {
+          id: 'coordinate',
+          input: { gameState: {}, playerState: {}, legalActions: actions },
+          expected: { action: expectedAction },
+          rationale: 'The selected coordinates must match exactly.',
+        },
+      ],
+      {
+        mode: 'fixture',
+        client: {
+          systemOne: async () => ({
+            model: 'fixture',
+            usage: { input_tokens: 0, output_tokens: 0 },
+            answers: {
+              decision: {
+                type: 'choice',
+                choice: `action_${selected}`,
+                confidence: 1,
+                probabilities: Object.fromEntries(
+                  actions.map((_, index) => [`action_${index}`, Number(index === selected)]),
+                ),
+              },
+            },
+          }),
+        },
+      },
+    );
+    assert.deepEqual(run.rows[0].result.action, action);
+    assert.equal(run.rows[0].correct, selected === 0);
+    assert.equal(run.report.accuracy, Number(selected === 0));
+    assert.equal((await replay(run)).report.correct, Number(selected === 0));
+  }
+});
+
+test('legacy comparisons retain nested numeric decisions while excluding result metadata', async () => {
+  const { comparableDecision, deepEqual } = await import('../../evals/lib/harness.mjs');
+  const result = {
+    model: 'fixture',
+    confidence: 0.9,
+    status: 'ready',
+    action: { x: 1, path: [{ y: 2 }] },
+  };
+  assert.deepEqual(comparableDecision(result), { action: { x: 1, path: [{ y: 2 }] } });
+  assert.equal(
+    deepEqual(
+      comparableDecision(result),
+      comparableDecision({ action: { x: 2, path: [{ y: 2 }] } }),
+    ),
+    false,
+  );
+});

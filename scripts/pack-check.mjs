@@ -1,4 +1,4 @@
-import { mkdtemp, readFile, writeFile, mkdir, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { projectRoot } from './lib/recipes.mjs';
@@ -90,6 +90,12 @@ console.log('Verified ' + ids.length + ' installed recipe imports, root exports,
 `;
   await writeFile(join(consumer, 'smoke.mjs'), fixtureScript);
   await run(process.execPath, ['smoke.mjs'], { cwd: consumer });
+  await cp(join(projectRoot, 'examples'), join(consumer, 'examples'), { recursive: true });
+  for (const example of ['getting-started', 'ingestion'])
+    await run(process.execPath, [`examples/${example}/run.mjs`], {
+      cwd: consumer,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
   const cli = join(packageRoot, 'dist/cli/index.js');
   for (const args of [
     ['--version'],

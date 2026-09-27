@@ -19,11 +19,12 @@ export async function contextPrune(
           `item_${index}`,
           noul(
             asDecisionInstruction(
-              `Will items[${index}].text still be needed to finish objective? Count it needed when it holds facts, results, decisions, errors, or user instructions the remaining work depends on, or when it is the only record of something that must not be redone. Do not count it needed merely because it was useful earlier, is long, or is recent; use recent, when supplied, for what has already been handled. Judge only this item.`,
+              `Will items[${index}].text still be needed to finish objective? Count it needed when it holds facts, results, decisions, errors, or user instructions the remaining work depends on, or when it is the only record of something that must not be redone. Do not count it needed merely because it was useful earlier, is long, or is recent; use recent, when supplied, for what has already been handled. Keep active user constraints even if they were stated early. Drop an obsolete value only when the supplied state explicitly replaces it and the old value has no remaining purpose. Completing one step does not make its result irrelevant when a later step depends on it. Judge only this item.`,
             ),
             {
-              true: 'The remaining work depends on this item.',
-              false: 'The remaining work can proceed without this item.',
+              true: 'This item is an active requirement, relevant fact or result, unresolved error, or unique record the unfinished objective still needs.',
+              false:
+                'This item is unrelated, explicitly superseded, or records completed work whose details are not needed again.',
             },
           ),
         ]),

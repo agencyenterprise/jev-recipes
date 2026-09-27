@@ -73,6 +73,8 @@ A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `re
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Earlier-version measurement; experimental.**
+
 Measured on 44 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 80%, adversarial cases 86%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |

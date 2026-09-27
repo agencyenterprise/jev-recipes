@@ -4,8 +4,9 @@ import { recipeMetadata } from './generated/metadata.js';
 import { recipeFiltersSchema, recipeNameSchema } from './schema.js';
 import type { RecipeFilters, RecipeName } from './schema.js';
 import { searchRecipes } from './search.js';
+import type { RecipeEvidence } from './evidence.js';
 
-export type CatalogRecipe = RecipeMetadata & { id: RecipeName };
+export type CatalogRecipe = RecipeMetadata & { id: RecipeName; evidence?: RecipeEvidence };
 export type RecipeDescription = CatalogRecipe & {
   inputSchema: Record<string, unknown>;
   resultSchema: Record<string, unknown>;
@@ -28,3 +29,4 @@ export { recipeFiltersSchema, recipeNameSchema } from './schema.js';
 export { recipeCategorySchema, recipeMetadataSchema } from '../src/schema.js';
 export type { RecipeFilters, RecipeName } from './schema.js';
 export type { RecipeCategory, RecipeMetadata } from '../src/schema.js';
+export type { RecipeEvidence } from './evidence.js';

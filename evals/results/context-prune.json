@@ -1,51 +1,51 @@
 {
   "evidence": {
-    "runId": "13f5f8de-c46d-467e-a707-6c6c0e207b71",
-    "evaluatedAt": "2026-09-27T07:56:11.519Z",
-    "packageVersion": "0.7.0",
-    "recipeFingerprint": "693a96f35935cf7acf369821db8283bece56c499a78b959142c44b444bdfcc58",
-    "datasetFingerprint": "6fefa19cd2ae3e36cb732e17101c3eb0a1865c3db875aadb6ef0987e2be94eae",
+    "runId": "284b93ff-859d-4bcc-bd08-b924304510be",
+    "evaluatedAt": "2026-09-27T21:21:18.930Z",
+    "packageVersion": "0.8.1",
+    "recipeFingerprint": "921cf6a3ced0031109478c77c8b5e84815b8b7637f5c8d3380d555b888a2e62f",
+    "datasetFingerprint": "b6931e8903d7326dc753306f3b8a4e91d74c663f4eefbec5473c14a04f3e4e84",
     "split": "held-out",
     "mode": "live",
     "policy": {
       "minConfidence": 0.8,
       "selectedOn": {
-        "runId": "c19f3634-0660-4d46-a33e-6319c46eca33",
-        "datasetFingerprint": "63a64b1bc93e91028abd33fde4c74a93569fc29441c8debdd3a7f40297ce8dc2",
-        "recipeFingerprint": "693a96f35935cf7acf369821db8283bece56c499a78b959142c44b444bdfcc58",
-        "model": "jev-1.13.0",
+        "runId": "2d3b8807-c465-4166-877e-4e1bfdcb4979",
+        "datasetFingerprint": "0057beabcfdbd0ce641a2c4225e1401ce9d867d54cd9b5ccd5d0cc4939fd54f6",
+        "recipeFingerprint": "921cf6a3ced0031109478c77c8b5e84815b8b7637f5c8d3380d555b888a2e62f",
+        "model": "typesafe-ai/jev",
         "split": "development"
       }
     },
     "provenance": [
       {
         "method": "author-synthetic",
-        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
-        "cases": 40
+        "source": "AI-authored new scenario families for the September 2026 update; not independently human-reviewed. Previous inspected holdouts moved to development.",
+        "cases": 20
       }
     ]
   },
   "recipe": "context-prune",
-  "model": "jev-1.13.0",
-  "models": ["jev-1.13.0"],
-  "cases": 40,
-  "completed": 40,
+  "model": "typesafe-ai/jev",
+  "models": ["typesafe-ai/jev"],
+  "cases": 20,
+  "completed": 20,
   "failed": 0,
-  "correct": 38,
-  "wrong": 2,
-  "ready": 9,
-  "review": 31,
-  "accuracy": 0.95,
-  "completedAccuracy": 0.95,
-  "accuracyInterval95": [0.835, 0.9862],
+  "correct": 20,
+  "wrong": 0,
+  "ready": 11,
+  "review": 9,
+  "accuracy": 1,
+  "completedAccuracy": 1,
+  "accuracyInterval95": [0.8389, 1],
   "readyAccuracy": 1,
-  "readyAccuracyInterval95": [0.7009, 1],
-  "reviewRate": 0.775,
-  "items": 120,
-  "correctItems": 118,
-  "itemAccuracy": 0.983,
+  "readyAccuracyInterval95": [0.7412, 1],
+  "reviewRate": 0.45,
+  "items": 80,
+  "correctItems": 80,
+  "itemAccuracy": 1,
   "contestedAccuracy": null,
-  "adversarialAccuracy": 1,
+  "adversarialAccuracy": null,
   "calibration": [
     {
       "confidence": "0-0.5",
@@ -54,22 +54,22 @@
     },
     {
       "confidence": "0.5-0.6",
-      "cases": 6,
-      "accuracy": 0.667
+      "cases": 0,
+      "accuracy": null
     },
     {
       "confidence": "0.6-0.7",
-      "cases": 9,
-      "accuracy": 1
+      "cases": 0,
+      "accuracy": null
     },
     {
       "confidence": "0.7-0.8",
-      "cases": 16,
+      "cases": 9,
       "accuracy": 1
     },
     {
       "confidence": "0.8-0.9",
-      "cases": 9,
+      "cases": 11,
       "accuracy": 1
     },
     {
@@ -82,71 +82,40 @@
   "thresholds": [],
   "suggestedMinConfidence": null,
   "latencyMs": {
-    "p50": 108.8,
-    "p95": 150.43,
-    "totalCaseTime": 4681.01
+    "p50": 294.29,
+    "p95": 387.25,
+    "totalCaseTime": 5976.19
   },
   "usage": {
-    "requests": 40,
-    "input_tokens": 34667,
-    "output_tokens": 2320,
+    "requests": 20,
+    "input_tokens": 28100,
+    "output_tokens": 1520,
     "unknownResponses": 0,
     "failedRequests": 0,
-    "models": ["jev-1.13.0"]
+    "models": ["typesafe-ai/jev"]
   },
   "cost": {
-    "model": "jev-1.13.0",
+    "model": "typesafe-ai/jev",
     "inputPerMillion": 0.042,
     "outputPerMillion": 0,
     "currency": "USD",
     "date": "2026-09-27",
-    "source": "https://docs.typesafe.ai/models",
-    "estimated": 0.00145601
+    "source": "https://ai-gateway.vercel.sh/v1/models",
+    "estimated": 0.0011802
   },
   "confusion": {
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\"}": {
-      "total": 30,
-      "correct": 30,
+    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\"}": {
+      "total": 20,
+      "correct": 20,
       "misses": {}
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\"}": {
-      "total": 10,
-      "correct": 8,
-      "misses": {
-        "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\"}": 2
-      }
     }
   },
-  "failures": [
-    {
-      "id": "featured-19-needed",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "drop"
-      },
-      "actual": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "drop"
-      },
-      "confidence": 0.53
-    },
-    {
-      "id": "featured-20-needed",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "drop"
-      },
-      "actual": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "drop"
-      },
-      "confidence": 0.53
-    }
-  ],
+  "failures": [],
+  "previousAttempt": {
+    "runId": "0b28abd4-267c-4f5e-9ec5-4b3ffd68f5f3",
+    "failed": 7,
+    "reason": "Connection errors; the same dataset and frozen policy were rerun without prompt or threshold changes."
+  },
   "acceptance": {
     "minConfidence": 0.8,
     "minimumHeldOutReadyCases": 20,
@@ -154,5 +123,6 @@
     "maximumProviderFailures": 0,
     "met": false,
     "label": "Experimental: declared acceptance policy not met"
-  }
+  },
+  "gatewayIdentity": "Gateway returned the alias typesafe-ai/jev; backend version and BYOK credential use are not independently established."
 }

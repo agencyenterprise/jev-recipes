@@ -8,8 +8,14 @@ export function createDirectClient(options = {}) {
   });
 }
 
-export function createGatewayClient({ apiKey = process.env.AI_GATEWAY_API_KEY, ...options } = {}) {
-  if (!apiKey?.trim()) throw new Error('Set AI_GATEWAY_API_KEY before using Vercel AI Gateway.');
+export function createGatewayClient({
+  apiKey = process.env.VERCEL_GATEWAY_API_KEY ?? process.env.AI_GATEWAY_API_KEY,
+  ...options
+} = {}) {
+  if (!apiKey?.trim())
+    throw new Error(
+      'Set VERCEL_GATEWAY_API_KEY or AI_GATEWAY_API_KEY before using Vercel AI Gateway.',
+    );
   return createClient({
     ...options,
     apiKey,

@@ -162,6 +162,8 @@ The board is translated into labeled pieces, such as `c3: your man`, and each mo
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Earlier-version measurement; experimental.**
+
 Measured on 31 golden cases against `jev-1.13.0`: **58% accurate** overall (contested cases 20%, adversarial cases 60%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |

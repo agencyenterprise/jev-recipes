@@ -106,6 +106,8 @@ The overall `status` is `review` when any single label falls below `minConfidenc
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Earlier-version measurement; experimental.**
+
 Measured on 43 golden cases against `jev-1.13.0`: **95% accurate** overall (contested cases 100%, adversarial cases 80%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |

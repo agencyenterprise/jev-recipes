@@ -156,3 +156,9 @@ The package check packs installed runtime dependencies for offline installation.
 4. After publishing succeeds, push the version commit and tag, then create a GitHub release.
 
 `prepublishOnly` runs full CI; `prepack` checks generated files and builds. Publishing a previously packed archive does not rerun the checkout's checks. These hooks use npm directly; Make is optional.
+
+## Readable changes
+
+Write the main function in execution order: validate inputs, prepare the question, request the judgment, apply the review policy, and return the result. Use names that state the operation or fact. Prefer explicit branches and guard clauses over deeply nested expressions. Extract helpers for meaningful reusable operations rather than one-line indirections. If a comment is needed to explain what code does, improve its names and structure first; keep contract rationale in the guide.
+
+Complete each small change with its schemas, runnable example, documentation, and meaningful behavior tests. Keep fixture correctness, recorded replay, and live accuracy separate. When held-out errors influence an edit, move those cases into regression/development evidence and reserve new families before making the next accuracy claim. Preserve weak results and experimental labels.

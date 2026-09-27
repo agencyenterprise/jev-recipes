@@ -165,20 +165,20 @@ function renderEvidence(recipe) {
         ? 'development'
         : 'saved';
   const interval = report.accuracyInterval95?.map(percent).join(' to ');
-  return `<section class="evidence-panel" aria-label="Evaluation evidence"><strong>${current ? 'Measured on these cases' : 'Results from an earlier version'}</strong>
+  return `<section class="evidence-panel" aria-label="Evaluation evidence"><strong>${escapeHtml(recipe.evidenceDetails.label)}</strong>
     <p>${escapeHtml(report.model)}${report.evidence?.evaluatedAt ? ' / ' + escapeHtml(report.evidence.evaluatedAt.slice(0, 10)) : ''} / ${report.cases} ${sample} cases</p>
     <div class="metrics"><div class="metric"><span>${percent(report.accuracy)}</span><small>All-case accuracy</small></div><div class="metric"><span>${report.review ?? 'n/a'}</span><small>Sent for review</small></div><div class="metric"><span>${report.failed ?? 'n/a'}</span><small>Failed calls / cases</small></div></div>
     ${report.ready !== undefined ? `<p>${report.ready} ready decisions, with ${percent(report.readyAccuracy)} accuracy among those decisions.</p>` : ''}
     ${interval ? `<p>95% case-level interval: ${interval}. Related synthetic cases are correlated.</p>` : ''}
     ${report.acceptance ? `<p class="${report.acceptance.met ? '' : 'warning'}">${escapeHtml(report.acceptance.label)}</p>` : ''}
-    <p>${current ? 'Synthetic labels have not had independent human review. This is evidence for the saved dataset, not a general readiness guarantee.' : 'The recorded recipe version is different or unknown. Rerun the current recipe before treating these numbers as current.'}</p>
+    <p>${current ? 'This measures the recorded dataset, not general readiness. Label sources: ' + escapeHtml(recipe.evidenceDetails.measurement.provenance.map((item) => item.method + ': ' + item.source).join('; ')) : 'The recorded recipe version is different or unknown. Rerun the current recipe before treating these numbers as current.'}</p>
     <div class="links"><a href="./reports/${recipe.id}.json">Full report and misses</a><a href="https://github.com/agencyenterprise/jev-recipes/tree/main/evals/${recipe.id}">Dataset and labels</a></div></section>`;
 }
 
 function evidenceLabel(recipe) {
-  if (recipe.evidence === 'fixture') return 'Fixture only';
-  if (recipe.evidence === 'earlier') return 'Earlier measurement';
-  return `${recipe.measured.acceptanceMet === false ? 'Experimental / ' : ''}${recipe.measured.cases} ${recipe.measured.split ?? 'measured'} cases`;
+  return escapeHtml(
+    `${recipe.evidenceDetails.experimental ? 'Experimental / ' : ''}${recipe.evidenceDetails.label}`,
+  );
 }
 
 function resultFields(schema) {

@@ -150,6 +150,8 @@ The result `status` is `review` when any item is `review`. Items are independent
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement.**
+
 Measured on 40 golden cases against `jev-1.13.0`: **98% accurate** overall (adversarial cases 90%).
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `ab78b9ec3027283b20df73fc1b254b21d8f3fccc0fc9dc29d7949507b6266cd1`.

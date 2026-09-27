@@ -61,7 +61,6 @@ export function comparableDecision(value) {
     return Object.fromEntries(
       Object.entries(value)
         .filter(([name, field]) => !NON_DECISION_FIELDS.has(name) && name !== 'status')
-        .filter(([, field]) => typeof field !== 'number')
         .map(([name, field]) => [name, comparableDecision(field)]),
     );
   }

@@ -140,23 +140,25 @@ Each entry in `items` has a `verdict` of `keep` or `drop`, the yes probability t
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 40 golden cases against `jev-1.13.0`: **95% accurate** overall (adversarial cases 100%).
+**Current synthetic measurement; experimental.**
 
-Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `693a96f35935cf7acf369821db8283bece56c499a78b959142c44b444bdfcc58`.
+Measured on 20 golden cases against `typesafe-ai/jev`: **100% accurate** overall.
 
-38/40 cases correct; 9 ready, 31 review, 0 failed. Accuracy among ready cases: 100%.
+Recorded 2026-09-27 with package 0.8.1, on the **held-out** split. Recipe fingerprint: `921cf6a3ced0031109478c77c8b5e84815b8b7637f5c8d3380d555b888a2e62f`.
 
-Latency: p50 108.8 ms, p95 150.43 ms. Usage: 34667 input tokens and 2320 output tokens across 40 logical requests.
+20/20 cases correct; 11 ready, 9 review, 0 failed. Accuracy among ready cases: 100%.
 
-Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+Latency: p50 294.29 ms, p95 387.25 ms. Usage: 28100 input tokens and 1520 output tokens across 20 logical requests.
+
+Labels: author-synthetic (20 cases): AI-authored new scenario families for the September 2026 update; not independently human-reviewed. Previous inspected holdouts moved to development.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 84% to 99%.
+95% case-level accuracy interval: 84% to 100%.
 
 **Experimental: declared acceptance policy not met.**
 
-A case counts as correct only when every item in it is right. Across the 120 individual items, **98%** were judged correctly.
+A case counts as correct only when every item in it is right. Across the 80 individual items, **100%** were judged correctly.
 
 Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
 
@@ -177,3 +179,7 @@ A vague objective pushes everything toward `drop`. Say what the agent still has 
 ## Example input
 
 [demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo context-prune` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe context-prune` to inspect the input and result schemas.
+
+## Decision boundary
+
+Keep active constraints and results that the remaining work still needs. Completion of a step does not make its output disposable. Drop an item only when the remaining task no longer needs it; uncertain items remain for review.

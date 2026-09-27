@@ -1654,6 +1654,17 @@ export type {
   OutcomeFramingVerdict,
 } from '../recipes/outcome-framing/index.js';
 export {
+  paragraphBoundary,
+  paragraphBoundaryInputSchema,
+  paragraphBoundaryResultSchema,
+  paragraphBoundaryVerdictSchema,
+} from '../recipes/paragraph-boundary/index.js';
+export type {
+  ParagraphBoundaryInput,
+  ParagraphBoundaryResult,
+  ParagraphBoundaryVerdict,
+} from '../recipes/paragraph-boundary/index.js';
+export {
   passageCompare,
   passageCompareInputSchema,
   passageCompareResultSchema,
@@ -2459,6 +2470,17 @@ export type {
   TensionLevelResult,
   TensionLevelVerdict,
 } from '../recipes/tension-level/index.js';
+export {
+  textBlockRole,
+  textBlockRoleInputSchema,
+  textBlockRoleResultSchema,
+  textBlockRoleVerdictSchema,
+} from '../recipes/text-block-role/index.js';
+export type {
+  TextBlockRoleInput,
+  TextBlockRoleResult,
+  TextBlockRoleVerdict,
+} from '../recipes/text-block-role/index.js';
 export {
   ticketMatch,
   ticketMatchInputSchema,

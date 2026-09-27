@@ -98,6 +98,8 @@ Selects from the supplied earlier requests. Supply enough conversation context t
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement.**
+
 Measured on 40 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `77fc95ddff5d802d6341d747e754da620513c23205a4bb31bcdfe9ad44efea4c`.

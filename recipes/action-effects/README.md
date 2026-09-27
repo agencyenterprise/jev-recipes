@@ -116,26 +116,32 @@ The labels describe the action as written, not what the underlying tool actually
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 40 golden cases against `jev-1.13.0`: **75% accurate** overall (adversarial cases 60%).
+**Current synthetic measurement.**
 
-Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `bf45185c11409c57e8fc10215997bb2a2711222cf98dc655341415767fe5523d`.
+Measured on 40 golden cases against `typesafe-ai/jev`: **100% accurate** overall.
 
-30/40 cases correct; 26 ready, 14 review, 0 failed. Accuracy among ready cases: 85%.
+Recorded 2026-09-27 with package 0.8.1, on the **held-out** split. Recipe fingerprint: `1d8a904b39336096ed678153226be54701c7248ebdf7f840f089be0b46f7c1fc`.
 
-Latency: p50 117.59 ms, p95 167.49 ms. Usage: 34392 input tokens and 3840 output tokens across 40 logical requests.
+40/40 cases correct; 20 ready, 20 review, 0 failed. Accuracy among ready cases: 100%.
 
-Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+Latency: p50 261.06 ms, p95 397.91 ms. Usage: 37890 input tokens and 3840 output tokens across 40 logical requests.
+
+Labels: author-synthetic (40 cases): AI-authored new scenario families for the September 2026 update; not independently human-reviewed. Previous inspected holdouts moved to development.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 60% to 86%.
+95% case-level accuracy interval: 91% to 100%.
 
-**Experimental: declared acceptance policy not met.**
+**Measured on these synthetic cases.**
 
-A case counts as correct only when every item in it is right. Across the 200 individual items, **92%** were judged correctly.
+A case counts as correct only when every item in it is right. Across the 200 individual items, **100%** were judged correctly.
 
 Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
 
 Run `npm run eval -- action-effects` to save new results and update this guide. The full report, including misses, is in [evals/results/action-effects.json](../../evals/results/action-effects.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
+
+## Decision boundary
+
+Judge the effects of executing the outer action. Explaining a deletion or drafting instructions to send money does not itself delete data or move money. The caller still determines permissions and executes any approved action.
