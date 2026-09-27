@@ -115,18 +115,20 @@ A result is `ready` when the selection confidence meets `minConfidence` and the 
 
 Measured on 44 golden cases against `jev-1.13.0`: **84% accurate** overall (contested cases 60%, adversarial cases 50%).
 
+A case counts as correct only when every item in it is right. Across the 59 individual items, **88%** were judged correctly.
+
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 21%                | 91%                       |
-| 0.6             | 23%                | 94%                       |
+| 0.5             | 16%                | 87%                       |
+| 0.6             | 21%                | 91%                       |
 | 0.7             | 25%                | 94%                       |
 | 0.8             | 32%                | 100%                      |
 | 0.9             | 41%                | 100%                      |
-| 0.95            | 52%                | 100%                      |
+| 0.95            | 55%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.75.
 
-Rerun with `npm run eval -- model-route`; the full report, including misses, is in [evals/results/model-route.json](../../evals/results/model-route.json). Accuracy on your own data may differ.
+Run `npm run eval -- model-route` to save new results and update this guide. The full report, including misses, is in [evals/results/model-route.json](../../evals/results/model-route.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

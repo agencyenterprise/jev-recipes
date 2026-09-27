@@ -3,101 +3,17 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "properties": {
-      "gameState": {
-        "description": "The current game information available for this decision.",
-        "$ref": "#/$defs/__schema0"
-      },
-      "playerState": {
-        "description": "Information about the player making this decision.",
-        "$ref": "#/$defs/__schema1"
-      },
+      "gameState": { "description": "The current game information available for this decision." },
+      "playerState": { "description": "Information about the player making this decision." },
       "legalActions": {
         "type": "array",
-        "items": { "$ref": "#/$defs/__schema2" },
+        "items": {},
         "description": "The available actions the player can choose from."
       },
-      "rules": {
-        "description": "Game rules and explanations of game-specific information.",
-        "$ref": "#/$defs/__schema3"
-      },
-      "objective": {
-        "description": "What the player is trying to accomplish.",
-        "$ref": "#/$defs/__schema4"
-      }
+      "rules": { "description": "Game rules and explanations of game-specific information." },
+      "objective": { "description": "What the player is trying to accomplish." }
     },
-    "required": ["gameState", "playerState", "legalActions"],
-    "$defs": {
-      "__schema0": {
-        "anyOf": [
-          { "type": "string" },
-          { "type": "number" },
-          { "type": "boolean" },
-          { "type": "null" },
-          { "type": "array", "items": { "$ref": "#/$defs/__schema0" } },
-          {
-            "type": "object",
-            "propertyNames": { "type": "string" },
-            "additionalProperties": { "$ref": "#/$defs/__schema0" }
-          }
-        ]
-      },
-      "__schema1": {
-        "anyOf": [
-          { "type": "string" },
-          { "type": "number" },
-          { "type": "boolean" },
-          { "type": "null" },
-          { "type": "array", "items": { "$ref": "#/$defs/__schema1" } },
-          {
-            "type": "object",
-            "propertyNames": { "type": "string" },
-            "additionalProperties": { "$ref": "#/$defs/__schema1" }
-          }
-        ]
-      },
-      "__schema2": {
-        "anyOf": [
-          { "type": "string" },
-          { "type": "number" },
-          { "type": "boolean" },
-          { "type": "null" },
-          { "type": "array", "items": { "$ref": "#/$defs/__schema2" } },
-          {
-            "type": "object",
-            "propertyNames": { "type": "string" },
-            "additionalProperties": { "$ref": "#/$defs/__schema2" }
-          }
-        ]
-      },
-      "__schema3": {
-        "anyOf": [
-          { "type": "string" },
-          { "type": "number" },
-          { "type": "boolean" },
-          { "type": "null" },
-          { "type": "array", "items": { "$ref": "#/$defs/__schema3" } },
-          {
-            "type": "object",
-            "propertyNames": { "type": "string" },
-            "additionalProperties": { "$ref": "#/$defs/__schema3" }
-          }
-        ]
-      },
-      "__schema4": {
-        "anyOf": [
-          { "type": "string" },
-          { "type": "number" },
-          { "type": "boolean" },
-          { "type": "null" },
-          { "type": "array", "items": { "$ref": "#/$defs/__schema4" } },
-          {
-            "type": "object",
-            "propertyNames": { "type": "string" },
-            "additionalProperties": { "$ref": "#/$defs/__schema4" }
-          }
-        ]
-      }
-    }
+    "required": ["gameState", "playerState", "legalActions"]
   },
   "resultSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -120,8 +36,7 @@
             "description": "The internal Choice label associated with the selected action."
           },
           "action": {
-            "description": "The original selected action, preserving any existing game ID.",
-            "$ref": "#/$defs/__schema0"
+            "description": "The original selected action, preserving any existing game ID."
           },
           "confidence": {
             "type": "number",
@@ -140,22 +55,6 @@
         "additionalProperties": false
       },
       { "type": "null" }
-    ],
-    "$defs": {
-      "__schema0": {
-        "anyOf": [
-          { "type": "string" },
-          { "type": "number" },
-          { "type": "boolean" },
-          { "type": "null" },
-          { "type": "array", "items": { "$ref": "#/$defs/__schema0" } },
-          {
-            "type": "object",
-            "propertyNames": { "type": "string" },
-            "additionalProperties": { "$ref": "#/$defs/__schema0" }
-          }
-        ]
-      }
-    }
+    ]
   }
 }

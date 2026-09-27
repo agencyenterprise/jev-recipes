@@ -95,9 +95,9 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 Measured on 57 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%, adversarial cases 100%).
 
-This result carries no per-decision confidence to calibrate a threshold against, so only overall accuracy is reported.
+This recipe has no minConfidence setting, so no confidence-threshold table is reported.
 
-Rerun with `npm run eval -- rerank`; the full report, including misses, is in [evals/results/rerank.json](../../evals/results/rerank.json). Accuracy on your own data may differ.
+Run `npm run eval -- rerank` to save new results and update this guide. The full report, including misses, is in [evals/results/rerank.json](../../evals/results/rerank.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

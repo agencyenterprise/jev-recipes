@@ -6,154 +6,66 @@
   "contestedAccuracy": 0.667,
   "adversarialAccuracy": 1,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 3,
-      "accuracy": 0.333
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 2,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 1,
-      "accuracy": 0
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 2,
-      "accuracy": 0.5
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 2,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 32,
-      "accuracy": 1
-    }
+    { "confidence": "0-0.5", "cases": 3, "accuracy": 0.333 },
+    { "confidence": "0.5-0.6", "cases": 3, "accuracy": 0.333 },
+    { "confidence": "0.6-0.7", "cases": 1, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 0, "accuracy": null },
+    { "confidence": "0.8-0.9", "cases": 4, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 31, "accuracy": 1 }
   ],
+  "thresholdEvaluation": "recipe-replay",
   "thresholds": [
-    {
-      "minConfidence": 0.5,
-      "deferRate": 0.071,
-      "readyAccuracy": 0.949
-    },
-    {
-      "minConfidence": 0.55,
-      "deferRate": 0.071,
-      "readyAccuracy": 0.949
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.119,
-      "readyAccuracy": 0.946
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.143,
-      "readyAccuracy": 0.972
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.143,
-      "readyAccuracy": 0.972
-    },
-    {
-      "minConfidence": 0.75,
-      "deferRate": 0.167,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.8,
-      "deferRate": 0.19,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.85,
-      "deferRate": 0.214,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.9,
-      "deferRate": 0.238,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.95,
-      "deferRate": 0.333,
-      "readyAccuracy": 1
-    }
+    { "minConfidence": 0.5, "deferRate": 0.071, "readyAccuracy": 0.949 },
+    { "minConfidence": 0.55, "deferRate": 0.095, "readyAccuracy": 0.947 },
+    { "minConfidence": 0.6, "deferRate": 0.143, "readyAccuracy": 1 },
+    { "minConfidence": 0.65, "deferRate": 0.143, "readyAccuracy": 1 },
+    { "minConfidence": 0.7, "deferRate": 0.167, "readyAccuracy": 1 },
+    { "minConfidence": 0.75, "deferRate": 0.167, "readyAccuracy": 1 },
+    { "minConfidence": 0.8, "deferRate": 0.167, "readyAccuracy": 1 },
+    { "minConfidence": 0.85, "deferRate": 0.214, "readyAccuracy": 1 },
+    { "minConfidence": 0.9, "deferRate": 0.262, "readyAccuracy": 1 },
+    { "minConfidence": 0.95, "deferRate": 0.333, "readyAccuracy": 1 }
   ],
-  "suggestedMinConfidence": 0.65,
+  "suggestedMinConfidence": 0.6,
   "confusion": {
     "{\"verdict\":\"unclear\"}": {
       "total": 3,
       "correct": 0,
-      "misses": {
-        "{\"verdict\":\"within_commitments\"}": 2,
-        "{\"verdict\":\"unsupported\"}": 1
-      }
+      "misses": { "{\"verdict\":\"within_commitments\"}": 2, "{\"verdict\":\"unsupported\"}": 1 }
     },
     "{\"verdict\":\"unsupported\"}": {
       "total": 20,
       "correct": 19,
-      "misses": {
-        "{\"verdict\":\"within_commitments\"}": 1
-      }
+      "misses": { "{\"verdict\":\"within_commitments\"}": 1 }
     },
-    "{\"verdict\":\"within_commitments\"}": {
-      "total": 19,
-      "correct": 19,
-      "misses": {}
-    }
+    "{\"verdict\":\"within_commitments\"}": { "total": 19, "correct": 19, "misses": {} }
   },
   "failures": [
     {
       "id": "unsupported-three-day-shipping",
-      "expected": {
-        "verdict": "unsupported"
-      },
-      "actual": {
-        "verdict": "within_commitments"
-      },
-      "confidence": 0.7,
+      "expected": { "verdict": "unsupported" },
+      "actual": { "verdict": "within_commitments" },
+      "confidence": 0.57,
       "contested": true
     },
     {
       "id": "unclear-judgment-policy",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "within_commitments"
-      },
-      "confidence": 0.35
+      "expected": { "verdict": "unclear" },
+      "actual": { "verdict": "within_commitments" },
+      "confidence": 0.37
     },
     {
       "id": "unclear-consider-it-handled",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "unsupported"
-      },
-      "confidence": 0.6,
+      "expected": { "verdict": "unclear" },
+      "actual": { "verdict": "unsupported" },
+      "confidence": 0.59,
       "contested": true
     },
     {
       "id": "unclear-make-this-right",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "within_commitments"
-      },
-      "confidence": 0.22
+      "expected": { "verdict": "unclear" },
+      "actual": { "verdict": "within_commitments" },
+      "confidence": 0.26
     }
   ]
 }

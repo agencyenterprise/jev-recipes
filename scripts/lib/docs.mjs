@@ -91,21 +91,25 @@ export async function renderDocs(root, records) {
     updated = replaceSection(updated, 'input', schemaTable(recipe.inputSchema));
     const snapshot = await readSnapshot(root, recipe.id);
     if (snapshot) {
-      if (!original.includes('<!-- BEGIN GENERATED: accuracy -->'))
-        throw new Error(
-          `${path}: evals/results/${recipe.id}.json exists, so add a "## Measured accuracy" heading with accuracy markers.`,
-        );
-      updated = replaceSection(updated, 'accuracy', accuracySection(recipe.id, snapshot));
+      updated = renderMeasuredAccuracy(recipe.id, updated, snapshot);
     } else if (original.includes('<!-- BEGIN GENERATED: accuracy -->')) {
       updated = replaceSection(
         updated,
         'accuracy',
-        `No golden dataset has been run for this recipe yet. Add cases under \`evals/${recipe.id}/cases.jsonl\` and run \`npm run eval -- --write ${recipe.id}\`.`,
+        `No golden dataset has been run for this recipe yet. Add cases under \`evals/${recipe.id}/cases.jsonl\` and run \`npm run eval -- ${recipe.id}\` to save results and update this guide.`,
       );
     }
     files.set(path, updated);
   }
   return files;
+}
+
+export function renderMeasuredAccuracy(id, guide, report) {
+  if (!guide.includes('<!-- BEGIN GENERATED: accuracy -->'))
+    throw new Error(
+      `recipes/${id}/README.md: evals/results/${id}.json exists, so add a "## Measured accuracy" heading with accuracy markers.`,
+    );
+  return replaceSection(guide, 'accuracy', accuracySection(id, report));
 }
 
 async function readSnapshot(root, id) {
@@ -136,14 +140,13 @@ function accuracySection(id, snapshot) {
   if (snapshot.itemAccuracy !== undefined) {
     lines.push(
       '',
-      `A case counts as correct only when every item in it is right. Across the ${snapshot.items} individual items, **${pct(snapshot.itemAccuracy)}** were judged correctly. A case's confidence is the minimum over its items, so the threshold table below is conservative for batches.`,
+      `A case counts as correct only when every item in it is right. Across the ${snapshot.items} individual items, **${pct(snapshot.itemAccuracy)}** were judged correctly.`,
     );
   }
   const rows = snapshot.thresholds.filter((entry) =>
     REPORTED_THRESHOLDS.includes(entry.minConfidence),
   );
-  const hasCalibration = rows.some((entry) => entry.readyAccuracy !== null);
-  if (hasCalibration) {
+  if (snapshot.thresholdEvaluation === 'recipe-replay') {
     lines.push(
       '',
       '| `minConfidence` | Deferred to review | Accuracy of ready results |',
@@ -157,15 +160,17 @@ function accuracySection(id, snapshot) {
         ? 'No threshold reaches 95% accuracy on ready results in this dataset.'
         : `The lowest threshold reaching 95% accuracy on ready results is ${snapshot.suggestedMinConfidence}.`,
     );
-  } else {
+  } else if (snapshot.thresholdEvaluation === 'not-applicable') {
     lines.push(
       '',
-      'This result carries no per-decision confidence to calibrate a threshold against, so only overall accuracy is reported.',
+      'This recipe has no minConfidence setting, so no confidence-threshold table is reported.',
     );
+  } else {
+    lines.push('', 'Confidence-threshold results are not available for this saved run.');
   }
   lines.push(
     '',
-    `Rerun with \`npm run eval -- ${id}\`; the full report, including misses, is in [evals/results/${id}.json](../../evals/results/${id}.json). Accuracy on your own data may differ.`,
+    `Run \`npm run eval -- ${id}\` to save new results and update this guide. The full report, including misses, is in [evals/results/${id}.json](../../evals/results/${id}.json). Accuracy on your own data may differ.`,
   );
   return lines.join('\n');
 }

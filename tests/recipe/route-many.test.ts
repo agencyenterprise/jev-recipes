@@ -87,6 +87,24 @@ describe('routeMany', () => {
     );
   });
 
+  it('preserves __proto__ routes through every batch and result schema', async () => {
+    const routes = Object.fromEntries([
+      ['__proto__', 'Payments'],
+      ['technical', 'Errors'],
+    ]);
+    const client = createJevClient({
+      request_0: choiceAnswer(['__proto__', 'technical', '__review__'], '__proto__'),
+    });
+    const result = await routeMany({ ...input, routes, batchSize: 1 }, { client });
+    for (const item of result.items) {
+      expect(item.route).toBe('__proto__');
+      expect(Object.hasOwn(item.probabilities, '__proto__')).toBe(true);
+      expect(item.probabilities.__proto__).toBe(0.9);
+    }
+    for (const [request] of client.systemOne.mock.calls)
+      expect(request.state).toMatchObject({ routes });
+  });
+
   it('splits requests into batches, merges results in order, and sums usage', async () => {
     const systemOne = vi
       .fn<DecisionClient['systemOne']>()

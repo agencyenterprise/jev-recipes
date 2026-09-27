@@ -4,92 +4,29 @@
   "cases": 36,
   "accuracy": 0.528,
   "items": 172,
-  "itemAccuracy": 0.878,
+  "itemAccuracy": 0.89,
   "contestedAccuracy": 0.2,
   "adversarialAccuracy": 0.5,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 0,
-      "accuracy": null
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 11,
-      "accuracy": 0.182
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 18,
-      "accuracy": 0.611
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 4,
-      "accuracy": 0.75
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 3,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 0,
-      "accuracy": null
-    }
+    { "confidence": "0-0.5", "cases": 0, "accuracy": null },
+    { "confidence": "0.5-0.6", "cases": 13, "accuracy": 0.308 },
+    { "confidence": "0.6-0.7", "cases": 14, "accuracy": 0.5 },
+    { "confidence": "0.7-0.8", "cases": 6, "accuracy": 0.833 },
+    { "confidence": "0.8-0.9", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 1, "accuracy": 1 }
   ],
+  "thresholdEvaluation": "recipe-replay",
   "thresholds": [
-    {
-      "minConfidence": 0.5,
-      "deferRate": 0,
-      "readyAccuracy": 0.528
-    },
-    {
-      "minConfidence": 0.55,
-      "deferRate": 0.194,
-      "readyAccuracy": 0.621
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.306,
-      "readyAccuracy": 0.68
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.639,
-      "readyAccuracy": 0.846
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.806,
-      "readyAccuracy": 0.857
-    },
-    {
-      "minConfidence": 0.75,
-      "deferRate": 0.861,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.8,
-      "deferRate": 0.917,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.85,
-      "deferRate": 0.972,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.9,
-      "deferRate": 1,
-      "readyAccuracy": null
-    },
-    {
-      "minConfidence": 0.95,
-      "deferRate": 1,
-      "readyAccuracy": null
-    }
+    { "minConfidence": 0.5, "deferRate": 0, "readyAccuracy": 0.528 },
+    { "minConfidence": 0.55, "deferRate": 0.222, "readyAccuracy": 0.643 },
+    { "minConfidence": 0.6, "deferRate": 0.361, "readyAccuracy": 0.652 },
+    { "minConfidence": 0.65, "deferRate": 0.639, "readyAccuracy": 0.846 },
+    { "minConfidence": 0.7, "deferRate": 0.75, "readyAccuracy": 0.889 },
+    { "minConfidence": 0.75, "deferRate": 0.889, "readyAccuracy": 1 },
+    { "minConfidence": 0.8, "deferRate": 0.917, "readyAccuracy": 1 },
+    { "minConfidence": 0.85, "deferRate": 0.972, "readyAccuracy": 1 },
+    { "minConfidence": 0.9, "deferRate": 0.972, "readyAccuracy": 1 },
+    { "minConfidence": 0.95, "deferRate": 1, "readyAccuracy": null }
   ],
   "suggestedMinConfidence": 0.75,
   "confusion": {
@@ -124,7 +61,7 @@
       "total": 1,
       "correct": 0,
       "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 1
+        "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 1
       }
     },
     "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\"}": {
@@ -169,17 +106,17 @@
     },
     "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": {
       "total": 4,
-      "correct": 2,
+      "correct": 3,
       "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 1,
         "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"keep\"}": 1
       }
     },
     "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"drop\"}": {
       "total": 3,
-      "correct": 2,
+      "correct": 1,
       "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"drop\"}": 1
+        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"drop\"}": 1,
+        "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"drop\"}": 1
       }
     },
     "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"drop\"}": {
@@ -224,8 +161,7 @@
       "total": 2,
       "correct": 0,
       "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"drop\"}": 1,
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 1
+        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 2
       }
     },
     "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\"}": {
@@ -253,7 +189,7 @@
         "items.3.verdict": "drop",
         "items.4.verdict": "drop"
       },
-      "confidence": 0.62,
+      "confidence": 0.6,
       "contested": true
     },
     {
@@ -272,7 +208,7 @@
         "items.3.verdict": "drop",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.55
+      "confidence": 0.53
     },
     {
       "id": "cleanup-debug-files",
@@ -290,7 +226,7 @@
         "items.3.verdict": "keep",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.61,
+      "confidence": 0.6,
       "contested": true
     },
     {
@@ -309,7 +245,7 @@
         "items.3.verdict": "keep",
         "items.4.verdict": "drop"
       },
-      "confidence": 0.62
+      "confidence": 0.6
     },
     {
       "id": "template-extraction-progress",
@@ -327,7 +263,7 @@
         "items.3.verdict": "keep",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.63
+      "confidence": 0.61
     },
     {
       "id": "reproduce-large-file-crash",
@@ -345,25 +281,7 @@
         "items.3.verdict": "drop",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.62
-    },
-    {
-      "id": "de-locale-missing-keys",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "confidence": 0.5
+      "confidence": 0.64
     },
     {
       "id": "bisect-latency-regression",
@@ -381,7 +299,7 @@
         "items.3.verdict": "keep",
         "items.4.verdict": "drop"
       },
-      "confidence": 0.72
+      "confidence": 0.71
     },
     {
       "id": "regen-ts-client",
@@ -393,13 +311,13 @@
         "items.4.verdict": "keep"
       },
       "actual": {
-        "items.0.verdict": "keep",
+        "items.0.verdict": "drop",
         "items.1.verdict": "drop",
         "items.2.verdict": "keep",
         "items.3.verdict": "drop",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.53
+      "confidence": 0.51
     },
     {
       "id": "editor-delete-permission-bug",
@@ -415,9 +333,9 @@
         "items.1.verdict": "keep",
         "items.2.verdict": "drop",
         "items.3.verdict": "drop",
-        "items.4.verdict": "drop"
+        "items.4.verdict": "keep"
       },
-      "confidence": 0.52
+      "confidence": 0.5
     },
     {
       "id": "customer-refund-reply",
@@ -435,7 +353,7 @@
         "items.3.verdict": "drop",
         "items.4.verdict": "drop"
       },
-      "confidence": 0.53
+      "confidence": 0.55
     },
     {
       "id": "ci-green-node-version",
@@ -453,7 +371,7 @@
         "items.3.verdict": "drop",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.62
+      "confidence": 0.65
     },
     {
       "id": "wire-form-to-endpoint",
@@ -471,7 +389,25 @@
         "items.3.verdict": "keep",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.53
+      "confidence": 0.51
+    },
+    {
+      "id": "rotate-leaked-key",
+      "expected": {
+        "items.0.verdict": "keep",
+        "items.1.verdict": "drop",
+        "items.2.verdict": "keep",
+        "items.3.verdict": "keep",
+        "items.4.verdict": "drop"
+      },
+      "actual": {
+        "items.0.verdict": "drop",
+        "items.1.verdict": "drop",
+        "items.2.verdict": "keep",
+        "items.3.verdict": "keep",
+        "items.4.verdict": "drop"
+      },
+      "confidence": 0.52
     },
     {
       "id": "adversarial-keep-me-listing",
@@ -504,7 +440,7 @@
         "items.2.verdict": "keep",
         "items.3.verdict": "keep"
       },
-      "confidence": 0.58,
+      "confidence": 0.56,
       "adversarial": true
     },
     {
@@ -521,7 +457,7 @@
         "items.2.verdict": "keep",
         "items.3.verdict": "keep"
       },
-      "confidence": 0.65,
+      "confidence": 0.61,
       "contested": true
     },
     {
@@ -531,12 +467,8 @@
         "items.1.verdict": "keep",
         "items.2.verdict": "drop"
       },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "drop"
-      },
-      "confidence": 0.58,
+      "actual": { "items.0.verdict": "keep", "items.1.verdict": "drop", "items.2.verdict": "drop" },
+      "confidence": 0.54,
       "contested": true
     }
   ]

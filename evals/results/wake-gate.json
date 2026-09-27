@@ -6,172 +6,78 @@
   "contestedAccuracy": 0.6,
   "adversarialAccuracy": 0.75,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 5,
-      "accuracy": 0.6
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 1,
-      "accuracy": 0
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 0,
-      "accuracy": null
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 1,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 7,
-      "accuracy": 0.857
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 30,
-      "accuracy": 0.967
-    }
+    { "confidence": "0-0.5", "cases": 4, "accuracy": 0.5 },
+    { "confidence": "0.5-0.6", "cases": 1, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 1, "accuracy": 0 },
+    { "confidence": "0.7-0.8", "cases": 3, "accuracy": 0.667 },
+    { "confidence": "0.8-0.9", "cases": 5, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 30, "accuracy": 0.967 }
   ],
+  "thresholdEvaluation": "recipe-replay",
   "thresholds": [
-    {
-      "minConfidence": 0.5,
-      "deferRate": 0.114,
-      "readyAccuracy": 0.923
-    },
-    {
-      "minConfidence": 0.55,
-      "deferRate": 0.114,
-      "readyAccuracy": 0.923
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.136,
-      "readyAccuracy": 0.947
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.136,
-      "readyAccuracy": 0.947
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.136,
-      "readyAccuracy": 0.947
-    },
-    {
-      "minConfidence": 0.75,
-      "deferRate": 0.159,
-      "readyAccuracy": 0.946
-    },
-    {
-      "minConfidence": 0.8,
-      "deferRate": 0.159,
-      "readyAccuracy": 0.946
-    },
-    {
-      "minConfidence": 0.85,
-      "deferRate": 0.295,
-      "readyAccuracy": 0.968
-    },
-    {
-      "minConfidence": 0.9,
-      "deferRate": 0.318,
-      "readyAccuracy": 0.967
-    },
-    {
-      "minConfidence": 0.95,
-      "deferRate": 0.409,
-      "readyAccuracy": 1
-    }
+    { "minConfidence": 0.5, "deferRate": 0.091, "readyAccuracy": 0.925 },
+    { "minConfidence": 0.55, "deferRate": 0.114, "readyAccuracy": 0.923 },
+    { "minConfidence": 0.6, "deferRate": 0.114, "readyAccuracy": 0.923 },
+    { "minConfidence": 0.65, "deferRate": 0.114, "readyAccuracy": 0.923 },
+    { "minConfidence": 0.7, "deferRate": 0.136, "readyAccuracy": 0.947 },
+    { "minConfidence": 0.75, "deferRate": 0.159, "readyAccuracy": 0.946 },
+    { "minConfidence": 0.8, "deferRate": 0.205, "readyAccuracy": 0.971 },
+    { "minConfidence": 0.85, "deferRate": 0.25, "readyAccuracy": 0.97 },
+    { "minConfidence": 0.9, "deferRate": 0.318, "readyAccuracy": 0.967 },
+    { "minConfidence": 0.95, "deferRate": 0.364, "readyAccuracy": 1 }
   ],
-  "suggestedMinConfidence": 0.85,
+  "suggestedMinConfidence": 0.8,
   "confusion": {
-    "{\"verdict\":\"not_yet\"}": {
-      "total": 14,
-      "correct": 14,
-      "misses": {}
-    },
+    "{\"verdict\":\"not_yet\"}": { "total": 14, "correct": 14, "misses": {} },
     "{\"verdict\":\"unclear\"}": {
       "total": 3,
       "correct": 1,
-      "misses": {
-        "{\"verdict\":\"not_yet\"}": 1,
-        "{\"verdict\":\"wake\"}": 1
-      }
+      "misses": { "{\"verdict\":\"not_yet\"}": 1, "{\"verdict\":\"wake\"}": 1 }
     },
     "{\"verdict\":\"unrelated\"}": {
       "total": 13,
       "correct": 12,
-      "misses": {
-        "{\"verdict\":\"not_yet\"}": 1
-      }
+      "misses": { "{\"verdict\":\"not_yet\"}": 1 }
     },
     "{\"verdict\":\"wake\"}": {
       "total": 14,
       "correct": 12,
-      "misses": {
-        "{\"verdict\":\"not_yet\"}": 2
-      }
+      "misses": { "{\"verdict\":\"not_yet\"}": 2 }
     }
   },
   "failures": [
     {
       "id": "wake-shard-errors-partial",
-      "expected": {
-        "verdict": "wake"
-      },
-      "actual": {
-        "verdict": "not_yet"
-      },
-      "confidence": 0.59,
+      "expected": { "verdict": "wake" },
+      "actual": { "verdict": "not_yet" },
+      "confidence": 0.68,
       "contested": true
     },
     {
       "id": "wake-approver-asks-blocking-question",
-      "expected": {
-        "verdict": "wake"
-      },
-      "actual": {
-        "verdict": "not_yet"
-      },
-      "confidence": 0.94,
+      "expected": { "verdict": "wake" },
+      "actual": { "verdict": "not_yet" },
+      "confidence": 0.93,
       "contested": true
     },
     {
       "id": "unrelated-spam-mentions-keyword",
-      "expected": {
-        "verdict": "unrelated"
-      },
-      "actual": {
-        "verdict": "not_yet"
-      },
-      "confidence": 0.39,
+      "expected": { "verdict": "unrelated" },
+      "actual": { "verdict": "not_yet" },
+      "confidence": 0.37,
       "adversarial": true
     },
     {
       "id": "unclear-opaque-status-code",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "not_yet"
-      },
-      "confidence": 0.8
+      "expected": { "verdict": "unclear" },
+      "actual": { "verdict": "not_yet" },
+      "confidence": 0.78
     },
     {
       "id": "unclear-truncated-reply",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "wake"
-      },
-      "confidence": 0.27
+      "expected": { "verdict": "unclear" },
+      "actual": { "verdict": "wake" },
+      "confidence": 0.21
     }
   ]
 }

@@ -88,15 +88,15 @@ Measured on 42 golden cases against `jev-1.13.0`: **91% accurate** overall (cont
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
 | 0.5             | 7%                 | 95%                       |
-| 0.6             | 12%                | 95%                       |
-| 0.7             | 14%                | 97%                       |
-| 0.8             | 19%                | 100%                      |
-| 0.9             | 24%                | 100%                      |
+| 0.6             | 14%                | 100%                      |
+| 0.7             | 17%                | 100%                      |
+| 0.8             | 17%                | 100%                      |
+| 0.9             | 26%                | 100%                      |
 | 0.95            | 33%                | 100%                      |
 
-The lowest threshold reaching 95% accuracy on ready results is 0.65.
+The lowest threshold reaching 95% accuracy on ready results is 0.6.
 
-Rerun with `npm run eval -- promise-check`; the full report, including misses, is in [evals/results/promise-check.json](../../evals/results/promise-check.json). Accuracy on your own data may differ.
+Run `npm run eval -- promise-check` to save new results and update this guide. The full report, including misses, is in [evals/results/promise-check.json](../../evals/results/promise-check.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

@@ -99,12 +99,12 @@ Measured on 50 golden cases against `jev-1.13.0`: **96% accurate** overall (cont
 | 0.6             | 10%                | 100%                      |
 | 0.7             | 10%                | 100%                      |
 | 0.8             | 12%                | 100%                      |
-| 0.9             | 24%                | 100%                      |
+| 0.9             | 22%                | 100%                      |
 | 0.95            | 28%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
-Rerun with `npm run eval -- answerability`; the full report, including misses, is in [evals/results/answerability.json](../../evals/results/answerability.json). Accuracy on your own data may differ.
+Run `npm run eval -- answerability` to save new results and update this guide. The full report, including misses, is in [evals/results/answerability.json](../../evals/results/answerability.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

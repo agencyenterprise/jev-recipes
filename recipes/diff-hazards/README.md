@@ -111,15 +111,15 @@ Measured on 43 golden cases against `jev-1.13.0`: **95% accurate** overall (cont
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
 | 0.5             | 0%                 | 95%                       |
-| 0.6             | 7%                 | 95%                       |
+| 0.6             | 2%                 | 95%                       |
 | 0.7             | 12%                | 95%                       |
 | 0.8             | 21%                | 97%                       |
-| 0.9             | 40%                | 100%                      |
-| 0.95            | 61%                | 100%                      |
+| 0.9             | 42%                | 100%                      |
+| 0.95            | 58%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
-Rerun with `npm run eval -- diff-hazards`; the full report, including misses, is in [evals/results/diff-hazards.json](../../evals/results/diff-hazards.json). Accuracy on your own data may differ.
+Run `npm run eval -- diff-hazards` to save new results and update this guide. The full report, including misses, is in [evals/results/diff-hazards.json](../../evals/results/diff-hazards.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

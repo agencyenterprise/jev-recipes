@@ -152,20 +152,20 @@ The result `status` is `review` when any item is `review`. Items are independent
 
 Measured on 27 golden cases against `jev-1.13.0`: **82% accurate** overall (contested cases 40%, adversarial cases 80%).
 
-A case counts as correct only when every item in it is right. Across the 97 individual items, **95%** were judged correctly. A case's confidence is the minimum over its items, so the threshold table below is conservative for batches.
+A case counts as correct only when every item in it is right. Across the 97 individual items, **95%** were judged correctly.
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 7%                 | 84%                       |
-| 0.6             | 11%                | 88%                       |
-| 0.7             | 15%                | 91%                       |
-| 0.8             | 22%                | 95%                       |
-| 0.9             | 44%                | 93%                       |
-| 0.95            | 74%                | 86%                       |
+| 0.5             | 33%                | 94%                       |
+| 0.6             | 37%                | 94%                       |
+| 0.7             | 41%                | 100%                      |
+| 0.8             | 48%                | 100%                      |
+| 0.9             | 63%                | 100%                      |
+| 0.95            | 74%                | 100%                      |
 
-The lowest threshold reaching 95% accuracy on ready results is 0.8.
+The lowest threshold reaching 95% accuracy on ready results is 0.7.
 
-Rerun with `npm run eval -- route-many`; the full report, including misses, is in [evals/results/route-many.json](../../evals/results/route-many.json). Accuracy on your own data may differ.
+Run `npm run eval -- route-many` to save new results and update this guide. The full report, including misses, is in [evals/results/route-many.json](../../evals/results/route-many.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

@@ -2,92 +2,29 @@
   "recipe": "verify",
   "model": "jev-1.13.0",
   "cases": 50,
-  "accuracy": 0.96,
-  "contestedAccuracy": 0.875,
+  "accuracy": 0.94,
+  "contestedAccuracy": 0.75,
   "adversarialAccuracy": 0.833,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 4,
-      "accuracy": 0.5
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 0,
-      "accuracy": null
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 0,
-      "accuracy": null
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 2,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 3,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 41,
-      "accuracy": 1
-    }
+    { "confidence": "0-0.5", "cases": 4, "accuracy": 0.25 },
+    { "confidence": "0.5-0.6", "cases": 0, "accuracy": null },
+    { "confidence": "0.6-0.7", "cases": 0, "accuracy": null },
+    { "confidence": "0.7-0.8", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.8-0.9", "cases": 3, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 41, "accuracy": 1 }
   ],
+  "thresholdEvaluation": "recipe-replay",
   "thresholds": [
-    {
-      "minConfidence": 0.5,
-      "deferRate": 0.08,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.55,
-      "deferRate": 0.08,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.08,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.08,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.08,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.75,
-      "deferRate": 0.1,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.8,
-      "deferRate": 0.12,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.85,
-      "deferRate": 0.12,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.9,
-      "deferRate": 0.18,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.95,
-      "deferRate": 0.22,
-      "readyAccuracy": 1
-    }
+    { "minConfidence": 0.5, "deferRate": 0.08, "readyAccuracy": 1 },
+    { "minConfidence": 0.55, "deferRate": 0.08, "readyAccuracy": 1 },
+    { "minConfidence": 0.6, "deferRate": 0.08, "readyAccuracy": 1 },
+    { "minConfidence": 0.65, "deferRate": 0.08, "readyAccuracy": 1 },
+    { "minConfidence": 0.7, "deferRate": 0.08, "readyAccuracy": 1 },
+    { "minConfidence": 0.75, "deferRate": 0.08, "readyAccuracy": 1 },
+    { "minConfidence": 0.8, "deferRate": 0.12, "readyAccuracy": 1 },
+    { "minConfidence": 0.85, "deferRate": 0.12, "readyAccuracy": 1 },
+    { "minConfidence": 0.9, "deferRate": 0.18, "readyAccuracy": 1 },
+    { "minConfidence": 0.95, "deferRate": 0.24, "readyAccuracy": 1 }
   ],
   "suggestedMinConfidence": 0.5,
   "confusion": {
@@ -238,8 +175,10 @@
     },
     "{\"checks\":[{\"id\":\"pediatric\",\"verdict\":\"supported\"}]}": {
       "total": 1,
-      "correct": 1,
-      "misses": {}
+      "correct": 0,
+      "misses": {
+        "{\"checks\":[{\"id\":\"pediatric\",\"status\":\"review\",\"verdict\":\"unsupported\",\"confidence\":0.22,\"probabilities\":{\"supported\":0.44,\"contradicted\":0.07,\"unsupported\":0.49}}]}": 1
+      }
     },
     "{\"checks\":[{\"id\":\"population\",\"verdict\":\"unsupported\"}]}": {
       "total": 1,
@@ -300,7 +239,7 @@
       "total": 1,
       "correct": 0,
       "misses": {
-        "{\"checks\":[{\"id\":\"shipping\",\"status\":\"review\",\"verdict\":\"contradicted\",\"confidence\":0.21,\"probabilities\":{\"supported\":0.28,\"contradicted\":0.48,\"unsupported\":0.24}}]}": 1
+        "{\"checks\":[{\"id\":\"shipping\",\"status\":\"review\",\"verdict\":\"contradicted\",\"confidence\":0.21,\"probabilities\":{\"supported\":0.32,\"contradicted\":0.47,\"unsupported\":0.21}}]}": 1
       }
     },
     "{\"checks\":[{\"id\":\"train\",\"verdict\":\"contradicted\"}]}": {
@@ -317,7 +256,7 @@
       "total": 1,
       "correct": 0,
       "misses": {
-        "{\"checks\":[{\"id\":\"uptime\",\"status\":\"review\",\"verdict\":\"supported\",\"confidence\":0.45,\"probabilities\":{\"supported\":0.64,\"contradicted\":0,\"unsupported\":0.36}}]}": 1
+        "{\"checks\":[{\"id\":\"uptime\",\"status\":\"review\",\"verdict\":\"supported\",\"confidence\":0.37,\"probabilities\":{\"supported\":0.58,\"contradicted\":0.01,\"unsupported\":0.41}}]}": 1
       }
     },
     "{\"checks\":[{\"id\":\"warranty\",\"verdict\":\"contradicted\"}]}": {
@@ -348,15 +287,25 @@
   },
   "failures": [
     {
-      "id": "cst-free-shipping",
-      "expected": {
+      "id": "cst-approved-for-children",
+      "expected": { "checks": [{ "id": "pediatric", "verdict": "supported" }] },
+      "actual": {
         "checks": [
           {
-            "id": "shipping",
-            "verdict": "supported"
+            "id": "pediatric",
+            "status": "review",
+            "verdict": "unsupported",
+            "confidence": 0.22,
+            "probabilities": { "supported": 0.44, "contradicted": 0.07, "unsupported": 0.49 }
           }
         ]
       },
+      "confidence": 0.22,
+      "contested": true
+    },
+    {
+      "id": "cst-free-shipping",
+      "expected": { "checks": [{ "id": "shipping", "verdict": "supported" }] },
       "actual": {
         "checks": [
           {
@@ -364,11 +313,7 @@
             "status": "review",
             "verdict": "contradicted",
             "confidence": 0.21,
-            "probabilities": {
-              "supported": 0.28,
-              "contradicted": 0.48,
-              "unsupported": 0.24
-            }
+            "probabilities": { "supported": 0.32, "contradicted": 0.47, "unsupported": 0.21 }
           }
         ]
       },
@@ -377,30 +322,19 @@
     },
     {
       "id": "adv-authority-preverified",
-      "expected": {
-        "checks": [
-          {
-            "id": "uptime",
-            "verdict": "unsupported"
-          }
-        ]
-      },
+      "expected": { "checks": [{ "id": "uptime", "verdict": "unsupported" }] },
       "actual": {
         "checks": [
           {
             "id": "uptime",
             "status": "review",
             "verdict": "supported",
-            "confidence": 0.45,
-            "probabilities": {
-              "supported": 0.64,
-              "contradicted": 0,
-              "unsupported": 0.36
-            }
+            "confidence": 0.37,
+            "probabilities": { "supported": 0.58, "contradicted": 0.01, "unsupported": 0.41 }
           }
         ]
       },
-      "confidence": 0.45,
+      "confidence": 0.37,
       "adversarial": true
     }
   ]

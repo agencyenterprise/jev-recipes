@@ -146,6 +146,7 @@ test('measured accuracy sections render from eval snapshots and demand markers w
         accuracy: 0.925,
         contestedAccuracy: 0.6,
         adversarialAccuracy: null,
+        thresholdEvaluation: 'recipe-replay',
         thresholds: [0.5, 0.6, 0.7, 0.8, 0.9, 0.95].map((minConfidence) => ({
           minConfidence,
           deferRate: minConfidence >= 0.8 ? 0.25 : 0.1,
@@ -189,7 +190,8 @@ test('measured accuracy sections render from eval snapshots and demand markers w
         accuracy: 0.8,
         contestedAccuracy: null,
         adversarialAccuracy: null,
-        thresholds: [{ minConfidence: 0.8, deferRate: 1, readyAccuracy: null }],
+        thresholdEvaluation: 'not-applicable',
+        thresholds: [],
         suggestedMinConfidence: null,
       }),
     );
@@ -197,8 +199,21 @@ test('measured accuracy sections render from eval snapshots and demand markers w
       'recipes/measured/README.md',
     );
     assert.match(uncalibrated, /\*\*80% accurate\*\* overall\./);
-    assert.match(uncalibrated, /no per-decision confidence/);
+    assert.match(uncalibrated, /no minConfidence setting/);
     assert.ok(!uncalibrated.includes('individual items'));
+
+    const snapshotPath = join(root, 'evals/results/measured.json');
+    const snapshot = JSON.parse(await readFile(snapshotPath, 'utf8'));
+    await writeFile(
+      snapshotPath,
+      JSON.stringify({ ...snapshot, thresholdEvaluation: 'unavailable' }),
+    );
+    const withdrawn = (await renderDocs(root, [record('measured')])).get(
+      'recipes/measured/README.md',
+    );
+    assert.match(withdrawn, /Confidence-threshold results are not available for this saved run/);
+    assert.match(withdrawn, /80% accurate/);
+    assert.ok(!withdrawn.includes('Deferred to review'));
 
     await writeFile(
       join(root, 'recipes/measured/README.md'),

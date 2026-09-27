@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { jsonValueSchema, recordWithOwnKeys } from './data.js';
 import type { TypeSafeClient } from '@typesafe-ai/sdk';
 
 export const nonEmptyText = z
@@ -15,7 +16,7 @@ export const resultMetadataSchema = z.object({
   }),
 });
 
-export const decisionStateSchema = z.record(z.string(), z.json());
+export const decisionStateSchema = recordWithOwnKeys(z.string(), jsonValueSchema);
 
 export const decisionResponseSchema = resultMetadataSchema.extend({
   answers: z.record(z.string(), z.unknown()),
@@ -48,7 +49,7 @@ export const selectionResultSchema = resultMetadataSchema.extend({
   suggestedSelection: nonEmptyText.nullable(),
   confidence: probability,
   probabilities: z.object({
-    candidates: z.record(nonEmptyText, probability),
+    candidates: recordWithOwnKeys(nonEmptyText, probability),
     none: probability,
     ambiguous: probability,
   }),
@@ -176,7 +177,7 @@ export const assignmentSchema = z.object({
   suggestedAction: nonEmptyText.nullable(),
   confidence: probability,
   probabilities: z.object({
-    options: z.record(nonEmptyText, probability),
+    options: recordWithOwnKeys(nonEmptyText, probability),
     rest: probability,
     ambiguous: probability,
   }),

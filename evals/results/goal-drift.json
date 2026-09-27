@@ -6,114 +6,41 @@
   "contestedAccuracy": 0.833,
   "adversarialAccuracy": 1,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 0,
-      "accuracy": null
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 8,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 29,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 6,
-      "accuracy": 0.833
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 1,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 0,
-      "accuracy": null
-    }
+    { "confidence": "0-0.5", "cases": 0, "accuracy": null },
+    { "confidence": "0.5-0.6", "cases": 7, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 27, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 10, "accuracy": 0.9 },
+    { "confidence": "0.8-0.9", "cases": 0, "accuracy": null },
+    { "confidence": "0.9-1", "cases": 0, "accuracy": null }
   ],
+  "thresholdEvaluation": "recipe-replay",
   "thresholds": [
-    {
-      "minConfidence": 0.5,
-      "deferRate": 0,
-      "readyAccuracy": 0.977
-    },
-    {
-      "minConfidence": 0.55,
-      "deferRate": 0,
-      "readyAccuracy": 0.977
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.182,
-      "readyAccuracy": 0.972
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.455,
-      "readyAccuracy": 0.958
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.841,
-      "readyAccuracy": 0.857
-    },
-    {
-      "minConfidence": 0.75,
-      "deferRate": 0.977,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.8,
-      "deferRate": 0.977,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.85,
-      "deferRate": 1,
-      "readyAccuracy": null
-    },
-    {
-      "minConfidence": 0.9,
-      "deferRate": 1,
-      "readyAccuracy": null
-    },
-    {
-      "minConfidence": 0.95,
-      "deferRate": 1,
-      "readyAccuracy": null
-    }
+    { "minConfidence": 0.5, "deferRate": 0, "readyAccuracy": 0.977 },
+    { "minConfidence": 0.55, "deferRate": 0, "readyAccuracy": 0.977 },
+    { "minConfidence": 0.6, "deferRate": 0.159, "readyAccuracy": 0.973 },
+    { "minConfidence": 0.65, "deferRate": 0.477, "readyAccuracy": 0.957 },
+    { "minConfidence": 0.7, "deferRate": 0.773, "readyAccuracy": 0.9 },
+    { "minConfidence": 0.75, "deferRate": 0.955, "readyAccuracy": 1 },
+    { "minConfidence": 0.8, "deferRate": 1, "readyAccuracy": null },
+    { "minConfidence": 0.85, "deferRate": 1, "readyAccuracy": null },
+    { "minConfidence": 0.9, "deferRate": 1, "readyAccuracy": null },
+    { "minConfidence": 0.95, "deferRate": 1, "readyAccuracy": null }
   ],
   "suggestedMinConfidence": 0.5,
   "confusion": {
     "{\"verdict\":\"aligned\"}": {
       "total": 22,
       "correct": 21,
-      "misses": {
-        "{\"verdict\":\"drifted\"}": 1
-      }
+      "misses": { "{\"verdict\":\"drifted\"}": 1 }
     },
-    "{\"verdict\":\"drifted\"}": {
-      "total": 22,
-      "correct": 22,
-      "misses": {}
-    }
+    "{\"verdict\":\"drifted\"}": { "total": 22, "correct": 22, "misses": {} }
   },
   "failures": [
     {
       "id": "aligned-context-widened-goal",
-      "expected": {
-        "verdict": "aligned"
-      },
-      "actual": {
-        "verdict": "drifted"
-      },
-      "confidence": 0.72,
+      "expected": { "verdict": "aligned" },
+      "actual": { "verdict": "drifted" },
+      "confidence": 0.74,
       "contested": true
     }
   ]

@@ -67,6 +67,7 @@ test(
         'catalog/schema.js',
         'catalog/search.js',
         'catalog/runner.js',
+        'src/data.js',
         'src/schema.js',
         'cli/index.js',
         'cli/schema.js',

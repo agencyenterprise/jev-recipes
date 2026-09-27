@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { recordWithOwnKeys } from './data.js';
 import { probability } from './schema.js';
 
 export function parseChoiceAnswer<T extends string>(answer: unknown, choices: readonly T[]) {
@@ -8,7 +9,12 @@ export function parseChoiceAnswer<T extends string>(answer: unknown, choices: re
       type: z.literal('choice'),
       choice: labels,
       confidence: probability,
-      probabilities: z.record(labels, probability),
+      probabilities: recordWithOwnKeys(z.string(), probability).refine(
+        (values) =>
+          Object.keys(values).length === choices.length &&
+          Object.keys(values).every((key) => labels.safeParse(key).success),
+        'Jev must report a probability for every choice.',
+      ),
     })
     .refine(hasCompleteProbabilityMass, { error: probabilityMassError })
     .refine(

@@ -90,7 +90,7 @@ Measured on 42 golden cases against `jev-1.13.0`: **100% accurate** overall (con
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
-Rerun with `npm run eval -- progress-stall`; the full report, including misses, is in [evals/results/progress-stall.json](../../evals/results/progress-stall.json). Accuracy on your own data may differ.
+Run `npm run eval -- progress-stall` to save new results and update this guide. The full report, including misses, is in [evals/results/progress-stall.json](../../evals/results/progress-stall.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

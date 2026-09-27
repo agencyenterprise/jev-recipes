@@ -189,16 +189,16 @@ Measured on 32 golden cases against `jev-1.13.0`: **97% accurate** overall (cont
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 9%                 | 100%                      |
+| 0.5             | 13%                | 100%                      |
 | 0.6             | 13%                | 100%                      |
-| 0.7             | 13%                | 100%                      |
+| 0.7             | 16%                | 100%                      |
 | 0.8             | 16%                | 100%                      |
-| 0.9             | 25%                | 100%                      |
+| 0.9             | 28%                | 100%                      |
 | 0.95            | 28%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
-Rerun with `npm run eval -- choose-action`; the full report, including misses, is in [evals/results/choose-action.json](../../evals/results/choose-action.json). Accuracy on your own data may differ.
+Run `npm run eval -- choose-action` to save new results and update this guide. The full report, including misses, is in [evals/results/choose-action.json](../../evals/results/choose-action.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

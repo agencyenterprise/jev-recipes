@@ -142,20 +142,20 @@ Each entry in `items` has a `verdict` of `keep` or `drop`, the yes probability t
 
 Measured on 36 golden cases against `jev-1.13.0`: **53% accurate** overall (contested cases 20%, adversarial cases 50%).
 
-A case counts as correct only when every item in it is right. Across the 172 individual items, **88%** were judged correctly. A case's confidence is the minimum over its items, so the threshold table below is conservative for batches.
+A case counts as correct only when every item in it is right. Across the 172 individual items, **89%** were judged correctly.
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
 | 0.5             | 0%                 | 53%                       |
-| 0.6             | 31%                | 68%                       |
-| 0.7             | 81%                | 86%                       |
+| 0.6             | 36%                | 65%                       |
+| 0.7             | 75%                | 89%                       |
 | 0.8             | 92%                | 100%                      |
-| 0.9             | 100%               | n/a                       |
+| 0.9             | 97%                | 100%                      |
 | 0.95            | 100%               | n/a                       |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.75.
 
-Rerun with `npm run eval -- context-prune`; the full report, including misses, is in [evals/results/context-prune.json](../../evals/results/context-prune.json). Accuracy on your own data may differ.
+Run `npm run eval -- context-prune` to save new results and update this guide. The full report, including misses, is in [evals/results/context-prune.json](../../evals/results/context-prune.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

@@ -3,91 +3,30 @@
   "model": "jev-1.13.0",
   "cases": 44,
   "accuracy": 0.841,
+  "items": 59,
+  "itemAccuracy": 0.881,
   "contestedAccuracy": 0.6,
   "adversarialAccuracy": 0.5,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 8,
-      "accuracy": 0.625
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 1,
-      "accuracy": 0
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 1,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 3,
-      "accuracy": 0.333
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 4,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 26,
-      "accuracy": 1
-    }
+    { "confidence": "0-0.5", "cases": 7, "accuracy": 0.714 },
+    { "confidence": "0.5-0.6", "cases": 2, "accuracy": 0 },
+    { "confidence": "0.6-0.7", "cases": 2, "accuracy": 0.5 },
+    { "confidence": "0.7-0.8", "cases": 3, "accuracy": 0.333 },
+    { "confidence": "0.8-0.9", "cases": 4, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 26, "accuracy": 1 }
   ],
+  "thresholdEvaluation": "recipe-replay",
   "thresholds": [
-    {
-      "minConfidence": 0.5,
-      "deferRate": 0.205,
-      "readyAccuracy": 0.914
-    },
-    {
-      "minConfidence": 0.55,
-      "deferRate": 0.205,
-      "readyAccuracy": 0.914
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.227,
-      "readyAccuracy": 0.941
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.227,
-      "readyAccuracy": 0.941
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.25,
-      "readyAccuracy": 0.939
-    },
-    {
-      "minConfidence": 0.75,
-      "deferRate": 0.273,
-      "readyAccuracy": 0.969
-    },
-    {
-      "minConfidence": 0.8,
-      "deferRate": 0.318,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.85,
-      "deferRate": 0.364,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.9,
-      "deferRate": 0.409,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.95,
-      "deferRate": 0.523,
-      "readyAccuracy": 1
-    }
+    { "minConfidence": 0.5, "deferRate": 0.159, "readyAccuracy": 0.865 },
+    { "minConfidence": 0.55, "deferRate": 0.182, "readyAccuracy": 0.889 },
+    { "minConfidence": 0.6, "deferRate": 0.205, "readyAccuracy": 0.914 },
+    { "minConfidence": 0.65, "deferRate": 0.25, "readyAccuracy": 0.939 },
+    { "minConfidence": 0.7, "deferRate": 0.25, "readyAccuracy": 0.939 },
+    { "minConfidence": 0.75, "deferRate": 0.273, "readyAccuracy": 0.969 },
+    { "minConfidence": 0.8, "deferRate": 0.318, "readyAccuracy": 1 },
+    { "minConfidence": 0.85, "deferRate": 0.386, "readyAccuracy": 1 },
+    { "minConfidence": 0.9, "deferRate": 0.409, "readyAccuracy": 1 },
+    { "minConfidence": 0.95, "deferRate": 0.545, "readyAccuracy": 1 }
   ],
   "suggestedMinConfidence": 0.75,
   "confusion": {
@@ -99,43 +38,29 @@
     "{\"suggestedSelection\":\"balanced\"}": {
       "total": 10,
       "correct": 6,
-      "misses": {
-        "{\"suggestedSelection\":\"fast\"}": 4
-      }
+      "misses": { "{\"suggestedSelection\":\"fast\"}": 4 }
     },
     "{\"suggestedSelection\":\"cheap\",\"effort\":\"low\"}": {
       "total": 1,
       "correct": 1,
       "misses": {}
     },
-    "{\"suggestedSelection\":\"cheap\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
+    "{\"suggestedSelection\":\"cheap\"}": { "total": 1, "correct": 1, "misses": {} },
     "{\"suggestedSelection\":\"fast\",\"effort\":\"low\"}": {
       "total": 4,
       "correct": 4,
       "misses": {}
     },
-    "{\"suggestedSelection\":\"fast\"}": {
-      "total": 6,
-      "correct": 6,
-      "misses": {}
-    },
+    "{\"suggestedSelection\":\"fast\"}": { "total": 6, "correct": 6, "misses": {} },
     "{\"suggestedSelection\":\"frontier\",\"effort\":\"high\"}": {
       "total": 5,
       "correct": 4,
-      "misses": {
-        "error: [\n  {\n    \"code\": \"custom\",\n    \"path\": [],\n    \"message\": \"Jev probabilities must sum to 1.\"\n  }\n]": 1
-      }
+      "misses": { "{\"suggestedSelection\":\"fast\",\"effort\":\"high\"}": 1 }
     },
     "{\"suggestedSelection\":\"frontier\"}": {
       "total": 9,
       "correct": 8,
-      "misses": {
-        "{\"suggestedSelection\":\"fast\"}": 1
-      }
+      "misses": { "{\"suggestedSelection\":\"fast\"}": 1 }
     },
     "{\"suggestedSelection\":\"large\",\"effort\":\"high\"}": {
       "total": 1,
@@ -155,88 +80,56 @@
     "{\"suggestedSelection\":\"premium\"}": {
       "total": 2,
       "correct": 1,
-      "misses": {
-        "{\"suggestedSelection\":\"cheap\"}": 1
-      }
+      "misses": { "{\"suggestedSelection\":\"cheap\"}": 1 }
     },
-    "{\"suggestedSelection\":\"small\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    }
+    "{\"suggestedSelection\":\"small\"}": { "total": 1, "correct": 1, "misses": {} }
   },
   "failures": [
     {
       "id": "explain-failing-test",
-      "expected": {
-        "suggestedSelection": "balanced"
-      },
-      "actual": {
-        "suggestedSelection": "fast"
-      },
-      "confidence": 0.71
+      "expected": { "suggestedSelection": "balanced" },
+      "actual": { "suggestedSelection": "fast" },
+      "confidence": 0.72
     },
     {
       "id": "document-public-api",
-      "expected": {
-        "suggestedSelection": "balanced"
-      },
-      "actual": {
-        "suggestedSelection": "fast"
-      },
-      "confidence": 0.44
+      "expected": { "suggestedSelection": "balanced" },
+      "actual": { "suggestedSelection": "fast" },
+      "confidence": 0.51
     },
     {
       "id": "sql-monthly-report-query",
-      "expected": {
-        "suggestedSelection": "balanced"
-      },
-      "actual": {
-        "suggestedSelection": "fast"
-      },
-      "confidence": 0.59,
+      "expected": { "suggestedSelection": "balanced" },
+      "actual": { "suggestedSelection": "fast" },
+      "confidence": 0.58,
       "contested": true
     },
     {
       "id": "signup-form-validation",
-      "expected": {
-        "suggestedSelection": "balanced"
-      },
-      "actual": {
-        "suggestedSelection": "fast"
-      },
-      "confidence": 0.42,
+      "expected": { "suggestedSelection": "balanced" },
+      "actual": { "suggestedSelection": "fast" },
+      "confidence": 0.4,
       "contested": true
     },
     {
       "id": "adversarial-skip-jwt-expiry",
-      "expected": {
-        "suggestedSelection": "frontier",
-        "effort": "high"
-      },
-      "error": "[\n  {\n    \"code\": \"custom\",\n    \"path\": [],\n    \"message\": \"Jev probabilities must sum to 1.\"\n  }\n]",
+      "expected": { "suggestedSelection": "frontier", "effort": "high" },
+      "actual": { "suggestedSelection": "fast", "effort": "high" },
+      "confidence": 0.64,
       "adversarial": true
     },
     {
       "id": "adversarial-retry-payment-call",
-      "expected": {
-        "suggestedSelection": "frontier"
-      },
-      "actual": {
-        "suggestedSelection": "fast"
-      },
-      "confidence": 0.2,
+      "expected": { "suggestedSelection": "frontier" },
+      "actual": { "suggestedSelection": "fast" },
+      "confidence": 0.18,
       "adversarial": true
     },
     {
       "id": "two-tier-adversarial-easy-sql-injection-fix",
-      "expected": {
-        "suggestedSelection": "premium"
-      },
-      "actual": {
-        "suggestedSelection": "cheap"
-      },
-      "confidence": 0.78,
+      "expected": { "suggestedSelection": "premium" },
+      "actual": { "suggestedSelection": "cheap" },
+      "confidence": 0.79,
       "adversarial": true
     }
   ]

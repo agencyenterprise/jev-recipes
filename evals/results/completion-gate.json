@@ -2,173 +2,86 @@
   "recipe": "completion-gate",
   "model": "jev-1.13.0",
   "cases": 44,
-  "accuracy": 0.886,
+  "accuracy": 0.864,
   "contestedAccuracy": 0.667,
   "adversarialAccuracy": 1,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 4,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 2,
-      "accuracy": 0.5
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 1,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 4,
-      "accuracy": 0.75
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 5,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 28,
-      "accuracy": 0.893
-    }
+    { "confidence": "0-0.5", "cases": 3, "accuracy": 0.667 },
+    { "confidence": "0.5-0.6", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 1, "accuracy": 0 },
+    { "confidence": "0.7-0.8", "cases": 4, "accuracy": 0.75 },
+    { "confidence": "0.8-0.9", "cases": 7, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 27, "accuracy": 0.889 }
   ],
+  "thresholdEvaluation": "recipe-replay",
   "thresholds": [
-    {
-      "minConfidence": 0.5,
-      "deferRate": 0.091,
-      "readyAccuracy": 0.875
-    },
-    {
-      "minConfidence": 0.55,
-      "deferRate": 0.136,
-      "readyAccuracy": 0.895
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.136,
-      "readyAccuracy": 0.895
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.159,
-      "readyAccuracy": 0.892
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.159,
-      "readyAccuracy": 0.892
-    },
-    {
-      "minConfidence": 0.75,
-      "deferRate": 0.227,
-      "readyAccuracy": 0.912
-    },
-    {
-      "minConfidence": 0.8,
-      "deferRate": 0.25,
-      "readyAccuracy": 0.909
-    },
-    {
-      "minConfidence": 0.85,
-      "deferRate": 0.295,
-      "readyAccuracy": 0.903
-    },
-    {
-      "minConfidence": 0.9,
-      "deferRate": 0.364,
-      "readyAccuracy": 0.893
-    },
-    {
-      "minConfidence": 0.95,
-      "deferRate": 0.455,
-      "readyAccuracy": 0.958
-    }
+    { "minConfidence": 0.5, "deferRate": 0.068, "readyAccuracy": 0.878 },
+    { "minConfidence": 0.55, "deferRate": 0.114, "readyAccuracy": 0.872 },
+    { "minConfidence": 0.6, "deferRate": 0.114, "readyAccuracy": 0.872 },
+    { "minConfidence": 0.65, "deferRate": 0.136, "readyAccuracy": 0.895 },
+    { "minConfidence": 0.7, "deferRate": 0.136, "readyAccuracy": 0.895 },
+    { "minConfidence": 0.75, "deferRate": 0.182, "readyAccuracy": 0.917 },
+    { "minConfidence": 0.8, "deferRate": 0.227, "readyAccuracy": 0.912 },
+    { "minConfidence": 0.85, "deferRate": 0.318, "readyAccuracy": 0.9 },
+    { "minConfidence": 0.9, "deferRate": 0.386, "readyAccuracy": 0.889 },
+    { "minConfidence": 0.95, "deferRate": 0.5, "readyAccuracy": 0.955 }
   ],
   "suggestedMinConfidence": 0.95,
   "confusion": {
     "{\"verdict\":\"complete\"}": {
       "total": 13,
-      "correct": 12,
-      "misses": {
-        "{\"verdict\":\"unverified\"}": 1
-      }
+      "correct": 11,
+      "misses": { "{\"verdict\":\"unverified\"}": 2 }
     },
-    "{\"verdict\":\"incomplete\"}": {
-      "total": 15,
-      "correct": 15,
-      "misses": {}
-    },
+    "{\"verdict\":\"incomplete\"}": { "total": 15, "correct": 15, "misses": {} },
     "{\"verdict\":\"unclear\"}": {
       "total": 3,
       "correct": 0,
-      "misses": {
-        "{\"verdict\":\"unverified\"}": 3
-      }
+      "misses": { "{\"verdict\":\"unverified\"}": 3 }
     },
     "{\"verdict\":\"unverified\"}": {
       "total": 13,
       "correct": 12,
-      "misses": {
-        "{\"verdict\":\"incomplete\"}": 1
-      }
+      "misses": { "{\"verdict\":\"incomplete\"}": 1 }
     }
   },
   "failures": [
     {
       "id": "complete-changelog-entry-in-report",
-      "expected": {
-        "verdict": "complete"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
+      "expected": { "verdict": "complete" },
+      "actual": { "verdict": "unverified" },
       "confidence": 0.95,
       "contested": true
     },
     {
+      "id": "complete-backfill-zero-nulls",
+      "expected": { "verdict": "complete" },
+      "actual": { "verdict": "unverified" },
+      "confidence": 0.15
+    },
+    {
       "id": "unverified-safari-bug-not-reproduced",
-      "expected": {
-        "verdict": "unverified"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.53,
+      "expected": { "verdict": "unverified" },
+      "actual": { "verdict": "incomplete" },
+      "confidence": 0.6,
       "contested": true
     },
     {
       "id": "unclear-vague-task-done",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.92
+      "expected": { "verdict": "unclear" },
+      "actual": { "verdict": "unverified" },
+      "confidence": 0.91
     },
     {
       "id": "unclear-report-about-unrelated-pr",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.73
+      "expected": { "verdict": "unclear" },
+      "actual": { "verdict": "unverified" },
+      "confidence": 0.7
     },
     {
       "id": "unclear-see-attached",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
+      "expected": { "verdict": "unclear" },
+      "actual": { "verdict": "unverified" },
       "confidence": 0.9
     }
   ]

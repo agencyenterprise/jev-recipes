@@ -78,13 +78,6 @@ export function hasReviewAnywhere(value) {
   return false;
 }
 
-/**
- * The confidence that decides whether a whole result is ready. Single-decision
- * recipes report it at the top level. Batch and fan-out recipes carry one
- * confidence per item or per label; the result is only as sure as its least
- * confident part, so the minimum over the paths named in `expected` (or over
- * every nested confidence when a path has none) is used.
- */
 export function caseConfidence(result, expectedPaths = []) {
   if (typeof result?.confidence === 'number') return result.confidence;
   const scoped = expectedPaths

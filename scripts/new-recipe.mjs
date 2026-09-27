@@ -75,7 +75,7 @@ export const recipeSpecSchema = z.discriminatedUnion('kind', [
   baseSpec.extend({
     kind: z.literal('comparison'),
     criteria: z.object({ first: text, second: text, tie: text, neither: text }),
-    demoProbabilities: z.record(
+    demoProbabilities: z.partialRecord(
       z.enum(['first', 'second', 'tie', 'neither', 'unclear']),
       probability,
     ),

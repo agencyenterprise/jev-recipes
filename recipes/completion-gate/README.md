@@ -116,20 +116,20 @@ A result is `ready` when the decision confidence meets `minConfidence` and the v
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 44 golden cases against `jev-1.13.0`: **89% accurate** overall (contested cases 67%, adversarial cases 100%).
+Measured on 44 golden cases against `jev-1.13.0`: **86% accurate** overall (contested cases 67%, adversarial cases 100%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 9%                 | 88%                       |
-| 0.6             | 14%                | 90%                       |
-| 0.7             | 16%                | 89%                       |
-| 0.8             | 25%                | 91%                       |
-| 0.9             | 36%                | 89%                       |
-| 0.95            | 46%                | 96%                       |
+| 0.5             | 7%                 | 88%                       |
+| 0.6             | 11%                | 87%                       |
+| 0.7             | 14%                | 90%                       |
+| 0.8             | 23%                | 91%                       |
+| 0.9             | 39%                | 89%                       |
+| 0.95            | 50%                | 96%                       |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.95.
 
-Rerun with `npm run eval -- completion-gate`; the full report, including misses, is in [evals/results/completion-gate.json](../../evals/results/completion-gate.json). Accuracy on your own data may differ.
+Run `npm run eval -- completion-gate` to save new results and update this guide. The full report, including misses, is in [evals/results/completion-gate.json](../../evals/results/completion-gate.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

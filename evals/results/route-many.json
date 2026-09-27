@@ -8,90 +8,27 @@
   "contestedAccuracy": 0.4,
   "adversarialAccuracy": 0.8,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 2,
-      "accuracy": 0.5
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 1,
-      "accuracy": 0
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 1,
-      "accuracy": 0
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 2,
-      "accuracy": 0.5
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 6,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 15,
-      "accuracy": 0.933
-    }
+    { "confidence": "0-0.5", "cases": 1, "accuracy": 0 },
+    { "confidence": "0.5-0.6", "cases": 2, "accuracy": 0.5 },
+    { "confidence": "0.6-0.7", "cases": 2, "accuracy": 0 },
+    { "confidence": "0.7-0.8", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.8-0.9", "cases": 5, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 15, "accuracy": 0.933 }
   ],
+  "thresholdEvaluation": "recipe-replay",
   "thresholds": [
-    {
-      "minConfidence": 0.5,
-      "deferRate": 0.074,
-      "readyAccuracy": 0.84
-    },
-    {
-      "minConfidence": 0.55,
-      "deferRate": 0.111,
-      "readyAccuracy": 0.875
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.111,
-      "readyAccuracy": 0.875
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.111,
-      "readyAccuracy": 0.875
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.148,
-      "readyAccuracy": 0.913
-    },
-    {
-      "minConfidence": 0.75,
-      "deferRate": 0.148,
-      "readyAccuracy": 0.913
-    },
-    {
-      "minConfidence": 0.8,
-      "deferRate": 0.222,
-      "readyAccuracy": 0.952
-    },
-    {
-      "minConfidence": 0.85,
-      "deferRate": 0.37,
-      "readyAccuracy": 0.941
-    },
-    {
-      "minConfidence": 0.9,
-      "deferRate": 0.444,
-      "readyAccuracy": 0.933
-    },
-    {
-      "minConfidence": 0.95,
-      "deferRate": 0.741,
-      "readyAccuracy": 0.857
-    }
+    { "minConfidence": 0.5, "deferRate": 0.333, "readyAccuracy": 0.944 },
+    { "minConfidence": 0.55, "deferRate": 0.37, "readyAccuracy": 0.941 },
+    { "minConfidence": 0.6, "deferRate": 0.37, "readyAccuracy": 0.941 },
+    { "minConfidence": 0.65, "deferRate": 0.37, "readyAccuracy": 0.941 },
+    { "minConfidence": 0.7, "deferRate": 0.407, "readyAccuracy": 1 },
+    { "minConfidence": 0.75, "deferRate": 0.407, "readyAccuracy": 1 },
+    { "minConfidence": 0.8, "deferRate": 0.481, "readyAccuracy": 1 },
+    { "minConfidence": 0.85, "deferRate": 0.593, "readyAccuracy": 1 },
+    { "minConfidence": 0.9, "deferRate": 0.63, "readyAccuracy": 1 },
+    { "minConfidence": 0.95, "deferRate": 0.741, "readyAccuracy": 1 }
   ],
-  "suggestedMinConfidence": 0.8,
+  "suggestedMinConfidence": 0.7,
   "confusion": {
     "{\"items.0.suggestedRoute\":\"account\",\"items.1.suggestedRoute\":\"account\",\"items.2.suggestedRoute\":\"account\",\"items.3.suggestedRoute\":\"account\"}": {
       "total": 1,
@@ -103,11 +40,7 @@
       "correct": 1,
       "misses": {}
     },
-    "{\"items.0.suggestedRoute\":\"account\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
+    "{\"items.0.suggestedRoute\":\"account\"}": { "total": 1, "correct": 1, "misses": {} },
     "{\"items.0.suggestedRoute\":\"billing\",\"items.1.suggestedRoute\":\"account\",\"items.2.suggestedRoute\":\"technical\",\"items.3.suggestedRoute\":\"sales\",\"items.4.suggestedRoute\":\"billing\",\"items.5.suggestedRoute\":\"technical\",\"items.6.suggestedRoute\":\"account\",\"items.7.suggestedRoute\":\"sales\"}": {
       "total": 1,
       "correct": 0,
@@ -256,7 +189,7 @@
         "items.3.suggestedRoute": "sales",
         "items.4.suggestedRoute": "account"
       },
-      "confidence": 0.52
+      "confidence": 0.58
     },
     {
       "id": "support-refund-request-vague",
@@ -270,7 +203,7 @@
         "items.1.suggestedRoute": "technical",
         "items.2.suggestedRoute": null
       },
-      "confidence": 0.95,
+      "confidence": 0.94,
       "contested": true
     },
     {
@@ -295,7 +228,7 @@
         "items.6.suggestedRoute": "account",
         "items.7.suggestedRoute": "account"
       },
-      "confidence": 0.76
+      "confidence": 0.66
     },
     {
       "id": "email-contested-fyi",
@@ -309,7 +242,7 @@
         "items.1.suggestedRoute": null,
         "items.2.suggestedRoute": "needs_reply"
       },
-      "confidence": 0.68,
+      "confidence": 0.61,
       "contested": true
     },
     {
@@ -324,7 +257,7 @@
         "items.1.suggestedRoute": "network",
         "items.2.suggestedRoute": "software"
       },
-      "confidence": 0.45,
+      "confidence": 0.44,
       "contested": true,
       "adversarial": true
     }

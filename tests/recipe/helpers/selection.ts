@@ -63,6 +63,22 @@ export function testSelection<Input extends Record<string, unknown>>(
       },
     );
 
+    it('preserves a selected __proto__ ID and its probability', async () => {
+      const namedCandidates = candidates.map((candidate, index) => ({
+        ...candidate,
+        id: index === 0 ? '__proto__' : candidate.id,
+      }));
+      const answer = choiceAnswer(labels, 'candidate_0');
+      const result = await run(
+        { ...input, [candidateField]: namedCandidates },
+        { client: createJevClient({ decision: answer }) },
+      );
+      expect(result.selection).toBe('__proto__');
+      expect(Object.hasOwn(result.probabilities.candidates, '__proto__')).toBe(true);
+      expect(result.probabilities.candidates.__proto__).toBe(answer.probabilities.candidate_0);
+      expect(Object.getPrototypeOf(result.probabilities.candidates)).toBe(Object.prototype);
+    });
+
     it.each([
       { verdict: 'none', status: 'ready' },
       { verdict: 'ambiguous', status: 'review' },

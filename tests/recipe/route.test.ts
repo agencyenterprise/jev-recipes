@@ -37,6 +37,33 @@ describe('route', () => {
     );
   });
 
+  it('routes to an own __proto__ key and preserves its probability', async () => {
+    const routes = Object.fromEntries([
+      ['__proto__', 'Invoices and charges'],
+      ['technical', 'Errors'],
+    ]);
+    const client = createJevClient(
+      choiceAnswers('route', ['__proto__', 'technical', '__review__'], '__proto__'),
+    );
+    const result = await route({ ...input, routes }, { client });
+    expect(result.route).toBe('__proto__');
+    expect(Object.hasOwn(result.probabilities, '__proto__')).toBe(true);
+    expect(result.probabilities.__proto__).toBe(0.9);
+    expect(client.systemOne.mock.calls[0]?.[0].questions.route?.criteria).toEqual({
+      ...routes,
+      __review__: expect.any(String),
+    });
+  });
+
+  it('rejects a missing probability for a supplied __proto__ route', async () => {
+    const client = createJevClient(choiceAnswers('route', ['billing', '__review__'], 'billing'));
+    const routes = Object.fromEntries([
+      ['__proto__', 'Technical issues'],
+      ['billing', 'Payments'],
+    ]);
+    await expect(route({ ...input, routes }, { client })).rejects.toBeInstanceOf(ZodError);
+  });
+
   it('returns review with no suggestion when no route fits', async () => {
     const client = createJevClient(choiceAnswers('route', labels, '__review__'));
     await expect(route(input, { client })).resolves.toMatchObject({
