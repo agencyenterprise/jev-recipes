@@ -92,3 +92,29 @@ The rubric grades agreement between `extracted` and `source`. It does not check 
 ## Example input
 
 [demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo extraction-fidelity` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe extraction-fidelity` to inspect the input and result schemas.
+
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 40 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
+
+Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `87420435d122cd812b418bacdfe672abb0ed7618accf44e6638f5de287154f56`.
+
+40/40 cases correct; 40 ready, 0 review, 0 failed. Accuracy among ready cases: 100%.
+
+Latency: p50 111.54 ms, p95 162.91 ms. Usage: 24351 input tokens and 680 output tokens across 40 logical requests.
+
+Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 91% to 100%.
+
+**Measured on these synthetic cases.**
+
+Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+
+Run `npm run eval -- extraction-fidelity` to save new results and update this guide. The full report, including misses, is in [evals/results/extraction-fidelity.json](../../evals/results/extraction-fidelity.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->

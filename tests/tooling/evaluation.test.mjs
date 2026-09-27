@@ -3,9 +3,11 @@ import { test } from 'node:test';
 import { evaluateRecipe } from '../../evals/lib/evaluate.mjs';
 import { loadRecipe, readGoldenCases } from '../../evals/lib/harness.mjs';
 
-test('all 50 route cases report mandatory review without extra provider calls', async () => {
+test('the original 50 route cases report mandatory review without extra provider calls', async () => {
   const recipe = await loadRecipe('route');
-  const cases = await readGoldenCases('route');
+  const cases = (await readGoldenCases('route')).filter(
+    (entry) => !entry.id.startsWith('featured-'),
+  );
   const expected = new Map(
     cases.map((entry) => [entry.input.request, entry.expected.suggestedRoute]),
   );
@@ -39,22 +41,16 @@ test('thresholds use replayed status instead of the original confidence gate', a
     ],
     { client: { systemOne: async (request) => responseFor(request, 'billing', 0.7) } },
   );
-  assert.deepEqual(
-    report.thresholds.find((row) => row.minConfidence === 0.7),
-    {
-      minConfidence: 0.7,
-      deferRate: 0,
-      readyAccuracy: 1,
-    },
-  );
-  assert.deepEqual(
-    report.thresholds.find((row) => row.minConfidence === 0.8),
-    {
-      minConfidence: 0.8,
-      deferRate: 1,
-      readyAccuracy: null,
-    },
-  );
+  assert.deepEqual(thresholdValues(report, 0.7), {
+    minConfidence: 0.7,
+    deferRate: 0,
+    readyAccuracy: 1,
+  });
+  assert.deepEqual(thresholdValues(report, 0.8), {
+    minConfidence: 0.8,
+    deferRate: 1,
+    readyAccuracy: null,
+  });
 });
 
 test('ready accuracy excludes correct outcomes that always require review', async () => {
@@ -213,7 +209,7 @@ test('failed provider calls remain failures and never become ready during replay
   assert.equal(calls, 1);
   assert.equal(report.accuracy, 0);
   assert.equal(report.failures[0].error, 'Provider unavailable');
-  assert.ok(report.thresholds.every((row) => row.deferRate === 1));
+  assert.ok(report.thresholds.every((row) => row.deferRate === null && row.failedCases === 1));
 });
 
 function responseFor(request, selected, confidence = 1) {
@@ -234,4 +230,11 @@ function responseFor(request, selected, confidence = 1) {
       ]),
     ),
   };
+}
+
+function thresholdValues(report, value) {
+  const { minConfidence, deferRate, readyAccuracy } = report.thresholds.find(
+    (row) => row.minConfidence === value,
+  );
+  return { minConfidence, deferRate, readyAccuracy };
 }

@@ -6,3 +6,5 @@ dist/
 *.tgz
 .DS_Store
 coverage/
+evals/runs/
+site/dist/

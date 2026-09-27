@@ -285,6 +285,17 @@ export type {
   CacheMatchVerdict,
 } from '../recipes/cache-match/index.js';
 export {
+  callbackResponsibility,
+  callbackResponsibilityInputSchema,
+  callbackResponsibilityResultSchema,
+  callbackResponsibilityVerdictSchema,
+} from '../recipes/callback-responsibility/index.js';
+export type {
+  CallbackResponsibilityInput,
+  CallbackResponsibilityResult,
+  CallbackResponsibilityVerdict,
+} from '../recipes/callback-responsibility/index.js';
+export {
   cancellationCheck,
   cancellationCheckInputSchema,
   cancellationCheckResultSchema,
@@ -564,6 +575,17 @@ export type {
   ConstraintStrengthResult,
   ConstraintStrengthVerdict,
 } from '../recipes/constraint-strength/index.js';
+export {
+  contactOptOut,
+  contactOptOutInputSchema,
+  contactOptOutResultSchema,
+  contactOptOutVerdictSchema,
+} from '../recipes/contact-opt-out/index.js';
+export type {
+  ContactOptOutInput,
+  ContactOptOutResult,
+  ContactOptOutVerdict,
+} from '../recipes/contact-opt-out/index.js';
 export {
   contentFacets,
   contentFacetsInputSchema,
@@ -982,6 +1004,17 @@ export {
   followupLinkResultSchema,
 } from '../recipes/followup-link/index.js';
 export type { FollowupLinkInput, FollowupLinkResult } from '../recipes/followup-link/index.js';
+export {
+  followupTiming,
+  followupTimingInputSchema,
+  followupTimingResultSchema,
+  followupTimingVerdictSchema,
+} from '../recipes/followup-timing/index.js';
+export type {
+  FollowupTimingInput,
+  FollowupTimingResult,
+  FollowupTimingVerdict,
+} from '../recipes/followup-timing/index.js';
 export {
   forecastConfidenceWording,
   forecastConfidenceWordingInputSchema,

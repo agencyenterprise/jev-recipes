@@ -137,6 +137,27 @@ function accuracySection(id, snapshot) {
   const lines = [
     `Measured on ${snapshot.cases} golden cases against \`${snapshot.model}\`: **${pct(snapshot.accuracy)} accurate** overall${breakdown ? ` (${breakdown})` : ''}.`,
   ];
+  if (snapshot.evidence) {
+    const evidence = snapshot.evidence;
+    lines.push(
+      '',
+      `Recorded ${evidence.evaluatedAt.slice(0, 10)} with package ${evidence.packageVersion}, on the **${evidence.split}** split. Recipe fingerprint: \`${evidence.recipeFingerprint}\`.`,
+      '',
+      `${snapshot.correct}/${snapshot.cases} cases correct; ${snapshot.ready} ready, ${snapshot.review} review, ${snapshot.failed} failed. Accuracy among ready cases: ${pct(snapshot.readyAccuracy)}.`,
+      '',
+      `Latency: p50 ${snapshot.latencyMs.p50} ms, p95 ${snapshot.latencyMs.p95} ms. Usage: ${snapshot.usage.input_tokens} input tokens and ${snapshot.usage.output_tokens} output tokens across ${snapshot.usage.requests} logical requests.`,
+      '',
+      `Labels: ${evidence.provenance.map((entry) => `${entry.method} (${entry.cases} cases): ${entry.source}`).join(' ')}`,
+      '',
+      'These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.',
+    );
+    if (snapshot.accuracyInterval95)
+      lines.push(
+        '',
+        `95% case-level accuracy interval: ${snapshot.accuracyInterval95.map(pct).join(' to ')}.`,
+      );
+    if (snapshot.acceptance) lines.push('', `**${snapshot.acceptance.label}.**`);
+  }
   if (snapshot.itemAccuracy !== undefined) {
     lines.push(
       '',
@@ -159,6 +180,11 @@ function accuracySection(id, snapshot) {
       snapshot.suggestedMinConfidence === null
         ? 'No threshold reaches 95% accuracy on ready results in this dataset.'
         : `The lowest threshold reaching 95% accuracy on ready results is ${snapshot.suggestedMinConfidence}.`,
+    );
+  } else if (snapshot.thresholdEvaluation === 'frozen-policy') {
+    lines.push(
+      '',
+      `Evaluated with the policy frozen on development data: minConfidence ${snapshot.evidence.policy.minConfidence ?? 'from the case or recipe default'}. No threshold search was performed on held-out cases.`,
     );
   } else if (snapshot.thresholdEvaluation === 'not-applicable') {
     lines.push(

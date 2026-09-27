@@ -3,10 +3,10 @@ import { join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { format as formatFile, resolveConfig } from 'prettier';
 import { renderMeasuredAccuracy } from '../scripts/lib/docs.mjs';
-import { evaluateRecipe } from './lib/evaluate.mjs';
+import { randomUUID } from 'node:crypto';
+import { evaluate } from '../dist/evaluation/index.js';
 import {
   listGoldenRecipeIds,
-  loadRecipe,
   projectRoot,
   readGoldenCases,
   requireApiKey,
@@ -34,9 +34,15 @@ if (!ids.length) {
 
 let regressed = false;
 for (const id of ids) {
-  const recipe = await loadRecipe(id);
   const cases = await readGoldenCases(id);
-  const report = await evaluateRecipe(recipe, cases, { concurrency: Number(values.concurrency) });
+  const archive = saveResults
+    ? join(projectRoot, 'evals/runs', `${id}-${Date.now()}-${randomUUID().slice(0, 8)}`)
+    : undefined;
+  const { report } = await evaluate(id, cases, {
+    concurrency: Number(values.concurrency),
+    ...(archive ? { out: archive } : {}),
+  });
+  if (archive) console.log(`  Recorded responses: ${archive}`);
   printReport(report);
   if (values.check) regressed = (await checkAgainstSnapshot(report)) || regressed;
   if (saveResults) await saveEvaluation(report);
@@ -99,6 +105,14 @@ async function checkAgainstSnapshot(report) {
     );
     return false;
   }
+  if (
+    !previous.evidence ||
+    previous.evidence.datasetFingerprint !== report.evidence.datasetFingerprint ||
+    previous.evidence.split !== report.evidence.split
+  )
+    throw new Error(
+      `Cannot compare ${report.recipe}: the snapshot uses a different dataset or split, or has no recorded dataset identity. Save a baseline for these cases before using --check.`,
+    );
   const drop = previous.accuracy - report.accuracy;
   if (drop > REGRESSION_TOLERANCE) {
     console.error(

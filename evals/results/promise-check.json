@@ -1,71 +1,124 @@
 {
+  "evidence": {
+    "runId": "2da47960-d85b-4bd4-aa68-e0c8318b6a1b",
+    "evaluatedAt": "2026-09-27T07:56:25.450Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "49ee0d45f1abd476d39302edeeb80b4e9cf47a46f82642872688fc03f45497fe",
+    "datasetFingerprint": "9e10ec6578a6c02a7c315e38032647d7f3b7b35723bc6f23309788e115dbc6a1",
+    "split": "held-out",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8,
+      "selectedOn": {
+        "runId": "ec53783e-00af-423f-8eb1-dcc128a5ea51",
+        "datasetFingerprint": "51ce60b5ee2b62b749370e48c0d953e71e9f11188f47cfa464a2bf7ec0f87932",
+        "recipeFingerprint": "49ee0d45f1abd476d39302edeeb80b4e9cf47a46f82642872688fc03f45497fe",
+        "model": "jev-1.13.0",
+        "split": "development"
+      }
+    },
+    "provenance": [
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 40
+      }
+    ]
+  },
   "recipe": "promise-check",
   "model": "jev-1.13.0",
-  "cases": 42,
-  "accuracy": 0.905,
-  "contestedAccuracy": 0.667,
-  "adversarialAccuracy": 1,
+  "models": ["jev-1.13.0"],
+  "cases": 40,
+  "completed": 40,
+  "failed": 0,
+  "correct": 40,
+  "wrong": 0,
+  "ready": 40,
+  "review": 0,
+  "accuracy": 1,
+  "completedAccuracy": 1,
+  "accuracyInterval95": [0.9124, 1],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.9124, 1],
+  "reviewRate": 0,
+  "contestedAccuracy": null,
+  "adversarialAccuracy": null,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 3, "accuracy": 0.333 },
-    { "confidence": "0.5-0.6", "cases": 3, "accuracy": 0.333 },
-    { "confidence": "0.6-0.7", "cases": 1, "accuracy": 1 },
-    { "confidence": "0.7-0.8", "cases": 0, "accuracy": null },
-    { "confidence": "0.8-0.9", "cases": 4, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 31, "accuracy": 1 }
-  ],
-  "thresholdEvaluation": "recipe-replay",
-  "thresholds": [
-    { "minConfidence": 0.5, "deferRate": 0.071, "readyAccuracy": 0.949 },
-    { "minConfidence": 0.55, "deferRate": 0.095, "readyAccuracy": 0.947 },
-    { "minConfidence": 0.6, "deferRate": 0.143, "readyAccuracy": 1 },
-    { "minConfidence": 0.65, "deferRate": 0.143, "readyAccuracy": 1 },
-    { "minConfidence": 0.7, "deferRate": 0.167, "readyAccuracy": 1 },
-    { "minConfidence": 0.75, "deferRate": 0.167, "readyAccuracy": 1 },
-    { "minConfidence": 0.8, "deferRate": 0.167, "readyAccuracy": 1 },
-    { "minConfidence": 0.85, "deferRate": 0.214, "readyAccuracy": 1 },
-    { "minConfidence": 0.9, "deferRate": 0.262, "readyAccuracy": 1 },
-    { "minConfidence": 0.95, "deferRate": 0.333, "readyAccuracy": 1 }
-  ],
-  "suggestedMinConfidence": 0.6,
-  "confusion": {
-    "{\"verdict\":\"unclear\"}": {
-      "total": 3,
-      "correct": 0,
-      "misses": { "{\"verdict\":\"within_commitments\"}": 2, "{\"verdict\":\"unsupported\"}": 1 }
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
     },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 40,
+      "accuracy": 1
+    }
+  ],
+  "thresholdEvaluation": "frozen-policy",
+  "thresholds": [],
+  "suggestedMinConfidence": null,
+  "latencyMs": {
+    "p50": 103.66,
+    "p95": 134.98,
+    "totalCaseTime": 4354.05
+  },
+  "usage": {
+    "requests": 40,
+    "input_tokens": 18716,
+    "output_tokens": 1740,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.00078607
+  },
+  "confusion": {
     "{\"verdict\":\"unsupported\"}": {
       "total": 20,
-      "correct": 19,
-      "misses": { "{\"verdict\":\"within_commitments\"}": 1 }
+      "correct": 20,
+      "misses": {}
     },
-    "{\"verdict\":\"within_commitments\"}": { "total": 19, "correct": 19, "misses": {} }
-  },
-  "failures": [
-    {
-      "id": "unsupported-three-day-shipping",
-      "expected": { "verdict": "unsupported" },
-      "actual": { "verdict": "within_commitments" },
-      "confidence": 0.57,
-      "contested": true
-    },
-    {
-      "id": "unclear-judgment-policy",
-      "expected": { "verdict": "unclear" },
-      "actual": { "verdict": "within_commitments" },
-      "confidence": 0.37
-    },
-    {
-      "id": "unclear-consider-it-handled",
-      "expected": { "verdict": "unclear" },
-      "actual": { "verdict": "unsupported" },
-      "confidence": 0.59,
-      "contested": true
-    },
-    {
-      "id": "unclear-make-this-right",
-      "expected": { "verdict": "unclear" },
-      "actual": { "verdict": "within_commitments" },
-      "confidence": 0.26
+    "{\"verdict\":\"within_commitments\"}": {
+      "total": 20,
+      "correct": 20,
+      "misses": {}
     }
-  ]
+  },
+  "failures": [],
+  "acceptance": {
+    "minConfidence": 0.8,
+    "minimumHeldOutReadyCases": 20,
+    "minimumReadyAccuracy": 0.95,
+    "maximumProviderFailures": 0,
+    "met": true,
+    "label": "Measured on these synthetic cases"
+  }
 }

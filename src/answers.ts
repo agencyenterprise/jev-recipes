@@ -39,7 +39,9 @@ function totalProbability(answer: { probabilities: Record<string, number> }): nu
 }
 
 function hasCompleteProbabilityMass(answer: { probabilities: Record<string, number> }): boolean {
-  return Math.abs(totalProbability(answer) - 1) <= 0.01;
+  const roundingTolerance = 0.01;
+  const floatingPointTolerance = Number.EPSILON * Object.keys(answer.probabilities).length;
+  return Math.abs(totalProbability(answer) - 1) <= roundingTolerance + floatingPointTolerance;
 }
 
 function probabilityMassError(issue: { input: unknown }): string {

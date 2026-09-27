@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Find a Jev recipe, inspect its decision contract, and read the evidence before using it."
+    />
+    <title>Jev recipes | Decisions you can inspect</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="brand" href="./">jev<span>recipes</span></a>
+      <nav aria-label="Resources">
+        <a href="https://github.com/agencyenterprise/jev-recipes">Source</a
+        ><a href="https://www.npmjs.com/package/jev-recipes">npm package</a
+        ><a href="https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md"
+          >Evaluate your data</a
+        >
+      </nav>
+    </header>
+    <main>
+      <section class="introduction">
+        <div>
+          <h1>Give your code <br />a clear decision.</h1>
+          <p>
+            Small Jev recipes for the moment your application needs judgment. Inspect the inputs,
+            review the evidence, and keep your code in control.
+          </p>
+        </div>
+        <div class="decision-example" aria-label="Illustrative routing decision">
+          <p class="example-message">“I was charged twice. Can someone check my invoice?”</p>
+          <div class="example-flow">
+            <span>route</span><span class="connector" aria-hidden="true"></span
+            ><strong>billing</strong>
+          </div>
+          <p class="example-note">
+            One bounded question. A typed result.<br />Uncertain decisions go to review.
+          </p>
+        </div>
+      </section>
+      <section class="workspace" aria-label="Recipe explorer">
+        <div class="library">
+          <label class="search-label" for="search"
+            >What does your application need to decide?</label
+          >
+          <input
+            id="search"
+            type="search"
+            placeholder="Try “follow-up”, “choose a model”, or “verify evidence”"
+            autocomplete="off"
+          />
+          <div class="filters">
+            <label
+              >Collection<select id="collection">
+                <option value="">All recipes</option>
+                <option value="agent-operations">Agent operations</option>
+                <option value="customer-conversations">Customer conversations</option>
+                <option value="document-decisions">Document decisions</option>
+              </select></label
+            ><label
+              >Evidence<select id="evidence">
+                <option value="">Any evidence</option>
+                <option value="measured">Current measurements</option>
+                <option value="earlier">Earlier measurements</option>
+                <option value="fixture">Fixture only</option>
+              </select></label
+            >
+          </div>
+          <p id="result-count" class="result-count" role="status">Loading recipes…</p>
+          <div id="results" class="results" aria-label="Matching recipes"></div>
+        </div>
+        <article id="inspector" class="inspector" aria-label="Selected recipe" tabindex="-1">
+          <p>Select a recipe to inspect its contract and evidence.</p>
+        </article>
+      </section>
+    </main>
+    <footer>Open source. Local evaluation. Your application decides what happens next.</footer>
+  </body>
+</html>

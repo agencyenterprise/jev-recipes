@@ -1,0 +1,8 @@
+{
+  "model": "jev-1.13.0",
+  "inputPerMillion": 0.042,
+  "outputPerMillion": 0,
+  "currency": "USD",
+  "date": "2026-09-27",
+  "source": "https://docs.typesafe.ai/models"
+}

@@ -589,6 +589,31 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'callback-responsibility',
+    title: 'Identify who should initiate a callback',
+    description: 'Which party is expected to initiate the next call?',
+    category: 'conversation',
+    tags: ['conversation', 'callback', 'ownership', 'handover'],
+    limitations: [
+      'Requires speaker roles. Does not infer identities from names or assume every agent speaks for the business.',
+      'Only identifies initiation of a future call, including a conditional call. Does not assign general task ownership or verify the call occurred.',
+      'An unaccepted suggestion, contradictory exchange, or unresolved pronoun requires review.',
+    ],
+    useWhen:
+      'You need to decide whether the business or customer is expected to initiate the next call.',
+    related: [
+      {
+        id: 'promise-check',
+        reason: 'Use promise-check to check whether a draft introduces an unsupported commitment.',
+      },
+      {
+        id: 'commitment-strength',
+        reason: 'Use commitment-strength to grade how firmly a statement commits its speaker.',
+      },
+      { id: 'followup-timing', reason: 'Use followup-timing for when another contact is wanted.' },
+    ],
+  },
+  {
     id: 'cancellation-check',
     title: 'Check cancellation intent',
     description: 'Does message ask to cancel, pause, or continue task?',
@@ -1300,6 +1325,35 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'instruction-conflict',
         reason: 'Use instruction-conflict to compare the requirements of two instructions.',
+      },
+    ],
+  },
+  {
+    id: 'contact-opt-out',
+    title: 'Recognize a contact opt-out',
+    description: 'What scope of future contact does the sender ask to stop?',
+    category: 'conversation',
+    tags: ['conversation', 'contact', 'opt-out', 'preferences'],
+    limitations: [
+      'Reports the expressed scope category, not legal consent or permission to contact. A none result never grants consent.',
+      'Does not resolve channel or campaign identifiers or change subscription settings. Applications own those mappings and prior preferences.',
+      'Mixed channel and campaign restrictions, conflicting requests, and missing references require review.',
+    ],
+    useWhen: 'You need to distinguish stopping all contact from stopping a channel or campaign.',
+    related: [
+      {
+        id: 'cancellation-check',
+        reason:
+          'Use cancellation-check for cancelling a product or service, rather than future contact.',
+      },
+      {
+        id: 'buying-intent',
+        reason:
+          'Use buying-intent for purchase interest. Declining an offer alone does not establish an opt-out.',
+      },
+      {
+        id: 'followup-timing',
+        reason: 'Use followup-timing for a requested delay or condition for future contact.',
       },
     ],
   },
@@ -2296,6 +2350,34 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'reference-resolve',
         reason:
           'Use reference-resolve to identify a referenced item rather than an earlier request.',
+      },
+    ],
+  },
+  {
+    id: 'followup-timing',
+    title: 'Recognize requested follow-up timing',
+    description: 'When does the sender want another contact, if any?',
+    category: 'conversation',
+    tags: ['conversation', 'followup', 'timing', 'scheduling'],
+    limitations: [
+      'Does not extract dates, time zones, or event identifiers and does not schedule contact.',
+      'A timing request does not override stored contact preferences or establish permission to contact.',
+      'Missing references, unresolved alternatives, and conflicting timing instructions require review.',
+    ],
+    useWhen:
+      'You need to distinguish immediate contact, a later time, an event condition, and no follow-up request.',
+    related: [
+      {
+        id: 'response-needed',
+        reason: 'Use response-needed to decide whether the current message needs a reply.',
+      },
+      {
+        id: 'contact-opt-out',
+        reason: 'Use contact-opt-out for the scope of a request to stop future contact.',
+      },
+      {
+        id: 'callback-responsibility',
+        reason: 'Use callback-responsibility to identify who should initiate a call.',
       },
     ],
   },

@@ -1,0 +1,152 @@
+{
+  "evidence": {
+    "runId": "9b227585-e2f9-4d31-adff-e0113979baa1",
+    "evaluatedAt": "2026-09-27T07:56:29.897Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "e3afba589f57bf106ce32a86e6d6dd3eb7d42c3c7f43a4e659330e8368a2cad6",
+    "datasetFingerprint": "3dd4a151b326da19ec7178454fe1e6bb72955792934a6a0c26c7644ffb8da4df",
+    "split": "held-out",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8,
+      "selectedOn": {
+        "runId": "2928ab8e-ec62-4300-bf44-b690425a5340",
+        "datasetFingerprint": "df3494b970c0e117b7f35b64170beb57509e9d6d2a574617afa162c1d8bb5ed8",
+        "recipeFingerprint": "e3afba589f57bf106ce32a86e6d6dd3eb7d42c3c7f43a4e659330e8368a2cad6",
+        "model": "jev-1.13.0",
+        "split": "development"
+      }
+    },
+    "provenance": [
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 40
+      }
+    ]
+  },
+  "recipe": "callback-responsibility",
+  "model": "jev-1.13.0",
+  "models": ["jev-1.13.0"],
+  "cases": 40,
+  "completed": 40,
+  "failed": 0,
+  "correct": 39,
+  "wrong": 1,
+  "ready": 24,
+  "review": 16,
+  "accuracy": 0.975,
+  "completedAccuracy": 0.975,
+  "accuracyInterval95": [0.8712, 0.9956],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.862, 1],
+  "reviewRate": 0.4,
+  "contestedAccuracy": 1,
+  "adversarialAccuracy": null,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 1,
+      "accuracy": 0
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 2,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 2,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 5,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 30,
+      "accuracy": 1
+    }
+  ],
+  "thresholdEvaluation": "frozen-policy",
+  "thresholds": [],
+  "suggestedMinConfidence": null,
+  "latencyMs": {
+    "p50": 112.84,
+    "p95": 164.19,
+    "totalCaseTime": 4717.47
+  },
+  "usage": {
+    "requests": 40,
+    "input_tokens": 27344,
+    "output_tokens": 2133,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.00114845
+  },
+  "confusion": {
+    "{\"verdict\":\"business\"}": {
+      "total": 10,
+      "correct": 10,
+      "misses": {}
+    },
+    "{\"verdict\":\"customer\"}": {
+      "total": 10,
+      "correct": 9,
+      "misses": {
+        "{\"verdict\":\"business\"}": 1
+      }
+    },
+    "{\"verdict\":\"either\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"verdict\":\"none\"}": {
+      "total": 4,
+      "correct": 4,
+      "misses": {}
+    },
+    "{\"verdict\":\"unclear\"}": {
+      "total": 13,
+      "correct": 13,
+      "misses": {}
+    }
+  },
+  "failures": [
+    {
+      "id": "featured-16-business",
+      "expected": {
+        "verdict": "customer"
+      },
+      "actual": {
+        "verdict": "business"
+      },
+      "confidence": 0.56
+    }
+  ],
+  "acceptance": {
+    "minConfidence": 0.8,
+    "minimumHeldOutReadyCases": 20,
+    "minimumReadyAccuracy": 0.95,
+    "maximumProviderFailures": 0,
+    "met": true,
+    "label": "Measured on these synthetic cases"
+  }
+}

@@ -5,3 +5,5 @@ package-lock.json
 .env.*
 *.tgz
 coverage/
+evals/runs/
+site/dist/

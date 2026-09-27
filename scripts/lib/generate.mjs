@@ -49,6 +49,7 @@ export function renderExports(records) {
   return {
     '.': entry('src/index'),
     './catalog': entry('catalog/index'),
+    './evaluation': entry('evaluation/index'),
     './package.json': './package.json',
     ...Object.fromEntries(records.map(({ id }) => [`./${id}`, entry(`recipes/${id}/index`)])),
   };

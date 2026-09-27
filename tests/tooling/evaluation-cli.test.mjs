@@ -3,8 +3,11 @@ import { test } from 'node:test';
 import { cp, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { projectRoot } from '../../scripts/lib/recipes.mjs';
-import { run } from '../../scripts/lib/process.mjs';
+
+const execute = promisify(execFile);
 
 test('a normal eval saves the report and replaces the unavailable threshold message', async () => {
   await withEvaluationProject(async ({ root, evaluate }) => {
@@ -30,6 +33,7 @@ test('--write continues to save results and also refreshes the guide', async () 
 
 test('--check and --no-write leave both the snapshot and guide unchanged', async () => {
   await withEvaluationProject(async ({ root, evaluate }) => {
+    await evaluate('route');
     const paths = ['evals/results/route.json', 'recipes/route/README.md'];
     const originals = await Promise.all(paths.map((path) => readFile(join(root, path), 'utf8')));
     for (const flag of ['--check', '--no-write']) {
@@ -41,6 +45,15 @@ test('--check and --no-write leave both the snapshot and guide unchanged', async
           flag + ': ' + path,
         );
     }
+  });
+});
+
+test('--check rejects a held-out snapshot when evaluating development cases', async () => {
+  await withEvaluationProject(async ({ root, evaluate }) => {
+    const path = join(root, 'evals/results/route.json');
+    const original = await readFile(path, 'utf8');
+    await assert.rejects(evaluate('route', '--check'), /different dataset or split/);
+    assert.equal(await readFile(path, 'utf8'), original);
   });
 });
 
@@ -63,6 +76,16 @@ async function withEvaluationProject(check) {
       await mkdir(dirname(join(root, path)), { recursive: true });
       await cp(join(projectRoot, path), join(root, path), { recursive: true });
     }
+    const casesPath = join(root, 'evals/route/cases.jsonl');
+    const originalCases = (await readFile(casesPath, 'utf8'))
+      .trim()
+      .split('\n')
+      .map(JSON.parse)
+      .filter((entry) => !entry.id.startsWith('featured-'));
+    await writeFile(
+      casesPath,
+      originalCases.map((entry) => JSON.stringify(entry)).join('\n') + '\n',
+    );
     const reportPath = join(root, 'evals/results/route.json');
     const previousReport = JSON.parse(await readFile(reportPath, 'utf8'));
     await writeFile(
@@ -105,12 +128,18 @@ globalThis.fetch = () => { throw new Error('Evaluation CLI tests must stay offli
     );
     await check({
       root,
-      evaluate: (...args) =>
-        run(process.execPath, ['--import', fixture, join(root, 'evals/run.mjs'), ...args], {
-          cwd: root,
-          env: { ...process.env, TYPESAFE_API_KEY: 'offline-cli-test' },
-          stdio: ['ignore', 'pipe', 'pipe'],
-        }),
+      evaluate: async (...args) => {
+        const { stdout } = await execute(
+          process.execPath,
+          ['--import', fixture, join(root, 'evals/run.mjs'), ...args],
+          {
+            cwd: root,
+            env: { ...process.env, TYPESAFE_API_KEY: 'offline-cli-test' },
+            encoding: 'utf8',
+          },
+        );
+        return stdout;
+      },
     });
   } finally {
     await rm(root, { recursive: true, force: true });

@@ -1,0 +1,24 @@
+{
+  "input": {
+    "message": "Please stop texting me. Email about my open support case is fine.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "channel",
+        "confidence": 0.95,
+        "probabilities": {
+          "all_contact": 0.01,
+          "channel": 0.95,
+          "campaign": 0.01,
+          "none": 0.01,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

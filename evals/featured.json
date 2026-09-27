@@ -1,0 +1,24 @@
+{
+  "agent-operations": [
+    "model-route",
+    "context-prune",
+    "completion-gate",
+    "progress-stall",
+    "retry-worthwhile",
+    "tool-call-gate",
+    "action-effects"
+  ],
+  "customer-conversations": [
+    "route",
+    "route-many",
+    "handoff",
+    "response-needed",
+    "followup-link",
+    "promise-check",
+    "buying-intent",
+    "contact-opt-out",
+    "followup-timing",
+    "callback-responsibility"
+  ],
+  "document-decisions": ["field-select", "extraction-fidelity", "entity-match"]
+}

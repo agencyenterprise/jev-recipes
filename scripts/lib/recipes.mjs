@@ -19,7 +19,8 @@ export async function readRecipes(root = projectRoot) {
   if (!ids.length) throw new Error('At least one recipe is required.');
   const files = [];
   for (const id of ids) {
-    if (!recipeIdPattern.test(id) || id === 'catalog') throw new Error(`Invalid recipe ID: ${id}`);
+    if (!recipeIdPattern.test(id) || ['catalog', 'evaluation'].includes(id))
+      throw new Error(`Invalid recipe ID: ${id}`);
     for (const name of ['index.ts', 'schema.ts', 'metadata.ts', 'demo.json', 'README.md']) {
       await readFile(join(root, 'recipes', id, name));
       if (name.endsWith('.ts')) files.push(join(root, 'recipes', id, name));

@@ -1,35 +1,124 @@
 {
+  "evidence": {
+    "runId": "00a3ca39-e440-4c59-82af-28f6ca9d1430",
+    "evaluatedAt": "2026-09-27T07:56:14.022Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "cd8c13f10bddc73e3eee93efc0f14fe54eef3d28c6e651e224e6b13a449df296",
+    "datasetFingerprint": "f8043bd73140bfde2a098f4093f0f612feb3612df1308a442d5aab1b0ee4cc25",
+    "split": "held-out",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8,
+      "selectedOn": {
+        "runId": "742d5cec-b756-4858-8b4d-e215e487807d",
+        "datasetFingerprint": "35981792515eea8c39d6038846b7f44a71a9e9f46d970fe48af261ad3d075785",
+        "recipeFingerprint": "cd8c13f10bddc73e3eee93efc0f14fe54eef3d28c6e651e224e6b13a449df296",
+        "model": "jev-1.13.0",
+        "split": "development"
+      }
+    },
+    "provenance": [
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 40
+      }
+    ]
+  },
   "recipe": "progress-stall",
   "model": "jev-1.13.0",
-  "cases": 42,
+  "models": ["jev-1.13.0"],
+  "cases": 40,
+  "completed": 40,
+  "failed": 0,
+  "correct": 40,
+  "wrong": 0,
+  "ready": 40,
+  "review": 0,
   "accuracy": 1,
-  "contestedAccuracy": 1,
-  "adversarialAccuracy": 1,
+  "completedAccuracy": 1,
+  "accuracyInterval95": [0.9124, 1],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.9124, 1],
+  "reviewRate": 0,
+  "contestedAccuracy": null,
+  "adversarialAccuracy": null,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 0, "accuracy": null },
-    { "confidence": "0.5-0.6", "cases": 0, "accuracy": null },
-    { "confidence": "0.6-0.7", "cases": 0, "accuracy": null },
-    { "confidence": "0.7-0.8", "cases": 0, "accuracy": null },
-    { "confidence": "0.8-0.9", "cases": 3, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 39, "accuracy": 1 }
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 1,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 39,
+      "accuracy": 1
+    }
   ],
-  "thresholdEvaluation": "recipe-replay",
-  "thresholds": [
-    { "minConfidence": 0.5, "deferRate": 0, "readyAccuracy": 1 },
-    { "minConfidence": 0.55, "deferRate": 0, "readyAccuracy": 1 },
-    { "minConfidence": 0.6, "deferRate": 0, "readyAccuracy": 1 },
-    { "minConfidence": 0.65, "deferRate": 0, "readyAccuracy": 1 },
-    { "minConfidence": 0.7, "deferRate": 0, "readyAccuracy": 1 },
-    { "minConfidence": 0.75, "deferRate": 0, "readyAccuracy": 1 },
-    { "minConfidence": 0.8, "deferRate": 0, "readyAccuracy": 1 },
-    { "minConfidence": 0.85, "deferRate": 0, "readyAccuracy": 1 },
-    { "minConfidence": 0.9, "deferRate": 0.071, "readyAccuracy": 1 },
-    { "minConfidence": 0.95, "deferRate": 0.214, "readyAccuracy": 1 }
-  ],
-  "suggestedMinConfidence": 0.5,
-  "confusion": {
-    "{\"verdict\":\"progressing\"}": { "total": 21, "correct": 21, "misses": {} },
-    "{\"verdict\":\"stalled\"}": { "total": 21, "correct": 21, "misses": {} }
+  "thresholdEvaluation": "frozen-policy",
+  "thresholds": [],
+  "suggestedMinConfidence": null,
+  "latencyMs": {
+    "p50": 118.82,
+    "p95": 159.07,
+    "totalCaseTime": 4850.19
   },
-  "failures": []
+  "usage": {
+    "requests": 40,
+    "input_tokens": 20504,
+    "output_tokens": 800,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.00086117
+  },
+  "confusion": {
+    "{\"verdict\":\"progressing\"}": {
+      "total": 20,
+      "correct": 20,
+      "misses": {}
+    },
+    "{\"verdict\":\"stalled\"}": {
+      "total": 20,
+      "correct": 20,
+      "misses": {}
+    }
+  },
+  "failures": [],
+  "acceptance": {
+    "minConfidence": 0.8,
+    "minimumHeldOutReadyCases": 20,
+    "minimumReadyAccuracy": 0.95,
+    "maximumProviderFailures": 0,
+    "met": true,
+    "label": "Measured on these synthetic cases"
+  }
 }

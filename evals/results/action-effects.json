@@ -1,0 +1,366 @@
+{
+  "evidence": {
+    "runId": "6d8e1c1a-e379-4e59-b30c-163f3010bb3c",
+    "evaluatedAt": "2026-09-27T07:56:17.663Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "bf45185c11409c57e8fc10215997bb2a2711222cf98dc655341415767fe5523d",
+    "datasetFingerprint": "26c0656dfbe936dcf3446e093d850fe3cdf11d514f90103c57bd201e05e22ec0",
+    "split": "held-out",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8,
+      "selectedOn": {
+        "runId": "bf29ae5f-b669-490c-a97b-15f32514f0c7",
+        "datasetFingerprint": "fc1b0652eaadb1a52d458ec0f5121ec856e12ea7012554a1b3d02bc6578ea97e",
+        "recipeFingerprint": "bf45185c11409c57e8fc10215997bb2a2711222cf98dc655341415767fe5523d",
+        "model": "jev-1.13.0",
+        "split": "development"
+      }
+    },
+    "provenance": [
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 40
+      }
+    ]
+  },
+  "recipe": "action-effects",
+  "model": "jev-1.13.0",
+  "models": ["jev-1.13.0"],
+  "cases": 40,
+  "completed": 40,
+  "failed": 0,
+  "correct": 30,
+  "wrong": 10,
+  "ready": 26,
+  "review": 14,
+  "accuracy": 0.75,
+  "completedAccuracy": 0.75,
+  "accuracyInterval95": [0.5981, 0.8581],
+  "readyAccuracy": 0.846,
+  "readyAccuracyInterval95": [0.6647, 0.9385],
+  "reviewRate": 0.35,
+  "items": 200,
+  "correctItems": 183,
+  "itemAccuracy": 0.915,
+  "contestedAccuracy": null,
+  "adversarialAccuracy": 0.6,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 2,
+      "accuracy": 0
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 6,
+      "accuracy": 0.833
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 6,
+      "accuracy": 0.5
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 10,
+      "accuracy": 0.8
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 16,
+      "accuracy": 0.875
+    }
+  ],
+  "thresholdEvaluation": "frozen-policy",
+  "thresholds": [],
+  "suggestedMinConfidence": null,
+  "latencyMs": {
+    "p50": 117.59,
+    "p95": 167.49,
+    "totalCaseTime": 5155.66
+  },
+  "usage": {
+    "requests": 40,
+    "input_tokens": 34392,
+    "output_tokens": 3840,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.00144446
+  },
+  "confusion": {
+    "{\"labels.writesData.verdict\":\"absent\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"absent\"}": {
+      "total": 22,
+      "correct": 13,
+      "misses": {
+        "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"present\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"present\"}": 1,
+        "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"present\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"absent\"}": 1,
+        "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"absent\"}": 3,
+        "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"present\",\"labels.callsExternal.verdict\":\"absent\"}": 1,
+        "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"present\"}": 1,
+        "{\"labels.writesData.verdict\":\"absent\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"present\",\"labels.callsExternal.verdict\":\"present\"}": 1,
+        "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"present\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"absent\"}": 1
+      }
+    },
+    "{\"labels.writesData.verdict\":\"absent\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"present\",\"labels.callsExternal.verdict\":\"present\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"labels.writesData.verdict\":\"absent\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"present\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"present\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"present\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"present\"}": 1
+      }
+    },
+    "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"absent\"}": {
+      "total": 6,
+      "correct": 6,
+      "misses": {}
+    },
+    "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"present\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"present\",\"labels.callsExternal.verdict\":\"absent\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"present\",\"labels.callsExternal.verdict\":\"present\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"present\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"absent\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"absent\",\"labels.spendsMoney.verdict\":\"present\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"present\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"labels.writesData.verdict\":\"present\",\"labels.sendsMessage.verdict\":\"present\",\"labels.spendsMoney.verdict\":\"absent\",\"labels.deletesData.verdict\":\"absent\",\"labels.callsExternal.verdict\":\"absent\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    }
+  },
+  "failures": [
+    {
+      "id": "featured-15-execute",
+      "expected": {
+        "labels.writesData.verdict": "absent",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "present",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "present"
+      },
+      "actual": {
+        "labels.writesData.verdict": "present",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "present",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "present"
+      },
+      "confidence": 0.57
+    },
+    {
+      "id": "featured-15-describe",
+      "expected": {
+        "labels.writesData.verdict": "absent",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "actual": {
+        "labels.writesData.verdict": "present",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "present",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "present"
+      },
+      "confidence": 0.51,
+      "adversarial": true
+    },
+    {
+      "id": "featured-17-describe",
+      "expected": {
+        "labels.writesData.verdict": "absent",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "actual": {
+        "labels.writesData.verdict": "present",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "present",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "confidence": 0.85,
+      "adversarial": true
+    },
+    {
+      "id": "featured-18-describe",
+      "expected": {
+        "labels.writesData.verdict": "absent",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "actual": {
+        "labels.writesData.verdict": "present",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "confidence": 0.72,
+      "adversarial": true
+    },
+    {
+      "id": "featured-19-describe",
+      "expected": {
+        "labels.writesData.verdict": "absent",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "actual": {
+        "labels.writesData.verdict": "present",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "present",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "confidence": 0.75,
+      "adversarial": true
+    },
+    {
+      "id": "featured-20-describe",
+      "expected": {
+        "labels.writesData.verdict": "absent",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "actual": {
+        "labels.writesData.verdict": "present",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "confidence": 0.95,
+      "adversarial": true
+    },
+    {
+      "id": "featured-21-describe",
+      "expected": {
+        "labels.writesData.verdict": "absent",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "actual": {
+        "labels.writesData.verdict": "present",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "present"
+      },
+      "confidence": 0.88,
+      "adversarial": true
+    },
+    {
+      "id": "featured-22-describe",
+      "expected": {
+        "labels.writesData.verdict": "absent",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "actual": {
+        "labels.writesData.verdict": "absent",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "present",
+        "labels.callsExternal.verdict": "present"
+      },
+      "confidence": 0.79,
+      "adversarial": true
+    },
+    {
+      "id": "featured-23-execute",
+      "expected": {
+        "labels.writesData.verdict": "absent",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "actual": {
+        "labels.writesData.verdict": "present",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "confidence": 0.67
+    },
+    {
+      "id": "featured-24-describe",
+      "expected": {
+        "labels.writesData.verdict": "absent",
+        "labels.sendsMessage.verdict": "absent",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "actual": {
+        "labels.writesData.verdict": "present",
+        "labels.sendsMessage.verdict": "present",
+        "labels.spendsMoney.verdict": "absent",
+        "labels.deletesData.verdict": "absent",
+        "labels.callsExternal.verdict": "absent"
+      },
+      "confidence": 0.93,
+      "adversarial": true
+    }
+  ],
+  "acceptance": {
+    "minConfidence": 0.8,
+    "minimumHeldOutReadyCases": 20,
+    "minimumReadyAccuracy": 0.95,
+    "maximumProviderFailures": 0,
+    "met": false,
+    "label": "Experimental: declared acceptance policy not met"
+  }
+}

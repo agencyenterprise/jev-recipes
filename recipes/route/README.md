@@ -84,18 +84,23 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 50 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%, adversarial cases 100%).
+Measured on 40 golden cases against `jev-1.13.0`: **98% accurate** overall (adversarial cases 90%).
 
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 12%                | 100%                      |
-| 0.6             | 12%                | 100%                      |
-| 0.7             | 14%                | 100%                      |
-| 0.8             | 18%                | 100%                      |
-| 0.9             | 20%                | 100%                      |
-| 0.95            | 24%                | 100%                      |
+Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `47f2015674f4ab7c9498d3ccfbd072384bc90f6c451edadcfe62cf24de2d402d`.
 
-The lowest threshold reaching 95% accuracy on ready results is 0.5.
+39/40 cases correct; 24 ready, 16 review, 0 failed. Accuracy among ready cases: 100%.
+
+Latency: p50 108.27 ms, p95 139.26 ms. Usage: 15985 input tokens and 1658 output tokens across 40 logical requests.
+
+Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 87% to 100%.
+
+**Measured on these synthetic cases.**
+
+Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
 
 Run `npm run eval -- route` to save new results and update this guide. The full report, including misses, is in [evals/results/route.json](../../evals/results/route.json). Accuracy on your own data may differ.
 

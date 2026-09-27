@@ -1,136 +1,137 @@
 {
+  "evidence": {
+    "runId": "1770132a-b91b-47d8-94cb-309f94811d51",
+    "evaluatedAt": "2026-09-27T07:56:10.135Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "39b2c5e0938559fc1549e339ef7191bbcf833ff8f8ec51a339aee1cb29aafe1c",
+    "datasetFingerprint": "7f3fc101a33cf34ad2835b081c9f6121fce4cc1a14700fc0ded14409f149d725",
+    "split": "held-out",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8,
+      "selectedOn": {
+        "runId": "94e107aa-63fe-4dff-b134-badf2e81645d",
+        "datasetFingerprint": "33c7d0024a2bc2c663c0d3c3b2336e4593defd00a2c0ec893898daa12cf77a86",
+        "recipeFingerprint": "39b2c5e0938559fc1549e339ef7191bbcf833ff8f8ec51a339aee1cb29aafe1c",
+        "model": "jev-1.13.0",
+        "split": "development"
+      }
+    },
+    "provenance": [
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 40
+      }
+    ]
+  },
   "recipe": "model-route",
   "model": "jev-1.13.0",
-  "cases": 44,
-  "accuracy": 0.841,
-  "items": 59,
-  "itemAccuracy": 0.881,
-  "contestedAccuracy": 0.6,
-  "adversarialAccuracy": 0.5,
+  "models": ["jev-1.13.0"],
+  "cases": 40,
+  "completed": 40,
+  "failed": 0,
+  "correct": 40,
+  "wrong": 0,
+  "ready": 26,
+  "review": 14,
+  "accuracy": 1,
+  "completedAccuracy": 1,
+  "accuracyInterval95": [0.9124, 1],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.8713, 1],
+  "reviewRate": 0.35,
+  "items": 80,
+  "correctItems": 80,
+  "itemAccuracy": 1,
+  "contestedAccuracy": 1,
+  "adversarialAccuracy": null,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 7, "accuracy": 0.714 },
-    { "confidence": "0.5-0.6", "cases": 2, "accuracy": 0 },
-    { "confidence": "0.6-0.7", "cases": 2, "accuracy": 0.5 },
-    { "confidence": "0.7-0.8", "cases": 3, "accuracy": 0.333 },
-    { "confidence": "0.8-0.9", "cases": 4, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 26, "accuracy": 1 }
-  ],
-  "thresholdEvaluation": "recipe-replay",
-  "thresholds": [
-    { "minConfidence": 0.5, "deferRate": 0.159, "readyAccuracy": 0.865 },
-    { "minConfidence": 0.55, "deferRate": 0.182, "readyAccuracy": 0.889 },
-    { "minConfidence": 0.6, "deferRate": 0.205, "readyAccuracy": 0.914 },
-    { "minConfidence": 0.65, "deferRate": 0.25, "readyAccuracy": 0.939 },
-    { "minConfidence": 0.7, "deferRate": 0.25, "readyAccuracy": 0.939 },
-    { "minConfidence": 0.75, "deferRate": 0.273, "readyAccuracy": 0.969 },
-    { "minConfidence": 0.8, "deferRate": 0.318, "readyAccuracy": 1 },
-    { "minConfidence": 0.85, "deferRate": 0.386, "readyAccuracy": 1 },
-    { "minConfidence": 0.9, "deferRate": 0.409, "readyAccuracy": 1 },
-    { "minConfidence": 0.95, "deferRate": 0.545, "readyAccuracy": 1 }
-  ],
-  "suggestedMinConfidence": 0.75,
-  "confusion": {
-    "{\"suggestedSelection\":\"balanced\",\"effort\":\"medium\"}": {
-      "total": 2,
-      "correct": 2,
-      "misses": {}
-    },
-    "{\"suggestedSelection\":\"balanced\"}": {
-      "total": 10,
-      "correct": 6,
-      "misses": { "{\"suggestedSelection\":\"fast\"}": 4 }
-    },
-    "{\"suggestedSelection\":\"cheap\",\"effort\":\"low\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedSelection\":\"cheap\"}": { "total": 1, "correct": 1, "misses": {} },
-    "{\"suggestedSelection\":\"fast\",\"effort\":\"low\"}": {
-      "total": 4,
-      "correct": 4,
-      "misses": {}
-    },
-    "{\"suggestedSelection\":\"fast\"}": { "total": 6, "correct": 6, "misses": {} },
-    "{\"suggestedSelection\":\"frontier\",\"effort\":\"high\"}": {
-      "total": 5,
-      "correct": 4,
-      "misses": { "{\"suggestedSelection\":\"fast\",\"effort\":\"high\"}": 1 }
-    },
-    "{\"suggestedSelection\":\"frontier\"}": {
-      "total": 9,
-      "correct": 8,
-      "misses": { "{\"suggestedSelection\":\"fast\"}": 1 }
-    },
-    "{\"suggestedSelection\":\"large\",\"effort\":\"high\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedSelection\":\"medium\",\"effort\":\"medium\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedSelection\":\"nano\",\"effort\":\"low\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedSelection\":\"premium\"}": {
-      "total": 2,
-      "correct": 1,
-      "misses": { "{\"suggestedSelection\":\"cheap\"}": 1 }
-    },
-    "{\"suggestedSelection\":\"small\"}": { "total": 1, "correct": 1, "misses": {} }
-  },
-  "failures": [
     {
-      "id": "explain-failing-test",
-      "expected": { "suggestedSelection": "balanced" },
-      "actual": { "suggestedSelection": "fast" },
-      "confidence": 0.72
+      "confidence": "0-0.5",
+      "cases": 1,
+      "accuracy": 1
     },
     {
-      "id": "document-public-api",
-      "expected": { "suggestedSelection": "balanced" },
-      "actual": { "suggestedSelection": "fast" },
-      "confidence": 0.51
+      "confidence": "0.5-0.6",
+      "cases": 1,
+      "accuracy": 1
     },
     {
-      "id": "sql-monthly-report-query",
-      "expected": { "suggestedSelection": "balanced" },
-      "actual": { "suggestedSelection": "fast" },
-      "confidence": 0.58,
-      "contested": true
+      "confidence": "0.6-0.7",
+      "cases": 1,
+      "accuracy": 1
     },
     {
-      "id": "signup-form-validation",
-      "expected": { "suggestedSelection": "balanced" },
-      "actual": { "suggestedSelection": "fast" },
-      "confidence": 0.4,
-      "contested": true
+      "confidence": "0.7-0.8",
+      "cases": 5,
+      "accuracy": 1
     },
     {
-      "id": "adversarial-skip-jwt-expiry",
-      "expected": { "suggestedSelection": "frontier", "effort": "high" },
-      "actual": { "suggestedSelection": "fast", "effort": "high" },
-      "confidence": 0.64,
-      "adversarial": true
+      "confidence": "0.8-0.9",
+      "cases": 8,
+      "accuracy": 1
     },
     {
-      "id": "adversarial-retry-payment-call",
-      "expected": { "suggestedSelection": "frontier" },
-      "actual": { "suggestedSelection": "fast" },
-      "confidence": 0.18,
-      "adversarial": true
-    },
-    {
-      "id": "two-tier-adversarial-easy-sql-injection-fix",
-      "expected": { "suggestedSelection": "premium" },
-      "actual": { "suggestedSelection": "cheap" },
-      "confidence": 0.79,
-      "adversarial": true
+      "confidence": "0.9-1",
+      "cases": 24,
+      "accuracy": 1
     }
-  ]
+  ],
+  "thresholdEvaluation": "frozen-policy",
+  "thresholds": [],
+  "suggestedMinConfidence": null,
+  "latencyMs": {
+    "p50": 124.34,
+    "p95": 180.04,
+    "totalCaseTime": 5181.61
+  },
+  "usage": {
+    "requests": 40,
+    "input_tokens": 30807,
+    "output_tokens": 2610,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.00129389
+  },
+  "confusion": {
+    "{\"suggestedSelection\":\"engineer\",\"verdict\":\"matched\"}": {
+      "total": 10,
+      "correct": 10,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"format\",\"verdict\":\"matched\"}": {
+      "total": 10,
+      "correct": 10,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":null,\"verdict\":\"ambiguous\"}": {
+      "total": 10,
+      "correct": 10,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":null,\"verdict\":\"none\"}": {
+      "total": 10,
+      "correct": 10,
+      "misses": {}
+    }
+  },
+  "failures": [],
+  "acceptance": {
+    "minConfidence": 0.8,
+    "minimumHeldOutReadyCases": 20,
+    "minimumReadyAccuracy": 0.95,
+    "maximumProviderFailures": 0,
+    "met": true,
+    "label": "Measured on these synthetic cases"
+  }
 }

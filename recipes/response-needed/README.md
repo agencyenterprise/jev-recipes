@@ -90,3 +90,29 @@ Assesses conversational need. Channel-specific response obligations and customer
 ## Example input
 
 [demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo response-needed` shows the result offline. The fixture is an illustration, not an accuracy measurement. `npx jev-recipes describe response-needed` shows the input and result schemas.
+
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 40 golden cases against `jev-1.13.0`: **100% accurate** overall (adversarial cases 100%).
+
+Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `accce497113821fcd870e3ebd3806c7cbe214d13e3a6ca96544043ab52b168b6`.
+
+40/40 cases correct; 40 ready, 0 review, 0 failed. Accuracy among ready cases: 100%.
+
+Latency: p50 104.27 ms, p95 163.15 ms. Usage: 17784 input tokens and 1740 output tokens across 40 logical requests.
+
+Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 91% to 100%.
+
+**Measured on these synthetic cases.**
+
+Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+
+Run `npm run eval -- response-needed` to save new results and update this guide. The full report, including misses, is in [evals/results/response-needed.json](../../evals/results/response-needed.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
