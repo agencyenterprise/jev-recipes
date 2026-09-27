@@ -94,6 +94,11 @@ for (const name of ['index.html', 'app.js', 'style.css'])
 await cp(join(root, 'dist/catalog/search.js'), join(output, 'search.js'));
 await writeFile(join(output, 'catalog.json'), JSON.stringify({ recipes: entries, collections }));
 await mkdir(dirname(join(output, 'docs/evaluation.md')), { recursive: true });
-for (const name of ['evaluation.md', 'integrations.md', 'gateway-validation.md'])
+for (const name of [
+  'evaluation.md',
+  'integrations.md',
+  'gateway-validation.md',
+  'coding-assistants.md',
+])
   await cp(join(root, 'docs', name), join(output, 'docs', name));
 console.log(`Built static catalog with ${entries.length} recipes. No model calls were made.`);

@@ -1,0 +1,38 @@
+name: Share an integration
+description: Show a public application using jev-recipes, or explain where integration got stuck.
+title: 'Integration: '
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Public app or repository
+      description: Link to something others can inspect. Do not include private access tokens.
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: What does jev-recipes decide?
+      description: Name the recipes and explain what your application does with ready, review, and failed results.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Package version and provider
+      placeholder: 'For example: jev-recipes 0.8.2, Vercel Gateway'
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Implementation evidence and friction
+      description: Link to imports or a dependency manifest if public. Explain anything that was difficult. Do not paste API keys or private inputs.
+  - type: dropdown
+    id: relationship
+    attributes:
+      label: Your relationship to jev-recipes
+      options:
+        - Package maintainer or contributor
+        - Independent developer using the package
+        - Sharing someone else's project
+    validations:
+      required: true

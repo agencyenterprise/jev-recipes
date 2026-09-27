@@ -133,6 +133,22 @@ h1 {
   font-size: 13px;
   line-height: 1.5;
 }
+.starting-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 28px;
+  margin: 0 48px 32px;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+.starting-points h2 {
+  font-size: 22px;
+}
+.starting-points p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
 .workspace {
   display: grid;
   grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.25fr);
@@ -462,6 +478,9 @@ footer {
   }
   .decision-example .example-message {
     font-size: 20px;
+  }
+  .starting-points {
+    margin-inline: 24px;
   }
   .workspace {
     margin: 0 24px;
