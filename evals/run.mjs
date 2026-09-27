@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { parseArgs } from 'node:util';
 import {
+  caseConfidence,
   comparableDecision,
   deepEqual,
   listGoldenRecipeIds,
@@ -63,7 +64,7 @@ async function evaluateRecipe(id) {
         return {
           ...base,
           actual,
-          confidence: result.confidence,
+          confidence: caseConfidence(result, Object.keys(goldenCase.expected)),
           status: result.status,
           model: result.model,
           correct: deepEqual(comparableDecision(actual), comparableDecision(goldenCase.expected)),
@@ -84,6 +85,7 @@ function buildReport(id, rows) {
     model,
     cases: rows.length,
     accuracy: accuracyOf(rows),
+    ...itemAccuracyOf(rows),
     contestedAccuracy: accuracyOf(rows.filter((row) => row.contested)),
     adversarialAccuracy: accuracyOf(rows.filter((row) => row.adversarial)),
     calibration: calibrationOf(rows),
@@ -101,6 +103,26 @@ function buildReport(id, rows) {
         ...(adversarial ? { adversarial } : {}),
       })),
   };
+}
+
+/**
+ * Batch recipes name several result paths per case. A case only counts as
+ * correct when every path matches, which understates how often a single item
+ * is right, so the per-path figure is reported too when cases carry more than
+ * one path.
+ */
+function itemAccuracyOf(rows) {
+  const paths = rows.flatMap((row) =>
+    Object.entries(row.expected).map(([path, expected]) => ({
+      expected,
+      actual: row.error === undefined ? row.actual[path] : undefined,
+    })),
+  );
+  if (paths.length <= rows.length) return {};
+  const correct = paths.filter((entry) =>
+    deepEqual(comparableDecision(entry.actual), comparableDecision(entry.expected)),
+  ).length;
+  return { items: paths.length, itemAccuracy: roundedTo(3, correct / paths.length) };
 }
 
 function accuracyOf(rows) {
@@ -157,6 +179,9 @@ function confusionOf(rows) {
 function printReport(report) {
   console.log(
     `${report.recipe}: accuracy ${format(report.accuracy)} over ${report.cases} cases ` +
+      (report.itemAccuracy === undefined
+        ? ''
+        : `(${format(report.itemAccuracy)} over ${report.items} items) `) +
       `(contested ${format(report.contestedAccuracy)}, adversarial ${format(report.adversarialAccuracy)}), ` +
       `suggested minConfidence ${report.suggestedMinConfidence ?? 'none reaches the target'}.`,
   );

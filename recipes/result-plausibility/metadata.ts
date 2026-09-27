@@ -6,7 +6,7 @@ export const metadata = {
   description:
     'Is result a plausible, internally consistent answer to request rather than an error, placeholder, empty, or unrelated output dressed as data?',
   category: 'workflow',
-  tags: ['agent', 'tool-result', 'plausibility', 'validation', 'quality', 'gate'],
+  tags: ['agent', 'tool-result', 'plausibility', 'validation', 'quality', 'gate', 'harness'],
   useWhen:
     'You need a yes/no check on a tool or subagent output before an agent trusts it, stores it, or builds the next step on it.',
   related: [

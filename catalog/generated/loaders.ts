@@ -243,6 +243,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.comparableFit(recipe.comparableFitInputSchema.parse(input), options),
     ),
+  'completion-gate': () =>
+    import('../../recipes/completion-gate/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.completionGate(recipe.completionGateInputSchema.parse(input), options),
+    ),
   'confirmation-match': () =>
     import('../../recipes/confirmation-match/index.js').then(
       (recipe) => (input, options) =>
@@ -275,6 +280,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
           recipe.contentFreshnessSignalInputSchema.parse(input),
           options,
         ),
+    ),
+  'context-prune': () =>
+    import('../../recipes/context-prune/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.contextPrune(recipe.contextPruneInputSchema.parse(input), options),
     ),
   'context-role': () =>
     import('../../recipes/context-role/index.js').then(
@@ -315,6 +325,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/delegation-fit/index.js').then(
       (recipe) => (input, options) =>
         recipe.delegationFit(recipe.delegationFitInputSchema.parse(input), options),
+    ),
+  'diff-hazards': () =>
+    import('../../recipes/diff-hazards/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.diffHazards(recipe.diffHazardsInputSchema.parse(input), options),
     ),
   'disclosure-facets': () =>
     import('../../recipes/disclosure-facets/index.js').then(
@@ -699,6 +714,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.methodsFacets(recipe.methodsFacetsInputSchema.parse(input), options),
     ),
+  'model-route': () =>
+    import('../../recipes/model-route/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.modelRoute(recipe.modelRouteInputSchema.parse(input), options),
+    ),
   'modulation-moment': () =>
     import('../../recipes/modulation-moment/index.js').then(
       (recipe) => (input, options) =>
@@ -1031,6 +1051,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/route/index.js').then(
       (recipe) => (input, options) => recipe.route(recipe.routeInputSchema.parse(input), options),
     ),
+  'route-many': () =>
+    import('../../recipes/route-many/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.routeMany(recipe.routeManyInputSchema.parse(input), options),
+    ),
   'rule-compliance': () =>
     import('../../recipes/rule-compliance/index.js').then(
       (recipe) => (input, options) =>
@@ -1166,6 +1191,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.toneCheck(recipe.toneCheckInputSchema.parse(input), options),
     ),
+  'tool-call-gate': () =>
+    import('../../recipes/tool-call-gate/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.toolCallGate(recipe.toolCallGateInputSchema.parse(input), options),
+    ),
   'tool-compare': () =>
     import('../../recipes/tool-compare/index.js').then(
       (recipe) => (input, options) =>
@@ -1209,6 +1239,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
   verify: () =>
     import('../../recipes/verify/index.js').then(
       (recipe) => (input, options) => recipe.verify(recipe.verifyInputSchema.parse(input), options),
+    ),
+  'wake-gate': () =>
+    import('../../recipes/wake-gate/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.wakeGate(recipe.wakeGateInputSchema.parse(input), options),
     ),
   'workaround-fit': () =>
     import('../../recipes/workaround-fit/index.js').then(

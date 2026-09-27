@@ -87,6 +87,27 @@ See [shared options and behavior](../README.md#shared-options-and-behavior) for 
 
 The result includes model and token usage. Inspect the outcome as well as its review status.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 50 golden cases against `jev-1.13.0`: **96% accurate** overall (contested cases 75%, adversarial cases 100%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 10%                | 100%                      |
+| 0.6             | 10%                | 100%                      |
+| 0.7             | 10%                | 100%                      |
+| 0.8             | 12%                | 100%                      |
+| 0.9             | 24%                | 100%                      |
+| 0.95            | 28%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Rerun with `npm run eval -- answerability`; the full report, including misses, is in [evals/results/answerability.json](../../evals/results/answerability.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Reuse and calls
 
 Uses the shared choice helper. This folder owns the evidence-sufficiency criteria and the can-answer decision. A live invocation makes one logical Jev request; SDK retries can add transport attempts.

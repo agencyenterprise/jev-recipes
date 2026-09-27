@@ -10,7 +10,7 @@ export function parseChoiceAnswer<T extends string>(answer: unknown, choices: re
       confidence: probability,
       probabilities: z.record(labels, probability),
     })
-    .refine(hasCompleteProbabilityMass, 'Jev probabilities must sum to 1.')
+    .refine(hasCompleteProbabilityMass, { error: probabilityMassError })
     .refine(
       hasMostLikelyChoice,
       'Jev selected a choice that does not have the highest probability.',
@@ -28,12 +28,17 @@ export function parseYesProbability(answer: unknown): number {
   return yesNoAnswerSchema.parse(answer).noul;
 }
 
+function totalProbability(answer: { probabilities: Record<string, number> }): number {
+  return Object.values(answer.probabilities).reduce((total, value) => total + value, 0);
+}
+
 function hasCompleteProbabilityMass(answer: { probabilities: Record<string, number> }): boolean {
-  const totalProbability = Object.values(answer.probabilities).reduce(
-    (total, value) => total + value,
-    0,
-  );
-  return Math.abs(totalProbability - 1) <= 0.01;
+  return Math.abs(totalProbability(answer) - 1) <= 0.01;
+}
+
+function probabilityMassError(issue: { input: unknown }): string {
+  const answer = issue.input as { probabilities: Record<string, number> };
+  return `Jev probabilities must sum to 1; received ${totalProbability(answer).toFixed(3)} across ${JSON.stringify(answer.probabilities)}.`;
 }
 
 function hasMostLikelyChoice(answer: {
@@ -57,7 +62,7 @@ export function parseScoreAnswer(answer: unknown, levelCount: number) {
       confidence: probability,
       probabilities: z.record(z.enum(levels), probability),
     })
-    .refine(hasCompleteProbabilityMass, 'Jev probabilities must sum to 1.')
+    .refine(hasCompleteProbabilityMass, { error: probabilityMassError })
     .refine(
       (parsed) => Object.keys(parsed.probabilities).length === levelCount,
       'Jev must report a probability for every rubric level.',

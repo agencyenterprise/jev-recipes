@@ -6,7 +6,7 @@ export const metadata = {
   description:
     'Which side effects does the described action involve: writing or modifying data, sending a message or notification, spending or moving money, deleting something, or calling an external service?',
   category: 'workflow',
-  tags: ['agent', 'safety', 'action', 'side-effects', 'approval', 'labels'],
+  tags: ['agent', 'safety', 'action', 'side-effects', 'approval', 'labels', 'harness'],
   useWhen:
     'An agent is about to execute a step and your approval policy differs by effect, so you want to gate auto-execution per side effect rather than with one blanket risk score.',
   related: [

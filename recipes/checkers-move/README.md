@@ -158,6 +158,27 @@ The instructions ask Jev to compare immediate wins, material, kings, exposure to
 
 The board is translated into labeled pieces, such as `c3: your man`, and each move becomes a description. Piece counts and promotion labels are prepared in code. This follows TypeSafe's guidance to [perform counting in code and give Jev semantic descriptions](https://docs.typesafe.ai/model-jaggedness/jev-1.13). It is a design choice, not evidence of playing strength.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 31 golden cases against `jev-1.13.0`: **55% accurate** overall (contested cases 20%, adversarial cases 60%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 55%                | 100%                      |
+| 0.6             | 71%                | 100%                      |
+| 0.7             | 87%                | 100%                      |
+| 0.8             | 100%               | n/a                       |
+| 0.9             | 100%               | n/a                       |
+| 0.95            | 100%               | n/a                       |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Rerun with `npm run eval -- checkers-move`; the full report, including misses, is in [evals/results/checkers-move.json](../../evals/results/checkers-move.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Reuse and limits
 
 - Uses the shared selection helper directly for candidate mapping and review handling. It does not call `choose-action` or `take-turn` and adds no runtime dependencies.

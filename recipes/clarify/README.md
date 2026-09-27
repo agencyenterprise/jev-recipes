@@ -106,6 +106,27 @@ See [shared options and behavior](../README.md#shared-options-and-behavior) for 
 
 The result includes model and token usage. Inspect the outcome as well as its review status.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 50 golden cases against `jev-1.13.0`: **90% accurate** overall (contested cases 88%, adversarial cases 100%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 14%                | 93%                       |
+| 0.6             | 30%                | 97%                       |
+| 0.7             | 36%                | 97%                       |
+| 0.8             | 40%                | 100%                      |
+| 0.9             | 46%                | 100%                      |
+| 0.95            | 56%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.55.
+
+Rerun with `npm run eval -- clarify`; the full report, including misses, is in [evals/results/clarify.json](../../evals/results/clarify.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Reuse and calls
 
 Uses the shared item-check helper. This folder owns the requirement criteria, follow-up ID lists, and can-proceed decision. All requirement questions are sent in one request. A live invocation makes one logical Jev request; SDK retries can add transport attempts.

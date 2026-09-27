@@ -212,6 +212,10 @@
       "types": "./dist/recipes/comparable-fit/index.d.ts",
       "import": "./dist/recipes/comparable-fit/index.js"
     },
+    "./completion-gate": {
+      "types": "./dist/recipes/completion-gate/index.d.ts",
+      "import": "./dist/recipes/completion-gate/index.js"
+    },
     "./confirmation-match": {
       "types": "./dist/recipes/confirmation-match/index.d.ts",
       "import": "./dist/recipes/confirmation-match/index.js"
@@ -235,6 +239,10 @@
     "./content-freshness-signal": {
       "types": "./dist/recipes/content-freshness-signal/index.d.ts",
       "import": "./dist/recipes/content-freshness-signal/index.js"
+    },
+    "./context-prune": {
+      "types": "./dist/recipes/context-prune/index.d.ts",
+      "import": "./dist/recipes/context-prune/index.js"
     },
     "./context-role": {
       "types": "./dist/recipes/context-role/index.d.ts",
@@ -267,6 +275,10 @@
     "./delegation-fit": {
       "types": "./dist/recipes/delegation-fit/index.d.ts",
       "import": "./dist/recipes/delegation-fit/index.js"
+    },
+    "./diff-hazards": {
+      "types": "./dist/recipes/diff-hazards/index.d.ts",
+      "import": "./dist/recipes/diff-hazards/index.js"
     },
     "./disclosure-facets": {
       "types": "./dist/recipes/disclosure-facets/index.d.ts",
@@ -560,6 +572,10 @@
       "types": "./dist/recipes/methods-facets/index.d.ts",
       "import": "./dist/recipes/methods-facets/index.js"
     },
+    "./model-route": {
+      "types": "./dist/recipes/model-route/index.d.ts",
+      "import": "./dist/recipes/model-route/index.js"
+    },
     "./modulation-moment": {
       "types": "./dist/recipes/modulation-moment/index.d.ts",
       "import": "./dist/recipes/modulation-moment/index.js"
@@ -820,6 +836,10 @@
       "types": "./dist/recipes/route/index.d.ts",
       "import": "./dist/recipes/route/index.js"
     },
+    "./route-many": {
+      "types": "./dist/recipes/route-many/index.d.ts",
+      "import": "./dist/recipes/route-many/index.js"
+    },
     "./rule-compliance": {
       "types": "./dist/recipes/rule-compliance/index.d.ts",
       "import": "./dist/recipes/rule-compliance/index.js"
@@ -928,6 +948,10 @@
       "types": "./dist/recipes/tone-check/index.d.ts",
       "import": "./dist/recipes/tone-check/index.js"
     },
+    "./tool-call-gate": {
+      "types": "./dist/recipes/tool-call-gate/index.d.ts",
+      "import": "./dist/recipes/tool-call-gate/index.js"
+    },
     "./tool-compare": {
       "types": "./dist/recipes/tool-compare/index.d.ts",
       "import": "./dist/recipes/tool-compare/index.js"
@@ -963,6 +987,10 @@
     "./verify": {
       "types": "./dist/recipes/verify/index.d.ts",
       "import": "./dist/recipes/verify/index.js"
+    },
+    "./wake-gate": {
+      "types": "./dist/recipes/wake-gate/index.d.ts",
+      "import": "./dist/recipes/wake-gate/index.js"
     },
     "./workaround-fit": {
       "types": "./dist/recipes/workaround-fit/index.d.ts",

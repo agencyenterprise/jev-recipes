@@ -1,0 +1,212 @@
+{
+  "recipe": "diff-hazards",
+  "model": "jev-1.13.0",
+  "cases": 43,
+  "accuracy": 0.953,
+  "contestedAccuracy": 1,
+  "adversarialAccuracy": 0.8,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 3,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 2,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 4,
+      "accuracy": 0.75
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 8,
+      "accuracy": 0.875
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 26,
+      "accuracy": 1
+    }
+  ],
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0,
+      "readyAccuracy": 0.953
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0,
+      "readyAccuracy": 0.953
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.07,
+      "readyAccuracy": 0.95
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.116,
+      "readyAccuracy": 0.947
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.116,
+      "readyAccuracy": 0.947
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.163,
+      "readyAccuracy": 0.972
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.209,
+      "readyAccuracy": 0.971
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.209,
+      "readyAccuracy": 0.971
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.395,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.605,
+      "readyAccuracy": 1
+    }
+  ],
+  "suggestedMinConfidence": 0.5,
+  "confusion": {
+    "{\"detected\":[\"debugLeftover\",\"dependencyChange\"]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"detected\":[\"debugLeftover\",\"testsWeakened\"]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"detected\":[\"debugLeftover\"]}": {
+      "total": 4,
+      "correct": 4,
+      "misses": {}
+    },
+    "{\"detected\":[\"dependencyChange\"]}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"detected\":[\"destructiveCommand\",\"debugLeftover\",\"testsWeakened\"]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"detected\":[\"destructiveCommand\",\"dependencyChange\"]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"detected\":[\"destructiveCommand\",\"testsWeakened\"]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"detected\":[\"destructiveCommand\"]}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"detected\":[\"secretLeak\",\"debugLeftover\",\"dependencyChange\"]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"detected\":[\"secretLeak\",\"debugLeftover\"]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"detected\":[\"secretLeak\",\"dependencyChange\"]}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"detected\":[\"secretLeak\",\"destructiveCommand\",\"debugLeftover\",\"testsWeakened\",\"dependencyChange\"]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"detected\":[\"secretLeak\",\"destructiveCommand\"]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"detected\":[\"secretLeak\",\"testsWeakened\"]}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"detected\":[\"secretLeak\",\"debugLeftover\",\"testsWeakened\"]}": 1
+      }
+    },
+    "{\"detected\":[\"secretLeak\"]}": {
+      "total": 3,
+      "correct": 2,
+      "misses": {
+        "{\"detected\":[\"secretLeak\",\"debugLeftover\"]}": 1
+      }
+    },
+    "{\"detected\":[\"testsWeakened\",\"dependencyChange\"]}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"detected\":[\"testsWeakened\"]}": {
+      "total": 5,
+      "correct": 5,
+      "misses": {}
+    },
+    "{\"detected\":[]}": {
+      "total": 12,
+      "correct": 12,
+      "misses": {}
+    }
+  },
+  "failures": [
+    {
+      "id": "secret-ts-slack-token-with-disclaimer",
+      "expected": {
+        "detected": ["secretLeak"]
+      },
+      "actual": {
+        "detected": ["secretLeak", "debugLeftover"]
+      },
+      "confidence": 0.73,
+      "adversarial": true
+    },
+    {
+      "id": "multi-tests-secret-in-test",
+      "expected": {
+        "detected": ["secretLeak", "testsWeakened"]
+      },
+      "actual": {
+        "detected": ["secretLeak", "debugLeftover", "testsWeakened"]
+      },
+      "confidence": 0.87
+    }
+  ]
+}

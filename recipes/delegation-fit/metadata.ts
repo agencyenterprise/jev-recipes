@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Check delegation fit',
   description: 'Does subtask fall within the capabilities described for the delegate?',
   category: 'workflow',
-  tags: ['agent', 'delegation', 'capabilities', 'routing', 'multi-agent'],
+  tags: ['agent', 'delegation', 'capabilities', 'routing', 'multi-agent', 'harness'],
   useWhen:
     'You need a yes/no check before handing a subtask to a specific sub-agent or worker whose tools, access, or permissions are described in text.',
   related: [

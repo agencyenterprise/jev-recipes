@@ -74,6 +74,27 @@ See [shared options and behavior](../README.md#shared-options-and-behavior) for 
 
 A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `review`. Treat a review result as unknown and fall back to your safe default, such as pausing the agent or asking the user to confirm the step.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 44 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 83%, adversarial cases 100%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 0%                 | 98%                       |
+| 0.6             | 18%                | 97%                       |
+| 0.7             | 84%                | 86%                       |
+| 0.8             | 98%                | 100%                      |
+| 0.9             | 100%               | n/a                       |
+| 0.95            | 100%               | n/a                       |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Rerun with `npm run eval -- goal-drift`; the full report, including misses, is in [evals/results/goal-drift.json](../../evals/results/goal-drift.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Reuse and calls
 
 Uses the shared gate helper, a single yes/no question. This folder owns the question wording, the outcome descriptions, and the review policy. A live invocation makes one logical Jev request.

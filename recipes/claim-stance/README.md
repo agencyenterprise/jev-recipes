@@ -106,6 +106,27 @@ This labels how a response treats a supplied proposition. Combine it with separa
 
 Uses the shared choice helper and makes one logical Jev request. It does not call another recipe or perform application actions.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 53 golden cases against `jev-1.13.0`: **94% accurate** overall (contested cases 100%, adversarial cases 67%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 6%                 | 98%                       |
+| 0.6             | 8%                 | 98%                       |
+| 0.7             | 9%                 | 100%                      |
+| 0.8             | 15%                | 100%                      |
+| 0.9             | 23%                | 100%                      |
+| 0.95            | 26%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Rerun with `npm run eval -- claim-stance`; the full report, including misses, is in [evals/results/claim-stance.json](../../evals/results/claim-stance.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Limits
 
 - Labels only the expressed stance toward one supplied claim. It does not infer beliefs, intention, deception, or alignment from text.

@@ -1,0 +1,45 @@
+{
+  "input": {
+    "request": "Rename the variable `usr` to `user` in src/session.ts and fix any references.",
+    "models": [
+      {
+        "id": "fast",
+        "text": "Small, cheap, fast model. Good for edits with one obvious approach, reformatting, short answers, and simple lookups. Weak at multi-step reasoning and subtle bugs."
+      },
+      {
+        "id": "balanced",
+        "text": "Mid-size model at moderate cost. Handles multi-file changes, explanations, and routine debugging. Occasionally misses subtle design issues."
+      },
+      {
+        "id": "frontier",
+        "text": "Largest, slowest, most expensive model. Best for architecture, security-sensitive code, ambiguous requirements, and hard debugging."
+      }
+    ],
+    "context": "Coding agent inside a small TypeScript repository with tests.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "candidate_0",
+        "confidence": 0.92,
+        "probabilities": {
+          "candidate_0": 0.92,
+          "candidate_1": 0.05,
+          "candidate_2": 0.01,
+          "none": 0.01,
+          "ambiguous": 0.01
+        }
+      },
+      "effort": {
+        "type": "score",
+        "score": 0.1,
+        "confidence": 0.9,
+        "probabilities": { "0": 0.9, "1": 0.1, "2": 0 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

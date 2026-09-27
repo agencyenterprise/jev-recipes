@@ -69,6 +69,27 @@ See [shared options and behavior](../README.md#shared-options-and-behavior) for 
 
 A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `review`. A sensible default for review is to treat the text as untrusted.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 44 golden cases against `jev-1.13.0`: **96% accurate** overall (contested cases 60%, adversarial cases 86%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 0%                 | 96%                       |
+| 0.6             | 5%                 | 100%                      |
+| 0.7             | 5%                 | 100%                      |
+| 0.8             | 5%                 | 100%                      |
+| 0.9             | 9%                 | 100%                      |
+| 0.95            | 16%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Rerun with `npm run eval -- injection-signal`; the full report, including misses, is in [evals/results/injection-signal.json](../../evals/results/injection-signal.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Reuse and calls
 
 Uses the shared gate helper, a single yes/no question. The recipe's own instruction tells Jev to treat the supplied text as data, so the text being screened cannot redirect the screening. This folder owns the question wording, the outcome descriptions, and the review policy. A live invocation makes one logical Jev request.

@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Check proposed action scope',
   description: 'Is proposedAction within the work requested in request and constraints?',
   category: 'workflow',
-  tags: ['workflow', 'action', 'scope'],
+  tags: ['workflow', 'action', 'scope', 'harness'],
   useWhen:
     'You need to check whether a proposed action stays within the requested work and constraints.',
   related: [

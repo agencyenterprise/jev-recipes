@@ -117,6 +117,100 @@ test('psychology documentation follows recipe tags without changing category mem
   }
 });
 
+test('measured accuracy sections render from eval snapshots and demand markers when one exists', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'jev-accuracy-docs-'));
+  try {
+    await mkdir(join(root, 'recipes/measured'), { recursive: true });
+    await mkdir(join(root, 'recipes/unmeasured'), { recursive: true });
+    await mkdir(join(root, 'evals/results'), { recursive: true });
+    await writeFile(
+      join(root, 'README.md'),
+      '<!-- BEGIN GENERATED: summary -->\n<!-- END GENERATED: summary -->',
+    );
+    await writeFile(
+      join(root, 'recipes/README.md'),
+      '<!-- BEGIN GENERATED: catalog -->\n<!-- END GENERATED: catalog -->',
+    );
+    const markers =
+      '<!-- BEGIN GENERATED: usage -->\n<!-- END GENERATED: usage -->\n' +
+      '<!-- BEGIN GENERATED: input -->\n<!-- END GENERATED: input -->\n' +
+      '<!-- BEGIN GENERATED: accuracy -->\n<!-- END GENERATED: accuracy -->';
+    await writeFile(join(root, 'recipes/measured/README.md'), markers);
+    await writeFile(join(root, 'recipes/unmeasured/README.md'), markers);
+    await writeFile(
+      join(root, 'evals/results/measured.json'),
+      JSON.stringify({
+        recipe: 'measured',
+        model: 'jev-test',
+        cases: 40,
+        accuracy: 0.925,
+        contestedAccuracy: 0.6,
+        adversarialAccuracy: null,
+        thresholds: [0.5, 0.6, 0.7, 0.8, 0.9, 0.95].map((minConfidence) => ({
+          minConfidence,
+          deferRate: minConfidence >= 0.8 ? 0.25 : 0.1,
+          readyAccuracy: minConfidence >= 0.8 ? 0.97 : 0.93,
+        })),
+        suggestedMinConfidence: 0.8,
+        items: 200,
+        itemAccuracy: 0.985,
+      }),
+    );
+    const record = (id) => ({
+      id,
+      functionName: id,
+      metadata: {
+        category: 'support',
+        tags: [],
+        description: 'An example decision.',
+        useWhen: 'You need an example.',
+        related: [],
+      },
+      fixture: { input: { text: 'Example input.' } },
+      result: {},
+      inputSchema: { type: 'object', properties: { text: { type: 'string' } } },
+    });
+    const files = await renderDocs(root, [record('measured'), record('unmeasured')]);
+    const measured = files.get('recipes/measured/README.md');
+    assert.match(measured, /40 golden cases against `jev-test`: \*\*93% accurate\*\*/);
+    assert.match(measured, /contested cases 60%/);
+    assert.match(measured, /Across the 200 individual items, \*\*99%\*\*/);
+    assert.ok(!measured.includes('adversarial'));
+    assert.match(measured, /\| 0\.8 \| 25% \| 97% \|/);
+    assert.match(measured, /lowest threshold reaching 95% accuracy on ready results is 0\.8/);
+    assert.match(files.get('recipes/unmeasured/README.md'), /No golden dataset has been run/);
+
+    await writeFile(
+      join(root, 'evals/results/measured.json'),
+      JSON.stringify({
+        recipe: 'measured',
+        model: 'jev-test',
+        cases: 10,
+        accuracy: 0.8,
+        contestedAccuracy: null,
+        adversarialAccuracy: null,
+        thresholds: [{ minConfidence: 0.8, deferRate: 1, readyAccuracy: null }],
+        suggestedMinConfidence: null,
+      }),
+    );
+    const uncalibrated = (await renderDocs(root, [record('measured')])).get(
+      'recipes/measured/README.md',
+    );
+    assert.match(uncalibrated, /\*\*80% accurate\*\* overall\./);
+    assert.match(uncalibrated, /no per-decision confidence/);
+    assert.ok(!uncalibrated.includes('individual items'));
+
+    await writeFile(
+      join(root, 'recipes/measured/README.md'),
+      '<!-- BEGIN GENERATED: usage -->\n<!-- END GENERATED: usage -->\n' +
+        '<!-- BEGIN GENERATED: input -->\n<!-- END GENERATED: input -->',
+    );
+    await assert.rejects(renderDocs(root, [record('measured')]), /add a "## Measured accuracy"/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test('check mode detects stale files without rewriting them, and generation is idempotent', async () => {
   const root = await mkdtemp(join(tmpdir(), 'jev-generated-check-'));
   try {

@@ -110,6 +110,27 @@ Use the labels to annotate saved responses under controlled conditions. Keep ref
 
 Uses the shared choice helper and makes one logical Jev request. It does not call another recipe or perform application actions.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 44 golden cases against `jev-1.13.0`: **96% accurate** overall (contested cases 83%, adversarial cases 100%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 7%                 | 100%                      |
+| 0.6             | 7%                 | 100%                      |
+| 0.7             | 9%                 | 100%                      |
+| 0.8             | 11%                | 100%                      |
+| 0.9             | 23%                | 100%                      |
+| 0.95            | 34%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Rerun with `npm run eval -- response-refusal`; the full report, including misses, is in [evals/results/response-refusal.json](../../evals/results/response-refusal.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Limits
 
 - Labels textual behavior, not policy compliance, harmlessness, or whether a refusal was warranted.
