@@ -7,7 +7,7 @@
 [![Node.js version](https://img.shields.io/node/v/jev-recipes)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/agencyenterprise/jev-recipes/blob/main/LICENSE)
 
-[Quickstart](#use-a-recipe) | [Recipe catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md) | [API vs. SDK vs. recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/api-sdk-recipes.md) | [Contributing](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md)
+[Quickstart](#use-a-recipe) | [Live music app](https://jev-ai-music.com/) | [Coding assistants](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/coding-assistants.md) | [Recipe catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md) | [API vs. SDK vs. recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/api-sdk-recipes.md) | [Contributing](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md)
 
 <!-- BEGIN GENERATED: summary -->
 
@@ -17,13 +17,29 @@
 
 Each recipe accepts your data, calls [Jev through TypeSafe's System One API](https://docs.typesafe.ai/introduction) or an injected compatible client, and returns a structured decision. Use it in a Node.js backend, a script, or a research evaluation. Your application decides what happens next.
 
-Start with [three runnable paths](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md): route work, select evidence, or review an agent action. Each shows a ready result, review, and provider failure. The [document example](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/ingestion/README.md) preserves source text while proposing structural decisions.
+## Start with one decision
+
+| Your task                         | Try without a key                     | Build the workflow                                                                                                                |
+| --------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Route work to the right team      | `npx jev-recipes demo route`          | [Route work](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md#route-work)             |
+| Select useful evidence            | `npx jev-recipes demo rerank`         | [Select evidence](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md#select-evidence)   |
+| Review an agent's proposed action | `npx jev-recipes demo tool-call-gate` | [Review an action](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md#review-an-action) |
+
+These demos use saved responses. The [runnable workflow examples](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md) show ready decisions, uncertainty, and provider failures. Use [TypeSafe directly or Vercel Gateway](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/integrations.md) for live calls.
 
 For example, give `route` a support message and descriptions of your teams. It returns a team such as `billing`, or a review outcome when the choice is uncertain.
 
 Evaluate your own cases with the [installed evaluator](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md), retain model responses, and replay confidence policies offline. The [agent workflow](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/agent-loop/README.md) and [customer queue](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/customer-queue/README.md) show how decisions fit into application code. [Direct and Gateway integrations](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/integrations.md) use the same recipe interface.
 
 Build the searchable static catalog with `npm run site:build`, then preview it with `npm run site:preview`. It includes fixture exploration, related-recipe comparisons, and saved evaluation evidence. Current measurements and missing or older evidence are labeled explicitly.
+
+## Hear a real application: Jevthoven
+
+[Jevthoven](https://jev-ai-music.com/) is a music app built by this package's maintainer using jev-recipes. Its interface lets listeners choose a style, key, and tempo, and displays Jev's musical decisions alongside a piano roll. Playback requires sign-in.
+
+[Open the music app](https://jev-ai-music.com/) · [Read the integration example](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/jevthoven/README.md)
+
+This is a maintainer-built application, not an independent customer adoption claim or a recipe accuracy benchmark.
 
 ## Watch Jev play checkers against Jev using the checkers-move recipe
 
@@ -252,6 +268,8 @@ The [research guide](https://github.com/agencyenterprise/jev-recipes/blob/main/d
 <a id="contribute"></a>
 
 ## Contributing and support
+
+Built something with Jev? [Add your project to the examples](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/README.md#add-your-project). Share a runnable demo or a walkthrough with a link to your deployed app so others can try it and learn how it works.
 
 [Report a bug or request a recipe](https://github.com/agencyenterprise/jev-recipes/issues). Include the recipe name, package and Node.js versions, and a minimal reproduction. Keep API keys and private inputs out of reports.
 

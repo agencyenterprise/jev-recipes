@@ -162,3 +162,11 @@ The package check packs installed runtime dependencies for offline installation.
 Write the main function in execution order: validate inputs, prepare the question, request the judgment, apply the review policy, and return the result. Use names that state the operation or fact. Prefer explicit branches and guard clauses over deeply nested expressions. Extract helpers for meaningful reusable operations rather than one-line indirections. If a comment is needed to explain what code does, improve its names and structure first; keep contract rationale in the guide.
 
 Complete each small change with its schemas, runnable example, documentation, and meaningful behavior tests. Keep fixture correctness, recorded replay, and live accuracy separate. When held-out errors influence an edit, move those cases into regression/development evidence and reserve new families before making the next accuracy claim. Preserve weak results and experimental labels.
+
+## Share applications and record adoption
+
+Built a project with Jev? Contribute a runnable example or a walkthrough of your deployed app under `examples/<project-name>/`. The [example contribution guide](examples/README.md#add-your-project) explains what to include. Hosting and ongoing app maintenance stay with the project author.
+
+Use the [integration issue form](https://github.com/agencyenterprise/jev-recipes/issues/new?template=share-integration.yml) to share a public app or source example. Include the imported recipes, observed package version, and relationship to this project. Describe review and failure behavior; do not post credentials or private inputs. Maintainer-built examples and independent integrations are recorded separately.
+
+The [adoption evidence guide](docs/adoption.md) explains the manual public-signal collector and its limits. The [coding-assistant guide](docs/coding-assistants.md) describes the repository skill; it is separate from the npm package. Keep showcase claims tied to observed behavior or supplied source, and distinguish offline tests from live model quality.
