@@ -1,6 +1,6 @@
 # Static recipe catalog
 
-Run `npm run site:build`, then `npm run site:preview`. The preview binds to localhost on port 4173; set `PORT` to choose another port. No model calls or browser API keys are used.
+Run `npm run site:build`, then `npm run site:preview`. The preview listens on all interfaces, port 4173; set `PORT` to choose another port. Open it at `http://127.0.0.1:4173`. No model calls or browser API keys are used.
 
 The builder reads the existing metadata, compiled schemas, demo fixtures, featured collection file, and saved evaluation reports. It executes every displayed fixture and each offered confidence policy offline. The browser uses the same search implementation as the package. Recipe facts are not copied into page templates.
 

@@ -30,4 +30,4 @@ createServer(async (request, response) => {
     response.writeHead(404, { 'content-type': 'text/plain' });
     response.end('Not found. Run npm run site:build before previewing.');
   }
-}).listen(port, '127.0.0.1', () => console.log(`Catalog preview: http://127.0.0.1:${port}`));
+}).listen(port, '0.0.0.0', () => console.log(`Catalog preview: http://127.0.0.1:${port}`));
