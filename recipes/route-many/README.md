@@ -150,22 +150,27 @@ The result `status` is `review` when any item is `review`. Items are independent
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 27 golden cases against `jev-1.13.0`: **82% accurate** overall (contested cases 40%, adversarial cases 80%).
+Measured on 40 golden cases against `jev-1.13.0`: **98% accurate** overall (adversarial cases 90%).
 
-A case counts as correct only when every item in it is right. Across the 97 individual items, **95%** were judged correctly. A case's confidence is the minimum over its items, so the threshold table below is conservative for batches.
+Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `ab78b9ec3027283b20df73fc1b254b21d8f3fccc0fc9dc29d7949507b6266cd1`.
 
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 7%                 | 84%                       |
-| 0.6             | 11%                | 88%                       |
-| 0.7             | 15%                | 91%                       |
-| 0.8             | 22%                | 95%                       |
-| 0.9             | 44%                | 93%                       |
-| 0.95            | 74%                | 86%                       |
+39/40 cases correct; 25 ready, 15 review, 0 failed. Accuracy among ready cases: 100%.
 
-The lowest threshold reaching 95% accuracy on ready results is 0.8.
+Latency: p50 123.49 ms, p95 197.96 ms. Usage: 30241 input tokens and 3403 output tokens across 60 logical requests.
 
-Rerun with `npm run eval -- route-many`; the full report, including misses, is in [evals/results/route-many.json](../../evals/results/route-many.json). Accuracy on your own data may differ.
+Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 87% to 100%.
+
+**Measured on these synthetic cases.**
+
+A case counts as correct only when every item in it is right. Across the 80 individual items, **99%** were judged correctly.
+
+Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+
+Run `npm run eval -- route-many` to save new results and update this guide. The full report, including misses, is in [evals/results/route-many.json](../../evals/results/route-many.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

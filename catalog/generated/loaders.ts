@@ -130,6 +130,14 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.cacheMatch(recipe.cacheMatchInputSchema.parse(input), options),
     ),
+  'callback-responsibility': () =>
+    import('../../recipes/callback-responsibility/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.callbackResponsibility(
+          recipe.callbackResponsibilityInputSchema.parse(input),
+          options,
+        ),
+    ),
   'cancellation-check': () =>
     import('../../recipes/cancellation-check/index.js').then(
       (recipe) => (input, options) =>
@@ -267,6 +275,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/constraint-strength/index.js').then(
       (recipe) => (input, options) =>
         recipe.constraintStrength(recipe.constraintStrengthInputSchema.parse(input), options),
+    ),
+  'contact-opt-out': () =>
+    import('../../recipes/contact-opt-out/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.contactOptOut(recipe.contactOptOutInputSchema.parse(input), options),
     ),
   'content-facets': () =>
     import('../../recipes/content-facets/index.js').then(
@@ -470,6 +483,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/followup-link/index.js').then(
       (recipe) => (input, options) =>
         recipe.followupLink(recipe.followupLinkInputSchema.parse(input), options),
+    ),
+  'followup-timing': () =>
+    import('../../recipes/followup-timing/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.followupTiming(recipe.followupTimingInputSchema.parse(input), options),
     ),
   'forecast-confidence-wording': () =>
     import('../../recipes/forecast-confidence-wording/index.js').then(

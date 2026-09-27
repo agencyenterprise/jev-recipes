@@ -17,7 +17,7 @@ try {
   const options = { env: { ...process.env, npm_config_cache: join(temporary, 'cache') } };
   const manifest = JSON.parse(await readFile(join(projectRoot, 'package.json'), 'utf8'));
   const ids = Object.keys(manifest.exports)
-    .filter((path) => !['.', './catalog', './package.json'].includes(path))
+    .filter((path) => !['.', './catalog', './evaluation', './package.json'].includes(path))
     .map((path) => path.slice(2));
   const packed = parsePackedArchive(
     await npm(['pack', '--ignore-scripts', '--json', '--pack-destination', temporary], {
@@ -104,6 +104,114 @@ console.log('Verified ' + ids.length + ' installed recipe imports, root exports,
     });
     if (args[0] !== '--version') JSON.parse(output);
   }
+  const routeFixture = JSON.parse(
+    await readFile(join(packageRoot, 'dist/recipes/route/demo.json'), 'utf8'),
+  );
+  const cases = [
+    {
+      id: 'invoice',
+      input: routeFixture.input,
+      expected: { suggestedRoute: 'billing' },
+      rationale: 'The customer asks about an invoice.',
+    },
+  ];
+  await writeFile(
+    join(consumer, 'cases.jsonl'),
+    cases.map((entry) => JSON.stringify(entry)).join('\n') + '\n',
+  );
+  await writeFile(
+    join(consumer, 'provider.mjs'),
+    `
+import assert from 'node:assert/strict';
+const response = ${JSON.stringify(routeFixture.response)};
+globalThis.fetch = async (url, options) => {
+  assert.equal(new URL(url).hostname, 'api.typesafe.ai');
+  assert.equal(JSON.parse(options.body).state.request, ${JSON.stringify(routeFixture.input.request)});
+  return new Response(JSON.stringify(response), { headers: { 'content-type': 'application/json' } });
+};
+`,
+  );
+  await writeFile(
+    join(consumer, 'offline.mjs'),
+    `
+globalThis.fetch = () => { throw new Error('Replay and compare must not contact a provider.'); };
+delete process.env.TYPESAFE_API_KEY;
+`,
+  );
+  const evaluateOutput = JSON.parse(
+    await run(
+      process.execPath,
+      [
+        '--import',
+        './provider.mjs',
+        cli,
+        'evaluate',
+        'route',
+        '--cases',
+        'cases.jsonl',
+        '--out',
+        'evaluation',
+      ],
+      {
+        cwd: consumer,
+        env: { ...process.env, TYPESAFE_API_KEY: 'package-check-fixture' },
+        stdio: ['ignore', 'pipe', 'inherit'],
+      },
+    ),
+  );
+  if (evaluateOutput.report.correct !== 1 || evaluateOutput.report.failed !== 0)
+    throw new Error('Installed evaluation did not use the saved provider fixture.');
+  const replayOutput = JSON.parse(
+    await run(
+      process.execPath,
+      [
+        '--import',
+        './offline.mjs',
+        cli,
+        'replay',
+        'evaluation',
+        '--min-confidence',
+        '1',
+        '--out',
+        'replayed',
+      ],
+      {
+        cwd: consumer,
+        stdio: ['ignore', 'pipe', 'inherit'],
+      },
+    ),
+  );
+  if (replayOutput.report.review !== 1 || replayOutput.report.failed !== 0)
+    throw new Error('Installed replay did not apply the changed review policy.');
+  const comparison = JSON.parse(
+    await run(
+      process.execPath,
+      ['--import', './offline.mjs', cli, 'compare', 'evaluation', 'replayed'],
+      {
+        cwd: consumer,
+        stdio: ['ignore', 'pipe', 'inherit'],
+      },
+    ),
+  );
+  if (comparison.delta.review !== 1)
+    throw new Error('Installed comparison lost the policy change.');
+  await writeFile(
+    join(consumer, 'evaluation-api.mjs'),
+    `
+import assert from 'node:assert/strict';
+import { evaluate, replay, compare, readRun } from 'jev-recipes/evaluation';
+const run = await readRun('evaluation');
+assert.equal((await replay(run)).report.correct, 1);
+assert.equal(compare(run, run).delta.accuracy, 0);
+assert.equal(typeof evaluate, 'function');
+`,
+  );
+  await run(process.execPath, ['--import', './offline.mjs', 'evaluation-api.mjs'], {
+    cwd: consumer,
+  });
+  console.log(
+    'Verified installed evaluation CLI and API, response archives, offline policy replay, and comparison without development dependencies.',
+  );
   await writeFile(
     join(consumer, 'types.ts'),
     ids
@@ -111,7 +219,7 @@ console.log('Verified ' + ids.length + ' installed recipe imports, root exports,
         (id, index) => `import * as recipe${index} from 'jev-recipes/${id}';\nvoid recipe${index};`,
       )
       .join('\n') +
-      `\nimport { describeRecipe, listRecipes } from 'jev-recipes/catalog';\nconst description = describeRecipe('route');\nlistRecipes({ limit: 3 });\nvoid description.inputSchema;\n`,
+      `\nimport { describeRecipe, listRecipes } from 'jev-recipes/catalog';\nconst description = describeRecipe('route');\nlistRecipes({ limit: 3 });\nvoid description.inputSchema;\nimport { evaluate, replay, compare, readRun } from 'jev-recipes/evaluation';\nvoid [evaluate, replay, compare, readRun];\n`,
   );
   await run(
     process.execPath,

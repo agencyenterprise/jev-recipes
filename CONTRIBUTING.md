@@ -118,19 +118,22 @@ Offline tests prove software behavior, not accuracy. Golden datasets under `eval
 
 `expected` names result fields by dotted path (`items.0.verdict`, `checks`) and must avoid confidence-gated fields such as `status`, `route`, or `drop`; use the ungated twin such as `suggestedRoute` or a per-item `verdict`. Mark `contested` cases where reasonable annotators could disagree and `adversarial` cases whose wording is engineered to push the wrong answer; the report breaks accuracy out for both.
 
-| Task                                    | Command                   |
-| --------------------------------------- | ------------------------- |
-| Validate every dataset offline          | `npm run eval:validate`   |
-| Run one recipe live                     | `npm run eval -- route`   |
-| Run everything and save snapshots       | `npm run eval -- --write` |
-| Fail if accuracy drops more than 5%     | `npm run eval -- --check` |
-| Smoke-test every demo against the model | `npm run eval:smoke`      |
+| Task                                     | Command                              |
+| ---------------------------------------- | ------------------------------------ |
+| Validate every dataset offline           | `npm run eval:validate`              |
+| Evaluate one recipe and update its guide | `npm run eval -- route`              |
+| Evaluate everything and update guides    | `npm run eval`                       |
+| Evaluate without changing files          | `npm run eval -- --no-write`         |
+| Check featured development baselines     | `npm run eval -- --featured --check` |
+| Smoke-test every demo against the model  | `npm run eval:smoke`                 |
 
-Live runs need `TYPESAFE_API_KEY` in `.env` or the environment and spend quota. The report prints accuracy, a calibration table by confidence band, the defer rate and accuracy at each `minConfidence` threshold, a suggested threshold that reaches 95% accuracy on ready results, and a confusion table. Snapshots live in `evals/results/<recipe>.json`; commit them so reviewers can see the numbers and CI can detect regressions.
+Live runs need `TYPESAFE_API_KEY` in `.env` or the environment and spend quota. Each normal run saves a development baseline in `evals/baselines/<recipe>.json`, updates `evals/results/<recipe>.json`, and refreshes the measured-accuracy section in that recipe's guide. `--check` uses the baseline's model and policy, and fails if accuracy drops by more than five percentage points. It validates all selected baselines before making calls and leaves held-out reports unchanged. Use `npm run eval -- route --check` for a single recipe. `--no-write` prints a summary without saving. The existing `--write` flag also saves results and updates guides.
 
-For batch and fan-out recipes, the harness takes a case's confidence as the minimum over the items named in `expected`, so a batch is only as confident as its least certain item. A recipe whose result carries no `confidence` field anywhere reports accuracy without calibration.
+The console summary reports accuracy and a suggested confidence threshold. Saved reports include calibration by confidence band, defer rates and ready-result accuracy at each `minConfidence`, and a confusion table. Threshold calculations replay the recorded responses through the recipe's review policy without additional model calls. Commit the snapshots and updated guides so reviewers can inspect the measurements.
 
-Add a golden dataset with any recipe meant for production use. Thirty to fifty cases with balanced labels is enough to choose a `minConfidence`; state the chosen threshold and its measured accuracy in the recipe guide.
+For calibration, the harness uses a top-level confidence when present, otherwise the minimum confidence over the items named in `expected`. Readiness comes from the recipe's actual policy, including mandatory review and batch behavior. A recipe without a `minConfidence` input has no confidence-threshold table.
+
+Add a labeled dataset with any recipe meant for production use. Choose a confidence policy on development cases and measure it separately on held-out cases. No fixed sample count guarantees readiness; record label provenance, rare outcomes, uncertainty, and the policy's observed errors. See [evaluation guidance](docs/evaluation.md).
 
 ## Releasing
 

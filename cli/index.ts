@@ -8,6 +8,10 @@ import { commandArgumentsSchema, demoFixtureSchema } from './schema.js';
 import type { RecipeName } from '../catalog/schema.js';
 
 async function main(): Promise<void> {
+  if (['evaluate', 'replay', 'compare'].includes(process.argv[2] ?? '')) {
+    const { runEvaluationCommand } = await import('./evaluation.js');
+    return printJson(await runEvaluationCommand(process.argv.slice(2)));
+  }
   const command = parseCommandArguments(process.argv.slice(2));
 
   switch (command[0]) {
@@ -44,6 +48,15 @@ function printHelp(): void {
   jev-recipes demo <recipe|all>         Run offline fixtures (no model calls)
   jev-recipes example <recipe>          Print example input as JSON
   jev-recipes run <recipe> <file|->      Run live with a JSON file or stdin
+  jev-recipes evaluate <recipe> --cases <file.jsonl> --out <new-directory>
+                                        Record a live evaluation and every response
+    [--concurrency 4] [--max-cases 1000] [--max-requests 1000] [--model <model>]
+    [--split development|held-out] [--min-confidence <number> | --policy <policy.json>]
+    [--prices <prices.json>]
+  jev-recipes replay <archive> [--min-confidence <number>] [--out <new-directory>]
+                                        Replay recorded responses without network calls
+  jev-recipes compare <baseline> <candidate>
+                                        Compare archives with matching data and labels
   jev-recipes --version
 
 Categories: ${recipeCategorySchema.options.join(', ')}. Quote multi-word search queries.

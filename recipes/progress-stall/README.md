@@ -77,20 +77,25 @@ A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 42 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%, adversarial cases 100%).
+Measured on 40 golden cases against `jev-1.13.0`: **100% accurate** overall.
 
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 0%                 | 100%                      |
-| 0.6             | 0%                 | 100%                      |
-| 0.7             | 0%                 | 100%                      |
-| 0.8             | 0%                 | 100%                      |
-| 0.9             | 7%                 | 100%                      |
-| 0.95            | 21%                | 100%                      |
+Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `cd8c13f10bddc73e3eee93efc0f14fe54eef3d28c6e651e224e6b13a449df296`.
 
-The lowest threshold reaching 95% accuracy on ready results is 0.5.
+40/40 cases correct; 40 ready, 0 review, 0 failed. Accuracy among ready cases: 100%.
 
-Rerun with `npm run eval -- progress-stall`; the full report, including misses, is in [evals/results/progress-stall.json](../../evals/results/progress-stall.json). Accuracy on your own data may differ.
+Latency: p50 118.82 ms, p95 159.07 ms. Usage: 20504 input tokens and 800 output tokens across 40 logical requests.
+
+Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 91% to 100%.
+
+**Measured on these synthetic cases.**
+
+Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+
+Run `npm run eval -- progress-stall` to save new results and update this guide. The full report, including misses, is in [evals/results/progress-stall.json](../../evals/results/progress-stall.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

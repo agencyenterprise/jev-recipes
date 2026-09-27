@@ -1,0 +1,25 @@
+{
+  "input": {
+    "message": "Please check back after our finance team approves the budget.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "after_event",
+        "confidence": 0.93,
+        "probabilities": {
+          "now": 0.01,
+          "later": 0.02,
+          "after_event": 0.93,
+          "not_requested": 0.01,
+          "declined": 0.01,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

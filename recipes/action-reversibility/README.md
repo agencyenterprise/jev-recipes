@@ -84,20 +84,20 @@ A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 44 golden cases against `jev-1.13.0`: **89% accurate** overall (contested cases 60%, adversarial cases 80%).
+Measured on 44 golden cases against `jev-1.13.0`: **86% accurate** overall (contested cases 60%, adversarial cases 60%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 21%                | 97%                       |
+| 0.5             | 18%                | 94%                       |
 | 0.6             | 25%                | 97%                       |
 | 0.7             | 41%                | 100%                      |
 | 0.8             | 55%                | 100%                      |
 | 0.9             | 61%                | 100%                      |
-| 0.95            | 77%                | 100%                      |
+| 0.95            | 75%                | 100%                      |
 
-The lowest threshold reaching 95% accuracy on ready results is 0.5.
+The lowest threshold reaching 95% accuracy on ready results is 0.55.
 
-Rerun with `npm run eval -- action-reversibility`; the full report, including misses, is in [evals/results/action-reversibility.json](../../evals/results/action-reversibility.json). Accuracy on your own data may differ.
+Run `npm run eval -- action-reversibility` to save new results and update this guide. The full report, including misses, is in [evals/results/action-reversibility.json](../../evals/results/action-reversibility.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

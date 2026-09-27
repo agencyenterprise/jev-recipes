@@ -83,3 +83,29 @@ The recipe reads the failure as text and asks only whether repeating the same at
 ## Example input
 
 [demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo retry-worthwhile` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe retry-worthwhile` to inspect the input and result schemas.
+
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 40 golden cases against `jev-1.13.0`: **100% accurate** overall.
+
+Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `4325f3b69b7412e092d660cb8a88b35faf53642a1310dff64aabd0557ca88f46`.
+
+40/40 cases correct; 39 ready, 1 review, 0 failed. Accuracy among ready cases: 100%.
+
+Latency: p50 109 ms, p95 136.32 ms. Usage: 18828 input tokens and 800 output tokens across 40 logical requests.
+
+Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 91% to 100%.
+
+**Measured on these synthetic cases.**
+
+Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+
+Run `npm run eval -- retry-worthwhile` to save new results and update this guide. The full report, including misses, is in [evals/results/retry-worthwhile.json](../../evals/results/retry-worthwhile.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->

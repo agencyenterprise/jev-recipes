@@ -114,16 +114,16 @@ Measured on 53 golden cases against `jev-1.13.0`: **94% accurate** overall (cont
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 6%                 | 98%                       |
-| 0.6             | 8%                 | 98%                       |
-| 0.7             | 9%                 | 100%                      |
-| 0.8             | 15%                | 100%                      |
-| 0.9             | 23%                | 100%                      |
-| 0.95            | 26%                | 100%                      |
+| 0.5             | 19%                | 95%                       |
+| 0.6             | 23%                | 98%                       |
+| 0.7             | 26%                | 100%                      |
+| 0.8             | 26%                | 100%                      |
+| 0.9             | 34%                | 100%                      |
+| 0.95            | 38%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
-Rerun with `npm run eval -- claim-stance`; the full report, including misses, is in [evals/results/claim-stance.json](../../evals/results/claim-stance.json). Accuracy on your own data may differ.
+Run `npm run eval -- claim-stance` to save new results and update this guide. The full report, including misses, is in [evals/results/claim-stance.json](../../evals/results/claim-stance.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "recipe": "retry-worthwhile",
+  "collection": "agent-operations",
+  "cases": 100,
+  "development": 60,
+  "heldOut": 40,
+  "familySplit": "Counterfactuals in a family stay in one split. All legacy cases remain development data.",
+  "provenance": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+  "acceptance": {
+    "minConfidence": 0.8,
+    "minimumHeldOutReadyCases": 20,
+    "minimumReadyAccuracy": 0.95,
+    "maximumProviderFailures": 0
+  },
+  "limitations": [
+    "Synthetic examples do not establish customer-workload accuracy.",
+    "Cases within a family are correlated; case-level Wilson intervals are descriptive and can overstate independent evidence.",
+    "Labels require independent review before making stronger claims."
+  ]
+}

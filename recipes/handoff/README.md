@@ -107,3 +107,29 @@ Write observable rules and supply the facts needed to evaluate them. Compute exa
 ## Example input
 
 [demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo handoff` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe handoff` to inspect the input and result schemas.
+
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 40 golden cases against `jev-1.13.0`: **90% accurate** overall (contested cases 80%, adversarial cases 90%).
+
+Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `a6b4ea63f7fd7fa621bad8ebdac68421b2db9ccbf35efc7fd32ca34bc4f712c5`.
+
+36/40 cases correct; 28 ready, 12 review, 0 failed. Accuracy among ready cases: 100%.
+
+Latency: p50 108.85 ms, p95 216.82 ms. Usage: 18994 input tokens and 1769 output tokens across 40 logical requests.
+
+Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 77% to 96%.
+
+**Measured on these synthetic cases.**
+
+Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+
+Run `npm run eval -- handoff` to save new results and update this guide. The full report, including misses, is in [evals/results/handoff.json](../../evals/results/handoff.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->

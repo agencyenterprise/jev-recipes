@@ -11,13 +11,17 @@
 
 <!-- BEGIN GENERATED: summary -->
 
-243 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
+246 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
 
 <!-- END GENERATED: summary -->
 
 Each recipe accepts your data, calls [Jev through TypeSafe's API](https://docs.typesafe.ai/introduction), and returns a structured decision. Use it in a Node.js backend, a script, or a research evaluation. Your application decides what happens next.
 
 For example, give `route` a support message and descriptions of your teams. It returns a team such as `billing`, or a review outcome when the choice is uncertain.
+
+Evaluate your own cases with the [installed evaluator](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md), retain model responses, and replay confidence policies offline. The [agent workflow](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/agent-loop/README.md) and [customer queue](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/customer-queue/README.md) show how decisions fit into application code. [Direct and Gateway integrations](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/integrations.md) use the same recipe interface.
+
+Build the searchable static catalog with `npm run site:build`, then preview it with `npm run site:preview`. It includes fixture exploration, related-recipe comparisons, and saved evaluation evidence. Current measurements and missing or older evidence are labeled explicitly.
 
 ## Watch Jev play checkers against Jev using the checkers-move recipe
 

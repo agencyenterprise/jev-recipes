@@ -73,20 +73,20 @@ A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 44 golden cases against `jev-1.13.0`: **96% accurate** overall (contested cases 60%, adversarial cases 86%).
+Measured on 44 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 80%, adversarial cases 86%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 0%                 | 96%                       |
+| 0.5             | 0%                 | 98%                       |
 | 0.6             | 5%                 | 100%                      |
 | 0.7             | 5%                 | 100%                      |
 | 0.8             | 5%                 | 100%                      |
 | 0.9             | 9%                 | 100%                      |
-| 0.95            | 16%                | 100%                      |
+| 0.95            | 18%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
-Rerun with `npm run eval -- injection-signal`; the full report, including misses, is in [evals/results/injection-signal.json](../../evals/results/injection-signal.json). Accuracy on your own data may differ.
+Run `npm run eval -- injection-signal` to save new results and update this guide. The full report, including misses, is in [evals/results/injection-signal.json](../../evals/results/injection-signal.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

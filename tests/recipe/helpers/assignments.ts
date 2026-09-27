@@ -68,6 +68,25 @@ export function testAssignments<Input extends Record<string, unknown>>(
       );
     });
 
+    it('preserves an option named __proto__ in the selected action and probabilities', async () => {
+      const configuredSlots = slots.map((slot) => ({
+        ...slot,
+        options: slot.options.map((option, index) => ({
+          ...option,
+          id: index === 0 ? '__proto__' : option.id,
+        })),
+      }));
+      const result = await run(
+        { ...input, [slotsField]: configuredSlots },
+        { client: createJevClient(answers(slots.map(() => ({ label: 'option_0' })))) },
+      );
+      for (const assignment of result.assignments) {
+        expect(assignment.action).toBe('__proto__');
+        expect(Object.hasOwn(assignment.probabilities.options, '__proto__')).toBe(true);
+        expect(assignment.probabilities.options.__proto__).toBe(0.9);
+      }
+    });
+
     it('reports rest as a ready verdict with no action', async () => {
       const client = createJevClient(answers(slots.map(() => ({ label: 'rest' }))));
       const result = await run(input, { client });

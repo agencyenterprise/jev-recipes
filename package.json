@@ -23,6 +23,10 @@
       "types": "./dist/catalog/index.d.ts",
       "import": "./dist/catalog/index.js"
     },
+    "./evaluation": {
+      "types": "./dist/evaluation/index.d.ts",
+      "import": "./dist/evaluation/index.js"
+    },
     "./package.json": "./package.json",
     "./action-compare": {
       "types": "./dist/recipes/action-compare/index.d.ts",
@@ -123,6 +127,10 @@
     "./cache-match": {
       "types": "./dist/recipes/cache-match/index.d.ts",
       "import": "./dist/recipes/cache-match/index.js"
+    },
+    "./callback-responsibility": {
+      "types": "./dist/recipes/callback-responsibility/index.d.ts",
+      "import": "./dist/recipes/callback-responsibility/index.js"
     },
     "./cancellation-check": {
       "types": "./dist/recipes/cancellation-check/index.d.ts",
@@ -231,6 +239,10 @@
     "./constraint-strength": {
       "types": "./dist/recipes/constraint-strength/index.d.ts",
       "import": "./dist/recipes/constraint-strength/index.js"
+    },
+    "./contact-opt-out": {
+      "types": "./dist/recipes/contact-opt-out/index.d.ts",
+      "import": "./dist/recipes/contact-opt-out/index.js"
     },
     "./content-facets": {
       "types": "./dist/recipes/content-facets/index.d.ts",
@@ -391,6 +403,10 @@
     "./followup-link": {
       "types": "./dist/recipes/followup-link/index.d.ts",
       "import": "./dist/recipes/followup-link/index.js"
+    },
+    "./followup-timing": {
+      "types": "./dist/recipes/followup-timing/index.d.ts",
+      "import": "./dist/recipes/followup-timing/index.js"
     },
     "./forecast-confidence-wording": {
       "types": "./dist/recipes/forecast-confidence-wording/index.d.ts",
@@ -1009,6 +1025,8 @@
     "dist/catalog/**/*.d.ts",
     "dist/catalog/generated/details/*.json",
     "dist/cli/*.js",
+    "dist/evaluation/**/*.js",
+    "dist/evaluation/**/*.d.ts",
     "dist/cli/*.d.ts",
     "dist/recipes/*/demo.json",
     "README.md",
@@ -1037,7 +1055,10 @@
     "test:recipes": "vitest run",
     "test:tooling": "npm run build && node scripts/test-tooling.mjs",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "eval:featured": "node --env-file-if-exists=.env evals/featured.mjs",
+    "site:build": "npm run generate:check && npm run build && node site/build.mjs",
+    "site:preview": "node site/preview.mjs"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0",

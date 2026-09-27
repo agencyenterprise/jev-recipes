@@ -116,20 +116,25 @@ A result is `ready` when the decision confidence meets `minConfidence` and the v
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 44 golden cases against `jev-1.13.0`: **89% accurate** overall (contested cases 67%, adversarial cases 100%).
+Measured on 40 golden cases against `jev-1.13.0`: **70% accurate** overall (contested cases 0%).
 
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 9%                 | 88%                       |
-| 0.6             | 14%                | 90%                       |
-| 0.7             | 16%                | 89%                       |
-| 0.8             | 25%                | 91%                       |
-| 0.9             | 36%                | 89%                       |
-| 0.95            | 46%                | 96%                       |
+Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `025809a6bf2854d34cf406e89bbdeabcffc5c42c82b6ef04eae93568038c68a8`.
 
-The lowest threshold reaching 95% accuracy on ready results is 0.95.
+28/40 cases correct; 30 ready, 10 review, 0 failed. Accuracy among ready cases: 67%.
 
-Rerun with `npm run eval -- completion-gate`; the full report, including misses, is in [evals/results/completion-gate.json](../../evals/results/completion-gate.json). Accuracy on your own data may differ.
+Latency: p50 108.7 ms, p95 160.15 ms. Usage: 42229 input tokens and 5464 output tokens across 40 logical requests.
+
+Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 55% to 82%.
+
+**Experimental: declared acceptance policy not met.**
+
+Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+
+Run `npm run eval -- completion-gate` to save new results and update this guide. The full report, including misses, is in [evals/results/completion-gate.json](../../evals/results/completion-gate.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

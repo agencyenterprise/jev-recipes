@@ -112,7 +112,7 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 50 golden cases against `jev-1.13.0`: **96% accurate** overall (contested cases 88%, adversarial cases 83%).
+Measured on 50 golden cases against `jev-1.13.0`: **94% accurate** overall (contested cases 75%, adversarial cases 83%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
@@ -121,11 +121,11 @@ Measured on 50 golden cases against `jev-1.13.0`: **96% accurate** overall (cont
 | 0.7             | 8%                 | 100%                      |
 | 0.8             | 12%                | 100%                      |
 | 0.9             | 18%                | 100%                      |
-| 0.95            | 22%                | 100%                      |
+| 0.95            | 24%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
-Rerun with `npm run eval -- verify`; the full report, including misses, is in [evals/results/verify.json](../../evals/results/verify.json). Accuracy on your own data may differ.
+Run `npm run eval -- verify` to save new results and update this guide. The full report, including misses, is in [evals/results/verify.json](../../evals/results/verify.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

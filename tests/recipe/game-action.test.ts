@@ -99,6 +99,34 @@ describe('game-action', () => {
     },
   );
 
+  it('preserves nested __proto__ fields in state and the original selected action', async () => {
+    const value = JSON.parse('{"__proto__":{"nested":[{"__proto__":42}]},"to":8}');
+    const configured = { ...input, gameState: value, legalActions: [value] };
+    const client = createJevClient({ decision: choiceAnswer(['action_0'], 'action_0', 1) });
+    const result = await gameAction(configured, { client });
+    expect(result?.action).toEqual(value);
+    expect(gameActionResultSchema.parse(result)).toEqual(result);
+    expect(client.systemOne.mock.calls[0]?.[0].state).toMatchObject({ gameState: value });
+    expect(client.systemOne.mock.calls[0]?.[0].questions.decision?.criteria).toEqual({
+      action_0: JSON.stringify(value),
+    });
+    expect(Object.getPrototypeOf(result!.action)).toBe(Object.prototype);
+    expect(Object.hasOwn(Object(result!.action), '__proto__')).toBe(true);
+    expect(result!.action).not.toBe(value);
+  });
+
+  it.each([undefined, () => {}, Number.NaN])(
+    'rejects invalid values hidden under __proto__ before inference',
+    async (value) => {
+      const action = Object.fromEntries([['__proto__', value]]);
+      const client = createJevClient();
+      await expect(
+        gameAction({ ...input, legalActions: [action] } as GameActionInput, { client }),
+      ).rejects.toBeInstanceOf(ZodError);
+      expect(client.systemOne).not.toHaveBeenCalled();
+    },
+  );
+
   it('supports mixed JSON types in the same action list', async () => {
     const choices = jsonValues.map((_, index) => `action_${index}`);
     const client = createJevClient({ decision: choiceAnswer(choices, 'action_5') });

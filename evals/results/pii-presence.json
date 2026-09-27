@@ -6,124 +6,47 @@
   "contestedAccuracy": 0.8,
   "adversarialAccuracy": 1,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 0,
-      "accuracy": null
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 3,
-      "accuracy": 0.667
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 2,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 1,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 1,
-      "accuracy": 0
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 36,
-      "accuracy": 1
-    }
+    { "confidence": "0-0.5", "cases": 0, "accuracy": null },
+    { "confidence": "0.5-0.6", "cases": 3, "accuracy": 0.667 },
+    { "confidence": "0.6-0.7", "cases": 1, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 3, "accuracy": 0.667 },
+    { "confidence": "0.8-0.9", "cases": 0, "accuracy": null },
+    { "confidence": "0.9-1", "cases": 36, "accuracy": 1 }
   ],
+  "thresholdEvaluation": "recipe-replay",
   "thresholds": [
-    {
-      "minConfidence": 0.5,
-      "deferRate": 0,
-      "readyAccuracy": 0.953
-    },
-    {
-      "minConfidence": 0.55,
-      "deferRate": 0.047,
-      "readyAccuracy": 0.976
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.07,
-      "readyAccuracy": 0.975
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.093,
-      "readyAccuracy": 0.974
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.116,
-      "readyAccuracy": 0.974
-    },
-    {
-      "minConfidence": 0.75,
-      "deferRate": 0.116,
-      "readyAccuracy": 0.974
-    },
-    {
-      "minConfidence": 0.8,
-      "deferRate": 0.14,
-      "readyAccuracy": 0.973
-    },
-    {
-      "minConfidence": 0.85,
-      "deferRate": 0.163,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.9,
-      "deferRate": 0.163,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.95,
-      "deferRate": 0.279,
-      "readyAccuracy": 1
-    }
+    { "minConfidence": 0.5, "deferRate": 0, "readyAccuracy": 0.953 },
+    { "minConfidence": 0.55, "deferRate": 0.047, "readyAccuracy": 0.976 },
+    { "minConfidence": 0.6, "deferRate": 0.07, "readyAccuracy": 0.975 },
+    { "minConfidence": 0.65, "deferRate": 0.093, "readyAccuracy": 0.974 },
+    { "minConfidence": 0.7, "deferRate": 0.093, "readyAccuracy": 0.974 },
+    { "minConfidence": 0.75, "deferRate": 0.116, "readyAccuracy": 0.974 },
+    { "minConfidence": 0.8, "deferRate": 0.163, "readyAccuracy": 1 },
+    { "minConfidence": 0.85, "deferRate": 0.163, "readyAccuracy": 1 },
+    { "minConfidence": 0.9, "deferRate": 0.163, "readyAccuracy": 1 },
+    { "minConfidence": 0.95, "deferRate": 0.279, "readyAccuracy": 1 }
   ],
   "suggestedMinConfidence": 0.5,
   "confusion": {
     "{\"verdict\":\"absent\"}": {
       "total": 20,
       "correct": 18,
-      "misses": {
-        "{\"verdict\":\"present\"}": 2
-      }
+      "misses": { "{\"verdict\":\"present\"}": 2 }
     },
-    "{\"verdict\":\"present\"}": {
-      "total": 23,
-      "correct": 23,
-      "misses": {}
-    }
+    "{\"verdict\":\"present\"}": { "total": 23, "correct": 23, "misses": {} }
   },
   "failures": [
     {
       "id": "absent-first-name-only",
-      "expected": {
-        "verdict": "absent"
-      },
-      "actual": {
-        "verdict": "present"
-      },
-      "confidence": 0.51
+      "expected": { "verdict": "absent" },
+      "actual": { "verdict": "present" },
+      "confidence": 0.5
     },
     {
       "id": "absent-jane-doe-anytown",
-      "expected": {
-        "verdict": "absent"
-      },
-      "actual": {
-        "verdict": "present"
-      },
-      "confidence": 0.8,
+      "expected": { "verdict": "absent" },
+      "actual": { "verdict": "present" },
+      "confidence": 0.77,
       "contested": true
     }
   ]

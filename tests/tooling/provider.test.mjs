@@ -17,15 +17,24 @@ test('a compatible local server can serve recipes through createClient({ baseURL
       const payload = JSON.parse(body);
       requests.push({ url: request.url, model: payload.model, questions: payload.questions });
       const answers = Object.fromEntries(
-        Object.keys(payload.questions).map((name) => [
-          name,
-          {
-            type: 'choice',
-            choice: 'billing',
-            confidence: 0.9,
-            probabilities: { billing: 0.9, technical: 0.05, __review__: 0.05 },
-          },
-        ]),
+        Object.entries(payload.questions).map(([name, question]) => {
+          const selected = Object.hasOwn(question.criteria, '__proto__') ? '__proto__' : 'billing';
+          const labels = Object.keys(question.criteria);
+          return [
+            name,
+            {
+              type: 'choice',
+              choice: selected,
+              confidence: 0.9,
+              probabilities: Object.fromEntries(
+                labels.map((label) => [
+                  label,
+                  label === selected ? 0.9 : 0.1 / (labels.length - 1),
+                ]),
+              ),
+            },
+          ];
+        }),
       );
       response.setHeader('content-type', 'application/json');
       response.end(
@@ -72,6 +81,16 @@ test('a compatible local server can serve recipes through createClient({ baseURL
     assert.equal(requests[1].model, 'my-local-model');
     assert.deepEqual(Object.keys(requests[1].questions), ['request_0', 'request_1']);
     assert.deepEqual(Object.keys(requests[2].questions), ['request_0']);
+
+    const namedRoutes = Object.fromEntries([
+      ['__proto__', 'Payments and refunds'],
+      ['technical', 'Errors and outages'],
+    ]);
+    const named = await route({ request: 'Refund please.', routes: namedRoutes }, { client });
+    assert.equal(named.route, '__proto__');
+    assert.equal(Object.hasOwn(named.probabilities, '__proto__'), true);
+    assert.equal(named.probabilities.__proto__, 0.9);
+    assert.equal(Object.hasOwn(requests[3].questions.route.criteria, '__proto__'), true);
   } finally {
     await new Promise((resolve) => server.close(resolve));
   }

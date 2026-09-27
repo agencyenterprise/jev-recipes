@@ -11,7 +11,7 @@ help:
 	@echo "make ci                     Run all checks, including the npm archive"
 	@echo "make pack-check             Build, inspect, and test the npm archive"
 	@echo "make new RECIPE=my-recipe   Scaffold a recipe and its test file (KIND=choice|score|gate|comparison|labels)"
-	@echo "make evals                  Run golden evals against the live model (needs TYPESAFE_API_KEY)"
+	@echo "make evals                  Evaluate the live model and update reports and guides (needs TYPESAFE_API_KEY)"
 	@echo "make build / make clean     Build or remove compiled output"
 	@echo "make format                 Format the codebase"
 

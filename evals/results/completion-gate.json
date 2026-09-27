@@ -1,128 +1,202 @@
 {
+  "evidence": {
+    "runId": "75ad3a2c-a54f-45bd-b732-5433f941513d",
+    "evaluatedAt": "2026-09-27T07:56:12.763Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "025809a6bf2854d34cf406e89bbdeabcffc5c42c82b6ef04eae93568038c68a8",
+    "datasetFingerprint": "159571eb5b47243eda7854383f6e67a0473e7ec933ddeea0544fdeb487478c3d",
+    "split": "held-out",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8,
+      "selectedOn": {
+        "runId": "773a2e85-0c9b-4972-84c3-b19fdf9633d4",
+        "datasetFingerprint": "5bf34925570f061aa0d8a43c7c004502ba73b6b8fe11e62c1e547895f5afd4b6",
+        "recipeFingerprint": "025809a6bf2854d34cf406e89bbdeabcffc5c42c82b6ef04eae93568038c68a8",
+        "model": "jev-1.13.0",
+        "split": "development"
+      }
+    },
+    "provenance": [
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 40
+      }
+    ]
+  },
   "recipe": "completion-gate",
   "model": "jev-1.13.0",
-  "cases": 44,
-  "accuracy": 0.886,
-  "contestedAccuracy": 0.667,
-  "adversarialAccuracy": 1,
+  "models": ["jev-1.13.0"],
+  "cases": 40,
+  "completed": 40,
+  "failed": 0,
+  "correct": 28,
+  "wrong": 12,
+  "ready": 30,
+  "review": 10,
+  "accuracy": 0.7,
+  "completedAccuracy": 0.7,
+  "accuracyInterval95": [0.5457, 0.8193],
+  "readyAccuracy": 0.667,
+  "readyAccuracyInterval95": [0.4878, 0.8077],
+  "reviewRate": 0.25,
+  "contestedAccuracy": 0,
+  "adversarialAccuracy": null,
   "calibration": [
     {
       "confidence": "0-0.5",
-      "cases": 4,
-      "accuracy": 1
+      "cases": 9,
+      "accuracy": 0.778
     },
     {
       "confidence": "0.5-0.6",
-      "cases": 2,
-      "accuracy": 0.5
-    },
-    {
-      "confidence": "0.6-0.7",
       "cases": 1,
       "accuracy": 1
     },
     {
+      "confidence": "0.6-0.7",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
       "confidence": "0.7-0.8",
-      "cases": 4,
-      "accuracy": 0.75
+      "cases": 0,
+      "accuracy": null
     },
     {
       "confidence": "0.8-0.9",
-      "cases": 5,
-      "accuracy": 1
+      "cases": 2,
+      "accuracy": 0
     },
     {
       "confidence": "0.9-1",
       "cases": 28,
-      "accuracy": 0.893
+      "accuracy": 0.714
     }
   ],
-  "thresholds": [
-    {
-      "minConfidence": 0.5,
-      "deferRate": 0.091,
-      "readyAccuracy": 0.875
-    },
-    {
-      "minConfidence": 0.55,
-      "deferRate": 0.136,
-      "readyAccuracy": 0.895
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.136,
-      "readyAccuracy": 0.895
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.159,
-      "readyAccuracy": 0.892
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.159,
-      "readyAccuracy": 0.892
-    },
-    {
-      "minConfidence": 0.75,
-      "deferRate": 0.227,
-      "readyAccuracy": 0.912
-    },
-    {
-      "minConfidence": 0.8,
-      "deferRate": 0.25,
-      "readyAccuracy": 0.909
-    },
-    {
-      "minConfidence": 0.85,
-      "deferRate": 0.295,
-      "readyAccuracy": 0.903
-    },
-    {
-      "minConfidence": 0.9,
-      "deferRate": 0.364,
-      "readyAccuracy": 0.893
-    },
-    {
-      "minConfidence": 0.95,
-      "deferRate": 0.455,
-      "readyAccuracy": 0.958
-    }
-  ],
-  "suggestedMinConfidence": 0.95,
+  "thresholdEvaluation": "frozen-policy",
+  "thresholds": [],
+  "suggestedMinConfidence": null,
+  "latencyMs": {
+    "p50": 108.7,
+    "p95": 160.15,
+    "totalCaseTime": 4592.54
+  },
+  "usage": {
+    "requests": 40,
+    "input_tokens": 42229,
+    "output_tokens": 5464,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.00177362
+  },
   "confusion": {
     "{\"verdict\":\"complete\"}": {
-      "total": 13,
-      "correct": 12,
+      "total": 10,
+      "correct": 8,
       "misses": {
-        "{\"verdict\":\"unverified\"}": 1
+        "{\"verdict\":\"unverified\"}": 2
       }
     },
     "{\"verdict\":\"incomplete\"}": {
-      "total": 15,
-      "correct": 15,
+      "total": 10,
+      "correct": 10,
       "misses": {}
     },
     "{\"verdict\":\"unclear\"}": {
-      "total": 3,
+      "total": 10,
       "correct": 0,
       "misses": {
-        "{\"verdict\":\"unverified\"}": 3
+        "{\"verdict\":\"incomplete\"}": 9,
+        "{\"verdict\":\"unverified\"}": 1
       }
     },
     "{\"verdict\":\"unverified\"}": {
-      "total": 13,
-      "correct": 12,
-      "misses": {
-        "{\"verdict\":\"incomplete\"}": 1
-      }
+      "total": 10,
+      "correct": 10,
+      "misses": {}
     }
   },
   "failures": [
     {
-      "id": "complete-changelog-entry-in-report",
+      "id": "featured-15-verified",
       "expected": {
         "verdict": "complete"
+      },
+      "actual": {
+        "verdict": "unverified"
+      },
+      "confidence": 0.38
+    },
+    {
+      "id": "featured-15-ambiguous",
+      "expected": {
+        "verdict": "unclear"
+      },
+      "actual": {
+        "verdict": "incomplete"
+      },
+      "confidence": 0.87,
+      "contested": true
+    },
+    {
+      "id": "featured-16-ambiguous",
+      "expected": {
+        "verdict": "unclear"
+      },
+      "actual": {
+        "verdict": "incomplete"
+      },
+      "confidence": 0.88,
+      "contested": true
+    },
+    {
+      "id": "featured-17-ambiguous",
+      "expected": {
+        "verdict": "unclear"
+      },
+      "actual": {
+        "verdict": "incomplete"
+      },
+      "confidence": 0.99,
+      "contested": true
+    },
+    {
+      "id": "featured-18-ambiguous",
+      "expected": {
+        "verdict": "unclear"
+      },
+      "actual": {
+        "verdict": "incomplete"
+      },
+      "confidence": 0.97,
+      "contested": true
+    },
+    {
+      "id": "featured-19-ambiguous",
+      "expected": {
+        "verdict": "unclear"
+      },
+      "actual": {
+        "verdict": "incomplete"
+      },
+      "confidence": 0.95,
+      "contested": true
+    },
+    {
+      "id": "featured-20-ambiguous",
+      "expected": {
+        "verdict": "unclear"
       },
       "actual": {
         "verdict": "unverified"
@@ -131,45 +205,66 @@
       "contested": true
     },
     {
-      "id": "unverified-safari-bug-not-reproduced",
+      "id": "featured-21-ambiguous",
       "expected": {
-        "verdict": "unverified"
+        "verdict": "unclear"
       },
       "actual": {
         "verdict": "incomplete"
       },
-      "confidence": 0.53,
+      "confidence": 0.97,
       "contested": true
     },
     {
-      "id": "unclear-vague-task-done",
+      "id": "featured-22-ambiguous",
       "expected": {
         "verdict": "unclear"
       },
       "actual": {
-        "verdict": "unverified"
+        "verdict": "incomplete"
       },
-      "confidence": 0.92
+      "confidence": 0.92,
+      "contested": true
     },
     {
-      "id": "unclear-report-about-unrelated-pr",
+      "id": "featured-23-ambiguous",
       "expected": {
         "verdict": "unclear"
       },
       "actual": {
-        "verdict": "unverified"
+        "verdict": "incomplete"
       },
-      "confidence": 0.73
+      "confidence": 0.96,
+      "contested": true
     },
     {
-      "id": "unclear-see-attached",
+      "id": "featured-24-verified",
       "expected": {
-        "verdict": "unclear"
+        "verdict": "complete"
       },
       "actual": {
         "verdict": "unverified"
       },
-      "confidence": 0.9
+      "confidence": 0.41
+    },
+    {
+      "id": "featured-24-ambiguous",
+      "expected": {
+        "verdict": "unclear"
+      },
+      "actual": {
+        "verdict": "incomplete"
+      },
+      "confidence": 0.98,
+      "contested": true
     }
-  ]
+  ],
+  "acceptance": {
+    "minConfidence": 0.8,
+    "minimumHeldOutReadyCases": 20,
+    "minimumReadyAccuracy": 0.95,
+    "maximumProviderFailures": 0,
+    "met": false,
+    "label": "Experimental: declared acceptance policy not met"
+  }
 }

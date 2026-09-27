@@ -110,20 +110,20 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 50 golden cases against `jev-1.13.0`: **90% accurate** overall (contested cases 88%, adversarial cases 100%).
+Measured on 50 golden cases against `jev-1.13.0`: **88% accurate** overall (contested cases 88%, adversarial cases 83%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 14%                | 93%                       |
-| 0.6             | 30%                | 97%                       |
-| 0.7             | 36%                | 97%                       |
+| 0.5             | 14%                | 95%                       |
+| 0.6             | 26%                | 97%                       |
+| 0.7             | 34%                | 97%                       |
 | 0.8             | 40%                | 100%                      |
-| 0.9             | 46%                | 100%                      |
+| 0.9             | 48%                | 100%                      |
 | 0.95            | 56%                | 100%                      |
 
-The lowest threshold reaching 95% accuracy on ready results is 0.55.
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
-Rerun with `npm run eval -- clarify`; the full report, including misses, is in [evals/results/clarify.json](../../evals/results/clarify.json). Accuracy on your own data may differ.
+Run `npm run eval -- clarify` to save new results and update this guide. The full report, including misses, is in [evals/results/clarify.json](../../evals/results/clarify.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

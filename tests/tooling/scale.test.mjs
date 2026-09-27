@@ -60,13 +60,14 @@ test(
       await writeOutputs(temporary, files);
       const generationMs = performance.now() - started;
       assert.equal((await writeOutputs(temporary, files, true)).length, 0);
-      assert.equal(Object.keys(renderExports(records)).length, 1003);
+      assert.equal(Object.keys(renderExports(records)).length, 1004);
 
       for (const name of [
         'catalog/index.js',
         'catalog/schema.js',
         'catalog/search.js',
         'catalog/runner.js',
+        'src/data.js',
         'src/schema.js',
         'cli/index.js',
         'cli/schema.js',

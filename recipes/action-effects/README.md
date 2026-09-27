@@ -111,3 +111,31 @@ The labels describe the action as written, not what the underlying tool actually
 ## Example input
 
 [demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo action-effects` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe action-effects` to inspect the input and result schemas.
+
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 40 golden cases against `jev-1.13.0`: **75% accurate** overall (adversarial cases 60%).
+
+Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `bf45185c11409c57e8fc10215997bb2a2711222cf98dc655341415767fe5523d`.
+
+30/40 cases correct; 26 ready, 14 review, 0 failed. Accuracy among ready cases: 85%.
+
+Latency: p50 117.59 ms, p95 167.49 ms. Usage: 34392 input tokens and 3840 output tokens across 40 logical requests.
+
+Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 60% to 86%.
+
+**Experimental: declared acceptance policy not met.**
+
+A case counts as correct only when every item in it is right. Across the 200 individual items, **92%** were judged correctly.
+
+Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+
+Run `npm run eval -- action-effects` to save new results and update this guide. The full report, including misses, is in [evals/results/action-effects.json](../../evals/results/action-effects.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->

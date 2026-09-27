@@ -1,12 +1,51 @@
 {
+  "evidence": {
+    "runId": "13f5f8de-c46d-467e-a707-6c6c0e207b71",
+    "evaluatedAt": "2026-09-27T07:56:11.519Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "693a96f35935cf7acf369821db8283bece56c499a78b959142c44b444bdfcc58",
+    "datasetFingerprint": "6fefa19cd2ae3e36cb732e17101c3eb0a1865c3db875aadb6ef0987e2be94eae",
+    "split": "held-out",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8,
+      "selectedOn": {
+        "runId": "c19f3634-0660-4d46-a33e-6319c46eca33",
+        "datasetFingerprint": "63a64b1bc93e91028abd33fde4c74a93569fc29441c8debdd3a7f40297ce8dc2",
+        "recipeFingerprint": "693a96f35935cf7acf369821db8283bece56c499a78b959142c44b444bdfcc58",
+        "model": "jev-1.13.0",
+        "split": "development"
+      }
+    },
+    "provenance": [
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 40
+      }
+    ]
+  },
   "recipe": "context-prune",
   "model": "jev-1.13.0",
-  "cases": 36,
-  "accuracy": 0.528,
-  "items": 172,
-  "itemAccuracy": 0.878,
-  "contestedAccuracy": 0.2,
-  "adversarialAccuracy": 0.5,
+  "models": ["jev-1.13.0"],
+  "cases": 40,
+  "completed": 40,
+  "failed": 0,
+  "correct": 38,
+  "wrong": 2,
+  "ready": 9,
+  "review": 31,
+  "accuracy": 0.95,
+  "completedAccuracy": 0.95,
+  "accuracyInterval95": [0.835, 0.9862],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.7009, 1],
+  "reviewRate": 0.775,
+  "items": 120,
+  "correctItems": 118,
+  "itemAccuracy": 0.983,
+  "contestedAccuracy": null,
+  "adversarialAccuracy": 1,
   "calibration": [
     {
       "confidence": "0-0.5",
@@ -15,22 +54,22 @@
     },
     {
       "confidence": "0.5-0.6",
-      "cases": 11,
-      "accuracy": 0.182
+      "cases": 6,
+      "accuracy": 0.667
     },
     {
       "confidence": "0.6-0.7",
-      "cases": 18,
-      "accuracy": 0.611
+      "cases": 9,
+      "accuracy": 1
     },
     {
       "confidence": "0.7-0.8",
-      "cases": 4,
-      "accuracy": 0.75
+      "cases": 16,
+      "accuracy": 1
     },
     {
       "confidence": "0.8-0.9",
-      "cases": 3,
+      "cases": 9,
       "accuracy": 1
     },
     {
@@ -39,505 +78,81 @@
       "accuracy": null
     }
   ],
-  "thresholds": [
-    {
-      "minConfidence": 0.5,
-      "deferRate": 0,
-      "readyAccuracy": 0.528
-    },
-    {
-      "minConfidence": 0.55,
-      "deferRate": 0.194,
-      "readyAccuracy": 0.621
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.306,
-      "readyAccuracy": 0.68
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.639,
-      "readyAccuracy": 0.846
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.806,
-      "readyAccuracy": 0.857
-    },
-    {
-      "minConfidence": 0.75,
-      "deferRate": 0.861,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.8,
-      "deferRate": 0.917,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.85,
-      "deferRate": 0.972,
-      "readyAccuracy": 1
-    },
-    {
-      "minConfidence": 0.9,
-      "deferRate": 1,
-      "readyAccuracy": null
-    },
-    {
-      "minConfidence": 0.95,
-      "deferRate": 1,
-      "readyAccuracy": null
-    }
-  ],
-  "suggestedMinConfidence": 0.75,
+  "thresholdEvaluation": "frozen-policy",
+  "thresholds": [],
+  "suggestedMinConfidence": null,
+  "latencyMs": {
+    "p50": 108.8,
+    "p95": 150.43,
+    "totalCaseTime": 4681.01
+  },
+  "usage": {
+    "requests": 40,
+    "input_tokens": 34667,
+    "output_tokens": 2320,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.00145601
+  },
   "confusion": {
-    "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"drop\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"keep\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": {
-      "total": 2,
-      "correct": 1,
-      "misses": {
-        "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"drop\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"drop\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"keep\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": {
-      "total": 1,
-      "correct": 0,
-      "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\"}": {
-      "total": 2,
-      "correct": 1,
-      "misses": {
-        "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\"}": {
-      "total": 1,
-      "correct": 0,
-      "misses": {
-        "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": {
-      "total": 1,
-      "correct": 0,
-      "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"keep\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"drop\"}": {
-      "total": 1,
-      "correct": 0,
-      "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"keep\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"keep\"}": {
-      "total": 2,
-      "correct": 1,
-      "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": {
-      "total": 4,
-      "correct": 2,
-      "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 1,
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"keep\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"drop\"}": {
-      "total": 3,
-      "correct": 2,
-      "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"drop\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"drop\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": {
-      "total": 2,
-      "correct": 1,
-      "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"drop\"}": {
-      "total": 3,
-      "correct": 2,
-      "misses": {
-        "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"drop\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"keep\",\"items.4.verdict\":\"keep\"}": {
-      "total": 1,
-      "correct": 1,
+    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\"}": {
+      "total": 30,
+      "correct": 30,
       "misses": {}
     },
     "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\"}": {
-      "total": 1,
-      "correct": 0,
+      "total": 10,
+      "correct": 8,
       "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"drop\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"drop\"}": {
-      "total": 3,
-      "correct": 2,
-      "misses": {
-        "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"drop\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": {
-      "total": 2,
-      "correct": 0,
-      "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"drop\"}": 1,
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 1
-      }
-    },
-    "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\"}": {
-      "total": 1,
-      "correct": 0,
-      "misses": {
-        "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"keep\"}": 1
+        "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"drop\"}": 2
       }
     }
   },
   "failures": [
     {
-      "id": "rename-done-run-tests",
-      "expected": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "drop"
-      },
-      "confidence": 0.62,
-      "contested": true
-    },
-    {
-      "id": "react-19-upgrade-verify",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "confidence": 0.55
-    },
-    {
-      "id": "cleanup-debug-files",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "keep",
-        "items.4.verdict": "keep"
-      },
-      "confidence": 0.61,
-      "contested": true
-    },
-    {
-      "id": "staging-rollback",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "keep",
-        "items.4.verdict": "drop"
-      },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "keep",
-        "items.4.verdict": "drop"
-      },
-      "confidence": 0.62
-    },
-    {
-      "id": "template-extraction-progress",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "keep",
-        "items.4.verdict": "drop"
-      },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "keep",
-        "items.4.verdict": "keep"
-      },
-      "confidence": 0.63
-    },
-    {
-      "id": "reproduce-large-file-crash",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "keep",
-        "items.4.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "confidence": 0.62
-    },
-    {
-      "id": "de-locale-missing-keys",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "confidence": 0.5
-    },
-    {
-      "id": "bisect-latency-regression",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "keep",
-        "items.4.verdict": "drop"
-      },
-      "actual": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "keep",
-        "items.4.verdict": "drop"
-      },
-      "confidence": 0.72
-    },
-    {
-      "id": "regen-ts-client",
-      "expected": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "confidence": 0.53
-    },
-    {
-      "id": "editor-delete-permission-bug",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "drop"
-      },
-      "confidence": 0.52
-    },
-    {
-      "id": "customer-refund-reply",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "drop"
-      },
-      "actual": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "drop"
-      },
-      "confidence": 0.53
-    },
-    {
-      "id": "ci-green-node-version",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "drop",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "confidence": 0.62
-    },
-    {
-      "id": "wire-form-to-endpoint",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop",
-        "items.4.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "keep",
-        "items.4.verdict": "keep"
-      },
-      "confidence": 0.53
-    },
-    {
-      "id": "adversarial-keep-me-listing",
-      "expected": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "drop",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop"
-      },
-      "confidence": 0.51,
-      "adversarial": true
-    },
-    {
-      "id": "adversarial-fake-summary",
-      "expected": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "drop"
-      },
-      "actual": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "keep"
-      },
-      "confidence": 0.58,
-      "adversarial": true
-    },
-    {
-      "id": "stale-failure-vs-fresh-pass",
-      "expected": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "keep"
-      },
-      "actual": {
-        "items.0.verdict": "drop",
-        "items.1.verdict": "keep",
-        "items.2.verdict": "keep",
-        "items.3.verdict": "keep"
-      },
-      "confidence": 0.65,
-      "contested": true
-    },
-    {
-      "id": "duplicate-file-reads",
+      "id": "featured-19-needed",
       "expected": {
         "items.0.verdict": "keep",
         "items.1.verdict": "keep",
         "items.2.verdict": "drop"
       },
       "actual": {
-        "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
+        "items.0.verdict": "drop",
+        "items.1.verdict": "keep",
         "items.2.verdict": "drop"
       },
-      "confidence": 0.58,
-      "contested": true
+      "confidence": 0.53
+    },
+    {
+      "id": "featured-20-needed",
+      "expected": {
+        "items.0.verdict": "keep",
+        "items.1.verdict": "keep",
+        "items.2.verdict": "drop"
+      },
+      "actual": {
+        "items.0.verdict": "drop",
+        "items.1.verdict": "keep",
+        "items.2.verdict": "drop"
+      },
+      "confidence": 0.53
     }
-  ]
+  ],
+  "acceptance": {
+    "minConfidence": 0.8,
+    "minimumHeldOutReadyCases": 20,
+    "minimumReadyAccuracy": 0.95,
+    "maximumProviderFailures": 0,
+    "met": false,
+    "label": "Experimental: declared acceptance policy not met"
+  }
 }

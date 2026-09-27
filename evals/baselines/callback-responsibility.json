@@ -1,0 +1,262 @@
+{
+  "evidence": {
+    "runId": "2928ab8e-ec62-4300-bf44-b690425a5340",
+    "evaluatedAt": "2026-09-27T07:52:22.762Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "e3afba589f57bf106ce32a86e6d6dd3eb7d42c3c7f43a4e659330e8368a2cad6",
+    "datasetFingerprint": "df3494b970c0e117b7f35b64170beb57509e9d6d2a574617afa162c1d8bb5ed8",
+    "split": "development",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8
+    },
+    "provenance": [
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 60
+      }
+    ]
+  },
+  "recipe": "callback-responsibility",
+  "model": "jev-1.13.0",
+  "models": ["jev-1.13.0"],
+  "cases": 60,
+  "completed": 60,
+  "failed": 0,
+  "correct": 56,
+  "wrong": 4,
+  "ready": 38,
+  "review": 22,
+  "accuracy": 0.933,
+  "completedAccuracy": 0.933,
+  "accuracyInterval95": [0.8407, 0.9738],
+  "readyAccuracy": 0.974,
+  "readyAccuracyInterval95": [0.8651, 0.9953],
+  "reviewRate": 0.367,
+  "contestedAccuracy": 0.9,
+  "adversarialAccuracy": null,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 1,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 3,
+      "accuracy": 0.667
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 2,
+      "accuracy": 0
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 8,
+      "accuracy": 0.875
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 46,
+      "accuracy": 1
+    }
+  ],
+  "thresholdEvaluation": "recipe-replay",
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0.3,
+      "readyAccuracy": 0.905,
+      "readyCases": 42,
+      "reviewCases": 18,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.7793, 0.9623]
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0.3,
+      "readyAccuracy": 0.905,
+      "readyCases": 42,
+      "reviewCases": 18,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.7793, 0.9623]
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.3,
+      "readyAccuracy": 0.905,
+      "readyCases": 42,
+      "reviewCases": 18,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.7793, 0.9623]
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.333,
+      "readyAccuracy": 0.925,
+      "readyCases": 40,
+      "reviewCases": 20,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8014, 0.9742]
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.333,
+      "readyAccuracy": 0.925,
+      "readyCases": 40,
+      "reviewCases": 20,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8014, 0.9742]
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.35,
+      "readyAccuracy": 0.949,
+      "readyCases": 39,
+      "reviewCases": 21,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8311, 0.9858]
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.367,
+      "readyAccuracy": 0.974,
+      "readyCases": 38,
+      "reviewCases": 22,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8651, 0.9953]
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.417,
+      "readyAccuracy": 1,
+      "readyCases": 35,
+      "reviewCases": 25,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9011, 1]
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.483,
+      "readyAccuracy": 1,
+      "readyCases": 31,
+      "reviewCases": 29,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8897, 1]
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.517,
+      "readyAccuracy": 1,
+      "readyCases": 29,
+      "reviewCases": 31,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.883, 1]
+    }
+  ],
+  "suggestedMinConfidence": 0.8,
+  "latencyMs": {
+    "p50": 109.92,
+    "p95": 139.23,
+    "totalCaseTime": 7001.02
+  },
+  "usage": {
+    "requests": 60,
+    "input_tokens": 41046,
+    "output_tokens": 3198,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.00172393
+  },
+  "confusion": {
+    "{\"verdict\":\"business\"}": {
+      "total": 15,
+      "correct": 15,
+      "misses": {}
+    },
+    "{\"verdict\":\"customer\"}": {
+      "total": 15,
+      "correct": 13,
+      "misses": {
+        "{\"verdict\":\"business\"}": 2
+      }
+    },
+    "{\"verdict\":\"either\"}": {
+      "total": 5,
+      "correct": 5,
+      "misses": {}
+    },
+    "{\"verdict\":\"none\"}": {
+      "total": 5,
+      "correct": 5,
+      "misses": {}
+    },
+    "{\"verdict\":\"unclear\"}": {
+      "total": 20,
+      "correct": 18,
+      "misses": {
+        "{\"verdict\":\"business\"}": 2
+      }
+    }
+  },
+  "failures": [
+    {
+      "id": "featured-05-revised",
+      "expected": {
+        "verdict": "unclear"
+      },
+      "actual": {
+        "verdict": "business"
+      },
+      "confidence": 0.78,
+      "contested": true
+    },
+    {
+      "id": "featured-08-business",
+      "expected": {
+        "verdict": "customer"
+      },
+      "actual": {
+        "verdict": "business"
+      },
+      "confidence": 0.81
+    },
+    {
+      "id": "featured-09-customer",
+      "expected": {
+        "verdict": "customer"
+      },
+      "actual": {
+        "verdict": "business"
+      },
+      "confidence": 0.71
+    },
+    {
+      "id": "featured-11-revised",
+      "expected": {
+        "verdict": "unclear"
+      },
+      "actual": {
+        "verdict": "business"
+      },
+      "confidence": 0.61,
+      "contested": true
+    }
+  ]
+}

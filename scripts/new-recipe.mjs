@@ -75,7 +75,7 @@ export const recipeSpecSchema = z.discriminatedUnion('kind', [
   baseSpec.extend({
     kind: z.literal('comparison'),
     criteria: z.object({ first: text, second: text, tie: text, neither: text }),
-    demoProbabilities: z.record(
+    demoProbabilities: z.partialRecord(
       z.enum(['first', 'second', 'tie', 'neither', 'unclear']),
       probability,
     ),
@@ -725,14 +725,14 @@ const q = (value) =>
 const j = (value) => JSON.stringify(value);
 
 export async function scaffoldRecipe(root, id, kind = 'choice') {
-  if (!recipeIdPattern.test(id ?? '') || id === 'catalog')
+  if (!recipeIdPattern.test(id ?? '') || ['catalog', 'evaluation'].includes(id))
     throw new Error('Supply a new kebab-case recipe ID: make new RECIPE=my-recipe');
   return scaffoldFromSpec(root, starterSpec(id, kind));
 }
 
 export async function scaffoldFromSpec(root, rawSpec) {
   const { spec, files, test } = renderRecipe(rawSpec);
-  if (spec.id === 'catalog')
+  if (['catalog', 'evaluation'].includes(spec.id))
     throw new Error('Supply a new kebab-case recipe ID: make new RECIPE=my-recipe');
   const source = files.get('index.ts');
   if (ts.createSourceFile('index.ts', source, ts.ScriptTarget.Latest).parseDiagnostics.length)

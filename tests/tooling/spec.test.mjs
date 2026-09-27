@@ -89,6 +89,37 @@ test('array limits prose, zero-default choice labels, and review-level demo reje
   assert.throws(() => renderRecipe({ ...spec, tags: ['one'] }));
 });
 
+test('sparse comparison probabilities generate six files with zero-filled labels', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'jev-sparse-comparison-'));
+  try {
+    const comparison = {
+      ...starterSpec('sparse-comparison', 'comparison'),
+      demoProbabilities: { first: 1 },
+    };
+    await scaffoldFromSpec(root, comparison);
+    for (const name of ['index.ts', 'schema.ts', 'metadata.ts', 'demo.json', 'README.md'])
+      assert.ok((await readFile(join(root, 'recipes/sparse-comparison', name), 'utf8')).length > 0);
+    assert.ok(
+      (await readFile(join(root, 'tests/recipe/sparse-comparison.test.ts'), 'utf8')).length > 0,
+    );
+    const demo = JSON.parse(
+      await readFile(join(root, 'recipes/sparse-comparison/demo.json'), 'utf8'),
+    );
+    assert.deepEqual(demo.response.answers.decision.probabilities, {
+      first: 1,
+      second: 0,
+      tie: 0,
+      neither: 0,
+      unclear: 0,
+    });
+    assert.throws(() =>
+      renderRecipe({ ...comparison, demoProbabilities: { first: 1, unknown: 0 } }),
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test('a selection spec renders the candidate helper and maps demo ids to internal labels', () => {
   const selection = renderRecipe(starterSpec('pick-one', 'selection'));
   assert.match(selection.files.get('index.ts'), /selectCandidate\(state, state\.candidates,/);

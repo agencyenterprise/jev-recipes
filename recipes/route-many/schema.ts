@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { recordWithOwnKeys } from '../../src/data.js';
 import {
   decisionStatusSchema,
   nonEmptyText,
@@ -16,8 +17,7 @@ export const routeManyInputSchema = z.object({
       (items) => new Set(items.map((item) => item.id)).size === items.length,
       'Request IDs must be unique.',
     ),
-  routes: z
-    .record(nonEmptyText, nonEmptyText)
+  routes: recordWithOwnKeys(nonEmptyText, nonEmptyText)
     .refine(
       (routes) => Object.keys(routes).length >= 1 && Object.keys(routes).length <= 254,
       'Provide 1 to 254 routes.',
@@ -32,7 +32,7 @@ export const routeManyItemSchema = z.object({
   route: nonEmptyText.nullable(),
   suggestedRoute: nonEmptyText.nullable(),
   confidence: probability,
-  probabilities: z.record(z.string(), probability),
+  probabilities: recordWithOwnKeys(z.string(), probability),
 });
 export const routeManyResultSchema = resultMetadataSchema.extend({
   status: decisionStatusSchema,
