@@ -1,15 +1,13 @@
 {
   "evidence": {
-    "runId": "773a2e85-0c9b-4972-84c3-b19fdf9633d4",
-    "evaluatedAt": "2026-09-27T07:55:44.845Z",
-    "packageVersion": "0.7.0",
-    "recipeFingerprint": "025809a6bf2854d34cf406e89bbdeabcffc5c42c82b6ef04eae93568038c68a8",
-    "datasetFingerprint": "5bf34925570f061aa0d8a43c7c004502ba73b6b8fe11e62c1e547895f5afd4b6",
+    "runId": "7d00449d-b343-4833-9d77-2d8da3c3ce4e",
+    "evaluatedAt": "2026-09-27T21:18:30.519Z",
+    "packageVersion": "0.8.1",
+    "recipeFingerprint": "07af7ca742bf9c8de291687ddb75cb999d01c4ce643a10ac88459553127d4644",
+    "datasetFingerprint": "74da729600ca75dbd57a4cb37ba4084c3dbae320c0fde6db1944be6bc0f7cac0",
     "split": "development",
     "mode": "live",
-    "policy": {
-      "minConfidence": 0.8
-    },
+    "policy": { "minConfidence": 0.8 },
     "provenance": [
       {
         "method": "unspecified",
@@ -19,462 +17,180 @@
       {
         "method": "author-synthetic",
         "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
-        "cases": 60
+        "cases": 100
       }
     ]
   },
   "recipe": "completion-gate",
-  "model": "jev-1.13.0",
-  "models": ["jev-1.13.0"],
-  "cases": 104,
-  "completed": 104,
+  "model": "typesafe-ai/jev",
+  "models": ["typesafe-ai/jev"],
+  "cases": 144,
+  "completed": 144,
   "failed": 0,
-  "correct": 80,
-  "wrong": 24,
-  "ready": 77,
-  "review": 27,
-  "accuracy": 0.769,
-  "completedAccuracy": 0.769,
-  "accuracyInterval95": [0.6795, 0.8397],
-  "readyAccuracy": 0.805,
-  "readyAccuracyInterval95": [0.7031, 0.8782],
-  "reviewRate": 0.26,
-  "contestedAccuracy": 0.19,
+  "correct": 141,
+  "wrong": 3,
+  "ready": 90,
+  "review": 54,
+  "accuracy": 0.979,
+  "completedAccuracy": 0.979,
+  "accuracyInterval95": [0.9405, 0.9929],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.9591, 1],
+  "reviewRate": 0.375,
+  "contestedAccuracy": 1,
   "adversarialAccuracy": 1,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 7,
-      "accuracy": 0.714
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 8,
-      "accuracy": 0.5
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 7,
-      "accuracy": 0.857
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 5,
-      "accuracy": 0.6
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 8,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 69,
-      "accuracy": 0.783
-    }
+    { "confidence": "0-0.5", "cases": 12, "accuracy": 0.75 },
+    { "confidence": "0.5-0.6", "cases": 6, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 5, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 8, "accuracy": 1 },
+    { "confidence": "0.8-0.9", "cases": 16, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 97, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
     {
       "minConfidence": 0.5,
-      "deferRate": 0.067,
-      "readyAccuracy": 0.773,
-      "readyCases": 97,
-      "reviewCases": 7,
+      "deferRate": 0.264,
+      "readyAccuracy": 1,
+      "readyCases": 106,
+      "reviewCases": 38,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.6804, 0.8452]
+      "readyAccuracyInterval95": [0.965, 1]
     },
     {
       "minConfidence": 0.55,
-      "deferRate": 0.115,
-      "readyAccuracy": 0.783,
-      "readyCases": 92,
-      "reviewCases": 12,
+      "deferRate": 0.278,
+      "readyAccuracy": 1,
+      "readyCases": 104,
+      "reviewCases": 40,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.6879, 0.8546]
+      "readyAccuracyInterval95": [0.9644, 1]
     },
     {
       "minConfidence": 0.6,
-      "deferRate": 0.144,
-      "readyAccuracy": 0.798,
-      "readyCases": 89,
-      "reviewCases": 15,
+      "deferRate": 0.306,
+      "readyAccuracy": 1,
+      "readyCases": 100,
+      "reviewCases": 44,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.7028, 0.8681]
+      "readyAccuracyInterval95": [0.963, 1]
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.183,
-      "readyAccuracy": 0.788,
-      "readyCases": 85,
-      "reviewCases": 19,
+      "deferRate": 0.319,
+      "readyAccuracy": 1,
+      "readyCases": 98,
+      "reviewCases": 46,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.6899, 0.8616]
+      "readyAccuracyInterval95": [0.9623, 1]
     },
     {
       "minConfidence": 0.7,
-      "deferRate": 0.212,
-      "readyAccuracy": 0.793,
-      "readyCases": 82,
-      "reviewCases": 22,
+      "deferRate": 0.333,
+      "readyAccuracy": 1,
+      "readyCases": 96,
+      "reviewCases": 48,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.6928, 0.8663]
+      "readyAccuracyInterval95": [0.9615, 1]
     },
     {
       "minConfidence": 0.75,
-      "deferRate": 0.231,
-      "readyAccuracy": 0.813,
-      "readyCases": 80,
-      "reviewCases": 24,
+      "deferRate": 0.354,
+      "readyAccuracy": 1,
+      "readyCases": 93,
+      "reviewCases": 51,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.7134, 0.8829]
+      "readyAccuracyInterval95": [0.9603, 1]
     },
     {
       "minConfidence": 0.8,
-      "deferRate": 0.26,
-      "readyAccuracy": 0.805,
-      "readyCases": 77,
-      "reviewCases": 27,
+      "deferRate": 0.375,
+      "readyAccuracy": 1,
+      "readyCases": 90,
+      "reviewCases": 54,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.7031, 0.8782]
+      "readyAccuracyInterval95": [0.9591, 1]
     },
     {
       "minConfidence": 0.85,
-      "deferRate": 0.288,
-      "readyAccuracy": 0.797,
-      "readyCases": 74,
-      "reviewCases": 30,
+      "deferRate": 0.382,
+      "readyAccuracy": 1,
+      "readyCases": 89,
+      "reviewCases": 55,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.6921, 0.8731]
+      "readyAccuracyInterval95": [0.9586, 1]
     },
     {
       "minConfidence": 0.9,
-      "deferRate": 0.337,
-      "readyAccuracy": 0.783,
-      "readyCases": 69,
-      "reviewCases": 35,
+      "deferRate": 0.472,
+      "readyAccuracy": 1,
+      "readyCases": 76,
+      "reviewCases": 68,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.6718, 0.8636]
+      "readyAccuracyInterval95": [0.9519, 1]
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.404,
-      "readyAccuracy": 0.823,
-      "readyCases": 62,
-      "reviewCases": 42,
+      "deferRate": 0.549,
+      "readyAccuracy": 1,
+      "readyCases": 65,
+      "reviewCases": 79,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.7096, 0.8979]
+      "readyAccuracyInterval95": [0.9442, 1]
     }
   ],
-  "suggestedMinConfidence": null,
-  "latencyMs": {
-    "p50": 111.52,
-    "p95": 184.56,
-    "totalCaseTime": 12349.67
-  },
+  "suggestedMinConfidence": 0.5,
+  "latencyMs": { "p50": 256.69, "p95": 369.33, "totalCaseTime": 38730.12 },
   "usage": {
-    "requests": 104,
-    "input_tokens": 111786,
-    "output_tokens": 14202,
+    "requests": 144,
+    "input_tokens": 148543,
+    "output_tokens": 19626,
     "unknownResponses": 0,
     "failedRequests": 0,
-    "models": ["jev-1.13.0"]
+    "models": ["typesafe-ai/jev"]
   },
   "cost": {
-    "model": "jev-1.13.0",
+    "model": "typesafe-ai/jev",
     "inputPerMillion": 0.042,
     "outputPerMillion": 0,
     "currency": "USD",
     "date": "2026-09-27",
-    "source": "https://docs.typesafe.ai/models",
-    "estimated": 0.00469501
+    "source": "https://ai-gateway.vercel.sh/v1/models",
+    "estimated": 0.00623881
   },
   "confusion": {
     "{\"verdict\":\"complete\"}": {
-      "total": 28,
-      "correct": 23,
-      "misses": {
-        "{\"verdict\":\"unverified\"}": 5
-      }
+      "total": 38,
+      "correct": 36,
+      "misses": { "{\"verdict\":\"unverified\"}": 2 }
     },
-    "{\"verdict\":\"incomplete\"}": {
-      "total": 30,
-      "correct": 30,
-      "misses": {}
-    },
-    "{\"verdict\":\"unclear\"}": {
-      "total": 18,
-      "correct": 0,
-      "misses": {
-        "{\"verdict\":\"unverified\"}": 3,
-        "{\"verdict\":\"incomplete\"}": 15
-      }
-    },
+    "{\"verdict\":\"incomplete\"}": { "total": 40, "correct": 40, "misses": {} },
+    "{\"verdict\":\"unclear\"}": { "total": 28, "correct": 28, "misses": {} },
     "{\"verdict\":\"unverified\"}": {
-      "total": 28,
-      "correct": 27,
-      "misses": {
-        "{\"verdict\":\"incomplete\"}": 1
-      }
+      "total": 38,
+      "correct": 37,
+      "misses": { "{\"verdict\":\"complete\"}": 1 }
     }
   },
   "failures": [
     {
-      "id": "complete-changelog-entry-in-report",
-      "expected": {
-        "verdict": "complete"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.94,
-      "contested": true
-    },
-    {
       "id": "complete-backfill-zero-nulls",
-      "expected": {
-        "verdict": "complete"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.17
+      "expected": { "verdict": "complete" },
+      "actual": { "verdict": "unverified" },
+      "confidence": 0.48
     },
     {
-      "id": "unverified-safari-bug-not-reproduced",
-      "expected": {
-        "verdict": "unverified"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.59,
-      "contested": true
-    },
-    {
-      "id": "unclear-vague-task-done",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.92
-    },
-    {
-      "id": "unclear-report-about-unrelated-pr",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.65
-    },
-    {
-      "id": "unclear-see-attached",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.9
-    },
-    {
-      "id": "featured-00-verified",
-      "expected": {
-        "verdict": "complete"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.7
-    },
-    {
-      "id": "featured-00-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.99,
-      "contested": true
-    },
-    {
-      "id": "featured-01-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.74,
-      "contested": true
-    },
-    {
-      "id": "featured-02-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.99,
-      "contested": true
-    },
-    {
-      "id": "featured-03-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.99,
-      "contested": true
-    },
-    {
-      "id": "featured-04-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.92,
-      "contested": true
-    },
-    {
-      "id": "featured-05-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.96,
-      "contested": true
-    },
-    {
-      "id": "featured-06-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.53,
-      "contested": true
-    },
-    {
-      "id": "featured-07-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.98,
-      "contested": true
-    },
-    {
-      "id": "featured-08-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.99,
-      "contested": true
-    },
-    {
-      "id": "featured-09-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.99,
-      "contested": true
-    },
-    {
-      "id": "featured-10-verified",
-      "expected": {
-        "verdict": "complete"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.27
-    },
-    {
-      "id": "featured-10-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 1,
-      "contested": true
-    },
-    {
-      "id": "featured-11-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.55,
-      "contested": true
-    },
-    {
-      "id": "featured-12-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.99,
-      "contested": true
-    },
-    {
-      "id": "featured-13-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.96,
-      "contested": true
+      "id": "unverified-support-delivery-confirmed-no-transcript",
+      "expected": { "verdict": "unverified" },
+      "actual": { "verdict": "complete" },
+      "confidence": 0.4
     },
     {
       "id": "featured-14-verified",
-      "expected": {
-        "verdict": "complete"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.5
-    },
-    {
-      "id": "featured-14-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.98,
-      "contested": true
+      "expected": { "verdict": "complete" },
+      "actual": { "verdict": "unverified" },
+      "confidence": 0.39
     }
   ]
 }

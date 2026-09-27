@@ -90,6 +90,8 @@ The recipe compares the two records as supplied. It does not look either record 
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement.**
+
 Measured on 40 golden cases against `jev-1.13.0`: **88% accurate** overall.
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `937fa33427abf5c862ed5c9f34919d1a5585a05b6cd7a722c857f0405f2dfb1d`.

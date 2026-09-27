@@ -1,0 +1,29 @@
+{
+  "input": {
+    "text": "Installation",
+    "after": "Run npm install to add the package.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "heading",
+        "confidence": 0.94,
+        "probabilities": {
+          "heading": 0.94,
+          "body": 0.04,
+          "list_item": 0,
+          "code": 0,
+          "table": 0,
+          "caption": 0,
+          "formula": 0,
+          "other": 0,
+          "unclear": 0.02
+        }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

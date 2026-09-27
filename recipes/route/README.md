@@ -84,6 +84,8 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement.**
+
 Measured on 40 golden cases against `jev-1.13.0`: **98% accurate** overall (adversarial cases 90%).
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `47f2015674f4ab7c9498d3ccfbd072384bc90f6c451edadcfe62cf24de2d402d`.

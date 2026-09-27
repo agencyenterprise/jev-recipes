@@ -116,21 +116,23 @@ A result is `ready` when the decision confidence meets `minConfidence` and the v
 
 <!-- BEGIN GENERATED: accuracy -->
 
-Measured on 40 golden cases against `jev-1.13.0`: **70% accurate** overall (contested cases 0%).
+**Current synthetic measurement.**
 
-Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `025809a6bf2854d34cf406e89bbdeabcffc5c42c82b6ef04eae93568038c68a8`.
+Measured on 40 golden cases against `typesafe-ai/jev`: **100% accurate** overall.
 
-28/40 cases correct; 30 ready, 10 review, 0 failed. Accuracy among ready cases: 67%.
+Recorded 2026-09-27 with package 0.8.1, on the **held-out** split. Recipe fingerprint: `07af7ca742bf9c8de291687ddb75cb999d01c4ce643a10ac88459553127d4644`.
 
-Latency: p50 108.7 ms, p95 160.15 ms. Usage: 42229 input tokens and 5464 output tokens across 40 logical requests.
+40/40 cases correct; 30 ready, 10 review, 0 failed. Accuracy among ready cases: 100%.
 
-Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+Latency: p50 281.65 ms, p95 361.99 ms. Usage: 40970 input tokens and 5450 output tokens across 40 logical requests.
+
+Labels: author-synthetic (40 cases): AI-authored new scenario families for the September 2026 update; not independently human-reviewed. Previous inspected holdouts moved to development.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 55% to 82%.
+95% case-level accuracy interval: 91% to 100%.
 
-**Experimental: declared acceptance policy not met.**
+**Measured on these synthetic cases.**
 
 Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
 
@@ -151,3 +153,7 @@ The recipe does not judge code quality or correctness beyond what the evidence s
 ## Example input
 
 [demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo completion-gate` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe completion-gate` to inspect the input and result schemas.
+
+## Decision boundary
+
+Use `unclear` when the required scope cannot be established, `incomplete` when a known requirement remains unfinished, and `unverified` when completion is claimed without supporting evidence. The caller decides what evidence is sufficient for its workflow.

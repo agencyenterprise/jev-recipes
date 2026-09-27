@@ -812,6 +812,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
       (recipe) => (input, options) =>
         recipe.outcomeFraming(recipe.outcomeFramingInputSchema.parse(input), options),
     ),
+  'paragraph-boundary': () =>
+    import('../../recipes/paragraph-boundary/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.paragraphBoundary(recipe.paragraphBoundaryInputSchema.parse(input), options),
+    ),
   'passage-compare': () =>
     import('../../recipes/passage-compare/index.js').then(
       (recipe) => (input, options) =>
@@ -1198,6 +1203,11 @@ export const recipeLoaders: Record<RecipeName, () => Promise<RecipeRunner>> = {
     import('../../recipes/tension-level/index.js').then(
       (recipe) => (input, options) =>
         recipe.tensionLevel(recipe.tensionLevelInputSchema.parse(input), options),
+    ),
+  'text-block-role': () =>
+    import('../../recipes/text-block-role/index.js').then(
+      (recipe) => (input, options) =>
+        recipe.textBlockRole(recipe.textBlockRoleInputSchema.parse(input), options),
     ),
   'ticket-match': () =>
     import('../../recipes/ticket-match/index.js').then(

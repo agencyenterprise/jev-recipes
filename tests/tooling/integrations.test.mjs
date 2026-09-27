@@ -48,3 +48,59 @@ for (const [name, factory, url, model] of [
 test('Gateway refuses a missing Gateway key instead of falling back to TypeSafe credentials', () => {
   assert.throws(() => createGatewayClient({ apiKey: '' }), /AI_GATEWAY_API_KEY/);
 });
+
+test('Gateway accepts the configured Vercel key alias without reading a TypeSafe credential', async () => {
+  const previous = process.env.VERCEL_GATEWAY_API_KEY;
+  process.env.VERCEL_GATEWAY_API_KEY = 'offline-vercel-key';
+  try {
+    const client = createGatewayClient({
+      retry: { maxRetries: 0 },
+      fetch: async (input, init) => {
+        const request = new Request(input, init);
+        assert.equal(request.headers.get('authorization'), 'Bearer offline-vercel-key');
+        return new Response(JSON.stringify(fixture({ route: 'billing' })(await request.json())), {
+          status: 200,
+        });
+      },
+    });
+    const result = await route({ request: 'Invoice', routes: { billing: 'Invoices' } }, { client });
+    assert.equal(result.route, 'billing');
+  } finally {
+    if (previous === undefined) delete process.env.VERCEL_GATEWAY_API_KEY;
+    else process.env.VERCEL_GATEWAY_API_KEY = previous;
+  }
+});
+
+for (const [name, factory] of [
+  ['direct', createDirectClient],
+  ['gateway', createGatewayClient],
+])
+  test(`${name} carries Choice, Score, and Noul answers through the same client contract`, async () => {
+    const { modelRoute } = await import('../../dist/recipes/model-route/index.js');
+    const { actionEffects } = await import('../../dist/recipes/action-effects/index.js');
+    const types = new Set();
+    const client = factory({
+      apiKey: 'offline-key',
+      retry: { maxRetries: 0 },
+      fetch: async (input, init) => {
+        const request = await new Request(input, init).json();
+        for (const question of Object.values(request.questions)) types.add(question.type);
+        return new Response(
+          JSON.stringify(fixture({ decision: 'candidate_0', effort: 0, default: 0.01 })(request)),
+          { status: 200 },
+        );
+      },
+    });
+    const selection = await modelRoute(
+      {
+        request: 'Rename a local variable.',
+        models: [{ id: 'small', text: 'Handles simple edits.' }],
+      },
+      { client },
+    );
+    assert.equal(selection.selection, 'small');
+    assert.equal(selection.effortLevel, 0);
+    const effects = await actionEffects({ action: 'Read a local file.' }, { client });
+    assert.deepEqual(effects.detected, []);
+    assert.deepEqual([...types].sort(), ['choice', 'noul', 'score']);
+  });

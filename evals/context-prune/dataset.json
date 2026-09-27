@@ -1,11 +1,11 @@
 {
-  "version": 1,
+  "version": 2,
   "recipe": "context-prune",
   "collection": "agent-operations",
-  "cases": 136,
-  "development": 96,
-  "heldOut": 40,
-  "familySplit": "Counterfactuals in a family stay in one split. All legacy cases remain development data.",
+  "cases": 156,
+  "development": 136,
+  "heldOut": 20,
+  "familySplit": "All previously inspected cases are development data. New update scenario families are held out together. Shared templates limit independence.",
   "provenance": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
   "acceptance": {
     "minConfidence": 0.8,

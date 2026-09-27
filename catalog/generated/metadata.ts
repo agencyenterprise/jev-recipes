@@ -24,6 +24,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use action-scope to check whether a single action stays within the requested work.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'action-effects',
@@ -51,6 +52,30 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use action-scope to check whether the action stays within the work that was requested.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'typesafe-ai/jev',
+        date: '2026-09-27T21:19:58.394Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 20,
+        reviewRate: 0.5,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored new scenario families for the September 2026 update; not independently human-reviewed. Previous inspected holdouts moved to development.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'action-reversibility',
@@ -72,6 +97,23 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use action-scope to check whether the action stays within the requested work before grading how reversible it is.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 44,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'action-scope',
@@ -90,6 +132,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use instruction-fit to decide whether a particular instruction applies.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'age-appropriateness',
@@ -115,6 +158,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use policy-severity to grade how seriously content breaches a stated policy.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'alert-actionability',
@@ -142,6 +186,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use issue-impact to grade how much a reported problem matters, rather than how well the alert tells you what to do about it.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'answer-consistency',
@@ -160,6 +205,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use verify to assess a claim against evidence rather than another statement.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'answer-coverage',
@@ -179,6 +225,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use answer-relevance to assess how directly the draft addresses the overall request.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'answer-disclosures',
@@ -204,6 +251,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use citation-needed to decide whether a statement requires evidence under your rules.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'answer-grade',
@@ -231,6 +279,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use grounding-level when the criterion is fidelity to a source passage rather than a rubric.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'answer-invalidation',
@@ -250,6 +299,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use cache-match to check reuse for a new question when evidence has not changed.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'answer-relevance',
@@ -267,6 +317,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use answer-coverage to check separate question parts individually.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'answerability',
@@ -285,6 +336,23 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use answer-coverage after drafting to check whether each question was addressed.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 50,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'appeal-grounds-kind',
@@ -319,6 +387,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use feedback-kind to classify general feedback on a product or service, rather than a formal appeal of a decision.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'appointment-request-kind',
@@ -345,6 +414,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use cancellation-check when you only need to know whether a message cancels something.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'argument-fit',
@@ -363,6 +433,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use tool-fit to check the tool capability before choosing its arguments.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'attempted-step',
@@ -380,6 +451,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use troubleshooting-fit to check whether the procedure fits the symptoms.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'attribution-match',
@@ -425,6 +497,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use reference-resolve to select the referent of an ambiguous expression from supplied candidates.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'audience-fit',
@@ -440,6 +513,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     related: [
       { id: 'tone-check', reason: 'Use tone-check to evaluate specific writing criteria.' },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'breaking-change-signal',
@@ -466,6 +540,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use instruction-conflict when a change may disagree with an existing documented rule or requirement.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'budget-fit',
@@ -492,6 +567,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use plan-completeness to check that the plan covers its goal; a plan can fit the budget by leaving work out.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'budget-narrative-fit',
@@ -519,6 +595,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use commit-message-fit for the analogous check that a commit message describes the change it accompanies.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'bug-report-completeness',
@@ -545,6 +622,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use requirement-testability to check whether a described expected behavior can be verified.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'buying-intent',
@@ -569,6 +647,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use commitment-strength to grade how firmly a message commits to a stated action.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:26.559Z',
+        split: 'held-out',
+        cases: 25,
+        ready: 24,
+        reviewRate: 0.04,
+        readyAccuracy: 0.958,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 25,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'cache-match',
@@ -587,6 +689,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use query-equivalence to compare questions without assessing a saved answer.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'callback-responsibility',
@@ -612,6 +715,30 @@ export const recipeMetadata: CatalogRecipe[] = [
       },
       { id: 'followup-timing', reason: 'Use followup-timing for when another contact is wanted.' },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:29.897Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 24,
+        reviewRate: 0.4,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'cancellation-check',
@@ -629,6 +756,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use intent-change to assess broader changes to the current goal.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'care-urgency-wording',
@@ -655,6 +783,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use handoff to decide whether a message should leave the automated flow for a human, such as a nurse line.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'category-fit',
@@ -680,6 +809,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use route to pick the best category from several candidates instead of checking one.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'causal-attribution',
@@ -721,6 +851,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use verify to assess supplied evidence for a causal claim; causal-attribution does not establish causation.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'causal-language-strength',
@@ -755,6 +886,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use uncertainty-expression to grade how hedged a statement is overall, rather than the strength of its causal claim specifically.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'certainty-match',
@@ -769,6 +901,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     related: [
       { id: 'tone-check', reason: 'Use tone-check to evaluate other explicit writing criteria.' },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'change-meaning',
@@ -787,6 +920,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use answer-invalidation to assess how changed evidence affects a saved claim.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'change-risk',
@@ -812,6 +946,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use action-scope to check whether a change stays within the work that was requested.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'change-window-fit',
@@ -839,6 +974,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use action-scope to check whether an action stays within what was requested, rather than whether its timing is allowed.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'checkers-move',
@@ -866,6 +1002,23 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use take-turn for narrative turn eligibility. Checkers games should supply the known acting player directly without another model call.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 31,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'choose-action',
@@ -912,6 +1065,23 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use step-progress to assess an observed outcome after a move; this recipe recommends a candidate before execution.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 32,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'citation-match',
@@ -928,6 +1098,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     related: [
       { id: 'verify', reason: 'Use verify when each claim already has its own paired evidence.' },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'citation-needed',
@@ -945,6 +1116,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use citation-match to find supporting passages once a citation is needed.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'claim-facets',
@@ -979,6 +1151,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use clarify to decide whether to ask the claimant a follow-up question about the facets this recipe finds missing.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'claim-stance',
@@ -1017,6 +1190,23 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use draft-compare for a preference between two responses under a supplied rubric.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 53,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'clarify',
@@ -1036,6 +1226,23 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use query-specificity to assess how focused the question is, without a requirements list.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 50,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'clause-conflict',
@@ -1062,6 +1269,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use evidence-conflict to check whether two factual statements contradict each other rather than whether two requirements can both be met.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'clause-kind',
@@ -1087,6 +1295,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use document-role to classify the purpose of a whole document rather than one clause.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'clickbait-level',
@@ -1113,6 +1322,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use question-leading to detect questions that push the reader toward a particular answer.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'commit-message-fit',
@@ -1139,6 +1349,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use change-meaning to decide whether an edit to text alters its meaning or is editorial only.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'commitment-strength',
@@ -1164,6 +1375,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use certainty-match to compare expressed certainty with the evidence rather than commitment to act.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'comparable-fit',
@@ -1191,6 +1403,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use passage-compare to pick which of two passages better answers a question, rather than to judge similarity between two property descriptions.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'completion-gate',
@@ -1220,6 +1433,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use result-plausibility to check whether a single tool result is a real answer.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'typesafe-ai/jev',
+        date: '2026-09-27T21:20:01.789Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 30,
+        reviewRate: 0.25,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored new scenario families for the September 2026 update; not independently human-reviewed. Previous inspected holdouts moved to development.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'confirmation-match',
@@ -1237,6 +1474,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use cancellation-check to assess instructions to stop or pause a task.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'consent-request',
@@ -1263,6 +1501,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use promise-check to detect commitments the text makes to the reader rather than permission it asks of them.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'consent-scope-fit',
@@ -1288,6 +1527,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use source-applicability to check whether a policy or source document applies to a situation at all.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'constraint-strength',
@@ -1327,6 +1567,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use instruction-conflict to compare the requirements of two instructions.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'contact-opt-out',
@@ -1356,6 +1597,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use followup-timing for a requested delay or condition for future contact.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:27.401Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 33,
+        reviewRate: 0.175,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'content-facets',
@@ -1381,6 +1646,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use argument-fit to judge whether a specific argument supports a specific claim.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'content-freshness-signal',
@@ -1407,6 +1673,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use freshness-needed to decide whether a question requires current information to answer.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'context-prune',
@@ -1437,6 +1704,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use progress-stall to detect an agent that keeps reprocessing the same context.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: true,
+      measurement: {
+        model: 'typesafe-ai/jev',
+        date: '2026-09-27T21:21:18.930Z',
+        split: 'held-out',
+        cases: 20,
+        ready: 11,
+        reviewRate: 0.45,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored new scenario families for the September 2026 update; not independently human-reviewed. Previous inspected holdouts moved to development.',
+            cases: 20,
+          },
+        ],
+        acceptanceMet: false,
+      },
+    },
   },
   {
     id: 'context-role',
@@ -1449,6 +1740,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
     useWhen: 'You want to identify the role a passage plays in answering a question.',
     related: [{ id: 'rerank', reason: 'Use rerank to select and order passages by relevance.' }],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'continuation-compare',
@@ -1476,6 +1768,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use action-compare to compare two next steps against a goal and constraints, rather than two continuations against a musical context.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'correction-target',
@@ -1494,6 +1787,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use reference-resolve for references that are not corrections.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'corrective-action-fit',
@@ -1521,6 +1815,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use troubleshooting-fit to assess a diagnostic procedure rather than a proposed fix.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'daw-request-kind',
@@ -1548,6 +1843,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use turn-intent to classify the conversational role of a turn, such as a question or a correction, rather than which production operation it asks for.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'deadline-risk',
@@ -1575,6 +1871,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use task-complexity to grade how hard a task is before it starts, rather than how it is tracking once underway.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'defect-report-facets',
@@ -1602,6 +1899,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use clarify to phrase the follow-up question once a report is known to be missing a facet.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'delegation-fit',
@@ -1627,6 +1925,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use route to choose among several named delegates at once when more than one might fit.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'diff-hazards',
@@ -1665,6 +1964,23 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use breaking-change-signal to check whether a change breaks callers.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 43,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'disclosure-facets',
@@ -1692,6 +2008,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           "Use clarify to decide whether a buyer's question about the disclosure is too ambiguous to answer, rather than what the disclosure itself addresses.",
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'dispute-kind',
@@ -1718,6 +2035,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use route when the destinations are caller-defined queues rather than this fixed set of billing dispute types.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'document-role',
@@ -1735,6 +2053,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use context-role to assess how a passage relates to a specific question.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'draft-compare',
@@ -1752,6 +2071,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use tone-check to evaluate each writing criterion for one draft.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'dynamic-change',
@@ -1779,6 +2099,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use tone-check to check a draft against caller-defined writing criteria; this recipe steers loudness, not prose.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'eligibility-facets',
@@ -1806,6 +2127,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           "Use clarify to decide whether an applicant's question is too ambiguous to answer, rather than which eligibility topics their statement addresses.",
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'emotion-kind',
@@ -1830,6 +2152,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use uncertainty-expression to detect hedging and doubt rather than emotion.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'entity-match',
@@ -1854,6 +2177,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use task-duplicate to catch a task that repeats one already on the list.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:33.689Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 30,
+        reviewRate: 0.25,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'error-acknowledgment',
@@ -1881,6 +2228,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use uncertainty-expression to grade how the message hedges, rather than whether it admits a prior mistake.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'escalation-wording',
@@ -1907,6 +2255,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use handoff to decide whether a conversation should move to a human at all, rather than whether the writer asked for a higher tier.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'evaluation-mention',
@@ -1947,6 +2296,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use uncertainty-expression to label how certain the response sounds about a specific evaluation claim.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'evidence-conflict',
@@ -1965,6 +2315,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use answer-consistency to compare two statements directly.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'evidence-independence',
@@ -2005,6 +2356,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use evidence-conflict to compare what sources say; conflicting reports can still share an origin.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'evidence-novelty',
@@ -2025,6 +2377,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use passage-duplicate to compare overlap between two passages.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'evidence-strength',
@@ -2049,6 +2402,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use answerability to decide whether evidence can answer a whole question.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'exercise-select',
@@ -2076,6 +2430,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use troubleshooting-fit to check whether one supplied procedure addresses a reported problem, rather than to pick the best of several.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'expense-category',
@@ -2103,6 +2458,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use field-select to choose which field of a record holds a value, rather than which category definition a described purchase satisfies.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'explanation-level',
@@ -2129,6 +2485,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use certainty-match to check whether the confidence expressed fits the reasoning given.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'extraction-fidelity',
@@ -2155,6 +2512,30 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use summary-coverage when the output is prose that should cover the source, not a set of fields.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:32.456Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 40,
+        reviewRate: 0,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'fact-stability',
@@ -2173,6 +2554,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use freshness-needed to decide whether a question needs current information.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'failure-kind',
@@ -2191,6 +2573,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use result-outcome when first determining what a result reports.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'fair-housing-wording',
@@ -2218,6 +2601,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use policy-severity to grade how serious a confirmed violation is against a supplied policy, rather than to detect the wording in the first place.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'feedback-actionability',
@@ -2245,6 +2629,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use tone-check to judge the wording of the same feedback against writing criteria.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'feedback-kind',
@@ -2262,6 +2647,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use turn-intent for the broader purpose of a conversational turn.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'field-select',
@@ -2280,6 +2666,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use reference-resolve to identify what a conversational reference points to.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:31.169Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 30,
+        reviewRate: 0.25,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'financial-advice-signal',
@@ -2307,6 +2717,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           "Use certainty-match to check whether a reply's stated confidence fits its evidence, rather than whether it recommends a financial action.",
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'finger-actions',
@@ -2333,6 +2744,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use next-chord to pick the harmony first, then let finger-actions voice it.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'followup-link',
@@ -2352,6 +2764,30 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use reference-resolve to identify a referenced item rather than an earlier request.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:24.179Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 30,
+        reviewRate: 0.25,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'followup-timing',
@@ -2380,6 +2816,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use callback-responsibility to identify who should initiate a call.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:28.731Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 37,
+        reviewRate: 0.075,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'forecast-confidence-wording',
@@ -2407,6 +2867,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           "Use certainty-match to check whether stated confidence fits the supporting evidence, rather than to grade the wording's certainty on its own.",
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'format-fit',
@@ -2433,6 +2894,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use tone-check when the requirement is about voice or register rather than structure.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'freshness-needed',
@@ -2451,6 +2913,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use fact-stability to assess a particular fact rather than a question.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'frustration-signal',
@@ -2468,6 +2931,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use urgency-signal to detect an explicit request for urgent attention.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'funder-fit',
@@ -2495,6 +2959,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use passage-compare for the same pairwise judgment over text passages and a question.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'game-action',
@@ -2522,6 +2987,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use checkers-move for its American/English checkers board format and built-in checkers instructions.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'game-phase',
@@ -2546,6 +3012,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use step-progress to judge how far a non-game task has advanced.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'goal-drift',
@@ -2572,6 +3039,23 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use intent-change when the user may have redirected the goal, so a step that looks drifted is actually following a new instruction.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 44,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'grounding-level',
@@ -2598,6 +3082,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use answer-relevance to check that the draft addresses the question, not just the sources.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'guest-request-facets',
@@ -2624,6 +3109,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use clarify to decide whether to ask the guest a follow-up question about the facets this recipe finds missing.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'handoff',
@@ -2639,6 +3125,30 @@ export const recipeMetadata: CatalogRecipe[] = [
     related: [
       { id: 'route', reason: 'Use route to choose a handler when escalation is not the decision.' },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:21.635Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 28,
+        reviewRate: 0.3,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'handoff-completeness',
@@ -2666,6 +3176,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use clarify to find the specific missing requirements once an item grades below complete.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'headline-fit',
@@ -2692,6 +3203,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use attribution-match to check whether a quoted claim is attributed to the source that actually made it.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'incident-match',
@@ -2705,6 +3217,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
     useWhen: 'You need to connect a support ticket to a supplied known incident.',
     related: [{ id: 'ticket-match', reason: 'Use ticket-match to compare two tickets directly.' }],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'incident-severity-wording',
@@ -2732,6 +3245,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use policy-severity to grade how serious a policy violation is, rather than how serious an operational incident is.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'injection-signal',
@@ -2756,6 +3270,23 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use instruction-conflict when two legitimate instructions may disagree.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 44,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'instruction-clarity',
@@ -2782,6 +3313,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use clarify to list the specific questions a delegate would need answered when the instruction grades below clear.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'instruction-conflict',
@@ -2805,6 +3337,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use answer-consistency to compare factual claims rather than required behavior.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'instruction-fit',
@@ -2822,6 +3355,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use action-scope to check the boundaries of a proposed action.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'instruction-priority',
@@ -2849,6 +3383,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use priority-compare to order two tasks by importance, rather than to rank two instructions by the authority the policy grants them.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'instruction-readability',
@@ -2882,6 +3417,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use tone-check to judge the register and tone of the instructions rather than their readability.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'instrument-issue-kind',
@@ -2909,6 +3445,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use issue-impact to grade how badly the problem affects the player, rather than what kind of problem it is.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'instrument-report-facets',
@@ -2936,6 +3473,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use bug-report-completeness for software bug reports, where the expected parts are reproduction steps, expected and actual behavior, and environment.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'intake-question-fit',
@@ -2962,6 +3500,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use instruction-fit to check whether a drafted question follows the form-writing instructions you gave.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'intent-change',
@@ -2980,6 +3519,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use cancellation-check for the narrower question of stopping, pausing, or continuing.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'invoice-facets',
@@ -3007,6 +3547,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use field-select to pick which field of a record a value belongs to, rather than to check which fields the invoice text contains at all.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'issue-impact',
@@ -3024,6 +3565,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use urgency-signal to detect requests for immediate attention.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'issue-recurrence',
@@ -3062,6 +3604,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use repeated-attempt to check whether a proposed troubleshooting step repeats an earlier attempt.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'itinerary-feasibility',
@@ -3088,6 +3631,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use clause-conflict when the question is whether two written requirements can both be satisfied, rather than whether a sequence of timed items can be carried out.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'job-post-facets',
@@ -3114,6 +3658,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use requirement-testability to check whether a stated qualification can be verified.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'length-fit',
@@ -3138,6 +3683,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use answer-relevance to check that the response addresses the question at all.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'listener-request-kind',
@@ -3164,6 +3710,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use route when the destinations are caller-defined handlers rather than this fixed set of performance controls.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'listing-compare',
@@ -3188,6 +3735,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use rerank to score many listings independently against one request.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'listing-fact-consistency',
@@ -3215,6 +3763,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use extraction-fidelity to grade how faithfully structured values were pulled from a source document, the reverse direction of this check.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'log-line-kind',
@@ -3242,6 +3791,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use result-outcome to classify how a reported task or job ended, rather than what kind of log line it is.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'loss-cause-kind',
@@ -3268,6 +3818,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use shipment-issue-kind for what went wrong with a delivery; this recipe classifies the peril behind a property or vehicle loss.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'lyric-mood-fit',
@@ -3294,6 +3845,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use certainty-match for the analogous check that the confidence of a statement matches its evidence.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'maintenance-hazard-wording',
@@ -3321,6 +3873,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use issue-impact to grade how badly a reported problem affects the reporter, rather than whether it is a safety hazard.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'medication-mention',
@@ -3346,6 +3899,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use memory-subject to decide whose record a stated medication fact belongs to before storing it.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'memory-relation',
@@ -3363,6 +3917,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use memory-value to assess usefulness before deciding how to store a fact.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'memory-scope',
@@ -3386,6 +3941,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use preference-kind to distinguish ongoing preferences from temporary instructions.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'memory-subject',
@@ -3424,6 +3980,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use preference-kind to distinguish a lasting preference from a temporary instruction.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'memory-value',
@@ -3439,6 +3996,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     related: [
       { id: 'memory-scope', reason: 'Use memory-scope to determine where a fact applies.' },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'message-facets',
@@ -3463,6 +4021,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use urgency-signal to detect an explicit request for urgent attention.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'methods-facets',
@@ -3490,6 +4049,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use content-facets to label the structural elements of an article, rather than the methodological details of a study.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'model-route',
@@ -3524,6 +4084,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use task-complexity for a five-level complexity grade without picking a model.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:10.135Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 26,
+        reviewRate: 0.35,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'modulation-moment',
@@ -3551,6 +4135,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use step-complete when supplied evidence must establish a stated completion condition, rather than judging a musical seam from the passage itself.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'mood-match',
@@ -3577,6 +4162,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           "Use instruction-fit to check whether an instruction's scope covers a task, rather than whether music delivers a feeling.",
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'mood-request',
@@ -3603,6 +4189,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use turn-intent to find out what a message is doing conversationally before asking which mood it requests.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'motivation-source',
@@ -3645,6 +4232,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use claim-stance to label agreement with a specified claim instead of classifying the reason for acting.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'move-explanation-fit',
@@ -3671,6 +4259,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use causal-attribution to judge whether a stated cause is supported by the described outcome outside a game context.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'narrative-consistency',
@@ -3697,6 +4286,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use answer-consistency to compare two discrete statements rather than to scan a single narrative for internal contradictions.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'next-chord',
@@ -3724,6 +4314,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use choose-action when an explicit goal and rulebook govern the pick instead of harmonic continuity in a key and style.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'next-duration',
@@ -3751,6 +4342,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use take-turn to decide whether a player may act at all under game rules, rather than how long the next musical event should last.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'next-note',
@@ -3778,6 +4370,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use choose-action when an explicit goal and rulebook govern the pick instead of melodic continuity in a key and style.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'notice-facets',
@@ -3805,6 +4398,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use response-needed to decide whether a message requires a reply at all, rather than which elements a notice states.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'novelty-claim-level',
@@ -3832,6 +4426,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use outcome-framing to label how a result is framed as gain or loss, rather than how new it is said to be.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'objection-kind',
@@ -3855,6 +4450,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use constraint-strength to grade how binding a stated requirement or limit is.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'objective-fit',
@@ -3882,6 +4478,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use query-specificity to check whether a question identifies a focused information need.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'offer-terms-facets',
@@ -3909,6 +4506,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use invoice-facets for the same presence-check pattern over invoice text instead of offer terms.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'outcome-framing',
@@ -3948,6 +4546,180 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use choose-action to select among supplied eligible actions; outcome-framing only labels wording.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
+  },
+  {
+    id: 'paragraph-boundary',
+    title: 'Recover a paragraph boundary',
+    description:
+      'Do two adjacent extracted text fragments continue one paragraph or belong to separate blocks?',
+    category: 'retrieval',
+    tags: ['document', 'ingestion', 'paragraph', 'line-wrap', 'chunking'],
+    limitations: [
+      'Judges adjacent text only; it does not reconstruct reading order, perform OCR, dehyphenate, or merge text.',
+      'Shared subject matter alone does not establish paragraph continuity. Preserve the boundary on review.',
+      'Experimental until document-separated evaluation meets the published accepted-join precision criteria.',
+    ],
+    useWhen:
+      'Extraction preserved reading order but lost the difference between a hard line wrap and a paragraph break.',
+    related: [
+      {
+        id: 'passage-standalone',
+        reason: 'Use passage-standalone to judge unresolved references within a passage.',
+      },
+      {
+        id: 'topic-shift',
+        reason: 'Use topic-shift for conversational subject changes rather than text boundaries.',
+      },
+      {
+        id: 'text-block-role',
+        reason: 'Use text-block-role to classify an individual block before considering a join.',
+      },
+    ],
+    evidence: {
+      kind: 'public-dataset',
+      label: 'Current public-dataset measurement',
+      experimental: true,
+      measurement: {
+        model: 'typesafe-ai/jev',
+        date: '2026-09-27T21:21:33.447Z',
+        split: 'held-out',
+        cases: 167,
+        ready: 82,
+        reviewRate: 0.509,
+        readyAccuracy: 0.988,
+        failed: 0,
+        provenance: [
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/async_context.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/buffer.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/cli.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/console.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/events.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/fs.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/http.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/https.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/net.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/path.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/perf_hooks.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/querystring.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/readline.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/stream.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/string_decoder.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 7,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/test.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/tty.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/url.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/v8.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/worker_threads.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/zlib.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 8,
+          },
+        ],
+        acceptanceMet: false,
+      },
+    },
   },
   {
     id: 'passage-compare',
@@ -3971,6 +4743,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use context-role to label what one passage contributes to a question.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'passage-difficulty',
@@ -3998,6 +4771,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use audience-fit to check whether content suits a described audience, rather than to place a passage on a difficulty scale.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'passage-duplicate',
@@ -4015,6 +4789,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use evidence-novelty to compare a passage with the evidence already collected.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'passage-mood',
@@ -4041,6 +4816,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use outcome-framing to label gain and loss wording about an outcome, not the affect of a musical description.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'passage-standalone',
@@ -4067,6 +4843,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use query-specificity to check the other side of retrieval: whether the query is clear enough to match.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'performance-feedback-facets',
@@ -4094,6 +4871,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use tone-check to judge whether feedback meets a tone requirement such as encouraging or direct.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'persuasion-technique',
@@ -4118,6 +4896,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use question-leading to detect a question that steers toward a particular answer.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'phrase-complete',
@@ -4145,6 +4924,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use resolution-check to detect whether a customer reports an issue as resolved, not whether a melody has come to rest.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'pii-presence',
@@ -4169,6 +4949,23 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use memory-scope to decide how narrowly a fact about a person should be stored.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 43,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'plan-completeness',
@@ -4194,6 +4991,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use clarify when the task itself is ambiguous, since a plan cannot cover requirements the task never made clear.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'policy-compliance',
@@ -4220,6 +5018,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           "Use action-scope to check whether an agent's proposed action stays within its permitted scope, rather than whether a submitted expense follows a spending policy.",
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'policy-severity',
@@ -4243,6 +5042,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use promise-check to catch replies that commit beyond what your rules allow.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'politeness-level',
@@ -4268,6 +5068,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use frustration-signal for a categorical read on expressed frustration.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'postmortem-facets',
@@ -4295,6 +5096,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use summary-coverage to check whether a summary covers a source document, rather than whether a document contains expected sections.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'preference-kind',
@@ -4318,6 +5120,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use memory-scope to identify the supported scope of that preference.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'priority-compare',
@@ -4343,6 +5146,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use task-dependency to establish whether one task must finish before the other can start, which is a hard ordering rather than a priority call.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'privacy-notice-facets',
@@ -4369,6 +5173,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use pii-presence to detect personal data in a text rather than statements about how personal data is handled.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'product-match',
@@ -4395,6 +5200,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use tool-fit for the analogous check of whether a tool satisfies a task description.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'progress-stall',
@@ -4421,6 +5227,30 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use step-progress to grade how much a single observed result moved the objective forward.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:14.022Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 40,
+        reviewRate: 0,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'promise-check',
@@ -4438,6 +5268,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use action-scope to check a proposed action against the requested work.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:25.450Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 40,
+        reviewRate: 0,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'proposal-facets',
@@ -4465,6 +5319,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use content-facets for the structural elements of an article, such as a thesis and evidence, rather than the parts of a funding request.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'qualification-evidence',
@@ -4491,6 +5346,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use verify to check several candidate claims against paired evidence in one call.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'query-equivalence',
@@ -4509,6 +5365,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use cache-match when deciding whether an existing answer can be reused.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'query-specificity',
@@ -4526,6 +5383,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use clarify to check named requirements for missing or ambiguous information.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'question-assumption',
@@ -4562,6 +5420,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       },
       { id: 'verify', reason: 'Use verify to assess evidential support for the claim itself.' },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'question-leading',
@@ -4612,6 +5471,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use tone-check to assess draft wording against caller-supplied writing criteria.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'question-relevance',
@@ -4639,6 +5499,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use instruction-fit to check whether a written policy or rubric covers a given task.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'reconciliation-match',
@@ -4666,6 +5527,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use ticket-match to decide whether two support tickets report the same issue, rather than whether a ledger entry matches a statement line.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'reference-resolve',
@@ -4684,6 +5546,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use correction-target when the message corrects a particular field or statement.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'repeated-attempt',
@@ -4702,6 +5565,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use step-progress to assess what an attempted step actually changed.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'repetition-level',
@@ -4728,6 +5592,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use progress-stall to detect an agent circling on a task objective, not a melody circling on one figure.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'reply-template-match',
@@ -4743,6 +5608,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     related: [
       { id: 'route', reason: 'Use route to select a handler rather than a response template.' },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'report-facets',
@@ -4769,6 +5635,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use step-progress to grade how far the reported work moved the objective, rather than what the report contains.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'requirement-testability',
@@ -4803,6 +5670,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use clarify to find missing information across a supplied list of requirements.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'rerank',
@@ -4821,6 +5689,23 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use answerability to check whether the selected evidence is enough to answer.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 57,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'resolution-check',
@@ -4843,6 +5728,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use step-complete to assess evidence against a supplied completion condition.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'response-needed',
@@ -4860,6 +5746,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use turn-intent to classify the message purpose in more detail.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:22.956Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 40,
+        reviewRate: 0,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'response-refusal',
@@ -4900,6 +5810,23 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use result-outcome to interpret an observed task result instead of a response claiming to perform it.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 44,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'result-outcome',
@@ -4917,6 +5844,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use step-progress to compare an observation with the previous state.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'result-plausibility',
@@ -4943,6 +5871,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use result-outcome to classify what a result reports happened, such as success or failure, rather than whether it is real.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'result-usefulness',
@@ -4960,6 +5889,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use result-outcome to classify the reported outcome rather than its usefulness.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'retrieval-needed',
@@ -4977,6 +5907,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use freshness-needed to check whether those facts must be current.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'retry-worthwhile',
@@ -5003,6 +5934,30 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use repeated-attempt to check whether a proposed next attempt is really a fresh approach rather than the same one again.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:15.276Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 39,
+        reviewRate: 0.025,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'review-comment-kind',
@@ -5027,6 +5982,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use turn-intent to classify the communicative purpose of a conversational message.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'review-facets',
@@ -5051,6 +6007,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use issue-impact to grade how badly a reported defect blocks the customer.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'review-recommendation-kind',
@@ -5085,6 +6042,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use feedback-kind to classify general user feedback, rather than the recommendation in a formal peer review.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'review-response-fit',
@@ -5111,6 +6069,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           "Use resolution-check to learn whether a customer says a problem is fixed; this recipe judges only whether the business's reply speaks to the review.",
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'rollback-signal',
@@ -5138,6 +6097,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use change-risk before deploying to grade how likely a change is to cause trouble, rather than after the fact to check whether it did.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'root-cause-depth',
@@ -5165,6 +6125,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use explanation-level to grade how much reasoning an answer shows for a conclusion, rather than how far a failure analysis traces its causes.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'route',
@@ -5183,6 +6144,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use turn-intent to identify what a message is doing before choosing a handler.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:19.034Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 24,
+        reviewRate: 0.4,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'route-many',
@@ -5207,6 +6192,30 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use ticket-match to link a new message to an existing ticket rather than a queue.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:20.238Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 25,
+        reviewRate: 0.375,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'rule-compliance',
@@ -5232,6 +6241,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use action-scope to check whether an agent action stays within a granted permission rather than a game rule set.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'runbook-fit',
@@ -5257,6 +6267,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use source-applicability to check whether a general document applies to a situation, when neither side is an incident or a runbook.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'safety-incident-kind',
@@ -5284,6 +6295,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use failure-kind when the categories are caller-supplied rather than this fixed set of safety event kinds.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'satisfaction-signal',
@@ -5310,6 +6322,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use frustration-signal for a categorical read on expressed frustration in any message.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'search-intent-kind',
@@ -5336,6 +6349,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use query-specificity to judge how narrow or broad a query is rather than what the searcher wants to do.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'sentiment-shift',
@@ -5360,6 +6374,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use resolution-check to decide whether the customer reported the issue resolved.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'settlement-offer-facets',
@@ -5386,6 +6401,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use clarify to decide whether to ask the sender for the elements this recipe finds missing.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'shipment-issue-kind',
@@ -5411,6 +6427,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use issue-impact to grade how badly the reported problem affects the customer rather than what kind of problem it is.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'slot-fit',
@@ -5437,6 +6454,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use step-complete to check whether a scheduling step has finished rather than whether a slot is allowed.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'sound-match',
@@ -5464,6 +6482,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use audience-fit to judge whether content suits a described audience, rather than whether a patch produces a described sound.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'source-applicability',
@@ -5481,6 +6500,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use evidence-conflict to compare two applicable sources for disagreement.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'spam-signal',
@@ -5505,6 +6525,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use response-needed to decide whether a genuine message calls for a reply.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'stage-evidence',
@@ -5528,6 +6549,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use resolution-check to decide whether a support conversation reached resolution.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'step-complete',
@@ -5545,6 +6567,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use result-outcome to interpret a tool result before checking completion.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'step-progress',
@@ -5562,6 +6585,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use step-complete to check whether the completion condition has been met.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'style-kind',
@@ -5588,6 +6612,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use audience-fit to check whether material suits a described audience rather than which style it belongs to.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'summary-coverage',
@@ -5606,6 +6631,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use answer-coverage when the checklist contains questions to answer.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'symptom-facets',
@@ -5632,6 +6658,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use clarify to decide whether to ask the patient a follow-up question about the facets this recipe finds missing.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'take-turn',
@@ -5674,6 +6701,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use response-needed for conversational follow-through, rather than turn and reaction eligibility under game rules.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'task-complexity',
@@ -5696,6 +6724,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use clarify to find missing requirements in a task that grades complex or open-ended.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'task-dependency',
@@ -5721,6 +6750,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use step-complete to check whether evidence establishes a known prerequisite is already satisfied.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'task-duplicate',
@@ -5748,6 +6778,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use ticket-match to compare reported issues rather than requested work.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'task-overlap',
@@ -5774,6 +6805,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use task-dependency to check whether one task must finish before the other can start, which overlap does not imply.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'tempo-change',
@@ -5801,6 +6833,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use step-progress to judge movement toward a caller-defined objective rather than a tempo adjustment.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'tension-level',
@@ -5828,6 +6861,177 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use step-progress to judge whether a new observation advances a task objective, rather than how far a harmony is from its home chord.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
+  },
+  {
+    id: 'text-block-role',
+    title: 'Identify a text block’s structure',
+    description:
+      'Is extracted text a heading, body paragraph, list item, code, table, caption, formula, or other block?',
+    category: 'retrieval',
+    tags: ['document', 'ingestion', 'structure', 'block', 'heading'],
+    limitations: [
+      'Classifies supplied text only; it does not read PDFs, perform OCR, recover missing text, or determine reading order.',
+      'Native tags take precedence. Preserve every block when reviewing uncertain structure.',
+      'Experimental until independent document-level evaluation meets the published acceptance criteria.',
+    ],
+    useWhen: 'You have already extracted a text block but its structural markup is missing.',
+    related: [
+      { id: 'document-role', reason: 'Use document-role for the purpose of an entire document.' },
+      {
+        id: 'context-role',
+        reason: 'Use context-role for the contribution a passage makes to a question.',
+      },
+      {
+        id: 'paragraph-boundary',
+        reason:
+          'Use paragraph-boundary to decide whether adjacent fragments belong to one paragraph.',
+      },
+    ],
+    evidence: {
+      kind: 'public-dataset',
+      label: 'Current public-dataset measurement',
+      experimental: true,
+      measurement: {
+        model: 'typesafe-ai/jev',
+        date: '2026-09-27T21:21:20.879Z',
+        split: 'held-out',
+        cases: 189,
+        ready: 136,
+        reviewRate: 0.28,
+        readyAccuracy: 0.904,
+        failed: 0,
+        provenance: [
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/async_context.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/buffer.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/cli.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/console.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/events.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/fs.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/http.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/https.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/net.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/path.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/perf_hooks.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/querystring.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/readline.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/stream.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/string_decoder.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/test.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/tty.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/url.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/v8.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/worker_threads.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+          {
+            method: 'public-dataset',
+            source:
+              'https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/zlib.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.',
+            cases: 9,
+          },
+        ],
+        acceptanceMet: false,
+      },
+    },
   },
   {
     id: 'ticket-match',
@@ -5845,6 +7049,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use incident-match to select a known incident for one ticket.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'tone-check',
@@ -5863,6 +7068,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use draft-compare to choose between two drafts under a rubric.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'tool-call-gate',
@@ -5907,6 +7113,30 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use injection-signal to screen text for embedded instructions before an agent reads it.',
       },
     ],
+    evidence: {
+      kind: 'synthetic',
+      label: 'Current synthetic measurement',
+      experimental: false,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: '2026-09-27T07:56:16.449Z',
+        split: 'held-out',
+        cases: 40,
+        ready: 31,
+        reviewRate: 0.225,
+        readyAccuracy: 1,
+        failed: 0,
+        provenance: [
+          {
+            method: 'author-synthetic',
+            source:
+              'AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.',
+            cases: 40,
+          },
+        ],
+        acceptanceMet: true,
+      },
+    },
   },
   {
     id: 'tool-compare',
@@ -5932,6 +7162,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use action-compare to compare two next steps against a goal, rather than two tools against one task.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'tool-fit',
@@ -5949,6 +7180,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use argument-fit to validate the meaning of a proposed tool argument.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'topic-shift',
@@ -5967,6 +7199,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use intent-change when the important question is whether the goal changed.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'trip-purpose-kind',
@@ -5993,6 +7226,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use buying-intent to judge how close the traveler is to booking; this recipe identifies only the reason for the trip.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'troubleshooting-fit',
@@ -6010,6 +7244,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use attempted-step to check whether that procedure has already been tried.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'turn-intent',
@@ -6028,6 +7263,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use intent-change to assess how the message changes an existing goal.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'uncertainty-expression',
@@ -6069,6 +7305,7 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use verify to check supplied evidence for a claim; expressed certainty is not evidence of truth.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'urgency-signal',
@@ -6086,6 +7323,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use issue-impact to assess the reported practical consequences.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
   {
     id: 'verify',
@@ -6104,6 +7342,23 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use citation-match to select which passages support one claim.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 50,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'wake-gate',
@@ -6129,6 +7384,23 @@ export const recipeMetadata: CatalogRecipe[] = [
         reason: 'Use progress-stall to detect an agent that keeps waking without making progress.',
       },
     ],
+    evidence: {
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
+      experimental: true,
+      measurement: {
+        model: 'jev-1.13.0',
+        date: null,
+        split: null,
+        cases: 44,
+        ready: null,
+        reviewRate: null,
+        readyAccuracy: null,
+        failed: null,
+        provenance: [],
+        acceptanceMet: null,
+      },
+    },
   },
   {
     id: 'workaround-fit',
@@ -6148,5 +7420,6 @@ export const recipeMetadata: CatalogRecipe[] = [
           'Use troubleshooting-fit to assess a diagnostic procedure rather than a workaround.',
       },
     ],
+    evidence: { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null },
   },
 ];

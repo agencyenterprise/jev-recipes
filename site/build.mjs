@@ -2,7 +2,7 @@ import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { listRecipes, describeRecipe } from '../dist/catalog/index.js';
-import { loadEvaluationRecipe, recipeFingerprint } from '../dist/evaluation/dataset.js';
+import { loadEvaluationRecipe } from '../dist/evaluation/dataset.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = join(root, 'site/dist');
@@ -38,11 +38,13 @@ for (const recipe of recipes) {
       if (error.code === 'ENOENT') return null;
       throw error;
     });
-  const evidence = !report
-    ? 'fixture'
-    : report.evidence?.recipeFingerprint === (await recipeFingerprint(recipe.id))
-      ? 'measured'
-      : 'earlier';
+  const evidenceDetails = recipe.evidence;
+  const evidence =
+    evidenceDetails.kind === 'fixture'
+      ? 'fixture'
+      : evidenceDetails.kind === 'earlier'
+        ? 'earlier'
+        : 'measured';
   const collection =
     Object.entries(collections).find(([, ids]) => ids.includes(recipe.id))?.[0] ?? null;
   const module = await import(new URL(`../dist/recipes/${recipe.id}/index.js`, import.meta.url));
@@ -52,6 +54,7 @@ for (const recipe of recipes) {
     ...recipe,
     collection,
     evidence,
+    evidenceDetails,
     measured: report
       ? {
           cases: report.cases,
@@ -71,8 +74,8 @@ for (const recipe of recipes) {
   await writeFile(
     join(output, 'recipes', `${recipe.id}.json`),
     JSON.stringify({
-      ...entry,
       ...description,
+      ...entry,
       functionName,
       fixture: { input: fixture.input, result, policies },
       report,
@@ -91,6 +94,6 @@ for (const name of ['index.html', 'app.js', 'style.css'])
 await cp(join(root, 'dist/catalog/search.js'), join(output, 'search.js'));
 await writeFile(join(output, 'catalog.json'), JSON.stringify({ recipes: entries, collections }));
 await mkdir(dirname(join(output, 'docs/evaluation.md')), { recursive: true });
-for (const name of ['evaluation.md', 'integrations.md'])
+for (const name of ['evaluation.md', 'integrations.md', 'gateway-validation.md'])
   await cp(join(root, 'docs', name), join(output, 'docs', name));
 console.log(`Built static catalog with ${entries.length} recipes. No model calls were made.`);

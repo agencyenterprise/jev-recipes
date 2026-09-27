@@ -652,6 +652,10 @@
       "types": "./dist/recipes/outcome-framing/index.d.ts",
       "import": "./dist/recipes/outcome-framing/index.js"
     },
+    "./paragraph-boundary": {
+      "types": "./dist/recipes/paragraph-boundary/index.d.ts",
+      "import": "./dist/recipes/paragraph-boundary/index.js"
+    },
     "./passage-compare": {
       "types": "./dist/recipes/passage-compare/index.d.ts",
       "import": "./dist/recipes/passage-compare/index.js"
@@ -955,6 +959,10 @@
     "./tension-level": {
       "types": "./dist/recipes/tension-level/index.d.ts",
       "import": "./dist/recipes/tension-level/index.js"
+    },
+    "./text-block-role": {
+      "types": "./dist/recipes/text-block-role/index.d.ts",
+      "import": "./dist/recipes/text-block-role/index.js"
     },
     "./ticket-match": {
       "types": "./dist/recipes/ticket-match/index.d.ts",

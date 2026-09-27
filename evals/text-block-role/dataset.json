@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "recipe": "text-block-role",
+  "cases": 315,
+  "development": 126,
+  "heldOut": 189,
+  "provenance": "Public Node.js v22.20.0 Markdown; markup-derived labels, not independently reviewed.",
+  "familySplit": "Hash source filename modulo 3; all excerpts and transformations from one document remain together.",
+  "limitations": [
+    "Technical documentation only; does not represent arbitrary OCR or PDFs.",
+    "Role data covers heading/body/code only; other roles remain unmeasured.",
+    "Correlated excerpts require document-level uncertainty; acceptance sample requirements are not yet met."
+  ]
+}

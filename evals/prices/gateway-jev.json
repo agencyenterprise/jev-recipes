@@ -1,0 +1,8 @@
+{
+  "model": "typesafe-ai/jev",
+  "inputPerMillion": 0.042,
+  "outputPerMillion": 0,
+  "currency": "USD",
+  "date": "2026-09-27",
+  "source": "https://ai-gateway.vercel.sh/v1/models"
+}

@@ -1,58 +1,58 @@
 {
   "evidence": {
-    "runId": "75ad3a2c-a54f-45bd-b732-5433f941513d",
-    "evaluatedAt": "2026-09-27T07:56:12.763Z",
-    "packageVersion": "0.7.0",
-    "recipeFingerprint": "025809a6bf2854d34cf406e89bbdeabcffc5c42c82b6ef04eae93568038c68a8",
-    "datasetFingerprint": "159571eb5b47243eda7854383f6e67a0473e7ec933ddeea0544fdeb487478c3d",
+    "runId": "286d6ef3-171f-42b8-80ed-7144fa86a06b",
+    "evaluatedAt": "2026-09-27T21:20:01.789Z",
+    "packageVersion": "0.8.1",
+    "recipeFingerprint": "07af7ca742bf9c8de291687ddb75cb999d01c4ce643a10ac88459553127d4644",
+    "datasetFingerprint": "3c88eaaf974aba480b42fb351c473b585dc8c5bb3a879c2b8320cc60f4bb1cf7",
     "split": "held-out",
     "mode": "live",
     "policy": {
       "minConfidence": 0.8,
       "selectedOn": {
-        "runId": "773a2e85-0c9b-4972-84c3-b19fdf9633d4",
-        "datasetFingerprint": "5bf34925570f061aa0d8a43c7c004502ba73b6b8fe11e62c1e547895f5afd4b6",
-        "recipeFingerprint": "025809a6bf2854d34cf406e89bbdeabcffc5c42c82b6ef04eae93568038c68a8",
-        "model": "jev-1.13.0",
+        "runId": "7d00449d-b343-4833-9d77-2d8da3c3ce4e",
+        "datasetFingerprint": "74da729600ca75dbd57a4cb37ba4084c3dbae320c0fde6db1944be6bc0f7cac0",
+        "recipeFingerprint": "07af7ca742bf9c8de291687ddb75cb999d01c4ce643a10ac88459553127d4644",
+        "model": "typesafe-ai/jev",
         "split": "development"
       }
     },
     "provenance": [
       {
         "method": "author-synthetic",
-        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "source": "AI-authored new scenario families for the September 2026 update; not independently human-reviewed. Previous inspected holdouts moved to development.",
         "cases": 40
       }
     ]
   },
   "recipe": "completion-gate",
-  "model": "jev-1.13.0",
-  "models": ["jev-1.13.0"],
+  "model": "typesafe-ai/jev",
+  "models": ["typesafe-ai/jev"],
   "cases": 40,
   "completed": 40,
   "failed": 0,
-  "correct": 28,
-  "wrong": 12,
+  "correct": 40,
+  "wrong": 0,
   "ready": 30,
   "review": 10,
-  "accuracy": 0.7,
-  "completedAccuracy": 0.7,
-  "accuracyInterval95": [0.5457, 0.8193],
-  "readyAccuracy": 0.667,
-  "readyAccuracyInterval95": [0.4878, 0.8077],
+  "accuracy": 1,
+  "completedAccuracy": 1,
+  "accuracyInterval95": [0.9124, 1],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.8865, 1],
   "reviewRate": 0.25,
-  "contestedAccuracy": 0,
+  "contestedAccuracy": null,
   "adversarialAccuracy": null,
   "calibration": [
     {
       "confidence": "0-0.5",
-      "cases": 9,
-      "accuracy": 0.778
+      "cases": 0,
+      "accuracy": null
     },
     {
       "confidence": "0.5-0.6",
-      "cases": 1,
-      "accuracy": 1
+      "cases": 0,
+      "accuracy": null
     },
     {
       "confidence": "0.6-0.7",
@@ -66,47 +66,45 @@
     },
     {
       "confidence": "0.8-0.9",
-      "cases": 2,
-      "accuracy": 0
+      "cases": 0,
+      "accuracy": null
     },
     {
       "confidence": "0.9-1",
-      "cases": 28,
-      "accuracy": 0.714
+      "cases": 40,
+      "accuracy": 1
     }
   ],
   "thresholdEvaluation": "frozen-policy",
   "thresholds": [],
   "suggestedMinConfidence": null,
   "latencyMs": {
-    "p50": 108.7,
-    "p95": 160.15,
-    "totalCaseTime": 4592.54
+    "p50": 281.65,
+    "p95": 361.99,
+    "totalCaseTime": 11233.37
   },
   "usage": {
     "requests": 40,
-    "input_tokens": 42229,
-    "output_tokens": 5464,
+    "input_tokens": 40970,
+    "output_tokens": 5450,
     "unknownResponses": 0,
     "failedRequests": 0,
-    "models": ["jev-1.13.0"]
+    "models": ["typesafe-ai/jev"]
   },
   "cost": {
-    "model": "jev-1.13.0",
+    "model": "typesafe-ai/jev",
     "inputPerMillion": 0.042,
     "outputPerMillion": 0,
     "currency": "USD",
     "date": "2026-09-27",
-    "source": "https://docs.typesafe.ai/models",
-    "estimated": 0.00177362
+    "source": "https://ai-gateway.vercel.sh/v1/models",
+    "estimated": 0.00172074
   },
   "confusion": {
     "{\"verdict\":\"complete\"}": {
       "total": 10,
-      "correct": 8,
-      "misses": {
-        "{\"verdict\":\"unverified\"}": 2
-      }
+      "correct": 10,
+      "misses": {}
     },
     "{\"verdict\":\"incomplete\"}": {
       "total": 10,
@@ -115,11 +113,8 @@
     },
     "{\"verdict\":\"unclear\"}": {
       "total": 10,
-      "correct": 0,
-      "misses": {
-        "{\"verdict\":\"incomplete\"}": 9,
-        "{\"verdict\":\"unverified\"}": 1
-      }
+      "correct": 10,
+      "misses": {}
     },
     "{\"verdict\":\"unverified\"}": {
       "total": 10,
@@ -127,144 +122,14 @@
       "misses": {}
     }
   },
-  "failures": [
-    {
-      "id": "featured-15-verified",
-      "expected": {
-        "verdict": "complete"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.38
-    },
-    {
-      "id": "featured-15-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.87,
-      "contested": true
-    },
-    {
-      "id": "featured-16-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.88,
-      "contested": true
-    },
-    {
-      "id": "featured-17-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.99,
-      "contested": true
-    },
-    {
-      "id": "featured-18-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.97,
-      "contested": true
-    },
-    {
-      "id": "featured-19-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.95,
-      "contested": true
-    },
-    {
-      "id": "featured-20-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.95,
-      "contested": true
-    },
-    {
-      "id": "featured-21-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.97,
-      "contested": true
-    },
-    {
-      "id": "featured-22-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.92,
-      "contested": true
-    },
-    {
-      "id": "featured-23-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.96,
-      "contested": true
-    },
-    {
-      "id": "featured-24-verified",
-      "expected": {
-        "verdict": "complete"
-      },
-      "actual": {
-        "verdict": "unverified"
-      },
-      "confidence": 0.41
-    },
-    {
-      "id": "featured-24-ambiguous",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "incomplete"
-      },
-      "confidence": 0.98,
-      "contested": true
-    }
-  ],
+  "failures": [],
   "acceptance": {
     "minConfidence": 0.8,
     "minimumHeldOutReadyCases": 20,
     "minimumReadyAccuracy": 0.95,
     "maximumProviderFailures": 0,
-    "met": false,
-    "label": "Experimental: declared acceptance policy not met"
-  }
+    "met": true,
+    "label": "Measured on these synthetic cases"
+  },
+  "gatewayIdentity": "Gateway returned the alias typesafe-ai/jev; backend version and BYOK credential use are not independently established."
 }

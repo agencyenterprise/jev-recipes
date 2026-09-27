@@ -1,0 +1,268 @@
+{
+  "evidence": {
+    "runId": "0f417565-224c-4e07-86d5-f80e27bffc8e",
+    "evaluatedAt": "2026-09-27T21:18:59.416Z",
+    "packageVersion": "0.8.1",
+    "recipeFingerprint": "4740e3077ceb0727eb06a35d4c4e3c56e01da0c117fbc378b8f7e940b53c9bfa",
+    "datasetFingerprint": "e1a6928c7c05552d47a930818c0b81130f2dad2ca64407cdb5c4d88a318bf4b3",
+    "split": "development",
+    "mode": "live",
+    "policy": { "minConfidence": 0.8 },
+    "provenance": [
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/assert.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/child_process.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/crypto.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/diagnostics_channel.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/dns.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/errors.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/process.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/repl.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/timers.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/tls.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/util.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/vm.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/wasi.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/webcrypto.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 8
+      }
+    ]
+  },
+  "recipe": "paragraph-boundary",
+  "model": "typesafe-ai/jev",
+  "models": ["typesafe-ai/jev"],
+  "cases": 112,
+  "completed": 112,
+  "failed": 0,
+  "correct": 106,
+  "wrong": 6,
+  "ready": 54,
+  "review": 58,
+  "accuracy": 0.946,
+  "completedAccuracy": 0.946,
+  "accuracyInterval95": [0.888, 0.9752],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.9336, 1],
+  "reviewRate": 0.518,
+  "contestedAccuracy": null,
+  "adversarialAccuracy": null,
+  "calibration": [
+    { "confidence": "0-0.5", "cases": 30, "accuracy": 0.8 },
+    { "confidence": "0.5-0.6", "cases": 16, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 9, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 3, "accuracy": 1 },
+    { "confidence": "0.8-0.9", "cases": 5, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 49, "accuracy": 1 }
+  ],
+  "thresholdEvaluation": "recipe-replay",
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0.268,
+      "readyAccuracy": 1,
+      "readyCases": 82,
+      "reviewCases": 30,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9552, 1]
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0.339,
+      "readyAccuracy": 1,
+      "readyCases": 74,
+      "reviewCases": 38,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9507, 1]
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.411,
+      "readyAccuracy": 1,
+      "readyCases": 66,
+      "reviewCases": 46,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.945, 1]
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.464,
+      "readyAccuracy": 1,
+      "readyCases": 60,
+      "reviewCases": 52,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9398, 1]
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.491,
+      "readyAccuracy": 1,
+      "readyCases": 57,
+      "reviewCases": 55,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9369, 1]
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.5,
+      "readyAccuracy": 1,
+      "readyCases": 56,
+      "reviewCases": 56,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9358, 1]
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.518,
+      "readyAccuracy": 1,
+      "readyCases": 54,
+      "reviewCases": 58,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9336, 1]
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.527,
+      "readyAccuracy": 1,
+      "readyCases": 53,
+      "reviewCases": 59,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9324, 1]
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.563,
+      "readyAccuracy": 1,
+      "readyCases": 49,
+      "reviewCases": 63,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9273, 1]
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.589,
+      "readyAccuracy": 1,
+      "readyCases": 46,
+      "reviewCases": 66,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9229, 1]
+    }
+  ],
+  "suggestedMinConfidence": 0.5,
+  "latencyMs": { "p50": 249.93, "p95": 337.13, "totalCaseTime": 28359.26 },
+  "usage": {
+    "requests": 112,
+    "input_tokens": 61304,
+    "output_tokens": 4692,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["typesafe-ai/jev"]
+  },
+  "cost": {
+    "model": "typesafe-ai/jev",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://ai-gateway.vercel.sh/v1/models",
+    "estimated": 0.00257477
+  },
+  "confusion": {
+    "{\"verdict\":\"continue\"}": { "total": 56, "correct": 56, "misses": {} },
+    "{\"verdict\":\"separate\"}": {
+      "total": 56,
+      "correct": 50,
+      "misses": { "{\"verdict\":\"continue\"}": 6 }
+    }
+  },
+  "failures": [
+    {
+      "id": "node-v22.20.0-assert.md-separate-12",
+      "expected": { "verdict": "separate" },
+      "actual": { "verdict": "continue" },
+      "confidence": 0.47
+    },
+    {
+      "id": "node-v22.20.0-child_process.md-separate-98",
+      "expected": { "verdict": "separate" },
+      "actual": { "verdict": "continue" },
+      "confidence": 0.36
+    },
+    {
+      "id": "node-v22.20.0-child_process.md-separate-168",
+      "expected": { "verdict": "separate" },
+      "actual": { "verdict": "continue" },
+      "confidence": 0.39
+    },
+    {
+      "id": "node-v22.20.0-dns.md-separate-82",
+      "expected": { "verdict": "separate" },
+      "actual": { "verdict": "continue" },
+      "confidence": 0.45
+    },
+    {
+      "id": "node-v22.20.0-vm.md-separate-1",
+      "expected": { "verdict": "separate" },
+      "actual": { "verdict": "continue" },
+      "confidence": 0.45
+    },
+    {
+      "id": "node-v22.20.0-vm.md-separate-47",
+      "expected": { "verdict": "separate" },
+      "actual": { "verdict": "continue" },
+      "confidence": 0.24
+    }
+  ]
+}

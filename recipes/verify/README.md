@@ -112,6 +112,8 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Earlier-version measurement; experimental.**
+
 Measured on 50 golden cases against `jev-1.13.0`: **94% accurate** overall (contested cases 75%, adversarial cases 83%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |

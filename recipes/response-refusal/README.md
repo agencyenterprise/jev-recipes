@@ -114,6 +114,8 @@ Uses the shared choice helper and makes one logical Jev request. It does not cal
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Earlier-version measurement; experimental.**
+
 Measured on 44 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%, adversarial cases 100%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |

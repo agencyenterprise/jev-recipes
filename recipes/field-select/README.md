@@ -99,6 +99,8 @@ Chooses among caller-supplied candidates. Extract candidates with a parser or ge
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement.**
+
 Measured on 40 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `3410c4137a54287f299baf2ea79eca4e6fe0c84ce9f3a15629f076db7b7dde5c`.

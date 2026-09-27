@@ -82,6 +82,8 @@ See [shared options and behavior](../README.md#shared-options-and-behavior) for 
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Earlier-version measurement; experimental.**
+
 Measured on 44 golden cases against `jev-1.13.0`: **89% accurate** overall (contested cases 60%, adversarial cases 75%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |

@@ -1,0 +1,182 @@
+{
+  "version": "v22.20.0",
+  "source": "https://github.com/nodejs/node",
+  "license": "MIT; retain LICENSE",
+  "documents": [
+    {
+      "name": "assert.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/assert.md",
+      "sha256": "82686d00cd0d06f9f53837428976702e2744bc4ab42bb204d5fecc9096bc007b"
+    },
+    {
+      "name": "async_context.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/async_context.md",
+      "sha256": "bc5615c12a95238ae0bc4e62768a9a4acf17d0db2ac413511461922b107c1999"
+    },
+    {
+      "name": "buffer.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/buffer.md",
+      "sha256": "727d6ea23946096056d0c708e1bfd73951581cc757b636405697fe0e0d83c4ff"
+    },
+    {
+      "name": "child_process.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/child_process.md",
+      "sha256": "7006042730e8e63b6032b1c0bc6bad79a8f1af7a2e01dae8315fa0ee9463ea4f"
+    },
+    {
+      "name": "cli.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/cli.md",
+      "sha256": "abd1bad3c6dfc99d490828bb082052e2ed1590a94b5af4f1eba38244ae24e78b"
+    },
+    {
+      "name": "console.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/console.md",
+      "sha256": "b0b2e645f2e43b55b4ee8fcfb526da51911aa68c1ec25a47722167283f995605"
+    },
+    {
+      "name": "crypto.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/crypto.md",
+      "sha256": "cd84c69b805cb7983480e3cfca147bf19f6fe0ccd2eaf90d2ec62cba5cede124"
+    },
+    {
+      "name": "diagnostics_channel.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/diagnostics_channel.md",
+      "sha256": "8d1e904e0a7e127b36fb4eacaf1c53f675dcdbbfda093c8784a2e70ebc6c2124"
+    },
+    {
+      "name": "dns.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/dns.md",
+      "sha256": "6022a719b8ec25c0748c73b610198845ce2333e546542bbb4eb81582d8234d03"
+    },
+    {
+      "name": "errors.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/errors.md",
+      "sha256": "baa56982a1c44e018fda1c432220f0b5ccdb57dbb01fd92ba3619326f2437b39"
+    },
+    {
+      "name": "events.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/events.md",
+      "sha256": "0002f6f946be3d2f7cdf2a598fa3bb2cec3f52792a35ddc991e92364b7fe43ae"
+    },
+    {
+      "name": "fs.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/fs.md",
+      "sha256": "2116e13854c19f91b41c07dc81b94093992fe0b33c42f56c00a0794e28fcc0db"
+    },
+    {
+      "name": "http.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/http.md",
+      "sha256": "58ef28298c2bf01dd8ea6eae49246e2f0fddfa9f339f66c7e1b8b7a07d49c555"
+    },
+    {
+      "name": "https.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/https.md",
+      "sha256": "888a2ed9f7490ba9fabd118cf78a692c039d3779f535404a144071e4089c2104"
+    },
+    {
+      "name": "net.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/net.md",
+      "sha256": "0cf7b17d20a4061aa9783e4e655a1ca00fa637fdc2997f9360e884f335bb4cc0"
+    },
+    {
+      "name": "path.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/path.md",
+      "sha256": "e91b7dafe57a3a8ef5fd57009e21abb40aa01eb780c964d2f77abe5c2626eaf2"
+    },
+    {
+      "name": "perf_hooks.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/perf_hooks.md",
+      "sha256": "90d7c2f3b7cc7ebe0e13a4f1edb29bc4615a7ddbc1c5c5ff980b1068b618f45c"
+    },
+    {
+      "name": "process.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/process.md",
+      "sha256": "c0b0fa165047caf2f7d5127d011dddc1ed594e912b306d8dddb4df12c44359e5"
+    },
+    {
+      "name": "querystring.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/querystring.md",
+      "sha256": "be244b22c9801710b1b5be4a79366a5c69e0d486a32d0cc7291892623f483382"
+    },
+    {
+      "name": "readline.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/readline.md",
+      "sha256": "89caef58ce6bebffe8535e3a4bccfb4d27bc5faa5de658178cf5599d9fa03312"
+    },
+    {
+      "name": "repl.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/repl.md",
+      "sha256": "2db57590a27ad9f6db80021378d1f25f594b47e14e5b5e30b4099b61e5f91cbb"
+    },
+    {
+      "name": "stream.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/stream.md",
+      "sha256": "11af24e59387bc2bbdbbb2c62bd30e57347fe23c354b9f5df2fa7b4c13afd9fd"
+    },
+    {
+      "name": "string_decoder.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/string_decoder.md",
+      "sha256": "16dc71931f8842da192d70c7bde34b6752c60eb83c7e87f8a333a285906ebe2f"
+    },
+    {
+      "name": "test.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/test.md",
+      "sha256": "e404c44a373bda153a7fb6d3c01f9b995063927ab4db2a0cc2edac5e2959e944"
+    },
+    {
+      "name": "timers.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/timers.md",
+      "sha256": "e39eae1df8b8c6a21c6e5f111c877bd0156c55139fa926376ebe34d6b1701bdf"
+    },
+    {
+      "name": "tls.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/tls.md",
+      "sha256": "992ac8f16ec7080ad0af77b2fc131a04a52a24b17a7260a69e10d0e66769ba51"
+    },
+    {
+      "name": "tty.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/tty.md",
+      "sha256": "65841af1fca6055e5554aec2ec810e0eb9f7429fe6252e3885af2d8bb4401b91"
+    },
+    {
+      "name": "url.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/url.md",
+      "sha256": "2443d9ab30a4243d7b49675eead83bddc9ab9edc23df722615b0d35e6a19d280"
+    },
+    {
+      "name": "util.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/util.md",
+      "sha256": "a02e26504b4f5a0a268cd50cb4d0a273d3b647a0958be81f3768fa4e458ff524"
+    },
+    {
+      "name": "v8.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/v8.md",
+      "sha256": "0a65556e275dbae838dce347f85585954f13db02e11010fc12aa67502228491c"
+    },
+    {
+      "name": "vm.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/vm.md",
+      "sha256": "98cb1857a3a05f095762ffa9ba6521d01c249a142f692dc05b25c0377fb92ad1"
+    },
+    {
+      "name": "wasi.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/wasi.md",
+      "sha256": "40e2ec283aff9389218168afde15af035bb39c334eb209f9628acdb60c992e42"
+    },
+    {
+      "name": "webcrypto.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/webcrypto.md",
+      "sha256": "50fe774dc2021fcd363f65d2a94c7f06324c34812bce182db58065f41a28a144"
+    },
+    {
+      "name": "worker_threads.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/worker_threads.md",
+      "sha256": "3e2a9e8a81eabf9616cc3d5a1cc5a50760d78c6f180423b833ce9dcc0ea4404a"
+    },
+    {
+      "name": "zlib.md",
+      "url": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/zlib.md",
+      "sha256": "e6db752c794e5e08f5c7a681a30a4a54cd74ea3882a54c81ce96f9114b1b35e5"
+    }
+  ]
+}

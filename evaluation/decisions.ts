@@ -15,7 +15,7 @@ export function comparableDecision(value: unknown): unknown {
   if (isRecord(value))
     return Object.fromEntries(
       Object.entries(value)
-        .filter(([name, field]) => !metadataFields.has(name) && typeof field !== 'number')
+        .filter(([name]) => !metadataFields.has(name))
         .map(([name, field]) => [name, comparableDecision(field)]),
     );
   return value;

@@ -1,0 +1,19 @@
+{
+  "input": {
+    "left": "To finish installing the package, run",
+    "right": "the command shown in the next example.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "continue",
+        "confidence": 0.96,
+        "probabilities": { "continue": 0.96, "separate": 0.02, "unclear": 0.02 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

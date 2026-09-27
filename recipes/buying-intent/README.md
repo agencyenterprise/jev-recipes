@@ -96,6 +96,8 @@ The rubric grades what the message expresses about buying. It does not estimate 
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement.**
+
 Measured on 25 golden cases against `jev-1.13.0`: **96% accurate** overall.
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `f6f9cdae49cfd815b8389061f1c8bc6ba27a6a62517fbdcb184d1487f12f8047`.

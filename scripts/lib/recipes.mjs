@@ -6,6 +6,7 @@ import ts from 'typescript';
 import { z } from 'zod';
 import { TypeSafeClient } from '@typesafe-ai/sdk';
 import { assertDistinctRecipes } from './distinct.mjs';
+import { readRecipeEvidence } from './evidence.mjs';
 
 export const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
 export const recipeIdPattern = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
@@ -139,6 +140,7 @@ export async function readRecipes(root = projectRoot) {
       records.push({
         ...definition,
         metadata,
+        evidence: await readRecipeEvidence(root, temporary, id),
         fixture,
         result,
         requests,

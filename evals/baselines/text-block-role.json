@@ -1,0 +1,345 @@
+{
+  "evidence": {
+    "runId": "3ee4a404-13b0-4a60-9d52-35281782dae8",
+    "evaluatedAt": "2026-09-27T21:18:50.730Z",
+    "packageVersion": "0.8.1",
+    "recipeFingerprint": "32da43478751402b4e6dc643b92a96dfdbf6b467d1299cd29aedf389d4710b8b",
+    "datasetFingerprint": "94f9dc8026dbc531ceea082e43eb1517f88aedf16c4c013a18f1ff2ac3a0a8e1",
+    "split": "development",
+    "mode": "live",
+    "policy": { "minConfidence": 0.8 },
+    "provenance": [
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/assert.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/child_process.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/crypto.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/diagnostics_channel.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/dns.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/errors.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/process.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/repl.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/timers.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/tls.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/util.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/vm.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/wasi.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      },
+      {
+        "method": "public-dataset",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/webcrypto.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "cases": 9
+      }
+    ]
+  },
+  "recipe": "text-block-role",
+  "model": "typesafe-ai/jev",
+  "models": ["typesafe-ai/jev"],
+  "cases": 126,
+  "completed": 126,
+  "failed": 0,
+  "correct": 108,
+  "wrong": 18,
+  "ready": 93,
+  "review": 33,
+  "accuracy": 0.857,
+  "completedAccuracy": 0.857,
+  "accuracyInterval95": [0.7855, 0.9077],
+  "readyAccuracy": 0.978,
+  "readyAccuracyInterval95": [0.9249, 0.9941],
+  "reviewRate": 0.262,
+  "contestedAccuracy": null,
+  "adversarialAccuracy": null,
+  "calibration": [
+    { "confidence": "0-0.5", "cases": 11, "accuracy": 0.545 },
+    { "confidence": "0.5-0.6", "cases": 5, "accuracy": 0.8 },
+    { "confidence": "0.6-0.7", "cases": 8, "accuracy": 0.375 },
+    { "confidence": "0.7-0.8", "cases": 9, "accuracy": 0.444 },
+    { "confidence": "0.8-0.9", "cases": 10, "accuracy": 0.9 },
+    { "confidence": "0.9-1", "cases": 83, "accuracy": 0.988 }
+  ],
+  "thresholdEvaluation": "recipe-replay",
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0.087,
+      "readyAccuracy": 0.887,
+      "readyCases": 115,
+      "reviewCases": 11,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8162, 0.9327]
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0.119,
+      "readyAccuracy": 0.892,
+      "readyCases": 111,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8205, 0.9371]
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.127,
+      "readyAccuracy": 0.891,
+      "readyCases": 110,
+      "reviewCases": 16,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.819, 0.9365]
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.135,
+      "readyAccuracy": 0.89,
+      "readyCases": 109,
+      "reviewCases": 17,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8174, 0.9359]
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.19,
+      "readyAccuracy": 0.931,
+      "readyCases": 102,
+      "reviewCases": 24,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8651, 0.9664]
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.222,
+      "readyAccuracy": 0.959,
+      "readyCases": 98,
+      "reviewCases": 28,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8997, 0.984]
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.262,
+      "readyAccuracy": 0.978,
+      "readyCases": 93,
+      "reviewCases": 33,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9249, 0.9941]
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.294,
+      "readyAccuracy": 0.989,
+      "readyCases": 89,
+      "reviewCases": 37,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9391, 0.998]
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.341,
+      "readyAccuracy": 0.988,
+      "readyCases": 83,
+      "reviewCases": 43,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9349, 0.9979]
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.405,
+      "readyAccuracy": 1,
+      "readyCases": 75,
+      "reviewCases": 51,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9513, 1]
+    }
+  ],
+  "suggestedMinConfidence": 0.75,
+  "latencyMs": { "p50": 243.48, "p95": 307.45, "totalCaseTime": 32407.52 },
+  "usage": {
+    "requests": 126,
+    "input_tokens": 92848,
+    "output_tokens": 10333,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["typesafe-ai/jev"]
+  },
+  "cost": {
+    "model": "typesafe-ai/jev",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://ai-gateway.vercel.sh/v1/models",
+    "estimated": 0.00389962
+  },
+  "confusion": {
+    "{\"verdict\":\"body\"}": { "total": 42, "correct": 42, "misses": {} },
+    "{\"verdict\":\"code\"}": { "total": 42, "correct": 42, "misses": {} },
+    "{\"verdict\":\"heading\"}": {
+      "total": 42,
+      "correct": 24,
+      "misses": {
+        "{\"verdict\":\"body\"}": 11,
+        "{\"verdict\":\"code\"}": 6,
+        "{\"verdict\":\"unclear\"}": 1
+      }
+    }
+  },
+  "failures": [
+    {
+      "id": "node-v22.20.0-child_process.md-role-113",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.69
+    },
+    {
+      "id": "node-v22.20.0-crypto.md-role-76",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.66
+    },
+    {
+      "id": "node-v22.20.0-dns.md-role-135",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.44
+    },
+    {
+      "id": "node-v22.20.0-dns.md-role-149",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.73
+    },
+    {
+      "id": "node-v22.20.0-errors.md-role-165",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.65
+    },
+    {
+      "id": "node-v22.20.0-process.md-role-20",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "unclear" },
+      "confidence": 0.22
+    },
+    {
+      "id": "node-v22.20.0-process.md-role-24",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.37
+    },
+    {
+      "id": "node-v22.20.0-process.md-role-81",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.74
+    },
+    {
+      "id": "node-v22.20.0-repl.md-role-83",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.8
+    },
+    {
+      "id": "node-v22.20.0-timers.md-role-28",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.91
+    },
+    {
+      "id": "node-v22.20.0-timers.md-role-36",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.47
+    },
+    {
+      "id": "node-v22.20.0-util.md-role-21",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.71
+    },
+    {
+      "id": "node-v22.20.0-util.md-role-90",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.65
+    },
+    {
+      "id": "node-v22.20.0-util.md-role-178",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.68
+    },
+    {
+      "id": "node-v22.20.0-vm.md-role-1",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.78
+    },
+    {
+      "id": "node-v22.20.0-vm.md-role-47",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.38
+    },
+    {
+      "id": "node-v22.20.0-vm.md-role-54",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.78
+    },
+    {
+      "id": "node-v22.20.0-wasi.md-role-121",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.5
+    }
+  ]
+}

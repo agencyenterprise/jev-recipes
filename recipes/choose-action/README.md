@@ -185,6 +185,8 @@ A saved demo response recommends `defend`. A live recommendation can differ. The
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Earlier-version measurement; experimental.**
+
 Measured on 32 golden cases against `jev-1.13.0`: **97% accurate** overall (contested cases 80%, adversarial cases 100%).
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |

@@ -95,3 +95,25 @@ npm run eval:featured -- --budget 5 --split held-out --out evals/runs/my-feature
 These commands retain local archives. To deliberately update the repository's public evidence, add `--write-evidence` when running each split, then run `npm run docs`. Each compressed evidence archive receives a unique run ID. Development reports update regression baselines; held-out reports become the current guide summaries. Existing raw runs are retained.
 
 The featured policy is declared in each `dataset.json` before evaluation: confidence 0.8, at least 20 held-out ready cases, at least 95% accuracy among those ready cases, and no provider failures. Missing that policy leaves a recipe experimental for this use. Meeting it means only that the policy was met on these authored cases. It is not independent human validation or a general production-readiness claim.
+
+## Gateway evaluation
+
+Set `VERCEL_GATEWAY_API_KEY` (or `AI_GATEWAY_API_KEY`) in your local `.env`. After building, run a development evaluation explicitly:
+
+```sh
+node --env-file=.env evals/gateway.mjs --recipe text-block-role --cases evals/text-block-role/cases.jsonl --out evals/runs/my-document-evaluation/development
+```
+
+Then freeze that development policy for the held-out split:
+
+```sh
+node --env-file=.env evals/gateway.mjs --recipe text-block-role --cases evals/text-block-role/cases.jsonl --split held-out --development evals/runs/my-document-evaluation/development --out evals/runs/my-document-evaluation/held-out
+```
+
+These commands make paid calls. They disable SDK retries and retain every provider response using the existing evaluator. Use a new output directory for each run. Provider failures set a nonzero exit status. A changed response model between splits also prevents promotion, although unchanged alias text cannot prove an unchanged backend model. Billing limits remain with your provider configuration.
+
+The September 2026 document datasets retain pinned Node.js Markdown sources, their license, hashes, and provenance in `evals/sources/node-v22.20.0/`. Rebuild cases offline with `node scripts/build-ingestion-cases.mjs`. Labels come from source markup and documented transformations, not independent human review. Source documents never cross splits. This initial corpus covers heading/body/code and prose boundaries in technical documentation, not all block roles, languages, PDF layouts, or OCR noise.
+
+`evals/lib/ingestion-metrics.mjs` supplies frozen deterministic baselines and descriptive document-bootstrap intervals. Unsupported classes and insufficient independent documents keep the new recipes experimental regardless of fixture correctness. Previously inspected cases for the three revised featured recipes are now development/regression cases; their new held-out families remain correlated synthetic evidence.
+
+Catalog and CLI descriptions include an `evidence` object derived from the same saved reports as the static site. Its `kind` describes provenance and source freshness; `experimental` separately indicates an absent or unmet current acceptance policy. A current public-dataset report does not imply independently reviewed labels.

@@ -93,6 +93,8 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Earlier-version measurement; experimental.**
+
 Measured on 57 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%, adversarial cases 100%).
 
 This recipe has no minConfidence setting, so no confidence-threshold table is reported.
