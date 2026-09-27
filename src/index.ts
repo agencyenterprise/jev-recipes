@@ -508,6 +508,19 @@ export type {
   ComparableFitVerdict,
 } from '../recipes/comparable-fit/index.js';
 export {
+  completionGate,
+  completionGateInputSchema,
+  completionGateResultSchema,
+  completionGateSignalSchema,
+  completionGateVerdictSchema,
+} from '../recipes/completion-gate/index.js';
+export type {
+  CompletionGateInput,
+  CompletionGateResult,
+  CompletionGateSignal,
+  CompletionGateVerdict,
+} from '../recipes/completion-gate/index.js';
+export {
   confirmationMatch,
   confirmationMatchInputSchema,
   confirmationMatchResultSchema,
@@ -573,6 +586,19 @@ export type {
   ContentFreshnessSignalResult,
   ContentFreshnessSignalVerdict,
 } from '../recipes/content-freshness-signal/index.js';
+export {
+  contextPrune,
+  contextPruneInputSchema,
+  contextPruneItemSchema,
+  contextPruneResultSchema,
+  contextPruneVerdictSchema,
+} from '../recipes/context-prune/index.js';
+export type {
+  ContextPruneInput,
+  ContextPruneItem,
+  ContextPruneResult,
+  ContextPruneVerdict,
+} from '../recipes/context-prune/index.js';
 export {
   contextRole,
   contextRoleInputSchema,
@@ -659,6 +685,17 @@ export type {
   DelegationFitResult,
   DelegationFitVerdict,
 } from '../recipes/delegation-fit/index.js';
+export {
+  diffHazards,
+  diffHazardsInputSchema,
+  diffHazardsLabelSchema,
+  diffHazardsResultSchema,
+} from '../recipes/diff-hazards/index.js';
+export type {
+  DiffHazardsInput,
+  DiffHazardsLabel,
+  DiffHazardsResult,
+} from '../recipes/diff-hazards/index.js';
 export {
   disclosureFacets,
   disclosureFacetsInputSchema,
@@ -1427,6 +1464,17 @@ export type {
   MethodsFacetsResult,
 } from '../recipes/methods-facets/index.js';
 export {
+  modelRoute,
+  modelRouteEffortSchema,
+  modelRouteInputSchema,
+  modelRouteResultSchema,
+} from '../recipes/model-route/index.js';
+export type {
+  ModelRouteEffort,
+  ModelRouteInput,
+  ModelRouteResult,
+} from '../recipes/model-route/index.js';
+export {
   modulationMoment,
   modulationMomentInputSchema,
   modulationMomentResultSchema,
@@ -2101,6 +2149,17 @@ export type {
 export { route, routeInputSchema, routeResultSchema } from '../recipes/route/index.js';
 export type { RouteInput, RouteResult } from '../recipes/route/index.js';
 export {
+  routeMany,
+  routeManyInputSchema,
+  routeManyItemSchema,
+  routeManyResultSchema,
+} from '../recipes/route-many/index.js';
+export type {
+  RouteManyInput,
+  RouteManyItem,
+  RouteManyResult,
+} from '../recipes/route-many/index.js';
+export {
   ruleCompliance,
   ruleComplianceInputSchema,
   ruleComplianceResultSchema,
@@ -2390,6 +2449,21 @@ export type {
   ToneCheckVerdict,
 } from '../recipes/tone-check/index.js';
 export {
+  toolCallGate,
+  toolCallGateActionSchema,
+  toolCallGateInputSchema,
+  toolCallGateResultSchema,
+  toolCallGateRiskSchema,
+  toolCallGateVerdictSchema,
+} from '../recipes/tool-call-gate/index.js';
+export type {
+  ToolCallGateAction,
+  ToolCallGateInput,
+  ToolCallGateResult,
+  ToolCallGateRisk,
+  ToolCallGateVerdict,
+} from '../recipes/tool-call-gate/index.js';
+export {
   toolCompare,
   toolCompareInputSchema,
   toolCompareResultSchema,
@@ -2480,6 +2554,13 @@ export type {
   VerifyInput,
   VerifyResult,
 } from '../recipes/verify/index.js';
+export {
+  wakeGate,
+  wakeGateInputSchema,
+  wakeGateResultSchema,
+  wakeGateVerdictSchema,
+} from '../recipes/wake-gate/index.js';
+export type { WakeGateInput, WakeGateResult, WakeGateVerdict } from '../recipes/wake-gate/index.js';
 export {
   workaroundFit,
   workaroundFitInputSchema,

@@ -108,6 +108,27 @@ Each check is `ready` at or above `minConfidence`, otherwise `review`. A ready c
 
 The result includes model and token usage. Inspect the outcome as well as its review status.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 50 golden cases against `jev-1.13.0`: **96% accurate** overall (contested cases 88%, adversarial cases 83%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 8%                 | 100%                      |
+| 0.6             | 8%                 | 100%                      |
+| 0.7             | 8%                 | 100%                      |
+| 0.8             | 12%                | 100%                      |
+| 0.9             | 18%                | 100%                      |
+| 0.95            | 22%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Rerun with `npm run eval -- verify`; the full report, including misses, is in [evals/results/verify.json](../../evals/results/verify.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Reuse and calls
 
 Uses the shared item-check helper. This folder owns the evidence criteria and the all-supported decision. All claim questions are sent in one request. The citation-match recipe calls this public function to select supporting passages. A live invocation makes one logical Jev request; SDK retries can add transport attempts.

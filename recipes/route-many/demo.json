@@ -1,0 +1,53 @@
+{
+  "input": {
+    "requests": [
+      {
+        "id": "t-1041",
+        "text": "I was charged twice for my subscription this month. Please refund one of the charges."
+      },
+      {
+        "id": "t-1042",
+        "text": "The export button on the reports page does nothing when clicked. Console shows a 500 error."
+      },
+      { "id": "t-1043", "text": "Can I get a demo of the enterprise plan for a team of 40?" },
+      { "id": "t-1044", "text": "hi" }
+    ],
+    "routes": {
+      "billing": "Payments, invoices, subscriptions, and refunds",
+      "technical": "Errors, outages, and broken product features",
+      "sales": "Pricing questions, plan upgrades, demos, and new purchases"
+    },
+    "batchSize": 20,
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "request_0": {
+        "type": "choice",
+        "choice": "billing",
+        "confidence": 0.95,
+        "probabilities": { "billing": 0.95, "technical": 0.01, "sales": 0.01, "__review__": 0.03 }
+      },
+      "request_1": {
+        "type": "choice",
+        "choice": "technical",
+        "confidence": 0.94,
+        "probabilities": { "billing": 0.01, "technical": 0.94, "sales": 0.01, "__review__": 0.04 }
+      },
+      "request_2": {
+        "type": "choice",
+        "choice": "sales",
+        "confidence": 0.93,
+        "probabilities": { "billing": 0.02, "technical": 0.01, "sales": 0.93, "__review__": 0.04 }
+      },
+      "request_3": {
+        "type": "choice",
+        "choice": "__review__",
+        "confidence": 0.85,
+        "probabilities": { "billing": 0.05, "technical": 0.05, "sales": 0.05, "__review__": 0.85 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

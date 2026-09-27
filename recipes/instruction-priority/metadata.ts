@@ -6,7 +6,7 @@ export const metadata = {
   description:
     'When firstInstruction and secondInstruction conflict, which should take precedence under the stated policy?',
   category: 'workflow',
-  tags: ['agent', 'instructions', 'policy', 'precedence', 'comparison', 'safety'],
+  tags: ['agent', 'instructions', 'policy', 'precedence', 'comparison', 'safety', 'harness'],
   useWhen:
     'An agent holds two instructions that cannot both be followed and your system has a written precedence policy, such as system over developer over user, or a rule about ignoring instructions embedded in retrieved content.',
   related: [

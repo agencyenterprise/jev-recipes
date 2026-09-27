@@ -11,7 +11,7 @@
 
 <!-- BEGIN GENERATED: summary -->
 
-236 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
+243 focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.
 
 <!-- END GENERATED: summary -->
 
@@ -117,16 +117,20 @@ The TypeSafe SDK handles API calls and typed answers. Recipes add the instructio
 
 ## Find your recipe
 
-| Your task                                              | Start with                                                                                                   |
-| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| Send a request to the right team                       | [`route`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/route/README.md)                 |
-| Find useful passages                                   | [`rerank`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/rerank/README.md)               |
-| Check whether the evidence is enough to answer         | [`answerability`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/answerability/README.md) |
-| Check claims against supplied evidence                 | [`verify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/verify/README.md)               |
-| Find missing or ambiguous requirements                 | [`clarify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/clarify/README.md)             |
-| Label a response's stance toward a claim               | [`claim-stance`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/claim-stance/README.md)   |
-| Choose a move from available game actions              | [`choose-action`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/choose-action/README.md) |
-| Choose a checkers move from your board and legal moves | [`checkers-move`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/checkers-move/README.md) |
+| Your task                                              | Start with                                                                                                       |
+| ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| Send a request to the right team                       | [`route`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/route/README.md)                     |
+| Find useful passages                                   | [`rerank`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/rerank/README.md)                   |
+| Check whether the evidence is enough to answer         | [`answerability`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/answerability/README.md)     |
+| Check claims against supplied evidence                 | [`verify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/verify/README.md)                   |
+| Find missing or ambiguous requirements                 | [`clarify`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/clarify/README.md)                 |
+| Label a response's stance toward a claim               | [`claim-stance`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/claim-stance/README.md)       |
+| Choose a move from available game actions              | [`choose-action`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/choose-action/README.md)     |
+| Choose a checkers move from your board and legal moves | [`checkers-move`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/checkers-move/README.md)     |
+| Allow, ask, or deny an agent's tool call               | [`tool-call-gate`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/tool-call-gate/README.md)   |
+| Check an agent's "done" against evidence               | [`completion-gate`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/completion-gate/README.md) |
+| Pick a model tier and effort per request               | [`model-route`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/model-route/README.md)         |
+| Route a backlog of messages in a few calls             | [`route-many`](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/route-many/README.md)           |
 
 Search, inspect inputs, and try saved results without a key:
 
@@ -139,6 +143,8 @@ npx jev-recipes demo answerability
 [Browse the complete catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md). Each guide includes an import, input reference, result behavior, limitations, and related recipes.
 
 For games, use [game-action](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/game-action/README.md) with your existing JSON state and actions. It returns the original selected action, preserving your game IDs. [checkers-move](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/checkers-move/README.md) accepts a structured checkers board and legal moves; the [checkers example](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/checkers/README.md) shows how to run its visual demo locally.
+
+For agent harnesses, browse [Agent harness](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#agent-harness) for the decisions inside an agent loop: `tool-call-gate` before a tool runs, `model-route` per turn, `context-prune` before compaction, `wake-gate` for paused agents, `diff-hazards` before a commit, and `completion-gate` before accepting a result. Search with `npx jev-recipes list harness`.
 
 For psychology, browse [Psychology & behavior](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#psychology--behavior) for gain/loss framing, causal explanations, stated motivation, and related wording annotations. Search with `npx jev-recipes list psychology`.
 
@@ -178,6 +184,46 @@ The CLI reads environment variables; it does not automatically load `.env`. Erro
 Batch recipes expose their own summaries, such as `verify.allSupported` and its per-claim checks. Every result includes model and token usage. Confidence is a signal for your policy, not a guarantee of correctness.
 
 Pass `{ client, model, signal }` as the optional second argument to configure a call. [Shared behavior and limits](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md#shared-options-and-behavior) covers configuration, input limits, and uncertainty.
+
+## Batch many inputs
+
+A Jev request evaluates every question in parallel, so several inputs that share the same decision can travel together. `route-many` routes up to 500 requests in batches of 20 by default, making one call per batch instead of one per request:
+
+```js
+import { routeMany } from 'jev-recipes/route-many';
+
+const result = await routeMany({
+  requests: tickets.map((ticket) => ({ id: ticket.id, text: ticket.body })),
+  routes: { billing: 'Payments and refunds', technical: 'Errors and outages' },
+  batchSize: 20,
+});
+
+for (const item of result.items) {
+  if (item.status === 'ready') assign(item.id, item.route);
+  else queueForReview(item.id, item.suggestedRoute);
+}
+console.log(`${result.requestsMade} calls for ${result.requestCount} tickets`);
+```
+
+Accuracy can drop as batches grow. Measure on your own labeled data and tune `batchSize`; the [eval harness](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md#model-evaluation) reports calibration per threshold.
+
+## Use a local or alternative decision model
+
+Recipes talk to any server that implements the TypeSafe `systemOne` wire format. Point the SDK client at it with `baseURL`, or set `TYPESAFE_BASE_URL` in the environment, and pass the client to any recipe:
+
+```js
+import { createClient } from 'jev-recipes';
+import { route } from 'jev-recipes/route';
+
+const client = createClient({
+  baseURL: 'http://localhost:11434', // a self-hosted, TypeSafe-compatible server
+  apiKey: 'local',
+});
+
+const result = await route({ request, routes }, { client, model: 'my-local-model' });
+```
+
+The `model` option selects a model name on that server. Recipes validate every response against the same schemas, so a server that returns malformed probabilities fails loudly rather than silently. The tooling tests exercise this path against a local HTTP server.
 
 ## Verification and scope
 

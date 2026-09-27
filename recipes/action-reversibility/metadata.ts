@@ -6,7 +6,7 @@ export const metadata = {
   description:
     'How reversible is action, given any context, from a trivial undo to an irreversible external effect?',
   category: 'workflow',
-  tags: ['agent', 'safety', 'action', 'reversibility', 'approval'],
+  tags: ['agent', 'safety', 'action', 'reversibility', 'approval', 'harness'],
   useWhen:
     'You need to decide whether an agent may proceed on its own or must pause for approval before a step that cannot be taken back.',
   related: [

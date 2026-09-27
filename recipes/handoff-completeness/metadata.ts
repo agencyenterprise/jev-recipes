@@ -6,7 +6,7 @@ export const metadata = {
   description:
     'How ready is item, a work description being handed to another agent or person, to be picked up without asking questions, on a five-level rubric?',
   category: 'workflow',
-  tags: ['agent', 'delegation', 'handoff', 'completeness', 'multi-agent'],
+  tags: ['agent', 'delegation', 'handoff', 'completeness', 'multi-agent', 'harness'],
   useWhen:
     'You need to grade a task description before delegating it, so an orchestrator can enrich it or ask for missing pieces instead of handing off something a worker will bounce back.',
   related: [

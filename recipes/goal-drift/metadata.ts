@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Detect goal drift',
   description: 'Does step still serve goal, or has work drifted to something goal did not ask for?',
   category: 'workflow',
-  tags: ['agent', 'goal', 'drift', 'scope', 'monitoring', 'gate'],
+  tags: ['agent', 'goal', 'drift', 'scope', 'monitoring', 'gate', 'harness'],
   useWhen:
     'You need a yes/no check on each step of a long-running agent so it stops before spending effort on work nobody asked for.',
   related: [

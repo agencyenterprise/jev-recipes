@@ -1,0 +1,18 @@
+{
+  "input": {
+    "diff": "--- a/src/payments.ts\n+++ b/src/payments.ts\n@@ -1,6 +1,9 @@\n import { Stripe } from 'stripe';\n-const stripe = new Stripe(process.env.STRIPE_KEY);\n+const stripe = new Stripe('sk_prod_51Hq9zLKj3mD8vXyZ2pQ7rT4wN6bF0cE1gA5hJ8kL');\n+console.log('DEBUG charge payload', payload);\n export async function charge(payload) {\n   return stripe.charges.create(payload);\n }",
+    "context": "Pre-commit screen for a payments service.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "secretLeak": { "type": "noul", "noul": 0.97 },
+      "destructiveCommand": { "type": "noul", "noul": 0.03 },
+      "debugLeftover": { "type": "noul", "noul": 0.93 },
+      "testsWeakened": { "type": "noul", "noul": 0.04 },
+      "dependencyChange": { "type": "noul", "noul": 0.05 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

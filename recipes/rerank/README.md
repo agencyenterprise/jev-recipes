@@ -89,6 +89,18 @@ See [shared options and behavior](../README.md#shared-options-and-behavior) for 
 
 The result includes model and token usage. Inspect the outcome as well as its review status.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 57 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%, adversarial cases 100%).
+
+This result carries no per-decision confidence to calibrate a threshold against, so only overall accuracy is reported.
+
+Rerun with `npm run eval -- rerank`; the full report, including misses, is in [evals/results/rerank.json](../../evals/results/rerank.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Reuse and calls
 
 Uses shared input preparation, instruction handling, the SDK client, and yes/no answer parsing. This folder owns the relevance question, filtering, and ordering. All item questions are sent in one request. A live invocation makes one logical Jev request; SDK retries can add transport attempts.

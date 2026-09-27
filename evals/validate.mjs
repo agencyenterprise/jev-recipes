@@ -72,7 +72,8 @@ async function validateDataset(id) {
 }
 
 function isEmptyDeep(value) {
-  if (Array.isArray(value)) return value.every(isEmptyDeep);
+  // An empty list is a concrete expectation: no items detected, nothing selected.
+  if (Array.isArray(value)) return value.length > 0 && value.every(isEmptyDeep);
   if (value && typeof value === 'object') return Object.values(value).every(isEmptyDeep);
   return value === undefined;
 }

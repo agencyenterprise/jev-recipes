@@ -181,6 +181,27 @@ if (turn.status === 'ready' && turn.verdict === 'act') {
 
 A saved demo response recommends `defend`. A live recommendation can differ. The two recipes each make one logical request when called; the example skips action selection when the turn assessment is not ready to act. Handle thrown validation or provider errors in your application's error path.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 32 golden cases against `jev-1.13.0`: **97% accurate** overall (contested cases 80%, adversarial cases 100%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 9%                 | 100%                      |
+| 0.6             | 13%                | 100%                      |
+| 0.7             | 13%                | 100%                      |
+| 0.8             | 16%                | 100%                      |
+| 0.9             | 25%                | 100%                      |
+| 0.95            | 28%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Rerun with `npm run eval -- choose-action`; the full report, including misses, is in [evals/results/choose-action.json](../../evals/results/choose-action.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Limits
 
 - This is a model recommendation, not a game solver, legality proof, or guarantee of optimal play. Filter candidates using your game engine when possible and revalidate the selection against current state before executing it.

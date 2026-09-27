@@ -1,0 +1,106 @@
+{
+  "recipe": "progress-stall",
+  "model": "jev-1.13.0",
+  "cases": 42,
+  "accuracy": 1,
+  "contestedAccuracy": 1,
+  "adversarialAccuracy": 1,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 3,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 39,
+      "accuracy": 1
+    }
+  ],
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.071,
+      "readyAccuracy": 1
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.214,
+      "readyAccuracy": 1
+    }
+  ],
+  "suggestedMinConfidence": 0.5,
+  "confusion": {
+    "{\"verdict\":\"progressing\"}": {
+      "total": 21,
+      "correct": 21,
+      "misses": {}
+    },
+    "{\"verdict\":\"stalled\"}": {
+      "total": 21,
+      "correct": 21,
+      "misses": {}
+    }
+  },
+  "failures": []
+}

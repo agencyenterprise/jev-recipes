@@ -1,0 +1,20 @@
+{
+  "input": {
+    "waitingFor": "The CI pipeline for pull request #418 finishes, so the agent can read the results and either merge or fix failures.",
+    "event": "GitHub webhook: check_suite completed for PR #418 with conclusion \"failure\". 2 of 14 jobs failed: unit-tests (node 22) and lint.",
+    "context": "The agent opened PR #418 twenty minutes ago and paused until CI completes.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "wake",
+        "confidence": 0.95,
+        "probabilities": { "wake": 0.95, "not_yet": 0.02, "unrelated": 0.01, "unclear": 0.02 }
+      }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

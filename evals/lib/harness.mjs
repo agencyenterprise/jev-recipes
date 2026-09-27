@@ -78,6 +78,45 @@ export function hasReviewAnywhere(value) {
   return false;
 }
 
+/**
+ * The confidence that decides whether a whole result is ready. Single-decision
+ * recipes report it at the top level. Batch and fan-out recipes carry one
+ * confidence per item or per label; the result is only as sure as its least
+ * confident part, so the minimum over the paths named in `expected` (or over
+ * every nested confidence when a path has none) is used.
+ */
+export function caseConfidence(result, expectedPaths = []) {
+  if (typeof result?.confidence === 'number') return result.confidence;
+  const scoped = expectedPaths
+    .map((path) => confidenceNear(result, path.split('.')))
+    .filter((value) => value !== undefined);
+  const values = scoped.length ? scoped : collectConfidences(result);
+  return values.length ? Math.min(...values) : undefined;
+}
+
+function confidenceNear(record, segments) {
+  let node = record;
+  for (let index = 0; index < segments.length; index += 1) {
+    const next = node?.[segments[index]];
+    if (next && typeof next === 'object' && typeof next.confidence === 'number') {
+      const rest = segments.slice(index + 1);
+      if (!rest.length || !rest.some((segment) => segment === 'confidence')) return next.confidence;
+    }
+    node = next;
+  }
+  return undefined;
+}
+
+function collectConfidences(value) {
+  if (Array.isArray(value)) return value.flatMap(collectConfidences);
+  if (value && typeof value === 'object') {
+    return Object.entries(value).flatMap(([name, field]) =>
+      name === 'confidence' && typeof field === 'number' ? [field] : collectConfidences(field),
+    );
+  }
+  return [];
+}
+
 export function pick(record, names) {
   return Object.fromEntries(names.map((name) => [name, record[name]]));
 }

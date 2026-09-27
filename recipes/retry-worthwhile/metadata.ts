@@ -6,7 +6,7 @@ export const metadata = {
   description:
     'Does failure describe a transient condition where an identical retry could succeed, given any attempt history?',
   category: 'workflow',
-  tags: ['agent', 'retry', 'failure', 'resilience', 'transient', 'gate'],
+  tags: ['agent', 'retry', 'failure', 'resilience', 'transient', 'gate', 'harness'],
   useWhen:
     'You need a yes/no decision after a tool call or request fails and the error text, not a status code, is the only signal you have.',
   related: [

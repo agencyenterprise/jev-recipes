@@ -80,6 +80,27 @@ See [shared options and behavior](../README.md#shared-options-and-behavior) for 
 
 A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `review` and still carries the graded values. `probabilities` is keyed by level index.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 44 golden cases against `jev-1.13.0`: **89% accurate** overall (contested cases 60%, adversarial cases 80%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 21%                | 97%                       |
+| 0.6             | 25%                | 97%                       |
+| 0.7             | 41%                | 100%                      |
+| 0.8             | 55%                | 100%                      |
+| 0.9             | 61%                | 100%                      |
+| 0.95            | 77%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Rerun with `npm run eval -- action-reversibility`; the full report, including misses, is in [evals/results/action-reversibility.json](../../evals/results/action-reversibility.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Reuse and calls
 
 Uses the shared score helper. This folder owns the reversibility question, the rubric wording, and the review policy. A live invocation makes one logical Jev request.

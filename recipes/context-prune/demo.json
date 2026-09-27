@@ -1,0 +1,40 @@
+{
+  "input": {
+    "objective": "Fix the failing test in tests/auth.test.ts, which expects a 401 for expired tokens but receives a 500, then run the suite and commit.",
+    "items": [
+      {
+        "id": "ls-root",
+        "text": "Tool result (ls): README.md package.json src tests docs node_modules"
+      },
+      {
+        "id": "auth-source",
+        "text": "Tool result (cat src/auth.ts): export function verify(token) { const payload = jwt.verify(token, SECRET); if (payload.exp < Date.now()) throw new Error('expired'); return payload; }"
+      },
+      {
+        "id": "readme",
+        "text": "Tool result (cat README.md): # Acme API. Install with npm ci. Run with npm start. See docs/ for endpoints."
+      },
+      {
+        "id": "user-note",
+        "text": "User: don't touch the token format, other services depend on it."
+      },
+      {
+        "id": "test-output",
+        "text": "Tool result (npm test): FAIL tests/auth.test.ts > returns 401 for expired token. Expected 401, received 500. TypeError: Cannot read properties of undefined (reading 'status') at src/auth.ts:9"
+      }
+    ],
+    "recent": "The agent has read the failing test and the auth source and is about to edit src/auth.ts.",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "item_0": { "type": "noul", "noul": 0.06 },
+      "item_1": { "type": "noul", "noul": 0.95 },
+      "item_2": { "type": "noul", "noul": 0.08 },
+      "item_3": { "type": "noul", "noul": 0.93 },
+      "item_4": { "type": "noul", "noul": 0.96 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

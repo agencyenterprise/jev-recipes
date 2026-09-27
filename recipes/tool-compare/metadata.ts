@@ -6,7 +6,7 @@ export const metadata = {
   description:
     'Which of firstTool and secondTool, as described by their stated capabilities, better fits task?',
   category: 'workflow',
-  tags: ['agent', 'tool-use', 'comparison', 'pairwise', 'planning', 'workflow'],
+  tags: ['agent', 'tool-use', 'comparison', 'pairwise', 'planning', 'workflow', 'harness'],
   useWhen:
     'An agent has two candidate tools for one step and needs a head-to-head preference based on the capability descriptions it has been given.',
   related: [

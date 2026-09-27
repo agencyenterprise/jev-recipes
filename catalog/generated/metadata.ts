@@ -31,7 +31,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     description:
       'Which side effects does the described action involve: writing or modifying data, sending a message or notification, spending or moving money, deleting something, or calling an external service?',
     category: 'workflow',
-    tags: ['agent', 'safety', 'action', 'side-effects', 'approval', 'labels'],
+    tags: ['agent', 'safety', 'action', 'side-effects', 'approval', 'labels', 'harness'],
     limitations: [
       'Labels the effects the action description states or plainly entails. It does not know what your tools actually do behind the description.',
       'Read-only lookups against an external API still count as external calls; whether that is acceptable is a policy decision for application code.',
@@ -58,7 +58,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     description:
       'How reversible is action, given any context, from a trivial undo to an irreversible external effect?',
     category: 'workflow',
-    tags: ['agent', 'safety', 'action', 'reversibility', 'approval'],
+    tags: ['agent', 'safety', 'action', 'reversibility', 'approval', 'harness'],
     limitations: [
       'Grades the action as described. It does not know which undo, backup, or recall facilities your system actually provides unless context says so.',
       'Reversibility is not permission. An irreversible action may be exactly what the user asked for, and a trivial one may still be out of scope.',
@@ -78,7 +78,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     title: 'Check proposed action scope',
     description: 'Is proposedAction within the work requested in request and constraints?',
     category: 'workflow',
-    tags: ['workflow', 'action', 'scope'],
+    tags: ['workflow', 'action', 'scope', 'harness'],
     limitations: [
       'Assesses semantic scope only. User authorization and access controls must be enforced by the application.',
     ],
@@ -1168,6 +1168,35 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'completion-gate',
+    title: 'Gate an agent claiming it is done',
+    description:
+      'Did an agent finish task, judging report against evidence, with unproven claims, quietly narrowed scope, open questions, and unresolved errors flagged in the same call?',
+    category: 'workflow',
+    tags: ['agent', 'completion', 'stop-hook', 'verification', 'evidence', 'harness', 'done'],
+    limitations: [
+      'Judges only the supplied report and evidence. It does not run tests or inspect the repository; supply that output in evidence.',
+      'A complete verdict means the supplied material shows the task done, not that the work is correct or well made.',
+    ],
+    useWhen:
+      'A coding agent says it is finished and you must decide, before accepting or before letting it stop, whether the work is actually complete.',
+    related: [
+      {
+        id: 'step-complete',
+        reason: 'Use step-complete to check one explicit completion condition against evidence.',
+      },
+      {
+        id: 'goal-drift',
+        reason:
+          'Use goal-drift while the agent is still working to catch a step that wanders from the goal.',
+      },
+      {
+        id: 'result-plausibility',
+        reason: 'Use result-plausibility to check whether a single tool result is a real answer.',
+      },
+    ],
+  },
+  {
     id: 'confirmation-match',
     title: 'Interpret a confirmation',
     description: 'Does response clearly agree to or reject this exact proposal?',
@@ -1322,6 +1351,36 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'freshness-needed',
         reason:
           'Use freshness-needed to decide whether a question requires current information to answer.',
+      },
+    ],
+  },
+  {
+    id: 'context-prune',
+    title: 'Prune agent context',
+    description:
+      'Which of items, earlier tool results and messages in an agent session, are still needed to finish objective, so the rest can be dropped from context?',
+    category: 'memory',
+    tags: ['agent', 'context', 'compaction', 'prune', 'memory', 'tool-results', 'harness'],
+    limitations: [
+      'Judges each item on its own text and the stated objective. It cannot see dependencies between items unless their text makes them explicit.',
+      'Uncertain items stay in keep. A short objective that hides what the agent still has to do makes most items look unnecessary; state the remaining work concretely.',
+      'Accepts up to 50 items per call. Chunk longer histories and pass recent so later chunks know what was already handled.',
+    ],
+    useWhen:
+      'An agent session is growing long and you want to drop stale tool output and messages before the next model turn without summarizing what must stay verbatim.',
+    related: [
+      {
+        id: 'rerank',
+        reason:
+          'Use rerank to order passages by relevance to a query rather than decide what an agent still needs.',
+      },
+      {
+        id: 'memory-value',
+        reason: 'Use memory-value to decide whether a fact is worth storing long term.',
+      },
+      {
+        id: 'progress-stall',
+        reason: 'Use progress-stall to detect an agent that keeps reprocessing the same context.',
       },
     ],
   },
@@ -1495,7 +1554,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     title: 'Check delegation fit',
     description: 'Does subtask fall within the capabilities described for the delegate?',
     category: 'workflow',
-    tags: ['agent', 'delegation', 'capabilities', 'routing', 'multi-agent'],
+    tags: ['agent', 'delegation', 'capabilities', 'routing', 'multi-agent', 'harness'],
     limitations: [
       'Judges fit against the capabilities as written. Abilities the delegate has but the description omits count as missing.',
       'Reports whether the subtask is within scope, not whether the delegate would do it well or how long it would take.',
@@ -1512,6 +1571,44 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'route',
         reason:
           'Use route to choose among several named delegates at once when more than one might fit.',
+      },
+    ],
+  },
+  {
+    id: 'diff-hazards',
+    title: 'Flag hazards in a code diff',
+    description:
+      'Which hazards does diff introduce: leaked secrets, destructive commands, debug leftovers, weakened tests, or dependency changes?',
+    category: 'workflow',
+    tags: [
+      'diff',
+      'code-review',
+      'secrets',
+      'destructive',
+      'pre-commit',
+      'agent',
+      'safety',
+      'harness',
+    ],
+    limitations: [
+      'Reads only the supplied diff text. It does not run the code, resolve imports, or see files outside the diff.',
+      'A pattern that looks like a secret, such as an example key in documentation, may be flagged; treat detections as a prompt for review, not proof.',
+    ],
+    useWhen:
+      'A coding agent or pre-commit hook needs a fast screen of a diff for the mistakes that reviewers most often catch late.',
+    related: [
+      {
+        id: 'change-risk',
+        reason:
+          'Use change-risk to grade the overall shipping risk of a described change rather than flag specific hazards in the diff text.',
+      },
+      {
+        id: 'commit-message-fit',
+        reason: 'Use commit-message-fit to check whether the commit message describes the change.',
+      },
+      {
+        id: 'breaking-change-signal',
+        reason: 'Use breaking-change-signal to check whether a change breaks callers.',
       },
     ],
   },
@@ -2374,7 +2471,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     description:
       'Does step still serve goal, or has work drifted to something goal did not ask for?',
     category: 'workflow',
-    tags: ['agent', 'goal', 'drift', 'scope', 'monitoring', 'gate'],
+    tags: ['agent', 'goal', 'drift', 'scope', 'monitoring', 'gate', 'harness'],
     limitations: [
       'Judges a single step against the stated goal. It does not know whether the user later widened or changed the goal unless context says so.',
       'Reports drift, not whether the drifted work is harmful or valuable. Stopping, asking, or continuing is an application decision.',
@@ -2467,7 +2564,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     description:
       'How ready is item, a work description being handed to another agent or person, to be picked up without asking questions, on a five-level rubric?',
     category: 'workflow',
-    tags: ['agent', 'delegation', 'handoff', 'completeness', 'multi-agent'],
+    tags: ['agent', 'delegation', 'handoff', 'completeness', 'multi-agent', 'harness'],
     limitations: [
       'Grades what the item states, not whether the stated goal is correct, feasible, or worth doing.',
       'Cannot know what the recipient already knows, so shared context that is not written into the item counts as missing.',
@@ -2559,7 +2656,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     title: 'Detect agent-directed instructions',
     description: 'Does text contain instructions aimed at steering an AI system or agent?',
     category: 'workflow',
-    tags: ['security', 'prompt-injection', 'agent', 'safety', 'gate', 'retrieval'],
+    tags: ['security', 'prompt-injection', 'agent', 'safety', 'gate', 'retrieval', 'harness'],
     limitations: [
       'Detects instruction-like content aimed at machines. It does not judge whether the instructions would succeed or are malicious.',
       'Quarantine, stripping, and logging decisions belong in application code.',
@@ -2650,7 +2747,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     description:
       'When firstInstruction and secondInstruction conflict, which should take precedence under the stated policy?',
     category: 'workflow',
-    tags: ['agent', 'instructions', 'policy', 'precedence', 'comparison', 'safety'],
+    tags: ['agent', 'instructions', 'policy', 'precedence', 'comparison', 'safety', 'harness'],
     limitations: [
       'Applies the policy as written. It does not decide whether the policy itself is sensible or whether the instructions really conflict.',
       'Depends on each instruction stating or implying its source; if the policy ranks by source and the source is not given, the result is unclear.',
@@ -3309,6 +3406,40 @@ export const recipeMetadata: CatalogRecipe[] = [
         id: 'content-facets',
         reason:
           'Use content-facets to label the structural elements of an article, rather than the methodological details of a study.',
+      },
+    ],
+  },
+  {
+    id: 'model-route',
+    title: 'Route a request to a model tier',
+    description:
+      'Which of the described models should serve request, and how much reasoning effort does it need, decided in one call so a cheap model handles easy turns and a capable one handles hard turns?',
+    category: 'workflow',
+    tags: [
+      'agent',
+      'model-routing',
+      'cost',
+      'effort',
+      'reasoning',
+      'tiering',
+      'harness',
+      'gateway',
+    ],
+    limitations: [
+      'Chooses among the supplied descriptions only. The quality of the routing depends on how honestly each model entry describes its strengths, weaknesses, and cost.',
+      'The effort grade is a judgment about the request text, not a measurement; calibrate its thresholds against your own traffic.',
+    ],
+    useWhen:
+      'An agent harness, gateway, or proxy chooses per request which LLM and thinking level to use, and you want that choice made in well under a second.',
+    related: [
+      {
+        id: 'route',
+        reason:
+          'Use route to send a request to a named handler or team when no effort level is needed.',
+      },
+      {
+        id: 'task-complexity',
+        reason: 'Use task-complexity for a five-level complexity grade without picking a model.',
       },
     ],
   },
@@ -4189,7 +4320,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     description:
       'Does transcript, the recent agent steps, show the agent failing to make progress toward objective by repeating actions, circling, or reprocessing the same information?',
     category: 'workflow',
-    tags: ['agent', 'monitoring', 'loop', 'stall', 'safety'],
+    tags: ['agent', 'monitoring', 'loop', 'stall', 'safety', 'harness'],
     limitations: [
       'Judges the window of steps supplied in transcript. A loop longer than the window, or progress made before it, is invisible.',
       'Reports that the agent is stalled, not why or what it should do instead. Interrupting, redirecting, or escalating is an application decision.',
@@ -4711,7 +4842,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     description:
       'Is result a plausible, internally consistent answer to request rather than an error, placeholder, empty, or unrelated output dressed as data?',
     category: 'workflow',
-    tags: ['agent', 'tool-result', 'plausibility', 'validation', 'quality', 'gate'],
+    tags: ['agent', 'tool-result', 'plausibility', 'validation', 'quality', 'gate', 'harness'],
     limitations: [
       'Judges internal consistency and fit to the request, not factual accuracy. A plausible result can still be wrong.',
       'A genuine empty answer, such as a search that legitimately found nothing, is only plausible if the result says so rather than returning blank output.',
@@ -4771,7 +4902,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     description:
       'Does failure describe a transient condition where an identical retry could succeed, given any attempt history?',
     category: 'workflow',
-    tags: ['agent', 'retry', 'failure', 'resilience', 'transient', 'gate'],
+    tags: ['agent', 'retry', 'failure', 'resilience', 'transient', 'gate', 'harness'],
     limitations: [
       'Judges the failure text as written. It does not know your retry budget, backoff policy, or whether the action is safe to repeat.',
       'Says whether an identical retry could succeed, not whether a modified attempt would. Fixing inputs or permissions is a different decision.',
@@ -4968,6 +5099,30 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'turn-intent',
         reason: 'Use turn-intent to identify what a message is doing before choosing a handler.',
+      },
+    ],
+  },
+  {
+    id: 'route-many',
+    title: 'Route many requests in batches',
+    description:
+      'Which named route handles each of up to 500 requests, judged in batched Jev requests so a queue of tickets, emails, or events is routed in a handful of calls instead of one per item?',
+    category: 'support',
+    tags: ['batch', 'routing', 'triage', 'queue', 'bulk', 'tickets', 'email', 'throughput'],
+    limitations: [
+      'Every request in a batch shares one model call, so accuracy can fall as batches grow; the default batch size of 20 is a starting point to tune against your own labels.',
+      'Per-item results are independent judgments. The recipe does not deduplicate or group related requests.',
+    ],
+    useWhen:
+      'You have a backlog or stream of messages to route to the same set of handlers and want batched throughput with a per-item review outcome.',
+    related: [
+      {
+        id: 'route',
+        reason: 'Use route for a single request, or when each request has its own set of routes.',
+      },
+      {
+        id: 'ticket-match',
+        reason: 'Use ticket-match to link a new message to an existing ticket rather than a queue.',
       },
     ],
   },
@@ -5297,7 +5452,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     title: 'Check one completion condition',
     description: 'Does evidence establish that condition has been met?',
     category: 'workflow',
-    tags: ['workflow', 'step', 'complete', 'alignment-research'],
+    tags: ['workflow', 'step', 'complete', 'alignment-research', 'harness'],
     limitations: [
       'Assesses supplied evidence for one condition. Use exact system state checks when the condition can be determined in code.',
     ],
@@ -5628,12 +5783,56 @@ export const recipeMetadata: CatalogRecipe[] = [
     ],
   },
   {
+    id: 'tool-call-gate',
+    title: 'Gate an agent tool call',
+    description:
+      'Should an agent run toolCall now, ask a person first, or refuse it, given request and policy, with irreversible, destructive, out-of-scope, exfiltration, and injection risks flagged in the same call?',
+    category: 'workflow',
+    tags: [
+      'agent',
+      'tool-call',
+      'permission',
+      'guardrail',
+      'safety',
+      'injection',
+      'pre-tool-use',
+      'harness',
+    ],
+    limitations: [
+      'Judges the call as described in toolCall. Pass the actual tool name and arguments, not a summary written by the agent.',
+      'Deterministic rules such as allowlists, path restrictions, and rate limits are cheaper and more reliable for what they cover; run them first and use this recipe for the cases they leave open.',
+      'A review or ask outcome means a person should look; it does not itself block execution. The application must enforce the action.',
+    ],
+    useWhen:
+      'A coding or browsing agent is about to execute a tool call and you need an allow, ask, or deny decision plus the specific risks, in one fast request.',
+    related: [
+      {
+        id: 'action-scope',
+        reason:
+          'Use action-scope when you only need to know whether an action stays within the request.',
+      },
+      {
+        id: 'action-reversibility',
+        reason: 'Use action-reversibility for a five-level grade of how reversible one action is.',
+      },
+      {
+        id: 'action-effects',
+        reason: 'Use action-effects to label what kinds of side effects an action has.',
+      },
+      {
+        id: 'injection-signal',
+        reason:
+          'Use injection-signal to screen text for embedded instructions before an agent reads it.',
+      },
+    ],
+  },
+  {
     id: 'tool-compare',
     title: 'Compare two tools for a task',
     description:
       'Which of firstTool and secondTool, as described by their stated capabilities, better fits task?',
     category: 'workflow',
-    tags: ['agent', 'tool-use', 'comparison', 'pairwise', 'planning', 'workflow'],
+    tags: ['agent', 'tool-use', 'comparison', 'pairwise', 'planning', 'workflow', 'harness'],
     limitations: [
       'Compares the capability descriptions as written. It does not invoke either tool, check credentials, or know about tools not supplied.',
       'A tool can fit the task better and still be unavailable, rate-limited, or forbidden; availability and permission belong in application code.',
@@ -5657,7 +5856,7 @@ export const recipeMetadata: CatalogRecipe[] = [
     title: 'Check a tool fit',
     description: 'Can the capabilities explicitly described in tool perform task?',
     category: 'workflow',
-    tags: ['workflow', 'tool', 'fit'],
+    tags: ['workflow', 'tool', 'fit', 'harness'],
     limitations: [
       'Assesses a supplied capability description. It does not discover tools, validate credentials, or grant permission.',
     ],
@@ -5821,6 +6020,31 @@ export const recipeMetadata: CatalogRecipe[] = [
       {
         id: 'citation-match',
         reason: 'Use citation-match to select which passages support one claim.',
+      },
+    ],
+  },
+  {
+    id: 'wake-gate',
+    title: 'Decide whether an event should wake a waiting agent',
+    description:
+      'Should event wake an agent that is paused until waitingFor happens: wake now, keep waiting, or ignore it as unrelated?',
+    category: 'workflow',
+    tags: ['agent', 'wake', 'resume', 'event', 'pause', 'scheduler', 'long-running', 'harness'],
+    limitations: [
+      "Judges only the supplied event against the stated wait condition. It does not know about earlier events or the agent's full history unless context supplies them.",
+      'A wake verdict means the condition appears met or materially changed; the resumed agent still has to verify the actual state.',
+    ],
+    useWhen:
+      'A paused or sleeping agent receives a timer tick, webhook, message, or file change and you must decide whether to resume its model loop.',
+    related: [
+      {
+        id: 'goal-drift',
+        reason:
+          "Use goal-drift to check whether a resumed agent's next step still serves its goal.",
+      },
+      {
+        id: 'progress-stall',
+        reason: 'Use progress-stall to detect an agent that keeps waking without making progress.',
       },
     ],
   },

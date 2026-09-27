@@ -77,11 +77,11 @@ Generation also rejects near-duplicate recipes: two recipes whose title, descrip
 
 Import paths, function names, schemas, example input, and counts are derived from source. Do not duplicate them in metadata. The current categories are `retrieval`, `conversation`, `workflow`, `answer-quality`, `support`, `memory`, and `knowledge`; use tags for narrower topics.
 
-The generated catalog also includes tag-driven collections: Psychology & behavior (`psychology` tag) and Music & sound (`music` tag). Add the tag to a relevant recipe's metadata to include it; keep its existing category. Collection membership does not create another recipe or change import paths. Collections are defined in [scripts/lib/docs.mjs](scripts/lib/docs.mjs).
+The generated catalog also includes tag-driven collections: Agent harness (`harness` tag), Psychology & behavior (`psychology` tag), and Music & sound (`music` tag). Add the tag to a relevant recipe's metadata to include it; keep its existing category. Collection membership does not create another recipe or change import paths. Collections are defined in [scripts/lib/docs.mjs](scripts/lib/docs.mjs).
 
 ## Dependencies and behavior
 
-Recipes use shared helpers under `src/` and may call another recipe through its public `index.js` export. Declare that reuse in `uses` and explain it in the guide. Recipes and shared helpers must not import the catalog, CLI, or root barrel. Keep side effects in the caller.
+Recipes use shared helpers under `src/` and may call another recipe through its public `index.js` export. `src/fanout.ts` carries a choice question plus independent labels in one request; `src/batch.ts` splits a list of inputs into chunks, runs one request per chunk concurrently, and merges the results. Prefer these over separate calls when the extra questions share one state, since Jev answers every question in a request in parallel. Declare that reuse in `uses` and explain it in the guide. Recipes and shared helpers must not import the catalog, CLI, or root barrel. Keep side effects in the caller.
 
 Accept `RecipeOptions` for an injected client, model, or abort signal. Validate inputs before inference. Return uncertainty as a review outcome and throw for invalid data or provider failures. Preserve model and usage information.
 
@@ -100,6 +100,37 @@ Each recipe's test file owns its inputs and expected results, independently of p
 Use `npm run test:watch` while editing or `npm run test:coverage` for coverage reports. [vitest.config.ts](vitest.config.ts) owns the coverage scope and per-file thresholds; the HTML report is written to `coverage/index.html`. Separate tooling tests cover generation, discovery, import boundaries, CLI commands, packaging, and a synthetic 1,000-entry catalog. For research evaluation on real inputs, follow the [evaluator validation guide](docs/ai-alignment-research.md).
 
 Do not commit API keys, private inputs, generated `dist/`, coverage, archives, or `node_modules`. Commit generated source and documentation so reviewers can inspect them and CI can detect drift.
+
+## Model evaluation
+
+Offline tests prove software behavior, not accuracy. Golden datasets under `evals/<recipe>/cases.jsonl` measure a recipe against the live model. Each line is one case:
+
+```json
+{
+  "id": "double-charge-refund",
+  "input": { "request": "...", "routes": { "billing": "..." } },
+  "expected": { "suggestedRoute": "billing" },
+  "rationale": "A duplicate charge is a payments issue.",
+  "contested": false,
+  "adversarial": false
+}
+```
+
+`expected` names result fields by dotted path (`items.0.verdict`, `checks`) and must avoid confidence-gated fields such as `status`, `route`, or `drop`; use the ungated twin such as `suggestedRoute` or a per-item `verdict`. Mark `contested` cases where reasonable annotators could disagree and `adversarial` cases whose wording is engineered to push the wrong answer; the report breaks accuracy out for both.
+
+| Task                                    | Command                   |
+| --------------------------------------- | ------------------------- |
+| Validate every dataset offline          | `npm run eval:validate`   |
+| Run one recipe live                     | `npm run eval -- route`   |
+| Run everything and save snapshots       | `npm run eval -- --write` |
+| Fail if accuracy drops more than 5%     | `npm run eval -- --check` |
+| Smoke-test every demo against the model | `npm run eval:smoke`      |
+
+Live runs need `TYPESAFE_API_KEY` in `.env` or the environment and spend quota. The report prints accuracy, a calibration table by confidence band, the defer rate and accuracy at each `minConfidence` threshold, a suggested threshold that reaches 95% accuracy on ready results, and a confusion table. Snapshots live in `evals/results/<recipe>.json`; commit them so reviewers can see the numbers and CI can detect regressions.
+
+For batch and fan-out recipes, the harness takes a case's confidence as the minimum over the items named in `expected`, so a batch is only as confident as its least certain item. A recipe whose result carries no `confidence` field anywhere reports accuracy without calibration.
+
+Add a golden dataset with any recipe meant for production use. Thirty to fifty cases with balanced labels is enough to choose a `minConfidence`; state the chosen threshold and its measured accuracy in the recipe guide.
 
 ## Releasing
 

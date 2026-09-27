@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Detect agent-directed instructions',
   description: 'Does text contain instructions aimed at steering an AI system or agent?',
   category: 'workflow',
-  tags: ['security', 'prompt-injection', 'agent', 'safety', 'gate', 'retrieval'],
+  tags: ['security', 'prompt-injection', 'agent', 'safety', 'gate', 'retrieval', 'harness'],
   useWhen:
     'You need to screen retrieved documents, tool results, or user uploads before an agent reads them as context.',
   related: [

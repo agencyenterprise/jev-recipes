@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Check a tool fit',
   description: 'Can the capabilities explicitly described in tool perform task?',
   category: 'workflow',
-  tags: ['workflow', 'tool', 'fit'],
+  tags: ['workflow', 'tool', 'fit', 'harness'],
   useWhen: 'You need to check whether a tool has the stated capability to perform a task.',
   related: [
     {

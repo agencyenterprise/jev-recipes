@@ -6,7 +6,7 @@ export const metadata = {
   description:
     'Does transcript, the recent agent steps, show the agent failing to make progress toward objective by repeating actions, circling, or reprocessing the same information?',
   category: 'workflow',
-  tags: ['agent', 'monitoring', 'loop', 'stall', 'safety'],
+  tags: ['agent', 'monitoring', 'loop', 'stall', 'safety', 'harness'],
   useWhen:
     'You need a yes/no check on a running agent every few steps so a supervisor can interrupt a loop before it burns the remaining budget.',
   related: [

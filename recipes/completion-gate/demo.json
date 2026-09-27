@@ -1,0 +1,29 @@
+{
+  "input": {
+    "task": "Add input validation to the signup endpoint, write unit tests for the new validation, and make sure the full test suite passes.",
+    "report": "I added validation for email and password fields in signup.ts and wrote three unit tests covering the new checks. All tests pass. Let me know if you want me to also validate the username field.",
+    "evidence": "$ npm test\n\nTest Files  12 passed (12)\n     Tests  87 passed (87)\n\n$ git diff --stat\n src/signup.ts          | 18 ++++++++++++\n tests/signup.test.ts   | 41 +++++++++++++++++++++++++",
+    "minConfidence": 0.8
+  },
+  "response": {
+    "model": "demo-fixture",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "complete",
+        "confidence": 0.9,
+        "probabilities": {
+          "complete": 0.9,
+          "incomplete": 0.05,
+          "unverified": 0.03,
+          "unclear": 0.02
+        }
+      },
+      "claimsWithoutEvidence": { "type": "noul", "noul": 0.06 },
+      "scopeNarrowed": { "type": "noul", "noul": 0.08 },
+      "openQuestions": { "type": "noul", "noul": 0.12 },
+      "unresolvedErrors": { "type": "noul", "noul": 0.03 }
+    },
+    "usage": { "input_tokens": 0, "output_tokens": 0 }
+  }
+}

@@ -69,6 +69,27 @@ See [shared options and behavior](../README.md#shared-options-and-behavior) for 
 
 A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `review`. Treat a review result as unknown and fall back to your safe default, such as redacting or withholding the text.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 43 golden cases against `jev-1.13.0`: **95% accurate** overall (contested cases 80%, adversarial cases 100%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 0%                 | 95%                       |
+| 0.6             | 7%                 | 98%                       |
+| 0.7             | 12%                | 97%                       |
+| 0.8             | 14%                | 97%                       |
+| 0.9             | 16%                | 100%                      |
+| 0.95            | 28%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Rerun with `npm run eval -- pii-presence`; the full report, including misses, is in [evals/results/pii-presence.json](../../evals/results/pii-presence.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Reuse and calls
 
 Uses the shared gate helper, a single yes/no question. This folder owns the question wording, the outcome descriptions, and the review policy. A live invocation makes one logical Jev request.

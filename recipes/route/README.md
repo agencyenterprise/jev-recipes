@@ -80,6 +80,27 @@ A confident selection returns `status: "ready"` and the route name in `route`. A
 
 The result includes model and token usage. Inspect the outcome as well as its review status.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 50 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%, adversarial cases 100%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 0%                 | 100%                      |
+| 0.6             | 0%                 | 100%                      |
+| 0.7             | 4%                 | 100%                      |
+| 0.8             | 8%                 | 100%                      |
+| 0.9             | 10%                | 100%                      |
+| 0.95            | 16%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Rerun with `npm run eval -- route`; the full report, including misses, is in [evals/results/route.json](../../evals/results/route.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Reuse and calls
 
 Uses the shared choice helper. This folder owns the routing question, route criteria, and review policy. A live invocation makes one logical Jev request; SDK retries can add transport attempts.

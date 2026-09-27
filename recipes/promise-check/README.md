@@ -79,6 +79,27 @@ The result includes `verdict`, `confidence`, and all choice `probabilities`. `un
 
 Results include model and token usage. Decisions below `minConfidence` require review. Inspect the outcome as well as the status.
 
+## Measured accuracy
+
+<!-- BEGIN GENERATED: accuracy -->
+
+Measured on 42 golden cases against `jev-1.13.0`: **91% accurate** overall (contested cases 67%, adversarial cases 100%).
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 7%                 | 95%                       |
+| 0.6             | 12%                | 95%                       |
+| 0.7             | 14%                | 97%                       |
+| 0.8             | 19%                | 100%                      |
+| 0.9             | 24%                | 100%                      |
+| 0.95            | 33%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.65.
+
+Rerun with `npm run eval -- promise-check`; the full report, including misses, is in [evals/results/promise-check.json](../../evals/results/promise-check.json). Accuracy on your own data may differ.
+
+<!-- END GENERATED: accuracy -->
+
 ## Reuse and calls
 
 Uses the shared choice helper for the Jev call and response parsing. This folder owns its question, verdict criteria, and review policy. A live invocation makes one logical Jev request; SDK retries can add transport attempts.
