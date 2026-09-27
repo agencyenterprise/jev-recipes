@@ -11,6 +11,7 @@ import {
   validateCases,
 } from '../dist/evaluation/dataset.js';
 import { readGoldenCases, projectRoot, requireApiKey } from './lib/harness.mjs';
+import { saveDevelopmentBaseline } from './lib/baselines.mjs';
 
 const { values } = parseArgs({
   options: {
@@ -151,6 +152,7 @@ for (const [id, cases] of datasets) {
   await writeFile(join(publicDirectory, 'run.json.gz'), gzipSync(JSON.stringify(run) + '\n'), {
     flag: 'wx',
   });
+  if (values.split === 'development') await saveDevelopmentBaseline(run.report);
   if (values.split === 'held-out') {
     const criteria = JSON.parse(
       await readFile(join(projectRoot, 'evals', id, 'dataset.json'), 'utf8'),

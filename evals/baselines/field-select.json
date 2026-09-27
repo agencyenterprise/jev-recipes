@@ -1,0 +1,213 @@
+{
+  "evidence": {
+    "runId": "1304659a-228e-4d3c-87a6-bf87133a5ef6",
+    "evaluatedAt": "2026-09-27T07:52:24.617Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "3410c4137a54287f299baf2ea79eca4e6fe0c84ce9f3a15629f076db7b7dde5c",
+    "datasetFingerprint": "d4ac5b33fe664c5d35d603d77d12459ee1c1fd0aa285880a785920cc10995b5c",
+    "split": "development",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8
+    },
+    "provenance": [
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 60
+      }
+    ]
+  },
+  "recipe": "field-select",
+  "model": "jev-1.13.0",
+  "models": ["jev-1.13.0"],
+  "cases": 60,
+  "completed": 60,
+  "failed": 0,
+  "correct": 60,
+  "wrong": 0,
+  "ready": 45,
+  "review": 15,
+  "accuracy": 1,
+  "completedAccuracy": 1,
+  "accuracyInterval95": [0.9398, 1],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.9213, 1],
+  "reviewRate": 0.25,
+  "items": 120,
+  "correctItems": 120,
+  "itemAccuracy": 1,
+  "contestedAccuracy": 1,
+  "adversarialAccuracy": null,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 4,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 11,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 45,
+      "accuracy": 1
+    }
+  ],
+  "thresholdEvaluation": "recipe-replay",
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.267,
+      "readyAccuracy": 1,
+      "readyCases": 44,
+      "reviewCases": 16,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9197, 1]
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.267,
+      "readyAccuracy": 1,
+      "readyCases": 44,
+      "reviewCases": 16,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9197, 1]
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.3,
+      "readyAccuracy": 1,
+      "readyCases": 42,
+      "reviewCases": 18,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9162, 1]
+    }
+  ],
+  "suggestedMinConfidence": 0.5,
+  "latencyMs": {
+    "p50": 109.77,
+    "p95": 156.69,
+    "totalCaseTime": 6967.61
+  },
+  "usage": {
+    "requests": 60,
+    "input_tokens": 30173,
+    "output_tokens": 3015,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.00126727
+  },
+  "confusion": {
+    "{\"verdict\":\"ambiguous\",\"suggestedSelection\":null}": {
+      "total": 15,
+      "correct": 15,
+      "misses": {}
+    },
+    "{\"verdict\":\"matched\",\"suggestedSelection\":\"a\"}": {
+      "total": 15,
+      "correct": 15,
+      "misses": {}
+    },
+    "{\"verdict\":\"matched\",\"suggestedSelection\":\"b\"}": {
+      "total": 15,
+      "correct": 15,
+      "misses": {}
+    },
+    "{\"verdict\":\"none\",\"suggestedSelection\":null}": {
+      "total": 15,
+      "correct": 15,
+      "misses": {}
+    }
+  },
+  "failures": []
+}

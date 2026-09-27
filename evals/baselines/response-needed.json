@@ -1,0 +1,200 @@
+{
+  "evidence": {
+    "runId": "d6327a42-3715-4495-962c-c8e6055217fb",
+    "evaluatedAt": "2026-09-27T07:52:09.790Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "accce497113821fcd870e3ebd3806c7cbe214d13e3a6ca96544043ab52b168b6",
+    "datasetFingerprint": "82349d5da9900695fefdfcc826e15db6ec5246fdd6fcf792a65719d86b870aeb",
+    "split": "development",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8
+    },
+    "provenance": [
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 60
+      }
+    ]
+  },
+  "recipe": "response-needed",
+  "model": "jev-1.13.0",
+  "models": ["jev-1.13.0"],
+  "cases": 60,
+  "completed": 60,
+  "failed": 0,
+  "correct": 60,
+  "wrong": 0,
+  "ready": 60,
+  "review": 0,
+  "accuracy": 1,
+  "completedAccuracy": 1,
+  "accuracyInterval95": [0.9398, 1],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.9398, 1],
+  "reviewRate": 0,
+  "contestedAccuracy": null,
+  "adversarialAccuracy": 1,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 0,
+      "accuracy": null
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 1,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 59,
+      "accuracy": 1
+    }
+  ],
+  "thresholdEvaluation": "recipe-replay",
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0,
+      "readyAccuracy": 1,
+      "readyCases": 60,
+      "reviewCases": 0,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9398, 1]
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0,
+      "readyAccuracy": 1,
+      "readyCases": 60,
+      "reviewCases": 0,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9398, 1]
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0,
+      "readyAccuracy": 1,
+      "readyCases": 60,
+      "reviewCases": 0,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9398, 1]
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0,
+      "readyAccuracy": 1,
+      "readyCases": 60,
+      "reviewCases": 0,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9398, 1]
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0,
+      "readyAccuracy": 1,
+      "readyCases": 60,
+      "reviewCases": 0,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9398, 1]
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0,
+      "readyAccuracy": 1,
+      "readyCases": 60,
+      "reviewCases": 0,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9398, 1]
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0,
+      "readyAccuracy": 1,
+      "readyCases": 60,
+      "reviewCases": 0,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9398, 1]
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.017,
+      "readyAccuracy": 1,
+      "readyCases": 59,
+      "reviewCases": 1,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9389, 1]
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.017,
+      "readyAccuracy": 1,
+      "readyCases": 59,
+      "reviewCases": 1,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9389, 1]
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.05,
+      "readyAccuracy": 1,
+      "readyCases": 57,
+      "reviewCases": 3,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9369, 1]
+    }
+  ],
+  "suggestedMinConfidence": 0.5,
+  "latencyMs": {
+    "p50": 115.52,
+    "p95": 155.73,
+    "totalCaseTime": 7125.54
+  },
+  "usage": {
+    "requests": 60,
+    "input_tokens": 26798,
+    "output_tokens": 2610,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.00112552
+  },
+  "confusion": {
+    "{\"verdict\":\"no_reply_needed\"}": {
+      "total": 30,
+      "correct": 30,
+      "misses": {}
+    },
+    "{\"verdict\":\"reply_needed\"}": {
+      "total": 30,
+      "correct": 30,
+      "misses": {}
+    }
+  },
+  "failures": []
+}

@@ -1,0 +1,412 @@
+{
+  "evidence": {
+    "runId": "94e107aa-63fe-4dff-b134-badf2e81645d",
+    "evaluatedAt": "2026-09-27T07:51:41.787Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "39b2c5e0938559fc1549e339ef7191bbcf833ff8f8ec51a339aee1cb29aafe1c",
+    "datasetFingerprint": "33c7d0024a2bc2c663c0d3c3b2336e4593defd00a2c0ec893898daa12cf77a86",
+    "split": "development",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8
+    },
+    "provenance": [
+      {
+        "method": "unspecified",
+        "source": "Existing repository labels; independent review and original authorship were not recorded.",
+        "cases": 44
+      },
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 60
+      }
+    ]
+  },
+  "recipe": "model-route",
+  "model": "jev-1.13.0",
+  "models": ["jev-1.13.0"],
+  "cases": 104,
+  "completed": 104,
+  "failed": 0,
+  "correct": 94,
+  "wrong": 10,
+  "ready": 63,
+  "review": 41,
+  "accuracy": 0.904,
+  "completedAccuracy": 0.904,
+  "accuracyInterval95": [0.832, 0.9469],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.9425, 1],
+  "reviewRate": 0.394,
+  "items": 179,
+  "correctItems": 168,
+  "itemAccuracy": 0.939,
+  "contestedAccuracy": 0.85,
+  "adversarialAccuracy": 0.5,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 14,
+      "accuracy": 0.643
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 4,
+      "accuracy": 0.5
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 4,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 10,
+      "accuracy": 0.7
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 9,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 63,
+      "accuracy": 1
+    }
+  ],
+  "thresholdEvaluation": "recipe-replay",
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0.26,
+      "readyAccuracy": 0.935,
+      "readyCases": 77,
+      "reviewCases": 27,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8568, 0.9719]
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0.26,
+      "readyAccuracy": 0.935,
+      "readyCases": 77,
+      "reviewCases": 27,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8568, 0.9719]
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.298,
+      "readyAccuracy": 0.959,
+      "readyCases": 73,
+      "reviewCases": 31,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.886, 0.9859]
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.298,
+      "readyAccuracy": 0.959,
+      "readyCases": 73,
+      "reviewCases": 31,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.886, 0.9859]
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.327,
+      "readyAccuracy": 0.957,
+      "readyCases": 70,
+      "reviewCases": 34,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8814, 0.9853]
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.356,
+      "readyAccuracy": 0.985,
+      "readyCases": 67,
+      "reviewCases": 37,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9202, 0.9974]
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.394,
+      "readyAccuracy": 1,
+      "readyCases": 63,
+      "reviewCases": 41,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9425, 1]
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.433,
+      "readyAccuracy": 1,
+      "readyCases": 59,
+      "reviewCases": 45,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9389, 1]
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.442,
+      "readyAccuracy": 1,
+      "readyCases": 58,
+      "reviewCases": 46,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9379, 1]
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.529,
+      "readyAccuracy": 1,
+      "readyCases": 49,
+      "reviewCases": 55,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9273, 1]
+    }
+  ],
+  "suggestedMinConfidence": 0.6,
+  "latencyMs": {
+    "p50": 118.2,
+    "p95": 234.62,
+    "totalCaseTime": 13624.71
+  },
+  "usage": {
+    "requests": 104,
+    "input_tokens": 86012,
+    "output_tokens": 7303,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.0036125
+  },
+  "confusion": {
+    "{\"suggestedSelection\":\"balanced\",\"effort\":\"medium\"}": {
+      "total": 2,
+      "correct": 2,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"balanced\"}": {
+      "total": 10,
+      "correct": 6,
+      "misses": {
+        "{\"suggestedSelection\":\"fast\"}": 4
+      }
+    },
+    "{\"suggestedSelection\":\"cheap\",\"effort\":\"low\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"cheap\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"engineer\",\"verdict\":\"matched\"}": {
+      "total": 15,
+      "correct": 14,
+      "misses": {
+        "{\"suggestedSelection\":\"format\",\"verdict\":\"matched\"}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"fast\",\"effort\":\"low\"}": {
+      "total": 4,
+      "correct": 4,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"fast\"}": {
+      "total": 6,
+      "correct": 6,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"format\",\"verdict\":\"matched\"}": {
+      "total": 15,
+      "correct": 15,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"frontier\",\"effort\":\"high\"}": {
+      "total": 5,
+      "correct": 4,
+      "misses": {
+        "{\"suggestedSelection\":\"fast\",\"effort\":\"high\"}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"frontier\"}": {
+      "total": 9,
+      "correct": 8,
+      "misses": {
+        "{\"suggestedSelection\":\"fast\"}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"large\",\"effort\":\"high\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"medium\",\"effort\":\"medium\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"nano\",\"effort\":\"low\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":\"premium\"}": {
+      "total": 2,
+      "correct": 1,
+      "misses": {
+        "{\"suggestedSelection\":\"cheap\"}": 1
+      }
+    },
+    "{\"suggestedSelection\":\"small\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"suggestedSelection\":null,\"verdict\":\"ambiguous\"}": {
+      "total": 15,
+      "correct": 14,
+      "misses": {
+        "{\"suggestedSelection\":null,\"verdict\":\"none\"}": 1
+      }
+    },
+    "{\"suggestedSelection\":null,\"verdict\":\"none\"}": {
+      "total": 15,
+      "correct": 14,
+      "misses": {
+        "{\"suggestedSelection\":\"format\",\"verdict\":\"matched\"}": 1
+      }
+    }
+  },
+  "failures": [
+    {
+      "id": "explain-failing-test",
+      "expected": {
+        "suggestedSelection": "balanced"
+      },
+      "actual": {
+        "suggestedSelection": "fast"
+      },
+      "confidence": 0.75
+    },
+    {
+      "id": "document-public-api",
+      "expected": {
+        "suggestedSelection": "balanced"
+      },
+      "actual": {
+        "suggestedSelection": "fast"
+      },
+      "confidence": 0.45
+    },
+    {
+      "id": "sql-monthly-report-query",
+      "expected": {
+        "suggestedSelection": "balanced"
+      },
+      "actual": {
+        "suggestedSelection": "fast"
+      },
+      "confidence": 0.55,
+      "contested": true
+    },
+    {
+      "id": "signup-form-validation",
+      "expected": {
+        "suggestedSelection": "balanced"
+      },
+      "actual": {
+        "suggestedSelection": "fast"
+      },
+      "confidence": 0.48,
+      "contested": true
+    },
+    {
+      "id": "adversarial-skip-jwt-expiry",
+      "expected": {
+        "suggestedSelection": "frontier",
+        "effort": "high"
+      },
+      "actual": {
+        "suggestedSelection": "fast",
+        "effort": "high"
+      },
+      "confidence": 0.59,
+      "adversarial": true
+    },
+    {
+      "id": "adversarial-retry-payment-call",
+      "expected": {
+        "suggestedSelection": "frontier"
+      },
+      "actual": {
+        "suggestedSelection": "fast"
+      },
+      "confidence": 0.2,
+      "adversarial": true
+    },
+    {
+      "id": "two-tier-adversarial-easy-sql-injection-fix",
+      "expected": {
+        "suggestedSelection": "premium"
+      },
+      "actual": {
+        "suggestedSelection": "cheap"
+      },
+      "confidence": 0.74,
+      "adversarial": true
+    },
+    {
+      "id": "featured-04-unavailable",
+      "expected": {
+        "suggestedSelection": null,
+        "verdict": "none"
+      },
+      "actual": {
+        "suggestedSelection": "format",
+        "verdict": "matched"
+      },
+      "confidence": 0.74
+    },
+    {
+      "id": "featured-14-behavior",
+      "expected": {
+        "suggestedSelection": "engineer",
+        "verdict": "matched"
+      },
+      "actual": {
+        "suggestedSelection": "format",
+        "verdict": "matched"
+      },
+      "confidence": 0.44
+    },
+    {
+      "id": "featured-14-equal",
+      "expected": {
+        "suggestedSelection": null,
+        "verdict": "ambiguous"
+      },
+      "actual": {
+        "suggestedSelection": null,
+        "verdict": "none"
+      },
+      "confidence": 0.45,
+      "contested": true
+    }
+  ]
+}

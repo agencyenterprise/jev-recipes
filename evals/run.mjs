@@ -5,6 +5,8 @@ import { format as formatFile, resolveConfig } from 'prettier';
 import { renderMeasuredAccuracy } from '../scripts/lib/docs.mjs';
 import { randomUUID } from 'node:crypto';
 import { evaluate } from '../dist/evaluation/index.js';
+import { loadEvaluationRecipe, validateCases } from '../dist/evaluation/dataset.js';
+import { readDevelopmentBaseline, saveDevelopmentBaseline } from './lib/baselines.mjs';
 import {
   listGoldenRecipeIds,
   projectRoot,
@@ -21,30 +23,45 @@ const { values, positionals } = parseArgs({
     write: { type: 'boolean' },
     check: { type: 'boolean', default: false },
     concurrency: { type: 'string', default: '4' },
+    featured: { type: 'boolean', default: false },
   },
 });
 const saveResults = values.write ?? !values.check;
 
-requireApiKey();
-const ids = positionals.length ? positionals : await listGoldenRecipeIds();
+if (values.featured && positionals.length)
+  throw new Error('Use --featured or recipe names, not both.');
+const ids = values.featured
+  ? Object.values(
+      JSON.parse(await readFile(join(projectRoot, 'evals/featured.json'), 'utf8')),
+    ).flat()
+  : positionals.length
+    ? positionals
+    : await listGoldenRecipeIds();
 if (!ids.length) {
   console.error('No golden datasets found under evals/<recipe>/cases.jsonl.');
   process.exit(1);
 }
 
-let regressed = false;
+const plannedRuns = [];
 for (const id of ids) {
-  const cases = await readGoldenCases(id);
+  const cases = validateCases(await loadEvaluationRecipe(id), await readGoldenCases(id));
+  const baseline = values.check ? await readDevelopmentBaseline(id, cases) : undefined;
+  plannedRuns.push({ id, cases, baseline });
+}
+requireApiKey();
+let regressed = false;
+for (const { id, cases, baseline } of plannedRuns) {
   const archive = saveResults
     ? join(projectRoot, 'evals/runs', `${id}-${Date.now()}-${randomUUID().slice(0, 8)}`)
     : undefined;
   const { report } = await evaluate(id, cases, {
     concurrency: Number(values.concurrency),
     ...(archive ? { out: archive } : {}),
+    ...(baseline ? { model: baseline.model, policy: baseline.evidence.policy } : {}),
   });
   if (archive) console.log(`  Recorded responses: ${archive}`);
   printReport(report);
-  if (values.check) regressed = (await checkAgainstSnapshot(report)) || regressed;
+  if (baseline) regressed = checkAgainstBaseline(report, baseline) || regressed;
   if (saveResults) await saveEvaluation(report);
 }
 if (!saveResults && !values.check) console.log('Results were not saved (--no-write).');
@@ -79,6 +96,7 @@ function snapshotPath(id) {
 }
 
 async function saveEvaluation(report) {
+  await saveDevelopmentBaseline(report);
   const config = await resolveConfig(join(projectRoot, 'package.json'));
   const reportPath = snapshotPath(report.recipe);
   await mkdir(join(projectRoot, 'evals/results'), { recursive: true });
@@ -95,24 +113,7 @@ async function saveEvaluation(report) {
   console.log(`  Guide updated: recipes/${report.recipe}/README.md`);
 }
 
-async function checkAgainstSnapshot(report) {
-  const previous = await readFile(snapshotPath(report.recipe), 'utf8')
-    .then(JSON.parse)
-    .catch(() => null);
-  if (!previous) {
-    console.log(
-      `  No snapshot for ${report.recipe} yet; run npm run eval -- ${report.recipe} to create one.`,
-    );
-    return false;
-  }
-  if (
-    !previous.evidence ||
-    previous.evidence.datasetFingerprint !== report.evidence.datasetFingerprint ||
-    previous.evidence.split !== report.evidence.split
-  )
-    throw new Error(
-      `Cannot compare ${report.recipe}: the snapshot uses a different dataset or split, or has no recorded dataset identity. Save a baseline for these cases before using --check.`,
-    );
+function checkAgainstBaseline(report, previous) {
   const drop = previous.accuracy - report.accuracy;
   if (drop > REGRESSION_TOLERANCE) {
     console.error(

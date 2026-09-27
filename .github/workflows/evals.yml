@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       golden:
-        description: Also run the golden datasets against their committed snapshots
+        description: Also check featured development datasets against their recorded baselines
         type: boolean
         default: false
 
@@ -29,6 +29,6 @@ jobs:
         env:
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
       - if: inputs.golden
-        run: npm run eval -- --check
+        run: npm run eval -- --featured --check
         env:
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}

@@ -1,0 +1,582 @@
+{
+  "evidence": {
+    "runId": "1a49d702-87cb-4411-b83c-262aec3f0e2b",
+    "evaluatedAt": "2026-09-27T07:52:04.778Z",
+    "packageVersion": "0.7.0",
+    "recipeFingerprint": "ab78b9ec3027283b20df73fc1b254b21d8f3fccc0fc9dc29d7949507b6266cd1",
+    "datasetFingerprint": "61a9417eb3b39ef01861aada69c0107dc934e9160433cc59b986b7683a19a6a4",
+    "split": "development",
+    "mode": "live",
+    "policy": {
+      "minConfidence": 0.8
+    },
+    "provenance": [
+      {
+        "method": "unspecified",
+        "source": "Existing repository labels; independent review and original authorship were not recorded.",
+        "cases": 27
+      },
+      {
+        "method": "author-synthetic",
+        "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
+        "cases": 60
+      }
+    ]
+  },
+  "recipe": "route-many",
+  "model": "jev-1.13.0",
+  "models": ["jev-1.13.0"],
+  "cases": 87,
+  "completed": 87,
+  "failed": 0,
+  "correct": 82,
+  "wrong": 5,
+  "ready": 50,
+  "review": 37,
+  "accuracy": 0.943,
+  "completedAccuracy": 0.943,
+  "accuracyInterval95": [0.8724, 0.9752],
+  "readyAccuracy": 1,
+  "readyAccuracyInterval95": [0.9287, 1],
+  "reviewRate": 0.425,
+  "items": 217,
+  "correctItems": 212,
+  "itemAccuracy": 0.977,
+  "contestedAccuracy": 0.4,
+  "adversarialAccuracy": 0.95,
+  "calibration": [
+    {
+      "confidence": "0-0.5",
+      "cases": 4,
+      "accuracy": 0.75
+    },
+    {
+      "confidence": "0.5-0.6",
+      "cases": 2,
+      "accuracy": 0
+    },
+    {
+      "confidence": "0.6-0.7",
+      "cases": 4,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.7-0.8",
+      "cases": 6,
+      "accuracy": 0.833
+    },
+    {
+      "confidence": "0.8-0.9",
+      "cases": 10,
+      "accuracy": 1
+    },
+    {
+      "confidence": "0.9-1",
+      "cases": 61,
+      "accuracy": 0.984
+    }
+  ],
+  "thresholdEvaluation": "recipe-replay",
+  "thresholds": [
+    {
+      "minConfidence": 0.5,
+      "deferRate": 0.31,
+      "readyAccuracy": 0.983,
+      "readyCases": 60,
+      "reviewCases": 27,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9114, 0.9971]
+    },
+    {
+      "minConfidence": 0.55,
+      "deferRate": 0.322,
+      "readyAccuracy": 1,
+      "readyCases": 59,
+      "reviewCases": 28,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9389, 1]
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.322,
+      "readyAccuracy": 1,
+      "readyCases": 59,
+      "reviewCases": 28,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9389, 1]
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.322,
+      "readyAccuracy": 1,
+      "readyCases": 59,
+      "reviewCases": 28,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9389, 1]
+    },
+    {
+      "minConfidence": 0.7,
+      "deferRate": 0.368,
+      "readyAccuracy": 1,
+      "readyCases": 55,
+      "reviewCases": 32,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9347, 1]
+    },
+    {
+      "minConfidence": 0.75,
+      "deferRate": 0.402,
+      "readyAccuracy": 1,
+      "readyCases": 52,
+      "reviewCases": 35,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9312, 1]
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.425,
+      "readyAccuracy": 1,
+      "readyCases": 50,
+      "reviewCases": 37,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9287, 1]
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.471,
+      "readyAccuracy": 1,
+      "readyCases": 46,
+      "reviewCases": 41,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9229, 1]
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.494,
+      "readyAccuracy": 1,
+      "readyCases": 44,
+      "reviewCases": 43,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9197, 1]
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.563,
+      "readyAccuracy": 1,
+      "readyCases": 38,
+      "reviewCases": 49,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9082, 1]
+    }
+  ],
+  "suggestedMinConfidence": 0.5,
+  "latencyMs": {
+    "p50": 131.78,
+    "p95": 161.01,
+    "totalCaseTime": 11315.74
+  },
+  "usage": {
+    "requests": 124,
+    "input_tokens": 79511,
+    "output_tokens": 10515,
+    "unknownResponses": 0,
+    "failedRequests": 0,
+    "models": ["jev-1.13.0"]
+  },
+  "cost": {
+    "model": "jev-1.13.0",
+    "inputPerMillion": 0.042,
+    "outputPerMillion": 0,
+    "currency": "USD",
+    "date": "2026-09-27",
+    "source": "https://docs.typesafe.ai/models",
+    "estimated": 0.00333946
+  },
+  "confusion": {
+    "{\"items.0.suggestedRoute\":\"accessibility\",\"items.1.suggestedRoute\":\"translation\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"account\",\"items.1.suggestedRoute\":\"account\",\"items.2.suggestedRoute\":\"account\",\"items.3.suggestedRoute\":\"account\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"account\",\"items.1.suggestedRoute\":\"technical\",\"items.2.suggestedRoute\":\"sales\",\"items.3.suggestedRoute\":\"billing\",\"items.4.suggestedRoute\":\"account\",\"items.5.suggestedRoute\":\"technical\",\"items.6.suggestedRoute\":\"sales\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"account\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"api\",\"items.1.suggestedRoute\":\"mobile\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"billing\",\"items.1.suggestedRoute\":\"account\",\"items.2.suggestedRoute\":\"technical\",\"items.3.suggestedRoute\":\"sales\",\"items.4.suggestedRoute\":\"billing\",\"items.5.suggestedRoute\":\"technical\",\"items.6.suggestedRoute\":\"account\",\"items.7.suggestedRoute\":\"sales\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"items.0.suggestedRoute\":\"billing\",\"items.1.suggestedRoute\":\"account\",\"items.2.suggestedRoute\":\"technical\",\"items.3.suggestedRoute\":\"sales\",\"items.4.suggestedRoute\":\"billing\",\"items.5.suggestedRoute\":\"technical\",\"items.6.suggestedRoute\":\"account\",\"items.7.suggestedRoute\":\"account\"}": 1
+      }
+    },
+    "{\"items.0.suggestedRoute\":\"billing\",\"items.1.suggestedRoute\":\"account\",\"items.2.suggestedRoute\":\"technical\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"billing\",\"items.1.suggestedRoute\":\"billing\",\"items.2.suggestedRoute\":\"billing\",\"items.3.suggestedRoute\":\"billing\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"billing\",\"items.1.suggestedRoute\":\"login\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"billing\",\"items.1.suggestedRoute\":\"technical\",\"items.2.suggestedRoute\":\"account\",\"items.3.suggestedRoute\":\"sales\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"billing\",\"items.1.suggestedRoute\":null,\"items.2.suggestedRoute\":null}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"items.0.suggestedRoute\":\"billing\",\"items.1.suggestedRoute\":\"technical\",\"items.2.suggestedRoute\":null}": 1
+      }
+    },
+    "{\"items.0.suggestedRoute\":\"export\",\"items.1.suggestedRoute\":\"deletion\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"hardware\",\"items.1.suggestedRoute\":\"software\",\"items.2.suggestedRoute\":\"network\",\"items.3.suggestedRoute\":\"access\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"hardware\",\"items.1.suggestedRoute\":\"software\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"installation\",\"items.1.suggestedRoute\":\"migration\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"needs_reply\",\"items.1.suggestedRoute\":\"updates\",\"items.2.suggestedRoute\":\"promotions\",\"items.3.suggestedRoute\":\"spam\",\"items.4.suggestedRoute\":\"needs_reply\",\"items.5.suggestedRoute\":\"updates\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"needs_reply\",\"items.1.suggestedRoute\":\"updates\",\"items.2.suggestedRoute\":\"promotions\",\"items.3.suggestedRoute\":\"spam\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"permissions\",\"items.1.suggestedRoute\":\"invitations\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"promotions\",\"items.1.suggestedRoute\":\"needs_reply\",\"items.2.suggestedRoute\":\"updates\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"promotions\",\"items.1.suggestedRoute\":\"needs_reply\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"quota\",\"items.1.suggestedRoute\":\"latency\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"refund\",\"items.1.suggestedRoute\":\"receipt\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"renewal\",\"items.1.suggestedRoute\":\"cancellation\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"returns\",\"items.1.suggestedRoute\":\"tracking\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"sales\",\"items.1.suggestedRoute\":\"billing\",\"items.2.suggestedRoute\":\"sales\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"sales\",\"items.1.suggestedRoute\":\"billing\",\"items.2.suggestedRoute\":\"technical\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"sales\",\"items.1.suggestedRoute\":\"support\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"security\",\"items.1.suggestedRoute\":\"profile\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"software\",\"items.1.suggestedRoute\":\"network\",\"items.2.suggestedRoute\":\"software\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"items.0.suggestedRoute\":\"network\",\"items.1.suggestedRoute\":\"network\",\"items.2.suggestedRoute\":\"software\"}": 1
+      }
+    },
+    "{\"items.0.suggestedRoute\":\"spam\",\"items.1.suggestedRoute\":\"updates\",\"items.2.suggestedRoute\":\"needs_reply\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"technical\",\"items.1.suggestedRoute\":\"billing\",\"items.2.suggestedRoute\":\"sales\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"technical\",\"items.1.suggestedRoute\":\"sales\",\"items.2.suggestedRoute\":\"billing\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"technical\",\"items.1.suggestedRoute\":\"technical\",\"items.2.suggestedRoute\":\"technical\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"training\",\"items.1.suggestedRoute\":\"outage\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":\"updates\",\"items.1.suggestedRoute\":\"updates\",\"items.2.suggestedRoute\":\"needs_reply\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"items.0.suggestedRoute\":\"updates\",\"items.1.suggestedRoute\":null,\"items.2.suggestedRoute\":\"needs_reply\"}": 1
+      }
+    },
+    "{\"items.0.suggestedRoute\":\"warranty\",\"items.1.suggestedRoute\":\"spares\"}": {
+      "total": 3,
+      "correct": 3,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"access\",\"items.2.suggestedRoute\":\"hardware\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"account\",\"items.2.suggestedRoute\":null,\"items.3.suggestedRoute\":\"sales\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"billing\",\"items.2.suggestedRoute\":\"technical\",\"items.3.suggestedRoute\":\"sales\",\"items.4.suggestedRoute\":\"account\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": {
+        "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"billing\",\"items.2.suggestedRoute\":\"account\",\"items.3.suggestedRoute\":\"sales\",\"items.4.suggestedRoute\":\"account\"}": 1
+      }
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"billing\",\"items.2.suggestedRoute\":\"technical\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"billing\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"cancellation\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"deletion\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"invitations\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"latency\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"login\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"migration\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"mobile\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"outage\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"profile\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"receipt\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"software\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"spares\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"support\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"tracking\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":\"translation\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    },
+    "{\"items.0.suggestedRoute\":null,\"items.1.suggestedRoute\":null,\"items.2.suggestedRoute\":\"updates\"}": {
+      "total": 1,
+      "correct": 1,
+      "misses": {}
+    }
+  },
+  "failures": [
+    {
+      "id": "support-batched-with-review",
+      "expected": {
+        "items.0.suggestedRoute": null,
+        "items.1.suggestedRoute": "billing",
+        "items.2.suggestedRoute": "technical",
+        "items.3.suggestedRoute": "sales",
+        "items.4.suggestedRoute": "account"
+      },
+      "actual": {
+        "items.0.suggestedRoute": null,
+        "items.1.suggestedRoute": "billing",
+        "items.2.suggestedRoute": "account",
+        "items.3.suggestedRoute": "sales",
+        "items.4.suggestedRoute": "account"
+      },
+      "confidence": 0.52
+    },
+    {
+      "id": "support-refund-request-vague",
+      "expected": {
+        "items.0.suggestedRoute": "billing",
+        "items.1.suggestedRoute": null,
+        "items.2.suggestedRoute": null
+      },
+      "actual": {
+        "items.0.suggestedRoute": "billing",
+        "items.1.suggestedRoute": "technical",
+        "items.2.suggestedRoute": null
+      },
+      "confidence": 0.93,
+      "contested": true
+    },
+    {
+      "id": "support-eight-items",
+      "expected": {
+        "items.0.suggestedRoute": "billing",
+        "items.1.suggestedRoute": "account",
+        "items.2.suggestedRoute": "technical",
+        "items.3.suggestedRoute": "sales",
+        "items.4.suggestedRoute": "billing",
+        "items.5.suggestedRoute": "technical",
+        "items.6.suggestedRoute": "account",
+        "items.7.suggestedRoute": "sales"
+      },
+      "actual": {
+        "items.0.suggestedRoute": "billing",
+        "items.1.suggestedRoute": "account",
+        "items.2.suggestedRoute": "technical",
+        "items.3.suggestedRoute": "sales",
+        "items.4.suggestedRoute": "billing",
+        "items.5.suggestedRoute": "technical",
+        "items.6.suggestedRoute": "account",
+        "items.7.suggestedRoute": "account"
+      },
+      "confidence": 0.54
+    },
+    {
+      "id": "email-contested-fyi",
+      "expected": {
+        "items.0.suggestedRoute": "updates",
+        "items.1.suggestedRoute": "updates",
+        "items.2.suggestedRoute": "needs_reply"
+      },
+      "actual": {
+        "items.0.suggestedRoute": "updates",
+        "items.1.suggestedRoute": null,
+        "items.2.suggestedRoute": "needs_reply"
+      },
+      "confidence": 0.73,
+      "contested": true
+    },
+    {
+      "id": "helpdesk-adversarial-overlap",
+      "expected": {
+        "items.0.suggestedRoute": "software",
+        "items.1.suggestedRoute": "network",
+        "items.2.suggestedRoute": "software"
+      },
+      "actual": {
+        "items.0.suggestedRoute": "network",
+        "items.1.suggestedRoute": "network",
+        "items.2.suggestedRoute": "software"
+      },
+      "confidence": 0.47,
+      "contested": true,
+      "adversarial": true
+    }
+  ]
+}

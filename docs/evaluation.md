@@ -81,7 +81,9 @@ Pass `client` for an existing integration or a test client. Use `mode: 'fixture'
 
 ## Repository evaluation
 
-`npm run eval -- <recipe>` still saves the report and refreshes the recipe guide. It now retains responses in an ignored `evals/runs/` archive. `--no-write` and `--check` remain read-only. Cases without a split are treated as development cases. `--check` requires the snapshot to have the same dataset fingerprint and split; it rejects a held-out or unidentified baseline instead of reporting a misleading regression.
+`npm run eval -- <recipe>` saves a development baseline in `evals/baselines/`, updates the report and recipe guide, and retains responses in an ignored `evals/runs/` archive. Cases without a split are treated as development cases. `--no-write` and `--check` remain read-only.
+
+Use `npm run eval -- --featured --check` to check all 20 featured recipes against their recorded development baselines. This is also the optional golden check in the evaluation workflow. The check uses each baseline's model and confidence policy, and validates every selected dataset and baseline before the first provider call. It leaves held-out reports in `evals/results/` untouched. Without a separate baseline, a compatible development report in `evals/results/` can be used; held-out reports, unknown dataset identities, and changed case files are rejected. For other recipes, save a development baseline before enabling regression checks.
 
 The featured evaluation runner validates all 20 datasets before its first request. Its dated TypeSafe rate comes from [the model documentation](https://docs.typesafe.ai/models). It reserves the full documented request token allowance against an explicit budget before each request, disables retries, and retains the reservation when usage is unknown. Its budget ledger persists across both splits:
 
@@ -90,6 +92,6 @@ npm run eval:featured -- --budget 5 --split development --out evals/runs/my-feat
 npm run eval:featured -- --budget 5 --split held-out --out evals/runs/my-featured-run
 ```
 
-These commands retain local archives. To deliberately update the repository's public evidence, add `--write-evidence` when running each split, then run `npm run docs`. Each compressed evidence archive receives a unique run ID; the held-out report becomes the current guide summary. Existing raw runs are retained.
+These commands retain local archives. To deliberately update the repository's public evidence, add `--write-evidence` when running each split, then run `npm run docs`. Each compressed evidence archive receives a unique run ID. Development reports update regression baselines; held-out reports become the current guide summaries. Existing raw runs are retained.
 
 The featured policy is declared in each `dataset.json` before evaluation: confidence 0.8, at least 20 held-out ready cases, at least 95% accuracy among those ready cases, and no provider failures. Missing that policy leaves a recipe experimental for this use. Meeting it means only that the policy was met on these authored cases. It is not independent human validation or a general production-readiness claim.

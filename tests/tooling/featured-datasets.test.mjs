@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile } from 'node:fs/promises';
+import { readDevelopmentBaseline } from '../../evals/lib/baselines.mjs';
 import { validateCases, loadEvaluationRecipe, fingerprint } from '../../dist/evaluation/dataset.js';
 
 test('all featured datasets have distinct cases, family-separated holdouts, and explicit label provenance', async () => {
@@ -17,6 +18,8 @@ test('all featured datasets have distinct cases, family-separated holdouts, and 
       .split('\n')
       .map(JSON.parse);
     const cases = validateCases(await loadEvaluationRecipe(id), values);
+    const baseline = await readDevelopmentBaseline(id, cases);
+    assert.equal(baseline.evidence.split, 'development', id);
     const metadata = JSON.parse(
       await readFile(new URL(`../../evals/${id}/dataset.json`, import.meta.url), 'utf8'),
     );

@@ -20,6 +20,10 @@ test('a normal eval saves the report and replaces the unavailable threshold mess
     assert.doesNotMatch(guide, /withdrawn|not available for this saved run/);
     assert.match(output, /Snapshot written to evals\/results\/route.json/);
     assert.match(output, /Guide updated: recipes\/route\/README.md/);
+    assert.deepEqual(
+      JSON.parse(await readFile(join(root, 'evals/baselines/route.json'), 'utf8')),
+      report,
+    );
   });
 });
 
@@ -34,7 +38,11 @@ test('--write continues to save results and also refreshes the guide', async () 
 test('--check and --no-write leave both the snapshot and guide unchanged', async () => {
   await withEvaluationProject(async ({ root, evaluate }) => {
     await evaluate('route');
-    const paths = ['evals/results/route.json', 'recipes/route/README.md'];
+    const paths = [
+      'evals/results/route.json',
+      'evals/baselines/route.json',
+      'recipes/route/README.md',
+    ];
     const originals = await Promise.all(paths.map((path) => readFile(join(root, path), 'utf8')));
     for (const flag of ['--check', '--no-write']) {
       await evaluate('route', flag);
@@ -54,6 +62,50 @@ test('--check rejects a held-out snapshot when evaluating development cases', as
     const original = await readFile(path, 'utf8');
     await assert.rejects(evaluate('route', '--check'), /different dataset or split/);
     assert.equal(await readFile(path, 'utf8'), original);
+    await assert.rejects(readFile(join(root, 'provider-calls.jsonl')), { code: 'ENOENT' });
+  });
+});
+
+test('featured checks use development baselines while preserving held-out reports', async () => {
+  await withEvaluationProject(async ({ root, evaluate }) => {
+    const reportPath = join(root, 'evals/results/route.json');
+    const heldOut = await readFile(reportPath, 'utf8');
+    await evaluate('route');
+    await writeFile(reportPath, heldOut);
+    await writeFile(join(root, 'evals/featured.json'), JSON.stringify({ featured: ['route'] }));
+    await writeFile(join(root, 'provider-calls.jsonl'), '');
+    const output = await evaluate('--featured', '--check');
+    assert.doesNotMatch(output, /REGRESSION/);
+    assert.equal(await readFile(reportPath, 'utf8'), heldOut);
+    const calls = (await readFile(join(root, 'provider-calls.jsonl'), 'utf8'))
+      .trim()
+      .split('\n')
+      .map(JSON.parse);
+    assert.equal(calls.length, 50);
+    assert.ok(calls.every((request) => request.model === 'offline-cli-test'));
+  });
+});
+
+test('all baselines are checked before the first recipe spends quota', async () => {
+  await withEvaluationProject(async ({ root, evaluate }) => {
+    await evaluate('route');
+    await cp(join(projectRoot, 'evals/model-route'), join(root, 'evals/model-route'), {
+      recursive: true,
+    });
+    await writeFile(join(root, 'provider-calls.jsonl'), '');
+    await assert.rejects(evaluate('route', 'model-route', '--check'), /Cannot compare model-route/);
+    assert.equal(await readFile(join(root, 'provider-calls.jsonl'), 'utf8'), '');
+  });
+});
+
+test('a real accuracy drop fails the development regression check', async () => {
+  await withEvaluationProject(async ({ root, evaluate }) => {
+    await evaluate('route');
+    await writeFile(join(root, 'provider-choice.json'), JSON.stringify('__review__'));
+    await assert.rejects(
+      evaluate('route', '--check'),
+      /REGRESSION route: accuracy fell from 1 to 0.12/,
+    );
   });
 });
 
@@ -110,12 +162,14 @@ async function withEvaluationProject(check) {
     await writeFile(
       fixture,
       `
-import { readFile } from 'node:fs/promises';
+import { appendFile, readFile } from 'node:fs/promises';
 import { TypeSafeClient } from '@typesafe-ai/sdk';
 const cases = (await readFile(new URL('./evals/route/cases.jsonl', import.meta.url), 'utf8')).trim().split('\\n').map(JSON.parse);
 const expected = new Map(cases.map(entry => [entry.input.request, entry.expected.suggestedRoute]));
+const forcedChoice = await readFile(new URL('./provider-choice.json', import.meta.url), 'utf8').then(JSON.parse).catch(error => { if (error.code === 'ENOENT') return null; throw error; });
 TypeSafeClient.prototype.systemOne = async request => {
-  const choice = expected.get(request.state.request) ?? '__review__';
+  await appendFile(new URL('./provider-calls.jsonl', import.meta.url), JSON.stringify(request) + '\\n');
+  const choice = forcedChoice ?? expected.get(request.state.request) ?? '__review__';
   return {
     model: 'offline-cli-test', usage: { input_tokens: 0, output_tokens: 0 },
     answers: { route: { type: 'choice', choice, confidence: 1,
