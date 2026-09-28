@@ -101,15 +101,35 @@
       </section>
       <section id="explorer" class="workspace" aria-label="Recipe explorer">
         <div class="library">
-          <label class="search-label" for="search"
-            >What does your application need to decide?</label
-          >
-          <input
-            id="search"
-            type="search"
-            placeholder="Try “follow-up”, “choose a model”, or “verify evidence”"
-            autocomplete="off"
-          />
+          <form id="find-form">
+            <label class="search-label" for="search"
+              >What does your application need to decide?</label
+            >
+            <input
+              id="search"
+              type="search"
+              placeholder="Try “follow-up”, “choose a model”, or “verify evidence”"
+              autocomplete="off"
+              maxlength="1000"
+              aria-describedby="find-help"
+            />
+            <div class="find-actions">
+              <button id="find-submit" type="submit">Find with Jev</button
+              ><button id="find-reset" type="button" class="quiet-button" hidden>
+                Use keyword search
+              </button>
+            </div>
+            <p id="find-help" class="note">
+              Type to search by keyword. Submit to let Jev match your decision to recipes. Your
+              description is sent to TypeSafe for matching; avoid private information.
+            </p>
+          </form>
+          <p id="find-status" class="note" role="status" aria-live="polite"></p>
+          <details id="find-details" hidden>
+            <summary>How Jev chose these</summary>
+            <p id="find-explanation" class="note"></p>
+            <a href="./recipes/rerank/">Explore the rerank recipe</a>
+          </details>
           <div class="filters">
             <label
               >Collection<select id="collection">

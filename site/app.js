@@ -7,6 +7,14 @@ const evidence = document.querySelector('#evidence');
 const results = document.querySelector('#results');
 const inspector = document.querySelector('#inspector');
 const count = document.querySelector('#result-count');
+const findForm = document.querySelector('#find-form');
+const findSubmit = document.querySelector('#find-submit');
+const findReset = document.querySelector('#find-reset');
+const findStatus = document.querySelector('#find-status');
+const findDetails = document.querySelector('#find-details');
+let liveResult = null;
+let findRequest = 0;
+let findController;
 const details = new Map();
 let recipes = [];
 const isPageAnchor = (id) => Boolean(id && document.getElementById(id));
@@ -23,14 +31,95 @@ try {
 }
 
 for (const control of [search, collection, evidence])
-  control.addEventListener('input', renderResults);
+  control.addEventListener('input', () => {
+    resetFind();
+    renderResults();
+  });
+findReset.addEventListener('click', () => {
+  resetFind();
+  renderResults();
+});
+findForm.addEventListener('submit', findWithJev);
+
+function resetFind() {
+  findRequest++;
+  findController?.abort();
+  liveResult = null;
+  findSubmit.disabled = false;
+  findSubmit.textContent = 'Find with Jev';
+  findReset.hidden = true;
+  findDetails.hidden = true;
+  findStatus.textContent = '';
+  results.removeAttribute('aria-busy');
+}
+
+async function findWithJev(event) {
+  event.preventDefault();
+  resetFind();
+  const query = search.value.trim();
+  if (query.length < 3) {
+    findStatus.textContent = 'Describe your decision in at least 3 characters.';
+    return;
+  }
+  const request = findRequest;
+  findController = new AbortController();
+  const controller = findController;
+  const timer = setTimeout(() => controller.abort(), 30_000);
+  findSubmit.disabled = true;
+  findSubmit.textContent = 'Finding recipes…';
+  findStatus.textContent = `Jev is evaluating ${recipes.length} recipes. Keyword matches remain below while you wait.`;
+  results.setAttribute('aria-busy', 'true');
+  renderResults();
+  try {
+    const response = await fetch('./api/find', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ query }),
+      signal: findController.signal,
+    });
+    if (!response.ok) throw new Error('Matching unavailable');
+    const result = await response.json();
+    if (request !== findRequest) return;
+    liveResult = result;
+    findReset.hidden = false;
+    findDetails.hidden = false;
+    // Live discovery searches the full catalog; clear filters rather than hiding matches.
+    collection.value = '';
+    evidence.value = '';
+    findStatus.textContent =
+      result.status === 'review'
+        ? 'No strong match. Try describing the decision more specifically.'
+        : `Jev found ${result.items.length} matching recipes across the full catalog.`;
+    document.querySelector('#find-explanation').textContent =
+      `The rerank recipe evaluated ${result.evaluated} recipes in ${result.batches} batches in ${(result.elapsedMs / 1000).toFixed(1)} seconds. Minimum relevance: ${Math.round(result.minRelevance * 100)}%. Scores are model relevance estimates, not measured accuracy. Scores from separate batches may differ in calibration.`;
+    renderResults();
+    if (result.items[0]) await selectRecipe(result.items[0].id);
+  } catch {
+    if (request !== findRequest) return;
+    findStatus.textContent =
+      'Jev matching is unavailable or busy. Showing keyword results. Try again shortly.';
+    renderResults();
+  } finally {
+    clearTimeout(timer);
+    if (request === findRequest) {
+      findSubmit.disabled = false;
+      findSubmit.textContent = 'Find with Jev';
+      results.removeAttribute('aria-busy');
+    }
+  }
+}
 window.addEventListener('hashchange', () => {
   const id = location.hash.slice(1);
   if (!isPageAnchor(id)) selectRecipe(id || 'route');
 });
 
 function renderResults() {
-  const matches = searchRecipes(recipes, { query: search.value }).filter(
+  const ranked = liveResult
+    ? liveResult.items
+        .map((item) => recipes.find((recipe) => recipe.id === item.id))
+        .filter(Boolean)
+    : searchRecipes(recipes, { query: search.value });
+  const matches = ranked.filter(
     (recipe) =>
       (!collection.value || recipe.collection === collection.value) &&
       (!evidence.value || recipe.evidence === evidence.value),
@@ -40,8 +129,9 @@ function renderResults() {
   if (!matches.length) {
     const empty = document.createElement('p');
     empty.className = 'empty';
-    empty.textContent =
-      'No recipes match these filters. Try a shorter task description or choose all collections.';
+    empty.textContent = liveResult
+      ? 'No recipe met the relevance threshold. Refine your description or return to keyword search.'
+      : 'No recipes match these filters. Try a shorter task description or choose all collections.';
     results.append(empty);
   }
   for (const recipe of matches) {
@@ -50,6 +140,13 @@ function renderResults() {
     button.className = 'recipe-row';
     button.setAttribute('aria-pressed', String(recipe.id === selectedId));
     button.innerHTML = `<strong>${escapeHtml(recipe.title)}</strong><p>${escapeHtml(recipe.description)}</p><span class="evidence-label ${recipe.evidence === 'measured' ? 'current' : ''}">${evidenceLabel(recipe)}</span>`;
+    if (liveResult) {
+      const match = liveResult.items.find((item) => item.id === recipe.id);
+      const relevance = document.createElement('p');
+      relevance.className = 'match-relevance';
+      relevance.textContent = `Jev relevance: ${Math.round(match.relevance * 100)}% · ${recipe.useWhen}`;
+      button.append(relevance);
+    }
     button.addEventListener('click', () => {
       if (location.hash === `#${recipe.id}`) selectRecipe(recipe.id);
       else location.hash = recipe.id;

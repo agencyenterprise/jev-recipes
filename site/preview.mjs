@@ -1,9 +1,14 @@
 import { createServer } from 'node:http';
+import { createFindHandler } from './find.mjs';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('./dist/', import.meta.url));
+const { recipes } = JSON.parse(
+  await readFile(new URL('./dist/catalog.json', import.meta.url), 'utf8'),
+);
+const find = createFindHandler({ recipes });
 const port = Number(process.env.PORT ?? 4173);
 if (!Number.isInteger(port) || port < 1 || port > 65535)
   throw new Error('PORT must be an integer from 1 to 65535.');
@@ -19,6 +24,10 @@ const types = {
 createServer(async (request, response) => {
   try {
     const url = new URL(request.url, 'http://localhost');
+    if (url.pathname === '/api/find') {
+      await find(request, response);
+      return;
+    }
     const path = decodeURIComponent(url.pathname);
     let file = resolve(root, '.' + path);
     if (file !== resolve(root) && !file.startsWith(root.endsWith(sep) ? root : root + sep))
