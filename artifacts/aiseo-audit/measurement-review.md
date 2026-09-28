@@ -22,11 +22,11 @@ These query sets describe intended reader tasks inferred from the repository. Th
 
 ## Results
 
-| Measurement | Result | Scope |
-| --- | ---: | --- |
-| Homepage, same five questions | 74/100 | Updated local homepage |
-| Route guide, five route questions | 62/100 | Updated local guide; new query baseline |
-| Sitemap, without target queries | 59/100 average | 250 successful pages, zero failures |
+| Measurement                       |         Result | Scope                                   |
+| --------------------------------- | -------------: | --------------------------------------- |
+| Homepage, same five questions     |         74/100 | Updated local homepage                  |
+| Route guide, five route questions |         62/100 | Updated local guide; new query baseline |
+| Sitemap, without target queries   | 59/100 average | 250 successful pages, zero failures     |
 
 The sitemap score is a separate baseline and is not directly comparable to a single query-aware homepage score. The live deployment has not been changed by this work.
 

@@ -57,27 +57,21 @@
           "label": "Visible date is stale",
           "status": "not_applicable",
           "capPct": 50,
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         },
         {
           "id": "offTopicForQueries",
           "label": "Content is off-topic for every target query",
           "status": "pass",
           "capPct": 50,
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         },
         {
           "id": "missingPriceProduct",
           "label": "Product page without price information",
           "status": "not_applicable",
           "capPct": 60,
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         }
       ]
     },
@@ -120,9 +114,7 @@
           "value": "2% boilerplate",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "autogeo-iclr-2026"
-          ]
+          "citations": ["autogeo-iclr-2026"]
         },
         {
           "name": "Word Count Adequacy",
@@ -131,9 +123,7 @@
           "value": "1251 words",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026"]
         },
         {
           "name": "Paywall Signals",
@@ -142,9 +132,7 @@
           "value": "No paywall or login barriers detected",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "autogeo-iclr-2026"
-          ]
+          "citations": ["autogeo-iclr-2026"]
         },
         {
           "name": "AI Crawler Access",
@@ -153,9 +141,7 @@
           "value": "All major AI crawlers allowed",
           "status": "good",
           "evidence": "supported",
-          "citations": [
-            "characterizing-web-search-findings-acl-2026"
-          ]
+          "citations": ["characterizing-web-search-findings-acl-2026"]
         },
         {
           "name": "LLMs.txt Presence",
@@ -164,9 +150,7 @@
           "value": "Not found (experimental standard, no outcome evidence)",
           "status": "info",
           "evidence": "experimental",
-          "citations": [
-            "c-seo-bench-neurips-2025"
-          ]
+          "citations": ["c-seo-bench-neurips-2025"]
         },
         {
           "name": "Image Accessibility",
@@ -192,9 +176,7 @@
           "value": "60% of the body's key terms appear in the title",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026"]
         },
         {
           "name": "Meta Description Alignment",
@@ -203,9 +185,7 @@
           "value": "60% of the body's key terms appear in the meta description",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026"]
         },
         {
           "name": "Heading Entity Alignment",
@@ -214,9 +194,7 @@
           "value": "70% of the body's key terms appear in the headings",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026"]
         },
         {
           "name": "Structured Data Alignment",
@@ -225,9 +203,7 @@
           "value": "60% of the body's key terms appear in the JSON-LD fields",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026"]
         }
       ]
     },
@@ -244,9 +220,7 @@
           "value": "1 H1, 10 H2, 5 H3",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026"]
         },
         {
           "name": "Lists Presence",
@@ -255,9 +229,7 @@
           "value": "11 list items",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         },
         {
           "name": "Tables Presence",
@@ -266,9 +238,7 @@
           "value": "1 table(s)",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         },
         {
           "name": "Paragraph Structure",
@@ -277,9 +247,7 @@
           "value": "32 paragraphs, avg 39 words",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         },
         {
           "name": "Scannability",
@@ -288,9 +256,7 @@
           "value": "Bold text found, 0.50 heading ratio",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         },
         {
           "name": "Section Length",
@@ -299,9 +265,7 @@
           "value": "16 sections, avg 67 words",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         }
       ]
     },
@@ -318,11 +282,7 @@
           "value": "intro paragraph under H1, explicit summary marker, main claim stated first",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "c-seo-bench-neurips-2025",
-            "autogeo-iclr-2026",
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["c-seo-bench-neurips-2025", "autogeo-iclr-2026", "sageo-arena-kdd-2026"]
         },
         {
           "name": "Definition Patterns",
@@ -340,11 +300,7 @@
           "value": "7 direct statements",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "c-seo-bench-neurips-2025",
-            "autogeo-iclr-2026",
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["c-seo-bench-neurips-2025", "autogeo-iclr-2026", "sageo-arena-kdd-2026"]
         },
         {
           "name": "Answer Capsules",
@@ -353,10 +309,7 @@
           "value": "4/4 question headings have answer capsules",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "what-gets-cited-sigir-2026",
-            "mind-reader-acl-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026", "mind-reader-acl-2026"]
         },
         {
           "name": "Step-by-Step Content",
@@ -365,9 +318,7 @@
           "value": "1 step indicators, 27 instruction verbs, ordered lists found",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "autogeo-iclr-2026"
-          ]
+          "citations": ["autogeo-iclr-2026"]
         },
         {
           "name": "Q/A Patterns",
@@ -376,9 +327,7 @@
           "value": "6 questions, 4 query patterns",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "mind-reader-acl-2026"
-          ]
+          "citations": ["mind-reader-acl-2026"]
         },
         {
           "name": "Summary/Conclusion",
@@ -387,9 +336,7 @@
           "value": "2 summary markers",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "autogeo-iclr-2026"
-          ]
+          "citations": ["autogeo-iclr-2026"]
         },
         {
           "name": "Explanatory Depth",
@@ -398,9 +345,7 @@
           "value": "4 explanatory markers, 6 how/why headings",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "autogeo-iclr-2026"
-          ]
+          "citations": ["autogeo-iclr-2026"]
         }
       ]
     },
@@ -417,9 +362,7 @@
           "value": "12 entities (0 people, 10 orgs, 2 places)",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026"]
         },
         {
           "name": "Topic Consistency",
@@ -428,10 +371,7 @@
           "value": "7/10 title keywords align with content topics",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "autogeo-iclr-2026",
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["autogeo-iclr-2026", "sageo-arena-kdd-2026"]
         },
         {
           "name": "Term Repetition Balance",
@@ -454,9 +394,7 @@
           "value": "0 of 16 substantial paragraphs open with a pronoun subject",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026"]
         }
       ]
     },
@@ -473,9 +411,7 @@
           "value": "22 external links",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "autogeo-iclr-2026"
-          ]
+          "citations": ["autogeo-iclr-2026"]
         },
         {
           "name": "Citation Patterns",
@@ -484,10 +420,7 @@
           "value": "9 citation indicators, 7 quote elements",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "what-gets-cited-sigir-2026",
-            "c-seo-bench-neurips-2025"
-          ]
+          "citations": ["what-gets-cited-sigir-2026", "c-seo-bench-neurips-2025"]
         },
         {
           "name": "Numeric Claims",
@@ -496,10 +429,7 @@
           "value": "11 statistical references, 5 written-out numbers",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "what-gets-cited-sigir-2026",
-            "c-seo-bench-neurips-2025"
-          ]
+          "citations": ["what-gets-cited-sigir-2026", "c-seo-bench-neurips-2025"]
         },
         {
           "name": "Attribution Indicators",
@@ -508,9 +438,7 @@
           "value": "7 attribution patterns",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         },
         {
           "name": "Quoted Attribution",
@@ -519,9 +447,7 @@
           "value": "0 attributed quotes",
           "status": "neutral",
           "evidence": "heuristic",
-          "citations": [
-            "c-seo-bench-neurips-2025"
-          ]
+          "citations": ["c-seo-bench-neurips-2025"]
         },
         {
           "name": "Hedged Language",
@@ -530,9 +456,7 @@
           "value": "2 of 116 sentences hedge (1.7%)",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         }
       ]
     },
@@ -549,9 +473,7 @@
           "value": "jev-recipes contributors",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "authority-aware-genir-acl-2026"
-          ]
+          "citations": ["authority-aware-genir-acl-2026"]
         },
         {
           "name": "Organization Identity",
@@ -560,9 +482,7 @@
           "value": "Jev recipes",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "authority-aware-genir-acl-2026"
-          ]
+          "citations": ["authority-aware-genir-acl-2026"]
         },
         {
           "name": "Contact/About Links",
@@ -571,9 +491,7 @@
           "value": "About + Contact",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "authority-aware-genir-acl-2026"
-          ]
+          "citations": ["authority-aware-genir-acl-2026"]
         },
         {
           "name": "Date Markup",
@@ -582,9 +500,7 @@
           "value": "No machine-readable date markup",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         },
         {
           "name": "Topic Time Sensitivity",
@@ -593,10 +509,7 @@
           "value": "Evergreen topic, freshness not scored",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "what-gets-cited-sigir-2026",
-            "characterizing-web-search-findings-acl-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026", "characterizing-web-search-findings-acl-2026"]
         },
         {
           "name": "Content Freshness",
@@ -605,10 +518,7 @@
           "value": "Evergreen topic, freshness not applicable",
           "status": "neutral",
           "evidence": "conditional",
-          "citations": [
-            "what-gets-cited-sigir-2026",
-            "characterizing-web-search-findings-acl-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026", "characterizing-web-search-findings-acl-2026"]
         },
         {
           "name": "Structured Data",
@@ -617,9 +527,7 @@
           "value": "Organization, WebSite, WebPage, SoftwareSourceCode, 3/4 OG tags, canonical",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026"]
         },
         {
           "name": "Schema Completeness",
@@ -628,9 +536,7 @@
           "value": "2 schema types, 100% complete",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026"]
         },
         {
           "name": "Entity Consistency",
@@ -639,10 +545,7 @@
           "value": "\"Jev recipes\" found in 4/4 surfaces",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "sageo-arena-kdd-2026",
-            "authority-aware-genir-acl-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026", "authority-aware-genir-acl-2026"]
         },
         {
           "name": "Promotional Language",
@@ -651,10 +554,7 @@
           "value": "0 promotional phrases and 0 exclamations per 1,000 words",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "authority-aware-genir-acl-2026",
-            "autogeo-iclr-2026"
-          ]
+          "citations": ["authority-aware-genir-acl-2026", "autogeo-iclr-2026"]
         },
         {
           "name": "Affiliate Link Density",
@@ -663,9 +563,7 @@
           "value": "0% of external links carry affiliate markers",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "authority-aware-genir-acl-2026"
-          ]
+          "citations": ["authority-aware-genir-acl-2026"]
         },
         {
           "name": "Ad Slot Markers",
@@ -674,9 +572,7 @@
           "value": "0 ad slot elements in the DOM",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "authority-aware-genir-acl-2026"
-          ]
+          "citations": ["authority-aware-genir-acl-2026"]
         },
         {
           "name": "Site Type",
@@ -685,9 +581,7 @@
           "value": "No forum or user-generated content signals",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "characterizing-web-search-findings-acl-2026"
-          ]
+          "citations": ["characterizing-web-search-findings-acl-2026"]
         }
       ]
     },
@@ -704,9 +598,7 @@
           "value": "Avg 11 words/sentence",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "featgeo-acl-2026"
-          ]
+          "citations": ["featgeo-acl-2026"]
         },
         {
           "name": "Readability",
@@ -715,10 +607,7 @@
           "value": "Flesch Reading Ease: 45.9",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "featgeo-acl-2026",
-            "mind-reader-acl-2026"
-          ]
+          "citations": ["featgeo-acl-2026", "mind-reader-acl-2026"]
         },
         {
           "name": "Jargon Density",
@@ -727,9 +616,7 @@
           "value": "7.0% complex words",
           "status": "good",
           "evidence": "conditional",
-          "citations": [
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["sageo-arena-kdd-2026"]
         },
         {
           "name": "Transition Usage",
@@ -738,9 +625,7 @@
           "value": "0 transition types found",
           "status": "info",
           "evidence": "diagnostic",
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         }
       ]
     },
@@ -757,10 +642,7 @@
           "value": "Weakest query \"What is Jev recipes?\" at 100% coverage in title, meta description, headings, and JSON-LD; 5 of 5 queries adequately served",
           "status": "good",
           "evidence": "supported",
-          "citations": [
-            "what-gets-cited-sigir-2026",
-            "sageo-arena-kdd-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026", "sageo-arena-kdd-2026"]
         },
         {
           "name": "Query Term Coverage (Body)",
@@ -769,9 +651,7 @@
           "value": "Weakest query \"What is Jev recipes?\" at 100% coverage in body content; 5 of 5 queries adequately served",
           "status": "good",
           "evidence": "supported",
-          "citations": [
-            "what-gets-cited-sigir-2026"
-          ]
+          "citations": ["what-gets-cited-sigir-2026"]
         },
         {
           "name": "Query Aspect Coverage",
@@ -780,9 +660,7 @@
           "value": "Weakest query \"How can I evaluate Jev recipe accuracy?\" has 3 of 4 aspects addressed by a dedicated section",
           "status": "good",
           "evidence": "heuristic",
-          "citations": [
-            "mind-reader-acl-2026"
-          ]
+          "citations": ["mind-reader-acl-2026"]
         }
       ]
     }
@@ -824,24 +702,7 @@
     "sectionLengths": {
       "sectionCount": 16,
       "avgWordsPerSection": 67,
-      "sections": [
-        46,
-        35,
-        50,
-        47,
-        64,
-        65,
-        115,
-        82,
-        67,
-        91,
-        125,
-        39,
-        71,
-        60,
-        63,
-        53
-      ]
+      "sections": [46, 35, 50, 47, 64, 65, 115, 82, 67, 91, 125, 39, 71, 60, 63, 53]
     },
     "answerCapsules": {
       "total": 4,
@@ -868,10 +729,7 @@
         "MIT",
         "ES"
       ],
-      "places": [
-        "console.log('Review",
-        "TypeScript library"
-      ],
+      "places": ["console.log('Review", "TypeScript library"],
       "topics": [
         "route",
         "recipe",
@@ -940,29 +798,19 @@
       "ageInMonths": null,
       "hasModifiedDate": false
     },
-    "structuredDataTypes": [
-      "Organization",
-      "WebSite",
-      "WebPage",
-      "SoftwareSourceCode"
-    ],
+    "structuredDataTypes": ["Organization", "WebSite", "WebPage", "SoftwareSourceCode"],
     "schemaCompleteness": {
       "totalTypes": 2,
       "avgCompleteness": 1,
       "details": [
         {
           "type": "Organization",
-          "present": [
-            "name",
-            "url"
-          ],
+          "present": ["name", "url"],
           "missing": []
         },
         {
           "type": "WebPage",
-          "present": [
-            "name"
-          ],
+          "present": ["name"],
           "missing": []
         }
       ]
@@ -980,56 +828,35 @@
           "query": "What is Jev recipes?",
           "structuralCoverage": 1,
           "bodyCoverage": 1,
-          "matchedTerms": [
-            "jev",
-            "recipes"
-          ],
+          "matchedTerms": ["jev", "recipes"],
           "missingTerms": []
         },
         {
           "query": "How do I use Jev recipes in TypeScript?",
           "structuralCoverage": 1,
           "bodyCoverage": 1,
-          "matchedTerms": [
-            "jev",
-            "recipes",
-            "typescript"
-          ],
+          "matchedTerms": ["jev", "recipes", "typescript"],
           "missingTerms": []
         },
         {
           "query": "How can I route support requests with Jev?",
           "structuralCoverage": 1,
           "bodyCoverage": 1,
-          "matchedTerms": [
-            "route",
-            "support",
-            "requests",
-            "jev"
-          ],
+          "matchedTerms": ["route", "support", "requests", "jev"],
           "missingTerms": []
         },
         {
           "query": "How can I rerank evidence with Jev?",
           "structuralCoverage": 1,
           "bodyCoverage": 1,
-          "matchedTerms": [
-            "rerank",
-            "evidence",
-            "jev"
-          ],
+          "matchedTerms": ["rerank", "evidence", "jev"],
           "missingTerms": []
         },
         {
           "query": "How can I evaluate Jev recipe accuracy?",
           "structuralCoverage": 1,
           "bodyCoverage": 1,
-          "matchedTerms": [
-            "evaluate",
-            "jev",
-            "recipe",
-            "accuracy"
-          ],
+          "matchedTerms": ["evaluate", "jev", "recipe", "accuracy"],
           "missingTerms": []
         }
       ]
@@ -1060,7 +887,5 @@
     "engine": "generic",
     "analysisDurationMs": 203
   },
-  "notes": [
-    "Audited over HTTP. Domain signals (robots.txt, llms.txt) may differ in production."
-  ]
+  "notes": ["Audited over HTTP. Domain signals (robots.txt, llms.txt) may differ in production."]
 }

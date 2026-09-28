@@ -2,12 +2,12 @@
 
 Audited https://jev-recipes.com/ on 2026-09-28 UTC with `aiseo-audit@2.0.2` and five assumed target queries. Overall score: **55/100 (F)**. The local build produced the same overall and stage scores.
 
-| Stage | Score |
-| --- | ---: |
-| Technical eligibility | 96% |
-| Retrieval alignment | 56% |
-| Citation fitness | 41% |
-| Provenance | 0% |
+| Stage                 | Score |
+| --------------------- | ----: |
+| Technical eligibility |   96% |
+| Retrieval alignment   |   56% |
+| Citation fitness      |   41% |
+| Provenance            |    0% |
 
 ## Recommended priorities
 

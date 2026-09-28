@@ -2,12 +2,12 @@
 
 The updated local homepage scores **100/100 (A)** in aiseo-audit 2.0.2. Both the public CommonJS API and a separate CLI run confirmed the result. The informational profile, generic engine, five target queries, and default category weights are unchanged. No scoring code or category exclusions were changed.
 
-| Stage | Result |
-| --- | ---: |
+| Stage                 |    Result |
+| --------------------- | --------: |
 | Technical eligibility | Pass, 96% |
-| Retrieval alignment | 100% |
-| Citation fitness | 100% |
-| Provenance | 100% |
+| Retrieval alignment   |      100% |
+| Citation fitness      |      100% |
+| Provenance            |      100% |
 
 The overall score is rounded by the package. Text extraction retains a 10/12 factor score because the page is text-heavy; the other applicable factors receive full points. This is a homepage result, not a 100/100 claim for every recipe page or the live deployment.
 

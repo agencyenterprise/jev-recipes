@@ -1,669 +1,1147 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI SEO Audit - https://jev-recipes.com</title>
-<style>
-:root {
-  --pass: #00cc66;
-  --pass-text: #008800;
-  --average: #ffaa33;
-  --average-text: #ffaa33;
-  --fail: #ff3333;
-  --fail-text: #cc0000;
-  --bg: #fff;
-  --surface: #fff;
-  --text: #212121;
-  --text-secondary: #757575;
-  --muted: #757575;
-  --border: #e0e0e0;
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-.topbar { display: flex; align-items: center; height: 40px; padding: 0 16px; background: var(--surface); border-bottom: 1px solid var(--border); font-size: 13px; }
-.topbar-title { font-weight: 600; margin-right: 12px; white-space: nowrap; }
-.topbar-url { color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.report { max-width: 960px; margin: 0 auto; padding: 0 32px; }
-.footer { padding: 16px 0; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-secondary); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-.pass { color: var(--pass-text); }
-.average { color: var(--average-text); }
-.fail { color: var(--fail-text); }
-.gauges-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--border);
-}
-.gauge-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 110px;
-  padding: 10px 6px 8px;
-  text-decoration: none;
-  color: var(--text);
-  border-radius: 8px;
-  transition: background 0.15s;
-}
-.gauge-item:hover {
-  background: #f5f5f5;
-}
-.gauge-item .gauge { display: block; }
-.gauge-label {
-  margin-top: 8px;
-  font-size: 11px;
-  font-weight: 500;
-  text-align: center;
-  color: var(--text-secondary);
-  line-height: 1.25;
-}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI SEO Audit - https://jev-recipes.com</title>
+    <style>
+      :root {
+        --pass: #00cc66;
+        --pass-text: #008800;
+        --average: #ffaa33;
+        --average-text: #ffaa33;
+        --fail: #ff3333;
+        --fail-text: #cc0000;
+        --bg: #fff;
+        --surface: #fff;
+        --text: #212121;
+        --text-secondary: #757575;
+        --muted: #757575;
+        --border: #e0e0e0;
+        --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        padding: 0 16px;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
+      }
+      .topbar-title {
+        font-weight: 600;
+        margin-right: 12px;
+        white-space: nowrap;
+      }
+      .topbar-url {
+        color: var(--text-secondary);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .report {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+      .footer {
+        padding: 16px 0;
+        border-top: 1px solid var(--border);
+        font-size: 11px;
+        color: var(--text-secondary);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .pass {
+        color: var(--pass-text);
+      }
+      .average {
+        color: var(--average-text);
+      }
+      .fail {
+        color: var(--fail-text);
+      }
+      .gauges-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .gauge-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 110px;
+        padding: 10px 6px 8px;
+        text-decoration: none;
+        color: var(--text);
+        border-radius: 8px;
+        transition: background 0.15s;
+      }
+      .gauge-item:hover {
+        background: #f5f5f5;
+      }
+      .gauge-item .gauge {
+        display: block;
+      }
+      .gauge-label {
+        margin-top: 8px;
+        font-size: 11px;
+        font-weight: 500;
+        text-align: center;
+        color: var(--text-secondary);
+        line-height: 1.25;
+      }
 
-/* Overall score */
-.overall {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 32px 0 24px;
-  border-bottom: 1px solid var(--border);
-}
-.overall-gauge-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-.overall-gauge-wrap .gauge {
-  display: block;
-  overflow: visible;
-}
-.seg-arc {
-  cursor: pointer;
-  transition: stroke-width 0.15s ease, filter 0.15s ease;
-}
-.seg-arc:hover {
-  stroke-width: 20;
-  filter: brightness(1.1);
-}
+      /* Overall score */
+      .overall {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 32px 0 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      .overall-gauge-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+      .overall-gauge-wrap .gauge {
+        display: block;
+        overflow: visible;
+      }
+      .seg-arc {
+        cursor: pointer;
+        transition:
+          stroke-width 0.15s ease,
+          filter 0.15s ease;
+      }
+      .seg-arc:hover {
+        stroke-width: 20;
+        filter: brightness(1.1);
+      }
 
-/* Segment popovers */
-.seg-popovers {
-  position: relative;
-  min-height: 36px;
-  display: flex;
-  justify-content: center;
-  margin-top: 4px;
-}
-.seg-popover {
-  display: none;
-  align-items: center;
-  gap: 8px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  font-size: 13px;
-  white-space: nowrap;
-}
-.seg-popover-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.seg-popover-name { font-weight: 600; }
-.seg-popover-score { font-weight: 700; }
-.seg-popover-pts { color: var(--text-secondary); }
+      /* Segment popovers */
+      .seg-popovers {
+        position: relative;
+        min-height: 36px;
+        display: flex;
+        justify-content: center;
+        margin-top: 4px;
+      }
+      .seg-popover {
+        display: none;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+      .seg-popover-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .seg-popover-name {
+        font-weight: 600;
+      }
+      .seg-popover-score {
+        font-weight: 700;
+      }
+      .seg-popover-pts {
+        color: var(--text-secondary);
+      }
 
-/* Score scale legend */
-.score-scale {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 12px;
-  font-size: 11px;
-  color: var(--text-secondary);
-}
-.score-scale span::before {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-right: 4px;
-  vertical-align: middle;
-}
-.scale-fail::before { background: var(--fail); }
-.scale-average::before { background: var(--average); }
-.scale-pass::before { background: var(--pass); }
+      /* Score scale legend */
+      .score-scale {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 12px;
+        font-size: 11px;
+        color: var(--text-secondary);
+      }
+      .score-scale span::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 4px;
+        vertical-align: middle;
+      }
+      .scale-fail::before {
+        background: var(--fail);
+      }
+      .scale-average::before {
+        background: var(--average);
+      }
+      .scale-pass::before {
+        background: var(--pass);
+      }
 
-/* Categories */
-.category {
-  padding: 24px 0 16px;
-  border-bottom: 1px solid var(--border);
-}
-.category:last-child { border-bottom: none; }
-.category-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 12px;
-}
-.category-title {
-  font-size: 18px;
-  font-weight: 600;
-}
-.category-title.pass { color: var(--pass-text); }
-.category-title.average { color: var(--average-text); }
-.category-title.fail { color: var(--fail-text); }
-.category-score {
-  font-size: 14px;
-  font-weight: 700;
-}
-.category-score.pass { color: var(--pass-text); }
-.category-score.average { color: var(--average-text); }
-.category-score.fail { color: var(--fail-text); }
+      /* Categories */
+      .category {
+        padding: 24px 0 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .category:last-child {
+        border-bottom: none;
+      }
+      .category-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 12px;
+      }
+      .category-title {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .category-title.pass {
+        color: var(--pass-text);
+      }
+      .category-title.average {
+        color: var(--average-text);
+      }
+      .category-title.fail {
+        color: var(--fail-text);
+      }
+      .category-score {
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .category-score.pass {
+        color: var(--pass-text);
+      }
+      .category-score.average {
+        color: var(--average-text);
+      }
+      .category-score.fail {
+        color: var(--fail-text);
+      }
 
-/* Audit rows */
-.audit-row {
-  display: flex;
-  align-items: baseline;
-  padding: 8px 0;
-  border-top: 1px solid #f0f0f0;
-  font-size: 13px;
-  gap: 8px;
-}
-.audit-icon {
-  width: 18px;
-  flex-shrink: 0;
-  text-align: center;
-  font-size: 12px;
-}
-.audit-icon.good { color: var(--pass); }
-.audit-icon.warn { color: var(--average); }
-.audit-icon.fail { color: var(--fail); }
-.audit-icon.neutral { color: var(--text-secondary); }
-.audit-icon.info {
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  font-style: italic;
-  font-weight: 700;
-  width: 14px;
-  height: 14px;
-  line-height: 14px;
-  font-size: 10px;
-}
-.audit-diagnostic {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 1px 4px;
-  margin-left: 6px;
-}
-.evidence-badge {
-  font-size: 9px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  color: var(--text-secondary);
-  background: #f1f3f4;
-  border-radius: 3px;
-  padding: 2px 5px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
+      /* Audit rows */
+      .audit-row {
+        display: flex;
+        align-items: baseline;
+        padding: 8px 0;
+        border-top: 1px solid #f0f0f0;
+        font-size: 13px;
+        gap: 8px;
+      }
+      .audit-icon {
+        width: 18px;
+        flex-shrink: 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .audit-icon.good {
+        color: var(--pass);
+      }
+      .audit-icon.warn {
+        color: var(--average);
+      }
+      .audit-icon.fail {
+        color: var(--fail);
+      }
+      .audit-icon.neutral {
+        color: var(--text-secondary);
+      }
+      .audit-icon.info {
+        color: var(--text-secondary);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        font-style: italic;
+        font-weight: 700;
+        width: 14px;
+        height: 14px;
+        line-height: 14px;
+        font-size: 10px;
+      }
+      .audit-diagnostic {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        color: var(--text-secondary);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        padding: 1px 4px;
+        margin-left: 6px;
+      }
+      .evidence-badge {
+        font-size: 9px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        color: var(--text-secondary);
+        background: #f1f3f4;
+        border-radius: 3px;
+        padding: 2px 5px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
 
-/* Pipeline stages */
-.stages-section {
-  padding: 24px 0 16px;
-  border-bottom: 1px solid var(--border);
-}
-.stages-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-.stage-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 6px 0;
-  border-top: 1px solid #f0f0f0;
-  font-size: 13px;
-}
-.stage-name { font-weight: 500; }
-.stage-value { color: var(--text-secondary); font-weight: 600; }
-.stage-banner {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 3px;
-  letter-spacing: 0.4px;
-}
-.pass-banner { background: #e6f4ea; color: var(--pass-text); }
-.fail-banner { background: #fce8e6; color: var(--fail-text); }
-.stage-blockers { color: var(--fail-text); font-size: 12px; }
-.stage-gate {
-  padding: 4px 0 4px 16px;
-  font-size: 12px;
-  color: var(--average-text);
-}
+      /* Pipeline stages */
+      .stages-section {
+        padding: 24px 0 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .stages-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .stage-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 6px 0;
+        border-top: 1px solid #f0f0f0;
+        font-size: 13px;
+      }
+      .stage-name {
+        font-weight: 500;
+      }
+      .stage-value {
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+      .stage-banner {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 3px;
+        letter-spacing: 0.4px;
+      }
+      .pass-banner {
+        background: #e6f4ea;
+        color: var(--pass-text);
+      }
+      .fail-banner {
+        background: #fce8e6;
+        color: var(--fail-text);
+      }
+      .stage-blockers {
+        color: var(--fail-text);
+        font-size: 12px;
+      }
+      .stage-gate {
+        padding: 4px 0 4px 16px;
+        font-size: 12px;
+        color: var(--average-text);
+      }
 
-/* Report banners */
-.report-banner {
-  margin: 12px 0;
-  padding: 10px 14px;
-  border: 1px solid #f4dfa8;
-  border-radius: 8px;
-  background: #fef7e0;
-  font-size: 13px;
-  color: #7a5d00;
-}
-.recs-footnote {
-  font-size: 12px;
-  color: var(--text-secondary);
-  padding-top: 10px;
-}
-.audit-name {
-  font-weight: 500;
-  min-width: 180px;
-  flex-shrink: 0;
-}
-.audit-detail {
-  flex: 1;
-  color: var(--text-secondary);
-}
-.audit-score {
-  color: var(--text-secondary);
-  white-space: nowrap;
-  text-align: right;
-  min-width: 44px;
-}
+      /* Report banners */
+      .report-banner {
+        margin: 12px 0;
+        padding: 10px 14px;
+        border: 1px solid #f4dfa8;
+        border-radius: 8px;
+        background: #fef7e0;
+        font-size: 13px;
+        color: #7a5d00;
+      }
+      .recs-footnote {
+        font-size: 12px;
+        color: var(--text-secondary);
+        padding-top: 10px;
+      }
+      .audit-name {
+        font-weight: 500;
+        min-width: 180px;
+        flex-shrink: 0;
+      }
+      .audit-detail {
+        flex: 1;
+        color: var(--text-secondary);
+      }
+      .audit-score {
+        color: var(--text-secondary);
+        white-space: nowrap;
+        text-align: right;
+        min-width: 44px;
+      }
 
-/* Recommendations */
-.recs-section {
-  padding: 24px 0 16px;
-  border-top: 1px solid var(--border);
-}
-.recs-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-.rec-group {
-  margin-bottom: 20px;
-}
-.rec-group-name {
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  color: var(--text-secondary);
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 2px;
-}
-.rec-row {
-  display: flex;
-  gap: 10px;
-  align-items: baseline;
-  padding: 8px 0;
-  border-bottom: 1px solid #f5f5f5;
-  font-size: 13px;
-}
-.rec-tag {
-  font-size: 9px;
-  font-weight: 700;
-  padding: 2px 5px;
-  border-radius: 3px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  letter-spacing: 0.3px;
-}
-.priority-high .rec-tag { background: #fce8e6; color: var(--fail-text); }
-.priority-med .rec-tag { background: #fef7e0; color: var(--average-text); }
-.priority-low .rec-tag { background: #f1f3f4; color: var(--text-secondary); }
-.rec-factor {
-  font-weight: 600;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.rec-text { color: var(--text-secondary); }
-.rec-detail {
-  padding: 8px 0 8px 16px;
-  border-bottom: 1px solid #f5f5f5;
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-.rec-steps {
-  margin: 0 0 8px 0;
-  padding-left: 20px;
-}
-.rec-steps li { margin-bottom: 3px; }
-.rec-code {
-  background: #f8f9fa;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 10px 12px;
-  font-size: 11px;
-  overflow-x: auto;
-  margin: 0 0 8px 0;
-  white-space: pre;
-}
-.rec-learn-more {
-  font-size: 11px;
-  color: var(--text-secondary);
-  text-decoration: none;
-}
-.rec-learn-more:hover { text-decoration: underline; }
-@media (max-width: 600px) {
-  .report { padding: 0 16px; }
-  .gauges-row { gap: 4px; }
-  .gauge-item { width: 80px; padding: 8px 4px; }
-  .audit-row { flex-wrap: wrap; }
-  .audit-name { min-width: 140px; }
-  .rec-row { flex-wrap: wrap; }
-}
-.tldr-card {
-  margin: 16px auto;
-  padding: 20px 24px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: #fafafa;
-  max-width: 720px;
-}
-.tldr-headline { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 16px; margin-bottom: 12px; }
-.tldr-score { font-weight: 600; }
-.tldr-solid { color: var(--muted); }
-.tldr-note { margin-top: 10px; font-size: 12px; color: var(--muted); }
-.tldr-title { font-weight: 600; margin: 8px 0 6px; color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
-.tldr-wins { list-style: none; padding: 0; margin: 0; }
-.tldr-win { display: grid; grid-template-columns: 24px 96px 1fr auto; gap: 10px; align-items: baseline; padding: 4px 0; font-size: 14px; }
-.tldr-rank { color: var(--muted); text-align: right; }
-.tldr-gain { color: #006633; font-weight: 600; }
-.tldr-factor { font-weight: 500; }
-.tldr-category { color: var(--muted); font-size: 13px; }
-</style>
-</head>
-<body>
-
-<div class="topbar">
-  <span class="topbar-title">AI SEO Audit</span>
-  <span class="topbar-url">https://jev-recipes.com</span>
-</div>
-
-<div class="report">
-  <!-- diff-slot -->
-  <div class="tldr-card">
-    <div class="tldr-headline">
-      <span class="tldr-score">55/100 (F)</span>
+      /* Recommendations */
+      .recs-section {
+        padding: 24px 0 16px;
+        border-top: 1px solid var(--border);
+      }
+      .recs-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      .rec-group {
+        margin-bottom: 20px;
+      }
+      .rec-group-name {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        color: var(--text-secondary);
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2px;
+      }
+      .rec-row {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        padding: 8px 0;
+        border-bottom: 1px solid #f5f5f5;
+        font-size: 13px;
+      }
+      .rec-tag {
+        font-size: 9px;
+        font-weight: 700;
+        padding: 2px 5px;
+        border-radius: 3px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        letter-spacing: 0.3px;
+      }
+      .priority-high .rec-tag {
+        background: #fce8e6;
+        color: var(--fail-text);
+      }
+      .priority-med .rec-tag {
+        background: #fef7e0;
+        color: var(--average-text);
+      }
+      .priority-low .rec-tag {
+        background: #f1f3f4;
+        color: var(--text-secondary);
+      }
+      .rec-factor {
+        font-weight: 600;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .rec-text {
+        color: var(--text-secondary);
+      }
+      .rec-detail {
+        padding: 8px 0 8px 16px;
+        border-bottom: 1px solid #f5f5f5;
+        font-size: 12px;
+        color: var(--text-secondary);
+      }
+      .rec-steps {
+        margin: 0 0 8px 0;
+        padding-left: 20px;
+      }
+      .rec-steps li {
+        margin-bottom: 3px;
+      }
+      .rec-code {
+        background: #f8f9fa;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 10px 12px;
+        font-size: 11px;
+        overflow-x: auto;
+        margin: 0 0 8px 0;
+        white-space: pre;
+      }
+      .rec-learn-more {
+        font-size: 11px;
+        color: var(--text-secondary);
+        text-decoration: none;
+      }
+      .rec-learn-more:hover {
+        text-decoration: underline;
+      }
+      @media (max-width: 600px) {
+        .report {
+          padding: 0 16px;
+        }
+        .gauges-row {
+          gap: 4px;
+        }
+        .gauge-item {
+          width: 80px;
+          padding: 8px 4px;
+        }
+        .audit-row {
+          flex-wrap: wrap;
+        }
+        .audit-name {
+          min-width: 140px;
+        }
+        .rec-row {
+          flex-wrap: wrap;
+        }
+      }
+      .tldr-card {
+        margin: 16px auto;
+        padding: 20px 24px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: #fafafa;
+        max-width: 720px;
+      }
+      .tldr-headline {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 16px;
+        margin-bottom: 12px;
+      }
+      .tldr-score {
+        font-weight: 600;
+      }
+      .tldr-solid {
+        color: var(--muted);
+      }
+      .tldr-note {
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .tldr-title {
+        font-weight: 600;
+        margin: 8px 0 6px;
+        color: var(--muted);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .tldr-wins {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .tldr-win {
+        display: grid;
+        grid-template-columns: 24px 96px 1fr auto;
+        gap: 10px;
+        align-items: baseline;
+        padding: 4px 0;
+        font-size: 14px;
+      }
+      .tldr-rank {
+        color: var(--muted);
+        text-align: right;
+      }
+      .tldr-gain {
+        color: #006633;
+        font-weight: 600;
+      }
+      .tldr-factor {
+        font-weight: 500;
+      }
+      .tldr-category {
+        color: var(--muted);
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <span class="topbar-title">AI SEO Audit</span>
+      <span class="topbar-url">https://jev-recipes.com</span>
     </div>
-    <div class="tldr-title">Top fixes</div>
-    <ol class="tldr-wins"><li class="tldr-win"><span class="tldr-rank">1</span><span class="tldr-gain">13 audit pts</span><span class="tldr-factor">Citation Patterns</span><span class="tldr-category">Grounding Signals</span></li><li class="tldr-win"><span class="tldr-rank">2</span><span class="tldr-gain">13 audit pts</span><span class="tldr-factor">Lead Summary</span><span class="tldr-category">Answerability</span></li><li class="tldr-win"><span class="tldr-rank">3</span><span class="tldr-gain">12 audit pts</span><span class="tldr-factor">Structured Data</span><span class="tldr-category">Authority Context</span></li></ol>
-    <div class="tldr-note">Audit points are internal audit weights, not additive citation-probability gains. Apply the top items, then re-measure.</div>
-  </div>
 
-  <div class="gauges-row">
-    <a class="gauge-item" href="#cat-content-extractability">
-      <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7"/>
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#00cc66" stroke-width="7"
-        stroke-dasharray="351.85837720205683" stroke-dashoffset="14.074335088082286"
-        stroke-linecap="round" transform="rotate(-90 60 60)"/>
-      <text x="60" y="67.7" text-anchor="middle" font-size="22" font-weight="700" fill="#008800">96</text>
-    </svg>
-      <span class="gauge-label">Content Extractability</span>
-    </a><a class="gauge-item" href="#cat-structural-alignment">
-      <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7"/>
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#ff3333" stroke-width="7"
-        stroke-dasharray="351.85837720205683" stroke-dashoffset="211.1150263212341"
-        stroke-linecap="round" transform="rotate(-90 60 60)"/>
-      <text x="60" y="67.7" text-anchor="middle" font-size="22" font-weight="700" fill="#cc0000">40</text>
-    </svg>
-      <span class="gauge-label">Structural Alignment</span>
-    </a><a class="gauge-item" href="#cat-content-structure-for-reuse">
-      <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7"/>
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#ffaa33" stroke-width="7"
-        stroke-dasharray="351.85837720205683" stroke-dashoffset="95.00176184455535"
-        stroke-linecap="round" transform="rotate(-90 60 60)"/>
-      <text x="60" y="67.7" text-anchor="middle" font-size="22" font-weight="700" fill="#ffaa33">73</text>
-    </svg>
-      <span class="gauge-label">Content Structure for Reuse</span>
-    </a><a class="gauge-item" href="#cat-answerability">
-      <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7"/>
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#ff3333" stroke-width="7"
-        stroke-dasharray="351.85837720205683" stroke-dashoffset="295.5610368497277"
-        stroke-linecap="round" transform="rotate(-90 60 60)"/>
-      <text x="60" y="67.7" text-anchor="middle" font-size="22" font-weight="700" fill="#cc0000">16</text>
-    </svg>
-      <span class="gauge-label">Answerability</span>
-    </a><a class="gauge-item" href="#cat-entity-clarity">
-      <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7"/>
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#ffaa33" stroke-width="7"
-        stroke-dasharray="351.85837720205683" stroke-dashoffset="73.89025921243193"
-        stroke-linecap="round" transform="rotate(-90 60 60)"/>
-      <text x="60" y="67.7" text-anchor="middle" font-size="22" font-weight="700" fill="#ffaa33">79</text>
-    </svg>
-      <span class="gauge-label">Entity Clarity</span>
-    </a><a class="gauge-item" href="#cat-grounding-signals">
-      <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7"/>
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#ff3333" stroke-width="7"
-        stroke-dasharray="351.85837720205683" stroke-dashoffset="246.30086404143975"
-        stroke-linecap="round" transform="rotate(-90 60 60)"/>
-      <text x="60" y="67.7" text-anchor="middle" font-size="22" font-weight="700" fill="#cc0000">30</text>
-    </svg>
-      <span class="gauge-label">Grounding Signals</span>
-    </a><a class="gauge-item" href="#cat-authority-context">
-      <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7"/>
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#ff3333" stroke-width="7"
-        stroke-dasharray="351.85837720205683" stroke-dashoffset="351.85837720205683"
-        stroke-linecap="round" transform="rotate(-90 60 60)"/>
-      <text x="60" y="67.7" text-anchor="middle" font-size="22" font-weight="700" fill="#cc0000">0</text>
-    </svg>
-      <span class="gauge-label">Authority Context</span>
-    </a><a class="gauge-item" href="#cat-readability-for-compression">
-      <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7"/>
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#00cc66" stroke-width="7"
-        stroke-dasharray="351.85837720205683" stroke-dashoffset="0"
-        stroke-linecap="round" transform="rotate(-90 60 60)"/>
-      <text x="60" y="67.7" text-anchor="middle" font-size="22" font-weight="700" fill="#008800">100</text>
-    </svg>
-      <span class="gauge-label">Readability for Compression</span>
-    </a><a class="gauge-item" href="#cat-query-alignment">
-      <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7"/>
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#ffaa33" stroke-width="7"
-        stroke-dasharray="351.85837720205683" stroke-dashoffset="123.15043202071988"
-        stroke-linecap="round" transform="rotate(-90 60 60)"/>
-      <text x="60" y="67.7" text-anchor="middle" font-size="22" font-weight="700" fill="#ffaa33">65</text>
-    </svg>
-      <span class="gauge-label">Query Alignment</span>
-    </a>
-  </div>
-
-  <div class="overall">
-    <div class="overall-gauge-wrap">
-    <svg class="gauge" viewBox="0 0 190 190" width="190" height="190">
-      <circle cx="95" cy="95" r="80" fill="none" stroke="#e8e8e8" stroke-width="14"/>
-      <circle cx="95" cy="95" r="80" fill="none"
-        stroke="#00cc66" stroke-width="14"
-        stroke-dasharray="71.03 431.63"
-        stroke-dashoffset="125.66"
-        class="seg-arc" data-idx="0"
-        onmouseenter="document.getElementById('seg-pop-0').style.display='flex'"
-        onmouseleave="document.getElementById('seg-pop-0').style.display='none'"/>
-      <line x1="150.85" y1="49.56"
-        x2="163.26" y2="39.46"
-        stroke="#fff" stroke-width="2" pointer-events="none"/>
-      <circle cx="95" cy="95" r="80" fill="none"
-        stroke="#ff3333" stroke-width="14"
-        stroke-dasharray="16.39 486.26"
-        stroke-dashoffset="54.64"
-        class="seg-arc" data-idx="1"
-        onmouseenter="document.getElementById('seg-pop-1').style.display='flex'"
-        onmouseleave="document.getElementById('seg-pop-1').style.display='none'"/>
-      <line x1="158.93" y1="61.88"
-        x2="173.13" y2="54.51"
-        stroke="#fff" stroke-width="2" pointer-events="none"/>
-      <circle cx="95" cy="95" r="80" fill="none"
-        stroke="#ffaa33" stroke-width="14"
-        stroke-dasharray="10.93 491.73"
-        stroke-dashoffset="38.25"
-        class="seg-arc" data-idx="2"
-        onmouseenter="document.getElementById('seg-pop-2').style.display='flex'"
-        onmouseleave="document.getElementById('seg-pop-2').style.display='none'"/>
-      <line x1="162.84" y1="70.89"
-        x2="177.92" y2="65.53"
-        stroke="#fff" stroke-width="2" pointer-events="none"/>
-      <circle cx="95" cy="95" r="80" fill="none"
-        stroke="#ff3333" stroke-width="14"
-        stroke-dasharray="13.66 489.00"
-        stroke-dashoffset="27.32"
-        class="seg-arc" data-idx="3"
-        onmouseenter="document.getElementById('seg-pop-3').style.display='flex'"
-        onmouseleave="document.getElementById('seg-pop-3').style.display='none'"/>
-      <line x1="165.95" y1="82.77"
-        x2="181.72" y2="80.05"
-        stroke="#fff" stroke-width="2" pointer-events="none"/>
-      <circle cx="95" cy="95" r="80" fill="none"
-        stroke="#ffaa33" stroke-width="14"
-        stroke-dasharray="40.98 461.68"
-        stroke-dashoffset="13.66"
-        class="seg-arc" data-idx="4"
-        onmouseenter="document.getElementById('seg-pop-4').style.display='flex'"
-        onmouseleave="document.getElementById('seg-pop-4').style.display='none'"/>
-      <line x1="162.84" y1="119.11"
-        x2="177.92" y2="124.47"
-        stroke="#fff" stroke-width="2" pointer-events="none"/>
-      <circle cx="95" cy="95" r="80" fill="none"
-        stroke="#ff3333" stroke-width="14"
-        stroke-dasharray="24.59 478.07"
-        stroke-dashoffset="-27.32"
-        class="seg-arc" data-idx="5"
-        onmouseenter="document.getElementById('seg-pop-5').style.display='flex'"
-        onmouseleave="document.getElementById('seg-pop-5').style.display='none'"/>
-      <line x1="152.37" y1="138.51"
-        x2="165.12" y2="148.17"
-        stroke="#fff" stroke-width="2" pointer-events="none"/>
-      <circle cx="95" cy="95" r="80" fill="none"
-        stroke="#00cc66" stroke-width="14"
-        stroke-dasharray="40.98 461.68"
-        stroke-dashoffset="-51.90"
-        class="seg-arc" data-idx="6"
-        onmouseenter="document.getElementById('seg-pop-6').style.display='flex'"
-        onmouseleave="document.getElementById('seg-pop-6').style.display='none'"/>
-      <line x1="123.68" y1="161.04"
-        x2="130.06" y2="175.71"
-        stroke="#fff" stroke-width="2" pointer-events="none"/>
-      <circle cx="95" cy="95" r="80" fill="none"
-        stroke="#ffaa33" stroke-width="14"
-        stroke-dasharray="35.51 467.14"
-        stroke-dashoffset="-92.88"
-        class="seg-arc" data-idx="7"
-        onmouseenter="document.getElementById('seg-pop-7').style.display='flex'"
-        onmouseleave="document.getElementById('seg-pop-7').style.display='none'"/>
-      <line x1="92.54" y1="166.96"
-        x2="92.00" y2="182.95"
-        stroke="#fff" stroke-width="2" pointer-events="none"/>
-      <text x="95" y="87" text-anchor="middle" font-size="40" font-weight="700" fill="#ffaa33">55</text>
-      <text x="95" y="109" text-anchor="middle" font-size="14" font-weight="600" fill="#ffaa33">F</text>
-      <text x="95" y="125" text-anchor="middle" font-size="11" fill="#999">186/368 pts</text>
-    </svg>
-    <div class="seg-popovers"><div id="seg-pop-0" class="seg-popover">
-        <span class="seg-popover-dot" style="background:#00cc66"></span>
-        <span class="seg-popover-name">Content Extractability</span>
-        <span class="seg-popover-score">96%</span>
-        <span class="seg-popover-pts">52/54 pts</span>
-      </div><div id="seg-pop-1" class="seg-popover">
-        <span class="seg-popover-dot" style="background:#ff3333"></span>
-        <span class="seg-popover-name">Structural Alignment</span>
-        <span class="seg-popover-score">40%</span>
-        <span class="seg-popover-pts">12/30 pts</span>
-      </div><div id="seg-pop-2" class="seg-popover">
-        <span class="seg-popover-dot" style="background:#ffaa33"></span>
-        <span class="seg-popover-name">Content Structure for Reuse</span>
-        <span class="seg-popover-score">73%</span>
-        <span class="seg-popover-pts">8/11 pts</span>
-      </div><div id="seg-pop-3" class="seg-popover">
-        <span class="seg-popover-dot" style="background:#ff3333"></span>
-        <span class="seg-popover-name">Answerability</span>
-        <span class="seg-popover-score">16%</span>
-        <span class="seg-popover-pts">10/63 pts</span>
-      </div><div id="seg-pop-4" class="seg-popover">
-        <span class="seg-popover-dot" style="background:#ffaa33"></span>
-        <span class="seg-popover-name">Entity Clarity</span>
-        <span class="seg-popover-score">79%</span>
-        <span class="seg-popover-pts">30/38 pts</span>
-      </div><div id="seg-pop-5" class="seg-popover">
-        <span class="seg-popover-dot" style="background:#ff3333"></span>
-        <span class="seg-popover-name">Grounding Signals</span>
-        <span class="seg-popover-score">30%</span>
-        <span class="seg-popover-pts">18/60 pts</span>
-      </div><div id="seg-pop-6" class="seg-popover">
-        <span class="seg-popover-dot" style="background:#00cc66"></span>
-        <span class="seg-popover-name">Readability for Compression</span>
-        <span class="seg-popover-score">100%</span>
-        <span class="seg-popover-pts">30/30 pts</span>
-      </div><div id="seg-pop-7" class="seg-popover">
-        <span class="seg-popover-dot" style="background:#ffaa33"></span>
-        <span class="seg-popover-name">Query Alignment</span>
-        <span class="seg-popover-score">65%</span>
-        <span class="seg-popover-pts">26/40 pts</span>
-      </div></div>
-    <div class="score-scale">
-      <span class="scale-fail">0-49</span>
-      <span class="scale-average">50-89</span>
-      <span class="scale-pass">90-100</span>
-    </div>
-  </div>
-  </div>
-
-  <div class="stages-section">
-    <div class="stages-title">Pipeline Stages</div>
-    <div class="stage-row">
-      <span class="stage-name">Technical Eligibility</span>
-      <span class="stage-value"><span class="stage-banner pass-banner">PASS</span> 96%</span>
-    </div>
-    <div class="stage-row">
-      <span class="stage-name">Retrieval Alignment</span>
-      <span class="stage-value">56%</span>
-    </div>
-    <div class="stage-row">
-      <span class="stage-name">Citation Fitness</span>
-      <span class="stage-value">41%</span>
-    </div>
-    
-    <div class="stage-row">
-      <span class="stage-name">Provenance</span>
-      <span class="stage-value">0%</span>
-    </div>
-  </div>
-
-  
-
-  
-    <div class="category" id="cat-content-extractability">
-      <div class="category-header">
-        <div class="category-title pass">Content Extractability</div>
-        <div class="category-score pass">96%</div>
+    <div class="report">
+      <!-- diff-slot -->
+      <div class="tldr-card">
+        <div class="tldr-headline">
+          <span class="tldr-score">55/100 (F)</span>
+        </div>
+        <div class="tldr-title">Top fixes</div>
+        <ol class="tldr-wins">
+          <li class="tldr-win">
+            <span class="tldr-rank">1</span><span class="tldr-gain">13 audit pts</span
+            ><span class="tldr-factor">Citation Patterns</span
+            ><span class="tldr-category">Grounding Signals</span>
+          </li>
+          <li class="tldr-win">
+            <span class="tldr-rank">2</span><span class="tldr-gain">13 audit pts</span
+            ><span class="tldr-factor">Lead Summary</span
+            ><span class="tldr-category">Answerability</span>
+          </li>
+          <li class="tldr-win">
+            <span class="tldr-rank">3</span><span class="tldr-gain">12 audit pts</span
+            ><span class="tldr-factor">Structured Data</span
+            ><span class="tldr-category">Authority Context</span>
+          </li>
+        </ol>
+        <div class="tldr-note">
+          Audit points are internal audit weights, not additive citation-probability gains. Apply
+          the top items, then re-measure.
+        </div>
       </div>
-      <div class="audits">
+
+      <div class="gauges-row">
+        <a class="gauge-item" href="#cat-content-extractability">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#00cc66"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="14.074335088082286"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#008800"
+            >
+              96
+            </text>
+          </svg>
+          <span class="gauge-label">Content Extractability</span> </a
+        ><a class="gauge-item" href="#cat-structural-alignment">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ff3333"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="211.1150263212341"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#cc0000"
+            >
+              40
+            </text>
+          </svg>
+          <span class="gauge-label">Structural Alignment</span> </a
+        ><a class="gauge-item" href="#cat-content-structure-for-reuse">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="95.00176184455535"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#ffaa33"
+            >
+              73
+            </text>
+          </svg>
+          <span class="gauge-label">Content Structure for Reuse</span> </a
+        ><a class="gauge-item" href="#cat-answerability">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ff3333"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="295.5610368497277"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#cc0000"
+            >
+              16
+            </text>
+          </svg>
+          <span class="gauge-label">Answerability</span> </a
+        ><a class="gauge-item" href="#cat-entity-clarity">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="73.89025921243193"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#ffaa33"
+            >
+              79
+            </text>
+          </svg>
+          <span class="gauge-label">Entity Clarity</span> </a
+        ><a class="gauge-item" href="#cat-grounding-signals">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ff3333"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="246.30086404143975"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#cc0000"
+            >
+              30
+            </text>
+          </svg>
+          <span class="gauge-label">Grounding Signals</span> </a
+        ><a class="gauge-item" href="#cat-authority-context">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ff3333"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="351.85837720205683"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#cc0000"
+            >
+              0
+            </text>
+          </svg>
+          <span class="gauge-label">Authority Context</span> </a
+        ><a class="gauge-item" href="#cat-readability-for-compression">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#00cc66"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="0"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#008800"
+            >
+              100
+            </text>
+          </svg>
+          <span class="gauge-label">Readability for Compression</span> </a
+        ><a class="gauge-item" href="#cat-query-alignment">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="123.15043202071988"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#ffaa33"
+            >
+              65
+            </text>
+          </svg>
+          <span class="gauge-label">Query Alignment</span>
+        </a>
+      </div>
+
+      <div class="overall">
+        <div class="overall-gauge-wrap">
+          <svg class="gauge" viewBox="0 0 190 190" width="190" height="190">
+            <circle cx="95" cy="95" r="80" fill="none" stroke="#e8e8e8" stroke-width="14" />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#00cc66"
+              stroke-width="14"
+              stroke-dasharray="71.03 431.63"
+              stroke-dashoffset="125.66"
+              class="seg-arc"
+              data-idx="0"
+              onmouseenter="document.getElementById('seg-pop-0').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-0').style.display = 'none'"
+            />
+            <line
+              x1="150.85"
+              y1="49.56"
+              x2="163.26"
+              y2="39.46"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ff3333"
+              stroke-width="14"
+              stroke-dasharray="16.39 486.26"
+              stroke-dashoffset="54.64"
+              class="seg-arc"
+              data-idx="1"
+              onmouseenter="document.getElementById('seg-pop-1').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-1').style.display = 'none'"
+            />
+            <line
+              x1="158.93"
+              y1="61.88"
+              x2="173.13"
+              y2="54.51"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="14"
+              stroke-dasharray="10.93 491.73"
+              stroke-dashoffset="38.25"
+              class="seg-arc"
+              data-idx="2"
+              onmouseenter="document.getElementById('seg-pop-2').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-2').style.display = 'none'"
+            />
+            <line
+              x1="162.84"
+              y1="70.89"
+              x2="177.92"
+              y2="65.53"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ff3333"
+              stroke-width="14"
+              stroke-dasharray="13.66 489.00"
+              stroke-dashoffset="27.32"
+              class="seg-arc"
+              data-idx="3"
+              onmouseenter="document.getElementById('seg-pop-3').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-3').style.display = 'none'"
+            />
+            <line
+              x1="165.95"
+              y1="82.77"
+              x2="181.72"
+              y2="80.05"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="14"
+              stroke-dasharray="40.98 461.68"
+              stroke-dashoffset="13.66"
+              class="seg-arc"
+              data-idx="4"
+              onmouseenter="document.getElementById('seg-pop-4').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-4').style.display = 'none'"
+            />
+            <line
+              x1="162.84"
+              y1="119.11"
+              x2="177.92"
+              y2="124.47"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ff3333"
+              stroke-width="14"
+              stroke-dasharray="24.59 478.07"
+              stroke-dashoffset="-27.32"
+              class="seg-arc"
+              data-idx="5"
+              onmouseenter="document.getElementById('seg-pop-5').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-5').style.display = 'none'"
+            />
+            <line
+              x1="152.37"
+              y1="138.51"
+              x2="165.12"
+              y2="148.17"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#00cc66"
+              stroke-width="14"
+              stroke-dasharray="40.98 461.68"
+              stroke-dashoffset="-51.90"
+              class="seg-arc"
+              data-idx="6"
+              onmouseenter="document.getElementById('seg-pop-6').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-6').style.display = 'none'"
+            />
+            <line
+              x1="123.68"
+              y1="161.04"
+              x2="130.06"
+              y2="175.71"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="14"
+              stroke-dasharray="35.51 467.14"
+              stroke-dashoffset="-92.88"
+              class="seg-arc"
+              data-idx="7"
+              onmouseenter="document.getElementById('seg-pop-7').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-7').style.display = 'none'"
+            />
+            <line
+              x1="92.54"
+              y1="166.96"
+              x2="92.00"
+              y2="182.95"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <text
+              x="95"
+              y="87"
+              text-anchor="middle"
+              font-size="40"
+              font-weight="700"
+              fill="#ffaa33"
+            >
+              55
+            </text>
+            <text
+              x="95"
+              y="109"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="600"
+              fill="#ffaa33"
+            >
+              F
+            </text>
+            <text x="95" y="125" text-anchor="middle" font-size="11" fill="#999">186/368 pts</text>
+          </svg>
+          <div class="seg-popovers">
+            <div id="seg-pop-0" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #00cc66"></span>
+              <span class="seg-popover-name">Content Extractability</span>
+              <span class="seg-popover-score">96%</span>
+              <span class="seg-popover-pts">52/54 pts</span>
+            </div>
+            <div id="seg-pop-1" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ff3333"></span>
+              <span class="seg-popover-name">Structural Alignment</span>
+              <span class="seg-popover-score">40%</span>
+              <span class="seg-popover-pts">12/30 pts</span>
+            </div>
+            <div id="seg-pop-2" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ffaa33"></span>
+              <span class="seg-popover-name">Content Structure for Reuse</span>
+              <span class="seg-popover-score">73%</span>
+              <span class="seg-popover-pts">8/11 pts</span>
+            </div>
+            <div id="seg-pop-3" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ff3333"></span>
+              <span class="seg-popover-name">Answerability</span>
+              <span class="seg-popover-score">16%</span>
+              <span class="seg-popover-pts">10/63 pts</span>
+            </div>
+            <div id="seg-pop-4" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ffaa33"></span>
+              <span class="seg-popover-name">Entity Clarity</span>
+              <span class="seg-popover-score">79%</span>
+              <span class="seg-popover-pts">30/38 pts</span>
+            </div>
+            <div id="seg-pop-5" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ff3333"></span>
+              <span class="seg-popover-name">Grounding Signals</span>
+              <span class="seg-popover-score">30%</span>
+              <span class="seg-popover-pts">18/60 pts</span>
+            </div>
+            <div id="seg-pop-6" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #00cc66"></span>
+              <span class="seg-popover-name">Readability for Compression</span>
+              <span class="seg-popover-score">100%</span>
+              <span class="seg-popover-pts">30/30 pts</span>
+            </div>
+            <div id="seg-pop-7" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ffaa33"></span>
+              <span class="seg-popover-name">Query Alignment</span>
+              <span class="seg-popover-score">65%</span>
+              <span class="seg-popover-pts">26/40 pts</span>
+            </div>
+          </div>
+          <div class="score-scale">
+            <span class="scale-fail">0-49</span>
+            <span class="scale-average">50-89</span>
+            <span class="scale-pass">90-100</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stages-section">
+        <div class="stages-title">Pipeline Stages</div>
+        <div class="stage-row">
+          <span class="stage-name">Technical Eligibility</span>
+          <span class="stage-value"><span class="stage-banner pass-banner">PASS</span> 96%</span>
+        </div>
+        <div class="stage-row">
+          <span class="stage-name">Retrieval Alignment</span>
+          <span class="stage-value">56%</span>
+        </div>
+        <div class="stage-row">
+          <span class="stage-name">Citation Fitness</span>
+          <span class="stage-value">41%</span>
+        </div>
+
+        <div class="stage-row">
+          <span class="stage-name">Provenance</span>
+          <span class="stage-value">0%</span>
+        </div>
+      </div>
+
+      <div class="category" id="cat-content-extractability">
+        <div class="category-header">
+          <div class="category-title pass">Content Extractability</div>
+          <div class="category-score pass">96%</div>
+        </div>
+        <div class="audits">
           <div class="audit-row">
             <span class="audit-icon good">&#10003;</span>
             <span class="audit-name">Fetch Success</span>
@@ -702,31 +1180,39 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Word Count Adequacy</span>
-            <span class="audit-detail">176 words <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >176 words <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">LLMs.txt Presence</span>
-            <span class="audit-detail">Not found (experimental standard, no outcome evidence) <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >Not found (experimental standard, no outcome evidence)
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">experimental</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Image Accessibility</span>
-            <span class="audit-detail">No images found <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >No images found <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
-          </div></div>
-    </div>
-    <div class="category" id="cat-structural-alignment">
-      <div class="category-header">
-        <div class="category-title fail">Structural Alignment</div>
-        <div class="category-score fail">40%</div>
+          </div>
+        </div>
       </div>
-      <div class="audits">
+      <div class="category" id="cat-structural-alignment">
+        <div class="category-header">
+          <div class="category-title fail">Structural Alignment</div>
+          <div class="category-score fail">40%</div>
+        </div>
+        <div class="audits">
           <div class="audit-row">
             <span class="audit-icon warn">&#9650;</span>
             <span class="audit-name">Title Entity Alignment</span>
@@ -737,7 +1223,9 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
           <div class="audit-row">
             <span class="audit-icon warn">&#9650;</span>
             <span class="audit-name">Meta Description Alignment</span>
-            <span class="audit-detail">50% of the body&#39;s key terms appear in the meta description</span>
+            <span class="audit-detail"
+              >50% of the body&#39;s key terms appear in the meta description</span
+            >
             <span class="evidence-badge">conditional</span>
             <span class="audit-score">5/8</span>
           </div>
@@ -754,14 +1242,15 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
             <span class="audit-detail">No JSON-LD text fields to align</span>
             <span class="evidence-badge">conditional</span>
             <span class="audit-score">0/6</span>
-          </div></div>
-    </div>
-    <div class="category" id="cat-content-structure-for-reuse">
-      <div class="category-header">
-        <div class="category-title average">Content Structure for Reuse</div>
-        <div class="category-score average">73%</div>
+          </div>
+        </div>
       </div>
-      <div class="audits">
+      <div class="category" id="cat-content-structure-for-reuse">
+        <div class="category-header">
+          <div class="category-title average">Content Structure for Reuse</div>
+          <div class="category-score average">73%</div>
+        </div>
+        <div class="audits">
           <div class="audit-row">
             <span class="audit-icon good">&#10003;</span>
             <span class="audit-name">Heading Hierarchy</span>
@@ -772,49 +1261,65 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Lists Presence</span>
-            <span class="audit-detail">0 list items <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >0 list items <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Tables Presence</span>
-            <span class="audit-detail">0 table(s) <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >0 table(s) <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Paragraph Structure</span>
-            <span class="audit-detail">12 paragraphs, avg 15 words <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >12 paragraphs, avg 15 words
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Scannability</span>
-            <span class="audit-detail">Bold text found, 0.25 heading ratio <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >Bold text found, 0.25 heading ratio
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Section Length</span>
-            <span class="audit-detail">3 sections, avg 35 words <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >3 sections, avg 35 words
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
-          </div></div>
-    </div>
-    <div class="category" id="cat-answerability">
-      <div class="category-header">
-        <div class="category-title fail">Answerability</div>
-        <div class="category-score fail">16%</div>
+          </div>
+        </div>
       </div>
-      <div class="audits">
+      <div class="category" id="cat-answerability">
+        <div class="category-header">
+          <div class="category-title fail">Answerability</div>
+          <div class="category-score fail">16%</div>
+        </div>
+        <div class="audits">
           <div class="audit-row">
             <span class="audit-icon fail">&#10007;</span>
             <span class="audit-name">Lead Summary</span>
-            <span class="audit-detail">No lead summary: the page does not state its conclusion first</span>
+            <span class="audit-detail"
+              >No lead summary: the page does not state its conclusion first</span
+            >
             <span class="evidence-badge">conditional</span>
             <span class="audit-score">0/13</span>
           </div>
@@ -856,24 +1361,31 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Answer Capsules</span>
-            <span class="audit-detail">No question-framed H2s found <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >No question-framed H2s found
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Q/A Patterns</span>
-            <span class="audit-detail">2 questions, 0 query patterns <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >2 questions, 0 query patterns
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
-          </div></div>
-    </div>
-    <div class="category" id="cat-entity-clarity">
-      <div class="category-header">
-        <div class="category-title average">Entity Clarity</div>
-        <div class="category-score average">79%</div>
+          </div>
+        </div>
       </div>
-      <div class="audits">
+      <div class="category" id="cat-entity-clarity">
+        <div class="category-header">
+          <div class="category-title average">Entity Clarity</div>
+          <div class="category-score average">79%</div>
+        </div>
+        <div class="audits">
           <div class="audit-row">
             <span class="audit-icon warn">&#9650;</span>
             <span class="audit-name">Entity Richness</span>
@@ -898,17 +1410,21 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Pronoun Ambiguity</span>
-            <span class="audit-detail">No substantial paragraphs found <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >No substantial paragraphs found
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
-          </div></div>
-    </div>
-    <div class="category" id="cat-grounding-signals">
-      <div class="category-header">
-        <div class="category-title fail">Grounding Signals</div>
-        <div class="category-score fail">30%</div>
+          </div>
+        </div>
       </div>
-      <div class="audits">
+      <div class="category" id="cat-grounding-signals">
+        <div class="category-header">
+          <div class="category-title fail">Grounding Signals</div>
+          <div class="category-score fail">30%</div>
+        </div>
+        <div class="audits">
           <div class="audit-row">
             <span class="audit-icon good">&#10003;</span>
             <span class="audit-name">External References</span>
@@ -950,14 +1466,15 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
             <span class="audit-detail">4 of 18 sentences hedge (22.2%)</span>
             <span class="evidence-badge">conditional</span>
             <span class="audit-score">0/10</span>
-          </div></div>
-    </div>
-    <div class="category" id="cat-authority-context">
-      <div class="category-header">
-        <div class="category-title fail">Authority Context</div>
-        <div class="category-score fail">0%</div>
+          </div>
+        </div>
       </div>
-      <div class="audits">
+      <div class="category" id="cat-authority-context">
+        <div class="category-header">
+          <div class="category-title fail">Authority Context</div>
+          <div class="category-score fail">0%</div>
+        </div>
+        <div class="audits">
           <div class="audit-row">
             <span class="audit-icon fail">&#10007;</span>
             <span class="audit-name">Author Attribution</span>
@@ -1010,52 +1527,71 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Date Markup</span>
-            <span class="audit-detail">No machine-readable date markup <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >No machine-readable date markup
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Topic Time Sensitivity</span>
-            <span class="audit-detail">Evergreen topic, freshness not scored <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >Evergreen topic, freshness not scored
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Promotional Language</span>
-            <span class="audit-detail">0 promotional phrases and 0 exclamations per 1,000 words <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >0 promotional phrases and 0 exclamations per 1,000 words
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Affiliate Link Density</span>
-            <span class="audit-detail">0% of external links carry affiliate markers <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >0% of external links carry affiliate markers
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Ad Slot Markers</span>
-            <span class="audit-detail">0 ad slot elements in the DOM <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >0 ad slot elements in the DOM
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
           </div>
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Site Type</span>
-            <span class="audit-detail">No forum or user-generated content signals <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >No forum or user-generated content signals
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
-          </div></div>
-    </div>
-    <div class="category" id="cat-readability-for-compression">
-      <div class="category-header">
-        <div class="category-title pass">Readability for Compression</div>
-        <div class="category-score pass">100%</div>
+          </div>
+        </div>
       </div>
-      <div class="audits">
+      <div class="category" id="cat-readability-for-compression">
+        <div class="category-header">
+          <div class="category-title pass">Readability for Compression</div>
+          <div class="category-score pass">100%</div>
+        </div>
+        <div class="audits">
           <div class="audit-row">
             <span class="audit-icon good">&#10003;</span>
             <span class="audit-name">Sentence Length</span>
@@ -1080,58 +1616,109 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
           <div class="audit-row">
             <span class="audit-icon info">i</span>
             <span class="audit-name">Transition Usage</span>
-            <span class="audit-detail">0 transition types found <span class="audit-diagnostic">unscored diagnostic</span></span>
+            <span class="audit-detail"
+              >0 transition types found
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
             <span class="evidence-badge">diagnostic</span>
             <span class="audit-score"></span>
-          </div></div>
-    </div>
-    <div class="category" id="cat-query-alignment">
-      <div class="category-header">
-        <div class="category-title average">Query Alignment</div>
-        <div class="category-score average">65%</div>
+          </div>
+        </div>
       </div>
-      <div class="audits">
+      <div class="category" id="cat-query-alignment">
+        <div class="category-header">
+          <div class="category-title average">Query Alignment</div>
+          <div class="category-score average">65%</div>
+        </div>
+        <div class="audits">
           <div class="audit-row">
             <span class="audit-icon warn">&#9650;</span>
             <span class="audit-name">Query Term Coverage (Structural)</span>
-            <span class="audit-detail">Weakest query &quot;How can I route support requests with Jev?&quot; at 25% coverage in title, meta description, headings, and JSON-LD; 3 of 5 queries adequately served</span>
+            <span class="audit-detail"
+              >Weakest query &quot;How can I route support requests with Jev?&quot; at 25% coverage
+              in title, meta description, headings, and JSON-LD; 3 of 5 queries adequately
+              served</span
+            >
             <span class="evidence-badge">supported</span>
             <span class="audit-score">5/15</span>
           </div>
           <div class="audit-row">
             <span class="audit-icon good">&#10003;</span>
             <span class="audit-name">Query Term Coverage (Body)</span>
-            <span class="audit-detail">Weakest query &quot;How do I use Jev recipes in TypeScript?&quot; at 67% coverage in body content; 5 of 5 queries adequately served</span>
+            <span class="audit-detail"
+              >Weakest query &quot;How do I use Jev recipes in TypeScript?&quot; at 67% coverage in
+              body content; 5 of 5 queries adequately served</span
+            >
             <span class="evidence-badge">supported</span>
             <span class="audit-score">15/15</span>
           </div>
           <div class="audit-row">
             <span class="audit-icon warn">&#9650;</span>
             <span class="audit-name">Query Aspect Coverage</span>
-            <span class="audit-detail">Weakest query &quot;How can I route support requests with Jev?&quot; has 2 of 4 aspects addressed by a dedicated section</span>
+            <span class="audit-detail"
+              >Weakest query &quot;How can I route support requests with Jev?&quot; has 2 of 4
+              aspects addressed by a dedicated section</span
+            >
             <span class="evidence-badge">heuristic</span>
             <span class="audit-score">6/10</span>
-          </div></div>
-    </div>
+          </div>
+        </div>
+      </div>
 
-  <div class="recs-section">
-    <div class="recs-title">Recommendations</div><div class="rec-group">
-      <div class="rec-group-name">Grounding Signals</div>
-      <div class="rec-row priority-high">
-        <span class="rec-tag">HIGH</span>
-        <span class="rec-factor">Attribution Indicators</span>
-        <span class="rec-text">Attribute claims to specific sources or experts. Phrases like &quot;according to&quot; help AI engines trace information.</span>
-      </div><div class="rec-detail"><ol class="rec-steps"><li>Identify factual claims that currently have no source</li><li>Prepend &#39;According to [Source]&#39; or &#39;Per [Organization]&#39; before each claim</li><li>Link the source name to its original URL so AI engines can follow the reference</li><li>Add a citation marker (e.g., [1]) for formal references tied to a sources section</li></ol><pre class="rec-code"><code>&lt;!-- Before: unattributed claim --&gt;
+      <div class="recs-section">
+        <div class="recs-title">Recommendations</div>
+        <div class="rec-group">
+          <div class="rec-group-name">Grounding Signals</div>
+          <div class="rec-row priority-high">
+            <span class="rec-tag">HIGH</span>
+            <span class="rec-factor">Attribution Indicators</span>
+            <span class="rec-text"
+              >Attribute claims to specific sources or experts. Phrases like &quot;according
+              to&quot; help AI engines trace information.</span
+            >
+          </div>
+          <div class="rec-detail">
+            <ol class="rec-steps">
+              <li>Identify factual claims that currently have no source</li>
+              <li>
+                Prepend &#39;According to [Source]&#39; or &#39;Per [Organization]&#39; before each
+                claim
+              </li>
+              <li>
+                Link the source name to its original URL so AI engines can follow the reference
+              </li>
+              <li>
+                Add a citation marker (e.g., [1]) for formal references tied to a sources section
+              </li>
+            </ol>
+            <pre class="rec-code"><code>&lt;!-- Before: unattributed claim --&gt;
 &lt;p&gt;Formatting alone showed no causal citation effect; give each real sub-question a specific answer.&lt;/p&gt;
 
 &lt;!-- After: attributed with a link --&gt;
 &lt;p&gt;According to &lt;a href=&quot;https://arxiv.org/abs/2506.11097&quot;&gt;C-SEO Bench (NeurIPS 2025)&lt;/a&gt;,
-context position dominated every content rewriting method tested.&lt;/p&gt;</code></pre></div>
-      <div class="rec-row priority-high">
-        <span class="rec-tag">HIGH</span>
-        <span class="rec-factor">Citation Patterns</span>
-        <span class="rec-text">Use formal citation patterns (e.g., [1], &quot;according to&quot;) when referencing sources.</span>
-      </div><div class="rec-detail"><ol class="rec-steps"><li>Add in-text citation markers like [1] or (Author, Year) after specific claims</li><li>Include a &#39;References&#39; or &#39;Sources&#39; section at the bottom of the page</li><li>Use &lt;cite&gt; elements around titles of books, articles, or research papers</li><li>Link each citation marker to its corresponding reference entry</li></ol><pre class="rec-code"><code>&lt;!-- In-text citation with marker --&gt;
+context position dominated every content rewriting method tested.&lt;/p&gt;</code></pre>
+          </div>
+          <div class="rec-row priority-high">
+            <span class="rec-tag">HIGH</span>
+            <span class="rec-factor">Citation Patterns</span>
+            <span class="rec-text"
+              >Use formal citation patterns (e.g., [1], &quot;according to&quot;) when referencing
+              sources.</span
+            >
+          </div>
+          <div class="rec-detail">
+            <ol class="rec-steps">
+              <li>Add in-text citation markers like [1] or (Author, Year) after specific claims</li>
+              <li>
+                Include a &#39;References&#39; or &#39;Sources&#39; section at the bottom of the
+                page
+              </li>
+              <li>
+                Use &lt;cite&gt; elements around titles of books, articles, or research papers
+              </li>
+              <li>Link each citation marker to its corresponding reference entry</li>
+            </ol>
+            <pre class="rec-code"><code>&lt;!-- In-text citation with marker --&gt;
 &lt;p&gt;Structural fields raised retrieval hit rate by 22% in end-to-end tests &lt;a href=&quot;#ref-1&quot;&gt;[1]&lt;/a&gt;.&lt;/p&gt;
 
 &lt;!-- Cited title --&gt;
@@ -1146,13 +1733,26 @@ context position dominated every content rewriting method tested.&lt;/p&gt;</cod
       - Aggarwal et al., Princeton University, 2023
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/section&gt;</code></pre></div></div><div class="rec-group">
-      <div class="rec-group-name">Authority Context</div>
-      <div class="rec-row priority-high">
-        <span class="rec-tag">HIGH</span>
-        <span class="rec-factor">Author Attribution</span>
-        <span class="rec-text">Add visible author information with a byline to establish content credibility and enable AI attribution.</span>
-      </div><div class="rec-detail"><ol class="rec-steps"><li>Add a visible byline near the top of the article (after the H1)</li><li>Link the author name to an about/bio page using rel=&quot;author&quot;</li><li>Add author information to your JSON-LD schema (see code example)</li></ol><pre class="rec-code"><code>&lt;!-- Add a visible byline --&gt;
+&lt;/section&gt;</code></pre>
+          </div>
+        </div>
+        <div class="rec-group">
+          <div class="rec-group-name">Authority Context</div>
+          <div class="rec-row priority-high">
+            <span class="rec-tag">HIGH</span>
+            <span class="rec-factor">Author Attribution</span>
+            <span class="rec-text"
+              >Add visible author information with a byline to establish content credibility and
+              enable AI attribution.</span
+            >
+          </div>
+          <div class="rec-detail">
+            <ol class="rec-steps">
+              <li>Add a visible byline near the top of the article (after the H1)</li>
+              <li>Link the author name to an about/bio page using rel=&quot;author&quot;</li>
+              <li>Add author information to your JSON-LD schema (see code example)</li>
+            </ol>
+            <pre class="rec-code"><code>&lt;!-- Add a visible byline --&gt;
 &lt;p class=&quot;byline&quot;&gt;By &lt;a href=&quot;/about/author-name&quot; rel=&quot;author&quot;&gt;Author Name&lt;/a&gt;&lt;/p&gt;
 
 &lt;!-- Add to your JSON-LD schema --&gt;
@@ -1160,15 +1760,28 @@ context position dominated every content rewriting method tested.&lt;/p&gt;</cod
   &quot;@type&quot;: &quot;Person&quot;,
   &quot;name&quot;: &quot;Author Name&quot;,
   &quot;url&quot;: &quot;https://yoursite.com/about/author-name&quot;
-}</code></pre><a class="rec-learn-more" href="https://schema.org/author" target="_blank" rel="noopener">Learn more &rarr;</a></div></div><div class="recs-footnote">16 more in JSON output</div><div class="recs-footnote">Apply the top items and re-measure before continuing - gains do not stack additively, and each addition competes for the same content budget.</div></div>
+}</code></pre>
+            <a
+              class="rec-learn-more"
+              href="https://schema.org/author"
+              target="_blank"
+              rel="noopener"
+              >Learn more &rarr;</a
+            >
+          </div>
+        </div>
+        <div class="recs-footnote">16 more in JSON output</div>
+        <div class="recs-footnote">
+          Apply the top items and re-measure before continuing - gains do not stack additively, and
+          each addition competes for the same content budget.
+        </div>
+      </div>
 
-  <div class="footer">
-    <span>Generated by aiseo-audit v2.0.2</span>
-    <span>2026-09-28T05:21:59.619Z &middot; 605ms</span>
-    <span>Domain signals checked at: <code>https://jev-recipes.com</code></span>
-    
-  </div>
-</div>
-
-</body>
+      <div class="footer">
+        <span>Generated by aiseo-audit v2.0.2</span>
+        <span>2026-09-28T05:21:59.619Z &middot; 605ms</span>
+        <span>Domain signals checked at: <code>https://jev-recipes.com</code></span>
+      </div>
+    </div>
+  </body>
 </html>
