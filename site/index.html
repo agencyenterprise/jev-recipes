@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Find a Jev recipe, inspect its decision contract, and read the evidence before using it."
+      content="Jev recipes is a TypeScript library for route decisions, review results, and evidence. Use this guide to inspect recipes, run examples, and evaluate accuracy."
     />
-    <title>Jev recipes | Decisions you can inspect</title>
+    <title>Jev recipes | TypeScript guide to route decisions, review results, and evidence</title>
+    <!-- SITE_METADATA -->
     <link rel="stylesheet" href="./style.css" />
     <script type="module" src="./app.js"></script>
   </head>
   <body>
     <header class="masthead">
-      <a class="brand" href="./">jev<span>recipes</span></a>
+      <a class="brand" href="./">jev <span>recipes</span></a>
       <nav aria-label="Resources">
+        <a href="./recipes/">All recipes</a>
         <a href="https://github.com/agencyenterprise/jev-recipes">Source</a
         ><a href="https://www.npmjs.com/package/jev-recipes">npm package</a
         ><a href="https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md"
@@ -25,14 +27,16 @@
     <main>
       <section class="introduction">
         <div>
-          <h1>Give your code <br />a clear decision.</h1>
+          <h1>Jev recipes for typed <br />TypeScript decisions.</h1>
           <p>
-            Small Jev recipes for the moment your application needs judgment. Inspect the inputs,
-            review the evidence, and keep your code in control.
+            Jev recipes is an open-source TypeScript library for routing requests, reranking
+            evidence, and reviewing agent actions. Each recipe returns a typed decision with
+            explicit uncertainty. This is a library for one bounded decision at a time: your
+            application keeps control of tools, permissions, and business state.
           </p>
         </div>
         <div class="decision-example" aria-label="Illustrative routing decision">
-          <p class="example-message">“I was charged twice. Can someone check my invoice?”</p>
+          <p class="example-message">“I was charged twice. Please check my invoice.”</p>
           <div class="example-flow">
             <span>route</span><span class="connector" aria-hidden="true"></span
             ><strong>billing</strong>
@@ -44,10 +48,11 @@
       </section>
       <section class="starting-points" aria-label="Start with a task">
         <div>
-          <h2>Start with one decision</h2>
+          <h2>Jev recipes at a glance</h2>
           <p>
-            <a href="#route">Route work</a> · <a href="#rerank">Select evidence</a> ·
-            <a href="#tool-call-gate">Review an action</a>
+            <a href="./recipes/route/">Route support requests</a> ·
+            <a href="./recipes/rerank/">Rerank evidence</a> ·
+            <a href="./recipes/tool-call-gate/">Review an agent action</a>
           </p>
           <p>
             <a
@@ -78,7 +83,7 @@
             <a href="https://jev-ai-music.com/">Open the music app</a> ·
             <a
               href="https://github.com/agencyenterprise/jev-recipes/blob/main/examples/jevthoven/README.md"
-              >Read the integration</a
+              >Explore the integration</a
             >
           </p>
           <p class="note">
@@ -86,7 +91,7 @@
             accuracy.
           </p>
           <p>
-            Built something with Jev?
+            Using Jev in your project?
             <a
               href="https://github.com/agencyenterprise/jev-recipes/blob/main/examples/README.md#add-your-project"
               >Share your project in the examples</a
@@ -94,7 +99,7 @@
           </p>
         </div>
       </section>
-      <section class="workspace" aria-label="Recipe explorer">
+      <section id="explorer" class="workspace" aria-label="Recipe explorer">
         <div class="library">
           <label class="search-label" for="search"
             >What does your application need to decide?</label
@@ -124,13 +129,225 @@
             >
           </div>
           <p id="result-count" class="result-count" role="status">Loading recipes…</p>
+          <p class="note">
+            <a href="./recipes/">Browse all recipe guides</a> with examples and evidence.
+          </p>
           <div id="results" class="results" aria-label="Matching recipes"></div>
         </div>
         <article id="inspector" class="inspector" aria-label="Selected recipe" tabindex="-1">
           <p>Select a recipe to inspect its contract and evidence.</p>
         </article>
       </section>
+      <section class="site-guide" aria-label="Using Jev recipes">
+        <h2>How do I use Jev recipes in TypeScript?</h2>
+        <p>
+          Install the package, import a recipe, and handle its typed result. The package is an ES
+          module library for Node.js 22.9 or newer, as stated in the
+          <a href="#source-install">installation guide [1]</a>. A recipe refers to a small function
+          that asks Jev one bounded question and validates the response.
+        </p>
+        <h3>Install Jev recipes and run a saved example</h3>
+        <pre><code>npm install jev-recipes
+npx jev-recipes demo route</code></pre>
+        <p>
+          The demo is an offline contract example, not a live accuracy test. It needs no API key
+          because it replays a hand-authored response. A fixture is defined as the saved input and
+          response used to demonstrate that contract. According to the
+          <a href="#source-examples">getting-started examples [2]</a>, your application needs to
+          handle ready decisions, review decisions, and provider failures separately.
+        </p>
+        <h3>TypeScript inputs and result types</h3>
+        <p>For a new TypeScript project, install the compiler and Node.js type definitions:</p>
+        <pre><code>npm install --save-dev typescript @types/node</code></pre>
+        <p>
+          TypeScript infers each recipe's input and result from its exported schemas. Use
+          <code>RouteInput</code> and <code>RouteResult</code> when your TypeScript application
+          needs named types for the route recipe. Runtime validation still runs because static types
+          do not validate incoming data. The route module exports the schemas and types together
+          [3].
+        </p>
+        <h3>Call a recipe from TypeScript</h3>
+        <p>
+          Set <code>TYPESAFE_API_KEY</code> in the server environment before running this code. Live
+          calls send the supplied input to TypeSafe and use API quota.
+        </p>
+        <pre><code>import { route } from 'jev-recipes/route';
+
+try {
+  const result = await route({
+    request: 'Please correct a duplicate charge.',
+    routes: {
+      billing: 'Payments, invoices, and refunds',
+      technical: 'Errors, outages, and integrations',
+    },
+    minConfidence: 0.8,
+  });
+  if (result.status === 'ready') {
+    console.log('Selected handler:', result.route);
+  } else {
+    console.log('Review required:', result.suggestedRoute);
+  }
+} catch (error) {
+  console.error('Decision failed:', error);
+}</code></pre>
+        <p>
+          The result is a validated decision, not an executed action. Keep dispatch and access
+          checks in your application. The package uses Zod schemas to validate inputs and outputs;
+          the <a href="#source-route">route implementation [3]</a> shows both checks.
+        </p>
+        <h2>How do I route support requests with Jev?</h2>
+        <p>
+          Use the <a href="./recipes/route/">route recipe</a> with the request and a map of handler
+          names to descriptions. The handler is the label your application uses to dispatch work. A
+          ready decision means that the route passed the configured confidence policy. A review
+          decision means that the recipe withheld automatic selection.
+        </p>
+        <p>
+          According to the <a href="#source-route">route implementation [3]</a>, the default
+          threshold is 80%. A reserved review choice also requires review, regardless of confidence.
+          Confidence refers to the model's reported decision confidence, not a measured accuracy
+          rate.
+        </p>
+        <h3>How confidence changes the saved routing result</h3>
+        <p>
+          The saved example reports 90% confidence for the billing route. The table applies the
+          recipe's policy to that same response at seven thresholds. At 80%, it is ready; at 100%,
+          it goes to review. These are policy settings and fixture results, not success-rate claims.
+          The data comes from the <a href="#source-fixture">saved route fixture [4]</a>.
+        </p>
+        <!-- ROUTE_POLICY_TABLE -->
+        <h2>How do I rerank evidence with Jev?</h2>
+        <p>
+          Pass a query and retrieved passages to the <a href="./recipes/rerank/">rerank recipe</a>.
+          The ranking is based on relevance to that query. Reranking refers to selecting and
+          ordering supplied passages after retrieval. It does not fetch new documents or prove that
+          a passage is true.
+        </p>
+        <p>
+          According to the <a href="#source-rerank">rerank guide [5]</a>, passage IDs stay attached
+          to selected items. This means that your application retains the source reference when it
+          selects evidence. Use <code>topK</code> to cap the output and <code>minRelevance</code> to
+          set the minimum score. Inspect the guide's contract and limitations before using the
+          result.
+        </p>
+        <h2>How do I evaluate Jev recipe accuracy?</h2>
+        <p>
+          Run the evaluator on labeled cases from your workflow, save the responses, and compare the
+          returned decisions with the labels. The evaluator is included in the installed package.
+          According to the <a href="#source-evaluation">evaluation guide [6]</a>, overall accuracy
+          includes failed cases in its denominator. Review rate and ready-decision accuracy answer
+          different questions.
+        </p>
+        <pre><code>npx jev-recipes evaluate route --cases ./routing-cases.jsonl --out ./results/baseline
+npx jev-recipes replay ./results/baseline --min-confidence 0.9 --out ./results/review-at-90
+npx jev-recipes compare ./results/baseline ./results/review-at-90</code></pre>
+        <p>
+          A held-out split refers to cases reserved for evaluation after the policy is chosen. Keep
+          related case families in the same split because near-duplicate examples do not provide
+          independent evidence. Saved fixtures and synthetic case scores do not establish
+          performance on your production data. Earlier recipe or evaluator measurements remain
+          labeled as earlier evidence.
+        </p>
+        <h3>Why replay the confidence policy?</h3>
+        <p>
+          Replay reuses retained responses without another model call. This is a way to compare
+          review rates under different thresholds while holding the observed responses fixed. A new
+          live evaluation is still needed to measure a changed model or recipe.
+        </p>
+        <h2>Connect Jev recipes to your workflow</h2>
+        <p>
+          The integration guide describes direct TypeSafe API access and Vercel AI Gateway access.
+          According to that <a href="#source-integrations">integration contract [7]</a>, both use
+          the System One request format. Transport compatibility does not establish model accuracy.
+          The same guide explains client injection and cancellation.
+        </p>
+        <p>
+          Use the npm package in your Node.js backend or a script. Inspect source and report issues
+          on GitHub. For a working music example, visit Jevthoven above; its playback requires
+          sign-in.
+        </p>
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>Choose a recipe for one decision, and inspect its input and result contract.</li>
+          <li>Run a saved fixture first, then connect TypeSafe for live calls.</li>
+          <li>Keep review handling, permissions, and dispatch in your application.</li>
+          <li>Measure accuracy on your own cases before relying on a decision.</li>
+        </ul>
+        <p>
+          In summary, Jev recipes supplies typed decisions and inspectable evidence. Your code owns
+          what happens next.
+        </p>
+      </section>
+      <section class="site-guide" aria-label="Source documentation">
+        <h2>Sources and implementation references</h2>
+        <ol class="source-list">
+          <li id="source-install">
+            <a
+              href="https://github.com/agencyenterprise/jev-recipes/blob/main/README.md#use-a-recipe"
+              ><cite>Jev recipes installation guide</cite></a
+            >: runtime requirements and package setup.
+          </li>
+          <li id="source-examples">
+            <a
+              href="https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md"
+              ><cite>Getting started with Jev recipes</cite></a
+            >: offline fixtures and failure handling.
+          </li>
+          <li id="source-route">
+            <a
+              href="https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/route/index.ts"
+              ><cite>Route implementation</cite></a
+            >: default threshold, validation, and review policy.
+          </li>
+          <li id="source-fixture">
+            <a
+              href="https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/route/demo.json"
+              ><cite>Route fixture</cite></a
+            >: the saved request, probabilities, and confidence.
+          </li>
+          <li id="source-rerank">
+            <a
+              href="https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/rerank/README.md"
+              ><cite>Rerank evidence guide</cite></a
+            >: passage selection and result fields.
+          </li>
+          <li id="source-evaluation">
+            <a href="https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md"
+              ><cite>Evaluation and replay guide</cite></a
+            >: labels, splits, accuracy, and retained evidence.
+          </li>
+          <li id="source-integrations">
+            <a href="https://github.com/agencyenterprise/jev-recipes/blob/main/docs/integrations.md"
+              ><cite>TypeSafe and Vercel integration guide</cite></a
+            >: provider setup and compatibility limits.
+          </li>
+        </ol>
+      </section>
+      <section id="about" class="site-guide">
+        <h2>About Jev recipes</h2>
+        <p>
+          Maintained by
+          <a rel="author" href="https://github.com/agencyenterprise/jev-recipes/graphs/contributors"
+            >jev-recipes contributors</a
+          >. This is an independent community project released under the
+          <a href="https://github.com/agencyenterprise/jev-recipes/blob/main/LICENSE">MIT license</a
+          >. Jev and TypeSafe are products of
+          <a href="https://docs.typesafe.ai/introduction">TypeSafe AI</a>.
+        </p>
+        <p>
+          Recipe guides are built from the same metadata, schemas, saved fixtures, and evaluation
+          reports used by the package. Inspect the
+          <a href="https://github.com/agencyenterprise/jev-recipes">source repository</a> or
+          <a href="https://github.com/agencyenterprise/jev-recipes/issues"
+            >report a bug or request a recipe</a
+          >.
+        </p>
+      </section>
     </main>
-    <footer>Open source. Local evaluation. Your application decides what happens next.</footer>
+    <footer>
+      Jev recipes. Open source. Local evaluation. <a href="#about">About Jev recipes</a> ·
+      <a href="https://github.com/agencyenterprise/jev-recipes/issues">Contact contributors</a>.
+      Your application decides what happens next.
+    </footer>
   </body>
 </html>

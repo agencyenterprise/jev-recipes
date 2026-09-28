@@ -1,0 +1,1821 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI SEO Audit - http://127.0.0.1:4176</title>
+    <style>
+      :root {
+        --pass: #00cc66;
+        --pass-text: #008800;
+        --average: #ffaa33;
+        --average-text: #ffaa33;
+        --fail: #ff3333;
+        --fail-text: #cc0000;
+        --bg: #fff;
+        --surface: #fff;
+        --text: #212121;
+        --text-secondary: #757575;
+        --muted: #757575;
+        --border: #e0e0e0;
+        --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        padding: 0 16px;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
+      }
+      .topbar-title {
+        font-weight: 600;
+        margin-right: 12px;
+        white-space: nowrap;
+      }
+      .topbar-url {
+        color: var(--text-secondary);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .report {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+      .footer {
+        padding: 16px 0;
+        border-top: 1px solid var(--border);
+        font-size: 11px;
+        color: var(--text-secondary);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .pass {
+        color: var(--pass-text);
+      }
+      .average {
+        color: var(--average-text);
+      }
+      .fail {
+        color: var(--fail-text);
+      }
+      .gauges-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .gauge-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 110px;
+        padding: 10px 6px 8px;
+        text-decoration: none;
+        color: var(--text);
+        border-radius: 8px;
+        transition: background 0.15s;
+      }
+      .gauge-item:hover {
+        background: #f5f5f5;
+      }
+      .gauge-item .gauge {
+        display: block;
+      }
+      .gauge-label {
+        margin-top: 8px;
+        font-size: 11px;
+        font-weight: 500;
+        text-align: center;
+        color: var(--text-secondary);
+        line-height: 1.25;
+      }
+
+      /* Overall score */
+      .overall {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 32px 0 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      .overall-gauge-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+      .overall-gauge-wrap .gauge {
+        display: block;
+        overflow: visible;
+      }
+      .seg-arc {
+        cursor: pointer;
+        transition:
+          stroke-width 0.15s ease,
+          filter 0.15s ease;
+      }
+      .seg-arc:hover {
+        stroke-width: 20;
+        filter: brightness(1.1);
+      }
+
+      /* Segment popovers */
+      .seg-popovers {
+        position: relative;
+        min-height: 36px;
+        display: flex;
+        justify-content: center;
+        margin-top: 4px;
+      }
+      .seg-popover {
+        display: none;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+      .seg-popover-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .seg-popover-name {
+        font-weight: 600;
+      }
+      .seg-popover-score {
+        font-weight: 700;
+      }
+      .seg-popover-pts {
+        color: var(--text-secondary);
+      }
+
+      /* Score scale legend */
+      .score-scale {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 12px;
+        font-size: 11px;
+        color: var(--text-secondary);
+      }
+      .score-scale span::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 4px;
+        vertical-align: middle;
+      }
+      .scale-fail::before {
+        background: var(--fail);
+      }
+      .scale-average::before {
+        background: var(--average);
+      }
+      .scale-pass::before {
+        background: var(--pass);
+      }
+
+      /* Categories */
+      .category {
+        padding: 24px 0 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .category:last-child {
+        border-bottom: none;
+      }
+      .category-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 12px;
+      }
+      .category-title {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .category-title.pass {
+        color: var(--pass-text);
+      }
+      .category-title.average {
+        color: var(--average-text);
+      }
+      .category-title.fail {
+        color: var(--fail-text);
+      }
+      .category-score {
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .category-score.pass {
+        color: var(--pass-text);
+      }
+      .category-score.average {
+        color: var(--average-text);
+      }
+      .category-score.fail {
+        color: var(--fail-text);
+      }
+
+      /* Audit rows */
+      .audit-row {
+        display: flex;
+        align-items: baseline;
+        padding: 8px 0;
+        border-top: 1px solid #f0f0f0;
+        font-size: 13px;
+        gap: 8px;
+      }
+      .audit-icon {
+        width: 18px;
+        flex-shrink: 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .audit-icon.good {
+        color: var(--pass);
+      }
+      .audit-icon.warn {
+        color: var(--average);
+      }
+      .audit-icon.fail {
+        color: var(--fail);
+      }
+      .audit-icon.neutral {
+        color: var(--text-secondary);
+      }
+      .audit-icon.info {
+        color: var(--text-secondary);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        font-style: italic;
+        font-weight: 700;
+        width: 14px;
+        height: 14px;
+        line-height: 14px;
+        font-size: 10px;
+      }
+      .audit-diagnostic {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        color: var(--text-secondary);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        padding: 1px 4px;
+        margin-left: 6px;
+      }
+      .evidence-badge {
+        font-size: 9px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        color: var(--text-secondary);
+        background: #f1f3f4;
+        border-radius: 3px;
+        padding: 2px 5px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      /* Pipeline stages */
+      .stages-section {
+        padding: 24px 0 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .stages-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .stage-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 6px 0;
+        border-top: 1px solid #f0f0f0;
+        font-size: 13px;
+      }
+      .stage-name {
+        font-weight: 500;
+      }
+      .stage-value {
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+      .stage-banner {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 3px;
+        letter-spacing: 0.4px;
+      }
+      .pass-banner {
+        background: #e6f4ea;
+        color: var(--pass-text);
+      }
+      .fail-banner {
+        background: #fce8e6;
+        color: var(--fail-text);
+      }
+      .stage-blockers {
+        color: var(--fail-text);
+        font-size: 12px;
+      }
+      .stage-gate {
+        padding: 4px 0 4px 16px;
+        font-size: 12px;
+        color: var(--average-text);
+      }
+
+      /* Report banners */
+      .report-banner {
+        margin: 12px 0;
+        padding: 10px 14px;
+        border: 1px solid #f4dfa8;
+        border-radius: 8px;
+        background: #fef7e0;
+        font-size: 13px;
+        color: #7a5d00;
+      }
+      .recs-footnote {
+        font-size: 12px;
+        color: var(--text-secondary);
+        padding-top: 10px;
+      }
+      .audit-name {
+        font-weight: 500;
+        min-width: 180px;
+        flex-shrink: 0;
+      }
+      .audit-detail {
+        flex: 1;
+        color: var(--text-secondary);
+      }
+      .audit-score {
+        color: var(--text-secondary);
+        white-space: nowrap;
+        text-align: right;
+        min-width: 44px;
+      }
+
+      /* Recommendations */
+      .recs-section {
+        padding: 24px 0 16px;
+        border-top: 1px solid var(--border);
+      }
+      .recs-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      .rec-group {
+        margin-bottom: 20px;
+      }
+      .rec-group-name {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        color: var(--text-secondary);
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2px;
+      }
+      .rec-row {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        padding: 8px 0;
+        border-bottom: 1px solid #f5f5f5;
+        font-size: 13px;
+      }
+      .rec-tag {
+        font-size: 9px;
+        font-weight: 700;
+        padding: 2px 5px;
+        border-radius: 3px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        letter-spacing: 0.3px;
+      }
+      .priority-high .rec-tag {
+        background: #fce8e6;
+        color: var(--fail-text);
+      }
+      .priority-med .rec-tag {
+        background: #fef7e0;
+        color: var(--average-text);
+      }
+      .priority-low .rec-tag {
+        background: #f1f3f4;
+        color: var(--text-secondary);
+      }
+      .rec-factor {
+        font-weight: 600;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .rec-text {
+        color: var(--text-secondary);
+      }
+      .rec-detail {
+        padding: 8px 0 8px 16px;
+        border-bottom: 1px solid #f5f5f5;
+        font-size: 12px;
+        color: var(--text-secondary);
+      }
+      .rec-steps {
+        margin: 0 0 8px 0;
+        padding-left: 20px;
+      }
+      .rec-steps li {
+        margin-bottom: 3px;
+      }
+      .rec-code {
+        background: #f8f9fa;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 10px 12px;
+        font-size: 11px;
+        overflow-x: auto;
+        margin: 0 0 8px 0;
+        white-space: pre;
+      }
+      .rec-learn-more {
+        font-size: 11px;
+        color: var(--text-secondary);
+        text-decoration: none;
+      }
+      .rec-learn-more:hover {
+        text-decoration: underline;
+      }
+      @media (max-width: 600px) {
+        .report {
+          padding: 0 16px;
+        }
+        .gauges-row {
+          gap: 4px;
+        }
+        .gauge-item {
+          width: 80px;
+          padding: 8px 4px;
+        }
+        .audit-row {
+          flex-wrap: wrap;
+        }
+        .audit-name {
+          min-width: 140px;
+        }
+        .rec-row {
+          flex-wrap: wrap;
+        }
+      }
+      .tldr-card {
+        margin: 16px auto;
+        padding: 20px 24px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: #fafafa;
+        max-width: 720px;
+      }
+      .tldr-headline {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 16px;
+        margin-bottom: 12px;
+      }
+      .tldr-score {
+        font-weight: 600;
+      }
+      .tldr-solid {
+        color: var(--muted);
+      }
+      .tldr-note {
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .tldr-title {
+        font-weight: 600;
+        margin: 8px 0 6px;
+        color: var(--muted);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .tldr-wins {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .tldr-win {
+        display: grid;
+        grid-template-columns: 24px 96px 1fr auto;
+        gap: 10px;
+        align-items: baseline;
+        padding: 4px 0;
+        font-size: 14px;
+      }
+      .tldr-rank {
+        color: var(--muted);
+        text-align: right;
+      }
+      .tldr-gain {
+        color: #006633;
+        font-weight: 600;
+      }
+      .tldr-factor {
+        font-weight: 500;
+      }
+      .tldr-category {
+        color: var(--muted);
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <span class="topbar-title">AI SEO Audit</span>
+      <span class="topbar-url">http://127.0.0.1:4176</span>
+    </div>
+
+    <div class="report">
+      <!-- diff-slot -->
+      <div class="tldr-card">
+        <div class="tldr-headline">
+          <span class="tldr-score">74/100 (C)</span>
+        </div>
+        <div class="tldr-title">Top fixes</div>
+        <ol class="tldr-wins">
+          <li class="tldr-win">
+            <span class="tldr-rank">1</span><span class="tldr-gain">13 audit pts</span
+            ><span class="tldr-factor">Citation Patterns</span
+            ><span class="tldr-category">Grounding Signals</span>
+          </li>
+          <li class="tldr-win">
+            <span class="tldr-rank">2</span><span class="tldr-gain">11 audit pts</span
+            ><span class="tldr-factor">Attribution Indicators</span
+            ><span class="tldr-category">Grounding Signals</span>
+          </li>
+          <li class="tldr-win">
+            <span class="tldr-rank">3</span><span class="tldr-gain">10 audit pts</span
+            ><span class="tldr-factor">Author Attribution</span
+            ><span class="tldr-category">Authority Context</span>
+          </li>
+        </ol>
+        <div class="tldr-note">
+          Audit points are internal audit weights, not additive citation-probability gains. Apply
+          the top items, then re-measure.
+        </div>
+      </div>
+
+      <div class="gauges-row">
+        <a class="gauge-item" href="#cat-content-extractability">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#00cc66"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="14.074335088082286"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#008800"
+            >
+              96
+            </text>
+          </svg>
+          <span class="gauge-label">Content Extractability</span> </a
+        ><a class="gauge-item" href="#cat-structural-alignment">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="49.26017280828796"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#ffaa33"
+            >
+              86
+            </text>
+          </svg>
+          <span class="gauge-label">Structural Alignment</span> </a
+        ><a class="gauge-item" href="#cat-content-structure-for-reuse">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="95.00176184455535"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#ffaa33"
+            >
+              73
+            </text>
+          </svg>
+          <span class="gauge-label">Content Structure for Reuse</span> </a
+        ><a class="gauge-item" href="#cat-answerability">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ff3333"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="207.59644254921355"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#cc0000"
+            >
+              41
+            </text>
+          </svg>
+          <span class="gauge-label">Answerability</span> </a
+        ><a class="gauge-item" href="#cat-entity-clarity">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="38.704421492226246"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#ffaa33"
+            >
+              89
+            </text>
+          </svg>
+          <span class="gauge-label">Entity Clarity</span> </a
+        ><a class="gauge-item" href="#cat-grounding-signals">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ff3333"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="228.70794518133695"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#cc0000"
+            >
+              35
+            </text>
+          </svg>
+          <span class="gauge-label">Grounding Signals</span> </a
+        ><a class="gauge-item" href="#cat-authority-context">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="147.78051842486389"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#ffaa33"
+            >
+              58
+            </text>
+          </svg>
+          <span class="gauge-label">Authority Context</span> </a
+        ><a class="gauge-item" href="#cat-readability-for-compression">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#00cc66"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="0"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#008800"
+            >
+              100
+            </text>
+          </svg>
+          <span class="gauge-label">Readability for Compression</span> </a
+        ><a class="gauge-item" href="#cat-query-alignment">
+          <svg class="gauge" viewBox="0 0 120 120" width="64" height="64">
+            <circle cx="60" cy="60" r="56" fill="none" stroke="#e0e0e0" stroke-width="7" />
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#00cc66"
+              stroke-width="7"
+              stroke-dasharray="351.85837720205683"
+              stroke-dashoffset="35.185837720205676"
+              stroke-linecap="round"
+              transform="rotate(-90 60 60)"
+            />
+            <text
+              x="60"
+              y="67.7"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="700"
+              fill="#008800"
+            >
+              90
+            </text>
+          </svg>
+          <span class="gauge-label">Query Alignment</span>
+        </a>
+      </div>
+
+      <div class="overall">
+        <div class="overall-gauge-wrap">
+          <svg class="gauge" viewBox="0 0 190 190" width="190" height="190">
+            <circle cx="95" cy="95" r="80" fill="none" stroke="#e8e8e8" stroke-width="14" />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#00cc66"
+              stroke-width="14"
+              stroke-dasharray="66.34 436.31"
+              stroke-dashoffset="125.66"
+              class="seg-arc"
+              data-idx="0"
+              onmouseenter="document.getElementById('seg-pop-0').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-0').style.display = 'none'"
+            />
+            <line
+              x1="148.09"
+              y1="46.37"
+              x2="159.89"
+              y2="35.56"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="14"
+              stroke-dasharray="39.55 463.11"
+              stroke-dashoffset="59.32"
+              class="seg-arc"
+              data-idx="1"
+              onmouseenter="document.getElementById('seg-pop-1').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-1').style.display = 'none'"
+            />
+            <line
+              x1="164.81"
+              y1="77.38"
+              x2="180.33"
+              y2="73.47"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="14"
+              stroke-dasharray="10.21 492.45"
+              stroke-dashoffset="19.77"
+              class="seg-arc"
+              data-idx="2"
+              onmouseenter="document.getElementById('seg-pop-2').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-2').style.display = 'none'"
+            />
+            <line
+              x1="166.49"
+              y1="86.41"
+              x2="182.37"
+              y2="84.50"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ff3333"
+              stroke-width="14"
+              stroke-dasharray="33.17 469.48"
+              stroke-dashoffset="9.57"
+              class="seg-arc"
+              data-idx="3"
+              onmouseenter="document.getElementById('seg-pop-3').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-3').style.display = 'none'"
+            />
+            <line
+              x1="163.89"
+              y1="115.93"
+              x2="179.20"
+              y2="120.59"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="14"
+              stroke-dasharray="43.38 459.28"
+              stroke-dashoffset="-23.60"
+              class="seg-arc"
+              data-idx="4"
+              onmouseenter="document.getElementById('seg-pop-4').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-4').style.display = 'none'"
+            />
+            <line
+              x1="143.21"
+              y1="148.48"
+              x2="153.92"
+              y2="160.37"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ff3333"
+              stroke-width="14"
+              stroke-dasharray="26.79 475.86"
+              stroke-dashoffset="-66.98"
+              class="seg-arc"
+              data-idx="5"
+              onmouseenter="document.getElementById('seg-pop-5').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-5').style.display = 'none'"
+            />
+            <line
+              x1="122.95"
+              y1="161.35"
+              x2="129.16"
+              y2="176.10"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#ffaa33"
+              stroke-width="14"
+              stroke-dasharray="45.93 456.73"
+              stroke-dashoffset="-93.77"
+              class="seg-arc"
+              data-idx="6"
+              onmouseenter="document.getElementById('seg-pop-6').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-6').style.display = 'none'"
+            />
+            <line
+              x1="82.43"
+              y1="165.90"
+              x2="79.64"
+              y2="181.65"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#00cc66"
+              stroke-width="14"
+              stroke-dasharray="38.27 464.38"
+              stroke-dashoffset="-139.70"
+              class="seg-arc"
+              data-idx="7"
+              onmouseenter="document.getElementById('seg-pop-7').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-7').style.display = 'none'"
+            />
+            <line
+              x1="51.21"
+              y1="152.15"
+              x2="41.48"
+              y2="164.85"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <circle
+              cx="95"
+              cy="95"
+              r="80"
+              fill="none"
+              stroke="#00cc66"
+              stroke-width="14"
+              stroke-dasharray="45.93 456.73"
+              stroke-dashoffset="-177.97"
+              class="seg-arc"
+              data-idx="8"
+              onmouseenter="document.getElementById('seg-pop-8').style.display = 'flex'"
+              onmouseleave="document.getElementById('seg-pop-8').style.display = 'none'"
+            />
+            <line
+              x1="27.19"
+              y1="119.21"
+              x2="12.12"
+              y2="124.58"
+              stroke="#fff"
+              stroke-width="2"
+              pointer-events="none"
+            />
+            <text
+              x="95"
+              y="87"
+              text-anchor="middle"
+              font-size="40"
+              font-weight="700"
+              fill="#ffaa33"
+            >
+              74
+            </text>
+            <text
+              x="95"
+              y="109"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="600"
+              fill="#ffaa33"
+            >
+              C
+            </text>
+            <text x="95" y="125" text-anchor="middle" font-size="11" fill="#999">274/394 pts</text>
+          </svg>
+          <div class="seg-popovers">
+            <div id="seg-pop-0" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #00cc66"></span>
+              <span class="seg-popover-name">Content Extractability</span>
+              <span class="seg-popover-score">96%</span>
+              <span class="seg-popover-pts">52/54 pts</span>
+            </div>
+            <div id="seg-pop-1" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ffaa33"></span>
+              <span class="seg-popover-name">Structural Alignment</span>
+              <span class="seg-popover-score">86%</span>
+              <span class="seg-popover-pts">31/36 pts</span>
+            </div>
+            <div id="seg-pop-2" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ffaa33"></span>
+              <span class="seg-popover-name">Content Structure for Reuse</span>
+              <span class="seg-popover-score">73%</span>
+              <span class="seg-popover-pts">8/11 pts</span>
+            </div>
+            <div id="seg-pop-3" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ff3333"></span>
+              <span class="seg-popover-name">Answerability</span>
+              <span class="seg-popover-score">41%</span>
+              <span class="seg-popover-pts">26/63 pts</span>
+            </div>
+            <div id="seg-pop-4" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ffaa33"></span>
+              <span class="seg-popover-name">Entity Clarity</span>
+              <span class="seg-popover-score">89%</span>
+              <span class="seg-popover-pts">34/38 pts</span>
+            </div>
+            <div id="seg-pop-5" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ff3333"></span>
+              <span class="seg-popover-name">Grounding Signals</span>
+              <span class="seg-popover-score">35%</span>
+              <span class="seg-popover-pts">21/60 pts</span>
+            </div>
+            <div id="seg-pop-6" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #ffaa33"></span>
+              <span class="seg-popover-name">Authority Context</span>
+              <span class="seg-popover-score">58%</span>
+              <span class="seg-popover-pts">36/62 pts</span>
+            </div>
+            <div id="seg-pop-7" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #00cc66"></span>
+              <span class="seg-popover-name">Readability for Compression</span>
+              <span class="seg-popover-score">100%</span>
+              <span class="seg-popover-pts">30/30 pts</span>
+            </div>
+            <div id="seg-pop-8" class="seg-popover">
+              <span class="seg-popover-dot" style="background: #00cc66"></span>
+              <span class="seg-popover-name">Query Alignment</span>
+              <span class="seg-popover-score">90%</span>
+              <span class="seg-popover-pts">36/40 pts</span>
+            </div>
+          </div>
+          <div class="score-scale">
+            <span class="scale-fail">0-49</span>
+            <span class="scale-average">50-89</span>
+            <span class="scale-pass">90-100</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stages-section">
+        <div class="stages-title">Pipeline Stages</div>
+        <div class="stage-row">
+          <span class="stage-name">Technical Eligibility</span>
+          <span class="stage-value"><span class="stage-banner pass-banner">PASS</span> 96%</span>
+        </div>
+        <div class="stage-row">
+          <span class="stage-name">Retrieval Alignment</span>
+          <span class="stage-value">87%</span>
+        </div>
+        <div class="stage-row">
+          <span class="stage-name">Citation Fitness</span>
+          <span class="stage-value">52%</span>
+        </div>
+
+        <div class="stage-row">
+          <span class="stage-name">Provenance</span>
+          <span class="stage-value">33%</span>
+        </div>
+      </div>
+
+      <div class="category" id="cat-content-extractability">
+        <div class="category-header">
+          <div class="category-title pass">Content Extractability</div>
+          <div class="category-score pass">96%</div>
+        </div>
+        <div class="audits">
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Fetch Success</span>
+            <span class="audit-detail">HTTP 200 in 12ms</span>
+            <span class="evidence-badge">supported</span>
+            <span class="audit-score">12/12</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Text Extraction Quality</span>
+            <span class="audit-detail">28.8% content ratio</span>
+            <span class="evidence-badge">supported</span>
+            <span class="audit-score">10/12</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Boilerplate Ratio</span>
+            <span class="audit-detail">4% boilerplate</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">12/12</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Paywall Signals</span>
+            <span class="audit-detail">No paywall or login barriers detected</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">8/8</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">AI Crawler Access</span>
+            <span class="audit-detail">All major AI crawlers allowed</span>
+            <span class="evidence-badge">supported</span>
+            <span class="audit-score">10/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Word Count Adequacy</span>
+            <span class="audit-detail"
+              >503 words <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">LLMs.txt Presence</span>
+            <span class="audit-detail"
+              >Not found (experimental standard, no outcome evidence)
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">experimental</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Image Accessibility</span>
+            <span class="audit-detail"
+              >No images found <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+        </div>
+      </div>
+      <div class="category" id="cat-structural-alignment">
+        <div class="category-header">
+          <div class="category-title average">Structural Alignment</div>
+          <div class="category-score average">86%</div>
+        </div>
+        <div class="audits">
+          <div class="audit-row">
+            <span class="audit-icon warn">&#9650;</span>
+            <span class="audit-name">Title Entity Alignment</span>
+            <span class="audit-detail">59% of the body&#39;s key terms appear in the title</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">7/12</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Meta Description Alignment</span>
+            <span class="audit-detail"
+              >65% of the body&#39;s key terms appear in the meta description</span
+            >
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">8/8</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Heading Entity Alignment</span>
+            <span class="audit-detail">71% of the body&#39;s key terms appear in the headings</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">10/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Structured Data Alignment</span>
+            <span class="audit-detail"
+              >65% of the body&#39;s key terms appear in the JSON-LD fields</span
+            >
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">6/6</span>
+          </div>
+        </div>
+      </div>
+      <div class="category" id="cat-content-structure-for-reuse">
+        <div class="category-header">
+          <div class="category-title average">Content Structure for Reuse</div>
+          <div class="category-score average">73%</div>
+        </div>
+        <div class="audits">
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Heading Hierarchy</span>
+            <span class="audit-detail">1 H1, 7 H2, 0 H3</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">8/11</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Lists Presence</span>
+            <span class="audit-detail"
+              >0 list items <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Tables Presence</span>
+            <span class="audit-detail"
+              >0 table(s) <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Paragraph Structure</span>
+            <span class="audit-detail"
+              >21 paragraphs, avg 24 words
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Scannability</span>
+            <span class="audit-detail"
+              >Bold text found, 0.38 heading ratio
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Section Length</span>
+            <span class="audit-detail"
+              >8 sections, avg 49 words
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+        </div>
+      </div>
+      <div class="category" id="cat-answerability">
+        <div class="category-header">
+          <div class="category-title fail">Answerability</div>
+          <div class="category-score fail">41%</div>
+        </div>
+        <div class="audits">
+          <div class="audit-row">
+            <span class="audit-icon warn">&#9650;</span>
+            <span class="audit-name">Lead Summary</span>
+            <span class="audit-detail">intro paragraph under H1</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">5/13</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon fail">&#10007;</span>
+            <span class="audit-name">Definition Patterns</span>
+            <span class="audit-detail">0 definition patterns</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">0/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon warn">&#9650;</span>
+            <span class="audit-name">Direct Answer Statements</span>
+            <span class="audit-detail">1 direct statements</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">4/11</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Step-by-Step Content</span>
+            <span class="audit-detail">0 step indicators, 13 instruction verbs</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">10/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon fail">&#10007;</span>
+            <span class="audit-name">Summary/Conclusion</span>
+            <span class="audit-detail">No summary markers</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">0/9</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Explanatory Depth</span>
+            <span class="audit-detail">0 explanatory markers, 4 how/why headings</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">7/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Answer Capsules</span>
+            <span class="audit-detail"
+              >4/4 question headings have answer capsules
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Q/A Patterns</span>
+            <span class="audit-detail"
+              >6 questions, 1 query patterns
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+        </div>
+      </div>
+      <div class="category" id="cat-entity-clarity">
+        <div class="category-header">
+          <div class="category-title average">Entity Clarity</div>
+          <div class="category-score average">89%</div>
+        </div>
+        <div class="audits">
+          <div class="audit-row">
+            <span class="audit-icon warn">&#9650;</span>
+            <span class="audit-name">Entity Richness</span>
+            <span class="audit-detail">7 entities (0 people, 6 orgs, 1 places)</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">8/12</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Topic Consistency</span>
+            <span class="audit-detail">4/7 title keywords align with content topics</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">18/18</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Term Repetition Balance</span>
+            <span class="audit-detail">&quot;ES&quot; fills 0.2% of the text</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">8/8</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Pronoun Ambiguity</span>
+            <span class="audit-detail"
+              >0 of 7 substantial paragraphs open with a pronoun subject
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+        </div>
+      </div>
+      <div class="category" id="cat-grounding-signals">
+        <div class="category-header">
+          <div class="category-title fail">Grounding Signals</div>
+          <div class="category-score fail">35%</div>
+        </div>
+        <div class="audits">
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">External References</span>
+            <span class="audit-detail">17 external links</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">13/13</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon fail">&#10007;</span>
+            <span class="audit-name">Citation Patterns</span>
+            <span class="audit-detail">0 citation indicators, 0 quote elements</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">0/13</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon warn">&#9650;</span>
+            <span class="audit-name">Numeric Claims</span>
+            <span class="audit-detail">0 statistical references, 2 written-out numbers</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">5/13</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon fail">&#10007;</span>
+            <span class="audit-name">Attribution Indicators</span>
+            <span class="audit-detail">0 attribution patterns</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">0/11</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon neutral">&#8212;</span>
+            <span class="audit-name">Quoted Attribution</span>
+            <span class="audit-detail">0 attributed quotes</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">0/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon warn">&#9650;</span>
+            <span class="audit-name">Hedged Language</span>
+            <span class="audit-detail">9 of 46 sentences hedge (19.6%)</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">3/10</span>
+          </div>
+        </div>
+      </div>
+      <div class="category" id="cat-authority-context">
+        <div class="category-header">
+          <div class="category-title average">Authority Context</div>
+          <div class="category-score average">58%</div>
+        </div>
+        <div class="audits">
+          <div class="audit-row">
+            <span class="audit-icon fail">&#10007;</span>
+            <span class="audit-name">Author Attribution</span>
+            <span class="audit-detail">Not found</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">0/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Organization Identity</span>
+            <span class="audit-detail">Jev recipes</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">10/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon fail">&#10007;</span>
+            <span class="audit-name">Contact/About Links</span>
+            <span class="audit-detail">Not found</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">0/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon neutral">&#8212;</span>
+            <span class="audit-name">Content Freshness</span>
+            <span class="audit-detail">Evergreen topic, freshness not applicable</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">0/12</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Structured Data</span>
+            <span class="audit-detail"
+              >Organization, WebSite, WebPage, SoftwareSourceCode, 3/4 OG tags, canonical</span
+            >
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">12/12</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Schema Completeness</span>
+            <span class="audit-detail">2 schema types, 100% complete</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">10/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon warn">&#9650;</span>
+            <span class="audit-name">Entity Consistency</span>
+            <span class="audit-detail">&quot;Jev recipes&quot; found in 2/4 surfaces</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">4/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Date Markup</span>
+            <span class="audit-detail"
+              >No machine-readable date markup
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Topic Time Sensitivity</span>
+            <span class="audit-detail"
+              >Evergreen topic, freshness not scored
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Promotional Language</span>
+            <span class="audit-detail"
+              >0 promotional phrases and 0 exclamations per 1,000 words
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Affiliate Link Density</span>
+            <span class="audit-detail"
+              >0% of external links carry affiliate markers
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Ad Slot Markers</span>
+            <span class="audit-detail"
+              >0 ad slot elements in the DOM
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Site Type</span>
+            <span class="audit-detail"
+              >No forum or user-generated content signals
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+        </div>
+      </div>
+      <div class="category" id="cat-readability-for-compression">
+        <div class="category-header">
+          <div class="category-title pass">Readability for Compression</div>
+          <div class="category-score pass">100%</div>
+        </div>
+        <div class="audits">
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Sentence Length</span>
+            <span class="audit-detail">Avg 11 words/sentence</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">10/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Readability</span>
+            <span class="audit-detail">Flesch Reading Ease: 44.9</span>
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">10/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Jargon Density</span>
+            <span class="audit-detail">6.8% complex words</span>
+            <span class="evidence-badge">conditional</span>
+            <span class="audit-score">10/10</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon info">i</span>
+            <span class="audit-name">Transition Usage</span>
+            <span class="audit-detail"
+              >0 transition types found
+              <span class="audit-diagnostic">unscored diagnostic</span></span
+            >
+            <span class="evidence-badge">diagnostic</span>
+            <span class="audit-score"></span>
+          </div>
+        </div>
+      </div>
+      <div class="category" id="cat-query-alignment">
+        <div class="category-header">
+          <div class="category-title pass">Query Alignment</div>
+          <div class="category-score pass">90%</div>
+        </div>
+        <div class="audits">
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Query Term Coverage (Structural)</span>
+            <span class="audit-detail"
+              >Weakest query &quot;What is Jev recipes?&quot; at 100% coverage in title, meta
+              description, headings, and JSON-LD; 5 of 5 queries adequately served</span
+            >
+            <span class="evidence-badge">supported</span>
+            <span class="audit-score">15/15</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon good">&#10003;</span>
+            <span class="audit-name">Query Term Coverage (Body)</span>
+            <span class="audit-detail"
+              >Weakest query &quot;What is Jev recipes?&quot; at 100% coverage in body content; 5 of
+              5 queries adequately served</span
+            >
+            <span class="evidence-badge">supported</span>
+            <span class="audit-score">15/15</span>
+          </div>
+          <div class="audit-row">
+            <span class="audit-icon warn">&#9650;</span>
+            <span class="audit-name">Query Aspect Coverage</span>
+            <span class="audit-detail"
+              >Weakest query &quot;How do I use Jev recipes in TypeScript?&quot; has 2 of 3 aspects
+              addressed by a dedicated section</span
+            >
+            <span class="evidence-badge">heuristic</span>
+            <span class="audit-score">6/10</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="recs-section">
+        <div class="recs-title">Recommendations</div>
+        <div class="rec-group">
+          <div class="rec-group-name">Grounding Signals</div>
+          <div class="rec-row priority-high">
+            <span class="rec-tag">HIGH</span>
+            <span class="rec-factor">Attribution Indicators</span>
+            <span class="rec-text"
+              >Attribute claims to specific sources or experts. Phrases like &quot;according
+              to&quot; help AI engines trace information.</span
+            >
+          </div>
+          <div class="rec-detail">
+            <ol class="rec-steps">
+              <li>Identify factual claims that currently have no source</li>
+              <li>
+                Prepend &#39;According to [Source]&#39; or &#39;Per [Organization]&#39; before each
+                claim
+              </li>
+              <li>
+                Link the source name to its original URL so AI engines can follow the reference
+              </li>
+              <li>
+                Add a citation marker (e.g., [1]) for formal references tied to a sources section
+              </li>
+            </ol>
+            <pre class="rec-code"><code>&lt;!-- Before: unattributed claim --&gt;
+&lt;p&gt;Formatting alone showed no causal citation effect; give each real sub-question a specific answer.&lt;/p&gt;
+
+&lt;!-- After: attributed with a link --&gt;
+&lt;p&gt;According to &lt;a href=&quot;https://arxiv.org/abs/2506.11097&quot;&gt;C-SEO Bench (NeurIPS 2025)&lt;/a&gt;,
+context position dominated every content rewriting method tested.&lt;/p&gt;</code></pre>
+          </div>
+          <div class="rec-row priority-high">
+            <span class="rec-tag">HIGH</span>
+            <span class="rec-factor">Citation Patterns</span>
+            <span class="rec-text"
+              >Use formal citation patterns (e.g., [1], &quot;according to&quot;) when referencing
+              sources.</span
+            >
+          </div>
+          <div class="rec-detail">
+            <ol class="rec-steps">
+              <li>Add in-text citation markers like [1] or (Author, Year) after specific claims</li>
+              <li>
+                Include a &#39;References&#39; or &#39;Sources&#39; section at the bottom of the
+                page
+              </li>
+              <li>
+                Use &lt;cite&gt; elements around titles of books, articles, or research papers
+              </li>
+              <li>Link each citation marker to its corresponding reference entry</li>
+            </ol>
+            <pre class="rec-code"><code>&lt;!-- In-text citation with marker --&gt;
+&lt;p&gt;Structural fields raised retrieval hit rate by 22% in end-to-end tests &lt;a href=&quot;#ref-1&quot;&gt;[1]&lt;/a&gt;.&lt;/p&gt;
+
+&lt;!-- Cited title --&gt;
+&lt;p&gt;As described in &lt;cite&gt;Generative Engine Optimization&lt;/cite&gt;, answer density is key.&lt;/p&gt;
+
+&lt;!-- References section --&gt;
+&lt;section&gt;
+  &lt;h2&gt;References&lt;/h2&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;ref-1&quot;&gt;
+      &lt;cite&gt;&lt;a href=&quot;https://arxiv.org/abs/2311.09735&quot;&gt;Generative Engine Optimization (GEO)&lt;/a&gt;&lt;/cite&gt;
+      - Aggarwal et al., Princeton University, 2023
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/section&gt;</code></pre>
+          </div>
+        </div>
+        <div class="rec-group">
+          <div class="rec-group-name">Authority Context</div>
+          <div class="rec-row priority-high">
+            <span class="rec-tag">HIGH</span>
+            <span class="rec-factor">Author Attribution</span>
+            <span class="rec-text"
+              >Add visible author information with a byline to establish content credibility and
+              enable AI attribution.</span
+            >
+          </div>
+          <div class="rec-detail">
+            <ol class="rec-steps">
+              <li>Add a visible byline near the top of the article (after the H1)</li>
+              <li>Link the author name to an about/bio page using rel=&quot;author&quot;</li>
+              <li>Add author information to your JSON-LD schema (see code example)</li>
+            </ol>
+            <pre class="rec-code"><code>&lt;!-- Add a visible byline --&gt;
+&lt;p class=&quot;byline&quot;&gt;By &lt;a href=&quot;/about/author-name&quot; rel=&quot;author&quot;&gt;Author Name&lt;/a&gt;&lt;/p&gt;
+
+&lt;!-- Add to your JSON-LD schema --&gt;
+&quot;author&quot;: {
+  &quot;@type&quot;: &quot;Person&quot;,
+  &quot;name&quot;: &quot;Author Name&quot;,
+  &quot;url&quot;: &quot;https://yoursite.com/about/author-name&quot;
+}</code></pre>
+            <a
+              class="rec-learn-more"
+              href="https://schema.org/author"
+              target="_blank"
+              rel="noopener"
+              >Learn more &rarr;</a
+            >
+          </div>
+        </div>
+        <div class="recs-footnote">11 more in JSON output</div>
+        <div class="recs-footnote">
+          Apply the top items and re-measure before continuing - gains do not stack additively, and
+          each addition competes for the same content budget.
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>Generated by aiseo-audit v2.0.2</span>
+        <span>2026-09-28T05:27:21.685Z &middot; 150ms</span>
+        <span>Domain signals checked at: <code>http://127.0.0.1:4176</code></span>
+        <span style="color: #e8a735; margin-top: 4px"
+          >Note: Audited over HTTP. Domain signals (robots.txt, llms.txt) may differ in
+          production.</span
+        >
+      </div>
+    </div>
+  </body>
+</html>

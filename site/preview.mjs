@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { readFile } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -13,13 +13,24 @@ const types = {
   '.css': 'text/css',
   '.json': 'application/json',
   '.md': 'text/plain',
+  '.txt': 'text/plain',
+  '.xml': 'application/xml',
 };
 createServer(async (request, response) => {
   try {
-    const path = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
-    const file = resolve(root, '.' + (path === '/' ? '/index.html' : path));
-    if (!file.startsWith(root.endsWith(sep) ? root : root + sep))
+    const url = new URL(request.url, 'http://localhost');
+    const path = decodeURIComponent(url.pathname);
+    let file = resolve(root, '.' + path);
+    if (file !== resolve(root) && !file.startsWith(root.endsWith(sep) ? root : root + sep))
       throw new Error('Outside preview root');
+    if ((await stat(file)).isDirectory()) {
+      if (!url.pathname.endsWith('/')) {
+        response.writeHead(308, { location: `${url.pathname}/${url.search}` });
+        response.end();
+        return;
+      }
+      file = resolve(file, 'index.html');
+    }
     const content = await readFile(file);
     response.writeHead(200, {
       'content-type': `${types[extname(file)] ?? 'application/octet-stream'}; charset=utf-8`,

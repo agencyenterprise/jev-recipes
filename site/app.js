@@ -1,4 +1,5 @@
 import { searchRecipes } from './search.js';
+import { renderEvidence, evidenceLabel, resultFields, schemaType, escapeHtml } from './render.js';
 
 const search = document.querySelector('#search');
 const collection = document.querySelector('#collection');
@@ -8,7 +9,8 @@ const inspector = document.querySelector('#inspector');
 const count = document.querySelector('#result-count');
 const details = new Map();
 let recipes = [];
-let selectedId = location.hash.slice(1) || 'route';
+const isPageAnchor = (id) => Boolean(id && document.getElementById(id));
+let selectedId = isPageAnchor(location.hash.slice(1)) ? 'route' : location.hash.slice(1) || 'route';
 let selectionRequest = 0;
 
 try {
@@ -22,7 +24,10 @@ try {
 
 for (const control of [search, collection, evidence])
   control.addEventListener('input', renderResults);
-window.addEventListener('hashchange', () => selectRecipe(location.hash.slice(1) || 'route'));
+window.addEventListener('hashchange', () => {
+  const id = location.hash.slice(1);
+  if (!isPageAnchor(id)) selectRecipe(id || 'route');
+});
 
 function renderResults() {
   const matches = searchRecipes(recipes, { query: search.value }).filter(
@@ -97,6 +102,7 @@ function renderInspector(recipe) {
         : null;
   inspector.innerHTML = `
     <div class="recipe-heading"><h2>${escapeHtml(recipe.title)}</h2><a href="https://github.com/agencyenterprise/jev-recipes/tree/main/recipes/${recipe.id}" class="note">View source</a></div>
+    <p><a href="./recipes/${recipe.id}/">Open recipe guide</a></p>
     <p class="purpose">${escapeHtml(recipe.useWhen)}</p>
     <div class="import-line">import { ${recipe.functionName} } from 'jev-recipes/${recipe.id}';</div>
     ${renderEvidence(recipe)}
@@ -153,60 +159,6 @@ function renderInspector(recipe) {
     });
 }
 
-function renderEvidence(recipe) {
-  const report = recipe.report;
-  if (!report || !recipe.evidenceDetails.measurement)
-    return `<section class="evidence-panel" aria-label="Evaluation evidence"><strong>${escapeHtml(recipe.evidenceDetails.label)}</strong><p>No verified live accuracy measurement is available. Evaluate representative cases before using this decision in your workflow.</p></section>`;
-  const current = recipe.evidence === 'measured';
-  const sample =
-    report.evidence?.split === 'held-out'
-      ? 'held-out'
-      : report.evidence?.split === 'development'
-        ? 'development'
-        : 'saved';
-  const interval = report.accuracyInterval95?.map(percent).join(' to ');
-  return `<section class="evidence-panel" aria-label="Evaluation evidence"><strong>${escapeHtml(recipe.evidenceDetails.label)}</strong>
-    <p>${escapeHtml(report.model)}${report.evidence?.evaluatedAt ? ' / ' + escapeHtml(report.evidence.evaluatedAt.slice(0, 10)) : ''} / ${report.cases} ${sample} cases</p>
-    <p>Scoring revision ${recipe.evidenceDetails.measurement.scoringRevision}.${recipe.evidenceDetails.measurement.replayedAt ? ' Replayed ' + escapeHtml(recipe.evidenceDetails.measurement.replayedAt) + '; measurements retain the original response date.' : ''}</p>
-    <div class="metrics"><div class="metric"><span>${percent(report.accuracy)}</span><small>All-case accuracy</small></div><div class="metric"><span>${report.review ?? 'n/a'}</span><small>Sent for review</small></div><div class="metric"><span>${report.failed ?? 'n/a'}</span><small>Failed calls / cases</small></div></div>
-    ${report.ready !== undefined ? `<p>${report.ready} ready decisions, with ${percent(report.readyAccuracy)} accuracy among those decisions.</p>` : ''}
-    ${interval ? `<p>95% case-level interval: ${interval}. Related synthetic cases are correlated.</p>` : ''}
-    ${report.acceptance ? `<p class="${report.acceptance.met ? '' : 'warning'}">${escapeHtml(report.acceptance.label)}</p>` : ''}
-    <p>${current ? 'This measures the recorded dataset, not general readiness. Label sources: ' + escapeHtml(recipe.evidenceDetails.measurement.provenance.map((item) => item.method + ': ' + item.source).join('; ')) : 'The recorded recipe version is different or unknown. Rerun the current recipe before treating these numbers as current.'}</p>
-    <div class="links"><a href="./reports/${recipe.id}.json">Full report and misses</a><a href="https://github.com/agencyenterprise/jev-recipes/tree/main/evals/${recipe.id}">Dataset and labels</a></div></section>`;
-}
-
-function evidenceLabel(recipe) {
-  return escapeHtml(
-    `${recipe.evidenceDetails.experimental ? 'Experimental / ' : ''}${recipe.evidenceDetails.label}`,
-  );
-}
-
-function resultFields(schema) {
-  return [
-    ...new Set([
-      ...Object.keys(schema.properties ?? {}),
-      ...(schema.anyOf ?? []).flatMap(resultFields),
-    ]),
-  ];
-}
-
-function schemaType(schema) {
-  if (schema.enum) return schema.enum.join(' | ');
-  if (schema.anyOf) return schema.anyOf.map(schemaType).join(' | ');
-  return Array.isArray(schema.type) ? schema.type.join(' | ') : (schema.type ?? 'value');
-}
-
-function percent(value) {
-  return value === null || value === undefined ? 'n/a' : `${Math.round(value * 100)}%`;
-}
-function escapeHtml(value) {
-  return String(value ?? '').replace(
-    /[&<>"']/g,
-    (character) =>
-      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character],
-  );
-}
 async function fetchJson(url) {
   const response = await fetch(url);
   if (!response.ok) throw new Error('Unable to load catalog data.');
