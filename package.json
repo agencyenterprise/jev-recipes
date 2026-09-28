@@ -1067,7 +1067,7 @@
     "test:coverage": "vitest run --coverage",
     "eval:featured": "node --env-file-if-exists=.env evals/featured.mjs",
     "site:build": "npm run generate:check && npm run build && node site/build.mjs",
-    "site:preview": "node site/preview.mjs"
+    "site:preview": "node --env-file-if-exists=.env site/preview.mjs"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0",
