@@ -19,7 +19,22 @@ export async function evaluateInBatches<Input, Item>(
   const chunks: { chunk: Input[]; offset: number }[] = [];
   for (let offset = 0; offset < items.length; offset += batchSize)
     chunks.push({ chunk: items.slice(offset, offset + batchSize), offset });
-  const evaluations = await Promise.all(chunks.map(({ chunk, offset }) => evaluate(chunk, offset)));
+  let firstFailure: { error: unknown } | undefined;
+  const settled = await Promise.allSettled(
+    chunks.map(async ({ chunk, offset }) => {
+      try {
+        return await evaluate(chunk, offset);
+      } catch (error) {
+        firstFailure ??= { error };
+        throw error;
+      }
+    }),
+  );
+  // Let request recorders finish before a caller archives this failed batch.
+  if (firstFailure) throw firstFailure.error;
+  const evaluations = settled.flatMap((result) =>
+    result.status === 'fulfilled' ? [result.value] : [],
+  );
   return {
     items: evaluations.flatMap((evaluation) => evaluation.items),
     model: evaluations[0]?.model ?? 'none',

@@ -4,6 +4,7 @@ import { summarizeEvidence } from '../../scripts/lib/evidence.mjs';
 import { listRecipes } from '../../dist/catalog/index.js';
 import { recipeFingerprint } from '../../dist/evaluation/dataset.js';
 import { readFile } from 'node:fs/promises';
+import { renderMeasuredAccuracy } from '../../scripts/lib/docs.mjs';
 
 const report = {
   model: 'fixture-model',
@@ -14,6 +15,7 @@ const report = {
   failed: 0,
   evidence: {
     mode: 'live',
+    scoringRevision: 2,
     recipeFingerprint: 'current',
     evaluatedAt: '2026-09-27',
     split: 'held-out',
@@ -67,5 +69,17 @@ test('catalog evidence agrees with the installed evaluator fingerprint and recor
       summarizeEvidence(saved, await recipeFingerprint(recipe.id)),
       recipe.id,
     );
+  }
+});
+
+test('fixture and unknown replay reports never render an accuracy measurement in guides', () => {
+  const guide = '<!-- BEGIN GENERATED: accuracy -->\nold\n<!-- END GENERATED: accuracy -->';
+  for (const sourceMode of ['fixture', 'unknown']) {
+    const replayed = { ...report, evidence: { ...report.evidence, mode: 'replay', sourceMode } };
+    const summary = summarizeEvidence(replayed, 'current');
+    assert.equal(summary.measurement, null);
+    const rendered = renderMeasuredAccuracy('route', guide, replayed, summary);
+    assert.match(rendered, /No verified live measurement/);
+    assert.doesNotMatch(rendered, /Measured on|90%/);
   }
 });

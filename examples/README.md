@@ -4,7 +4,7 @@ Made a game, music app, developer tool, or something unexpected with jev-recipes
 
 ## Explore the examples
 
-- [Support routing](support-routing/README.md): a shared workflow, Next.js starter, and archived rules/Jev/fallback comparison.
+- [Support routing](support-routing/README.md): a portable conversation starter that asks for missing information, resumes with an answer, and proposes a queue or human review.
 - [Jevthoven](jevthoven/README.md): a live music app and a walkthrough of its recipe decisions.
 - [Checkers](checkers/README.md): run a visual game with Jev choosing moves.
 - [Getting started](getting-started/README.md): route work, select evidence, and review actions using saved responses.

@@ -1,13 +1,16 @@
 import { z } from 'zod';
-import { proposeSupportRoute } from '../workflow.mjs';
-import { scenarios, scenarioOptions, supportRoutes } from '../scenarios.mjs';
+import { proposeSupportNextStep } from '../conversation.mjs';
+import { conversationInputSchema, prepareConversation } from '../conversation-schema.mjs';
+import { supportConfig } from '../config.mjs';
+import { scenarios, scenarioOptions } from '../scenarios.mjs';
 import { createGatewayFallback } from '../fallback.mjs';
-import { createGatewayClient } from '../../integrations/clients.mjs';
+import { createGatewayClient } from '../client.mjs';
 
 const requestSchema = z
   .object({
-    request: z.string().trim().min(1).max(12000).optional(),
-    scenario: z.enum(['ready', 'escalation', 'review', 'failure']).default('ready'),
+    request: conversationInputSchema.shape.request.optional(),
+    answers: conversationInputSchema.shape.answers,
+    scenario: z.enum(Object.keys(scenarios)).default('ready'),
   })
   .strict();
 
@@ -30,26 +33,36 @@ export async function handleRoutingRequest(
     if (mode !== 'fixture' && mode !== 'live') throw new Error('Unknown mode.');
     if (mode === 'live' && !input.request)
       return Response.json({ error: 'Enter a support request.' }, { status: 400 });
-    const message = mode === 'fixture' ? scenarios[input.scenario].request : input.request;
-    const options = mode === 'fixture' ? scenarioOptions(input.scenario) : createOptions();
-    const proposal = await proposeSupportRoute(
-      { request: message, routes: supportRoutes },
-      { ...options, signal: request.signal },
-    );
+    const scenario = scenarios[input.scenario];
+    if (
+      mode === 'fixture' &&
+      input.answers.length &&
+      (input.answers.length !== 1 ||
+        !scenario.reply ||
+        input.answers[0].requirementId !== 'issue' ||
+        input.answers[0].text !== scenario.reply)
+    )
+      return Response.json(
+        { error: 'Fixture mode accepts only the displayed saved answer.' },
+        { status: 400 },
+      );
+    const conversation = {
+      request: mode === 'fixture' ? scenario.request : input.request,
+      answers: input.answers,
+    };
+    prepareConversation(conversation, supportConfig);
+    const options =
+      mode === 'fixture'
+        ? scenarioOptions(input.scenario, input.answers.length > 0)
+        : createOptions();
+    const proposal = await proposeSupportNextStep(conversation, supportConfig, {
+      ...options,
+      signal: request.signal,
+    });
     return Response.json(
       {
         mode,
-        request: message,
-        status: proposal.status,
-        route: proposal.route,
-        source: proposal.source,
-        reason: proposal.reason,
-        trace: proposal.trace.map((attempt) => ({
-          stage: attempt.stage,
-          status: attempt.error ? 'failed' : attempt.result?.status,
-          route: attempt.error ? null : attempt.result?.route,
-          confidence: attempt.stage === 'primary' ? attempt.result?.confidence : undefined,
-        })),
+        ...proposal,
       },
       { headers: { 'Cache-Control': 'no-store' } },
     );
@@ -58,7 +71,10 @@ export async function handleRoutingRequest(
       return Response.json({ error: 'The request was cancelled.' }, { status: 499 });
     if (error instanceof SyntaxError || error instanceof z.ZodError)
       return Response.json(
-        { error: 'Enter a valid request of at most 12,000 characters.' },
+        {
+          error:
+            'Use valid answers for configured requirements and a combined conversation of at most 12,000 characters.',
+        },
         { status: 400 },
       );
     return Response.json(

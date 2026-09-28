@@ -114,22 +114,9 @@ Uses the shared choice helper and makes one logical Jev request. It does not cal
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-version measurement; experimental.**
+**Unknown response origin; experimental.**
 
-Measured on 44 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%, adversarial cases 100%).
-
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 7%                 | 100%                      |
-| 0.6             | 9%                 | 100%                      |
-| 0.7             | 9%                 | 100%                      |
-| 0.8             | 11%                | 100%                      |
-| 0.9             | 23%                | 100%                      |
-| 0.95            | 30%                | 100%                      |
-
-The lowest threshold reaching 95% accuracy on ready results is 0.5.
-
-Run `npm run eval -- response-refusal` to save new results and update this guide. The full report, including misses, is in [evals/results/response-refusal.json](../../evals/results/response-refusal.json). Accuracy on your own data may differ.
+No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
 
 <!-- END GENERATED: accuracy -->
 

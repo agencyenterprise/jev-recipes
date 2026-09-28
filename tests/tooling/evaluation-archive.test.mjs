@@ -272,19 +272,20 @@ test('numeric action parameters determine correctness, including nested objects 
   }
 });
 
-test('legacy comparisons retain nested numeric decisions while excluding result metadata', async () => {
+test('repository comparisons retain nested numeric decisions while excluding result metadata', async () => {
   const { comparableDecision, deepEqual } = await import('../../evals/lib/harness.mjs');
   const result = {
     model: 'fixture',
     confidence: 0.9,
-    status: 'ready',
     action: { x: 1, path: [{ y: 2 }] },
   };
-  assert.deepEqual(comparableDecision(result), { action: { x: 1, path: [{ y: 2 }] } });
+  assert.deepEqual(comparableDecision(result, 'game-action'), {
+    action: { x: 1, path: [{ y: 2 }] },
+  });
   assert.equal(
     deepEqual(
-      comparableDecision(result),
-      comparableDecision({ action: { x: 2, path: [{ y: 2 }] } }),
+      comparableDecision(result, 'game-action'),
+      comparableDecision({ action: { x: 2, path: [{ y: 2 }] } }, 'game-action'),
     ),
     false,
   );

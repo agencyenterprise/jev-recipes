@@ -4,7 +4,7 @@ import { format, resolveConfig } from 'prettier';
 import { datasetFingerprints } from '../../dist/evaluation/dataset.js';
 import { projectRoot } from './harness.mjs';
 
-export async function readDevelopmentBaseline(id, cases) {
+export async function readDevelopmentBaseline(id, cases, { expectedScoringRevision } = {}) {
   const path = join(projectRoot, 'evals/baselines', `${id}.json`);
   const baseline =
     (await readReport(path)) ??
@@ -30,6 +30,13 @@ export async function readDevelopmentBaseline(id, cases) {
   )
     throw new Error(
       `Cannot compare ${id}: the development baseline needs measured accuracy and one known model.`,
+    );
+  if (
+    expectedScoringRevision !== undefined &&
+    (baseline.evidence.scoringRevision ?? 1) !== expectedScoringRevision
+  )
+    throw new Error(
+      `Cannot compare ${id}: the baseline uses a different scoring revision. Create a current development baseline before using --check.`,
     );
   return baseline;
 }

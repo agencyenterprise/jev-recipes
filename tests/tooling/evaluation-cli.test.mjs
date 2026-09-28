@@ -98,6 +98,19 @@ test('all baselines are checked before the first recipe spends quota', async () 
   });
 });
 
+test('a changed scoring revision rejects a baseline before any provider call', async () => {
+  await withEvaluationProject(async ({ root, evaluate }) => {
+    await evaluate('route');
+    const path = join(root, 'evals/baselines/route.json');
+    const report = JSON.parse(await readFile(path, 'utf8'));
+    delete report.evidence.scoringRevision;
+    await writeFile(path, JSON.stringify(report));
+    await writeFile(join(root, 'provider-calls.jsonl'), '');
+    await assert.rejects(evaluate('route', '--check'), /different scoring revision/);
+    assert.equal(await readFile(join(root, 'provider-calls.jsonl'), 'utf8'), '');
+  });
+});
+
 test('a real accuracy drop fails the development regression check', async () => {
   await withEvaluationProject(async ({ root, evaluate }) => {
     await evaluate('route');

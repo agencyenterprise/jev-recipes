@@ -78,22 +78,9 @@ A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-version measurement; experimental.**
+**Unknown response origin; experimental.**
 
-Measured on 44 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 83%, adversarial cases 100%).
-
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 0%                 | 98%                       |
-| 0.6             | 16%                | 97%                       |
-| 0.7             | 77%                | 90%                       |
-| 0.8             | 100%               | n/a                       |
-| 0.9             | 100%               | n/a                       |
-| 0.95            | 100%               | n/a                       |
-
-The lowest threshold reaching 95% accuracy on ready results is 0.5.
-
-Run `npm run eval -- goal-drift` to save new results and update this guide. The full report, including misses, is in [evals/results/goal-drift.json](../../evals/results/goal-drift.json). Accuracy on your own data may differ.
+No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
 
 <!-- END GENERATED: accuracy -->
 

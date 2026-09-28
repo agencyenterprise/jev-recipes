@@ -110,22 +110,9 @@ Uses the shared choice helper and makes one logical Jev request. It does not cal
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-version measurement; experimental.**
+**Unknown response origin; experimental.**
 
-Measured on 53 golden cases against `jev-1.13.0`: **94% accurate** overall (contested cases 100%, adversarial cases 67%).
-
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 19%                | 95%                       |
-| 0.6             | 23%                | 98%                       |
-| 0.7             | 26%                | 100%                      |
-| 0.8             | 26%                | 100%                      |
-| 0.9             | 34%                | 100%                      |
-| 0.95            | 38%                | 100%                      |
-
-The lowest threshold reaching 95% accuracy on ready results is 0.5.
-
-Run `npm run eval -- claim-stance` to save new results and update this guide. The full report, including misses, is in [evals/results/claim-stance.json](../../evals/results/claim-stance.json). Accuracy on your own data may differ.
+No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
 
 <!-- END GENERATED: accuracy -->
 

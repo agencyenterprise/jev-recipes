@@ -95,11 +95,13 @@ Assesses conversational need. Channel-specific response obligations and customer
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Current synthetic measurement.**
+**Earlier-evaluator measurement; experimental.**
 
 Measured on 40 golden cases against `jev-1.13.0`: **100% accurate** overall (adversarial cases 100%).
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `accce497113821fcd870e3ebd3806c7cbe214d13e3a6ca96544043ab52b168b6`.
+
+Scoring revision: 1.
 
 40/40 cases correct; 40 ready, 0 review, 0 failed. Accuracy among ready cases: 100%.
 

@@ -5,6 +5,7 @@ import { format as formatFile, resolveConfig } from 'prettier';
 import { renderMeasuredAccuracy } from '../scripts/lib/docs.mjs';
 import { randomUUID } from 'node:crypto';
 import { evaluate } from '../dist/evaluation/index.js';
+import { scoringRevision } from '../dist/evaluation/comparison.js';
 import { loadEvaluationRecipe, validateCases } from '../dist/evaluation/dataset.js';
 import { readDevelopmentBaseline, saveDevelopmentBaseline } from './lib/baselines.mjs';
 import {
@@ -45,7 +46,9 @@ if (!ids.length) {
 const plannedRuns = [];
 for (const id of ids) {
   const cases = validateCases(await loadEvaluationRecipe(id), await readGoldenCases(id));
-  const baseline = values.check ? await readDevelopmentBaseline(id, cases) : undefined;
+  const baseline = values.check
+    ? await readDevelopmentBaseline(id, cases, { expectedScoringRevision: scoringRevision })
+    : undefined;
   plannedRuns.push({ id, cases, baseline });
 }
 requireApiKey();

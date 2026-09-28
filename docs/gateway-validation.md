@@ -37,14 +37,16 @@ The executable checks and descriptive intervals are in [save-gateway-evidence.mj
 
 Latest reports live in `evals/results/`. Each report's `evidence.runId` identifies its complete response archive at `evals/evidence/<recipe>/held-out-<runId>/run.json.gz`; its selected development policy identifies the corresponding development archive. The context-prune report's `previousAttempt` identifies the failed run. Route and model-route also retain individual live smoke archives. Existing evidence remains available.
 
-Read an archive without making a provider request:
+These historical measurements predate the current scoring revision and archive format. The current evaluator does not replay or migrate them. Inspect the original responses directly without making a provider request:
 
 ```js
-import { readRun } from 'jev-recipes/evaluation';
+import { readFile } from 'node:fs/promises';
+import { gunzipSync } from 'node:zlib';
 
-const run = await readRun(
-  './evals/evidence/action-effects/held-out-8e9eb8e2-16b8-422b-8e59-5ed4b2c05d94',
+const bytes = await readFile(
+  './evals/evidence/action-effects/held-out-8e9eb8e2-16b8-422b-8e59-5ed4b2c05d94/run.json.gz',
 );
+const run = JSON.parse(gunzipSync(bytes).toString('utf8'));
 console.log(run.report, run.rows);
 ```
 

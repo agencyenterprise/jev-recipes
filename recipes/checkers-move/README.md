@@ -162,22 +162,9 @@ The board is translated into labeled pieces, such as `c3: your man`, and each mo
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-version measurement; experimental.**
+**Unknown response origin; experimental.**
 
-Measured on 31 golden cases against `jev-1.13.0`: **58% accurate** overall (contested cases 20%, adversarial cases 60%).
-
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 55%                | 100%                      |
-| 0.6             | 71%                | 100%                      |
-| 0.7             | 84%                | 100%                      |
-| 0.8             | 100%               | n/a                       |
-| 0.9             | 100%               | n/a                       |
-| 0.95            | 100%               | n/a                       |
-
-The lowest threshold reaching 95% accuracy on ready results is 0.5.
-
-Run `npm run eval -- checkers-move` to save new results and update this guide. The full report, including misses, is in [evals/results/checkers-move.json](../../evals/results/checkers-move.json). Accuracy on your own data may differ.
+No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
 
 <!-- END GENERATED: accuracy -->
 

@@ -97,11 +97,13 @@ The rubric grades agreement between `extracted` and `source`. It does not check 
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Current synthetic measurement.**
+**Earlier-evaluator measurement; experimental.**
 
 Measured on 40 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `87420435d122cd812b418bacdfe672abb0ed7618accf44e6638f5de287154f56`.
+
+Scoring revision: 1.
 
 40/40 cases correct; 40 ready, 0 review, 0 failed. Accuracy among ready cases: 100%.
 

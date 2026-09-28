@@ -2,7 +2,7 @@
 
 This example-specific evaluator compares keyword rules, Jev alone, and the same Jev response with one eligible structured fallback. It reuses the package evaluator for primary requests, response retention, and policy replay. It is not a new public evaluation API.
 
-See the [2026-09-27 recorded results](evidence/2026-09-27/README.md), including complete responses and offline replay.
+See the [2026-09-27 recorded results](evidence/2026-09-27/README.md), including complete original responses. Those historical archives predate the current format; the replay commands below apply to new current-format runs.
 
 All results remain **experimental**. The dataset has 48 AI-authored synthetic cases and labels, with no independent human review. Each split contains 24 cases: six billing, six account, six technical, and six requiring review. Case families do not cross splits. The reserved set was written before live evaluation, but its small size and common author do not establish generalization to customer traffic.
 
@@ -51,3 +51,7 @@ Archives include the frozen policy, both case splits, code and dataset hashes, p
 Behavior acceptance requires tested ready, review, fallback, malformed response, error, cancellation, archival integrity, and replay paths. Live acceptance for this example requires complete retained responses and explicit failures, not an accuracy threshold chosen after seeing results. No recipe receives a new quality badge from this comparison. Claims that fallback improves quality or cost require fresh representative data, independently checked labels, and a predefined quality/coverage/latency tradeoff.
 
 This small harness belongs to the support-routing example. Repository maintainers own it. Reuse the existing evaluator rather than introducing a general orchestration framework here. [The workflow](../../examples/support-routing/README.md) and [web starter](../../examples/support-routing/web/README.md) share the same decision code.
+
+## What the retained comparison does not prove
+
+The September 27 evaluation made no eligible fallback calls on its 48 authored cases. Separate fixture/transport checks cover fallback ready, review, error, and cancellation behavior, but those tests do not establish that fallback improves live accuracy. A new claim needs fresh held-out families and observed fallback cases under a frozen policy. See the [offline preparation plan](../../docs/evaluation-plan.md).

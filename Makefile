@@ -17,6 +17,7 @@ help:
 
 setup:
 	@npm ci --ignore-scripts
+	@npm ci --ignore-scripts --prefix examples/support-routing
 
 generate:
 	@npm run generate

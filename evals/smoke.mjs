@@ -34,15 +34,15 @@ async function smokeTest(id) {
     const live = values.dry
       ? await run(fixture.input, { client: fixtureClient(fixture.response) })
       : await run(fixture.input);
-    return { id, ...classify(expected, live) };
+    return { id, ...classify(expected, live, id) };
   } catch (error) {
     return { id, outcome: 'error', detail: error.message };
   }
 }
 
-function classify(expectedResult, liveResult) {
-  const expected = comparableDecision(expectedResult);
-  const live = comparableDecision(liveResult);
+function classify(expectedResult, liveResult, id) {
+  const expected = comparableDecision(expectedResult, id);
+  const live = comparableDecision(liveResult, id);
   if (deepEqual(live, expected)) {
     if (liveResult.status === expectedResult.status) return { outcome: 'pass' };
     return {

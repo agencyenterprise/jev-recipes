@@ -84,11 +84,13 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Current synthetic measurement.**
+**Earlier-evaluator measurement; experimental.**
 
 Measured on 40 golden cases against `jev-1.13.0`: **98% accurate** overall (adversarial cases 90%).
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `47f2015674f4ab7c9498d3ccfbd072384bc90f6c451edadcfe62cf24de2d402d`.
+
+Scoring revision: 1.
 
 39/40 cases correct; 24 ready, 16 review, 0 failed. Accuracy among ready cases: 100%.
 
@@ -119,3 +121,7 @@ Routes with overlapping descriptions can be difficult to distinguish. Describe t
 ## Example input
 
 [demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo route` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe route` to inspect the input and result schemas.
+
+## Build a conversation
+
+Use `route` for one request. Use `route-many` for independent requests in a batch. When the application needs missing details before routing, compose `clarify` with `route` as shown in the [support conversation starter](../../examples/support-routing/README.md).

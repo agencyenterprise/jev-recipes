@@ -1,4 +1,5 @@
-import { isRecord, matchesExpected, roundedTo } from './decisions.js';
+import { isRecord, roundedTo } from './decisions.js';
+import { matchesExpected } from './comparison.js';
 import type { EvaluationRow } from './engine.js';
 import type { Price } from './schema.js';
 import type { EvaluationCase, EvaluationPolicy } from './schema.js';
@@ -6,6 +7,9 @@ import type { EvaluationCase, EvaluationPolicy } from './schema.js';
 export interface ReportEvidence {
   runId: string;
   evaluatedAt: string;
+  createdAt: string;
+  sourceMode: 'live' | 'fixture';
+  scoringRevision: number;
   packageVersion: string;
   recipeFingerprint: string;
   datasetFingerprint: string;
@@ -69,7 +73,7 @@ export function buildReport(
     reviewRate: completed.length
       ? roundedTo(3, (completed.length - ready.length) / completed.length)
       : null,
-    ...itemAccuracyOf(rows),
+    ...itemAccuracyOf(id, rows),
     contestedAccuracy: accuracyOf(rows.filter((row) => row.contested)),
     adversarialAccuracy: accuracyOf(rows.filter((row) => row.adversarial)),
     calibration: [0, 0.5, 0.6, 0.7, 0.8, 0.9].map((lower, index, edges) => {
@@ -128,15 +132,18 @@ function accuracyOf(rows: { correct: boolean }[]): number | null {
   return rows.length ? roundedTo(3, rows.filter((row) => row.correct).length / rows.length) : null;
 }
 
-function itemAccuracyOf(rows: EvaluationRow[]) {
+function itemAccuracyOf(recipe: string, rows: EvaluationRow[]) {
   const paths = rows.flatMap((row) =>
     Object.entries(row.expected).map(([path, expected]) => ({
+      path,
       expected,
       actual: row.error === undefined ? row.actual?.[path] : undefined,
     })),
   );
   if (paths.length <= rows.length) return {};
-  const correct = paths.filter((entry) => matchesExpected(entry.actual, entry.expected)).length;
+  const correct = paths.filter(({ path, actual, expected }) =>
+    matchesExpected({ [path]: actual }, { [path]: expected }, recipe),
+  ).length;
   return {
     items: paths.length,
     correctItems: correct,

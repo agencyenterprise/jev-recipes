@@ -1,39 +1,20 @@
-# Support routing in a web app
+# Support conversation web app
 
-A small Next.js and TypeScript app makes the [shared routing workflow](../workflow.mjs) visible. It starts with four fixed fixture scenarios and needs no API key. The server returns a proposal; it never assigns tickets.
-
-## Run locally
-
-Build the package from the repository root, then install the isolated web dependencies:
+Run commands from the parent `support-routing/` folder:
 
 ```sh
-npm ci --ignore-scripts
-npm run build
-cd examples/support-routing/web
 npm ci --ignore-scripts
 npm run dev
 ```
 
-Open `http://localhost:3000`. This is a repository starter: keep the shared example files in place. Copying only `web/` omits its workflow and provider helpers. The web manifest has its own lockfile and does not add React or Next.js to the recipe package. Shared helpers use the root package build; the UI dependency manifest pins the published package version separately.
+Open `http://localhost:3000`. Choose **Ask and continue**, run the request, then use its saved answer to resume. Choose **Still unclear** to see an unresolved conversation move to human review. Fixture responses demonstrate behavior only.
 
-`npm run typecheck` checks the TypeScript app. `npm run build` produces a production build; `npm start` serves that build on localhost. Root tooling tests exercise the HTTP handler without Next.js or network access.
+The complete portable starter is the parent folder, including its package manifest, configuration, recipes' calling code, tests, and this web app. Copying only `web/` omits application code. No files outside the starter are required.
 
-## Enable live mode
+To enable live mode, copy `.env.example` to `.env.local` here, set `SUPPORT_ROUTING_MODE=live`, and add your Gateway key. The server alone reads credentials. `SUPPORT_FALLBACK_MODEL` is optional and disabled by default. Restart the app after changing environment settings.
 
-Copy `.env.example` to `.env.local` inside this folder and set:
+Edit `../config.mjs` to define your queues, required information, predefined questions, confidence threshold, and question limit. The browser retains the current conversation in memory; reloading clears it. The endpoint accepts the original request and prior `{ requirementId, text }` answers, and returns `propose_question`, `propose_route`, or `review`. Questions come from server configuration. Fixture mode only accepts the saved scenario's answer.
 
-```dotenv
-SUPPORT_ROUTING_MODE=live
-VERCEL_GATEWAY_API_KEY=your-gateway-key
-SUPPORT_FALLBACK_MODEL=google/gemini-2.5-flash-lite
-```
+`npm test` checks the workflow and handler offline. `npm run typecheck` checks the UI. `npm run build` and `npm start` produce and serve the production app. The handler passes cancellation to providers and hides their raw responses and errors. Invalid conversations fail before provider access.
 
-Restart the server. Leave `SUPPORT_FALLBACK_MODEL` blank to use Jev alone. The banner distinguishes live calls from fixture responses. Credentials stay in server environment variables; never prefix them with `NEXT_PUBLIC_`. Live text is sent to the configured model providers.
-
-The request handler validates a maximum 12,000-character message, accepts only supported fields, passes cancellation through, and returns a decision summary without raw provider responses. A failed provider keeps the request in review. The browser's Cancel button cancels waiting; it cannot undo a provider request already received.
-
-## Application responsibilities
-
-The app is intended for local learning. It has no authentication, rate limiting, persistent review queue, or ticket integration. Before hosting live mode, the application owner must supply access controls and request limits appropriate to their users. The repository does not deploy the app. See the [example contribution guide](../../README.md) to share your own hosted project.
-
-Fixture responses demonstrate behavior only. Live quality belongs in the separate [archived comparison](../../../evals/support-routing/README.md), not in a browser success badge.
+See the [starter guide](../README.md) for contracts, call counts, integration code, and application responsibilities. The starter has no authentication, persistent review queue, or ticket integration; those belong to the host application.
