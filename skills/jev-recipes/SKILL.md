@@ -28,6 +28,8 @@ Read the selected result schema rather than assuming every recipe returns `verdi
 
 Start from [the three workflow examples](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md) when the task is routing, evidence selection, or action review. For provider setup, use [the integration guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/integrations.md). The Gateway example accepts `VERCEL_GATEWAY_API_KEY` or `AI_GATEWAY_API_KEY`; the raw default client does not automatically select Gateway from those names. Keep credentials and provider calls server-side.
 
+For a web workflow with an optional second opinion, use the [support-routing starter](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/support-routing/README.md). Its fallback runs only for a low-confidence non-null suggestion; explicit no-fit answers stay in review. Share the workflow between UI and evaluation, keep keys server-side, and preserve fixture/live labeling. Use its [comparison harness](https://github.com/agencyenterprise/jev-recipes/blob/main/evals/support-routing/README.md) only for this workflow; use the package evaluator for individual recipes.
+
 ## Verify the behavior
 
 Exercise ready, review, and provider-failure paths using an injected fixture client. Live calls are a separate action that uses the user's configured provider. When evaluating accuracy, follow [the evaluation guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md): retain responses and label provenance, freeze policy on development data, and reserve held-out cases. Preserve experimental labels when evidence is absent or acceptance fails.

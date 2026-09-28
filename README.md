@@ -31,6 +31,8 @@ For example, give `route` a support message and descriptions of your teams. It r
 
 Evaluate your own cases with the [installed evaluator](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md), retain model responses, and replay confidence policies offline. The [agent workflow](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/agent-loop/README.md) and [customer queue](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/customer-queue/README.md) show how decisions fit into application code. [Direct and Gateway integrations](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/integrations.md) use the same recipe interface.
 
+Try the [support-routing starter](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/support-routing/README.md) for a small web app with ready, review, and optional fallback paths. Its [rules/Jev/fallback comparison](https://github.com/agencyenterprise/jev-recipes/blob/main/evals/support-routing/README.md) retains responses and labels experimental evidence explicitly.
+
 Build the searchable static catalog with `npm run site:build`, then preview it with `npm run site:preview`. It includes fixture exploration, related-recipe comparisons, and saved evaluation evidence. Current measurements and missing or older evidence are labeled explicitly.
 
 ## Hear a real application: Jevthoven

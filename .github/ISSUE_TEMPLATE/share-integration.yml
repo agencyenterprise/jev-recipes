@@ -2,6 +2,9 @@ name: Share an integration
 description: Show a public application using jev-recipes, or explain where integration got stuck.
 title: 'Integration: '
 body:
+  - type: markdown
+    attributes:
+      value: 'Adding an example? Use the optional [project template](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/TEMPLATE.md). Project authors host and maintain their apps; adding a folder does not deploy it.'
   - type: input
     id: project
     attributes:

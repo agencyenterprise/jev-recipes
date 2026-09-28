@@ -80,3 +80,9 @@ npx jev-recipes demo followup-timing
 ```
 
 Import the chosen recipe by its dedicated path. Validate user data against its input schema, supply only the necessary context, handle `status: 'review'`, and keep business state in application code. Test representative cases using [the evaluator](evaluation.md). No new server or discovery protocol is required.
+
+## Check another System One model
+
+Before describing a model as compatible, record its requested ID, returned ID, provider endpoint, SDK version, and date. Run transport tests for Choice, Score, and Noul, including malformed output and cancellation. Then run representative development cases with retained responses, freeze the model and confidence policy, and evaluate fresh held-out families. Keep compatibility separate from accuracy and calibration. An alias alone does not establish version stability.
+
+The [support-routing fallback](../examples/support-routing/fallback.mjs) uses Gateway structured chat completions as a separate application step. It does not adapt arbitrary chat models into System One clients. See [Vercel structured outputs](https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/structured-outputs).

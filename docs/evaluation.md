@@ -117,3 +117,7 @@ The September 2026 document datasets retain pinned Node.js Markdown sources, the
 `evals/lib/ingestion-metrics.mjs` supplies frozen deterministic baselines and descriptive document-bootstrap intervals. Unsupported classes and insufficient independent documents keep the new recipes experimental regardless of fixture correctness. Previously inspected cases for the three revised featured recipes are now development/regression cases; their new held-out families remain correlated synthetic evidence.
 
 Catalog and CLI descriptions include an `evidence` object derived from the same saved reports as the static site. Its `kind` describes provenance and source freshness; `experimental` separately indicates an absent or unmet current acceptance policy. A current public-dataset report does not imply independently reviewed labels.
+
+## Compare an application workflow
+
+The [support-routing comparison](../evals/support-routing/README.md) uses this evaluator for primary Jev responses and a small example-specific layer for rules and an optional chat fallback. It records both stages, shares the same primary response between strategies, reports review and failure separately, and refuses replay when a required fallback response is missing. The [web starter](../examples/support-routing/web/README.md) uses the same workflow. Its fixtures are behavior demonstrations; its authored live cases remain experimental.

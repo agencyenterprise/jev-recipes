@@ -7,3 +7,7 @@ package-lock.json
 coverage/
 evals/runs/
 site/dist/
+.next/
+*.tsbuildinfo
+
+next-env.d.ts
