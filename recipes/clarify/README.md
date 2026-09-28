@@ -110,22 +110,9 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-version measurement; experimental.**
+**Unknown response origin; experimental.**
 
-Measured on 50 golden cases against `jev-1.13.0`: **88% accurate** overall (contested cases 88%, adversarial cases 83%).
-
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 14%                | 95%                       |
-| 0.6             | 26%                | 97%                       |
-| 0.7             | 34%                | 97%                       |
-| 0.8             | 40%                | 100%                      |
-| 0.9             | 48%                | 100%                      |
-| 0.95            | 56%                | 100%                      |
-
-The lowest threshold reaching 95% accuracy on ready results is 0.5.
-
-Run `npm run eval -- clarify` to save new results and update this guide. The full report, including misses, is in [evals/results/clarify.json](../../evals/results/clarify.json). Accuracy on your own data may differ.
+No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
 
 <!-- END GENERATED: accuracy -->
 
@@ -140,3 +127,7 @@ Your application supplies the requirements and maps their IDs to follow-up quest
 ## Example input
 
 [demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo clarify` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe clarify` to inspect the input and result schemas.
+
+## Build a conversation
+
+Requirements and question text belong to the application. The starter asks the first unresolved requirement, includes the answer on the next turn, and sends an unresolved answer to review instead of asking again. See the [support conversation starter](../../examples/support-routing/README.md).

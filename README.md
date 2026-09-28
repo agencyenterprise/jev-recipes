@@ -31,9 +31,21 @@ For example, give `route` a support message and descriptions of your teams. It r
 
 Evaluate your own cases with the [installed evaluator](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md), retain model responses, and replay confidence policies offline. The [agent workflow](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/agent-loop/README.md) and [customer queue](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/customer-queue/README.md) show how decisions fit into application code. [Direct and Gateway integrations](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/integrations.md) use the same recipe interface.
 
-Try the [support-routing starter](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/support-routing/README.md) for a small web app with ready, review, and optional fallback paths. Its [rules/Jev/fallback comparison](https://github.com/agencyenterprise/jev-recipes/blob/main/evals/support-routing/README.md) retains responses and labels experimental evidence explicitly.
+## Build a complete support flow
 
-Build the searchable static catalog with `npm run site:build`, then preview it with `npm run site:preview`. It includes fixture exploration, related-recipe comparisons, and saved evaluation evidence. Current measurements and missing or older evidence are labeled explicitly.
+The [support conversation starter](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/support-routing/README.md) checks for missing details, asks a configured question, and resumes with the customer's answer. It proposes a queue or requests human review when the conversation remains unresolved.
+
+```sh
+cd examples/support-routing
+npm ci --ignore-scripts
+npm run dev
+```
+
+Open `http://localhost:3000` and choose **Ask and continue**. This folder is portable and needs no repository build. Edit `config.mjs` to supply your queues, required information, questions, and review policy. Run `npm run demo` for the command-line version. Saved scenarios work without a key; the starter guide explains live calls and application integration.
+
+The existing [rules/Jev/fallback comparison](https://github.com/agencyenterprise/jev-recipes/blob/main/evals/support-routing/README.md) covers single-turn routing, not this clarification loop. Its evidence remains experimental.
+
+Build the searchable static catalog with `npm run site:build`, then preview it with `npm run site:preview`. It includes fixture exploration, related-recipe comparisons, and saved evaluation evidence. Current measurements and missing, unknown-origin, or older evidence are labeled explicitly. Use `npm run eval:audit` after building to check retained evidence offline; see [evaluation and archive format](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md#archive-format-and-evidence-origin).
 
 ## Hear a real application: Jevthoven
 

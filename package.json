@@ -1054,6 +1054,7 @@
     "eval": "node --env-file-if-exists=.env evals/run.mjs",
     "eval:smoke": "node --env-file-if-exists=.env evals/smoke.mjs",
     "eval:validate": "node evals/validate.mjs",
+    "eval:audit": "node scripts/audit-evidence.mjs",
     "jev-recipes": "node --env-file-if-exists=.env dist/cli/index.js",
     "ci": "node scripts/ci.mjs",
     "pack:check": "node scripts/pack-check.mjs",

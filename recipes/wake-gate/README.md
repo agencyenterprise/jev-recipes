@@ -82,22 +82,9 @@ See [shared options and behavior](../README.md#shared-options-and-behavior) for 
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-version measurement; experimental.**
+**Unknown response origin; experimental.**
 
-Measured on 44 golden cases against `jev-1.13.0`: **89% accurate** overall (contested cases 60%, adversarial cases 75%).
-
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 9%                 | 93%                       |
-| 0.6             | 11%                | 92%                       |
-| 0.7             | 14%                | 95%                       |
-| 0.8             | 21%                | 97%                       |
-| 0.9             | 32%                | 97%                       |
-| 0.95            | 36%                | 100%                      |
-
-The lowest threshold reaching 95% accuracy on ready results is 0.8.
-
-Run `npm run eval -- wake-gate` to save new results and update this guide. The full report, including misses, is in [evals/results/wake-gate.json](../../evals/results/wake-gate.json). Accuracy on your own data may differ.
+No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
 
 <!-- END GENERATED: accuracy -->
 

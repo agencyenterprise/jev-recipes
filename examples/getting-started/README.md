@@ -12,6 +12,8 @@ The responses are hand-authored fixtures. They demonstrate control flow, not acc
 
 ## Route work
 
+For a complete conversation, start with the [portable support starter](../support-routing/README.md). It uses `clarify` to ask for missing details, resumes with the customer's answer, and uses `route` when the required information is present. An unresolved answer goes to review. Configuration and workflow code are included, with no repository build required.
+
 Start with `npx jev-recipes demo route`, then inspect `npx jev-recipes describe route`. Supply the incoming request and descriptions of the teams you can route to. Dispatch only a ready result; send uncertainty or provider failure to your review queue. The `route work` cases in [run.mjs](run.mjs) show all three outcomes.
 
 ## Select evidence
@@ -25,3 +27,9 @@ Start with `npx jev-recipes demo tool-call-gate`, then inspect `npx jev-recipes 
 ## Explore a live application
 
 [Jevthoven](https://jev-ai-music.com/) uses jev-recipes in a music app built by the package's maintainer. [Read what has been verified](../jevthoven/README.md) before adapting its approach. Playback requires sign-in.
+
+## Check the evidence before enabling live decisions
+
+Use `npx jev-recipes describe route` to inspect its schemas and `evidence` summary. Fixture-only and unknown-origin entries have no verified live measurement. A current measurement still describes only its named dataset and label provenance. Review the original evaluation date, ready/review counts, scoring revision, and experimental status.
+
+The [direct and Gateway guide](../../docs/integrations.md) supplies the live client setup. Keep execution, permissions, and exact business rules in application code. The [evaluation guide](../../docs/evaluation.md) explains response archives and offline replay; replaying a fixture does not measure live accuracy.

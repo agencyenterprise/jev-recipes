@@ -155,8 +155,8 @@ function renderInspector(recipe) {
 
 function renderEvidence(recipe) {
   const report = recipe.report;
-  if (!report)
-    return '<section class="evidence-panel" aria-label="Evaluation evidence"><strong>Fixture only</strong><p>No recorded accuracy measurement is available. Evaluate representative cases before using this decision in your workflow.</p></section>';
+  if (!report || !recipe.evidenceDetails.measurement)
+    return `<section class="evidence-panel" aria-label="Evaluation evidence"><strong>${escapeHtml(recipe.evidenceDetails.label)}</strong><p>No verified live accuracy measurement is available. Evaluate representative cases before using this decision in your workflow.</p></section>`;
   const current = recipe.evidence === 'measured';
   const sample =
     report.evidence?.split === 'held-out'
@@ -167,6 +167,7 @@ function renderEvidence(recipe) {
   const interval = report.accuracyInterval95?.map(percent).join(' to ');
   return `<section class="evidence-panel" aria-label="Evaluation evidence"><strong>${escapeHtml(recipe.evidenceDetails.label)}</strong>
     <p>${escapeHtml(report.model)}${report.evidence?.evaluatedAt ? ' / ' + escapeHtml(report.evidence.evaluatedAt.slice(0, 10)) : ''} / ${report.cases} ${sample} cases</p>
+    <p>Scoring revision ${recipe.evidenceDetails.measurement.scoringRevision}.${recipe.evidenceDetails.measurement.replayedAt ? ' Replayed ' + escapeHtml(recipe.evidenceDetails.measurement.replayedAt) + '; measurements retain the original response date.' : ''}</p>
     <div class="metrics"><div class="metric"><span>${percent(report.accuracy)}</span><small>All-case accuracy</small></div><div class="metric"><span>${report.review ?? 'n/a'}</span><small>Sent for review</small></div><div class="metric"><span>${report.failed ?? 'n/a'}</span><small>Failed calls / cases</small></div></div>
     ${report.ready !== undefined ? `<p>${report.ready} ready decisions, with ${percent(report.readyAccuracy)} accuracy among those decisions.</p>` : ''}
     ${interval ? `<p>95% case-level interval: ${interval}. Related synthetic cases are correlated.</p>` : ''}

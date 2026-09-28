@@ -6,6 +6,7 @@ try {
   }
   await run(process.execPath, ['scripts/test-tooling.mjs']);
   await npm(['run', 'eval:validate']);
+  await npm(['run', 'eval:audit']);
   await run(process.execPath, ['scripts/pack-check.mjs', '--built']);
   console.log('All checks passed. No live Jev calls were made.');
 } catch (error) {

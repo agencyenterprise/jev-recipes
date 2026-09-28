@@ -1,9 +1,9 @@
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
-import { describeRecipe } from '../catalog/index.js';
 import { recipeNameSchema } from '../catalog/schema.js';
-import { isRecord, comparableDecision } from './decisions.js';
+import { isRecord } from './decisions.js';
+import { comparableDecision, isMetadataPath, schemaAtPath, resultSchemaFor } from './comparison.js';
 import { evaluationCaseSchema } from './schema.js';
 import type { EvaluationCase } from './schema.js';
 import type { EvaluationRecipe } from './engine.js';
@@ -34,7 +34,7 @@ export async function readEvaluationCases(path: string): Promise<unknown[]> {
 
 export function validateCases(recipe: EvaluationRecipe, values: unknown[]): EvaluationCase[] {
   if (!values.length) throw new Error('The case file is empty.');
-  const resultSchema = describeRecipe(recipeNameSchema.parse(recipe.id)).resultSchema;
+  const resultSchema = resultSchemaFor(recipe.id);
   const cases = values.map((value) => evaluationCaseSchema.parse(value));
   const ids = new Set<string>();
   const familySplits = new Map<string, string>();
@@ -48,52 +48,17 @@ export function validateCases(recipe: EvaluationRecipe, values: unknown[]): Eval
     }
     recipe.inputSchema.parse(entry.input);
     for (const [path, expected] of Object.entries(entry.expected)) {
-      if (
-        path
-          .split('.')
-          .some((segment) =>
-            [
-              'status',
-              'confidence',
-              'probabilities',
-              'probability',
-              'model',
-              'usage',
-              'score',
-            ].includes(segment),
-          )
-      )
+      if (isMetadataPath(resultSchema, path.split('.')))
         throw new Error(`${entry.id}: expected must name an ungated decision, not ${path}.`);
       const field = schemaAtPath(resultSchema, path.split('.'));
       if (!field) throw new Error(`${entry.id}: unknown result field ${path}.`);
       if (!acceptsValue(field, expected))
         throw new Error(`${entry.id}: expected ${path} does not match the result schema.`);
     }
-    if (isEmptyDecision(comparableDecision(entry.expected)))
+    if (isEmptyDecision(comparableDecision(entry.expected, recipe.id)))
       throw new Error(`${entry.id}: expected must contain a decision to compare.`);
   }
   return cases;
-}
-
-function schemaAtPath(
-  schema: Record<string, unknown>,
-  segments: string[],
-): Record<string, unknown> | undefined {
-  if (!segments.length) return schema;
-  if (Array.isArray(schema.anyOf)) {
-    const candidates = schema.anyOf.flatMap((branch) => {
-      const field = isRecord(branch) ? schemaAtPath(branch, segments) : undefined;
-      return field ? [field] : [];
-    });
-    return candidates.length ? { anyOf: candidates } : undefined;
-  }
-  const [first, ...rest] = segments;
-  if (isRecord(schema.properties) && isRecord(schema.properties[first!]))
-    return schemaAtPath(schema.properties[first!] as Record<string, unknown>, rest);
-  if (schema.type === 'array' && /^(0|[1-9]\d*)$/.test(first!) && isRecord(schema.items))
-    return schemaAtPath(schema.items, rest);
-  if (isRecord(schema.additionalProperties)) return schemaAtPath(schema.additionalProperties, rest);
-  return undefined;
 }
 
 function acceptsValue(schema: Record<string, unknown>, value: unknown): boolean {

@@ -268,3 +268,23 @@ a {
     gap: 0;
   }
 }
+
+.follow-up {
+  padding: 0;
+  margin: 24px 0;
+}
+.follow-up button {
+  margin-top: 12px;
+}
+.conversation-history {
+  padding-left: 20px;
+  margin-top: 24px;
+  overflow-wrap: anywhere;
+}
+.conversation-history strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+.conversation-history p {
+  margin-top: 6px;
+}

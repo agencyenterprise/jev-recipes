@@ -4,14 +4,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 export const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
 
-const NON_DECISION_FIELDS = new Set([
-  'model',
-  'usage',
-  'confidence',
-  'probability',
-  'probabilities',
-  'score',
-]);
+export { comparableDecision } from '../../dist/evaluation/comparison.js';
 
 export async function listRecipeIds() {
   const entries = await readdir(join(projectRoot, 'recipes'), { withFileTypes: true });
@@ -53,18 +46,6 @@ export async function readGoldenCases(id) {
 
 export function fixtureClient(response) {
   return { systemOne: async () => structuredClone(response) };
-}
-
-export function comparableDecision(value) {
-  if (Array.isArray(value)) return value.map(comparableDecision);
-  if (value && typeof value === 'object') {
-    return Object.fromEntries(
-      Object.entries(value)
-        .filter(([name, field]) => !NON_DECISION_FIELDS.has(name) && name !== 'status')
-        .map(([name, field]) => [name, comparableDecision(field)]),
-    );
-  }
-  return value;
 }
 
 export function hasReviewAnywhere(value) {

@@ -1,30 +1,3 @@
-import { isDeepStrictEqual } from 'node:util';
-
-const metadataFields = new Set([
-  'model',
-  'usage',
-  'confidence',
-  'probability',
-  'probabilities',
-  'score',
-  'status',
-]);
-
-export function comparableDecision(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(comparableDecision);
-  if (isRecord(value))
-    return Object.fromEntries(
-      Object.entries(value)
-        .filter(([name]) => !metadataFields.has(name))
-        .map(([name, field]) => [name, comparableDecision(field)]),
-    );
-  return value;
-}
-
-export function matchesExpected(actual: unknown, expected: unknown): boolean {
-  return isDeepStrictEqual(comparableDecision(actual), comparableDecision(expected));
-}
-
 export function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }

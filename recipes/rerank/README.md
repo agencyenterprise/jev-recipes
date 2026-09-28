@@ -93,13 +93,9 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-version measurement; experimental.**
+**Unknown response origin; experimental.**
 
-Measured on 57 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%, adversarial cases 100%).
-
-This recipe has no minConfidence setting, so no confidence-threshold table is reported.
-
-Run `npm run eval -- rerank` to save new results and update this guide. The full report, including misses, is in [evals/results/rerank.json](../../evals/results/rerank.json). Accuracy on your own data may differ.
+No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
 
 <!-- END GENERATED: accuracy -->
 

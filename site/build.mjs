@@ -40,8 +40,8 @@ for (const recipe of recipes) {
     });
   const evidenceDetails = recipe.evidence;
   const evidence =
-    evidenceDetails.kind === 'fixture'
-      ? 'fixture'
+    evidenceDetails.measurement === null
+      ? evidenceDetails.kind
       : evidenceDetails.kind === 'earlier'
         ? 'earlier'
         : 'measured';
@@ -55,20 +55,21 @@ for (const recipe of recipes) {
     collection,
     evidence,
     evidenceDetails,
-    measured: report
-      ? {
-          cases: report.cases,
-          accuracy: report.accuracy,
-          ready: report.ready ?? null,
-          review: report.review ?? null,
-          failed: report.failed ?? null,
-          model: report.model,
-          split: report.evidence?.split ?? null,
-          date: report.evidence?.evaluatedAt ?? null,
-          acceptance: report.acceptance?.label ?? null,
-          acceptanceMet: report.acceptance?.met ?? null,
-        }
-      : null,
+    measured:
+      report && evidenceDetails.measurement
+        ? {
+            cases: report.cases,
+            accuracy: report.accuracy,
+            ready: report.ready ?? null,
+            review: report.review ?? null,
+            failed: report.failed ?? null,
+            model: report.model,
+            split: report.evidence?.split ?? null,
+            date: report.evidence?.evaluatedAt ?? null,
+            acceptance: report.acceptance?.label ?? null,
+            acceptanceMet: report.acceptance?.met ?? null,
+          }
+        : null,
   };
   entries.push(entry);
   await writeFile(

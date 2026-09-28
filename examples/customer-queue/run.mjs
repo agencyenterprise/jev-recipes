@@ -1,6 +1,7 @@
 import { processCustomerQueue } from './workflow.mjs';
 import { queueFixtures, queueState } from './scenarios.mjs';
 import { fixture } from '../shared/fixtures.mjs';
+import { proposeClarification } from './clarification.mjs';
 
 const live = process.argv.includes('--live');
 if (process.argv.slice(2).some((arg) => arg !== '--live'))
@@ -40,6 +41,17 @@ const optOut = await processCustomerQueue(
     ? options
     : { fixtures: { ...queueFixtures, 'contact-opt-out': fixture({ decision: 'all_contact' }) } },
 );
+const clarification = await proposeClarification(
+  {
+    request: 'Invoice 123 has a duplicate charge.',
+    requirements: [
+      { id: 'invoice', description: 'Invoice number' },
+      { id: 'problem', description: 'The problem to investigate' },
+    ],
+    questions: { invoice: 'Which invoice number?', problem: 'What is wrong with the invoice?' },
+  },
+  live ? options : { fixtures: { clarify: fixture({ default: 'present' }) } },
+);
 console.log(
   JSON.stringify(
     {
@@ -48,6 +60,7 @@ console.log(
       callback,
       acknowledgment,
       optOut,
+      clarification,
     },
     null,
     2,

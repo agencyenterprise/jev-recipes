@@ -140,11 +140,13 @@ Each entry in `items` has a `verdict` of `keep` or `drop`, the yes probability t
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Current synthetic measurement; experimental.**
+**Earlier-evaluator measurement; experimental.**
 
 Measured on 20 golden cases against `typesafe-ai/jev`: **100% accurate** overall.
 
 Recorded 2026-09-27 with package 0.8.1, on the **held-out** split. Recipe fingerprint: `921cf6a3ced0031109478c77c8b5e84815b8b7637f5c8d3380d555b888a2e62f`.
+
+Scoring revision: 1.
 
 20/20 cases correct; 11 ready, 9 review, 0 failed. Accuracy among ready cases: 100%.
 

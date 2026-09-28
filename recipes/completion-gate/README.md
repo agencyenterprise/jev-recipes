@@ -116,11 +116,13 @@ A result is `ready` when the decision confidence meets `minConfidence` and the v
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Current synthetic measurement.**
+**Earlier-evaluator measurement; experimental.**
 
 Measured on 40 golden cases against `typesafe-ai/jev`: **100% accurate** overall.
 
 Recorded 2026-09-27 with package 0.8.1, on the **held-out** split. Recipe fingerprint: `07af7ca742bf9c8de291687ddb75cb999d01c4ce643a10ac88459553127d4644`.
+
+Scoring revision: 1.
 
 40/40 cases correct; 30 ready, 10 review, 0 failed. Accuracy among ready cases: 100%.
 

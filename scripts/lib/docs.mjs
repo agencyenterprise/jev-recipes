@@ -112,6 +112,15 @@ export function renderMeasuredAccuracy(id, guide, report, evidence) {
   const status = evidence
     ? `**${evidence.label}${evidence.experimental ? '; experimental' : ''}.**\n\n`
     : '';
+  const origin = report.evidence?.sourceMode ?? report.evidence?.mode;
+  const unmeasured = evidence?.measurement === null || !['live', 'fixture'].includes(origin);
+  if (origin === 'fixture' || unmeasured)
+    return replaceSection(
+      guide,
+      'accuracy',
+      status +
+        'No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.',
+    );
   return replaceSection(guide, 'accuracy', status + accuracySection(id, report));
 }
 
@@ -144,7 +153,9 @@ function accuracySection(id, snapshot) {
     const evidence = snapshot.evidence;
     lines.push(
       '',
-      `Recorded ${evidence.evaluatedAt.slice(0, 10)} with package ${evidence.packageVersion}, on the **${evidence.split}** split. Recipe fingerprint: \`${evidence.recipeFingerprint}\`.`,
+      `Recorded ${evidence.evaluatedAt?.slice(0, 10) ?? 'on an unknown date'} with package ${evidence.packageVersion}, on the **${evidence.split}** split. Recipe fingerprint: \`${evidence.recipeFingerprint}\`.`,
+      '',
+      `Scoring revision: ${evidence.scoringRevision ?? 1}.${evidence.mode === 'replay' ? ` Replayed ${evidence.createdAt ?? 'on an unknown date'}; response measurements retain their original date.` : ''}`,
       '',
       `${snapshot.correct}/${snapshot.cases} cases correct; ${snapshot.ready} ready, ${snapshot.review} review, ${snapshot.failed} failed. Accuracy among ready cases: ${pct(snapshot.readyAccuracy)}.`,
       '',

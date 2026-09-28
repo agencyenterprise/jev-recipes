@@ -91,22 +91,9 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-version measurement; experimental.**
+**Unknown response origin; experimental.**
 
-Measured on 50 golden cases against `jev-1.13.0`: **96% accurate** overall (contested cases 75%, adversarial cases 100%).
-
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 10%                | 100%                      |
-| 0.6             | 10%                | 100%                      |
-| 0.7             | 10%                | 100%                      |
-| 0.8             | 12%                | 100%                      |
-| 0.9             | 22%                | 100%                      |
-| 0.95            | 28%                | 100%                      |
-
-The lowest threshold reaching 95% accuracy on ready results is 0.5.
-
-Run `npm run eval -- answerability` to save new results and update this guide. The full report, including misses, is in [evals/results/answerability.json](../../evals/results/answerability.json). Accuracy on your own data may differ.
+No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
 
 <!-- END GENERATED: accuracy -->
 

@@ -21,60 +21,80 @@ import {
   priceSchema,
 } from './schema.js';
 import type { EvaluationOptions, EvaluationPolicy } from './schema.js';
+import { scoringRevision } from './comparison.js';
 
-const archiveSchema = z.object({
-  format: z.literal(1),
-  runId: z.string(),
-  createdAt: z.iso.datetime(),
-  mode: z.enum(['live', 'fixture', 'replay']),
-  packageVersion: z.string(),
-  recipe: z.string(),
-  recipeFingerprint: z.string(),
-  datasetFingerprint: z.string(),
-  inputFingerprint: z.string(),
-  answerKeyFingerprint: z.string(),
-  split: z.enum(['development', 'held-out']),
-  requestedModel: z.string(),
-  policy: evaluationPolicySchema,
-  price: priceSchema.optional(),
-  cases: z.array(evaluationCaseSchema).min(1),
-  rows: z.array(
-    z
-      .object({
-        id: z.string(),
-        expected: z.record(z.string(), z.unknown()),
-        contested: z.boolean(),
-        adversarial: z.boolean(),
-        actual: z.record(z.string(), z.unknown()).optional(),
-        result: z.unknown().optional(),
-        error: z.string().optional(),
-        confidence: z.number().min(0).max(1).optional(),
-        model: z.string().optional(),
-        correct: z.boolean(),
-        ready: z.boolean(),
-        durationMs: z.number().nonnegative(),
-        decisions: z.array(
-          z.object({
-            minConfidence: z.number().min(0).max(1),
-            ready: z.boolean(),
-            correct: z.boolean(),
-          }),
-        ),
-        exchanges: z.array(
-          z.object({
-            request: z.record(z.string(), z.unknown()),
-            response: z.unknown().optional(),
-            error: z.string().optional(),
-            durationMs: z.number().nonnegative(),
-          }),
-        ),
-      })
-      .passthrough(),
-  ),
-  thresholds: z.array(z.number()),
-  sourceRun: z.string().optional(),
-  report: z.record(z.string(), z.unknown()),
-});
+const archiveSchema = z
+  .object({
+    format: z.literal(2),
+    scoringRevision: z.literal(scoringRevision),
+    sourceMode: z.enum(['live', 'fixture']),
+    evaluatedAt: z.iso.datetime(),
+    runId: z.string(),
+    createdAt: z.iso.datetime(),
+    mode: z.enum(['live', 'fixture', 'replay']),
+    packageVersion: z.string(),
+    recipe: z.string(),
+    recipeFingerprint: z.string(),
+    datasetFingerprint: z.string(),
+    inputFingerprint: z.string(),
+    answerKeyFingerprint: z.string(),
+    split: z.enum(['development', 'held-out']),
+    requestedModel: z.string(),
+    policy: evaluationPolicySchema,
+    price: priceSchema.optional(),
+    cases: z.array(evaluationCaseSchema).min(1),
+    rows: z.array(
+      z
+        .object({
+          id: z.string(),
+          expected: z.record(z.string(), z.unknown()),
+          contested: z.boolean(),
+          adversarial: z.boolean(),
+          actual: z.record(z.string(), z.unknown()).optional(),
+          result: z.unknown().optional(),
+          error: z.string().optional(),
+          confidence: z.number().min(0).max(1).optional(),
+          model: z.string().optional(),
+          correct: z.boolean(),
+          ready: z.boolean(),
+          durationMs: z.number().nonnegative(),
+          decisions: z.array(
+            z.object({
+              minConfidence: z.number().min(0).max(1),
+              ready: z.boolean(),
+              correct: z.boolean(),
+            }),
+          ),
+          exchanges: z.array(
+            z.object({
+              request: z.record(z.string(), z.unknown()),
+              response: z.unknown().optional(),
+              error: z.string().optional(),
+              durationMs: z.number().nonnegative(),
+            }),
+          ),
+        })
+        .passthrough(),
+    ),
+    thresholds: z.array(z.number()),
+    sourceRun: z.string().optional(),
+    report: z.record(z.string(), z.unknown()),
+  })
+  .superRefine((run, context) => {
+    if (run.mode !== 'replay' && (run.sourceMode !== run.mode || run.evaluatedAt !== run.createdAt))
+      context.addIssue({
+        code: 'custom',
+        message: 'Direct runs must retain their own response mode and date.',
+      });
+    for (const [rowIndex, row] of run.rows.entries())
+      for (const [exchangeIndex, exchange] of row.exchanges.entries())
+        if (Object.hasOwn(exchange, 'response') === Object.hasOwn(exchange, 'error'))
+          context.addIssue({
+            code: 'custom',
+            path: ['rows', rowIndex, 'exchanges', exchangeIndex],
+            message: 'A completed exchange must contain exactly one response or error.',
+          });
+  });
 
 export interface EvaluationRun extends Omit<z.infer<typeof archiveSchema>, 'rows' | 'report'> {
   rows: EvaluationRow[];
@@ -115,10 +135,14 @@ export async function evaluate(
   const manifest = JSON.parse(
     await readFile(new URL('../../package.json', import.meta.url), 'utf8'),
   ) as { version: string };
+  const createdAt = new Date().toISOString();
   const metadata = {
-    format: 1 as const,
+    format: 2 as const,
+    scoringRevision,
+    sourceMode: options.mode ?? ('live' as const),
+    evaluatedAt: createdAt,
     runId: randomUUID(),
-    createdAt: new Date().toISOString(),
+    createdAt,
     mode: options.mode ?? ('live' as 'live' | 'fixture'),
     packageVersion: manifest.version,
     recipe: recipe.id,
@@ -191,6 +215,8 @@ export async function replay(
   const cases = validateCases(recipe, run.cases);
   const metadata = {
     ...run,
+    format: 2 as const,
+    scoringRevision,
     runId: randomUUID(),
     createdAt: new Date().toISOString(),
     mode: 'replay' as const,
@@ -219,8 +245,12 @@ export async function readRun(directory: string): Promise<EvaluationRun> {
       return gunzipSync(await readFile(join(directory, 'run.json.gz'))).toString('utf8');
     },
   );
-  const parsed = archiveSchema.parse(JSON.parse(content));
-  const run = parsed as unknown as EvaluationRun;
+  const raw = JSON.parse(content);
+  if (raw.format !== 2)
+    throw new Error(
+      'Unsupported archive format. This evaluator reads format 2; historical files remain available for direct inspection.',
+    );
+  const run = archiveSchema.parse(raw) as unknown as EvaluationRun;
   const hashes = datasetFingerprints(run.cases);
   if (Object.entries(hashes).some(([key, hash]) => run[key as keyof typeof hashes] !== hash))
     throw new Error('Archive dataset fingerprints do not match its cases.');
@@ -272,7 +302,10 @@ function reportEvidence(run: Omit<EvaluationRun, 'rows' | 'report'>) {
   }
   return {
     runId: run.runId,
-    evaluatedAt: run.createdAt,
+    sourceMode: run.sourceMode,
+    evaluatedAt: run.evaluatedAt,
+    createdAt: run.createdAt,
+    scoringRevision: run.scoringRevision,
     packageVersion: run.packageVersion,
     recipeFingerprint: run.recipeFingerprint,
     datasetFingerprint: run.datasetFingerprint,
@@ -284,6 +317,10 @@ function reportEvidence(run: Omit<EvaluationRun, 'rows' | 'report'>) {
 }
 
 export function compare(baseline: EvaluationRun, candidate: EvaluationRun) {
+  if (baseline.scoringRevision !== candidate.scoringRevision)
+    throw new Error(
+      'Comparison requires the same scoring revision. Replay compatible archives before comparing.',
+    );
   if (
     baseline.recipe !== candidate.recipe ||
     baseline.inputFingerprint !== candidate.inputFingerprint ||
@@ -302,6 +339,7 @@ export function compare(baseline: EvaluationRun, candidate: EvaluationRun) {
     models: run.report.models,
     policy: run.policy,
     mode: run.mode,
+    scoringRevision: run.scoringRevision,
     report: run.report,
   });
   return {

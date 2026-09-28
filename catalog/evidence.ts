@@ -1,6 +1,7 @@
 export interface RecipeEvidence {
   kind:
     | 'fixture'
+    | 'unknown'
     | 'earlier'
     | 'synthetic'
     | 'public-dataset'
@@ -12,6 +13,9 @@ export interface RecipeEvidence {
   measurement: {
     model: string;
     date: string | null;
+    operation?: string | null;
+    replayedAt?: string | null;
+    scoringRevision?: number;
     split: string | null;
     cases: number;
     ready: number | null;

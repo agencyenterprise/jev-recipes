@@ -89,7 +89,10 @@ test('uncertain or failed agent decisions pause execution and denied tools do no
 });
 
 test('customer short follow-up keeps its owner and duplicate messages produce no new decisions', async () => {
-  const result = await processCustomerQueue(queueState, [message], { fixtures: queueFixtures });
+  const result = await processCustomerQueue(queueState, [message], {
+    fixtures: queueFixtures,
+    includeContent: true,
+  });
   assert.equal(result.proposals[0].owner, 'billing');
   assert.equal(result.proposals[0].requestId, 'invoice');
   assert.equal(

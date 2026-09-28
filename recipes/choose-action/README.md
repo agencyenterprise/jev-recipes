@@ -185,22 +185,9 @@ A saved demo response recommends `defend`. A live recommendation can differ. The
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-version measurement; experimental.**
+**Unknown response origin; experimental.**
 
-Measured on 32 golden cases against `jev-1.13.0`: **97% accurate** overall (contested cases 80%, adversarial cases 100%).
-
-| `minConfidence` | Deferred to review | Accuracy of ready results |
-| --------------- | ------------------ | ------------------------- |
-| 0.5             | 13%                | 100%                      |
-| 0.6             | 13%                | 100%                      |
-| 0.7             | 16%                | 100%                      |
-| 0.8             | 16%                | 100%                      |
-| 0.9             | 28%                | 100%                      |
-| 0.95            | 28%                | 100%                      |
-
-The lowest threshold reaching 95% accuracy on ready results is 0.5.
-
-Run `npm run eval -- choose-action` to save new results and update this guide. The full report, including misses, is in [evals/results/choose-action.json](../../evals/results/choose-action.json). Accuracy on your own data may differ.
+No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
 
 <!-- END GENERATED: accuracy -->
 

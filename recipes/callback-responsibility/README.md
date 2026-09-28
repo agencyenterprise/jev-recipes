@@ -93,11 +93,13 @@ Requires speaker roles. Does not infer identities from names or assume every age
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Current synthetic measurement.**
+**Earlier-evaluator measurement; experimental.**
 
 Measured on 40 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 100%).
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `e3afba589f57bf106ce32a86e6d6dd3eb7d42c3c7f43a4e659330e8368a2cad6`.
+
+Scoring revision: 1.
 
 39/40 cases correct; 24 ready, 16 review, 0 failed. Accuracy among ready cases: 100%.
 

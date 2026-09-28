@@ -86,3 +86,7 @@ Import the chosen recipe by its dedicated path. Validate user data against its i
 Before describing a model as compatible, record its requested ID, returned ID, provider endpoint, SDK version, and date. Run transport tests for Choice, Score, and Noul, including malformed output and cancellation. Then run representative development cases with retained responses, freeze the model and confidence policy, and evaluate fresh held-out families. Keep compatibility separate from accuracy and calibration. An alias alone does not establish version stability.
 
 The [support-routing fallback](../examples/support-routing/fallback.mjs) uses Gateway structured chat completions as a separate application step. It does not adapt arbitrary chat models into System One clients. See [Vercel structured outputs](https://vercel.com/docs/ai-gateway/sdks-and-apis/openai-chat-completions/structured-outputs).
+
+## Observe calls without logging customer content
+
+The [shared example recorder](../examples/shared/decisions.mjs) supports client injection, cancellation, elapsed time, model/token metadata, and an optional `onDecision` observer. The [customer queue](../examples/customer-queue/README.md#observe-decisions) demonstrates its use. Default events omit raw inputs, outputs, and provider error text. Observer failures do not change the decision. This is an example integration, not an additional runtime dependency or hosted telemetry service.

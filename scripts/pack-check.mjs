@@ -1,5 +1,5 @@
 import { mkdtemp, readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, basename } from 'node:path';
 import { tmpdir } from 'node:os';
 import { projectRoot } from './lib/recipes.mjs';
 import { npm, run } from './lib/process.mjs';
@@ -90,12 +90,41 @@ console.log('Verified ' + ids.length + ' installed recipe imports, root exports,
 `;
   await writeFile(join(consumer, 'smoke.mjs'), fixtureScript);
   await run(process.execPath, ['smoke.mjs'], { cwd: consumer });
-  await cp(join(projectRoot, 'examples'), join(consumer, 'examples'), { recursive: true });
-  for (const example of ['getting-started', 'ingestion'])
+  await cp(join(projectRoot, 'examples'), join(consumer, 'examples'), {
+    recursive: true,
+    filter: (source) => {
+      const name = basename(source);
+      return (
+        !['node_modules', '.next', 'next-env.d.ts'].includes(name) &&
+        !(name.startsWith('.env') && name !== '.env.example') &&
+        !name.endsWith('.tsbuildinfo')
+      );
+    },
+  });
+  for (const example of [
+    'getting-started',
+    'ingestion',
+    'customer-queue',
+    'agent-loop',
+    'support-routing',
+  ])
     await run(process.execPath, [`examples/${example}/run.mjs`], {
       cwd: consumer,
       stdio: ['ignore', 'pipe', 'pipe'],
     });
+  await run(
+    process.execPath,
+    [
+      '--test',
+      'examples/support-routing/tests/conversation.test.mjs',
+      'examples/support-routing/tests/web.test.mjs',
+    ],
+    {
+      cwd: consumer,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    },
+  );
+  console.log('Verified the support conversation starter against the installed package.');
   const cli = join(packageRoot, 'dist/cli/index.js');
   for (const args of [
     ['--version'],
@@ -189,6 +218,12 @@ delete process.env.TYPESAFE_API_KEY;
   );
   if (replayOutput.report.review !== 1 || replayOutput.report.failed !== 0)
     throw new Error('Installed replay did not apply the changed review policy.');
+  if (
+    replayOutput.report.evidence.evaluatedAt !== evaluateOutput.report.evidence.evaluatedAt ||
+    replayOutput.report.evidence.sourceMode !== 'live' ||
+    replayOutput.report.evidence.scoringRevision !== 2
+  )
+    throw new Error('Installed replay lost the response origin or scoring revision.');
   const comparison = JSON.parse(
     await run(
       process.execPath,
@@ -210,6 +245,14 @@ const run = await readRun('evaluation');
 assert.equal((await replay(run)).report.correct, 1);
 assert.equal(compare(run, run).delta.accuracy, 0);
 assert.equal(typeof evaluate, 'function');
+const demo = await import('node:fs/promises').then(fs => fs.readFile('./node_modules/jev-recipes/dist/recipes/route/demo.json', 'utf8')).then(JSON.parse);
+const fixture = await evaluate('route', [{ id: 'fixture', input: demo.input,
+  expected: { suggestedRoute: 'billing' }, rationale: 'Installed offline fixture.' }], {
+  mode: 'fixture', out: 'fixture-api', client: { systemOne: async () => demo.response },
+});
+const replayedFixture = await replay(await readRun('fixture-api'), fixture.policy, 'fixture-replay-api');
+assert.equal(replayedFixture.sourceMode, 'fixture');
+assert.equal((await readRun('fixture-replay-api')).evaluatedAt, fixture.evaluatedAt);
 `,
   );
   await run(process.execPath, ['--import', './offline.mjs', 'evaluation-api.mjs'], {

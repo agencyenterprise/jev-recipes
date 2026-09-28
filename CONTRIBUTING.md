@@ -8,19 +8,21 @@ The goal is 1,000 useful, distinct recipes. Before adding one, name its target u
 
 Requires Node.js 22.9 or newer. Make is optional; every task has an npm equivalent. The Makefile works with GNU Make 3.81 and newer and is only for contributors.
 
-| Task                               | Make                                   | npm equivalent                                       |
-| ---------------------------------- | -------------------------------------- | ---------------------------------------------------- |
-| Install development dependencies   | `make setup`                           | `npm ci --ignore-scripts`                            |
-| Generate exports and catalog data  | `make generate`                        | `npm run generate`                                   |
-| Generate code and documentation    | `make docs`                            | `npm run docs`                                       |
-| Run offline tests                  | `make test`                            | `npm test`                                           |
-| Test one recipe                    | `make test RECIPE=route`               | `npm run test:recipes -- tests/recipe/route.test.ts` |
-| Run the full verification pipeline | `make ci`                              | `npm run ci`                                         |
-| Check the installable archive      | `make pack-check`                      | `npm run pack:check`                                 |
-| Scaffold a recipe                  | `make new RECIPE=my-recipe`            | `npm run new -- my-recipe`                           |
-| Scaffold a score or gate recipe    | `make new RECIPE=my-recipe KIND=score` | `npm run new -- my-recipe gate`                      |
-| Scaffold from a spec file          | `npm run new -- --spec spec.json`      | `node scripts/new-recipe.mjs --spec a.json b.json`   |
-| Compile or clean                   | `make build` / `make clean`            | `npm run build` / `npm run clean`                    |
+| Task                               | Make                                   | npm equivalent                                                                          |
+| ---------------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------- |
+| Install development dependencies   | `make setup`                           | `npm ci --ignore-scripts` + `npm ci --ignore-scripts --prefix examples/support-routing` |
+| Generate exports and catalog data  | `make generate`                        | `npm run generate`                                                                      |
+| Generate code and documentation    | `make docs`                            | `npm run docs`                                                                          |
+| Run offline tests                  | `make test`                            | `npm test`                                                                              |
+| Test one recipe                    | `make test RECIPE=route`               | `npm run test:recipes -- tests/recipe/route.test.ts`                                    |
+| Run the full verification pipeline | `make ci`                              | `npm run ci`                                                                            |
+| Check the installable archive      | `make pack-check`                      | `npm run pack:check`                                                                    |
+| Scaffold a recipe                  | `make new RECIPE=my-recipe`            | `npm run new -- my-recipe`                                                              |
+| Scaffold a score or gate recipe    | `make new RECIPE=my-recipe KIND=score` | `npm run new -- my-recipe gate`                                                         |
+| Scaffold from a spec file          | `npm run new -- --spec spec.json`      | `node scripts/new-recipe.mjs --spec a.json b.json`                                      |
+| Compile or clean                   | `make build` / `make clean`            | `npm run build` / `npm run clean`                                                       |
+
+The support starter has its own locked dependencies and tests against its installed package. `make setup` installs both dependency sets. The archive check also runs its conversation tests against the package being built.
 
 `make ci` checks generated files without changing them, checks formatting and types, runs recipe coverage, builds, tests the tooling, and tests the actual npm archive. It makes no live Jev calls. Fix stale generated files with `make docs`; format author-maintained files with `npm run format`.
 

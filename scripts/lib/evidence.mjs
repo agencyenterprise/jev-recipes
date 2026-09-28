@@ -15,9 +15,21 @@ export async function readRecipeEvidence(root, compiledRoot, id) {
 }
 
 export function summarizeEvidence(report, fingerprint) {
-  if (!report || report.evidence?.mode === 'fixture')
+  const sourceMode =
+    report?.evidence?.sourceMode ??
+    (['live', 'fixture'].includes(report?.evidence?.mode) ? report.evidence.mode : 'unknown');
+  if (!report || sourceMode === 'fixture')
     return { kind: 'fixture', label: 'Fixture only', experimental: true, measurement: null };
-  const current = report.evidence?.recipeFingerprint === fingerprint;
+  if (sourceMode === 'unknown')
+    return {
+      kind: 'unknown',
+      label: 'Unknown response origin',
+      experimental: true,
+      measurement: null,
+    };
+  const currentRecipe = report.evidence?.recipeFingerprint === fingerprint;
+  const currentScoring = report.evidence?.scoringRevision === 2;
+  const current = currentRecipe && currentScoring;
   const provenance = report.evidence?.provenance ?? [];
   const methods = new Set(provenance.map((entry) => entry.method));
   const method = methods.size > 1 ? 'mixed' : ([...methods][0] ?? 'unspecified');
@@ -32,11 +44,17 @@ export function summarizeEvidence(report, fingerprint) {
   };
   return {
     kind,
-    label: labels[kind] ?? labels.unspecified,
+    label:
+      currentRecipe && !currentScoring
+        ? 'Earlier-evaluator measurement'
+        : (labels[kind] ?? labels.unspecified),
     experimental: !current || report.acceptance?.met !== true,
     measurement: {
       model: report.model,
       date: report.evidence?.evaluatedAt ?? null,
+      operation: report.evidence?.mode ?? null,
+      replayedAt: report.evidence?.mode === 'replay' ? (report.evidence?.createdAt ?? null) : null,
+      scoringRevision: report.evidence?.scoringRevision ?? 1,
       split: report.evidence?.split ?? null,
       cases: report.cases,
       ready: report.ready ?? null,

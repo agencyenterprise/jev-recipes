@@ -150,11 +150,13 @@ The result `status` is `review` when any item is `review`. Items are independent
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Current synthetic measurement.**
+**Earlier-version measurement; experimental.**
 
 Measured on 40 golden cases against `jev-1.13.0`: **98% accurate** overall (adversarial cases 90%).
 
 Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `ab78b9ec3027283b20df73fc1b254b21d8f3fccc0fc9dc29d7949507b6266cd1`.
+
+Scoring revision: 1.
 
 39/40 cases correct; 25 ready, 15 review, 0 failed. Accuracy among ready cases: 100%.
 
@@ -189,3 +191,7 @@ If one batch fails, the whole call rejects. Retry at the caller level, or split 
 ## Example input
 
 [demo.json](demo.json) contains editable input and a hand-authored response. After installing `jev-recipes`, `npx jev-recipes demo route-many` shows an offline illustration, not an accuracy measurement. Use `npx jev-recipes describe route-many` to inspect the input and result schemas.
+
+## Build a conversation
+
+Use this recipe for independent requests, not consecutive turns in one conversation. For questions that gather missing details before routing, see the [support conversation starter](../../examples/support-routing/README.md).

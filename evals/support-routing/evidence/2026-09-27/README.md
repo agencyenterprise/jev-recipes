@@ -25,11 +25,7 @@ Both primary runs requested and returned `typesafe-ai/jev` through Vercel Gatewa
 
 The fallback smoke checks used a deliberately low-confidence **fixture primary** and a **live fallback** requesting and returning `google/gemini-2.5-flash-lite`. The invoice-only request returned billing; the independent invoice-and-crash request returned review. These two calls establish that this transport and schema worked for these inputs. They are excluded from the comparison and say nothing about natural fallback frequency or accuracy.
 
-Replay the public held-out archive without credentials:
-
-```sh
-node evals/support-routing/run.mjs --replay evals/support-routing/evidence/2026-09-27/held-out
-```
+These historical primary archives use format 1. The current evaluator reads format 2 only and does not migrate or replay them. Inspect the linked JSON files directly. New current-format runs support offline replay through the commands in the [workflow evaluation guide](../../README.md).
 
 To rerun the separate fallback smoke check into a new directory:
 
@@ -37,4 +33,4 @@ To rerun the separate fallback smoke check into a new directory:
 node --env-file=.env evals/support-routing/smoke-fallback.mjs --live --out evals/runs/support-fallback-smoke
 ```
 
-The local original archives also retain per-case checkpoint files. Public archives include the complete final primary and workflow records needed for replay, with integrity checksums. Labels, policies, response bodies, and input text are retained. Further policy development needs fresh held-out cases; keep these as regression evidence.
+The local original archives also retain per-case checkpoint files. Public archives include the complete final primary and workflow records with integrity checksums. Labels, policies, response bodies, and input text are retained. Further policy development needs fresh held-out cases; keep these as regression evidence.
