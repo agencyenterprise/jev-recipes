@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "minConfidence": 0.8,
+  "primaryModel": "typesafe-ai/jev",
+  "fallbackModel": "google/gemini-2.5-flash-lite",
+  "fallbackEligibility": "low-confidence-suggestion-only",
+  "rules": {
+    "billing": ["invoice", "charge", "refund", "payment", "subscription"],
+    "account": ["password", "sign in", "login", "profile", "account access"],
+    "technical": ["crash", "error", "broken", "outage", "bug"]
+  }
+}

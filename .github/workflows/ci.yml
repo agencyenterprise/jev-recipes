@@ -21,3 +21,23 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: make ci
+
+  support-routing-web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            examples/support-routing/web/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - run: npm ci --ignore-scripts
+        working-directory: examples/support-routing/web
+      - run: npm run build
+        working-directory: examples/support-routing/web
+      - run: npm run typecheck
+        working-directory: examples/support-routing/web

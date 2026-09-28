@@ -1,0 +1,435 @@
+{
+  "experimental": true,
+  "evidence": {
+    "mode": "live",
+    "sourceMode": "live",
+    "split": "development",
+    "date": "2026-09-27T23:57:15.268Z"
+  },
+  "limitations": [
+    "AI-authored synthetic cases and labels; no independent human review.",
+    "This small reserved set is descriptive evidence, not population accuracy.",
+    "Primary responses are shared between strategies; paired outcomes are not independent runs.",
+    "Full-path latency is the sum of recorded primary evaluation and eligible fallback request durations; it excludes browser and queue overhead.",
+    "Unknown usage stays unavailable. Monetary cost is not estimated.",
+    "A provider alias does not establish an unchanged underlying model."
+  ],
+  "strategies": {
+    "rules": {
+      "cases": 24,
+      "ready": 11,
+      "review": 13,
+      "failed": 0,
+      "correctReady": 11,
+      "wrongReady": 0,
+      "correctReview": 6,
+      "correct": 17,
+      "wrong": 0,
+      "unresolved": 7,
+      "coverage": 0.4583333333333333,
+      "readyAccuracy": 1,
+      "requiredReviewCases": 6,
+      "inappropriateRouting": 0,
+      "fallbackCalls": 0,
+      "fallbackFailures": 0,
+      "latencyMs": null,
+      "usage": {
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      "cost": 0,
+      "models": []
+    },
+    "primary": {
+      "cases": 24,
+      "ready": 18,
+      "review": 6,
+      "failed": 0,
+      "correctReady": 18,
+      "wrongReady": 0,
+      "correctReview": 6,
+      "correct": 24,
+      "wrong": 0,
+      "unresolved": 0,
+      "coverage": 0.75,
+      "readyAccuracy": 1,
+      "requiredReviewCases": 6,
+      "inappropriateRouting": 0,
+      "fallbackCalls": 0,
+      "fallbackFailures": 0,
+      "latencyMs": {
+        "p50": 240.61,
+        "p95": 665.17
+      },
+      "usage": {
+        "inputTokens": 10522,
+        "outputTokens": 1140
+      },
+      "cost": null,
+      "models": ["typesafe-ai/jev"]
+    },
+    "cascade": {
+      "cases": 24,
+      "ready": 18,
+      "review": 6,
+      "failed": 0,
+      "correctReady": 18,
+      "wrongReady": 0,
+      "correctReview": 6,
+      "correct": 24,
+      "wrong": 0,
+      "unresolved": 0,
+      "coverage": 0.75,
+      "readyAccuracy": 1,
+      "requiredReviewCases": 6,
+      "inappropriateRouting": 0,
+      "fallbackCalls": 0,
+      "fallbackFailures": 0,
+      "latencyMs": {
+        "p50": 240.61,
+        "p95": 665.17
+      },
+      "usage": {
+        "inputTokens": 10522,
+        "outputTokens": 1140
+      },
+      "cost": null,
+      "models": ["typesafe-ai/jev"]
+    }
+  },
+  "changed": [],
+  "groups": {
+    "billing": {
+      "rules": {
+        "cases": 6,
+        "ready": 5,
+        "review": 1,
+        "failed": 0,
+        "correctReady": 5,
+        "wrongReady": 0,
+        "correctReview": 0,
+        "correct": 5,
+        "wrong": 0,
+        "unresolved": 1,
+        "coverage": 0.8333333333333334,
+        "readyAccuracy": 1,
+        "requiredReviewCases": 0,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": null,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0
+        },
+        "cost": 0,
+        "models": []
+      },
+      "primary": {
+        "cases": 6,
+        "ready": 6,
+        "review": 0,
+        "failed": 0,
+        "correctReady": 6,
+        "wrongReady": 0,
+        "correctReview": 0,
+        "correct": 6,
+        "wrong": 0,
+        "unresolved": 0,
+        "coverage": 1,
+        "readyAccuracy": 1,
+        "requiredReviewCases": 0,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": {
+          "p50": 299.65,
+          "p95": 712.42
+        },
+        "usage": {
+          "inputTokens": 2632,
+          "outputTokens": 282
+        },
+        "cost": null,
+        "models": ["typesafe-ai/jev"]
+      },
+      "cascade": {
+        "cases": 6,
+        "ready": 6,
+        "review": 0,
+        "failed": 0,
+        "correctReady": 6,
+        "wrongReady": 0,
+        "correctReview": 0,
+        "correct": 6,
+        "wrong": 0,
+        "unresolved": 0,
+        "coverage": 1,
+        "readyAccuracy": 1,
+        "requiredReviewCases": 0,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": {
+          "p50": 299.65,
+          "p95": 712.42
+        },
+        "usage": {
+          "inputTokens": 2632,
+          "outputTokens": 282
+        },
+        "cost": null,
+        "models": ["typesafe-ai/jev"]
+      }
+    },
+    "account": {
+      "rules": {
+        "cases": 6,
+        "ready": 4,
+        "review": 2,
+        "failed": 0,
+        "correctReady": 4,
+        "wrongReady": 0,
+        "correctReview": 0,
+        "correct": 4,
+        "wrong": 0,
+        "unresolved": 2,
+        "coverage": 0.6666666666666666,
+        "readyAccuracy": 1,
+        "requiredReviewCases": 0,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": null,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0
+        },
+        "cost": 0,
+        "models": []
+      },
+      "primary": {
+        "cases": 6,
+        "ready": 6,
+        "review": 0,
+        "failed": 0,
+        "correctReady": 6,
+        "wrongReady": 0,
+        "correctReview": 0,
+        "correct": 6,
+        "wrong": 0,
+        "unresolved": 0,
+        "coverage": 1,
+        "readyAccuracy": 1,
+        "requiredReviewCases": 0,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": {
+          "p50": 243.2,
+          "p95": 273.7
+        },
+        "usage": {
+          "inputTokens": 2638,
+          "outputTokens": 282
+        },
+        "cost": null,
+        "models": ["typesafe-ai/jev"]
+      },
+      "cascade": {
+        "cases": 6,
+        "ready": 6,
+        "review": 0,
+        "failed": 0,
+        "correctReady": 6,
+        "wrongReady": 0,
+        "correctReview": 0,
+        "correct": 6,
+        "wrong": 0,
+        "unresolved": 0,
+        "coverage": 1,
+        "readyAccuracy": 1,
+        "requiredReviewCases": 0,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": {
+          "p50": 243.2,
+          "p95": 273.7
+        },
+        "usage": {
+          "inputTokens": 2638,
+          "outputTokens": 282
+        },
+        "cost": null,
+        "models": ["typesafe-ai/jev"]
+      }
+    },
+    "technical": {
+      "rules": {
+        "cases": 6,
+        "ready": 2,
+        "review": 4,
+        "failed": 0,
+        "correctReady": 2,
+        "wrongReady": 0,
+        "correctReview": 0,
+        "correct": 2,
+        "wrong": 0,
+        "unresolved": 4,
+        "coverage": 0.3333333333333333,
+        "readyAccuracy": 1,
+        "requiredReviewCases": 0,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": null,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0
+        },
+        "cost": 0,
+        "models": []
+      },
+      "primary": {
+        "cases": 6,
+        "ready": 6,
+        "review": 0,
+        "failed": 0,
+        "correctReady": 6,
+        "wrongReady": 0,
+        "correctReview": 0,
+        "correct": 6,
+        "wrong": 0,
+        "unresolved": 0,
+        "coverage": 1,
+        "readyAccuracy": 1,
+        "requiredReviewCases": 0,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": {
+          "p50": 223.4,
+          "p95": 242.29
+        },
+        "usage": {
+          "inputTokens": 2631,
+          "outputTokens": 282
+        },
+        "cost": null,
+        "models": ["typesafe-ai/jev"]
+      },
+      "cascade": {
+        "cases": 6,
+        "ready": 6,
+        "review": 0,
+        "failed": 0,
+        "correctReady": 6,
+        "wrongReady": 0,
+        "correctReview": 0,
+        "correct": 6,
+        "wrong": 0,
+        "unresolved": 0,
+        "coverage": 1,
+        "readyAccuracy": 1,
+        "requiredReviewCases": 0,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": {
+          "p50": 223.4,
+          "p95": 242.29
+        },
+        "usage": {
+          "inputTokens": 2631,
+          "outputTokens": 282
+        },
+        "cost": null,
+        "models": ["typesafe-ai/jev"]
+      }
+    },
+    "requires-review": {
+      "rules": {
+        "cases": 6,
+        "ready": 0,
+        "review": 6,
+        "failed": 0,
+        "correctReady": 0,
+        "wrongReady": 0,
+        "correctReview": 6,
+        "correct": 6,
+        "wrong": 0,
+        "unresolved": 0,
+        "coverage": 0,
+        "readyAccuracy": null,
+        "requiredReviewCases": 6,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": null,
+        "usage": {
+          "inputTokens": 0,
+          "outputTokens": 0
+        },
+        "cost": 0,
+        "models": []
+      },
+      "primary": {
+        "cases": 6,
+        "ready": 0,
+        "review": 6,
+        "failed": 0,
+        "correctReady": 0,
+        "wrongReady": 0,
+        "correctReview": 6,
+        "correct": 6,
+        "wrong": 0,
+        "unresolved": 0,
+        "coverage": 0,
+        "readyAccuracy": null,
+        "requiredReviewCases": 6,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": {
+          "p50": 232.7,
+          "p95": 305.6
+        },
+        "usage": {
+          "inputTokens": 2621,
+          "outputTokens": 294
+        },
+        "cost": null,
+        "models": ["typesafe-ai/jev"]
+      },
+      "cascade": {
+        "cases": 6,
+        "ready": 0,
+        "review": 6,
+        "failed": 0,
+        "correctReady": 0,
+        "wrongReady": 0,
+        "correctReview": 6,
+        "correct": 6,
+        "wrong": 0,
+        "unresolved": 0,
+        "coverage": 0,
+        "readyAccuracy": null,
+        "requiredReviewCases": 6,
+        "inappropriateRouting": 0,
+        "fallbackCalls": 0,
+        "fallbackFailures": 0,
+        "latencyMs": {
+          "p50": 232.7,
+          "p95": 305.6
+        },
+        "usage": {
+          "inputTokens": 2621,
+          "outputTokens": 294
+        },
+        "cost": null,
+        "models": ["typesafe-ai/jev"]
+      }
+    }
+  }
+}

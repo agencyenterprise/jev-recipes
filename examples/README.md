@@ -4,6 +4,7 @@ Made a game, music app, developer tool, or something unexpected with jev-recipes
 
 ## Explore the examples
 
+- [Support routing](support-routing/README.md): a shared workflow, Next.js starter, and archived rules/Jev/fallback comparison.
 - [Jevthoven](jevthoven/README.md): a live music app and a walkthrough of its recipe decisions.
 - [Checkers](checkers/README.md): run a visual game with Jev choosing moves.
 - [Getting started](getting-started/README.md): route work, select evidence, and review actions using saved responses.
@@ -21,6 +22,6 @@ Tell readers:
 - **What you checked.** Include a reproducible test or demonstration. Label saved or mocked responses separately from live results, and describe known limits.
 - **Who maintains it.** Credit the author, link to the project's support location, and state your relationship to jev-recipes. Include only code and assets you have permission to share.
 
-Use [Jevthoven's walkthrough](jevthoven/README.md) as a starting point for a hosted project, or [checkers](checkers/README.md) for a runnable example. Keep application-specific setup beside your example and leave secrets, build output, and dependencies out of the contribution. Project authors maintain their apps and deployments.
+Use the optional [project template](TEMPLATE.md), [Jevthoven's walkthrough](jevthoven/README.md) as a starting point for a hosted project, or [checkers](checkers/README.md) for a runnable example. Keep application-specific setup beside your example and leave secrets, build output, and dependencies out of the contribution. Project authors maintain their apps and deployments.
 
 Have a project to share but no pull request ready? [Share an integration](https://github.com/agencyenterprise/jev-recipes/issues/new?template=share-integration.yml). An early experiment is welcome when its limits are clear.

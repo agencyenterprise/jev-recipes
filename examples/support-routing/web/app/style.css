@@ -1,0 +1,270 @@
+:root {
+  color-scheme: light;
+  --ink: #191c2a;
+  --muted: #555e70;
+  --paper: #ffffff;
+  --wash: #f4f6fc;
+  --accent: #3438bf;
+  --line: #dce1ef;
+  --review: #805200;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+main {
+  max-width: 1160px;
+  margin: auto;
+  padding: 28px 40px;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.brand {
+  color: var(--ink);
+  font-size: 26px;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+.brand span {
+  font-weight: 400;
+}
+.mode {
+  color: var(--muted);
+  font-size: 14px;
+}
+.introduction {
+  margin: 64px 0 40px;
+}
+h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+  margin: 0 0 18px;
+}
+.introduction p {
+  color: var(--muted);
+  max-width: 55ch;
+  font-size: 18px;
+}
+h2 {
+  font-size: 19px;
+  margin: 0 0 20px;
+  font-weight: 650;
+}
+.desk {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  border-block: 1px solid var(--line);
+}
+form {
+  padding: 30px 36px 32px 0;
+}
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 25px;
+  min-width: 0;
+}
+legend,
+label {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.scenarios {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: white;
+  color: var(--ink);
+  padding: 8px 12px;
+}
+.scenarios button {
+  font-size: 13px;
+}
+button[aria-pressed='true'] {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--wash);
+}
+button:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+:focus-visible {
+  outline: 3px solid #898cfc;
+  outline-offset: 3px;
+}
+textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 16px;
+  border: 1px solid #a8b0c3;
+  border-radius: 8px;
+  color: var(--ink);
+  background: white;
+  font: inherit;
+  line-height: 1.6;
+}
+textarea[readonly] {
+  background: var(--wash);
+}
+.hint {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 62ch;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.submit {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  padding-inline: 22px;
+}
+.decision {
+  border-left: 1px solid var(--line);
+  padding: 30px 0 32px 36px;
+}
+.empty {
+  color: var(--muted);
+  padding-top: 36px;
+}
+.branch {
+  font-size: 58px;
+  color: #a4adc3;
+  line-height: 1;
+}
+.outcome {
+  margin: 28px 0 14px;
+  color: var(--accent);
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+}
+.outcome.review {
+  color: var(--review);
+}
+.trace {
+  list-style: none;
+  margin: 28px 0;
+  padding: 0 0 0 18px;
+  border-left: 2px solid var(--line);
+}
+.trace li {
+  margin-bottom: 18px;
+}
+.trace strong,
+.trace span {
+  display: block;
+}
+.trace span {
+  color: var(--muted);
+  font-size: 14px;
+}
+.error {
+  color: #9c2e2e;
+}
+.queues {
+  margin: 32px 0;
+}
+.queues > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.queues article {
+  border-top: 3px solid var(--line);
+  padding-top: 12px;
+}
+.queues article.selected {
+  border-color: var(--accent);
+}
+h3 {
+  text-transform: capitalize;
+  font-size: 16px;
+  margin: 0;
+}
+.queues p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 7px;
+}
+footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  font-size: 13px;
+}
+footer p {
+  color: var(--muted);
+}
+a {
+  color: var(--accent);
+}
+@media (max-width: 700px) {
+  main {
+    padding: 22px;
+  }
+  header {
+    align-items: baseline;
+  }
+  .mode {
+    font-size: 12px;
+  }
+  .introduction {
+    margin-top: 42px;
+  }
+  .desk {
+    grid-template-columns: 1fr;
+  }
+  form {
+    padding-right: 0;
+  }
+  .decision {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 28px 0;
+  }
+  .empty {
+    padding-top: 0;
+  }
+  .queues > div {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  footer {
+    flex-direction: column;
+    gap: 0;
+  }
+}
