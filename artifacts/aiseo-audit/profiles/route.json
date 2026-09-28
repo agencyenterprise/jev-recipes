@@ -1,0 +1,11 @@
+{
+  "domain": "informational",
+  "engine": "generic",
+  "queries": [
+    "How can I route support requests with Jev?",
+    "How do I configure named handlers in the Jev route recipe?",
+    "What input does the Jev route recipe require?",
+    "When does Jev route return a review decision?",
+    "How do I run the Jev route demo without an API key?"
+  ]
+}

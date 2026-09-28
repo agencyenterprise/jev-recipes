@@ -1,0 +1,1040 @@
+{
+  "url": "http://127.0.0.1:4176",
+  "signalsBase": "http://127.0.0.1:4176",
+  "analyzedAt": "2026-09-28T05:52:00.108Z",
+  "schemaVersion": 2,
+  "overallScore": 100,
+  "grade": "A",
+  "totalPoints": 392,
+  "maxPoints": 394,
+  "stages": {
+    "technicalEligibility": {
+      "score": 52,
+      "maxScore": 54,
+      "pct": 96,
+      "suppressed": false,
+      "status": "pass",
+      "blockers": []
+    },
+    "retrievalAlignment": {
+      "score": 142,
+      "maxScore": 142,
+      "pct": 100,
+      "suppressed": false
+    },
+    "citationFitness": {
+      "score": 168,
+      "maxScore": 168,
+      "pct": 100,
+      "suppressed": false,
+      "uncappedPct": 100,
+      "gates": [
+        {
+          "id": "staleVisibleDate",
+          "label": "Visible date is stale",
+          "status": "not_applicable",
+          "capPct": 50,
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        },
+        {
+          "id": "offTopicForQueries",
+          "label": "Content is off-topic for every target query",
+          "status": "pass",
+          "capPct": 50,
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        },
+        {
+          "id": "missingPriceProduct",
+          "label": "Product page without price information",
+          "status": "not_applicable",
+          "capPct": 60,
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        }
+      ]
+    },
+    "provenance": {
+      "score": 30,
+      "maxScore": 30,
+      "pct": 100,
+      "suppressed": false
+    }
+  },
+  "categories": {
+    "contentExtractability": {
+      "name": "Content Extractability",
+      "key": "contentExtractability",
+      "score": 52,
+      "maxScore": 54,
+      "factors": [
+        {
+          "name": "Fetch Success",
+          "score": 12,
+          "maxScore": 12,
+          "value": "HTTP 200 in 11ms",
+          "status": "good",
+          "evidence": "supported",
+          "citations": []
+        },
+        {
+          "name": "Text Extraction Quality",
+          "score": 10,
+          "maxScore": 12,
+          "value": "42.1% content ratio",
+          "status": "good",
+          "evidence": "supported",
+          "citations": []
+        },
+        {
+          "name": "Boilerplate Ratio",
+          "score": 12,
+          "maxScore": 12,
+          "value": "2% boilerplate",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "autogeo-iclr-2026"
+          ]
+        },
+        {
+          "name": "Word Count Adequacy",
+          "score": 0,
+          "maxScore": 0,
+          "value": "1251 words",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Paywall Signals",
+          "score": 8,
+          "maxScore": 8,
+          "value": "No paywall or login barriers detected",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "autogeo-iclr-2026"
+          ]
+        },
+        {
+          "name": "AI Crawler Access",
+          "score": 10,
+          "maxScore": 10,
+          "value": "All major AI crawlers allowed",
+          "status": "good",
+          "evidence": "supported",
+          "citations": [
+            "characterizing-web-search-findings-acl-2026"
+          ]
+        },
+        {
+          "name": "LLMs.txt Presence",
+          "score": 0,
+          "maxScore": 0,
+          "value": "Not found (experimental standard, no outcome evidence)",
+          "status": "info",
+          "evidence": "experimental",
+          "citations": [
+            "c-seo-bench-neurips-2025"
+          ]
+        },
+        {
+          "name": "Image Accessibility",
+          "score": 0,
+          "maxScore": 0,
+          "value": "No images found",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": []
+        }
+      ]
+    },
+    "structuralAlignment": {
+      "name": "Structural Alignment",
+      "key": "structuralAlignment",
+      "score": 36,
+      "maxScore": 36,
+      "factors": [
+        {
+          "name": "Title Entity Alignment",
+          "score": 12,
+          "maxScore": 12,
+          "value": "60% of the body's key terms appear in the title",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Meta Description Alignment",
+          "score": 8,
+          "maxScore": 8,
+          "value": "60% of the body's key terms appear in the meta description",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Heading Entity Alignment",
+          "score": 10,
+          "maxScore": 10,
+          "value": "70% of the body's key terms appear in the headings",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Structured Data Alignment",
+          "score": 6,
+          "maxScore": 6,
+          "value": "60% of the body's key terms appear in the JSON-LD fields",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "sageo-arena-kdd-2026"
+          ]
+        }
+      ]
+    },
+    "contentStructure": {
+      "name": "Content Structure for Reuse",
+      "key": "contentStructure",
+      "score": 11,
+      "maxScore": 11,
+      "factors": [
+        {
+          "name": "Heading Hierarchy",
+          "score": 11,
+          "maxScore": 11,
+          "value": "1 H1, 10 H2, 5 H3",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Lists Presence",
+          "score": 0,
+          "maxScore": 0,
+          "value": "11 list items",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        },
+        {
+          "name": "Tables Presence",
+          "score": 0,
+          "maxScore": 0,
+          "value": "1 table(s)",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        },
+        {
+          "name": "Paragraph Structure",
+          "score": 0,
+          "maxScore": 0,
+          "value": "32 paragraphs, avg 39 words",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        },
+        {
+          "name": "Scannability",
+          "score": 0,
+          "maxScore": 0,
+          "value": "Bold text found, 0.50 heading ratio",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        },
+        {
+          "name": "Section Length",
+          "score": 0,
+          "maxScore": 0,
+          "value": "16 sections, avg 67 words",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        }
+      ]
+    },
+    "answerability": {
+      "name": "Answerability",
+      "key": "answerability",
+      "score": 63,
+      "maxScore": 63,
+      "factors": [
+        {
+          "name": "Lead Summary",
+          "score": 13,
+          "maxScore": 13,
+          "value": "intro paragraph under H1, explicit summary marker, main claim stated first",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "c-seo-bench-neurips-2025",
+            "autogeo-iclr-2026",
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Definition Patterns",
+          "score": 10,
+          "maxScore": 10,
+          "value": "8 definition patterns",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": []
+        },
+        {
+          "name": "Direct Answer Statements",
+          "score": 11,
+          "maxScore": 11,
+          "value": "7 direct statements",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "c-seo-bench-neurips-2025",
+            "autogeo-iclr-2026",
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Answer Capsules",
+          "score": 0,
+          "maxScore": 0,
+          "value": "4/4 question headings have answer capsules",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "what-gets-cited-sigir-2026",
+            "mind-reader-acl-2026"
+          ]
+        },
+        {
+          "name": "Step-by-Step Content",
+          "score": 10,
+          "maxScore": 10,
+          "value": "1 step indicators, 27 instruction verbs, ordered lists found",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "autogeo-iclr-2026"
+          ]
+        },
+        {
+          "name": "Q/A Patterns",
+          "score": 0,
+          "maxScore": 0,
+          "value": "6 questions, 4 query patterns",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "mind-reader-acl-2026"
+          ]
+        },
+        {
+          "name": "Summary/Conclusion",
+          "score": 9,
+          "maxScore": 9,
+          "value": "2 summary markers",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "autogeo-iclr-2026"
+          ]
+        },
+        {
+          "name": "Explanatory Depth",
+          "score": 10,
+          "maxScore": 10,
+          "value": "4 explanatory markers, 6 how/why headings",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "autogeo-iclr-2026"
+          ]
+        }
+      ]
+    },
+    "entityClarity": {
+      "name": "Entity Clarity",
+      "key": "entityClarity",
+      "score": 38,
+      "maxScore": 38,
+      "factors": [
+        {
+          "name": "Entity Richness",
+          "score": 12,
+          "maxScore": 12,
+          "value": "12 entities (0 people, 10 orgs, 2 places)",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Topic Consistency",
+          "score": 18,
+          "maxScore": 18,
+          "value": "7/10 title keywords align with content topics",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "autogeo-iclr-2026",
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Term Repetition Balance",
+          "score": 8,
+          "maxScore": 8,
+          "value": "\"ES\" fills 0.1% of the text",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "autogeo-iclr-2026",
+            "mind-reader-acl-2026",
+            "featgeo-acl-2026",
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Pronoun Ambiguity",
+          "score": 0,
+          "maxScore": 0,
+          "value": "0 of 16 substantial paragraphs open with a pronoun subject",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "sageo-arena-kdd-2026"
+          ]
+        }
+      ]
+    },
+    "groundingSignals": {
+      "name": "Grounding Signals",
+      "key": "groundingSignals",
+      "score": 60,
+      "maxScore": 60,
+      "factors": [
+        {
+          "name": "External References",
+          "score": 13,
+          "maxScore": 13,
+          "value": "22 external links",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "autogeo-iclr-2026"
+          ]
+        },
+        {
+          "name": "Citation Patterns",
+          "score": 13,
+          "maxScore": 13,
+          "value": "9 citation indicators, 7 quote elements",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "what-gets-cited-sigir-2026",
+            "c-seo-bench-neurips-2025"
+          ]
+        },
+        {
+          "name": "Numeric Claims",
+          "score": 13,
+          "maxScore": 13,
+          "value": "11 statistical references, 5 written-out numbers",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "what-gets-cited-sigir-2026",
+            "c-seo-bench-neurips-2025"
+          ]
+        },
+        {
+          "name": "Attribution Indicators",
+          "score": 11,
+          "maxScore": 11,
+          "value": "7 attribution patterns",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        },
+        {
+          "name": "Quoted Attribution",
+          "score": 0,
+          "maxScore": 10,
+          "value": "0 attributed quotes",
+          "status": "neutral",
+          "evidence": "heuristic",
+          "citations": [
+            "c-seo-bench-neurips-2025"
+          ]
+        },
+        {
+          "name": "Hedged Language",
+          "score": 10,
+          "maxScore": 10,
+          "value": "2 of 116 sentences hedge (1.7%)",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        }
+      ]
+    },
+    "authorityContext": {
+      "name": "Authority Context",
+      "key": "authorityContext",
+      "score": 62,
+      "maxScore": 62,
+      "factors": [
+        {
+          "name": "Author Attribution",
+          "score": 10,
+          "maxScore": 10,
+          "value": "jev-recipes contributors",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "authority-aware-genir-acl-2026"
+          ]
+        },
+        {
+          "name": "Organization Identity",
+          "score": 10,
+          "maxScore": 10,
+          "value": "Jev recipes",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "authority-aware-genir-acl-2026"
+          ]
+        },
+        {
+          "name": "Contact/About Links",
+          "score": 10,
+          "maxScore": 10,
+          "value": "About + Contact",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "authority-aware-genir-acl-2026"
+          ]
+        },
+        {
+          "name": "Date Markup",
+          "score": 0,
+          "maxScore": 0,
+          "value": "No machine-readable date markup",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        },
+        {
+          "name": "Topic Time Sensitivity",
+          "score": 0,
+          "maxScore": 0,
+          "value": "Evergreen topic, freshness not scored",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "what-gets-cited-sigir-2026",
+            "characterizing-web-search-findings-acl-2026"
+          ]
+        },
+        {
+          "name": "Content Freshness",
+          "score": 0,
+          "maxScore": 12,
+          "value": "Evergreen topic, freshness not applicable",
+          "status": "neutral",
+          "evidence": "conditional",
+          "citations": [
+            "what-gets-cited-sigir-2026",
+            "characterizing-web-search-findings-acl-2026"
+          ]
+        },
+        {
+          "name": "Structured Data",
+          "score": 12,
+          "maxScore": 12,
+          "value": "Organization, WebSite, WebPage, SoftwareSourceCode, 3/4 OG tags, canonical",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Schema Completeness",
+          "score": 10,
+          "maxScore": 10,
+          "value": "2 schema types, 100% complete",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Entity Consistency",
+          "score": 10,
+          "maxScore": 10,
+          "value": "\"Jev recipes\" found in 4/4 surfaces",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "sageo-arena-kdd-2026",
+            "authority-aware-genir-acl-2026"
+          ]
+        },
+        {
+          "name": "Promotional Language",
+          "score": 0,
+          "maxScore": 0,
+          "value": "0 promotional phrases and 0 exclamations per 1,000 words",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "authority-aware-genir-acl-2026",
+            "autogeo-iclr-2026"
+          ]
+        },
+        {
+          "name": "Affiliate Link Density",
+          "score": 0,
+          "maxScore": 0,
+          "value": "0% of external links carry affiliate markers",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "authority-aware-genir-acl-2026"
+          ]
+        },
+        {
+          "name": "Ad Slot Markers",
+          "score": 0,
+          "maxScore": 0,
+          "value": "0 ad slot elements in the DOM",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "authority-aware-genir-acl-2026"
+          ]
+        },
+        {
+          "name": "Site Type",
+          "score": 0,
+          "maxScore": 0,
+          "value": "No forum or user-generated content signals",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "characterizing-web-search-findings-acl-2026"
+          ]
+        }
+      ]
+    },
+    "readabilityForCompression": {
+      "name": "Readability for Compression",
+      "key": "readabilityForCompression",
+      "score": 30,
+      "maxScore": 30,
+      "factors": [
+        {
+          "name": "Sentence Length",
+          "score": 10,
+          "maxScore": 10,
+          "value": "Avg 11 words/sentence",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "featgeo-acl-2026"
+          ]
+        },
+        {
+          "name": "Readability",
+          "score": 10,
+          "maxScore": 10,
+          "value": "Flesch Reading Ease: 45.9",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "featgeo-acl-2026",
+            "mind-reader-acl-2026"
+          ]
+        },
+        {
+          "name": "Jargon Density",
+          "score": 10,
+          "maxScore": 10,
+          "value": "7.0% complex words",
+          "status": "good",
+          "evidence": "conditional",
+          "citations": [
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Transition Usage",
+          "score": 0,
+          "maxScore": 0,
+          "value": "0 transition types found",
+          "status": "info",
+          "evidence": "diagnostic",
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        }
+      ]
+    },
+    "queryAlignment": {
+      "name": "Query Alignment",
+      "key": "queryAlignment",
+      "score": 40,
+      "maxScore": 40,
+      "factors": [
+        {
+          "name": "Query Term Coverage (Structural)",
+          "score": 15,
+          "maxScore": 15,
+          "value": "Weakest query \"What is Jev recipes?\" at 100% coverage in title, meta description, headings, and JSON-LD; 5 of 5 queries adequately served",
+          "status": "good",
+          "evidence": "supported",
+          "citations": [
+            "what-gets-cited-sigir-2026",
+            "sageo-arena-kdd-2026"
+          ]
+        },
+        {
+          "name": "Query Term Coverage (Body)",
+          "score": 15,
+          "maxScore": 15,
+          "value": "Weakest query \"What is Jev recipes?\" at 100% coverage in body content; 5 of 5 queries adequately served",
+          "status": "good",
+          "evidence": "supported",
+          "citations": [
+            "what-gets-cited-sigir-2026"
+          ]
+        },
+        {
+          "name": "Query Aspect Coverage",
+          "score": 10,
+          "maxScore": 10,
+          "value": "Weakest query \"How can I evaluate Jev recipe accuracy?\" has 3 of 4 aspects addressed by a dedicated section",
+          "status": "good",
+          "evidence": "heuristic",
+          "citations": [
+            "mind-reader-acl-2026"
+          ]
+        }
+      ]
+    }
+  },
+  "recommendations": [],
+  "rawData": {
+    "title": "Jev recipes | TypeScript guide to route decisions, review results, and evidence",
+    "metaDescription": "Jev recipes is a TypeScript library for route decisions, review results, and evidence. Use this guide to inspect recipes, run examples, and evaluate accuracy.",
+    "wordCount": 1251,
+    "domainDetected": "informational",
+    "crawlerAccess": {
+      "allowed": [
+        "GPTBot",
+        "OAI-SearchBot",
+        "ChatGPT-User",
+        "ClaudeBot",
+        "Claude-User",
+        "Claude-SearchBot",
+        "PerplexityBot",
+        "Perplexity-User",
+        "Google-Extended",
+        "Applebot-Extended",
+        "CCBot",
+        "Bytespider",
+        "meta-externalagent"
+      ],
+      "blocked": [],
+      "unknown": []
+    },
+    "llmsTxt": {
+      "llmsTxtExists": false,
+      "llmsFullTxtExists": false
+    },
+    "imageAccessibility": {
+      "imageCount": 0,
+      "imagesWithAlt": 0,
+      "figcaptionCount": 0
+    },
+    "sectionLengths": {
+      "sectionCount": 16,
+      "avgWordsPerSection": 67,
+      "sections": [
+        46,
+        35,
+        50,
+        47,
+        64,
+        65,
+        115,
+        82,
+        67,
+        91,
+        125,
+        39,
+        71,
+        60,
+        63,
+        53
+      ]
+    },
+    "answerCapsules": {
+      "total": 4,
+      "withCapsule": 4
+    },
+    "questionsFound": [
+      "What does your application need to decide?",
+      "How do I use Jev recipes in TypeScript?",
+      "How do I route support requests with Jev?",
+      "How do I rerank evidence with Jev?",
+      "How do I evaluate Jev recipe accuracy?"
+    ],
+    "entities": {
+      "people": [],
+      "organizations": [
+        "Hear Jevthoven",
+        "Evidence Any",
+        "Install Jev",
+        "Connect Jev",
+        "System One",
+        "Using Jev",
+        "About Jev",
+        "GitHub.",
+        "MIT",
+        "ES"
+      ],
+      "places": [
+        "console.log('Review",
+        "TypeScript library"
+      ],
+      "topics": [
+        "route",
+        "recipe",
+        "jev",
+        "review",
+        "jev recipes",
+        "evidence",
+        "result",
+        "recipes",
+        "confidence",
+        "typescript",
+        "decision",
+        "application",
+        "accuracy",
+        "guide",
+        "decisions"
+      ],
+      "imperativeVerbCount": 27,
+      "numberCount": 5
+    },
+    "externalLinks": [
+      {
+        "url": "https://github.com/agencyenterprise/jev-recipes",
+        "text": "Source"
+      },
+      {
+        "url": "https://www.npmjs.com/package/jev-recipes",
+        "text": "npm package"
+      },
+      {
+        "url": "https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md",
+        "text": "Evaluate your data"
+      },
+      {
+        "url": "https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md",
+        "text": "Run the examples"
+      },
+      {
+        "url": "https://github.com/agencyenterprise/jev-recipes/blob/main/docs/coding-assistants.md",
+        "text": "build with a coding assistant"
+      },
+      {
+        "url": "https://github.com/agencyenterprise/jev-recipes/blob/main/examples/support-routing/web/README.md",
+        "text": "Try the support-routing web starter"
+      },
+      {
+        "url": "https://jev-ai-music.com/",
+        "text": "Open the music app"
+      },
+      {
+        "url": "https://github.com/agencyenterprise/jev-recipes/blob/main/examples/jevthoven/README.md",
+        "text": "Explore the integration"
+      },
+      {
+        "url": "https://github.com/agencyenterprise/jev-recipes/blob/main/examples/README.md#add-your-project",
+        "text": "Share your project in the examples"
+      },
+      {
+        "url": "https://github.com/agencyenterprise/jev-recipes/blob/main/README.md#use-a-recipe",
+        "text": "Jev recipes installation guide"
+      }
+    ],
+    "freshness": {
+      "publishDate": null,
+      "modifiedDate": null,
+      "ageInMonths": null,
+      "hasModifiedDate": false
+    },
+    "structuredDataTypes": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "SoftwareSourceCode"
+    ],
+    "schemaCompleteness": {
+      "totalTypes": 2,
+      "avgCompleteness": 1,
+      "details": [
+        {
+          "type": "Organization",
+          "present": [
+            "name",
+            "url"
+          ],
+          "missing": []
+        },
+        {
+          "type": "WebPage",
+          "present": [
+            "name"
+          ],
+          "missing": []
+        }
+      ]
+    },
+    "entityConsistency": {
+      "entityName": "Jev recipes",
+      "surfacesFound": 4,
+      "surfacesChecked": 4
+    },
+    "avgSentenceLength": 11,
+    "readabilityScore": 45.894505395683495,
+    "queryAlignment": {
+      "queries": [
+        {
+          "query": "What is Jev recipes?",
+          "structuralCoverage": 1,
+          "bodyCoverage": 1,
+          "matchedTerms": [
+            "jev",
+            "recipes"
+          ],
+          "missingTerms": []
+        },
+        {
+          "query": "How do I use Jev recipes in TypeScript?",
+          "structuralCoverage": 1,
+          "bodyCoverage": 1,
+          "matchedTerms": [
+            "jev",
+            "recipes",
+            "typescript"
+          ],
+          "missingTerms": []
+        },
+        {
+          "query": "How can I route support requests with Jev?",
+          "structuralCoverage": 1,
+          "bodyCoverage": 1,
+          "matchedTerms": [
+            "route",
+            "support",
+            "requests",
+            "jev"
+          ],
+          "missingTerms": []
+        },
+        {
+          "query": "How can I rerank evidence with Jev?",
+          "structuralCoverage": 1,
+          "bodyCoverage": 1,
+          "matchedTerms": [
+            "rerank",
+            "evidence",
+            "jev"
+          ],
+          "missingTerms": []
+        },
+        {
+          "query": "How can I evaluate Jev recipe accuracy?",
+          "structuralCoverage": 1,
+          "bodyCoverage": 1,
+          "matchedTerms": [
+            "evaluate",
+            "jev",
+            "recipe",
+            "accuracy"
+          ],
+          "missingTerms": []
+        }
+      ]
+    }
+  },
+  "meta": {
+    "version": "2.0.2",
+    "weights": {
+      "contentExtractability": 1,
+      "structuralAlignment": 1,
+      "contentStructure": 1,
+      "answerability": 1,
+      "queryAlignment": 1,
+      "entityClarity": 1,
+      "groundingSignals": 1,
+      "authorityContext": 1,
+      "productFit": 1,
+      "readabilityForCompression": 1
+    },
+    "queries": [
+      "What is Jev recipes?",
+      "How do I use Jev recipes in TypeScript?",
+      "How can I route support requests with Jev?",
+      "How can I rerank evidence with Jev?",
+      "How can I evaluate Jev recipe accuracy?"
+    ],
+    "domain": "informational",
+    "engine": "generic",
+    "analysisDurationMs": 206
+  }
+}

@@ -2,10 +2,13 @@ import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { listRecipes, describeRecipe } from '../dist/catalog/index.js';
+import { escapeHtml } from './render.js';
 import { loadEvaluationRecipe } from '../dist/evaluation/dataset.js';
+import { catalogPage, description, metadata, recipePage, siteOrigin, sitemap } from './pages.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = join(root, 'site/dist');
+const origin = siteOrigin(process.env.SITE_URL);
 const collections = JSON.parse(await readFile(join(root, 'evals/featured.json'), 'utf8'));
 const recipes = listRecipes();
 for (const ids of Object.values(collections))
@@ -15,6 +18,7 @@ for (const ids of Object.values(collections))
 await rm(output, { recursive: true, force: true });
 await mkdir(join(output, 'recipes'), { recursive: true });
 const entries = [];
+let routePolicyTable = '';
 for (const recipe of recipes) {
   for (const related of recipe.related ?? [])
     if (!recipes.some((entry) => entry.id === related.id))
@@ -72,16 +76,28 @@ for (const recipe of recipes) {
         : null,
   };
   entries.push(entry);
-  await writeFile(
-    join(output, 'recipes', `${recipe.id}.json`),
-    JSON.stringify({
-      ...description,
-      ...entry,
-      functionName,
-      fixture: { input: fixture.input, result, policies },
-      report,
-    }),
-  );
+  if (recipe.id === 'route') {
+    routePolicyTable =
+      '<div class="table-scroll"><table class="contract-table"><caption>Saved routing response under each confidence policy</caption><thead><tr><th scope="col">Minimum confidence</th><th scope="col">Decision status</th><th scope="col">Selected route</th></tr></thead><tbody>' +
+      Object.entries(policies)
+        .sort(([a], [b]) => Number(a) - Number(b))
+        .map(
+          ([threshold, result]) =>
+            `<tr><th scope="row">${Math.round(Number(threshold) * 100)}%</th><td>${escapeHtml(result.status)}</td><td>${escapeHtml(result.route ?? 'None; review required')}</td></tr>`,
+        )
+        .join('') +
+      '</tbody></table></div>';
+  }
+  const detail = {
+    ...description,
+    ...entry,
+    functionName,
+    fixture: { input: fixture.input, result, policies },
+    report,
+  };
+  await writeFile(join(output, 'recipes', `${recipe.id}.json`), JSON.stringify(detail));
+  await mkdir(join(output, 'recipes', recipe.id), { recursive: true });
+  await writeFile(join(output, 'recipes', recipe.id, 'index.html'), recipePage(detail, origin));
   if (report) {
     await mkdir(join(output, 'reports'), { recursive: true });
     await writeFile(
@@ -90,8 +106,26 @@ for (const recipe of recipes) {
     );
   }
 }
-for (const name of ['index.html', 'app.js', 'style.css'])
+for (const name of ['app.js', 'render.js', 'style.css'])
   await cp(join(root, 'site', name), join(output, name));
+const homepage = await readFile(join(root, 'site/index.html'), 'utf8');
+await writeFile(
+  join(output, 'index.html'),
+  homepage.replace('<!-- ROUTE_POLICY_TABLE -->', routePolicyTable).replace(
+    '<!-- SITE_METADATA -->',
+    metadata({
+      origin,
+      title: 'Jev recipes | TypeScript guide to route decisions, review results, and evidence',
+      summary: description,
+    }),
+  ),
+);
+await writeFile(join(output, 'recipes/index.html'), catalogPage(entries, origin));
+await writeFile(join(output, 'sitemap.xml'), sitemap(entries, origin));
+await writeFile(
+  join(output, 'robots.txt'),
+  `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`,
+);
 await cp(join(root, 'dist/catalog/search.js'), join(output, 'search.js'));
 await writeFile(join(output, 'catalog.json'), JSON.stringify({ recipes: entries, collections }));
 await mkdir(dirname(join(output, 'docs/evaluation.md')), { recursive: true });
