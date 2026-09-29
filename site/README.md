@@ -42,7 +42,10 @@ Configuration at server startup:
 
 - `TYPESAFE_API_KEY`: required for matching; never copied to `site/dist`.
 - `SITE_URL`: public origin, such as `https://jev-recipes.com`, for origin checks
-  behind an HTTPS proxy. Set this at build time too for canonical URLs.
+  behind an HTTPS proxy. Defaults to `https://jev-recipes.com`, matching the
+  canonical URL default. Loopback previews also accept their own exact origin
+  when the request comes from a loopback socket. Set this at build time too for
+  canonical URLs.
 - `JEV_FIND_ENABLED=false`: disable model calls.
 - `JEV_FIND_HOURLY_LIMIT=60`: maximum submitted searches per fixed hourly
   window per process (starting with server startup); zero disables
@@ -64,7 +67,9 @@ site:build`, then start `npm run site:preview` with `PORT`, `SITE_URL`, and the 
 configured as server environment variables. Ship the compiled root `dist/`,
 `site/`, and runtime dependencies. A host publishing only `site/dist` still serves
 the catalog but needs a separate same-origin `/api/find` backend for live matching.
-Production hosting configuration has not been verified in this repository.
+Railway production is configured to build with `npm run site:build` and start with
+`npm run site:preview`. `SITE_URL=https://jev-recipes.com` is configured; HTTPS
+browser matching was verified after correcting that setting.
 
 Run `node --test tests/tooling/site-find.test.mjs tests/tooling/catalog-site.test.mjs`
 after building. Live quality and latency should be sampled with representative
@@ -72,4 +77,4 @@ queries before increasing the usage cap. Deployment remains a separate action.
 
 Live checks found unrelated high scores in 50- and 100-item batches for a tool-permission query. The finder uses 25-item batches based on that observation; this is an initial quality check, not a calibrated benchmark.
 
-Deployment checklist: production API keys configured in Railway (confirmed by the maintainer). Confirm the Railway service builds from the repository root, runs the Node server, and has `SITE_URL=https://jev-recipes.com` before release.
+Deployment checklist: production API key presence, build/start commands, and `SITE_URL=https://jev-recipes.com` verified in Railway. A production browser search returned `tool-call-gate` for the tool-permission example.
