@@ -1,5 +1,6 @@
 import { rerank } from '../dist/recipes/rerank/index.js';
 import { createClient } from '../dist/src/client.js';
+import { siteOrigin } from './pages.mjs';
 
 export const MIN_RELEVANCE = 0.6;
 export const BATCH_SIZE = 25;
@@ -74,6 +75,7 @@ export function createFindHandler({
   now = Date.now,
   timeoutMs = 25_000,
 }) {
+  const publicOrigin = siteOrigin(env.SITE_URL || undefined);
   const hourlyLimit = Number(env.JEV_FIND_HOURLY_LIMIT ?? 60);
   if (!Number.isInteger(hourlyLimit) || hourlyLimit < 0)
     throw new Error('JEV_FIND_HOURLY_LIMIT must be a nonnegative integer.');
@@ -96,16 +98,31 @@ export function createFindHandler({
     };
     if (request.method !== 'POST') return reply(405, { error: 'Use POST.' });
     if (request.headers.origin) {
-      const allowed = env.SITE_URL
-        ? new URL(env.SITE_URL).origin
-        : `http://${request.headers.host}`;
-      if (request.headers.origin !== allowed) return reply(403, { error: 'Origin not allowed.' });
+      let localPreview = false;
+      try {
+        const origin = new URL(request.headers.origin);
+        localPreview =
+          ['localhost', '127.0.0.1', '[::1]'].includes(origin.hostname) &&
+          ['http:', 'https:'].includes(origin.protocol) &&
+          origin.host === request.headers.host &&
+          ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(request.socket.remoteAddress);
+      } catch {
+        /* Invalid origins are rejected below. */
+      }
+      if (request.headers.origin !== publicOrigin && !localPreview)
+        return reply(403, {
+          error:
+            "This site's address is not enabled for Jev matching. Check the server's SITE_URL setting.",
+        });
     }
     if (request.headers['content-type']?.split(';')[0].trim().toLowerCase() !== 'application/json')
       return reply(415, { error: 'Use application/json.' });
     if (!enabled)
       return reply(503, {
-        error: 'Jev matching is unavailable. Keyword search is still available.',
+        error:
+          env.JEV_FIND_ENABLED === 'false'
+            ? 'Jev matching is disabled on this server.'
+            : 'Jev matching needs a TypeSafe API key configured on the server.',
       });
     let query;
     try {
@@ -162,10 +179,19 @@ export function createFindHandler({
       if (!controller.signal.aborted) reply(200, result);
       else if (!response.destroyed)
         reply(504, { error: 'Jev took too long. Keyword search is still available.' });
-    } catch {
+    } catch (error) {
+      const timedOut = controller.signal.aborted;
       controller.abort();
       if (!response.destroyed)
-        reply(503, { error: 'Jev matching is unavailable. Keyword search is still available.' });
+        reply(timedOut ? 504 : 503, {
+          error: timedOut
+            ? 'Jev took too long to respond. Please try again.'
+            : [401, 403].includes(error.status)
+              ? 'Jev could not authenticate with TypeSafe. Check the server API key.'
+              : error.status === 429
+                ? 'TypeSafe has reached its usage limit. Please try later.'
+                : 'Jev matching failed at the provider. Please try again.',
+        });
     } finally {
       clearTimeout(timer);
       response.off('close', disconnected);

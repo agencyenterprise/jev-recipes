@@ -144,6 +144,64 @@ test('timeout cancels provider calls and concurrent submissions are bounded', as
   const second = request(handler);
   await new Promise((resolve) => setImmediate(resolve));
   assert.equal((await request(handler)).status, 429);
-  assert.equal((await first).status, 503);
-  assert.equal((await second).status, 503);
+  assert.equal((await first).status, 504);
+  assert.equal((await second).status, 504);
+});
+
+test('HTTPS production origin works behind Railway without SITE_URL; unrelated origins stay blocked', async () => {
+  const handler = createFindHandler({
+    recipes,
+    env: { TYPESAFE_API_KEY: 'test-only' },
+    run: async () => ({ items: [] }),
+  });
+  assert.equal(
+    (
+      await request(handler, {
+        headers: { origin: 'https://jev-recipes.com', host: 'internal.railway:8080' },
+        address: '10.0.0.1',
+      })
+    ).status,
+    200,
+  );
+  for (const origin of ['https://evil.example', 'null', 'https://jev-recipes.com.evil.example']) {
+    assert.equal(
+      (
+        await request(handler, {
+          headers: { origin, host: 'jev-recipes.com', 'x-forwarded-proto': 'https' },
+        })
+      ).status,
+      403,
+    );
+  }
+  assert.equal(
+    (
+      await request(handler, {
+        headers: { origin: 'http://127.0.0.1:4178', host: '127.0.0.1:4178' },
+      })
+    ).status,
+    200,
+  );
+  assert.equal(
+    (
+      await request(handler, {
+        headers: { origin: 'http://127.0.0.1:4178', host: '127.0.0.1:4178' },
+        address: '10.0.0.1',
+      })
+    ).status,
+    403,
+  );
+});
+
+test('provider authentication errors give an actionable message without leaking details', async () => {
+  const handler = createFindHandler({
+    recipes,
+    env,
+    run: async () => {
+      throw Object.assign(new Error('secret'), { status: 401 });
+    },
+  });
+  const response = await request(handler);
+  assert.equal(response.status, 503);
+  assert.match(response.body.error, /authenticate/);
+  assert.ok(!JSON.stringify(response.body).includes('secret'));
 });

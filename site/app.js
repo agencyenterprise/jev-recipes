@@ -70,6 +70,7 @@ async function findWithJev(event) {
   findStatus.textContent = `Jev is evaluating ${recipes.length} recipes. Keyword matches remain below while you wait.`;
   results.setAttribute('aria-busy', 'true');
   renderResults();
+  let failureMessage = 'Could not reach Jev matching. Check your connection or try again.';
   try {
     const response = await fetch('./api/find', {
       method: 'POST',
@@ -77,7 +78,14 @@ async function findWithJev(event) {
       body: JSON.stringify({ query }),
       signal: findController.signal,
     });
-    if (!response.ok) throw new Error('Matching unavailable');
+    if (!response.ok) {
+      const error = await response.json().catch(() => null);
+      failureMessage =
+        typeof error?.error === 'string'
+          ? error.error
+          : `Jev matching is unavailable (HTTP ${response.status}).`;
+      throw new Error('Matching unavailable');
+    }
     const result = await response.json();
     if (request !== findRequest) return;
     liveResult = result;
@@ -96,8 +104,9 @@ async function findWithJev(event) {
     if (result.items[0]) await selectRecipe(result.items[0].id);
   } catch {
     if (request !== findRequest) return;
-    findStatus.textContent =
-      'Jev matching is unavailable or busy. Showing keyword results. Try again shortly.';
+    if (controller.signal.aborted)
+      failureMessage = 'Jev took too long to respond. Please try again.';
+    findStatus.textContent = `${failureMessage} Showing keyword results.`;
     renderResults();
   } finally {
     clearTimeout(timer);
