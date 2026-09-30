@@ -204,6 +204,8 @@ npx jev-recipes run route input.json
 
 Read `result.status` and `result.route` in the JSON output. Substitute another recipe's name in both commands to use a different decision. Run `npx jev-recipes --help` for all commands.
 
+`run` accepts UTF-8 JSON files and stdin, with or without a byte-order mark (BOM), and UTF-16 files or stdin with a BOM. Non-English text and route names are preserved; no file conversion is needed for these encodings.
+
 The CLI reads environment variables; it does not automatically load `.env`. Errors go to stderr with exit code `1`. A review outcome is a completed evaluation, so inspect the result before acting.
 
 <a id="understand-the-result"></a>
