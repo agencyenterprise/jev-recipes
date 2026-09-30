@@ -26,6 +26,47 @@ The support starter has its own locked dependencies and tests against its instal
 
 `make ci` checks generated files without changing them, checks formatting and types, runs recipe coverage, builds, tests the tooling, and tests the actual npm archive. It makes no live Jev calls. Fix stale generated files with `make docs`; format author-maintained files with `npm run format`.
 
+## Your first contribution
+
+You can help without adding a recipe. [Ask a usage question](https://github.com/agencyenterprise/jev-recipes/issues/new?template=usage-question.yml) if you are unsure where to start. An issue is useful context, but small corrections do not need one first.
+
+| Contribution                              | Start here                                                                           | Focused check                                                                                                                                                                           |
+| ----------------------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Correct an explanation or example command | The README or guide containing the problem; keep generated sections intact           | Run the documented offline command if it changed, then `npm run format:check`                                                                                                           |
+| Add a regression case                     | The existing `tests/recipe/<name>.test.ts` or relevant `tests/tooling/*.test.mjs`    | `npm run test:recipes -- tests/recipe/route.test.ts` for a recipe, or `npm run build` followed by `node --test tests/tooling/cli-input.test.mjs` for the CLI; substitute your test file |
+| Improve a runnable example                | Its README and the [example contribution guide](examples/README.md#add-your-project) | Run that example's documented offline command and its existing focused tests                                                                                                            |
+| Add a new decision                        | [Add a recipe](#add-a-recipe) and the existing scaffolder                            | Generate docs, run the recipe's focused tests, then `npm run ci`                                                                                                                        |
+
+1. Set up the checkout with the install commands in [Everyday commands](#everyday-commands). Run `npm run build` before examples or tooling tests that use `dist/`.
+2. Keep the change focused. For a regression, make the test demonstrate the reported problem before changing implementation. A sanitized [standalone reproduction](examples/reproduction/README.md) is a useful starting point.
+3. Run the focused check above. Use `npm exec -- prettier --write path/to/changed-file` to format your authored files. If recipe source or generated documentation changed, run `npm run docs` and include its output.
+4. Before submitting code changes, run `npm run ci`. For a prose-only correction, report the formatting check and any example command you verified; do not claim checks you did not run.
+5. In the pull-request template, explain the problem, resulting behavior, and commands you checked. Include compatibility implications if relevant. Do not include credentials or private inputs.
+
+Offline fixtures test software behavior. A valid but unexpected model decision belongs in the [model-decision form](https://github.com/agencyenterprise/jev-recipes/issues/new?template=model-decision.yml), with a sanitized case and the reasoning for the expected answer. You do not need a paid live call to contribute a report or regression case.
+
+## Consumer compatibility checks
+
+The existing full verification pipeline runs on Ubuntu with Node 22 and 24. Separate consumer jobs build one npm archive and install it into fresh projects on Linux at the declared minimum Node version, Windows with Node 24, and macOS with Node 24. These focused jobs cover a direct import, the offline reproduction, CLI version/demo commands, and international input via files and stdin in UTF-8 and UTF-16. They do not establish support for every framework or runtime combination.
+
+To run the same consumer check locally after building:
+
+```sh
+npm pack --ignore-scripts
+npm run check:consumer -- jev-recipes-<version>.tgz
+```
+
+Replace `<version>` with the archive name printed by npm. This check downloads runtime dependencies from npm into a temporary project, then runs offline. It removes the temporary project when finished. The existing `npm run pack:check` remains the broader, offline archive check.
+
+The standalone reproduction has its own lockfile. CI checks it against its pinned release and the latest published release, as well as replaying its source against the new archive in the consumer jobs. Its pin is intentional: bug reports must be repeatable. To change the example's baseline, install an explicitly selected published version with `--save-exact` in that folder and review both package files.
+
+```sh
+npm run check:reproduction -- pinned
+npm run check:reproduction -- latest
+```
+
+Both commands copy the example outside the checkout, install from npm, verify its result without a model call, and clean up. The latest check changes only the temporary copy. A CI failure signals that the example or package needs attention; CI never silently rewrites its pinned version.
+
 ## Repository structure
 
 ```text
@@ -148,7 +189,7 @@ Publishing is manual. The [`files` allowlist](package.json) and [archive checks]
 The package check packs installed runtime dependencies for offline installation. When adding transitive dependencies, extend [the offline consumer setup](scripts/pack-check.mjs) to supply their archives too.
 
 1. Review the release diff, including any breaking changes. Run `make setup`, `make docs`, `npm run format`, and `make ci`; commit the reviewed changes.
-2. From the intended clean checkout, choose an unused version with `npm version patch`, `npm version minor`, or `npm version major`. Let CI pass for that version.
+2. Choose an unused version. Use `npm --no-git-tag-version version patch` (or `minor` or `major`) to update the package files without creating the version commit or tag yet. Run `npm run docs` so the README's release-documentation links follow the new package version, then `npm run ci`. Review the README in the packed archive and include the generated changes in your version commit and `v<version>` tag. Let CI pass for that version. Commit, tag, push, and publish remain manual.
 3. Verify the npm account, inspect the dry run, and publish from the checked repository directory:
 
    ```sh
@@ -159,7 +200,7 @@ The package check packs installed runtime dependencies for offline installation.
    npm view jev-recipes version
    ```
 
-4. After publishing succeeds, push the version commit and tag, then create a GitHub release.
+4. After publishing succeeds, push the version commit and tag, then create a GitHub release. Check the README's tagged catalog, integration-guide, and example links once the tag is available. Summarize user-visible changes and any compatibility or migration steps in the release notes, including changes to recipe inputs, outputs, confidence behavior, or supported runtimes. State explicitly when no migration is needed. Run `npm run check:reproduction -- latest` to verify the example against the published package.
 
 `prepublishOnly` runs full CI; `prepack` checks generated files and builds. Publishing a previously packed archive does not rerun the checkout's checks. These hooks use npm directly; Make is optional.
 

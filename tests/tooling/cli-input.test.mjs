@@ -5,7 +5,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import { pathToFileURL } from 'node:url';
-import { projectRoot } from '../../scripts/lib/recipes.mjs';
+import { fileURLToPath } from 'node:url';
+
+// The consumer check copies this dependency-free test beside an installed archive.
+const cliPath =
+  process.env.JEV_CLI_TEST_PATH ??
+  fileURLToPath(new URL('../../dist/cli/index.js', import.meta.url));
 
 test('CLI run reads international text without changing it', async (t) => {
   const runRecipe = await createOfflineCli(t);
@@ -104,7 +109,7 @@ globalThis.fetch = async (_url, options) => {
       [
         '--import',
         pathToFileURL(preloadPath).href,
-        join(projectRoot, 'dist/cli/index.js'),
+        cliPath,
         'run',
         'route',
         source === 'file' ? inputPath : '-',

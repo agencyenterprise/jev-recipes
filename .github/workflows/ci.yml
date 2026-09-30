@@ -8,6 +8,79 @@ permissions:
   contents: read
 
 jobs:
+  consumer-package:
+    runs-on: ubuntu-latest
+    outputs:
+      minimum-node: ${{ steps.runtime.outputs.minimum-node }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run generate:check
+      - run: npm run build
+      - id: runtime
+        name: Read the declared minimum Node version
+        run: |
+          node --input-type=module -e '
+          import { readFileSync, appendFileSync } from "node:fs";
+          const { engines } = JSON.parse(readFileSync("package.json", "utf8"));
+          const match = /^>=(\d+)\.(\d+)(?:\.(\d+))?$/.exec(engines.node);
+          if (!match) throw new Error("Update the consumer matrix for the new Node support range.");
+          appendFileSync(process.env.GITHUB_OUTPUT, `minimum-node=${match[1]}.${match[2]}.${match[3] ?? 0}\n`);
+          '
+      - run: mkdir package-artifact
+      - run: npm pack --ignore-scripts --pack-destination package-artifact
+      - uses: actions/upload-artifact@v4
+        with:
+          name: consumer-package
+          path: package-artifact/*.tgz
+          if-no-files-found: error
+          retention-days: 7
+
+  consumer:
+    needs: consumer-package
+    name: Consumer / ${{ matrix.os }} / Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            node: ${{ needs.consumer-package.outputs.minimum-node }}
+          - os: windows-latest
+            node: '24'
+          - os: macos-latest
+            node: '24'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: consumer-package
+          path: package-artifact
+      - run: npm run check:consumer -- package-artifact
+
+  reproduction:
+    runs-on: ubuntu-latest
+    name: Reproduction / ${{ matrix.version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [pinned, latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: examples/reproduction/package-lock.json
+      - run: npm run check:reproduction -- ${{ matrix.version }}
+
   check:
     runs-on: ubuntu-latest
     strategy:

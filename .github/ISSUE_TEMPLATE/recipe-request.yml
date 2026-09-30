@@ -1,0 +1,28 @@
+name: Request a recipe
+description: Describe a missing decision and how you would use it.
+title: 'Recipe request: '
+body:
+  - type: markdown
+    attributes:
+      value: 'Check the [catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md) first. A concrete use case is enough; you do not need to propose an implementation. Use fictional or sanitized examples.'
+  - type: textarea
+    id: decision
+    attributes:
+      label: What decision is missing?
+      description: Describe the user, their workflow, and the single question this recipe would answer.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example input and useful output
+      description: Show a small example and explain what the application would do with the decision or uncertainty.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Why existing recipes or ordinary code do not cover it
+      description: Name the closest alternatives you found, or explain where you had trouble finding one.
+    validations:
+      required: true

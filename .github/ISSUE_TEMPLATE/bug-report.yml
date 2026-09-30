@@ -1,0 +1,50 @@
+name: Report a software bug
+description: Report an exception, broken import, CLI problem, or other reproducible software behavior.
+title: 'Bug: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If a recipe returned a valid decision that you disagree with, use **Unexpected model decision** instead.
+        Start with the [standalone reproduction example](https://github.com/agencyenterprise/jev-recipes/tree/main/examples/reproduction).
+        Remove API keys, personal information, and private inputs before sharing code, fixtures, or logs.
+  - type: input
+    id: version
+    attributes:
+      label: Installed package version
+      description: Run npm ls jev-recipes in the project that has the problem.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Include node --version, operating system, and framework version if relevant.
+      placeholder: 'Node 24, Windows 11, direct recipe import'
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Paste sanitized code and exact commands, or link a public reproduction. Include the recipe or CLI command.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include the error and relevant stack trace, with secrets removed.
+    validations:
+      required: true
+  - type: input
+    id: provider
+    attributes:
+      label: Provider or injected client, if relevant
+      description: For example, TypeSafe directly, Vercel Gateway, or a saved fixture. Do not include credentials.

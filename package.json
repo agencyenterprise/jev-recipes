@@ -1068,6 +1068,8 @@
     "jev-recipes": "node --env-file-if-exists=.env dist/cli/index.js",
     "ci": "node scripts/ci.mjs",
     "pack:check": "node scripts/pack-check.mjs",
+    "check:consumer": "node scripts/check-consumer.mjs",
+    "check:reproduction": "node scripts/check-reproduction.mjs",
     "prepack": "npm run generate:check && npm run build",
     "prepublishOnly": "npm run ci",
     "test": "npm run test:recipes && npm run test:tooling",
