@@ -122,23 +122,47 @@ async function runLiveRecipe(name: RecipeName, source: string): Promise<void> {
         ' without a key.',
     );
   }
-  const inputJson = source === '-' ? await readStandardInput() : await readFile(source, 'utf8');
+  const input = await readJsonInput(source);
   const run = await loadRecipe(name);
-  const result = await run(JSON.parse(inputJson));
+  const result = await run(input);
   printJson({ mode: 'live', result });
+}
+
+async function readJsonInput(source: string): Promise<unknown> {
+  const inputBytes = source === '-' ? await readStandardInput() : await readFile(source);
+  const inputText = decodeInputText(inputBytes);
+  return JSON.parse(inputText);
+}
+
+async function readStandardInput(): Promise<Buffer> {
+  const chunks: Buffer[] = [];
+  for await (const chunk of stdin) chunks.push(chunk);
+  return Buffer.concat(chunks);
+}
+
+function decodeInputText(bytes: Buffer): string {
+  const encoding = detectInputEncoding(bytes);
+  try {
+    return new TextDecoder(encoding, { fatal: true }).decode(bytes);
+  } catch {
+    throw new Error('Input must be UTF-8 or UTF-16 with a byte-order mark.');
+  }
+}
+
+function detectInputEncoding(bytes: Buffer): string {
+  const byteOrderMark = bytes.subarray(0, 2);
+  const utf16LittleEndianMark = Buffer.from([0xff, 0xfe]);
+  const utf16BigEndianMark = Buffer.from([0xfe, 0xff]);
+
+  if (byteOrderMark.equals(utf16LittleEndianMark)) return 'utf-16le';
+  if (byteOrderMark.equals(utf16BigEndianMark)) return 'utf-16be';
+  return 'utf-8';
 }
 
 async function readDemoFixture(name: RecipeName) {
   const fixturePath = new URL(`../recipes/${name}/demo.json`, import.meta.url);
   const fixtureJson = await readFile(fixturePath, 'utf8');
   return demoFixtureSchema.parse(JSON.parse(fixtureJson));
-}
-
-async function readStandardInput(): Promise<string> {
-  stdin.setEncoding('utf8');
-  let input = '';
-  for await (const chunk of stdin) input += chunk;
-  return input;
 }
 
 function printJson(value: unknown): void {
