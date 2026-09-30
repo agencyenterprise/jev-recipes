@@ -1,0 +1,1010 @@
+{
+  "docs/coding-assistants": {
+    "hash": "7c5f78a6633e6b8c",
+    "updatedAt": "2026-09-30"
+  },
+  "docs/evaluation": {
+    "hash": "3448d372d2c1ee4d",
+    "updatedAt": "2026-09-30"
+  },
+  "docs/gateway-validation": {
+    "hash": "49cec7ec11b0a8cc",
+    "updatedAt": "2026-09-30"
+  },
+  "docs/integrations": {
+    "hash": "8cb69f4cb18b94ac",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/action-compare": {
+    "hash": "8c64c702371e3fb3",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/action-effects": {
+    "hash": "244ed5224568e1dd",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/action-reversibility": {
+    "hash": "7001bccc6c10ba1c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/action-scope": {
+    "hash": "15941b76d0cd761c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/age-appropriateness": {
+    "hash": "0e654917189aa53f",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/alert-actionability": {
+    "hash": "07c0ae5bb755f4f3",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/answer-consistency": {
+    "hash": "2b7721a9aaefa1b5",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/answer-coverage": {
+    "hash": "33ae2bdd6b17903b",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/answer-disclosures": {
+    "hash": "94ae242ce808953c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/answer-grade": {
+    "hash": "18b0f24b999cd728",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/answer-invalidation": {
+    "hash": "abca06b3c542c184",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/answer-relevance": {
+    "hash": "87a09b872696e638",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/answerability": {
+    "hash": "d427b0ea257c49b5",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/appeal-grounds-kind": {
+    "hash": "e1d2fb7e1f4c09bd",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/appointment-request-kind": {
+    "hash": "b29038a9dc8287bf",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/argument-fit": {
+    "hash": "0463054bd95d8225",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/attempted-step": {
+    "hash": "fa5130b462e8ccb0",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/attribution-match": {
+    "hash": "b5d9173307ba351c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/audience-fit": {
+    "hash": "8c8029fa3317db05",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/breaking-change-signal": {
+    "hash": "85069aedbfbfc476",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/budget-fit": {
+    "hash": "b6cb0bd2220b7fea",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/budget-narrative-fit": {
+    "hash": "5e7479451db3137f",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/bug-report-completeness": {
+    "hash": "f9b7505e47b53752",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/buying-intent": {
+    "hash": "8f6534644992c4bb",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/cache-match": {
+    "hash": "84ddb13ced4613a0",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/callback-responsibility": {
+    "hash": "a9cb42e7ba3723cc",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/cancellation-check": {
+    "hash": "6cb503ad0f8c0e78",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/care-urgency-wording": {
+    "hash": "7568c2063099d4c4",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/category-fit": {
+    "hash": "e566b0a2df5e5739",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/causal-attribution": {
+    "hash": "5c33d21ffcc1fd08",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/causal-language-strength": {
+    "hash": "84afadd90a6c1e59",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/certainty-match": {
+    "hash": "dce9eef8b3451096",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/change-meaning": {
+    "hash": "8e4b6784ff45ca1a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/change-risk": {
+    "hash": "ba81f002c16488a3",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/change-window-fit": {
+    "hash": "feb1e869857b349d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/checkers-move": {
+    "hash": "35adc1c013b125fd",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/choose-action": {
+    "hash": "ce5d412786455f5d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/citation-match": {
+    "hash": "26215a0959a9df96",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/citation-needed": {
+    "hash": "e8fca2075b78ee46",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/claim-facets": {
+    "hash": "7b1270347015674a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/claim-stance": {
+    "hash": "67a3688cc5efffc3",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/clarify": {
+    "hash": "c77cd3782657dbe8",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/clause-conflict": {
+    "hash": "0095c6e378edbbf3",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/clause-kind": {
+    "hash": "295e3f7c60f14212",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/clickbait-level": {
+    "hash": "92a8211401024c03",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/commit-message-fit": {
+    "hash": "aedffd66e53aecc6",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/commitment-strength": {
+    "hash": "8ba9204d249ad609",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/comparable-fit": {
+    "hash": "77a0a3db205a245b",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/completion-gate": {
+    "hash": "7240bc34f05ba257",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/confirmation-match": {
+    "hash": "042c8430e6f6a8bc",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/consent-request": {
+    "hash": "d26b301197896f6f",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/consent-scope-fit": {
+    "hash": "eaee0db860f16f2c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/constraint-strength": {
+    "hash": "20d8b06955ede64d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/contact-opt-out": {
+    "hash": "a2995f9f6b648ad0",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/content-facets": {
+    "hash": "c4e1d4f0a08c5c54",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/content-freshness-signal": {
+    "hash": "ad64e998e0bb3732",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/context-prune": {
+    "hash": "3350c76342df9eff",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/context-role": {
+    "hash": "74250415627683f4",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/continuation-compare": {
+    "hash": "95bbb8b0d4dab403",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/correction-target": {
+    "hash": "a0a857a0efc9a5e1",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/corrective-action-fit": {
+    "hash": "8ac8c1f09085c285",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/daw-request-kind": {
+    "hash": "5bbe98e226dd323e",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/deadline-risk": {
+    "hash": "5b0a2d83f2a32076",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/defect-report-facets": {
+    "hash": "7ebf64b98c3d1f69",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/delegation-fit": {
+    "hash": "f265c2f88f26da87",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/diff-hazards": {
+    "hash": "1499cb33bc217923",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/disclosure-facets": {
+    "hash": "4dec1277c1a72a55",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/dispute-kind": {
+    "hash": "d918b6b1c4aae90e",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/document-role": {
+    "hash": "39cdbfed3f0bab16",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/draft-compare": {
+    "hash": "40d3d5fb7fd3c1cc",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/dynamic-change": {
+    "hash": "ab0526c73a4594fb",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/eligibility-facets": {
+    "hash": "04ac031f5d52dbdb",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/emotion-kind": {
+    "hash": "fdb3866f0c9c2ff2",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/entity-match": {
+    "hash": "95d9c78a14094295",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/error-acknowledgment": {
+    "hash": "5066e7a2f5c9ddc7",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/escalation-wording": {
+    "hash": "e4d8f584a9652b2c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/evaluation-mention": {
+    "hash": "51b9afd9f320f681",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/evidence-conflict": {
+    "hash": "164fa920a6bfbe07",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/evidence-independence": {
+    "hash": "cc600c518a1cc1d4",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/evidence-novelty": {
+    "hash": "35785ad95857e915",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/evidence-strength": {
+    "hash": "ee5f9aacb330f6f5",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/exercise-select": {
+    "hash": "414f44cb3928195f",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/expense-category": {
+    "hash": "3842b1ab42edcb22",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/explanation-level": {
+    "hash": "c5cd2dd926d9913d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/extraction-fidelity": {
+    "hash": "cf3cf2595957ee7e",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/fact-stability": {
+    "hash": "00ead39a6813d027",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/failure-kind": {
+    "hash": "b3dbe4d87a7b67db",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/fair-housing-wording": {
+    "hash": "7d0374ae524bfb70",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/feedback-actionability": {
+    "hash": "8c01c258354273d9",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/feedback-kind": {
+    "hash": "4fbd5ab2ab3c81d7",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/field-select": {
+    "hash": "19118242d748917e",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/financial-advice-signal": {
+    "hash": "99787523cc28e068",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/finger-actions": {
+    "hash": "b45e87ca20531033",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/followup-link": {
+    "hash": "f6cbcaf928eb1c99",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/followup-timing": {
+    "hash": "8b32ab98261ba213",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/forecast-confidence-wording": {
+    "hash": "274ac35b336ca988",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/format-fit": {
+    "hash": "08f4340174da5e71",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/freshness-needed": {
+    "hash": "08da9cc1383bc0ad",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/frustration-signal": {
+    "hash": "250db5ad5b5f30e8",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/funder-fit": {
+    "hash": "8a000abc276adaac",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/game-action": {
+    "hash": "1e84055cb29510db",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/game-phase": {
+    "hash": "97091aa4f4fb92d1",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/goal-drift": {
+    "hash": "3a061de1ab7446b1",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/grounding-level": {
+    "hash": "15375ecd43f6f7a1",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/guest-request-facets": {
+    "hash": "d30afb34f192f272",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/handoff": {
+    "hash": "782ebf0e3135d847",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/handoff-completeness": {
+    "hash": "296b6237c85891b8",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/headline-fit": {
+    "hash": "52a89aa1fd2a8d20",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/incident-match": {
+    "hash": "d3136e4cd99bffb0",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/incident-severity-wording": {
+    "hash": "e820c7b5c0aa5fd9",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/injection-signal": {
+    "hash": "5644412ea557996f",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/instruction-clarity": {
+    "hash": "b68609f714790326",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/instruction-conflict": {
+    "hash": "5060009c3c0b9bf2",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/instruction-fit": {
+    "hash": "ab4f01d6cc482aee",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/instruction-priority": {
+    "hash": "58de1f88e53d9a34",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/instruction-readability": {
+    "hash": "325222148ffeb5c6",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/instrument-issue-kind": {
+    "hash": "da980268de831ac9",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/instrument-report-facets": {
+    "hash": "aa4d38c52bf56e22",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/intake-question-fit": {
+    "hash": "e69f1e72196ce307",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/intent-change": {
+    "hash": "0af4841e4510cf6d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/invoice-facets": {
+    "hash": "055ec793397d944b",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/issue-impact": {
+    "hash": "a4dc3aac2fd57126",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/issue-recurrence": {
+    "hash": "c32962f4d628077a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/itinerary-feasibility": {
+    "hash": "f3eae24a31e89343",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/job-post-facets": {
+    "hash": "99cb89489e2ad4aa",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/length-fit": {
+    "hash": "a422eb6a89532f0b",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/listener-request-kind": {
+    "hash": "46f4309919c4d7ad",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/listing-compare": {
+    "hash": "2326af1c078b332c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/listing-fact-consistency": {
+    "hash": "286eb11538a3d11a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/log-line-kind": {
+    "hash": "b2fd1144c2470b2a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/loss-cause-kind": {
+    "hash": "22f9aed746ecff1a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/lyric-mood-fit": {
+    "hash": "562f9e5a92a97274",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/maintenance-hazard-wording": {
+    "hash": "a96a33d1e7848fef",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/medication-mention": {
+    "hash": "7ad10bfde0f36815",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/memory-relation": {
+    "hash": "aeadf6bf84f3f8c5",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/memory-scope": {
+    "hash": "0c21cad22e1aba16",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/memory-subject": {
+    "hash": "6ebb1d6afcff1ced",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/memory-value": {
+    "hash": "8e01274e204e7b41",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/message-facets": {
+    "hash": "6a521d2d1c60a8c8",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/methods-facets": {
+    "hash": "bd7b2aade72c960e",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/model-route": {
+    "hash": "e511553d8be27a89",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/modulation-moment": {
+    "hash": "bf6741c958e0b6c1",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/mood-match": {
+    "hash": "8fbcc458e984cd2b",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/mood-request": {
+    "hash": "8421249596ba34c2",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/motivation-source": {
+    "hash": "37c4303ab851c21a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/move-explanation-fit": {
+    "hash": "d465226da2976fee",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/narrative-consistency": {
+    "hash": "db37b6f99579e8b6",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/next-chord": {
+    "hash": "4e36412f26b213c2",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/next-duration": {
+    "hash": "c862d6f99df724da",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/next-note": {
+    "hash": "7a78a92758ea389b",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/notice-facets": {
+    "hash": "90c7f2388f8cfa8e",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/novelty-claim-level": {
+    "hash": "d310acbc0e2b6aaf",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/objection-kind": {
+    "hash": "d23d27a123e27db5",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/objective-fit": {
+    "hash": "46f49151a11f2acc",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/offer-terms-facets": {
+    "hash": "f7c34872a530086d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/outcome-framing": {
+    "hash": "ee91034e260b410e",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/paragraph-boundary": {
+    "hash": "796778bfaa1278ec",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/passage-compare": {
+    "hash": "d0976440482c369d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/passage-difficulty": {
+    "hash": "828cdc374fb3b9a9",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/passage-duplicate": {
+    "hash": "d710edcb52f03d92",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/passage-mood": {
+    "hash": "8f7b9cd073dce11a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/passage-standalone": {
+    "hash": "2f15cafef244285c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/performance-feedback-facets": {
+    "hash": "abd9824454817e76",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/persuasion-technique": {
+    "hash": "d25669c0a66bea29",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/phrase-complete": {
+    "hash": "2904b552fc66e3db",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/pii-presence": {
+    "hash": "3bf41ec7df6771e5",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/plan-completeness": {
+    "hash": "a431596df9eae6e6",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/policy-compliance": {
+    "hash": "6d15d0d3a051f349",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/policy-severity": {
+    "hash": "ebac59cb8bbe42be",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/politeness-level": {
+    "hash": "5b78b2b1ec045cc7",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/postmortem-facets": {
+    "hash": "1f45114336b124ee",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/preference-kind": {
+    "hash": "44d2db5a1f988ba1",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/priority-compare": {
+    "hash": "f8d126ca49a37200",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/privacy-notice-facets": {
+    "hash": "573bc52a2cea361d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/product-match": {
+    "hash": "502d12d03af1bb1e",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/progress-stall": {
+    "hash": "7e599c5991ff906b",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/promise-check": {
+    "hash": "f68ca9bec9102ecd",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/proposal-facets": {
+    "hash": "def937bf301b942f",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/qualification-evidence": {
+    "hash": "bec3e0993300b93d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/query-equivalence": {
+    "hash": "3918f4a5adb264a3",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/query-specificity": {
+    "hash": "b401ff7ea7c5a1ed",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/question-assumption": {
+    "hash": "c3acea9df0b32463",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/question-leading": {
+    "hash": "bfbd83226c747247",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/question-relevance": {
+    "hash": "098ec1498e545638",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/reconciliation-match": {
+    "hash": "8cb2bdffe1de32b1",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/reference-resolve": {
+    "hash": "9e8ce5089b87f8a2",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/repeated-attempt": {
+    "hash": "5bc03ac37447fef0",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/repetition-level": {
+    "hash": "58d3ba750c2cee21",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/reply-template-match": {
+    "hash": "72d76de19b8258f8",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/report-facets": {
+    "hash": "b02f388f5f2e340a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/requirement-testability": {
+    "hash": "5ad76e6d1ae1ce47",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/rerank": {
+    "hash": "07b28cb740d8767d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/resolution-check": {
+    "hash": "201026989ebd631c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/response-needed": {
+    "hash": "30d07d8b596085f7",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/response-refusal": {
+    "hash": "933ba19f4d61e38d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/result-outcome": {
+    "hash": "7a38f7f4cc310148",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/result-plausibility": {
+    "hash": "07b8218ff916a58c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/result-usefulness": {
+    "hash": "e566e29c007483f3",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/retrieval-needed": {
+    "hash": "11ce1865d38ed160",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/retry-worthwhile": {
+    "hash": "14118943fbc976ca",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/review-comment-kind": {
+    "hash": "2f64eb72f8aa8c4f",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/review-facets": {
+    "hash": "04ebccb2f75c815d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/review-recommendation-kind": {
+    "hash": "48b459931d6275db",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/review-response-fit": {
+    "hash": "373030b8cf9546f4",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/rollback-signal": {
+    "hash": "c351bb400c9810e7",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/root-cause-depth": {
+    "hash": "8eb5161a390d3b8c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/route": {
+    "hash": "2006f98309268f92",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/route-many": {
+    "hash": "0064412ae3392304",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/rule-compliance": {
+    "hash": "34d5bff145080d3b",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/runbook-fit": {
+    "hash": "fbaffbadab35de75",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/safety-incident-kind": {
+    "hash": "343024fd13261f18",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/satisfaction-signal": {
+    "hash": "b2028946e2632b39",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/search-intent-kind": {
+    "hash": "055cdb71f05c3d22",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/sentiment-shift": {
+    "hash": "3af83244fba92319",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/settlement-offer-facets": {
+    "hash": "6159578523ca684a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/shipment-issue-kind": {
+    "hash": "e1561958862c1e68",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/slot-fit": {
+    "hash": "03db88c47b36f1c7",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/sound-match": {
+    "hash": "edf06746beeb4c6b",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/source-applicability": {
+    "hash": "11386dcad6658a52",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/spam-signal": {
+    "hash": "52a0e24f3a7b9379",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/stage-evidence": {
+    "hash": "00c206a2b1c0d325",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/step-complete": {
+    "hash": "137189ac45189cbd",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/step-progress": {
+    "hash": "b5e280f4e6fa971d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/style-kind": {
+    "hash": "e884f16de6f456b3",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/summary-coverage": {
+    "hash": "c93ef676c48d6a9c",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/symptom-facets": {
+    "hash": "f13815d44faabe8e",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/take-turn": {
+    "hash": "2dafe67e82c990f3",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/task-complexity": {
+    "hash": "d16d273708c151d2",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/task-dependency": {
+    "hash": "13747f8f26a81ee3",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/task-duplicate": {
+    "hash": "2d1ee91128164ebc",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/task-overlap": {
+    "hash": "55fc76cd09c5988b",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/tempo-change": {
+    "hash": "82d54dde20b19e2d",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/tension-level": {
+    "hash": "147dfd914df0147a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/text-block-role": {
+    "hash": "fabac1ecdf375a98",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/ticket-match": {
+    "hash": "a5d482eeabd2c74e",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/tone-check": {
+    "hash": "cb5b9107a87345e6",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/tool-call-gate": {
+    "hash": "5a212dab869e910e",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/tool-compare": {
+    "hash": "cbbbfc648f2c7a0a",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/tool-fit": {
+    "hash": "8bbbf5cff3ed5404",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/topic-shift": {
+    "hash": "4ac97085f027a126",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/trip-purpose-kind": {
+    "hash": "85ed578d322b22ab",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/troubleshooting-fit": {
+    "hash": "0010c6bebb4ac92f",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/turn-intent": {
+    "hash": "0135764b602774e5",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/uncertainty-expression": {
+    "hash": "682a9fcfedc654fd",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/urgency-signal": {
+    "hash": "886441ccafbdf6d0",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/verify": {
+    "hash": "398a5ff202772a75",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/wake-gate": {
+    "hash": "00262f730c3fd945",
+    "updatedAt": "2026-09-30"
+  },
+  "recipes/workaround-fit": {
+    "hash": "2aeb5eaf03d9b602",
+    "updatedAt": "2026-09-30"
+  }
+}

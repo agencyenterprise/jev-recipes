@@ -7,7 +7,7 @@
 [![Node.js version](https://img.shields.io/node/v/jev-recipes)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/agencyenterprise/jev-recipes/blob/main/LICENSE)
 
-[Quickstart](#use-a-recipe) | [Live music app](https://jev-ai-music.com/) | [Coding assistants](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/coding-assistants.md) | [Recipe catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md) | [API vs. SDK vs. recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/api-sdk-recipes.md) | [Agent frameworks](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/framework-adapters.md) | [Contributing](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md)
+[Recipe guides at jev-recipes.com](https://jev-recipes.com/) | [Quickstart](#use-a-recipe) | [Live music app](https://jev-ai-music.com/) | [Coding assistants](https://jev-recipes.com/docs/coding-assistants/) | [Recipe catalog](https://jev-recipes.com/recipes/) | [API vs. SDK vs. recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/api-sdk-recipes.md) | [Agent frameworks](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/framework-adapters.md) | [Contributing](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md)
 
 <!-- BEGIN GENERATED: summary -->
 
@@ -19,17 +19,17 @@ Each recipe accepts your data, calls [Jev through TypeSafe's System One API](htt
 
 ## Start with one decision
 
-| Your task                         | Try without a key                     | Build the workflow                                                                                                                |
-| --------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Route work to the right team      | `npx jev-recipes demo route`          | [Route work](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md#route-work)             |
-| Select useful evidence            | `npx jev-recipes demo rerank`         | [Select evidence](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md#select-evidence)   |
-| Review an agent's proposed action | `npx jev-recipes demo tool-call-gate` | [Review an action](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md#review-an-action) |
+| Your task                         | Recipe guide                                                        | Try without a key                     | Build the workflow                                                                                                                |
+| --------------------------------- | ------------------------------------------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Route work to the right team      | [`route`](https://jev-recipes.com/recipes/route/)                   | `npx jev-recipes demo route`          | [Route work](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md#route-work)             |
+| Select useful evidence            | [`rerank`](https://jev-recipes.com/recipes/rerank/)                 | `npx jev-recipes demo rerank`         | [Select evidence](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md#select-evidence)   |
+| Review an agent's proposed action | [`tool-call-gate`](https://jev-recipes.com/recipes/tool-call-gate/) | `npx jev-recipes demo tool-call-gate` | [Review an action](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md#review-an-action) |
 
 These demos use saved responses. The [runnable workflow examples](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/getting-started/README.md) show ready decisions, uncertainty, and provider failures. Use [TypeSafe directly or Vercel Gateway](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/integrations.md) for live calls.
 
 For example, give `route` a support message and descriptions of your teams. It returns a team such as `billing`, or a review outcome when the choice is uncertain.
 
-Evaluate your own cases with the [installed evaluator](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md), retain model responses, and replay confidence policies offline. The [agent workflow](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/agent-loop/README.md) and [customer queue](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/customer-queue/README.md) show how decisions fit into application code. [Direct and Gateway integrations](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/integrations.md) use the same recipe interface.
+Evaluate your own cases with the [installed evaluator](https://jev-recipes.com/docs/evaluation/), retain model responses, and replay confidence policies offline. The [agent workflow](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/agent-loop/README.md) and [customer queue](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/customer-queue/README.md) show how decisions fit into application code. [Direct and Gateway integrations](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/integrations.md) use the same recipe interface.
 
 ## Watch Jev play checkers against Jev using the checkers-move recipe
 

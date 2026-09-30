@@ -503,6 +503,23 @@ footer {
 .guide .purpose {
   font-size: 20px;
 }
+.guide table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 16px 0;
+}
+.guide th,
+.guide td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.guide th {
+  font-weight: 600;
+  color: var(--muted);
+}
 .table-scroll {
   overflow-x: auto;
 }
