@@ -1,6 +1,6 @@
 {
   "name": "jev-recipes",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "248 small Jev decisions for JavaScript and TypeScript: route, rerank, gate, grade, compare, and label text for agents, RAG, support, code review, and music. Each returns a typed result with explicit uncertainty. Plug into Vercel AI SDK or LangChain agents, import one recipe, or run the CLI with JSON from any language.",
   "type": "module",
   "license": "MIT",
