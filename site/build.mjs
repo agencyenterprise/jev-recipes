@@ -135,8 +135,9 @@ for (const recipe of recipes) {
     );
   }
 }
-for (const name of ['app.js', 'render.js', 'style.css'])
+for (const name of ['app.js', 'render.js', 'ui.js', 'style.css'])
   await cp(join(root, 'site', name), join(output, name));
+await cp(join(root, 'site/fonts'), join(output, 'fonts'), { recursive: true });
 const docs = [];
 for (const name of siteDocs) {
   const docPath = `docs/${name}.md`;

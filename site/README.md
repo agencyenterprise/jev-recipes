@@ -1,6 +1,6 @@
 # Recipe catalog and live finder
 
-Run `npm run site:build`, then `npm run site:preview`. The preview listens on all interfaces, port 4173; set `PORT` to choose another port. Open it at `http://127.0.0.1:4173`. The preview loads `.env` when present. Set `TYPESAFE_API_KEY` on the server to enable **Find with Jev**. Building pages, typing in keyword search, and exploring saved fixtures make no model calls.
+Run `npm run site:build`, then `npm run site:preview`. The preview listens on all interfaces, port 4173; set `PORT` to choose another port. Open it at `http://127.0.0.1:4173`. The preview loads `.env` when present. Set `TYPESAFE_API_KEY` on the server to enable **Match with Jev**. Building pages, typing in keyword search, and exploring saved fixtures make no model calls.
 
 The builder reads the existing metadata, compiled schemas, demo fixtures, featured collection file, and saved evaluation reports. It executes every displayed fixture and each offered confidence policy offline. The browser uses the same search implementation as the package. Recipe facts are not copied into page templates.
 
@@ -36,7 +36,7 @@ Search by task, filter by collection or evidence, inspect the contract and saved
 
 `site/dist` is generated and excluded from Git and the npm archive. Its pages and keyword search can be served by any static host; live matching requires the Node endpoint below. Deployment is a separate release action.
 
-## Find with Jev
+## Match with Jev
 
 Submitting a description calls `POST /api/find`. The server uses the library's
 actual `rerank` recipe on all catalog entries in batches of up to 25 (currently
@@ -100,3 +100,20 @@ queries before increasing the usage cap. Deployment remains a separate action.
 Live checks found unrelated high scores in 50- and 100-item batches for a tool-permission query. The finder uses 25-item batches based on that observation; this is an initial quality check, not a calibrated benchmark.
 
 Deployment checklist: production API key presence, build/start commands, and `SITE_URL=https://jev-recipes.com` verified in Railway. A production browser search returned `tool-call-gate` for the tool-permission example.
+
+## Interface and local verification
+
+The homepage puts saved decision examples above keyword search and optional live matching.
+Suggested starting recipes appear first when the search is empty. Query and filter values
+are retained in the URL. Recipe details use keyboard-accessible tabs, copyable examples,
+and a mobile back-to-results control. Evidence remains labeled independently of demo outcomes.
+
+The extended introduction is published from `docs/getting-started.md`. Static guides include
+an on-page contents menu and shared copy controls from `site/ui.js`; their content and
+navigation remain available without JavaScript. IBM Plex Sans and Mono are served locally
+from `site/fonts/` under the included SIL Open Font License.
+
+For offline UI review, run `JEV_FIND_ENABLED=false npm run site:preview`. Verify the saved
+routing threshold at 80% and 95%, both hero scenarios, keyword filters, matching failure
+fallback, all four inspector tabs (including arrow keys), comparison, copy controls, and
+mobile selection/back navigation. No live provider calls are needed for these checks.

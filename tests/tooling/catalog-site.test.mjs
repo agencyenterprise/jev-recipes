@@ -23,6 +23,11 @@ async function checkPage(path) {
     assert.ok(target.startsWith(resolve('site/dist')), href);
     assert.ok(await stat(target), `${path} -> ${href}`);
   }
+  const ids = [...page.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+  assert.equal(new Set(ids).size, ids.length, `${path} has duplicate anchor IDs`);
+  for (const [, anchor] of page.matchAll(/href="#([^"]+)"/g)) {
+    assert.ok(ids.includes(anchor), `${path} has a broken local anchor: #${anchor}`);
+  }
   return page;
 }
 
