@@ -4,7 +4,15 @@ import { fileURLToPath } from 'node:url';
 import { listRecipes, describeRecipe } from '../dist/catalog/index.js';
 import { escapeHtml } from './render.js';
 import { loadEvaluationRecipe } from '../dist/evaluation/dataset.js';
-import { catalogPage, description, metadata, recipePage, siteOrigin, sitemap } from './pages.mjs';
+import {
+  catalogPage,
+  description,
+  metadata,
+  notFoundPage,
+  recipePage,
+  siteOrigin,
+  sitemap,
+} from './pages.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = join(root, 'site/dist');
@@ -121,13 +129,27 @@ await writeFile(
   ),
 );
 await writeFile(join(output, 'recipes/index.html'), catalogPage(entries, origin));
+await writeFile(join(output, '404.html'), notFoundPage(origin));
 await writeFile(join(output, 'sitemap.xml'), sitemap(entries, origin));
 await writeFile(
   join(output, 'robots.txt'),
   `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`,
 );
 await cp(join(root, 'dist/catalog/search.js'), join(output, 'search.js'));
-await writeFile(join(output, 'catalog.json'), JSON.stringify({ recipes: entries, collections }));
+const listings = entries.map(
+  ({ id, title, description, useWhen, tags, category, collection, evidence, evidenceDetails }) => ({
+    id,
+    title,
+    description,
+    useWhen,
+    tags,
+    category,
+    collection,
+    evidence,
+    evidenceDetails,
+  }),
+);
+await writeFile(join(output, 'catalog.json'), JSON.stringify({ recipes: listings, collections }));
 await mkdir(dirname(join(output, 'docs/evaluation.md')), { recursive: true });
 for (const name of [
   'evaluation.md',

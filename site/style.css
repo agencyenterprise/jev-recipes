@@ -39,6 +39,20 @@ a:focus-visible,
   outline: 3px solid var(--blue);
   outline-offset: 3px;
 }
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  padding: 10px 14px;
+  background: var(--blue);
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 1;
+}
+.skip-link:focus {
+  top: 16px;
+}
 .masthead {
   max-width: 1440px;
   margin: auto;

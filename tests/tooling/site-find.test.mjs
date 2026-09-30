@@ -132,6 +132,29 @@ test('missing key, disable switch, hourly cap, and per-peer rate limit prevent c
   const limited = createFindHandler({ recipes, env, run });
   for (let i = 0; i < 5; i++) assert.equal((await request(limited)).status, 200);
   assert.equal((await request(limited)).status, 429);
+  assert.equal(
+    (await request(limited, { headers: { 'x-forwarded-for': '203.0.113.7, 10.0.0.1' } })).status,
+    429,
+  );
+  const forwarded = createFindHandler({
+    recipes,
+    env: { ...env, JEV_FIND_TRUST_FORWARDED: 'true' },
+    run,
+  });
+  for (let i = 0; i < 5; i++)
+    assert.equal(
+      (await request(forwarded, { headers: { 'x-forwarded-for': '203.0.113.7, 10.0.0.1' } }))
+        .status,
+      200,
+    );
+  assert.equal(
+    (await request(forwarded, { headers: { 'x-forwarded-for': '203.0.113.7, 10.0.0.1' } })).status,
+    429,
+  );
+  assert.equal(
+    (await request(forwarded, { headers: { 'x-forwarded-for': '203.0.113.8, 10.0.0.1' } })).status,
+    200,
+  );
 });
 
 test('timeout cancels provider calls and concurrent submissions are bounded', async () => {
