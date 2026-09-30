@@ -1,6 +1,6 @@
 # jev-recipes
 
-**Small, readable decisions for Jev and compatible System One APIs.**
+**Typed AI decisions for agents, RAG, and support flows: route, rerank, gate, grade, compare, and label text with one function call. Plug into Vercel AI SDK or LangChain, or call any recipe directly.**
 
 [![npm version](https://img.shields.io/npm/v/jev-recipes)](https://www.npmjs.com/package/jev-recipes)
 [![CI](https://github.com/agencyenterprise/jev-recipes/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/agencyenterprise/jev-recipes/actions/workflows/ci.yml)
@@ -31,6 +31,10 @@ For example, give `route` a support message and descriptions of your teams. It r
 
 Evaluate your own cases with the [installed evaluator](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/evaluation.md), retain model responses, and replay confidence policies offline. The [agent workflow](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/agent-loop/README.md) and [customer queue](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/customer-queue/README.md) show how decisions fit into application code. [Direct and Gateway integrations](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/integrations.md) use the same recipe interface.
 
+## Watch Jev play checkers against Jev using the checkers-move recipe
+
+[![Jev plays checkers against Jev using the checkers-move recipe](https://raw.githubusercontent.com/agencyenterprise/jev-recipes/main/examples/checkers/jev-vs-jev.gif)](https://www.youtube.com/shorts/Z282rGKysTg)
+
 ## Build a complete support flow
 
 The [support conversation starter](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/support-routing/README.md) checks for missing details, asks a configured question, and resumes with the customer's answer. It proposes a queue or requests human review when the conversation remains unresolved.
@@ -54,10 +58,6 @@ Build the searchable static catalog with `npm run site:build`, then preview it w
 [Open the music app](https://jev-ai-music.com/) · [Read the integration example](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/jevthoven/README.md)
 
 This is a maintainer-built application, not an independent customer adoption claim or a recipe accuracy benchmark.
-
-## Watch Jev play checkers against Jev using the checkers-move recipe
-
-[![Jev plays checkers against Jev using the checkers-move recipe](https://raw.githubusercontent.com/agencyenterprise/jev-recipes/main/examples/checkers/jev-vs-jev.gif)](https://www.youtube.com/shorts/Z282rGKysTg)
 
 ## Use a recipe
 

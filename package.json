@@ -1,7 +1,7 @@
 {
   "name": "jev-recipes",
   "version": "0.9.0",
-  "description": "Small, composable Jev decisions for retrieval, conversations, and agent workflows.",
+  "description": "248 small Jev decisions for JavaScript and TypeScript: route, rerank, gate, grade, compare, and label text for agents, RAG, support, code review, and music. Each returns a typed result with explicit uncertainty. Plug into Vercel AI SDK or LangChain agents, import one recipe, or run the CLI with JSON from any language.",
   "type": "module",
   "license": "MIT",
   "repository": {
@@ -1106,19 +1106,25 @@
     "vite": "6.4.3",
     "vitest": "4.1.11"
   },
-  "homepage": "https://github.com/agencyenterprise/jev-recipes#readme",
+  "homepage": "https://jev-recipes.com",
   "bugs": {
     "url": "https://github.com/agencyenterprise/jev-recipes/issues"
   },
   "keywords": [
     "jev",
     "typesafe",
-    "recipes",
-    "ai",
+    "ai-agents",
+    "agents",
+    "llm",
+    "ai-sdk",
+    "vercel-ai-sdk",
+    "langchain",
+    "guardrails",
+    "tool-calling",
     "routing",
     "reranking",
     "rag",
-    "evidence",
+    "classification",
     "typescript",
     "cli"
   ],
