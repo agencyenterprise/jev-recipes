@@ -46,6 +46,8 @@ const files = [
   'dist/recipes/route/index.d.ts',
   'dist/recipes/route/demo.json',
   'dist/catalog/generated/details/route.json',
+  'dist/adapters/ai-sdk/index.js',
+  'dist/adapters/langchain/index.d.ts',
 ];
 
 test('package checks accept required files and reject development files anywhere in the archive', () => {

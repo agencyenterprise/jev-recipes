@@ -1,0 +1,171 @@
+import { jsonSchema, tool } from 'ai';
+import type { LanguageModel, PrepareStepFunction, StopCondition, Tool, ToolSet } from 'ai';
+import type { RecipeName } from '../../catalog/schema.js';
+import { modelRoute } from '../../recipes/model-route/index.js';
+import type { ModelRouteResult } from '../../recipes/model-route/index.js';
+import type { RecipeOptions } from '../../src/schema.js';
+import {
+  COMPLETION_TOOL_DESCRIPTION,
+  COMPLETION_TOOL_INPUT_SCHEMA,
+  DEFAULT_COMPLETION_TOOL_NAME,
+  blockedOutput,
+  defineRecipeTool,
+  messageText,
+  requireText,
+  reviewCompletion,
+  reviewToolCall,
+} from '../shared.js';
+import type {
+  CompletionOptions,
+  CompletionToolOutput,
+  GuardOptions,
+  RecipeToolOptions,
+} from '../shared.js';
+
+export type {
+  BlockedToolOutput,
+  CompletionEvent,
+  CompletionOptions,
+  CompletionToolOutput,
+  GuardEvent,
+  GuardOptions,
+  RecipeToolOptions,
+} from '../shared.js';
+
+export type RecipeTool = Tool<Record<string, unknown>, Record<string, unknown>>;
+
+export function recipeTool(name: RecipeName, options: RecipeToolOptions = {}): RecipeTool {
+  const definition = defineRecipeTool(name, options);
+  return tool({
+    description: definition.description,
+    inputSchema: jsonSchema<Record<string, unknown>>(
+      definition.inputSchema as Parameters<typeof jsonSchema>[0],
+    ),
+    execute: async (input, executionOptions) =>
+      definition.execute(input, executionOptions.abortSignal),
+  });
+}
+
+export function recipeTools(
+  names: readonly RecipeName[],
+  options: RecipeToolOptions = {},
+): Record<string, RecipeTool> {
+  return Object.fromEntries(names.map((name) => [name, recipeTool(name, options)]));
+}
+
+export type GuardToolsOptions = GuardOptions & { request?: string };
+
+export function guardTools<TOOLS extends ToolSet>(
+  tools: TOOLS,
+  options: GuardToolsOptions = {},
+): TOOLS {
+  const { request, ...guardOptions } = options;
+  const guarded = Object.entries(tools).map(([toolName, definition]) => {
+    if (!('execute' in definition) || typeof definition.execute !== 'function')
+      return [toolName, definition];
+    const execute = definition.execute;
+    const wrapped: Tool = {
+      ...definition,
+      execute: async (input, executionOptions) => {
+        const decision = await reviewToolCall(
+          {
+            toolName,
+            input,
+            request: request ?? requireText(lastUserText(executionOptions.messages), 'request'),
+          },
+          guardOptions,
+          executionOptions.abortSignal,
+        );
+        if (decision.action !== 'allow') return blockedOutput(toolName, decision);
+        return execute(input, executionOptions);
+      },
+    };
+    return [toolName, wrapped];
+  });
+  return Object.fromEntries(guarded) as TOOLS;
+}
+
+export type ModelCandidate = { id: string; text: string; model: LanguageModel };
+
+export type RouteModelStepOptions = RecipeOptions & {
+  candidates: readonly ModelCandidate[];
+  request?: string;
+  context?: string;
+  minConfidence?: number;
+  fallback?: LanguageModel;
+  onDecision?: (event: { decision: ModelRouteResult; model: LanguageModel | undefined }) => void;
+};
+
+export function routeModelStep(options: RouteModelStepOptions): PrepareStepFunction<any, any> {
+  const { candidates, request, context, minConfidence, fallback, onDecision, ...recipeOptions } =
+    options;
+  if (!candidates.length) throw new Error('Supply at least one model candidate.');
+  const decisions = new WeakMap<object, LanguageModel | undefined>();
+  return async ({ initialMessages }) => {
+    if (!decisions.has(initialMessages)) {
+      const decision = await modelRoute(
+        {
+          request: request ?? requireText(firstUserText(initialMessages), 'request'),
+          models: candidates.map(({ id, text }) => ({ id, text })),
+          ...(context === undefined ? {} : { context }),
+          ...(minConfidence === undefined ? {} : { minConfidence }),
+        },
+        recipeOptions,
+      );
+      const selected =
+        decision.status === 'ready' && decision.selection !== null
+          ? candidates.find((candidate) => candidate.id === decision.selection)?.model
+          : fallback;
+      onDecision?.({ decision, model: selected });
+      decisions.set(initialMessages, selected);
+    }
+    const model = decisions.get(initialMessages);
+    return model === undefined ? {} : { model };
+  };
+}
+
+export type CompletionCheck = {
+  tools: Record<string, Tool<{ report: string; evidence?: string }, CompletionToolOutput>>;
+  stopWhen: StopCondition<any, any>;
+};
+
+export function completionCheck(options: CompletionOptions = {}): CompletionCheck {
+  const toolName = options.toolName ?? DEFAULT_COMPLETION_TOOL_NAME;
+  const report = tool({
+    description: COMPLETION_TOOL_DESCRIPTION,
+    inputSchema: jsonSchema<{ report: string; evidence?: string }>(COMPLETION_TOOL_INPUT_SCHEMA),
+    execute: async (input, executionOptions) =>
+      reviewCompletion(
+        {
+          task: options.task ?? requireText(firstUserText(executionOptions.messages), 'task'),
+          report: input.report,
+          evidence: input.evidence,
+        },
+        options,
+        executionOptions.abortSignal,
+      ),
+  });
+  return {
+    tools: { [toolName]: report },
+    stopWhen: ({ steps }) => {
+      const last = steps.at(-1);
+      return (
+        last?.toolResults.some(
+          (result) =>
+            result.toolName === toolName &&
+            typeof result.output === 'object' &&
+            result.output !== null &&
+            (result.output as CompletionToolOutput).accepted === true,
+        ) ?? false
+      );
+    },
+  };
+}
+
+function lastUserText(messages: readonly { role: string; content: unknown }[]) {
+  return messageText(messages, 'user', 'last');
+}
+
+function firstUserText(messages: readonly { role: string; content: unknown }[]) {
+  return messageText(messages, 'user', 'first');
+}

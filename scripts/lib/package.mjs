@@ -30,7 +30,7 @@ export function checkPackageContents(files, recipeIds, exports) {
     }
     const root = ['package.json', 'README.md', 'LICENSE'].includes(path);
     const compiled =
-      /^dist\/(src|cli|catalog|recipes|evaluation)\/.+\.(js|d\.ts)$/.test(path) &&
+      /^dist\/(src|cli|catalog|recipes|evaluation|adapters)\/.+\.(js|d\.ts)$/.test(path) &&
       !/^dist\/recipes\/[^/]+\/metadata\./.test(path);
     const detail = /^dist\/catalog\/generated\/details\/([^/]+)\.json$/.exec(path);
     const demo = /^dist\/recipes\/([^/]+)\/demo\.json$/.exec(path);

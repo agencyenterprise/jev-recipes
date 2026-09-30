@@ -1,5 +1,5 @@
-import { mkdtemp, readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
-import { join, basename } from 'node:path';
+import { mkdtemp, readFile, writeFile, mkdir, rm, cp, symlink } from 'node:fs/promises';
+import { join, basename, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { projectRoot } from './lib/recipes.mjs';
 import { npm, run } from './lib/process.mjs';
@@ -16,8 +16,12 @@ try {
   temporary = await mkdtemp(join(tmpdir(), 'jev-recipes-package-'));
   const options = { env: { ...process.env, npm_config_cache: join(temporary, 'cache') } };
   const manifest = JSON.parse(await readFile(join(projectRoot, 'package.json'), 'utf8'));
+  const adapterPaths = ['./ai-sdk', './langchain'];
   const ids = Object.keys(manifest.exports)
-    .filter((path) => !['.', './catalog', './evaluation', './package.json'].includes(path))
+    .filter(
+      (path) =>
+        !['.', './catalog', './evaluation', './package.json', ...adapterPaths].includes(path),
+    )
     .map((path) => path.slice(2));
   const packed = parsePackedArchive(
     await npm(['pack', '--ignore-scripts', '--json', '--pack-destination', temporary], {
@@ -67,6 +71,11 @@ try {
     { ...options, cwd: consumer },
   );
   const packageRoot = join(consumer, 'node_modules', manifest.name);
+  for (const peer of [...Object.keys(manifest.peerDependencies), '@types/node']) {
+    const target = join(consumer, 'node_modules', peer);
+    await mkdir(dirname(target), { recursive: true });
+    await symlink(join(projectRoot, 'node_modules', peer), target, 'dir');
+  }
   const fixtureScript = `
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -86,7 +95,19 @@ for (const id of ids) {
   assert.equal(result.model, fixture.response.model);
   assert.ok(describeRecipe(id).inputSchema.properties);
 }
-console.log('Verified ' + ids.length + ' installed recipe imports, root exports, schemas, and offline decisions.');
+const routeFixture = JSON.parse(await readFile(new URL('./node_modules/jev-recipes/dist/recipes/route/demo.json', import.meta.url), 'utf8'));
+const routeClient = { client: { systemOne: async () => routeFixture.response } };
+const aiSdk = await import('jev-recipes/ai-sdk');
+const aiTool = aiSdk.recipeTool('route', routeClient);
+assert.equal((await aiTool.execute(routeFixture.input, { toolCallId: 'c', messages: [], context: {} })).route, 'billing');
+assert.equal(typeof aiSdk.guardTools, 'function');
+assert.equal(typeof aiSdk.routeModelStep, 'function');
+assert.equal(typeof aiSdk.completionCheck({}).stopWhen, 'function');
+const langchain = await import('jev-recipes/langchain');
+assert.equal((await langchain.recipeTool('route', routeClient).invoke(routeFixture.input)).route, 'billing');
+assert.equal(typeof langchain.guardTools, 'function');
+assert.equal(langchain.completionTool({ task: 'x' }).name, 'report_completion');
+console.log('Verified ' + ids.length + ' installed recipe imports, root exports, schemas, offline decisions, and both framework adapters.');
 `;
   await writeFile(join(consumer, 'smoke.mjs'), fixtureScript);
   await run(process.execPath, ['smoke.mjs'], { cwd: consumer });
@@ -106,6 +127,8 @@ console.log('Verified ' + ids.length + ' installed recipe imports, root exports,
     'ingestion',
     'customer-queue',
     'agent-loop',
+    'ai-sdk-agent',
+    'langchain-tools',
     'support-routing',
   ])
     await run(process.execPath, [`examples/${example}/run.mjs`], {
@@ -268,7 +291,7 @@ assert.equal((await readRun('fixture-replay-api')).evaluatedAt, fixture.evaluate
         (id, index) => `import * as recipe${index} from 'jev-recipes/${id}';\nvoid recipe${index};`,
       )
       .join('\n') +
-      `\nimport { describeRecipe, listRecipes } from 'jev-recipes/catalog';\nconst description = describeRecipe('route');\nlistRecipes({ limit: 3 });\nvoid description.inputSchema;\nimport { evaluate, replay, compare, readRun } from 'jev-recipes/evaluation';\nvoid [evaluate, replay, compare, readRun];\n`,
+      `\nimport { describeRecipe, listRecipes } from 'jev-recipes/catalog';\nconst description = describeRecipe('route');\nlistRecipes({ limit: 3 });\nvoid description.inputSchema;\nimport { evaluate, replay, compare, readRun } from 'jev-recipes/evaluation';\nvoid [evaluate, replay, compare, readRun];\nimport { guardTools, routeModelStep, completionCheck, recipeTools } from 'jev-recipes/ai-sdk';\nvoid [guardTools, routeModelStep, completionCheck, recipeTools];\nimport { guardTools as guardLangChainTools, completionTool } from 'jev-recipes/langchain';\nvoid [guardLangChainTools, completionTool];\n`,
   );
   await run(
     process.execPath,
@@ -276,6 +299,7 @@ assert.equal((await readRun('fixture-replay-api')).evaluatedAt, fixture.evaluate
       join(projectRoot, 'node_modules/typescript/bin/tsc'),
       '--noEmit',
       '--strict',
+      '--skipLibCheck',
       '--module',
       'NodeNext',
       '--moduleResolution',
