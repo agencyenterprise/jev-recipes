@@ -1,23 +1,34 @@
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { listRecipes, describeRecipe } from '../dist/catalog/index.js';
 import { escapeHtml } from './render.js';
 import { loadEvaluationRecipe } from '../dist/evaluation/dataset.js';
+import { siteDocs, updateLedgerPath } from '../scripts/lib/docs.mjs';
+import { absoluteMarkdown, guideSections, markdownTitle, renderMarkdown } from './markdown.mjs';
 import {
   catalogPage,
   description,
+  docPage,
+  maintainer,
   metadata,
   notFoundPage,
   recipePage,
   siteOrigin,
   sitemap,
+  source,
 } from './pages.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = join(root, 'site/dist');
 const origin = siteOrigin(process.env.SITE_URL);
 const collections = JSON.parse(await readFile(join(root, 'evals/featured.json'), 'utf8'));
+const ledger = JSON.parse(await readFile(join(root, updateLedgerPath), 'utf8'));
+const updatedAt = (page) => {
+  const entry = ledger[page];
+  if (!entry) throw new Error(`No update date recorded for ${page}. Run npm run docs first.`);
+  return entry.updatedAt;
+};
 const recipes = listRecipes();
 for (const ids of Object.values(collections))
   for (const id of ids)
@@ -26,6 +37,7 @@ for (const ids of Object.values(collections))
 await rm(output, { recursive: true, force: true });
 await mkdir(join(output, 'recipes'), { recursive: true });
 const entries = [];
+const recipeMarkdown = [];
 let routePolicyTable = '';
 for (const recipe of recipes) {
   for (const related of recipe.related ?? [])
@@ -67,6 +79,7 @@ for (const recipe of recipes) {
     collection,
     evidence,
     evidenceDetails,
+    updatedAt: updatedAt(`recipes/${recipe.id}`),
     measured:
       report && evidenceDetails.measurement
         ? {
@@ -105,7 +118,15 @@ for (const recipe of recipes) {
   };
   await writeFile(join(output, 'recipes', `${recipe.id}.json`), JSON.stringify(detail));
   await mkdir(join(output, 'recipes', recipe.id), { recursive: true });
-  await writeFile(join(output, 'recipes', recipe.id, 'index.html'), recipePage(detail, origin));
+  const readmePath = `recipes/${recipe.id}/README.md`;
+  const readme = await readFile(join(root, readmePath), 'utf8');
+  await writeFile(
+    join(output, 'recipes', recipe.id, 'index.html'),
+    recipePage(detail, origin, renderMarkdown(guideSections(readme), readmePath)),
+  );
+  const markdown = `${absoluteMarkdown(readme, readmePath, origin).trim()}\n\nCanonical guide: ${origin}/recipes/${recipe.id}/\nEvidence: ${detail.evidenceDetails.label}. Last updated ${detail.updatedAt}.\n`;
+  await writeFile(join(output, 'recipes', recipe.id, 'index.md'), markdown);
+  recipeMarkdown.push(markdown);
   if (report) {
     await mkdir(join(output, 'reports'), { recursive: true });
     await writeFile(
@@ -116,6 +137,27 @@ for (const recipe of recipes) {
 }
 for (const name of ['app.js', 'render.js', 'style.css'])
   await cp(join(root, 'site', name), join(output, name));
+const docs = [];
+for (const name of siteDocs) {
+  const docPath = `docs/${name}.md`;
+  const markdown = await readFile(join(root, docPath), 'utf8');
+  const doc = {
+    name,
+    title: markdownTitle(markdown),
+    body: renderMarkdown(markdown, docPath),
+    updatedAt: updatedAt(`docs/${name}`),
+  };
+  docs.push(doc);
+  await mkdir(join(output, 'docs', name), { recursive: true });
+  await writeFile(join(output, 'docs', name, 'index.html'), docPage(doc, origin));
+  await writeFile(join(output, 'docs', `${name}.md`), absoluteMarkdown(markdown, docPath, origin));
+}
+const latestUpdate = [
+  ...entries.map((entry) => entry.updatedAt),
+  ...docs.map((doc) => doc.updatedAt),
+]
+  .sort()
+  .at(-1);
 const homepage = await readFile(join(root, 'site/index.html'), 'utf8');
 await writeFile(
   join(output, 'index.html'),
@@ -125,12 +167,48 @@ await writeFile(
       origin,
       title: 'Jev recipes | TypeScript guide to route decisions, review results, and evidence',
       summary: description,
+      updatedAt: latestUpdate,
     }),
   ),
 );
-await writeFile(join(output, 'recipes/index.html'), catalogPage(entries, origin));
+await writeFile(join(output, 'recipes/index.html'), catalogPage(entries, origin, latestUpdate));
 await writeFile(join(output, '404.html'), notFoundPage(origin));
-await writeFile(join(output, 'sitemap.xml'), sitemap(entries, origin));
+await writeFile(
+  join(output, 'sitemap.xml'),
+  sitemap(
+    [
+      { path: '/', updatedAt: latestUpdate },
+      { path: '/recipes/', updatedAt: latestUpdate },
+      ...docs.map((doc) => ({ path: `/docs/${doc.name}/`, updatedAt: doc.updatedAt })),
+      ...entries.map((entry) => ({ path: `/recipes/${entry.id}/`, updatedAt: entry.updatedAt })),
+    ],
+    origin,
+  ),
+);
+const llmsIndex = `# Jev recipes
+
+> ${description}
+
+jev-recipes is an MIT-licensed npm package (\`npm install jev-recipes\`) for Node.js 22.9 or newer. Each recipe asks Jev one bounded question and returns a typed decision with explicit uncertainty. Maintained by ${maintainer.name} (${maintainer.url}). Source: ${source}
+
+## Docs
+
+${docs.map((doc) => `- [${doc.title}](${origin}/docs/${doc.name}.md)`).join('\n')}
+
+## Recipes
+
+${entries.map((entry) => `- [${entry.title}](${origin}/recipes/${entry.id}/index.md): ${entry.description} Evidence: ${entry.evidenceDetails.label}.`).join('\n')}
+
+## Optional
+
+- [Recipe catalog (HTML)](${origin}/recipes/)
+- [Complete recipe guides in one file](${origin}/llms-full.txt)
+`;
+await writeFile(join(output, 'llms.txt'), llmsIndex);
+await writeFile(
+  join(output, 'llms-full.txt'),
+  `${llmsIndex}\n---\n\n${recipeMarkdown.join('\n---\n\n')}`,
+);
 await writeFile(
   join(output, 'robots.txt'),
   `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`,
@@ -150,12 +228,4 @@ const listings = entries.map(
   }),
 );
 await writeFile(join(output, 'catalog.json'), JSON.stringify({ recipes: listings, collections }));
-await mkdir(dirname(join(output, 'docs/evaluation.md')), { recursive: true });
-for (const name of [
-  'evaluation.md',
-  'integrations.md',
-  'gateway-validation.md',
-  'coding-assistants.md',
-])
-  await cp(join(root, 'docs', name), join(output, 'docs', name));
 console.log(`Built static catalog with ${entries.length} recipes. No model calls were made.`);

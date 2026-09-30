@@ -6,6 +6,7 @@ import { listRecipes } from '../../dist/catalog/index.js';
 import { run } from '../../scripts/lib/process.mjs';
 import { recipePage, siteOrigin } from '../../site/pages.mjs';
 import { escapeHtml } from '../../site/render.js';
+import { siteDocs } from '../../scripts/lib/docs.mjs';
 
 async function checkPage(path) {
   const page = await readFile(`site/dist${path}index.html`, 'utf8');
@@ -35,7 +36,16 @@ test('the static catalog contains valid source entries, executable fixtures, and
   assert.ok(!homepage.includes('<!-- ROUTE_POLICY_TABLE -->'));
   const sitemap = await readFile('site/dist/sitemap.xml', 'utf8');
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(new Set(urls).size, catalog.recipes.length + 2);
+  assert.equal(new Set(urls).size, catalog.recipes.length + 2 + siteDocs.length);
+  assert.equal(sitemap.match(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g).length, urls.length);
+  for (const name of siteDocs) {
+    const doc = await checkPage(`/docs/${name}/`);
+    assert.ok(doc.includes('<h1>'), name);
+    assert.ok(!(await readFile(`site/dist/docs/${name}.md`, 'utf8')).includes('](../'), name);
+  }
+  const llms = await readFile('site/dist/llms.txt', 'utf8');
+  const llmsFull = await readFile('site/dist/llms-full.txt', 'utf8');
+  assert.ok(homepage.includes('Jeff Patterson'));
   assert.ok(
     (await readFile('site/dist/robots.txt', 'utf8')).includes(
       `Sitemap: ${siteOrigin(process.env.SITE_URL)}/sitemap.xml`,
@@ -52,6 +62,12 @@ test('the static catalog contains valid source entries, executable fixtures, and
     assert.ok(detail.resultSchema.properties || detail.resultSchema.anyOf, entry.id);
     assert.equal(detail.fixture.result.model, 'demo-fixture');
     const page = await checkPage(`/recipes/${entry.id}/`);
+    assert.match(detail.updatedAt, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(page.includes(`"dateModified":"${detail.updatedAt}"`));
+    assert.ok(llms.includes(`${siteOrigin(process.env.SITE_URL)}/recipes/${entry.id}/index.md`));
+    const markdown = await readFile(`site/dist/recipes/${entry.id}/index.md`, 'utf8');
+    assert.ok(!markdown.includes('](../'), entry.id);
+    assert.ok(llmsFull.includes(markdown.trim()), entry.id);
     assert.ok(index.includes(`href="./${entry.id}/"`));
     assert.ok(urls.includes(`${siteOrigin(process.env.SITE_URL)}/recipes/${entry.id}/`));
     assert.ok(page.includes(escapeHtml(detail.description)));

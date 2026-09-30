@@ -9,6 +9,18 @@ The build also creates a linked catalog at `/recipes/` and a complete HTML guide
 evidence, and limitations without requiring JavaScript. The homepage retains the
 interactive explorer and links to the guides.
 
+Each recipe guide embeds the hand-written sections of `recipes/<id>/README.md`
+and has a Markdown sibling at `/recipes/<id>/index.md` with absolute links. The
+guides in `docs/` listed in `scripts/lib/docs.mjs` are published at
+`/docs/<name>/` with a Markdown sibling at `/docs/<name>.md`. `/llms.txt` indexes
+these files and `/llms-full.txt` concatenates every recipe guide.
+
+`site/updated.json` records, for each recipe and published doc, a content hash
+and the date that content last changed. `npm run docs` refreshes it: an entry
+keeps its date while its hash is unchanged and receives the current date when
+the content differs. Pages use these dates for `dateModified`, a visible "Last
+updated" line, and sitemap `lastmod`; nothing is dated from the build clock.
+
 Canonical URLs, Open Graph metadata, JSON-LD, `robots.txt`, and `sitemap.xml` use
 `https://jev-recipes.com` by default. Set `SITE_URL` to another HTTP(S) origin at
 build time when deploying elsewhere. Dates are not invented for metadata or the

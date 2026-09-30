@@ -17,7 +17,7 @@ const types = {
   '.js': 'text/javascript',
   '.css': 'text/css',
   '.json': 'application/json',
-  '.md': 'text/plain',
+  '.md': 'text/markdown',
   '.txt': 'text/plain',
   '.xml': 'application/xml',
 };

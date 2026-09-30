@@ -12,7 +12,7 @@ import {
 import ts from 'typescript';
 import { replaceSection, writeOutputs, renderExports } from '../../scripts/lib/generate.mjs';
 import { scaffoldRecipe } from '../../scripts/new-recipe.mjs';
-import { renderDocs } from '../../scripts/lib/docs.mjs';
+import { renderDocs, siteDocs } from '../../scripts/lib/docs.mjs';
 
 const recipe = (id, uses = [], related = []) => ({
   id,
@@ -58,10 +58,17 @@ test('documentation generation preserves authored prose and refuses ambiguous ma
   assert.throws(() => replaceSection(original + original, 'test', 'New.'));
 });
 
+async function writePublishedDocs(root) {
+  await mkdir(join(root, 'docs'), { recursive: true });
+  for (const name of siteDocs)
+    await writeFile(join(root, 'docs', `${name}.md`), `# ${name}\n\nFixture guide.\n`);
+}
+
 test('psychology documentation follows recipe tags without changing category membership or counts', async () => {
   const root = await mkdtemp(join(tmpdir(), 'jev-topic-docs-'));
   try {
     await mkdir(join(root, 'recipes'));
+    await writePublishedDocs(root);
     await writeFile(
       join(root, 'README.md'),
       '<!-- BEGIN GENERATED: summary -->\n<!-- END GENERATED: summary -->',
@@ -123,6 +130,7 @@ test('measured accuracy sections render from eval snapshots and demand markers w
     await mkdir(join(root, 'recipes/measured'), { recursive: true });
     await mkdir(join(root, 'recipes/unmeasured'), { recursive: true });
     await mkdir(join(root, 'evals/results'), { recursive: true });
+    await writePublishedDocs(root);
     await writeFile(
       join(root, 'README.md'),
       '<!-- BEGIN GENERATED: summary -->\n<!-- END GENERATED: summary -->',

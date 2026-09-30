@@ -1,7 +1,11 @@
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { format } from 'prettier';
 import { replaceSection } from './generate.mjs';
+
+export const siteDocs = ['evaluation', 'integrations', 'gateway-validation', 'coding-assistants'];
+export const updateLedgerPath = 'site/updated.json';
 
 const categoryTitles = {
   'answer-quality': 'Answer quality',
@@ -101,7 +105,38 @@ export async function renderDocs(root, records) {
     }
     files.set(path, updated);
   }
+  files.set(updateLedgerPath, await renderUpdateLedger(root, records, files));
   return files;
+}
+
+async function renderUpdateLedger(root, records, files) {
+  const previous = await readFile(join(root, updateLedgerPath), 'utf8')
+    .then(JSON.parse)
+    .catch((error) => {
+      if (error.code === 'ENOENT') return {};
+      throw error;
+    });
+  const pages = new Map();
+  for (const { id, metadata, inputSchema, resultSchema, evidence } of records)
+    pages.set(
+      `recipes/${id}`,
+      JSON.stringify({
+        readme: files.get(`recipes/${id}/README.md`),
+        metadata,
+        inputSchema,
+        resultSchema,
+        evidence,
+      }),
+    );
+  for (const name of siteDocs)
+    pages.set(`docs/${name}`, await readFile(join(root, 'docs', `${name}.md`), 'utf8'));
+  const today = new Date().toISOString().slice(0, 10);
+  const ledger = {};
+  for (const [page, content] of [...pages].sort(([a], [b]) => a.localeCompare(b, 'en'))) {
+    const hash = createHash('sha256').update(content).digest('hex').slice(0, 16);
+    ledger[page] = previous[page]?.hash === hash ? previous[page] : { hash, updatedAt: today };
+  }
+  return JSON.stringify(ledger, null, 2);
 }
 
 export function renderMeasuredAccuracy(id, guide, report, evidence) {
