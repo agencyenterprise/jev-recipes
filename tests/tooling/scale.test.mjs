@@ -60,7 +60,7 @@ test(
       await writeOutputs(temporary, files);
       const generationMs = performance.now() - started;
       assert.equal((await writeOutputs(temporary, files, true)).length, 0);
-      assert.equal(Object.keys(renderExports(records)).length, 1004);
+      assert.equal(Object.keys(renderExports(records)).length, 1006);
 
       for (const name of [
         'catalog/index.js',

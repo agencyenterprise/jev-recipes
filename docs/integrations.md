@@ -68,6 +68,10 @@ The Gateway response in the recorded smoke test identified itself as `typesafe-a
 
 For a local archived evaluation, see [Gateway evaluation](evaluation.md#gateway-evaluation). A BYOK credential stored in Vercel is separate from the Gateway key used locally. A successful request verifies the connection; it does not by itself establish which upstream credential Vercel used.
 
+## Agent frameworks
+
+The [framework adapter guide](framework-adapters.md) covers `jev-recipes/ai-sdk` and `jev-recipes/langchain`. Both accept the same `{ client, model, signal }` options as a direct recipe call, so the clients above apply unchanged.
+
 ## Coding assistants
 
 Discover the contract before writing an integration:

@@ -7,7 +7,7 @@
 [![Node.js version](https://img.shields.io/node/v/jev-recipes)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/agencyenterprise/jev-recipes/blob/main/LICENSE)
 
-[Quickstart](#use-a-recipe) | [Live music app](https://jev-ai-music.com/) | [Coding assistants](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/coding-assistants.md) | [Recipe catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md) | [API vs. SDK vs. recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/api-sdk-recipes.md) | [Contributing](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md)
+[Quickstart](#use-a-recipe) | [Live music app](https://jev-ai-music.com/) | [Coding assistants](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/coding-assistants.md) | [Recipe catalog](https://github.com/agencyenterprise/jev-recipes/blob/main/recipes/README.md) | [API vs. SDK vs. recipes](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/api-sdk-recipes.md) | [Agent frameworks](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/framework-adapters.md) | [Contributing](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md)
 
 <!-- BEGIN GENERATED: summary -->
 
@@ -242,6 +242,26 @@ console.log(`${result.requestsMade} calls for ${result.requestCount} tickets`);
 ```
 
 Accuracy can drop as batches grow. Measure on your own labeled data and tune `batchSize`; the [eval harness](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md#model-evaluation) reports calibration per threshold.
+
+## Use inside an agent framework
+
+`jev-recipes/ai-sdk` and `jev-recipes/langchain` plug the harness recipes into the loop you already run. With the Vercel AI SDK, `guardTools` reviews every tool call with `tool-call-gate`, `routeModelStep` picks the model per call with `model-route`, and `completionCheck` accepts a completion claim only when `completion-gate` sees evidence:
+
+```js
+import { generateText, stepCountIs } from 'ai';
+import { completionCheck, guardTools, routeModelStep } from 'jev-recipes/ai-sdk';
+
+const done = completionCheck();
+const result = await generateText({
+  model: careful,
+  prompt: 'Run the account tests and publish release 1.2.0.',
+  tools: { ...guardTools(tools, { policy: 'Ask before publishing.' }), ...done.tools },
+  prepareStep: routeModelStep({ candidates: [{ id: 'fast', text: 'Small edits.', model: fast }] }),
+  stopWhen: [stepCountIs(8), done.stopWhen],
+});
+```
+
+Any recipe becomes a tool with `recipeTools(['route', 'verify'])`. The LangChain adapter offers the same guard, completion, and recipe tools for `bindTools`, `ToolNode`, and `createAgent`. Install `ai` or `@langchain/core` yourself; both are optional peers. See the [framework adapter guide](https://github.com/agencyenterprise/jev-recipes/blob/main/docs/framework-adapters.md) and the offline [AI SDK](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/ai-sdk-agent/README.md) and [LangChain](https://github.com/agencyenterprise/jev-recipes/blob/main/examples/langchain-tools/README.md) examples.
 
 ## Use a local or alternative decision model
 

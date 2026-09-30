@@ -27,6 +27,14 @@
       "types": "./dist/evaluation/index.d.ts",
       "import": "./dist/evaluation/index.js"
     },
+    "./ai-sdk": {
+      "types": "./dist/adapters/ai-sdk/index.d.ts",
+      "import": "./dist/adapters/ai-sdk/index.js"
+    },
+    "./langchain": {
+      "types": "./dist/adapters/langchain/index.d.ts",
+      "import": "./dist/adapters/langchain/index.js"
+    },
     "./package.json": "./package.json",
     "./action-compare": {
       "types": "./dist/recipes/action-compare/index.d.ts",
@@ -1035,6 +1043,8 @@
     "dist/cli/*.js",
     "dist/evaluation/**/*.js",
     "dist/evaluation/**/*.d.ts",
+    "dist/adapters/**/*.js",
+    "dist/adapters/**/*.d.ts",
     "dist/cli/*.d.ts",
     "dist/recipes/*/demo.json",
     "README.md",
@@ -1073,9 +1083,23 @@
     "@typesafe-ai/sdk": "^0.6.0",
     "zod": "^4.6.5"
   },
+  "peerDependencies": {
+    "ai": ">=7.0.0",
+    "@langchain/core": ">=1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "ai": {
+      "optional": true
+    },
+    "@langchain/core": {
+      "optional": true
+    }
+  },
   "devDependencies": {
+    "@langchain/core": "^1.2.13",
     "@types/node": "^22.0.0",
     "@vitest/coverage-v8": "4.1.11",
+    "ai": "^7.0.122",
     "prettier": "3.9.8",
     "rimraf": "6.1.3",
     "typescript": "~5.9.3",

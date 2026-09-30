@@ -8,6 +8,7 @@ Made a game, music app, developer tool, or something unexpected with jev-recipes
 - [Jevthoven](jevthoven/README.md): a live music app and a walkthrough of its recipe decisions.
 - [Checkers](checkers/README.md): run a visual game with Jev choosing moves.
 - [Getting started](getting-started/README.md): route work, select evidence, and review actions using saved responses.
+- [AI SDK agent](ai-sdk-agent/README.md) and [LangChain tools](langchain-tools/README.md): plug guard, routing, and completion decisions into an agent framework.
 - [Agent loop](agent-loop/README.md), [customer queue](customer-queue/README.md), and [ingestion](ingestion/README.md): compose decisions into application workflows.
 
 ## Add your project

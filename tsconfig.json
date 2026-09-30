@@ -20,7 +20,8 @@
     "cli/**/*.ts",
     "recipes/**/*.ts",
     "catalog/**/*.ts",
-    "evaluation/**/*.ts"
+    "evaluation/**/*.ts",
+    "adapters/**/*.ts"
   ],
   "exclude": ["node_modules", "dist", "tests", "**/*.test.ts", "**/*.spec.ts"]
 }

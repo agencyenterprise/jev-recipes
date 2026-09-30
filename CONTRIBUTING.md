@@ -34,8 +34,10 @@ src/            Shared client and decision helpers; generated root exports
 catalog/        Metadata search, synchronous descriptions, and lazy execution
 catalog/generated/  Generated names, metadata, loaders, and schema descriptions
 cli/            Command-line interface
+adapters/       Framework adapters for the Vercel AI SDK and LangChain.js
 scripts/        Generation, scaffolding, documentation, and package checks
 tests/recipe/  Existing recipe tests and shared helpers
+tests/adapters/ Framework adapter tests with mocked Jev responses
 tests/tooling/ Catalog, generation, CLI, scale, and packaging tests
 ```
 
@@ -84,6 +86,8 @@ The generated catalog also includes tag-driven collections: Agent harness (`harn
 ## Dependencies and behavior
 
 Recipes use shared helpers under `src/` and may call another recipe through its public `index.js` export. `src/fanout.ts` carries a choice question plus independent labels in one request; `src/batch.ts` splits a list of inputs into chunks, runs one request per chunk concurrently, and merges the results. Prefer these over separate calls when the extra questions share one state, since Jev answers every question in a request in parallel. Declare that reuse in `uses` and explain it in the guide. Recipes and shared helpers must not import the catalog, CLI, or root barrel. Keep side effects in the caller.
+
+Adapters under `adapters/` may import the catalog and recipes, but recipes must not import adapters. `ai` and `@langchain/core` are optional peer dependencies: keep them out of `dependencies`, import them only inside their adapter module, and add a matching development dependency for tests. The package check links the development copies of peer packages into its consumer project, since a consumer supplies them.
 
 Accept `RecipeOptions` for an injected client, model, or abort signal. Validate inputs before inference. Return uncertainty as a review outcome and throw for invalid data or provider failures. Preserve model and usage information.
 
