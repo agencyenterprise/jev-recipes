@@ -98,16 +98,41 @@ export function metadata({
     })}</script>`;
 }
 
+function withContents(content) {
+  const links = [];
+  const used = new Set([...content.matchAll(/id="([^"]+)"/g)].map((match) => match[1]));
+  const body = content.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/g, (heading, attributes, label) => {
+    let id = attributes.match(/id="([^"]+)"/)?.[1];
+    if (!id) {
+      const base =
+        label
+          .replace(/<[^>]+>/g, '')
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-|-$/g, '') || 'section';
+      id = base;
+      let count = 2;
+      while (used.has(id)) id = `${base}-${count++}`;
+      used.add(id);
+      heading = `<h2${attributes} id="${id}">${label}</h2>`;
+    }
+    links.push(`<a href="#${id}">${label.replace(/<[^>]+>/g, '')}</a>`);
+    return heading;
+  });
+  return `<aside class="guide-toc" aria-label="On this page"><details class="contents-disclosure" open><summary>On this page</summary><nav>${links.join('')}</nav></details></aside><article class="guide" id="guide-content">${body}</article>`;
+}
+
 function page({ origin, path, title, summary, content, base, type, updatedAt, alternates }) {
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${html(title)}</title><meta name="description" content="${html(summary)}" />
 ${metadata({ origin, path, title, summary, type, updatedAt, alternates })}
-<link rel="stylesheet" href="${base}style.css" /></head><body>
+<link rel="stylesheet" href="${base}style.css" /><script type="module" src="${base}ui.js"></script></head><body>
+<a class="skip-link" href="#guide-content">Skip to content</a>
 <header class="masthead"><a class="brand" href="${base}">jev<span>recipes</span></a>
-<nav aria-label="Resources"><a href="${base}recipes/">All recipes</a><a href="${base}docs/evaluation/">Evaluation guide</a><a href="${source}">Source</a><a href="${base}#about">About</a></nav></header>
-<main class="guide">${content}</main>
+<nav aria-label="Resources"><a href="${base}#explorer">Explore</a><a href="${base}docs/getting-started/">Get started</a><a href="${base}docs/evaluation/">Evaluation</a><a href="${source}">GitHub</a></nav></header>
+<main class="guide-layout">${withContents(content)}</main>
 <footer>Maintained by <a rel="author" href="${maintainer.url}">${html(maintainer.name)}</a> with <a href="${source}/graphs/contributors">jev-recipes contributors</a>.
 MIT licensed. Independent community project. Jev and TypeSafe are products of TypeSafe AI.
 <a href="${source}/issues">Report an issue</a>.</footer></body></html>\n`;

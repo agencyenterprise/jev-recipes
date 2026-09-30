@@ -20,6 +20,7 @@ const types = {
   '.md': 'text/markdown',
   '.txt': 'text/plain',
   '.xml': 'application/xml',
+  '.woff2': 'font/woff2',
 };
 const securityHeaders = {
   'content-security-policy': "default-src 'self'; frame-ancestors 'none'",

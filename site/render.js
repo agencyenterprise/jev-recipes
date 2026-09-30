@@ -10,7 +10,8 @@ export function renderEvidence(recipe, base = './') {
         ? 'development'
         : 'saved';
   const interval = report.accuracyInterval95?.map(percent).join(' to ');
-  return `<section class="evidence-panel" aria-label="Evaluation evidence"><strong>${escapeHtml(recipe.evidenceDetails.label)}</strong>
+  return `<section class="evidence-panel ${current ? 'current' : 'historical'}" aria-label="Evaluation evidence"><strong>${escapeHtml(recipe.evidenceDetails.label)}</strong>
+    ${!current ? '<p class="evidence-caveat">Historical evidence. These scores do not measure the current recipe and evaluator.</p>' : ''}
     <p>${escapeHtml(report.model)}${report.evidence?.evaluatedAt ? ' / ' + escapeHtml(report.evidence.evaluatedAt.slice(0, 10)) : ''} / ${report.cases} ${sample} cases</p>
     <p>Scoring revision ${recipe.evidenceDetails.measurement.scoringRevision}.${recipe.evidenceDetails.measurement.replayedAt ? ' Replayed ' + escapeHtml(recipe.evidenceDetails.measurement.replayedAt) + '; measurements retain the original response date.' : ''}</p>
     <div class="metrics"><div class="metric"><span>${percent(report.accuracy)}</span><small>All-case accuracy</small></div><div class="metric"><span>${report.review ?? 'n/a'}</span><small>Sent for review</small></div><div class="metric"><span>${report.failed ?? 'n/a'}</span><small>Failed calls / cases</small></div></div>
