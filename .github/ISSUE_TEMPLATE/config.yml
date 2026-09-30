@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Usage questions
+    url: https://github.com/agencyenterprise/jev-recipes/issues/new?template=usage-question.yml
+    about: Ask for help choosing recipes, integrating the package, or understanding results.

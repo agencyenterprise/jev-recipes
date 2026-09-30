@@ -1,0 +1,47 @@
+name: Unexpected model decision
+description: Share a valid recipe result that seems incorrect or unexpectedly defers to review.
+title: 'Decision: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A model decision can vary between calls. A saved response helps distinguish the model's answer from the package's handling of it.
+        Use the [reproduction example](https://github.com/agencyenterprise/jev-recipes/tree/main/examples/reproduction) when a response is available; it is not required to report a case.
+        Share only sanitized inputs and responses. Do not post credentials, customer data, or other private information.
+  - type: input
+    id: recipe
+    attributes:
+      label: Recipe and installed package version
+      placeholder: 'route, jev-recipes 0.9.2'
+    validations:
+      required: true
+  - type: input
+    id: provider
+    attributes:
+      label: Provider and returned model name
+      description: Include whether this was a live call or saved-response replay. Use unknown if the model name is unavailable.
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Sanitized input and options
+      description: Include confidence thresholds and other options that affect the decision.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Actual result
+      description: Include the complete sanitized recipe result. A saved provider response is also useful if available.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: reasoning
+    attributes:
+      label: Expected decision and reasoning
+      description: Explain why the expected decision follows from this input and whether reasonable alternatives exist.
+    validations:
+      required: true

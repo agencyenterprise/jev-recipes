@@ -15,6 +15,26 @@
 
 <!-- END GENERATED: summary -->
 
+## Documentation versions
+
+<!-- BEGIN GENERATED: release-docs -->
+
+This checkout declares **jev-recipes 0.9.2**. Documentation for that release: [recipe catalog](https://github.com/agencyenterprise/jev-recipes/tree/v0.9.2/recipes/README.md), [integration guides](https://github.com/agencyenterprise/jev-recipes/tree/v0.9.2/docs), and [examples](https://github.com/agencyenterprise/jev-recipes/tree/v0.9.2/examples).
+
+Run `npm ls jev-recipes` in your project to check the version you installed. For another version, choose its `v<version>` tag from [all release tags](https://github.com/agencyenterprise/jev-recipes/tags). Relative links within a tagged guide stay with that snapshot; links explicitly naming `main` lead to development content.
+
+The [development guides](https://github.com/agencyenterprise/jev-recipes/tree/main/docs), hosted catalog, and other links to `main` in this README can include unreleased changes. A new version's documentation links become available when its tag is pushed. See [release notes](https://github.com/agencyenterprise/jev-recipes/releases) for compatibility and migration changes.
+
+<!-- END GENERATED: release-docs -->
+
+## Help and contributions
+
+[Ask a usage question](https://github.com/agencyenterprise/jev-recipes/issues/new?template=usage-question.yml), [report a software bug](https://github.com/agencyenterprise/jev-recipes/issues/new?template=bug-report.yml), [share an unexpected model decision](https://github.com/agencyenterprise/jev-recipes/issues/new?template=model-decision.yml), or [request a recipe](https://github.com/agencyenterprise/jev-recipes/issues/new?template=recipe-request.yml).
+
+For a reproducible software problem, start with the [standalone reproduction example](https://github.com/agencyenterprise/jev-recipes/tree/main/examples/reproduction). Share sanitized inputs and logs, never credentials or private data. To help improve the project, see [your first contribution](https://github.com/agencyenterprise/jev-recipes/blob/main/CONTRIBUTING.md#your-first-contribution).
+
+## How it works
+
 Each recipe accepts your data, calls [Jev through TypeSafe's System One API](https://docs.typesafe.ai/introduction) or an injected compatible client, and returns a structured decision. Use it in a Node.js backend, a script, or a research evaluation. Your application decides what happens next.
 
 ## Start with one decision

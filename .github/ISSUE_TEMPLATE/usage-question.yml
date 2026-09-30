@@ -1,0 +1,19 @@
+name: Ask a usage question
+description: Get help choosing a recipe, integrating the package, or understanding a result.
+title: 'Question: '
+body:
+  - type: markdown
+    attributes:
+      value: 'Use this form for usage questions. Share only sanitized examples, without API keys or private data. For a reproducible software failure, choose **Report a software bug**.'
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to do?
+      description: Describe the workflow and the part where you need help.
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you tried?
+      description: Include the recipe, relevant code, and installed package or framework versions if applicable. It is fine if you have not installed anything yet.

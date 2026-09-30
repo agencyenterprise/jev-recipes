@@ -4,6 +4,8 @@ Made a game, music app, developer tool, or something unexpected with jev-recipes
 
 ## Explore the examples
 
+- [Reproduce a problem](reproduction/README.md): a standalone, version-pinned package installation with a saved response and no API key.
+
 - [Support routing](support-routing/README.md): a portable conversation starter that asks for missing information, resumes with an answer, and proposes a queue or human review.
 - [Jevthoven](jevthoven/README.md): a live music app and a walkthrough of its recipe decisions.
 - [Checkers](checkers/README.md): run a visual game with Jev choosing moves.
