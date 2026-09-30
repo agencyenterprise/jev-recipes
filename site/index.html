@@ -10,9 +10,11 @@
     <title>Jev recipes | TypeScript guide to route decisions, review results, and evidence</title>
     <!-- SITE_METADATA -->
     <link rel="stylesheet" href="./style.css" />
+    <link rel="preload" href="./catalog.json" as="fetch" crossorigin />
     <script type="module" src="./app.js"></script>
   </head>
   <body>
+    <a class="skip-link" href="#explorer">Skip to the recipe explorer</a>
     <header class="masthead">
       <a class="brand" href="./">jev <span>recipes</span></a>
       <nav aria-label="Resources">
@@ -141,10 +143,6 @@
             ><label
               >Evidence<select id="evidence">
                 <option value="">Any evidence</option>
-                <option value="measured">Current measurements</option>
-                <option value="earlier">Earlier measurements</option>
-                <option value="fixture">Fixture only</option>
-                <option value="unknown">Unknown response origin</option>
               </select></label
             >
           </div>
@@ -152,7 +150,7 @@
           <p class="note">
             <a href="./recipes/">Browse all recipe guides</a> with examples and evidence.
           </p>
-          <div id="results" class="results" aria-label="Matching recipes"></div>
+          <div id="results" class="results" role="group" aria-label="Matching recipes"></div>
         </div>
         <article id="inspector" class="inspector" aria-label="Selected recipe" tabindex="-1">
           <p>Select a recipe to inspect its contract and evidence.</p>

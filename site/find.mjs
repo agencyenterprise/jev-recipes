@@ -80,6 +80,13 @@ export function createFindHandler({
   if (!Number.isInteger(hourlyLimit) || hourlyLimit < 0)
     throw new Error('JEV_FIND_HOURLY_LIMIT must be a nonnegative integer.');
   const enabled = env.JEV_FIND_ENABLED !== 'false' && Boolean(env.TYPESAFE_API_KEY?.trim());
+  const trustForwarded = env.JEV_FIND_TRUST_FORWARDED === 'true';
+  const visitorAddress = (request) => {
+    const forwarded = trustForwarded
+      ? request.headers['x-forwarded-for']?.split(',')[0].trim()
+      : '';
+    return forwarded || request.socket.remoteAddress || 'unknown';
+  };
   const client = enabled
     ? createClient({ apiKey: env.TYPESAFE_API_KEY, retry: { maxRetries: 0 } })
     : undefined;
@@ -151,8 +158,7 @@ export function createFindHandler({
       used = 0;
     }
     for (const [key, peer] of peers) if (time - peer.start >= 60_000) peers.delete(key);
-    // Do not trust spoofable forwarding headers. A reverse proxy shares this quota.
-    const address = request.socket.remoteAddress ?? 'unknown';
+    const address = visitorAddress(request);
     const peer = peers.get(address) ?? { start: time, used: 0 };
     if (
       active >= 2 ||

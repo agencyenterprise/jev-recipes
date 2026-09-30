@@ -50,14 +50,24 @@ Configuration at server startup:
 - `JEV_FIND_HOURLY_LIMIT=60`: maximum submitted searches per fixed hourly
   window per process (starting with server startup); zero disables
   calls. Each submission uses up to ten provider requests, with retries off.
+- `JEV_FIND_TRUST_FORWARDED=true`: key the per-visitor limit on the first
+  `x-forwarded-for` address instead of the socket address. Set this only when
+  a trusted reverse proxy such as Railway sits in front of the server;
+  otherwise the header is spoofable.
 
 Limits also include two concurrent searches, five submissions per minute per
-socket address, 1,000 characters per query, a 4 KB body, and a 25-second model
+visitor address, 1,000 characters per query, a 4 KB body, and a 25-second model
 request deadline. These are in-memory limits and reset on restart. Forwarded IP
-headers are deliberately not trusted, so clients behind a reverse proxy share
-the socket-address limit. Before scaling to multiple instances, use a shared
-quota store and configure trusted proxy handling at the deployment boundary.
-The hourly limit caps request count, not dollar spend.
+headers are ignored by default, so clients behind a reverse proxy share the
+socket-address limit until `JEV_FIND_TRUST_FORWARDED` is enabled. Before
+scaling to multiple instances, use a shared quota store. The hourly limit caps
+request count, not dollar spend.
+
+The preview server sends `cache-control: public, max-age=300,
+stale-while-revalidate=86400` for built files and `no-store` for `/api/find`
+and error responses. Every response carries a `default-src 'self'` content
+security policy, `x-content-type-options: nosniff`, and a strict referrer
+policy. Missing paths return the built `404.html` with the site navigation.
 
 The application does not persist descriptions or log provider responses. Submitted
 descriptions are sent to TypeSafe; its retention policy applies independently.

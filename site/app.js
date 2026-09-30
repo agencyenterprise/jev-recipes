@@ -21,9 +21,17 @@ const isPageAnchor = (id) => Boolean(id && document.getElementById(id));
 let selectedId = isPageAnchor(location.hash.slice(1)) ? 'route' : location.hash.slice(1) || 'route';
 let selectionRequest = 0;
 
+const evidenceNames = {
+  measured: 'Current measurements',
+  earlier: 'Earlier measurements',
+  fixture: 'Fixture only',
+  unknown: 'Unknown response origin',
+};
+
 try {
   const catalog = await fetchJson('./catalog.json');
   recipes = catalog.recipes;
+  offerAvailableEvidence();
   renderResults();
   await selectRecipe(selectedId);
 } catch {
@@ -40,6 +48,18 @@ findReset.addEventListener('click', () => {
   renderResults();
 });
 findForm.addEventListener('submit', findWithJev);
+
+function offerAvailableEvidence() {
+  const counts = new Map();
+  for (const recipe of recipes) counts.set(recipe.evidence, (counts.get(recipe.evidence) ?? 0) + 1);
+  for (const [value, name] of Object.entries(evidenceNames)) {
+    if (!counts.has(value)) continue;
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = `${name} (${counts.get(value)})`;
+    evidence.append(option);
+  }
+}
 
 function resetFind() {
   findRequest++;
@@ -161,6 +181,7 @@ function renderResults() {
       else location.hash = recipe.id;
       if (matchMedia('(max-width: 680px)').matches)
         inspector.scrollIntoView({ behavior: 'instant', block: 'start' });
+      inspector.focus({ preventScroll: true });
     });
     results.append(button);
   }

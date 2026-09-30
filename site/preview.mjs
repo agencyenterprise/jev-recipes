@@ -21,7 +21,16 @@ const types = {
   '.txt': 'text/plain',
   '.xml': 'application/xml',
 };
+const securityHeaders = {
+  'content-security-policy': "default-src 'self'; frame-ancestors 'none'",
+  'x-content-type-options': 'nosniff',
+  'referrer-policy': 'strict-origin-when-cross-origin',
+};
+const staticCache = 'public, max-age=300, stale-while-revalidate=86400';
+const notFoundPage = await readFile(resolve(root, '404.html')).catch(() => null);
+
 createServer(async (request, response) => {
+  for (const [name, value] of Object.entries(securityHeaders)) response.setHeader(name, value);
   try {
     const url = new URL(request.url, 'http://localhost');
     if (url.pathname === '/api/find') {
@@ -31,7 +40,7 @@ createServer(async (request, response) => {
     const path = decodeURIComponent(url.pathname);
     let file = resolve(root, '.' + path);
     if (file !== resolve(root) && !file.startsWith(root.endsWith(sep) ? root : root + sep))
-      throw new Error('Outside preview root');
+      return notFound(response);
     if ((await stat(file)).isDirectory()) {
       if (!url.pathname.endsWith('/')) {
         response.writeHead(308, { location: `${url.pathname}/${url.search}` });
@@ -43,11 +52,32 @@ createServer(async (request, response) => {
     const content = await readFile(file);
     response.writeHead(200, {
       'content-type': `${types[extname(file)] ?? 'application/octet-stream'}; charset=utf-8`,
-      'cache-control': 'no-store',
+      'cache-control': staticCache,
     });
     response.end(content);
-  } catch {
-    response.writeHead(404, { 'content-type': 'text/plain' });
-    response.end('Not found. Run npm run site:build before previewing.');
+  } catch (error) {
+    if (['ENOENT', 'ENOTDIR'].includes(error.code) || error instanceof URIError)
+      return notFound(response);
+    response.writeHead(500, {
+      'content-type': 'text/plain; charset=utf-8',
+      'cache-control': 'no-store',
+    });
+    response.end('The page could not be served. Please try again.');
   }
 }).listen(port, '0.0.0.0', () => console.log(`Catalog preview: http://127.0.0.1:${port}`));
+
+function notFound(response) {
+  if (notFoundPage) {
+    response.writeHead(404, {
+      'content-type': 'text/html; charset=utf-8',
+      'cache-control': 'no-store',
+    });
+    response.end(notFoundPage);
+    return;
+  }
+  response.writeHead(404, {
+    'content-type': 'text/plain; charset=utf-8',
+    'cache-control': 'no-store',
+  });
+  response.end('Not found. Run npm run site:build before previewing.');
+}

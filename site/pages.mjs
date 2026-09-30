@@ -145,6 +145,20 @@ export function catalogPage(recipes, origin) {
   });
 }
 
+export function notFoundPage(origin) {
+  return page({
+    origin,
+    path: '/404.html',
+    title: 'Page not found | Jev recipes',
+    summary: 'The requested page does not exist on the Jev recipes site.',
+    content: `<h1>Page not found</h1>
+    <p>This address does not match a page on this site. The recipe may have been renamed, or the link may be out of date.</p>
+    <p><a href="/recipes/">Browse the recipe catalog</a> or <a href="/">return to the homepage</a>.</p>`,
+    base: '/',
+    type: 'WebPage',
+  });
+}
+
 export function sitemap(recipes, origin) {
   const paths = ['/', '/recipes/', ...recipes.map((recipe) => `/recipes/${recipe.id}/`)];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map((path) => `<url><loc>${html(origin + path)}</loc></url>`).join('')}</urlset>\n`;
