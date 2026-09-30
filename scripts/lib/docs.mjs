@@ -7,18 +7,6 @@ import { replaceSection } from './generate.mjs';
 export const siteDocs = ['evaluation', 'integrations', 'gateway-validation', 'coding-assistants'];
 export const updateLedgerPath = 'site/updated.json';
 
-export function releaseDocumentation(version) {
-  if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/.test(version))
-    throw new Error('Expected a package version for release documentation.');
-  const tag = `v${version}`;
-  const base = `https://github.com/agencyenterprise/jev-recipes/tree/${encodeURIComponent(tag)}`;
-  return `This checkout declares **jev-recipes ${version}**. Documentation for that release: [recipe catalog](${base}/recipes/README.md), [integration guides](${base}/docs), and [examples](${base}/examples).
-
-Run \`npm ls jev-recipes\` in your project to check the version you installed. For another version, choose its \`v<version>\` tag from [all release tags](https://github.com/agencyenterprise/jev-recipes/tags). Relative links within a tagged guide stay with that snapshot; links explicitly naming \`main\` lead to development content.
-
-The [development guides](https://github.com/agencyenterprise/jev-recipes/tree/main/docs), hosted catalog, and other links to \`main\` in this README can include unreleased changes. A new version's documentation links become available when its tag is pushed. See [release notes](https://github.com/agencyenterprise/jev-recipes/releases) for compatibility and migration changes.`;
-}
-
 const categoryTitles = {
   'answer-quality': 'Answer quality',
   retrieval: 'Retrieval and evidence',
@@ -60,10 +48,6 @@ export async function renderDocs(root, records) {
   const summary = `${count} focused recipes for JavaScript and TypeScript. Route messages, check evidence, and label model responses with a function call.`;
   const route = records.find((recipe) => recipe.id === 'route');
   let rootReadme = replaceSection(readme, 'summary', summary);
-  if (readme.includes('<!-- BEGIN GENERATED: release-docs -->')) {
-    const { version } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
-    rootReadme = replaceSection(rootReadme, 'release-docs', releaseDocumentation(version));
-  }
   if (route) {
     const { minConfidence: _minConfidence, ...input } = route.fixture.input;
     const snippet = await format(

@@ -189,7 +189,7 @@ Publishing is manual. The [`files` allowlist](package.json) and [archive checks]
 The package check packs installed runtime dependencies for offline installation. When adding transitive dependencies, extend [the offline consumer setup](scripts/pack-check.mjs) to supply their archives too.
 
 1. Review the release diff, including any breaking changes. Run `make setup`, `make docs`, `npm run format`, and `make ci`; commit the reviewed changes.
-2. Choose an unused version. Use `npm --no-git-tag-version version patch` (or `minor` or `major`) to update the package files without creating the version commit or tag yet. Run `npm run docs` so the README's release-documentation links follow the new package version, then `npm run ci`. Review the README in the packed archive and include the generated changes in your version commit and `v<version>` tag. Let CI pass for that version. Commit, tag, push, and publish remain manual.
+2. From the intended clean checkout, choose an unused version with `npm version patch`, `npm version minor`, or `npm version major`. Let CI pass for that version.
 3. Verify the npm account, inspect the dry run, and publish from the checked repository directory:
 
    ```sh
@@ -200,7 +200,7 @@ The package check packs installed runtime dependencies for offline installation.
    npm view jev-recipes version
    ```
 
-4. After publishing succeeds, push the version commit and tag, then create a GitHub release. Check the README's tagged catalog, integration-guide, and example links once the tag is available. Summarize user-visible changes and any compatibility or migration steps in the release notes, including changes to recipe inputs, outputs, confidence behavior, or supported runtimes. State explicitly when no migration is needed. Run `npm run check:reproduction -- latest` to verify the example against the published package.
+4. After publishing succeeds, push the version commit and tag, then create a GitHub release. Summarize user-visible changes and any compatibility or migration steps in the release notes, including changes to recipe inputs, outputs, confidence behavior, or supported runtimes. State explicitly when no migration is needed. Run `npm run check:reproduction -- latest` to verify the example against the published package.
 
 `prepublishOnly` runs full CI; `prepack` checks generated files and builds. Publishing a previously packed archive does not rerun the checkout's checks. These hooks use npm directly; Make is optional.
 

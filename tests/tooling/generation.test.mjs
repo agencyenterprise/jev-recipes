@@ -64,34 +64,6 @@ async function writePublishedDocs(root) {
     await writeFile(join(root, 'docs', `${name}.md`), `# ${name}\n\nFixture guide.\n`);
 }
 
-test('release documentation follows the manifest version and keeps development links explicit', async (t) => {
-  const root = await mkdtemp(join(tmpdir(), 'jev-release-docs-'));
-  t.after(() => rm(root, { recursive: true, force: true }));
-  await mkdir(join(root, 'recipes'));
-  await writePublishedDocs(root);
-  await writeFile(
-    join(root, 'README.md'),
-    'Authored introduction.\n<!-- BEGIN GENERATED: summary -->\n<!-- END GENERATED: summary -->\n' +
-      '<!-- BEGIN GENERATED: release-docs -->\n<!-- END GENERATED: release-docs -->\nAuthored ending.',
-  );
-  await writeFile(
-    join(root, 'recipes/README.md'),
-    '<!-- BEGIN GENERATED: catalog -->\n<!-- END GENERATED: catalog -->',
-  );
-  for (const version of ['0.9.2', '0.10.0', '1.0.0-beta.1']) {
-    await writeFile(join(root, 'package.json'), JSON.stringify({ version }));
-    const readme = (await renderDocs(root, [])).get('README.md');
-    for (const path of ['recipes/README.md', 'docs', 'examples'])
-      assert.ok(readme.includes(`/tree/v${version}/${path}`));
-    assert.ok(readme.includes('/tree/main/docs'));
-    assert.ok(readme.startsWith('Authored introduction.'));
-    assert.ok(readme.endsWith('Authored ending.'));
-    if (version !== '0.9.2') assert.ok(!readme.includes('v0.9.2'));
-    await writeFile(join(root, 'README.md'), readme);
-    assert.equal((await renderDocs(root, [])).get('README.md'), readme);
-  }
-});
-
 test('psychology documentation follows recipe tags without changing category membership or counts', async () => {
   const root = await mkdtemp(join(tmpdir(), 'jev-topic-docs-'));
   try {

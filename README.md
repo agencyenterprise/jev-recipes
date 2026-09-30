@@ -17,15 +17,9 @@
 
 ## Documentation versions
 
-<!-- BEGIN GENERATED: release-docs -->
+Run `npm ls jev-recipes` in your project to check the version you installed, then choose its `v<version>` tag from [all release tags](https://github.com/agencyenterprise/jev-recipes/tags) to browse matching documentation.
 
-This checkout declares **jev-recipes 0.9.3**. Documentation for that release: [recipe catalog](https://github.com/agencyenterprise/jev-recipes/tree/v0.9.3/recipes/README.md), [integration guides](https://github.com/agencyenterprise/jev-recipes/tree/v0.9.3/docs), and [examples](https://github.com/agencyenterprise/jev-recipes/tree/v0.9.3/examples).
-
-Run `npm ls jev-recipes` in your project to check the version you installed. For another version, choose its `v<version>` tag from [all release tags](https://github.com/agencyenterprise/jev-recipes/tags). Relative links within a tagged guide stay with that snapshot; links explicitly naming `main` lead to development content.
-
-The [development guides](https://github.com/agencyenterprise/jev-recipes/tree/main/docs), hosted catalog, and other links to `main` in this README can include unreleased changes. A new version's documentation links become available when its tag is pushed. See [release notes](https://github.com/agencyenterprise/jev-recipes/releases) for compatibility and migration changes.
-
-<!-- END GENERATED: release-docs -->
+The hosted catalog and links to `main` can include unreleased changes. See [release notes](https://github.com/agencyenterprise/jev-recipes/releases) for compatibility and migration changes.
 
 ## Help and contributions
 
