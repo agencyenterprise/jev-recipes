@@ -12,6 +12,7 @@ import {
 } from '../dist/evaluation/dataset.js';
 import { readGoldenCases, projectRoot, requireApiKey } from './lib/harness.mjs';
 import { saveDevelopmentBaseline } from './lib/baselines.mjs';
+import { meetsReadyAccuracy } from './lib/acceptance.mjs';
 
 const { values } = parseArgs({
   options: {
@@ -159,7 +160,7 @@ for (const [id, cases] of datasets) {
     ).acceptance;
     const accepted =
       run.report.ready >= criteria.minimumHeldOutReadyCases &&
-      run.report.readyAccuracy >= criteria.minimumReadyAccuracy &&
+      meetsReadyAccuracy(run.rows, criteria.minimumReadyAccuracy) &&
       run.report.failed <= criteria.maximumProviderFailures;
     const report = {
       ...run.report,

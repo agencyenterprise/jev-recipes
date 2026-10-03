@@ -5,6 +5,7 @@ import { format } from 'prettier';
 import ts from 'typescript';
 import { z } from 'zod';
 import { projectRoot, recipeIdPattern } from './lib/recipes.mjs';
+import { assertRecipeExportAvailable } from './lib/package-exports.mjs';
 
 export const recipeKinds = ['choice', 'score', 'gate', 'comparison', 'labels', 'selection'];
 
@@ -725,15 +726,15 @@ const q = (value) =>
 const j = (value) => JSON.stringify(value);
 
 export async function scaffoldRecipe(root, id, kind = 'choice') {
-  if (!recipeIdPattern.test(id ?? '') || ['catalog', 'evaluation'].includes(id))
+  if (!recipeIdPattern.test(id ?? ''))
     throw new Error('Supply a new kebab-case recipe ID: make new RECIPE=my-recipe');
+  assertRecipeExportAvailable(id);
   return scaffoldFromSpec(root, starterSpec(id, kind));
 }
 
 export async function scaffoldFromSpec(root, rawSpec) {
   const { spec, files, test } = renderRecipe(rawSpec);
-  if (['catalog', 'evaluation'].includes(spec.id))
-    throw new Error('Supply a new kebab-case recipe ID: make new RECIPE=my-recipe');
+  assertRecipeExportAvailable(spec.id);
   const source = files.get('index.ts');
   if (ts.createSourceFile('index.ts', source, ts.ScriptTarget.Latest).parseDiagnostics.length)
     throw new Error('The recipe ID must produce a valid TypeScript function name.');

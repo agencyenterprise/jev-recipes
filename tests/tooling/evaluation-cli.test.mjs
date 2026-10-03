@@ -137,6 +137,7 @@ async function withEvaluationProject(check) {
       'recipes/route/demo.json',
       'scripts/lib/docs.mjs',
       'scripts/lib/generate.mjs',
+      'scripts/lib/package-exports.mjs',
     ]) {
       await mkdir(dirname(join(root, path)), { recursive: true });
       await cp(join(projectRoot, path), join(root, path), { recursive: true });

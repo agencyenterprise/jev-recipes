@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mkdtemp, mkdir, readFile, writeFile, rm, cp, symlink } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, readdir, writeFile, rm, cp, symlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import {
@@ -11,7 +11,7 @@ import {
 } from '../../scripts/lib/recipes.mjs';
 import ts from 'typescript';
 import { replaceSection, writeOutputs, renderExports } from '../../scripts/lib/generate.mjs';
-import { scaffoldRecipe } from '../../scripts/new-recipe.mjs';
+import { scaffoldRecipe, scaffoldFromSpec, starterSpec } from '../../scripts/new-recipe.mjs';
 import { renderDocs, siteDocs } from '../../scripts/lib/docs.mjs';
 
 const recipe = (id, uses = [], related = []) => ({
@@ -338,6 +338,50 @@ test('scaffolding keeps tests separate and never overwrites an existing recipe',
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test('reserved package names are rejected before scaffolding writes any files', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'jev-reserved-scaffold-'));
+  try {
+    for (const id of ['ai-sdk', 'langchain', 'catalog', 'evaluation']) {
+      const reservedName = new RegExp(`Recipe ID ${id} is reserved for a package export`);
+      await assert.rejects(scaffoldRecipe(root, id), reservedName);
+      await assert.rejects(scaffoldFromSpec(root, starterSpec(id, 'choice')), reservedName);
+      assert.deepEqual(await readdir(root), []);
+    }
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('recipe discovery rejects manually created folders using reserved package names', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'jev-reserved-discovery-'));
+  try {
+    for (const id of ['ai-sdk', 'langchain', 'catalog', 'evaluation']) {
+      const directory = join(root, 'recipes', id);
+      await mkdir(directory, { recursive: true });
+      await assert.rejects(
+        readRecipes(root),
+        new RegExp(`Recipe ID ${id} is reserved for a package export`),
+      );
+      await rm(directory, { recursive: true });
+    }
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('export generation rejects collisions instead of replacing existing entry points', () => {
+  for (const id of ['ai-sdk', 'langchain', 'catalog', 'evaluation', 'package.json'])
+    assert.throws(() => renderExports([{ id }]), /Duplicate package export/);
+  assert.throws(
+    () => renderExports([{ id: 'sample-check' }, { id: 'sample-check' }]),
+    /Duplicate package export/,
+  );
+  const exports = renderExports([{ id: 'sample-check' }]);
+  assert.equal(exports['./ai-sdk'].import, './dist/adapters/ai-sdk/index.js');
+  assert.equal(exports['./langchain'].import, './dist/adapters/langchain/index.js');
+  assert.equal(exports['./sample-check'].import, './dist/recipes/sample-check/index.js');
 });
 
 test('a new recipe is discovered from source without a prior build or manual registration', async () => {
