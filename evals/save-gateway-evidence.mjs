@@ -4,6 +4,7 @@ import { gzipSync } from 'node:zlib';
 import { readRun } from '../dist/evaluation/index.js';
 import { saveDevelopmentBaseline } from './lib/baselines.mjs';
 import { ingestionMetrics } from './lib/ingestion-metrics.mjs';
+import { meetsReadyAccuracy } from './lib/acceptance.mjs';
 
 const directory = process.argv[2];
 if (!directory)
@@ -45,7 +46,7 @@ for (const recipe of [
       recipe === 'text-block-role'
         ? {
             ...common,
-            readyAccuracy: report.readyAccuracy >= 0.95,
+            readyAccuracy: meetsReadyAccuracy(heldOut.rows, 0.95),
             precisionLowerBound: metrics.acceptedPrecisionInterval95?.[0] >= 0.9,
             macroF1: metrics.macroF1 >= 0.9,
             readyCoverage: metrics.readyCoverage >= 0.7,
@@ -56,7 +57,7 @@ for (const recipe of [
             acceptedJoinPrecision: metrics.acceptedPrecision >= 0.98,
             precisionLowerBound: metrics.acceptedPrecisionInterval95?.[0] >= 0.95,
             continuationRecall: metrics.acceptedContinuationRecall >= 0.8,
-            reviewRate: report.reviewRate <= 0.3,
+            reviewRate: report.completed > 0 && report.review / report.completed <= 0.3,
             acceptedJoins: metrics.acceptedDecisions >= 200,
             acceptedDocuments: metrics.acceptedDocuments >= 100,
           };
@@ -71,7 +72,7 @@ for (const recipe of [
     const criteria = JSON.parse(await readFile(`evals/${recipe}/dataset.json`, 'utf8')).acceptance;
     const met =
       report.ready >= criteria.minimumHeldOutReadyCases &&
-      report.readyAccuracy >= criteria.minimumReadyAccuracy &&
+      meetsReadyAccuracy(heldOut.rows, criteria.minimumReadyAccuracy) &&
       report.failed <= criteria.maximumProviderFailures;
     report.acceptance = {
       ...criteria,

@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { TypeSafeClient } from '@typesafe-ai/sdk';
 import { assertDistinctRecipes } from './distinct.mjs';
 import { readRecipeEvidence } from './evidence.mjs';
+import { assertRecipeExportAvailable } from './package-exports.mjs';
 
 export const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
 export const recipeIdPattern = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
@@ -20,8 +21,8 @@ export async function readRecipes(root = projectRoot) {
   if (!ids.length) throw new Error('At least one recipe is required.');
   const files = [];
   for (const id of ids) {
-    if (!recipeIdPattern.test(id) || ['catalog', 'evaluation'].includes(id))
-      throw new Error(`Invalid recipe ID: ${id}`);
+    if (!recipeIdPattern.test(id)) throw new Error(`Invalid recipe ID: ${id}`);
+    assertRecipeExportAvailable(id);
     for (const name of ['index.ts', 'schema.ts', 'metadata.ts', 'demo.json', 'README.md']) {
       await readFile(join(root, 'recipes', id, name));
       if (name.endsWith('.ts')) files.push(join(root, 'recipes', id, name));

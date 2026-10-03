@@ -1,5 +1,6 @@
 import { isRecord, roundedTo } from './decisions.js';
 import { matchesExpected } from './comparison.js';
+import { resultMetadataSchema } from '../src/schema.js';
 import type { EvaluationRow } from './engine.js';
 import type { Price } from './schema.js';
 import type { EvaluationCase, EvaluationPolicy } from './schema.js';
@@ -28,27 +29,34 @@ export function buildReport(
 ) {
   const completed = rows.filter((row) => row.error === undefined);
   const ready = completed.filter((row) => row.ready);
-  const thresholds = confidenceThresholds.map((minConfidence) => {
+  const thresholdEvaluations = confidenceThresholds.map((minConfidence) => {
     const decisions = completed
       .flatMap((row) => row.decisions)
       .filter((decision) => decision.minConfidence === minConfidence);
     const accepted = decisions.filter((decision) => decision.ready);
+    const correctReadyCases = accepted.filter((decision) => decision.correct).length;
     return {
       minConfidence,
       deferRate: completed.length
         ? roundedTo(3, (completed.length - accepted.length) / completed.length)
         : null,
-      readyAccuracy: accuracyOf(accepted),
+      readyAccuracy: accepted.length ? correctReadyCases / accepted.length : null,
       readyCases: accepted.length,
       reviewCases: completed.length - accepted.length,
       failedCases: rows.length - completed.length,
-      readyAccuracyInterval95: wilsonInterval(
-        accepted.filter((entry) => entry.correct).length,
-        accepted.length,
-      ),
+      readyAccuracyInterval95: wilsonInterval(correctReadyCases, accepted.length),
     };
   });
-  const usage = usageOf(rows);
+  const suggestedMinConfidence =
+    thresholdEvaluations.find(
+      (entry) => entry.readyAccuracy !== null && entry.readyAccuracy >= 0.95,
+    )?.minConfidence ?? null;
+  const thresholds = thresholdEvaluations.map((threshold) => ({
+    ...threshold,
+    readyAccuracy: threshold.readyAccuracy === null ? null : roundedTo(3, threshold.readyAccuracy),
+  }));
+  const usage = summarizeUsage(rows);
+  const cost = estimateKnownCost(usage, price);
   const models = [...new Set(rows.flatMap((row) => (row.model ? [row.model] : [])))].sort();
   return {
     ...(evidence ? { evidence } : {}),
@@ -94,26 +102,10 @@ export function buildReport(
           ? 'recipe-replay'
           : 'not-applicable',
     thresholds,
-    suggestedMinConfidence:
-      thresholds.find((entry) => entry.readyAccuracy !== null && entry.readyAccuracy >= 0.95)
-        ?.minConfidence ?? null,
+    suggestedMinConfidence,
     latencyMs: latencyOf(rows.map((row) => row.durationMs)),
     usage,
-    cost:
-      price &&
-      usage.models.every((model) => model === price.model) &&
-      usage.unknownResponses === 0 &&
-      usage.failedRequests === 0
-        ? {
-            ...price,
-            estimated: roundedTo(
-              8,
-              (usage.input_tokens * price.inputPerMillion +
-                usage.output_tokens * price.outputPerMillion) /
-                1_000_000,
-            ),
-          }
-        : null,
+    cost,
     confusion: confusionOf(rows),
     failures: rows
       .filter((row) => !row.correct)
@@ -177,7 +169,7 @@ function latencyOf(values: number[]) {
   };
 }
 
-function usageOf(rows: EvaluationRow[]) {
+function summarizeUsage(rows: EvaluationRow[]) {
   let input_tokens = 0,
     output_tokens = 0,
     unknownResponses = 0,
@@ -189,19 +181,14 @@ function usageOf(rows: EvaluationRow[]) {
       failedRequests++;
       continue;
     }
-    const response = exchange.response;
-    if (isRecord(response) && typeof response.model === 'string') models.add(response.model);
-    if (
-      !isRecord(response) ||
-      !isRecord(response.usage) ||
-      typeof response.usage.input_tokens !== 'number' ||
-      typeof response.usage.output_tokens !== 'number'
-    ) {
-      unknownResponses++;
-      continue;
-    }
-    input_tokens += response.usage.input_tokens;
-    output_tokens += response.usage.output_tokens;
+    const response = isRecord(exchange.response) ? exchange.response : {};
+    const usage = resultMetadataSchema.shape.usage.safeParse(response.usage);
+    const model = resultMetadataSchema.shape.model.safeParse(response.model);
+    if (!usage.success || !model.success) unknownResponses++;
+    if (model.success) models.add(model.data);
+    if (!usage.success) continue;
+    input_tokens += usage.data.input_tokens;
+    output_tokens += usage.data.output_tokens;
   }
   return {
     requests: exchanges.length,
@@ -210,6 +197,24 @@ function usageOf(rows: EvaluationRow[]) {
     unknownResponses,
     failedRequests,
     models: [...models].sort(),
+  };
+}
+
+function estimateKnownCost(usage: ReturnType<typeof summarizeUsage>, price?: Price) {
+  if (
+    !price ||
+    usage.unknownResponses > 0 ||
+    usage.failedRequests > 0 ||
+    usage.models.some((model) => model !== price.model)
+  )
+    return null;
+  return {
+    ...price,
+    estimated: roundedTo(
+      8,
+      (usage.input_tokens * price.inputPerMillion + usage.output_tokens * price.outputPerMillion) /
+        1_000_000,
+    ),
   };
 }
 
