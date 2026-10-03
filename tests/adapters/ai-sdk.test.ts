@@ -1,9 +1,17 @@
 import { describe, expect, it, vi } from 'vitest';
 import { ZodError } from 'zod';
-import { generateText, jsonSchema, stepCountIs, tool } from 'ai';
+import {
+  generateText,
+  jsonSchema,
+  simulateStreamingMiddleware,
+  stepCountIs,
+  streamText,
+  tool,
+  wrapLanguageModel,
+} from 'ai';
 import type { ToolSet } from 'ai';
 import { MockLanguageModelV3 } from 'ai/test';
-import type { LanguageModelV3GenerateResult } from '@ai-sdk/provider';
+import type { LanguageModelV3CallOptions, LanguageModelV3GenerateResult } from '@ai-sdk/provider';
 import {
   completionCheck,
   guardTools,
@@ -20,7 +28,10 @@ const executionOptions = {
   context: {},
 };
 
-function scriptedModel(modelId: string, script: () => LanguageModelV3GenerateResult['content']) {
+function scriptedModel(
+  modelId: string,
+  script: (options: LanguageModelV3CallOptions) => LanguageModelV3GenerateResult['content'],
+) {
   const usage = {
     inputTokens: { total: 1, noCache: 1, cacheRead: 0, cacheWrite: 0 },
     outputTokens: { total: 1, text: 1, reasoning: 0 },
@@ -28,8 +39,8 @@ function scriptedModel(modelId: string, script: () => LanguageModelV3GenerateRes
   };
   return new MockLanguageModelV3({
     modelId,
-    doGenerate: async () => {
-      const content = script();
+    doGenerate: async (options) => {
+      const content = script(options);
       const finished = content.every((part) => part.type !== 'tool-call');
       return {
         content,
@@ -235,8 +246,8 @@ describe('routeModelStep', () => {
     { id: 'careful', text: 'Hard debugging.', model: careful },
   ];
   const messages = [{ role: 'user' as const, content: 'Rename a variable.' }];
-  const stepOptions = (initialMessages: typeof messages) =>
-    ({ initialMessages, stepNumber: 0, steps: [], messages: initialMessages }) as never;
+  const stepOptions = (initialMessages: typeof messages, steps: unknown[] = []) =>
+    ({ initialMessages, stepNumber: steps.length, steps, messages: initialMessages }) as never;
 
   it('routes once per call and reuses the selected model for later steps', async () => {
     const client = createJevClient(routeAnswers('candidate_1', 2));
@@ -246,8 +257,10 @@ describe('routeModelStep', () => {
       client,
       onDecision: (event) => seen.push(event.model),
     });
-    const first = await prepareStep(stepOptions(messages));
-    const second = await prepareStep(stepOptions(messages));
+    const steps: unknown[] = [];
+    const first = await prepareStep(stepOptions(messages, steps));
+    steps.push({});
+    const second = await prepareStep(stepOptions(messages, steps));
     expect(first).toEqual({ model: careful });
     expect(second).toEqual({ model: careful });
     expect(client.systemOne).toHaveBeenCalledTimes(1);
@@ -259,7 +272,7 @@ describe('routeModelStep', () => {
       ],
     });
     expect(seen).toEqual([careful]);
-    await prepareStep(stepOptions([...messages]));
+    await prepareStep(stepOptions(messages));
     expect(client.systemOne).toHaveBeenCalledTimes(2);
   });
 
@@ -355,6 +368,63 @@ describe('completionCheck', () => {
 });
 
 describe('generateText integration', () => {
+  it.each(['generate', 'stream'] as const)(
+    '%s routes reused messages independently across sequential and concurrent multistep calls',
+    async (mode) => {
+      const makeModel = (id: string) =>
+        wrapLanguageModel({
+          model: scriptedModel(id, ({ prompt }) =>
+            prompt.some((message) => message.role === 'tool')
+              ? [{ type: 'text', text: id }]
+              : [toolCall('lookup-1', 'lookup', {})],
+          ),
+          middleware: simulateStreamingMiddleware(),
+        });
+      const fast = makeModel('fast');
+      const careful = makeModel('careful');
+      const client = createJevClient();
+      let routingCalls = 0;
+      client.systemOne.mockImplementation(async () => ({
+        ...responseMetadata,
+        answers: routeAnswers(routingCalls++ % 2 === 0 ? 'candidate_0' : 'candidate_1', 2),
+      }));
+      const prepareStep = routeModelStep({
+        client,
+        candidates: [
+          { id: 'fast', text: 'Simple tasks.', model: fast },
+          { id: 'careful', text: 'Complex tasks.', model: careful },
+        ],
+      });
+      const messages = [{ role: 'user' as const, content: 'Look up the answer.' }];
+      const run = async () => {
+        const options = {
+          model: fast,
+          messages,
+          prepareStep,
+          tools: {
+            lookup: tool({
+              inputSchema: jsonSchema({ type: 'object' }),
+              execute: async () => 'ok',
+            }),
+          },
+          stopWhen: stepCountIs(2),
+        };
+        const result = mode === 'generate' ? await generateText(options) : streamText(options);
+        const text = await result.text;
+        expect((await result.steps).map((step) => step.model.modelId)).toEqual([text, text]);
+        return text;
+      };
+      expect(await run()).toBe('fast');
+      messages[0] = { role: 'user', content: 'Look up a complex architecture question.' };
+      expect(await run()).toBe('careful');
+      expect(await Promise.all([run(), run()])).toEqual(['fast', 'careful']);
+      expect(client.systemOne).toHaveBeenCalledTimes(4);
+      expect(client.systemOne.mock.calls[1]?.[0].state).toMatchObject({
+        request: messages[0].content,
+      });
+    },
+  );
+
   it('routes the model, blocks a risky call, rejects an unverified claim, then stops on acceptance', async () => {
     const jev = createJevClient();
     jev.systemOne.mockImplementation(async (request) => {

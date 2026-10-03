@@ -3,8 +3,8 @@ import type { SystemOneRequest } from '@typesafe-ai/sdk';
 import type { z } from 'zod';
 import { createClient } from '../src/client.js';
 import type { DecisionClient, RecipeOptions } from '../src/schema.js';
-import { caseConfidence, isReady, mapWithConcurrencyLimit, pickPaths } from './decisions.js';
-import { matchesExpected } from './comparison.js';
+import { caseConfidence, mapWithConcurrencyLimit, pickPaths } from './decisions.js';
+import { isReady, matchesExpected } from './comparison.js';
 import type { EvaluationCase } from './schema.js';
 
 export interface EvaluationRecipe {
@@ -103,7 +103,7 @@ async function evaluateCase(
     row.result = await recipe.run(goldenCase.input, recipeOptions);
     row.actual = pickPaths(row.result, Object.keys(goldenCase.expected));
     row.correct = matchesExpected(row.actual, row.expected, recipe.id);
-    row.ready = isReady(row.result);
+    row.ready = isReady(row.result, recipe.id);
     row.confidence = caseConfidence(row.result, Object.keys(goldenCase.expected));
     const model = pickPaths(row.result, ['model']).model;
     if (typeof model === 'string') row.model = model;
@@ -122,7 +122,7 @@ async function evaluateCase(
     playback.assertComplete();
     row.decisions.push({
       minConfidence,
-      ready: isReady(result),
+      ready: isReady(result, recipe.id),
       correct: matchesExpected(
         pickPaths(result, Object.keys(row.expected)),
         row.expected,

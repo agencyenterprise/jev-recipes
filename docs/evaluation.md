@@ -93,7 +93,7 @@ Pass `client` for an existing integration or a test client. Use `mode: 'fixture'
 
 ## Repository evaluation
 
-`npm run eval -- <recipe>` saves a development baseline in `evals/baselines/`, updates the report and recipe guide, and retains responses in an ignored `evals/runs/` archive. Cases without a split are treated as development cases. `--no-write` and `--check` remain read-only.
+`npm run eval -- <recipe>` saves a development baseline in `evals/baselines/`, updates the report and recipe guide, and retains responses in an ignored `evals/runs/` archive. Before updating the report, it also saves an immutable compressed run under `evals/evidence/<recipe>/development-<run-id>/run.json.gz`. Commit that evidence with the report and guide so CI can audit and replay the published results. Cases without a split are treated as development cases. `--no-write` and `--check` remain read-only.
 
 Use `npm run eval -- --featured --check` to check all 20 featured recipes against their recorded development baselines. This is also the optional golden check in the evaluation workflow. The check uses each baseline's model and confidence policy, and validates every selected dataset and baseline before the first provider call. It leaves held-out reports in `evals/results/` untouched. Without a separate baseline, a compatible development report in `evals/results/` can be used; held-out reports, unknown dataset identities, and changed case files are rejected. For other recipes, save a development baseline before enabling regression checks.
 

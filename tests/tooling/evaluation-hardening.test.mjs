@@ -96,6 +96,32 @@ test('caller payload metadata names remain decisions in scoring, per-field metri
   );
 });
 
+test('action payload status does not change readiness in evaluation or replay', async () => {
+  for (const action of [
+    { status: 'pending' },
+    { status: 'review' },
+    { steps: [{ status: 'review' }] },
+  ]) {
+    const run = await evaluate(
+      'game-action',
+      [
+        {
+          ...routeCase,
+          input: { gameState: {}, playerState: {}, legalActions: [action] },
+          expected: { action },
+        },
+      ],
+      { mode: 'fixture', client: { systemOne: async (request) => response(request, 'action_0') } },
+    );
+    for (const result of [run, await replay(run)]) {
+      assert.equal(result.report.correct, 1);
+      assert.equal(result.report.ready, 1);
+      assert.equal(result.report.review, 0);
+      assert.equal(result.report.readyAccuracy, 1);
+    }
+  }
+});
+
 test('compound checks still ignore actual recipe metadata', async () => {
   const demo = JSON.parse(
     await readFile(new URL('../../recipes/verify/demo.json', import.meta.url), 'utf8'),
@@ -111,6 +137,23 @@ test('compound checks still ignore actual recipe metadata', async () => {
     client: { systemOne: async () => structuredClone(demo.response) },
   });
   assert.equal(run.report.correct, 1);
+  assert.equal(run.report.ready, 1);
+  for (const answer of Object.values(demo.response.answers)) {
+    answer.confidence = 0.5;
+    const labels = Object.keys(answer.probabilities);
+    answer.probabilities = Object.fromEntries(
+      labels.map((label) => [label, label === answer.choice ? 0.5 : 0.5 / (labels.length - 1)]),
+    );
+  }
+  const uncertain = await evaluate('verify', [{ ...routeCase, input: demo.input, expected }], {
+    mode: 'fixture',
+    client: { systemOne: async () => structuredClone(demo.response) },
+  });
+  assert.equal(uncertain.report.ready, 0);
+  assert.equal(uncertain.report.review, 1);
+  assert.equal(uncertain.rows[0].decisions.find((row) => row.minConfidence === 0.5).ready, true);
+  assert.equal(uncertain.rows[0].decisions.find((row) => row.minConfidence === 0.8).ready, false);
+  assert.equal((await replay(uncertain)).report.review, 1);
 });
 
 test('failed batches retain delayed successes and failures on disk without extra calls', async () => {

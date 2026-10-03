@@ -18,21 +18,6 @@ export function pickPaths(record: unknown, paths: string[]): Record<string, unkn
   return Object.fromEntries(paths.map((path) => [path, valueAtPath(record, path)]));
 }
 
-export function hasReviewAnywhere(value: unknown): boolean {
-  if (Array.isArray(value)) return value.some(hasReviewAnywhere);
-  if (isRecord(value))
-    return Object.entries(value).some(([name, field]) =>
-      name === 'status' ? field === 'review' : hasReviewAnywhere(field),
-    );
-  return false;
-}
-
-export function isReady(result: unknown): boolean {
-  if (!isRecord(result)) return false;
-  if (result.status !== undefined) return result.status === 'ready';
-  return !hasReviewAnywhere(result);
-}
-
 export function caseConfidence(result: unknown, expectedPaths: string[] = []): number | undefined {
   if (isRecord(result) && typeof result.confidence === 'number') return result.confidence;
   const scoped = expectedPaths.flatMap((path) => {
