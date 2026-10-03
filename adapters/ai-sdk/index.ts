@@ -1,10 +1,20 @@
-import { jsonSchema, tool } from 'ai';
-import type { LanguageModel, PrepareStepFunction, StopCondition, Tool, ToolSet } from 'ai';
+import { asSchema, jsonSchema, tool } from 'ai';
+import type {
+  FlexibleSchema,
+  LanguageModel,
+  PrepareStepFunction,
+  StopCondition,
+  Tool,
+  ToolSet,
+} from 'ai';
+import { z } from 'zod';
 import type { RecipeName } from '../../catalog/schema.js';
 import { modelRoute } from '../../recipes/model-route/index.js';
 import type { ModelRouteResult } from '../../recipes/model-route/index.js';
 import type { RecipeOptions } from '../../src/schema.js';
+import { toolCallGateResultSchema } from '../../recipes/tool-call-gate/index.js';
 import {
+  BLOCKED_TOOL_OUTPUT_KIND,
   COMPLETION_TOOL_DESCRIPTION,
   COMPLETION_TOOL_INPUT_SCHEMA,
   DEFAULT_COMPLETION_TOOL_NAME,
@@ -16,6 +26,7 @@ import {
   reviewToolCall,
 } from '../shared.js';
 import type {
+  BlockedToolOutput,
   CompletionOptions,
   CompletionToolOutput,
   GuardOptions,
@@ -55,34 +66,123 @@ export function recipeTools(
 
 export type GuardToolsOptions = GuardOptions & { request?: string };
 
+type ToolExecution<DEFINITION extends ToolSet[string]> = NonNullable<DEFINITION['execute']>;
+type ToolOutput<RESULT> = RESULT extends AsyncIterable<infer OUTPUT> ? OUTPUT : Awaited<RESULT>;
+type GuardedOutput<DEFINITION extends ToolSet[string]> =
+  ToolOutput<ReturnType<ToolExecution<DEFINITION>>> | BlockedToolOutput;
+type GuardedExecution<DEFINITION extends ToolSet[string]> = {
+  [KEY in keyof Pick<DEFINITION, 'execute'>]: (
+    ...args: Parameters<ToolExecution<DEFINITION>>
+  ) => AsyncGenerator<GuardedOutput<DEFINITION>>;
+};
+
+type GuardedTool<DEFINITION extends ToolSet[string]> = DEFINITION extends unknown
+  ? Omit<DEFINITION, 'execute' | 'toModelOutput' | 'outputSchema'> &
+      GuardedExecution<DEFINITION> & {
+        outputSchema?: FlexibleSchema<GuardedOutput<DEFINITION>>;
+        toModelOutput?: NonNullable<
+          Tool<Parameters<ToolExecution<DEFINITION>>[0], GuardedOutput<DEFINITION>>['toModelOutput']
+        >;
+      }
+  : never;
+
+export type GuardedTools<TOOLS extends ToolSet> = {
+  [NAME in keyof TOOLS]: 'execute' extends keyof TOOLS[NAME]
+    ? ToolExecution<TOOLS[NAME]> extends never
+      ? TOOLS[NAME]
+      : GuardedTool<TOOLS[NAME]>
+    : TOOLS[NAME];
+};
+
 export function guardTools<TOOLS extends ToolSet>(
   tools: TOOLS,
   options: GuardToolsOptions = {},
-): TOOLS {
+): GuardedTools<TOOLS> {
+  return Object.fromEntries(
+    Object.entries(tools).map(([name, definition]) => [name, guardTool(name, definition, options)]),
+  ) as GuardedTools<TOOLS>;
+}
+
+function guardTool(
+  toolName: string,
+  definition: ToolSet[string],
+  options: GuardToolsOptions,
+): ToolSet[string] {
+  const execute = definition.execute;
+  if (typeof execute !== 'function') return definition;
   const { request, ...guardOptions } = options;
-  const guarded = Object.entries(tools).map(([toolName, definition]) => {
-    if (!('execute' in definition) || typeof definition.execute !== 'function')
-      return [toolName, definition];
-    const execute = definition.execute;
-    const wrapped: Tool = {
-      ...definition,
-      execute: async (input, executionOptions) => {
-        const decision = await reviewToolCall(
-          {
-            toolName,
-            input,
-            request: request ?? requireText(lastUserText(executionOptions.messages), 'request'),
-          },
-          guardOptions,
-          executionOptions.abortSignal,
-        );
-        if (decision.action !== 'allow') return blockedOutput(toolName, decision);
-        return execute(input, executionOptions);
-      },
-    };
-    return [toolName, wrapped];
+  const toModelOutput = definition.toModelOutput;
+  return {
+    ...definition,
+    execute: async function* (input, executionOptions) {
+      guardOptions.signal?.throwIfAborted();
+      executionOptions.abortSignal?.throwIfAborted();
+      const decision = await reviewToolCall(
+        {
+          toolName,
+          input,
+          request: request ?? requireText(lastUserText(executionOptions.messages), 'request'),
+        },
+        guardOptions,
+        executionOptions.abortSignal,
+      );
+      guardOptions.signal?.throwIfAborted();
+      executionOptions.abortSignal?.throwIfAborted();
+      if (decision.action !== 'allow') {
+        yield blockedOutput(toolName, decision);
+        return;
+      }
+      const output = execute(input, executionOptions);
+      if (isAsyncIterable(output)) yield* output;
+      else yield await output;
+    },
+    ...(toModelOutput === undefined
+      ? {}
+      : {
+          toModelOutput: (result: Parameters<NonNullable<Tool['toModelOutput']>>[0]) =>
+            blockedToolOutputSchema.safeParse(result.output).success
+              ? { type: 'json' as const, value: result.output }
+              : toModelOutput(result),
+        }),
+    ...(definition.outputSchema === undefined
+      ? {}
+      : { outputSchema: includeBlockedOutput(definition.outputSchema) }),
+  };
+}
+
+function isAsyncIterable(value: unknown): value is AsyncIterable<unknown> {
+  return (
+    typeof (value as AsyncIterable<unknown> | null | undefined)?.[Symbol.asyncIterator] ===
+    'function'
+  );
+}
+
+const blockedToolOutputSchema = toolCallGateResultSchema
+  .pick({ verdict: true, status: true, detected: true, confidence: true })
+  .extend({
+    kind: z.literal(BLOCKED_TOOL_OUTPUT_KIND),
+    blocked: z.literal(true),
+    action: z.enum(['ask', 'deny']),
+    message: z.string(),
   });
-  return Object.fromEntries(guarded) as TOOLS;
+
+function includeBlockedOutput(outputSchema: FlexibleSchema): FlexibleSchema {
+  const original = asSchema(outputSchema);
+  return jsonSchema(
+    async () => ({
+      anyOf: [
+        { $id: 'urn:jev-recipes:tool-output', ...(await original.jsonSchema) },
+        z.toJSONSchema(blockedToolOutputSchema),
+      ],
+    }),
+    {
+      validate: async (value) => {
+        const blocked = blockedToolOutputSchema.safeParse(value);
+        if (blocked.success) return { success: true, value: blocked.data };
+        return original.validate ? original.validate(value) : { success: true, value };
+      },
+    },
+  );
 }
 
 export type ModelCandidate = { id: string; text: string; model: LanguageModel };

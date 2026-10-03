@@ -57,7 +57,17 @@ const result = await generateText({
 
 `guardTools` reads the request from the last user message unless `request` is supplied. `routeModelStep` and `completionCheck` read it from the first user message; pass `request` or `task` when the prompt is not the task. A call with no user message throws, so the guard fails closed.
 
-The blocked output is `{ blocked: true, action, verdict, status, detected, confidence, message }`. The message tells the model the call did not run and not to retry it unattended. The application decides whether to surface an `ask` to a person; the adapter does not queue approvals.
+The blocked output is `{ kind: 'jev-recipes/blocked-tool-output', blocked: true, action, verdict, status, detected, confidence, message }`. The message tells the model the call did not run and not to retry it unattended. The application decides whether to surface an `ask` to a person; the adapter does not queue approvals.
+
+Guarded tools support both regular results and streaming results. The wrapper's `execute` returns an async iterable: `generateText` collects its final result, and `streamText` can expose preliminary results. If you call `execute` directly, consume it with `for await`:
+
+```js
+for await (const output of guarded.run_tests.execute(input, executionOptions)) {
+  console.log(output);
+}
+```
+
+The output type includes the original result or `BlockedToolOutput`. A supplied output schema accepts both shapes. Successful results retain the original `toModelOutput` formatter; blocked results become JSON without entering that formatter. The `kind` value is reserved for guard-generated blocked results. Preserve the complete output, including `kind`, when saving a conversation so restored blocked results are still recognized. Ordinary tool data containing `blocked: true` keeps its original formatter.
 
 `routeModelStep` candidates carry the application's model instances. The recipe sees only the `id` and `text` descriptions. Each candidate description should state cost and strengths, since the recipe prefers the cheapest model whose description clearly covers the request.
 
@@ -88,6 +98,8 @@ const tools = [
 | `completionTool(options)`     | `completion-gate` | A `report_completion` tool that returns `{ accepted, verdict, status, detected, confidence, message }`. The application stops on `accepted: true`. |
 
 LangChain tools do not receive the conversation, so `guardTools` requires `request`: a string, or a function of the tool input and config for per-call text. `completionTool` requires `task`.
+
+The guard reviews arguments as supplied by the caller, before the original tool validates or transforms them. An allowed call delegates the original input or tool-call envelope and configuration once, preserving the original validation, transformations, callbacks, and returned artifacts. A blocked call skips the original tool entirely, including its validation and transformations. Direct invocations receive a blocked object; tool-call invocations receive a `ToolMessage` with the same call ID.
 
 Pass the tools to `bindTools`, a LangGraph `ToolNode`, or `createAgent`. Object results become JSON in the tool message. The [runnable example](../examples/langchain-tools/README.md) invokes each tool directly.
 

@@ -1,13 +1,7 @@
-import { tool } from '@langchain/core/tools';
-import type { DynamicStructuredTool } from '@langchain/core/tools';
-
-export type GuardableTool = {
-  name: string;
-  description: string;
-  schema: unknown;
-  returnDirect?: boolean;
-  invoke(input: any, config?: any): Promise<unknown>;
-};
+import { DynamicStructuredTool, tool } from '@langchain/core/tools';
+import type { ToolRunnableConfig } from '@langchain/core/tools';
+import { ToolMessage } from '@langchain/core/messages';
+import type { ToolCall } from '@langchain/core/messages';
 import type { RecipeName } from '../../catalog/schema.js';
 import {
   COMPLETION_TOOL_DESCRIPTION,
@@ -64,36 +58,77 @@ export type GuardRequest = string | ((input: unknown, config: unknown) => string
 
 export type GuardToolsOptions = GuardOptions & { request: GuardRequest };
 
+export type GuardableTool = {
+  name: string;
+  description: string;
+  schema: unknown;
+  returnDirect?: boolean;
+  invoke(input: any, config?: any): Promise<unknown>;
+};
+
 export function guardTools(
   tools: readonly GuardableTool[],
   options: GuardToolsOptions,
 ): DynamicStructuredTool[] {
-  const { request, ...guardOptions } = options;
-  return tools.map((original) => {
-    const schema = original.schema as JsonSchema;
-    return tool(
-      async (input: unknown, config?: { signal?: AbortSignal; toolCall?: unknown }) => {
-        const decision = await reviewToolCall(
-          {
-            toolName: original.name,
-            input,
-            request: typeof request === 'function' ? request(input, config) : request,
-          },
-          guardOptions,
-          config?.signal,
-        );
-        if (decision.action !== 'allow') return blockedOutput(original.name, decision);
-        const { toolCall: _toolCall, ...delegatedConfig } = config ?? {};
-        return original.invoke(input, delegatedConfig);
-      },
+  return tools.map((original) => new GuardedTool(original, options));
+}
+
+class GuardedTool extends DynamicStructuredTool {
+  constructor(
+    private readonly original: GuardableTool,
+    private readonly guardOptions: GuardToolsOptions,
+  ) {
+    super({
+      name: original.name,
+      description: original.description,
+      schema: original.schema as JsonSchema,
+      returnDirect: original.returnDirect ?? false,
+      func: (input, _runManager, config) => this.invoke(input, config),
+    });
+  }
+
+  override async invoke(input: unknown, config?: ToolRunnableConfig): Promise<any> {
+    const { request, ...options } = this.guardOptions;
+    const args = isToolCall(input) ? input.args : input;
+    const requestConfig = isToolCall(input) ? { ...config, toolCall: input } : config;
+    options.signal?.throwIfAborted();
+    config?.signal?.throwIfAborted();
+    const decision = await reviewToolCall(
       {
-        name: original.name,
-        description: original.description,
-        schema,
-        ...(original.returnDirect === undefined ? {} : { returnDirect: original.returnDirect }),
+        toolName: this.name,
+        input: args,
+        request: typeof request === 'function' ? request(args, requestConfig) : request,
       },
-    ) as DynamicStructuredTool;
-  });
+      options,
+      config?.signal,
+    );
+    options.signal?.throwIfAborted();
+    config?.signal?.throwIfAborted();
+    if (decision.action === 'allow') return this.original.invoke(input, config);
+
+    const output = blockedOutput(this.name, decision);
+    const toolCallId = requestConfig?.toolCall?.id;
+    return toolCallId === undefined
+      ? output
+      : new ToolMessage({
+          name: this.name,
+          tool_call_id: toolCallId,
+          content: JSON.stringify(output),
+        });
+  }
+
+  override call(input: unknown, config?: ToolRunnableConfig, tags?: string[]): Promise<any> {
+    return this.invoke(
+      input,
+      tags === undefined ? config : { ...config, tags: config?.tags ?? tags },
+    );
+  }
+}
+
+function isToolCall(input: unknown): input is ToolCall {
+  return (
+    typeof input === 'object' && input !== null && 'type' in input && input.type === 'tool_call'
+  );
 }
 
 export function completionTool(
