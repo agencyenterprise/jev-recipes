@@ -42,6 +42,26 @@ export function matchesExpected(actual: unknown, expected: unknown, recipe: stri
   );
 }
 
+export function isReady(result: unknown, recipe: string): boolean {
+  if (!isRecord(result)) return false;
+  const schema = resultSchemaFor(recipe);
+  if (isMetadataPath(schema, ['status']) && result.status !== undefined)
+    return result.status === 'ready';
+  return !hasReview(result, schema);
+}
+
+function hasReview(value: unknown, schema: Schema | undefined): boolean {
+  if (!schema) return false;
+  if (Array.isArray(value))
+    return value.some((item, index) => hasReview(item, schemaAtPath(schema, [String(index)])));
+  if (!isRecord(value)) return false;
+  return Object.entries(value).some(([name, field]) =>
+    name === 'status' && isMetadataPath(schema, [name])
+      ? field === 'review'
+      : hasReview(field, schemaAtPath(schema, [name])),
+  );
+}
+
 function normalize(value: unknown, schema: Schema | undefined): unknown {
   if (!schema) return value;
   if (Array.isArray(value))

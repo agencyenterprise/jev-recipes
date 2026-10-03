@@ -4,6 +4,7 @@ import { parseArgs } from 'node:util';
 import { format as formatFile, resolveConfig } from 'prettier';
 import { renderMeasuredAccuracy } from '../scripts/lib/docs.mjs';
 import { randomUUID } from 'node:crypto';
+import { gzipSync } from 'node:zlib';
 import { evaluate } from '../dist/evaluation/index.js';
 import { scoringRevision } from '../dist/evaluation/comparison.js';
 import { loadEvaluationRecipe, validateCases } from '../dist/evaluation/dataset.js';
@@ -57,15 +58,16 @@ for (const { id, cases, baseline } of plannedRuns) {
   const archive = saveResults
     ? join(projectRoot, 'evals/runs', `${id}-${Date.now()}-${randomUUID().slice(0, 8)}`)
     : undefined;
-  const { report } = await evaluate(id, cases, {
+  const run = await evaluate(id, cases, {
     concurrency: Number(values.concurrency),
     ...(archive ? { out: archive } : {}),
     ...(baseline ? { model: baseline.model, policy: baseline.evidence.policy } : {}),
   });
+  const { report } = run;
   if (archive) console.log(`  Recorded responses: ${archive}`);
   printReport(report);
   if (baseline) regressed = checkAgainstBaseline(report, baseline) || regressed;
-  if (saveResults) await saveEvaluation(report);
+  if (saveResults) await saveEvaluation(run);
 }
 if (!saveResults && !values.check) console.log('Results were not saved (--no-write).');
 if (regressed) process.exitCode = 1;
@@ -98,7 +100,13 @@ function snapshotPath(id) {
   return join(projectRoot, 'evals/results', `${id}.json`);
 }
 
-async function saveEvaluation(report) {
+async function saveEvaluation(run) {
+  const { report } = run;
+  const evidence = join(projectRoot, 'evals/evidence', run.recipe, `${run.split}-${run.runId}`);
+  await mkdir(evidence, { recursive: true });
+  await writeFile(join(evidence, 'run.json.gz'), gzipSync(JSON.stringify(run) + '\n'), {
+    flag: 'wx',
+  });
   await saveDevelopmentBaseline(report);
   const config = await resolveConfig(join(projectRoot, 'package.json'));
   const reportPath = snapshotPath(report.recipe);

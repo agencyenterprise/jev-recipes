@@ -201,8 +201,9 @@ export function routeModelStep(options: RouteModelStepOptions): PrepareStepFunct
     options;
   if (!candidates.length) throw new Error('Supply at least one model candidate.');
   const decisions = new WeakMap<object, LanguageModel | undefined>();
-  return async ({ initialMessages }) => {
-    if (!decisions.has(initialMessages)) {
+  return async ({ initialMessages, steps }) => {
+    // The SDK owns one steps array per generation, even when callers reuse messages.
+    if (!decisions.has(steps)) {
       const decision = await modelRoute(
         {
           request: request ?? requireText(firstUserText(initialMessages), 'request'),
@@ -217,9 +218,9 @@ export function routeModelStep(options: RouteModelStepOptions): PrepareStepFunct
           ? candidates.find((candidate) => candidate.id === decision.selection)?.model
           : fallback;
       onDecision?.({ decision, model: selected });
-      decisions.set(initialMessages, selected);
+      decisions.set(steps, selected);
     }
-    const model = decisions.get(initialMessages);
+    const model = decisions.get(steps);
     return model === undefined ? {} : { model };
   };
 }

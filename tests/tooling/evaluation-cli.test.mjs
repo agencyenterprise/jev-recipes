@@ -6,6 +6,8 @@ import { tmpdir } from 'node:os';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { projectRoot } from '../../scripts/lib/recipes.mjs';
+import { auditEvidence } from '../../scripts/lib/evidence-audit.mjs';
+import { readRun } from '../../dist/evaluation/index.js';
 
 const execute = promisify(execFile);
 
@@ -24,6 +26,17 @@ test('a normal eval saves the report and replaces the unavailable threshold mess
       JSON.parse(await readFile(join(root, 'evals/baselines/route.json'), 'utf8')),
       report,
     );
+    const audit = await auditEvidence({
+      archivesDirectory: join(root, 'evals/evidence'),
+      reportsDirectory: join(root, 'evals/results'),
+    });
+    assert.deepEqual(audit.errors, []);
+    assert.equal(audit.summary.replayed, 1);
+    const archive = join(root, 'evals/evidence/route', `development-${report.evidence.runId}`);
+    assert.deepEqual(JSON.parse(JSON.stringify((await readRun(archive)).report)), report);
+    const original = await readFile(join(archive, 'run.json.gz'));
+    await evaluate('route');
+    assert.deepEqual(await readFile(join(archive, 'run.json.gz')), original);
   });
 });
 
@@ -32,6 +45,18 @@ test('--write continues to save results and also refreshes the guide', async () 
     await evaluate('route', '--write');
     const guide = await readFile(join(root, 'recipes/route/README.md'), 'utf8');
     assert.match(guide, /\| 0\.8\s*\| 12%\s*\| 100%\s*\|/);
+  });
+});
+
+test('an archive write failure leaves the report, baseline and guide unchanged', async () => {
+  await withEvaluationProject(async ({ root, evaluate }) => {
+    const paths = ['evals/results/route.json', 'recipes/route/README.md'];
+    const originals = await Promise.all(paths.map((path) => readFile(join(root, path), 'utf8')));
+    await writeFile(join(root, 'evals/evidence'), 'Block archive creation.');
+    await assert.rejects(evaluate('route'), /ENOTDIR/);
+    for (const [index, path] of paths.entries())
+      assert.equal(await readFile(join(root, path), 'utf8'), originals[index]);
+    await assert.rejects(readFile(join(root, 'evals/baselines/route.json')), { code: 'ENOENT' });
   });
 });
 
