@@ -29,7 +29,10 @@ export type GuardEvent = {
   decision: ToolCallGateResult;
 };
 
+export const BLOCKED_TOOL_OUTPUT_KIND = 'jev-recipes/blocked-tool-output';
+
 export type BlockedToolOutput = {
+  kind: typeof BLOCKED_TOOL_OUTPUT_KIND;
   blocked: true;
   action: 'ask' | 'deny';
   verdict: ToolCallGateResult['verdict'];
@@ -133,6 +136,7 @@ export function blockedOutput(toolName: string, decision: ToolCallGateResult): B
       ? `The call to ${toolName} was refused by policy and did not run.${risks} Do not retry it. Explain what you intended and continue with permitted work.`
       : `The call to ${toolName} did not run because a person must confirm it first.${risks} Do not retry it unattended. Explain what you intended and continue with other permitted work.`;
   return {
+    kind: BLOCKED_TOOL_OUTPUT_KIND,
     blocked: true,
     action,
     verdict: decision.verdict,

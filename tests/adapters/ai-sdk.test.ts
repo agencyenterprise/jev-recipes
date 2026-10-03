@@ -113,7 +113,9 @@ describe('guardTools', () => {
       { run_tests: runTests },
       { client, policy: 'Local tests are allowed.', onDecision: (event) => seen.push(event) },
     );
-    const output = await guarded.run_tests!.execute!({ pattern: 'account' }, executionOptions);
+    const output = await lastToolOutput(
+      guarded.run_tests!.execute!({ pattern: 'account' }, executionOptions),
+    );
     expect(output).toEqual({ passed: true, pattern: 'account' });
     expect(execute).toHaveBeenCalledWith({ pattern: 'account' }, executionOptions);
     expect(client.systemOne.mock.calls[0]?.[0].state).toEqual({
@@ -142,7 +144,9 @@ describe('guardTools', () => {
       execute.mockClear();
       const client = createJevClient(gateAnswers(verdict, confidence, { irreversible: 0.95 }));
       const guarded = guardTools({ run_tests: runTests }, { client, request: 'Ship it.' });
-      const output = await guarded.run_tests!.execute!({ pattern: 'x' }, executionOptions);
+      const output = await lastToolOutput(
+        guarded.run_tests!.execute!({ pattern: 'x' }, executionOptions),
+      );
       expect(output).toMatchObject({
         blocked: true,
         action,
@@ -163,9 +167,8 @@ describe('guardTools', () => {
       { client, request: 'Ship it.', context: 'On a feature branch.', minConfidence: 0.95 },
     );
     const signal = new AbortController().signal;
-    const output = await guarded.run_tests!.execute!(
-      { pattern: 'x' },
-      { ...executionOptions, abortSignal: signal },
+    const output = await lastToolOutput(
+      guarded.run_tests!.execute!({ pattern: 'x' }, { ...executionOptions, abortSignal: signal }),
     );
     expect(output).toMatchObject({ blocked: true, action: 'ask', status: 'review' });
     expect(client.systemOne).toHaveBeenCalledWith(
@@ -181,32 +184,36 @@ describe('guardTools', () => {
     const client = createJevClient(gateAnswers('allow'));
     const guarded = guardTools({ run_tests: runTests }, { client });
     await expect(
-      guarded.run_tests!.execute!({ pattern: 'x' }, { ...executionOptions, messages: [] }),
+      lastToolOutput(
+        guarded.run_tests!.execute!({ pattern: 'x' }, { ...executionOptions, messages: [] }),
+      ),
     ).rejects.toThrow(/Cannot derive request/);
     client.systemOne.mockRejectedValue(new Error('Provider unavailable'));
-    await expect(guarded.run_tests!.execute!({ pattern: 'x' }, executionOptions)).rejects.toThrow(
-      'Provider unavailable',
-    );
+    await expect(
+      lastToolOutput(guarded.run_tests!.execute!({ pattern: 'x' }, executionOptions)),
+    ).rejects.toThrow('Provider unavailable');
     expect(execute).not.toHaveBeenCalled();
   });
 
   it('reads the request from text parts and ignores non-text parts', async () => {
     const client = createJevClient(gateAnswers('allow'));
     const guarded = guardTools({ run_tests: runTests }, { client });
-    await guarded.run_tests!.execute!(undefined, {
-      ...executionOptions,
-      messages: [
-        { role: 'assistant', content: 'Working on it.' },
-        {
-          role: 'user',
-          content: [
-            { type: 'file', data: 'x' },
-            { type: 'text', text: 'Run it.' },
-          ],
-        },
-        { role: 'user', content: [{ type: 'image', image: 'y' }] },
-      ] as never,
-    });
+    await lastToolOutput(
+      guarded.run_tests!.execute!(undefined, {
+        ...executionOptions,
+        messages: [
+          { role: 'assistant', content: 'Working on it.' },
+          {
+            role: 'user',
+            content: [
+              { type: 'file', data: 'x' },
+              { type: 'text', text: 'Run it.' },
+            ],
+          },
+          { role: 'user', content: [{ type: 'image', image: 'y' }] },
+        ] as never,
+      }),
+    );
     expect(client.systemOne.mock.calls[0]?.[0].state).toEqual({
       request: 'Run it.',
       toolCall: 'run_tests()',
@@ -441,3 +448,9 @@ describe('generateText integration', () => {
     ]);
   });
 });
+
+async function lastToolOutput<OUTPUT>(outputs: AsyncIterable<OUTPUT>): Promise<OUTPUT | undefined> {
+  let result: OUTPUT | undefined;
+  for await (const output of outputs) result = output;
+  return result;
+}
