@@ -1,4 +1,4 @@
-.PHONY: help setup generate docs test ci pack-check build clean new format evals
+.PHONY: help setup generate docs test ci pack-check build clean new format evals patch minor major
 .DEFAULT_GOAL := help
 export RECIPE KIND
 
@@ -14,6 +14,7 @@ help:
 	@echo "make evals                  Evaluate the live model and update reports and guides (needs TYPESAFE_API_KEY)"
 	@echo "make build / make clean     Build or remove compiled output"
 	@echo "make format                 Format the codebase"
+	@echo "make patch / minor / major  Bump the version and push main with tags"
 
 setup:
 	@npm ci --ignore-scripts
@@ -49,3 +50,15 @@ evals:
 
 format:
 	@npm run format
+
+patch:
+	@npm version patch
+	@git push origin main --tags
+
+minor:
+	@npm version minor
+	@git push origin main --tags
+
+major:
+	@npm version major
+	@git push origin main --tags
