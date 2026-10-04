@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { cp, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { execFile } from 'node:child_process';
@@ -136,6 +136,71 @@ test('a changed scoring revision rejects a baseline before any provider call', a
   });
 });
 
+test('a run in which every case fails retains its responses but saves nothing', async () => {
+  await withEvaluationProject(async ({ root, evaluate }) => {
+    await evaluate('route');
+    const paths = [
+      'evals/results/route.json',
+      'evals/baselines/route.json',
+      'recipes/route/README.md',
+    ];
+    const originals = await Promise.all(paths.map((path) => readFile(join(root, path), 'utf8')));
+    await writeFile(join(root, 'provider-failures.json'), JSON.stringify('all'));
+    await assert.rejects(evaluate('route'), /NOT SAVED route: every case failed/);
+    for (const [index, path] of paths.entries())
+      assert.equal(await readFile(join(root, path), 'utf8'), originals[index], path);
+    assert.equal((await readdir(join(root, 'evals/evidence/route'))).length, 1);
+    assert.equal((await readdir(join(root, 'evals/runs'))).length, 2);
+  });
+});
+
+test('partial provider failures are saved only with --allow-failures', async () => {
+  await withEvaluationProject(async ({ root, evaluate }) => {
+    await evaluate('route');
+    const paths = ['evals/results/route.json', 'recipes/route/README.md'];
+    const originals = await Promise.all(paths.map((path) => readFile(join(root, path), 'utf8')));
+    const cases = (await readFile(join(root, 'evals/route/cases.jsonl'), 'utf8'))
+      .trim()
+      .split('\n')
+      .map(JSON.parse);
+    await writeFile(join(root, 'provider-failures.json'), JSON.stringify([cases[0].input.request]));
+    await assert.rejects(
+      evaluate('route'),
+      new RegExp(`NOT SAVED route: 1 of ${cases.length} cases failed`),
+    );
+    for (const [index, path] of paths.entries())
+      assert.equal(await readFile(join(root, path), 'utf8'), originals[index], path);
+    const output = await evaluate('route', '--allow-failures');
+    assert.match(output, /Snapshot written to evals\/results\/route.json/);
+    const report = JSON.parse(await readFile(join(root, 'evals/results/route.json'), 'utf8'));
+    assert.equal(report.failed, 1);
+  });
+});
+
+test('a development run keeps a held-out summary unless asked to replace it', async () => {
+  await withEvaluationProject(async ({ root, evaluate }) => {
+    const reportPath = join(root, 'evals/results/route.json');
+    const guidePath = join(root, 'recipes/route/README.md');
+    const report = JSON.parse(await readFile(reportPath, 'utf8'));
+    report.evidence.split = 'held-out';
+    report.acceptance = { met: true, label: 'Measured on these synthetic cases' };
+    const heldOut = JSON.stringify(report);
+    await writeFile(reportPath, heldOut);
+    const guide = await readFile(guidePath, 'utf8');
+    const output = await evaluate('route');
+    assert.match(output, /Kept the held-out summary in evals\/results\/route.json/);
+    assert.equal(await readFile(reportPath, 'utf8'), heldOut);
+    assert.equal(await readFile(guidePath, 'utf8'), guide);
+    const baseline = JSON.parse(await readFile(join(root, 'evals/baselines/route.json'), 'utf8'));
+    assert.equal(baseline.evidence.split, 'development');
+    await evaluate('route', '--replace-held-out');
+    const replaced = JSON.parse(await readFile(reportPath, 'utf8'));
+    assert.equal(replaced.evidence.split, 'development');
+    assert.equal(replaced.acceptance, undefined);
+    assert.notEqual(await readFile(guidePath, 'utf8'), guide);
+  });
+});
+
 test('a real accuracy drop fails the development regression check', async () => {
   await withEvaluationProject(async ({ root, evaluate }) => {
     await evaluate('route');
@@ -205,9 +270,12 @@ import { appendFile, readFile } from 'node:fs/promises';
 import { TypeSafeClient } from '@typesafe-ai/sdk';
 const cases = (await readFile(new URL('./evals/route/cases.jsonl', import.meta.url), 'utf8')).trim().split('\\n').map(JSON.parse);
 const expected = new Map(cases.map(entry => [entry.input.request, entry.expected.suggestedRoute]));
-const forcedChoice = await readFile(new URL('./provider-choice.json', import.meta.url), 'utf8').then(JSON.parse).catch(error => { if (error.code === 'ENOENT') return null; throw error; });
+const readSetting = name => readFile(new URL(name, import.meta.url), 'utf8').then(JSON.parse).catch(error => { if (error.code === 'ENOENT') return null; throw error; });
+const forcedChoice = await readSetting('./provider-choice.json');
+const failures = await readSetting('./provider-failures.json');
 TypeSafeClient.prototype.systemOne = async request => {
   await appendFile(new URL('./provider-calls.jsonl', import.meta.url), JSON.stringify(request) + '\\n');
+  if (failures === 'all' || failures?.includes(request.state.request)) throw new Error('Simulated provider outage.');
   const choice = forcedChoice ?? expected.get(request.state.request) ?? '__review__';
   return {
     model: 'offline-cli-test', usage: { input_tokens: 0, output_tokens: 0 },

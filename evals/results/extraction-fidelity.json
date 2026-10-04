@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "6c46bd1a-5a86-4396-8912-bff36973b995",
+    "runId": "dc5dd399-74cf-47ab-91d3-7ad81b033920",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:17.997Z",
-    "createdAt": "2026-10-04T18:16:17.997Z",
+    "evaluatedAt": "2026-10-04T20:43:16.085Z",
+    "createdAt": "2026-10-04T20:43:16.085Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "87420435d122cd812b418bacdfe672abb0ed7618accf44e6638f5de287154f56",
     "datasetFingerprint": "a65c8d65b0cab9a899b656fcdb5e9091e0284d9a4490065b0a14bbea071ab9f6",
     "split": "development",
@@ -130,16 +130,16 @@
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.033,
+      "deferRate": 0.05,
       "readyAccuracy": 1,
-      "readyCases": 58,
-      "reviewCases": 2,
+      "readyCases": 57,
+      "reviewCases": 3,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9379, 1]
+      "readyAccuracyInterval95": [0.9369, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 108.43, "p95": 158.15, "totalCaseTime": 6724.1 },
+  "latencyMs": { "p50": 103.09, "p95": 170.2, "totalCaseTime": 6808.16 },
   "usage": {
     "requests": 60,
     "input_tokens": 36535,

@@ -58,7 +58,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:15:49.490Z',
+        date: '2026-10-04T20:42:48.259Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -106,7 +106,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:15:52.868Z',
+        date: '2026-10-04T20:42:51.224Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -350,7 +350,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:15:54.294Z',
+        date: '2026-10-04T20:42:52.472Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -666,7 +666,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:15:55.707Z',
+        date: '2026-10-04T20:42:53.964Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -737,7 +737,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:15:57.971Z',
+        date: '2026-10-04T20:42:56.097Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -1027,7 +1027,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:15:59.898Z',
+        date: '2026-10-04T20:42:57.724Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -1095,7 +1095,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:00.877Z',
+        date: '2026-10-04T20:42:58.654Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -1225,7 +1225,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:01.826Z',
+        date: '2026-10-04T20:42:59.711Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -1266,14 +1266,14 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:03.355Z',
+        date: '2026-10-04T20:43:01.233Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
         split: 'development',
         cases: 50,
-        ready: 29,
-        reviewRate: 0.42,
+        ready: 30,
+        reviewRate: 0.4,
         readyAccuracy: 1,
         failed: 0,
         provenance: [
@@ -1478,14 +1478,14 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:04.886Z',
+        date: '2026-10-04T20:43:02.671Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
         split: 'development',
         cases: 144,
-        ready: 92,
-        reviewRate: 0.361,
+        ready: 91,
+        reviewRate: 0.368,
         readyAccuracy: 1,
         failed: 0,
         provenance: [
@@ -1651,7 +1651,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:09.083Z',
+        date: '2026-10-04T20:43:06.812Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -1761,14 +1761,14 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:10.820Z',
+        date: '2026-10-04T20:43:08.518Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
         split: 'development',
         cases: 136,
-        ready: 84,
-        reviewRate: 0.382,
+        ready: 81,
+        reviewRate: 0.404,
         readyAccuracy: 1,
         failed: 0,
         provenance: [
@@ -2030,14 +2030,14 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:14.817Z',
+        date: '2026-10-04T20:43:12.519Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
         split: 'development',
         cases: 43,
-        ready: 34,
-        reviewRate: 0.209,
+        ready: 35,
+        reviewRate: 0.186,
         readyAccuracy: 0.971,
         failed: 0,
         provenance: [
@@ -2248,7 +2248,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:16.162Z',
+        date: '2026-10-04T20:43:14.302Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -2586,7 +2586,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:17.997Z',
+        date: '2026-10-04T20:43:16.085Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -2743,14 +2743,14 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:19.851Z',
+        date: '2026-10-04T20:43:17.929Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
         split: 'development',
         cases: 60,
-        ready: 45,
-        reviewRate: 0.25,
+        ready: 44,
+        reviewRate: 0.267,
         readyAccuracy: 1,
         failed: 0,
         provenance: [
@@ -2844,7 +2844,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:21.678Z',
+        date: '2026-10-04T20:43:19.595Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -2899,7 +2899,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:23.554Z',
+        date: '2026-10-04T20:43:21.226Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -3125,7 +3125,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:25.286Z',
+        date: '2026-10-04T20:43:22.858Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -3216,7 +3216,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:26.623Z',
+        date: '2026-10-04T20:43:24.162Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -3364,7 +3364,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:28.363Z',
+        date: '2026-10-04T20:43:25.936Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -4183,7 +4183,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:29.618Z',
+        date: '2026-10-04T20:43:27.171Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -4684,14 +4684,14 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:32.849Z',
+        date: '2026-10-04T20:43:30.092Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
         split: 'development',
         cases: 112,
-        ready: 54,
-        reviewRate: 0.518,
+        ready: 55,
+        reviewRate: 0.509,
         readyAccuracy: 1,
         failed: 0,
         provenance: [
@@ -5018,7 +5018,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:36.170Z',
+        date: '2026-10-04T20:43:33.245Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -5301,7 +5301,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:37.444Z',
+        date: '2026-10-04T20:43:34.650Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -5351,14 +5351,14 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:40.383Z',
+        date: '2026-10-04T20:43:37.293Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
         split: 'development',
         cases: 102,
-        ready: 94,
-        reviewRate: 0.078,
+        ready: 93,
+        reviewRate: 0.088,
         readyAccuracy: 1,
         failed: 0,
         provenance: [
@@ -5782,7 +5782,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:43.177Z',
+        date: '2026-10-04T20:43:40.159Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -5844,7 +5844,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:44.778Z',
+        date: '2026-10-04T20:43:41.765Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -5911,7 +5911,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:46.560Z',
+        date: '2026-10-04T20:43:43.607Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -6040,7 +6040,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:47.876Z',
+        date: '2026-10-04T20:43:44.923Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -6253,14 +6253,14 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:49.661Z',
+        date: '2026-10-04T20:43:46.575Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
         split: 'development',
         cases: 110,
-        ready: 72,
-        reviewRate: 0.345,
+        ready: 73,
+        reviewRate: 0.336,
         readyAccuracy: 1,
         failed: 0,
         provenance: [
@@ -6310,15 +6310,15 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:52.787Z',
+        date: '2026-10-04T20:43:49.817Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
         split: 'development',
         cases: 87,
-        ready: 49,
-        reviewRate: 0.437,
-        readyAccuracy: 0.98,
+        ready: 47,
+        reviewRate: 0.46,
+        readyAccuracy: 0.979,
         failed: 0,
         provenance: [
           {
@@ -7015,7 +7015,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:55.531Z',
+        date: '2026-10-04T20:43:52.490Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -7023,7 +7023,7 @@ export const recipeMetadata: CatalogRecipe[] = [
         cases: 126,
         ready: 92,
         reviewRate: 0.27,
-        readyAccuracy: 0.957,
+        readyAccuracy: 0.967,
         failed: 0,
         provenance: [
           {
@@ -7201,7 +7201,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:16:59.405Z',
+        date: '2026-10-04T20:43:55.923Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
@@ -7439,14 +7439,14 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:17:02.531Z',
+        date: '2026-10-04T20:43:58.961Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
         split: 'development',
         cases: 50,
-        ready: 44,
-        reviewRate: 0.12,
+        ready: 43,
+        reviewRate: 0.14,
         readyAccuracy: 1,
         failed: 0,
         provenance: [
@@ -7486,15 +7486,15 @@ export const recipeMetadata: CatalogRecipe[] = [
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',
-        date: '2026-10-04T18:17:04.220Z',
+        date: '2026-10-04T20:44:00.345Z',
         operation: 'live',
         replayedAt: null,
         scoringRevision: 2,
         split: 'development',
         cases: 44,
-        ready: 35,
-        reviewRate: 0.205,
-        readyAccuracy: 0.971,
+        ready: 33,
+        reviewRate: 0.25,
+        readyAccuracy: 0.97,
         failed: 0,
         provenance: [
           { method: 'unspecified', source: 'Not recorded by the dataset author.', cases: 44 },

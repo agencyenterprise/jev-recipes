@@ -118,34 +118,34 @@ The labels describe the action as written, not what the underlying tool actually
 
 **Current synthetic measurement; experimental.**
 
-Measured on 100 golden cases against `jev-1.13.0`: **81% accurate** overall (adversarial cases 76%).
+Measured on 100 golden cases against `jev-1.13.0`: **80% accurate** overall (adversarial cases 74%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `1d8a904b39336096ed678153226be54701c7248ebdf7f840f089be0b46f7c1fc`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `1d8a904b39336096ed678153226be54701c7248ebdf7f840f089be0b46f7c1fc`.
 
 Scoring revision: 2.
 
-81/100 cases correct; 63 ready, 37 review, 0 failed. Accuracy among ready cases: 98%.
+80/100 cases correct; 63 ready, 37 review, 0 failed. Accuracy among ready cases: 98%.
 
-Latency: p50 110.8 ms, p95 214.03 ms. Usage: 94792 input tokens and 9600 output tokens across 100 logical requests.
+Latency: p50 98.19 ms, p95 145.92 ms. Usage: 94792 input tokens and 9600 output tokens across 100 logical requests.
 
 Labels: author-synthetic (100 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 72% to 87%.
+95% case-level accuracy interval: 71% to 87%.
 
-A case counts as correct only when every item in it is right. Across the 500 individual items, **94%** were judged correctly.
+A case counts as correct only when every item in it is right. Across the 500 individual items, **93%** were judged correctly.
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 0%                 | 81%                       |
-| 0.6             | 15%                | 87%                       |
-| 0.7             | 27%                | 93%                       |
+| 0.5             | 0%                 | 80%                       |
+| 0.6             | 16%                | 87%                       |
+| 0.7             | 27%                | 96%                       |
 | 0.8             | 37%                | 98%                       |
-| 0.9             | 56%                | 100%                      |
-| 0.95            | 96%                | 100%                      |
+| 0.9             | 55%                | 100%                      |
+| 0.95            | 94%                | 100%                      |
 
-The lowest threshold reaching 95% accuracy on ready results is 0.75.
+The lowest threshold reaching 95% accuracy on ready results is 0.7.
 
 Run `npm run eval -- action-effects` to save new results and update this guide. The full report, including misses, is in [evals/results/action-effects.json](../../evals/results/action-effects.json). Accuracy on your own data may differ.
 

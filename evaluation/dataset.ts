@@ -3,7 +3,13 @@ import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
 import { recipeNameSchema } from '../catalog/schema.js';
 import { isRecord } from './decisions.js';
-import { comparableDecision, isMetadataPath, schemaAtPath, resultSchemaFor } from './comparison.js';
+import {
+  comparableDecision,
+  gatedTwinFor,
+  isMetadataPath,
+  schemaAtPath,
+  resultSchemaFor,
+} from './comparison.js';
 import { evaluationCaseSchema } from './schema.js';
 import type { EvaluationCase } from './schema.js';
 import type { EvaluationRecipe } from './engine.js';
@@ -48,9 +54,15 @@ export function validateCases(recipe: EvaluationRecipe, values: unknown[]): Eval
     }
     recipe.inputSchema.parse(entry.input);
     for (const [path, expected] of Object.entries(entry.expected)) {
-      if (isMetadataPath(resultSchema, path.split('.')))
+      const segments = path.split('.');
+      if (isMetadataPath(resultSchema, segments))
         throw new Error(`${entry.id}: expected must name an ungated decision, not ${path}.`);
-      const field = schemaAtPath(resultSchema, path.split('.'));
+      const twin = gatedTwinFor(resultSchema, segments);
+      if (twin)
+        throw new Error(
+          `${entry.id}: ${path} is gated by the review policy; label ${twin} instead.`,
+        );
+      const field = schemaAtPath(resultSchema, segments);
       if (!field) throw new Error(`${entry.id}: unknown result field ${path}.`);
       if (!acceptsValue(field, expected))
         throw new Error(`${entry.id}: expected ${path} does not match the result schema.`);

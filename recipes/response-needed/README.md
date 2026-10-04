@@ -99,13 +99,13 @@ Assesses conversational need. Channel-specific response obligations and customer
 
 Measured on 60 golden cases against `jev-1.13.0`: **100% accurate** overall (adversarial cases 100%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `accce497113821fcd870e3ebd3806c7cbe214d13e3a6ca96544043ab52b168b6`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `accce497113821fcd870e3ebd3806c7cbe214d13e3a6ca96544043ab52b168b6`.
 
 Scoring revision: 2.
 
 60/60 cases correct; 60 ready, 0 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 105.19 ms, p95 139.93 ms. Usage: 26798 input tokens and 2610 output tokens across 60 logical requests.
+Latency: p50 96.28 ms, p95 157.98 ms. Usage: 26798 input tokens and 2610 output tokens across 60 logical requests.
 
 Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
@@ -119,8 +119,8 @@ These authored cases are not independent human validation. Related variants are 
 | 0.6             | 0%                 | 100%                      |
 | 0.7             | 0%                 | 100%                      |
 | 0.8             | 0%                 | 100%                      |
-| 0.9             | 2%                 | 100%                      |
-| 0.95            | 5%                 | 100%                      |
+| 0.9             | 3%                 | 100%                      |
+| 0.95            | 7%                 | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 

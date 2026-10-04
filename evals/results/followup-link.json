@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "cacafd65-7c42-4359-bc32-fd046c91467c",
+    "runId": "f10a082c-e3ef-43f7-aeb5-af096df97570",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:21.678Z",
-    "createdAt": "2026-10-04T18:16:21.678Z",
+    "evaluatedAt": "2026-10-04T20:43:19.595Z",
+    "createdAt": "2026-10-04T20:43:19.595Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "77fc95ddff5d802d6341d747e754da620513c23205a4bb31bcdfe9ad44efea4c",
     "datasetFingerprint": "a81e71db8f137e897b4d5a375a334f5383d374381ea0172eac2e7c56fe54e7da",
     "split": "development",
@@ -142,7 +142,7 @@
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 110.21, "p95": 163.34, "totalCaseTime": 7051.65 },
+  "latencyMs": { "p50": 93.92, "p95": 147.14, "totalCaseTime": 6098.59 },
   "usage": {
     "requests": 60,
     "input_tokens": 30966,

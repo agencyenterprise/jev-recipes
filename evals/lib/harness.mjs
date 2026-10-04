@@ -1,6 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { readEvaluationCases } from '../../dist/evaluation/dataset.js';
 
 export const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
 
@@ -36,12 +37,8 @@ export async function loadRecipe(id) {
   return { id, run, inputSchema, fixture };
 }
 
-export async function readGoldenCases(id) {
-  const text = await readFile(join(projectRoot, 'evals', id, 'cases.jsonl'), 'utf8');
-  return text
-    .trim()
-    .split('\n')
-    .map((line) => JSON.parse(line));
+export function readGoldenCases(id, root = projectRoot) {
+  return readEvaluationCases(join(root, 'evals', id, 'cases.jsonl'));
 }
 
 export function fixtureClient(response) {
@@ -58,48 +55,8 @@ export function hasReviewAnywhere(value) {
   return false;
 }
 
-export function caseConfidence(result, expectedPaths = []) {
-  if (typeof result?.confidence === 'number') return result.confidence;
-  const scoped = expectedPaths
-    .map((path) => confidenceNear(result, path.split('.')))
-    .filter((value) => value !== undefined);
-  const values = scoped.length ? scoped : collectConfidences(result);
-  return values.length ? Math.min(...values) : undefined;
-}
-
-function confidenceNear(record, segments) {
-  let node = record;
-  for (let index = 0; index < segments.length; index += 1) {
-    const next = node?.[segments[index]];
-    if (next && typeof next === 'object' && typeof next.confidence === 'number') {
-      const rest = segments.slice(index + 1);
-      if (!rest.length || !rest.some((segment) => segment === 'confidence')) return next.confidence;
-    }
-    node = next;
-  }
-  return undefined;
-}
-
-function collectConfidences(value) {
-  if (Array.isArray(value)) return value.flatMap(collectConfidences);
-  if (value && typeof value === 'object') {
-    return Object.entries(value).flatMap(([name, field]) =>
-      name === 'confidence' && typeof field === 'number' ? [field] : collectConfidences(field),
-    );
-  }
-  return [];
-}
-
 export function pick(record, names) {
   return Object.fromEntries(names.map((name) => [name, record[name]]));
-}
-
-export function valueAtPath(record, path) {
-  return path.split('.').reduce((value, segment) => value?.[segment], record);
-}
-
-export function pickPaths(record, paths) {
-  return Object.fromEntries(paths.map((path) => [path, valueAtPath(record, path)]));
 }
 
 export function deepEqual(first, second) {
@@ -130,8 +87,4 @@ export function requireApiKey() {
   if (process.env.TYPESAFE_API_KEY) return;
   console.error('TYPESAFE_API_KEY is not set. Live evals need an API key; see .env.example.');
   process.exit(1);
-}
-
-export function roundedTo(places, value) {
-  return Number(value.toFixed(places));
 }

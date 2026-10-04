@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "1b80bd9a-b68d-4003-bdb3-68e72ce24db8",
+    "runId": "29f9e2e5-d961-4596-866b-a10cace1d6f4",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:36.170Z",
-    "createdAt": "2026-10-04T18:16:36.170Z",
+    "evaluatedAt": "2026-10-04T20:43:33.245Z",
+    "createdAt": "2026-10-04T20:43:33.245Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "1ea428b1221f41d42ce6564bb0562ad57de63489164fbe53442184f8480969e2",
     "datasetFingerprint": "ae976ad287b12a97911b43bff6fe01ba209bde8f4f77b623c42ae98030958fc7",
     "split": "development",
@@ -72,12 +72,12 @@
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.07,
-      "readyAccuracy": 0.975,
-      "readyCases": 40,
-      "reviewCases": 3,
+      "deferRate": 0.093,
+      "readyAccuracy": 0.974,
+      "readyCases": 39,
+      "reviewCases": 4,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8712, 0.9956]
+      "readyAccuracyInterval95": [0.8682, 0.9955]
     },
     {
       "minConfidence": 0.7,
@@ -135,7 +135,7 @@
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 110.32, "p95": 157.18, "totalCaseTime": 4831.97 },
+  "latencyMs": { "p50": 116.63, "p95": 162.6, "totalCaseTime": 5243.5 },
   "usage": {
     "requests": 43,
     "input_tokens": 18681,
@@ -158,13 +158,13 @@
       "id": "absent-first-name-only",
       "expected": { "verdict": "absent" },
       "actual": { "verdict": "present" },
-      "confidence": 0.53
+      "confidence": 0.52
     },
     {
       "id": "absent-jane-doe-anytown",
       "expected": { "verdict": "absent" },
       "actual": { "verdict": "present" },
-      "confidence": 0.77,
+      "confidence": 0.76,
       "contested": true
     }
   ]

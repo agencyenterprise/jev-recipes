@@ -133,13 +133,13 @@ A result is `ready` when the decision confidence meets `minConfidence` and the v
 
 Measured on 104 golden cases against `jev-1.13.0`: **94% accurate** overall (contested cases 67%, adversarial cases 100%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `7cab86a64bb4a797132650d147f157bd1692e9414ac9a140d07bd4c1296bc65f`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `7cab86a64bb4a797132650d147f157bd1692e9414ac9a140d07bd4c1296bc65f`.
 
 Scoring revision: 2.
 
 98/104 cases correct; 76 ready, 28 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 107.26 ms, p95 159.33 ms. Usage: 131395 input tokens and 14458 output tokens across 104 logical requests.
+Latency: p50 95.95 ms, p95 156.9 ms. Usage: 131395 input tokens and 14458 output tokens across 104 logical requests.
 
 Labels: unspecified (44 cases): Existing repository labels; independent review and original authorship were not recorded. author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
@@ -149,9 +149,9 @@ These authored cases are not independent human validation. Related variants are 
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 7%                 | 96%                       |
-| 0.6             | 12%                | 97%                       |
-| 0.7             | 22%                | 100%                      |
+| 0.5             | 6%                 | 96%                       |
+| 0.6             | 14%                | 98%                       |
+| 0.7             | 24%                | 100%                      |
 | 0.8             | 27%                | 100%                      |
 | 0.9             | 29%                | 100%                      |
 | 0.95            | 31%                | 100%                      |

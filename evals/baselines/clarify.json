@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "a9c1d3bc-cee1-4230-9cc6-62cbab63eb20",
+    "runId": "ebcc22ba-adfe-4434-b40c-2bf1cb61a8b7",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:03.355Z",
-    "createdAt": "2026-10-04T18:16:03.355Z",
+    "evaluatedAt": "2026-10-04T20:43:01.233Z",
+    "createdAt": "2026-10-04T20:43:01.233Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "1a9a8076d42d25b49992aecade0dc8239a4dc072cf1aa26badf0fdb4623918a7",
     "datasetFingerprint": "51775d05b8a682d0f914599a770b74707e54a03c20e8e1eb31fb26674e6677de",
     "split": "development",
@@ -21,25 +21,25 @@
   "cases": 50,
   "completed": 50,
   "failed": 0,
-  "correct": 44,
-  "wrong": 6,
-  "ready": 29,
-  "review": 21,
-  "accuracy": 0.88,
-  "completedAccuracy": 0.88,
-  "accuracyInterval95": [0.762, 0.9438],
+  "correct": 45,
+  "wrong": 5,
+  "ready": 30,
+  "review": 20,
+  "accuracy": 0.9,
+  "completedAccuracy": 0.9,
+  "accuracyInterval95": [0.7864, 0.9565],
   "readyAccuracy": 1,
-  "readyAccuracyInterval95": [0.883, 1],
-  "reviewRate": 0.42,
-  "contestedAccuracy": 0.75,
+  "readyAccuracyInterval95": [0.8865, 1],
+  "reviewRate": 0.4,
+  "contestedAccuracy": 0.875,
   "adversarialAccuracy": 1,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 9, "accuracy": 0.556 },
+    { "confidence": "0-0.5", "cases": 9, "accuracy": 0.667 },
     { "confidence": "0.5-0.6", "cases": 6, "accuracy": 0.833 },
     { "confidence": "0.6-0.7", "cases": 3, "accuracy": 1 },
-    { "confidence": "0.7-0.8", "cases": 3, "accuracy": 0.667 },
+    { "confidence": "0.7-0.8", "cases": 2, "accuracy": 0.5 },
     { "confidence": "0.8-0.9", "cases": 3, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 26, "accuracy": 1 }
+    { "confidence": "0.9-1", "cases": 27, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
@@ -99,47 +99,47 @@
     },
     {
       "minConfidence": 0.8,
-      "deferRate": 0.42,
+      "deferRate": 0.4,
       "readyAccuracy": 1,
-      "readyCases": 29,
-      "reviewCases": 21,
+      "readyCases": 30,
+      "reviewCases": 20,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.883, 1]
+      "readyAccuracyInterval95": [0.8865, 1]
     },
     {
       "minConfidence": 0.85,
-      "deferRate": 0.44,
+      "deferRate": 0.46,
       "readyAccuracy": 1,
-      "readyCases": 28,
-      "reviewCases": 22,
+      "readyCases": 27,
+      "reviewCases": 23,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8794, 1]
+      "readyAccuracyInterval95": [0.8754, 1]
     },
     {
       "minConfidence": 0.9,
-      "deferRate": 0.48,
+      "deferRate": 0.46,
       "readyAccuracy": 1,
-      "readyCases": 26,
-      "reviewCases": 24,
+      "readyCases": 27,
+      "reviewCases": 23,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8713, 1]
+      "readyAccuracyInterval95": [0.8754, 1]
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.56,
+      "deferRate": 0.52,
       "readyAccuracy": 1,
-      "readyCases": 22,
-      "reviewCases": 28,
+      "readyCases": 24,
+      "reviewCases": 26,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8513, 1]
+      "readyAccuracyInterval95": [0.862, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 104.4, "p95": 146.25, "totalCaseTime": 5629.77 },
+  "latencyMs": { "p50": 99.65, "p95": 148.72, "totalCaseTime": 5259.27 },
   "usage": {
     "requests": 50,
     "input_tokens": 34840,
-    "output_tokens": 4561,
+    "output_tokens": 4559,
     "unknownResponses": 0,
     "failedRequests": 0,
     "models": ["jev-1.13.0"]
@@ -170,7 +170,7 @@
       "total": 1,
       "correct": 0,
       "misses": {
-        "{\"checks\":[{\"id\":\"address\",\"status\":\"review\",\"verdict\":\"missing\",\"confidence\":0.54,\"probabilities\":{\"present\":0,\"missing\":0.7,\"ambiguous\":0.3}}]}": 1
+        "{\"checks\":[{\"id\":\"address\",\"status\":\"review\",\"verdict\":\"missing\",\"confidence\":0.48,\"probabilities\":{\"present\":0,\"missing\":0.66,\"ambiguous\":0.34}}]}": 1
       }
     },
     "{\"checks\":[{\"id\":\"amount\",\"verdict\":\"missing\"},{\"id\":\"destination\",\"verdict\":\"missing\"}]}": {
@@ -182,7 +182,7 @@
       "total": 1,
       "correct": 0,
       "misses": {
-        "{\"checks\":[{\"id\":\"attendees\",\"status\":\"review\",\"verdict\":\"ambiguous\",\"confidence\":0.48,\"probabilities\":{\"present\":0.05,\"missing\":0.3,\"ambiguous\":0.65}},{\"id\":\"duration\",\"status\":\"ready\",\"verdict\":\"present\",\"confidence\":1,\"probabilities\":{\"present\":1,\"missing\":0,\"ambiguous\":0}},{\"id\":\"datetime\",\"status\":\"ready\",\"verdict\":\"missing\",\"confidence\":0.93,\"probabilities\":{\"present\":0.01,\"missing\":0.95,\"ambiguous\":0.04}}]}": 1
+        "{\"checks\":[{\"id\":\"attendees\",\"status\":\"review\",\"verdict\":\"ambiguous\",\"confidence\":0.39,\"probabilities\":{\"present\":0.02,\"missing\":0.39,\"ambiguous\":0.59}},{\"id\":\"duration\",\"status\":\"ready\",\"verdict\":\"present\",\"confidence\":1,\"probabilities\":{\"present\":1,\"missing\":0,\"ambiguous\":0}},{\"id\":\"datetime\",\"status\":\"ready\",\"verdict\":\"missing\",\"confidence\":0.96,\"probabilities\":{\"present\":0,\"missing\":0.98,\"ambiguous\":0.02}}]}": 1
       }
     },
     "{\"checks\":[{\"id\":\"city\",\"verdict\":\"present\"},{\"id\":\"dates\",\"verdict\":\"present\"},{\"id\":\"guests\",\"verdict\":\"present\"}]}": {
@@ -204,7 +204,7 @@
       "total": 2,
       "correct": 1,
       "misses": {
-        "{\"checks\":[{\"id\":\"date\",\"status\":\"review\",\"verdict\":\"present\",\"confidence\":0.38,\"probabilities\":{\"present\":0.58,\"missing\":0.09,\"ambiguous\":0.33}}]}": 1
+        "{\"checks\":[{\"id\":\"date\",\"status\":\"review\",\"verdict\":\"present\",\"confidence\":0.37,\"probabilities\":{\"present\":0.58,\"missing\":0.09,\"ambiguous\":0.33}}]}": 1
       }
     },
     "{\"checks\":[{\"id\":\"date\",\"verdict\":\"present\"},{\"id\":\"partysize\",\"verdict\":\"present\"}]}": {
@@ -214,10 +214,8 @@
     },
     "{\"checks\":[{\"id\":\"deliverable\",\"verdict\":\"present\"},{\"id\":\"deadline\",\"verdict\":\"present\"}]}": {
       "total": 1,
-      "correct": 0,
-      "misses": {
-        "{\"checks\":[{\"id\":\"deliverable\",\"status\":\"ready\",\"verdict\":\"present\",\"confidence\":0.95,\"probabilities\":{\"present\":0.97,\"missing\":0,\"ambiguous\":0.03}},{\"id\":\"deadline\",\"status\":\"review\",\"verdict\":\"ambiguous\",\"confidence\":0.27,\"probabilities\":{\"present\":0.49,\"missing\":0,\"ambiguous\":0.51}}]}": 1
-      }
+      "correct": 1,
+      "misses": {}
     },
     "{\"checks\":[{\"id\":\"destination\",\"verdict\":\"missing\"},{\"id\":\"dates\",\"verdict\":\"missing\"},{\"id\":\"budget\",\"verdict\":\"missing\"}]}": {
       "total": 1,
@@ -313,7 +311,7 @@
       "total": 1,
       "correct": 0,
       "misses": {
-        "{\"checks\":[{\"id\":\"product\",\"status\":\"ready\",\"verdict\":\"missing\",\"confidence\":0.96,\"probabilities\":{\"present\":0,\"missing\":0.97,\"ambiguous\":0.03}},{\"id\":\"symptom\",\"status\":\"review\",\"verdict\":\"ambiguous\",\"confidence\":0.76,\"probabilities\":{\"present\":0.03,\"missing\":0.13,\"ambiguous\":0.84}}]}": 1
+        "{\"checks\":[{\"id\":\"product\",\"status\":\"ready\",\"verdict\":\"missing\",\"confidence\":0.95,\"probabilities\":{\"present\":0,\"missing\":0.96,\"ambiguous\":0.04}},{\"id\":\"symptom\",\"status\":\"review\",\"verdict\":\"ambiguous\",\"confidence\":0.75,\"probabilities\":{\"present\":0.02,\"missing\":0.15,\"ambiguous\":0.83}}]}": 1
       }
     },
     "{\"checks\":[{\"id\":\"product\",\"verdict\":\"present\"},{\"id\":\"quantity\",\"verdict\":\"missing\"},{\"id\":\"destination\",\"verdict\":\"present\"}]}": {
@@ -330,7 +328,7 @@
       "total": 1,
       "correct": 0,
       "misses": {
-        "{\"checks\":[{\"id\":\"quantity\",\"status\":\"review\",\"verdict\":\"present\",\"confidence\":0.46,\"probabilities\":{\"present\":0.64,\"missing\":0,\"ambiguous\":0.36}},{\"id\":\"item\",\"status\":\"ready\",\"verdict\":\"present\",\"confidence\":0.99,\"probabilities\":{\"present\":0.99,\"missing\":0,\"ambiguous\":0.01}}]}": 1
+        "{\"checks\":[{\"id\":\"quantity\",\"status\":\"review\",\"verdict\":\"present\",\"confidence\":0.5,\"probabilities\":{\"present\":0.67,\"missing\":0,\"ambiguous\":0.33}},{\"id\":\"item\",\"status\":\"ready\",\"verdict\":\"present\",\"confidence\":1,\"probabilities\":{\"present\":1,\"missing\":0,\"ambiguous\":0}}]}": 1
       }
     },
     "{\"checks\":[{\"id\":\"recipient\",\"verdict\":\"missing\"},{\"id\":\"budget\",\"verdict\":\"missing\"},{\"id\":\"occasion\",\"verdict\":\"missing\"}]}": {
@@ -415,8 +413,8 @@
             "id": "attendees",
             "status": "review",
             "verdict": "ambiguous",
-            "confidence": 0.48,
-            "probabilities": { "present": 0.05, "missing": 0.3, "ambiguous": 0.65 }
+            "confidence": 0.39,
+            "probabilities": { "present": 0.02, "missing": 0.39, "ambiguous": 0.59 }
           },
           {
             "id": "duration",
@@ -429,12 +427,12 @@
             "id": "datetime",
             "status": "ready",
             "verdict": "missing",
-            "confidence": 0.93,
-            "probabilities": { "present": 0.01, "missing": 0.95, "ambiguous": 0.04 }
+            "confidence": 0.96,
+            "probabilities": { "present": 0, "missing": 0.98, "ambiguous": 0.02 }
           }
         ]
       },
-      "confidence": 0.48
+      "confidence": 0.39
     },
     {
       "id": "vag-fix-it",
@@ -450,19 +448,19 @@
             "id": "product",
             "status": "ready",
             "verdict": "missing",
-            "confidence": 0.96,
-            "probabilities": { "present": 0, "missing": 0.97, "ambiguous": 0.03 }
+            "confidence": 0.95,
+            "probabilities": { "present": 0, "missing": 0.96, "ambiguous": 0.04 }
           },
           {
             "id": "symptom",
             "status": "review",
             "verdict": "ambiguous",
-            "confidence": 0.76,
-            "probabilities": { "present": 0.03, "missing": 0.13, "ambiguous": 0.84 }
+            "confidence": 0.75,
+            "probabilities": { "present": 0.02, "missing": 0.15, "ambiguous": 0.83 }
           }
         ]
       },
-      "confidence": 0.76
+      "confidence": 0.75
     },
     {
       "id": "amb-next-friday",
@@ -473,12 +471,12 @@
             "id": "date",
             "status": "review",
             "verdict": "present",
-            "confidence": 0.38,
+            "confidence": 0.37,
             "probabilities": { "present": 0.58, "missing": 0.09, "ambiguous": 0.33 }
           }
         ]
       },
-      "confidence": 0.38
+      "confidence": 0.37
     },
     {
       "id": "amb-conflicting-quantity",
@@ -494,48 +492,19 @@
             "id": "quantity",
             "status": "review",
             "verdict": "present",
-            "confidence": 0.46,
-            "probabilities": { "present": 0.64, "missing": 0, "ambiguous": 0.36 }
+            "confidence": 0.5,
+            "probabilities": { "present": 0.67, "missing": 0, "ambiguous": 0.33 }
           },
           {
             "id": "item",
             "status": "ready",
             "verdict": "present",
-            "confidence": 0.99,
-            "probabilities": { "present": 0.99, "missing": 0, "ambiguous": 0.01 }
+            "confidence": 1,
+            "probabilities": { "present": 1, "missing": 0, "ambiguous": 0 }
           }
         ]
       },
-      "confidence": 0.46
-    },
-    {
-      "id": "cst-end-of-day",
-      "expected": {
-        "checks": [
-          { "id": "deliverable", "verdict": "present" },
-          { "id": "deadline", "verdict": "present" }
-        ]
-      },
-      "actual": {
-        "checks": [
-          {
-            "id": "deliverable",
-            "status": "ready",
-            "verdict": "present",
-            "confidence": 0.95,
-            "probabilities": { "present": 0.97, "missing": 0, "ambiguous": 0.03 }
-          },
-          {
-            "id": "deadline",
-            "status": "review",
-            "verdict": "ambiguous",
-            "confidence": 0.27,
-            "probabilities": { "present": 0.49, "missing": 0, "ambiguous": 0.51 }
-          }
-        ]
-      },
-      "confidence": 0.27,
-      "contested": true
+      "confidence": 0.5
     },
     {
       "id": "cst-partial-address",
@@ -546,12 +515,12 @@
             "id": "address",
             "status": "review",
             "verdict": "missing",
-            "confidence": 0.54,
-            "probabilities": { "present": 0, "missing": 0.7, "ambiguous": 0.3 }
+            "confidence": 0.48,
+            "probabilities": { "present": 0, "missing": 0.66, "ambiguous": 0.34 }
           }
         ]
       },
-      "confidence": 0.54,
+      "confidence": 0.48,
       "contested": true
     }
   ]

@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "c0e4b9da-ab77-441b-b914-b298eff71bc3",
+    "runId": "91741954-fd0f-4484-8f65-47d969a3772c",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:14.817Z",
-    "createdAt": "2026-10-04T18:16:14.817Z",
+    "evaluatedAt": "2026-10-04T20:43:12.519Z",
+    "createdAt": "2026-10-04T20:43:12.519Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "3d17977295595f9944444ce0330aa0158bd0649f056b4004fef0ff8f8c8a5c88",
     "datasetFingerprint": "ec51a5ed360d6e7e286f1ac9d62fba8f44852b43707374fc1ac6edc6e762028f",
     "split": "development",
@@ -23,22 +23,22 @@
   "failed": 0,
   "correct": 41,
   "wrong": 2,
-  "ready": 34,
-  "review": 9,
+  "ready": 35,
+  "review": 8,
   "accuracy": 0.953,
   "completedAccuracy": 0.953,
   "accuracyInterval95": [0.8454, 0.9872],
   "readyAccuracy": 0.971,
-  "readyAccuracyInterval95": [0.8508, 0.9948],
-  "reviewRate": 0.209,
+  "readyAccuracyInterval95": [0.8547, 0.9949],
+  "reviewRate": 0.186,
   "contestedAccuracy": 1,
   "adversarialAccuracy": 0.8,
   "calibration": [
     { "confidence": "0-0.5", "cases": 0, "accuracy": null },
     { "confidence": "0.5-0.6", "cases": 2, "accuracy": 1 },
     { "confidence": "0.6-0.7", "cases": 3, "accuracy": 1 },
-    { "confidence": "0.7-0.8", "cases": 4, "accuracy": 0.75 },
-    { "confidence": "0.8-0.9", "cases": 8, "accuracy": 0.875 },
+    { "confidence": "0.7-0.8", "cases": 3, "accuracy": 0.667 },
+    { "confidence": "0.8-0.9", "cases": 9, "accuracy": 0.889 },
     { "confidence": "0.9-1", "cases": 26, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
@@ -90,21 +90,21 @@
     },
     {
       "minConfidence": 0.75,
-      "deferRate": 0.14,
-      "readyAccuracy": 0.946,
-      "readyCases": 37,
-      "reviewCases": 6,
+      "deferRate": 0.163,
+      "readyAccuracy": 0.972,
+      "readyCases": 36,
+      "reviewCases": 7,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.823, 0.985]
+      "readyAccuracyInterval95": [0.8583, 0.9951]
     },
     {
       "minConfidence": 0.8,
-      "deferRate": 0.209,
+      "deferRate": 0.186,
       "readyAccuracy": 0.971,
-      "readyCases": 34,
-      "reviewCases": 9,
+      "readyCases": 35,
+      "reviewCases": 8,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8508, 0.9948]
+      "readyAccuracyInterval95": [0.8547, 0.9949]
     },
     {
       "minConfidence": 0.85,
@@ -126,16 +126,16 @@
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.581,
+      "deferRate": 0.605,
       "readyAccuracy": 1,
-      "readyCases": 18,
-      "reviewCases": 25,
+      "readyCases": 17,
+      "reviewCases": 26,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8241, 1]
+      "readyAccuracyInterval95": [0.8157, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 109.35, "p95": 143.92, "totalCaseTime": 4887.18 },
+  "latencyMs": { "p50": 97, "p95": 180.77, "totalCaseTime": 5482.73 },
   "usage": {
     "requests": 43,
     "input_tokens": 43106,
@@ -218,14 +218,14 @@
       "id": "secret-ts-slack-token-with-disclaimer",
       "expected": { "detected": ["secretLeak"] },
       "actual": { "detected": ["secretLeak", "debugLeftover"] },
-      "confidence": 0.75,
+      "confidence": 0.74,
       "adversarial": true
     },
     {
       "id": "multi-tests-secret-in-test",
       "expected": { "detected": ["secretLeak", "testsWeakened"] },
       "actual": { "detected": ["secretLeak", "debugLeftover", "testsWeakened"] },
-      "confidence": 0.88
+      "confidence": 0.87
     }
   ]
 }

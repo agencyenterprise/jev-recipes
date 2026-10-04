@@ -164,21 +164,21 @@ The board is translated into labeled pieces, such as `c3: your man`, and each mo
 
 **Current measurement; labels unspecified; experimental.**
 
-Measured on 31 golden cases against `jev-1.13.0`: **58% accurate** overall (contested cases 20%, adversarial cases 60%).
+Measured on 31 golden cases against `jev-1.13.0`: **55% accurate** overall (contested cases 20%, adversarial cases 60%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `c606550c71285e3e9f0919cfa273553c33ea6b1943640acf14742ae1d7c9dfbf`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `c606550c71285e3e9f0919cfa273553c33ea6b1943640acf14742ae1d7c9dfbf`.
 
 Scoring revision: 2.
 
-18/31 cases correct; 0 ready, 31 review, 0 failed. Accuracy among ready cases: n/a.
+17/31 cases correct; 0 ready, 31 review, 0 failed. Accuracy among ready cases: n/a.
 
-Latency: p50 107.98 ms, p95 148.11 ms. Usage: 25635 input tokens and 1842 output tokens across 31 logical requests.
+Latency: p50 98.77 ms, p95 151.67 ms. Usage: 25635 input tokens and 1844 output tokens across 31 logical requests.
 
 Labels: unspecified (31 cases): Not recorded by the dataset author.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 41% to 74%.
+95% case-level accuracy interval: 38% to 71%.
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |

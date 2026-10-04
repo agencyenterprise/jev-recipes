@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "1cb95653-2dfd-4fcf-929b-c09c39aae286",
+    "runId": "b154b779-27dc-4093-b47b-3eb3ec9ea46d",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:17:02.531Z",
-    "createdAt": "2026-10-04T18:17:02.531Z",
+    "evaluatedAt": "2026-10-04T20:43:58.961Z",
+    "createdAt": "2026-10-04T20:43:58.961Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "f22b76f3c955f02a0aa43ccecf083fc37e58f006fc5e3a9268111abd3e8f787f",
     "datasetFingerprint": "961c39b233e7a83ca20fe44921e259eb08a1fc4f3dfacb5f8ba7ac2898f47538",
     "split": "development",
@@ -21,25 +21,25 @@
   "cases": 50,
   "completed": 50,
   "failed": 0,
-  "correct": 47,
-  "wrong": 3,
-  "ready": 44,
-  "review": 6,
-  "accuracy": 0.94,
-  "completedAccuracy": 0.94,
-  "accuracyInterval95": [0.8378, 0.9794],
+  "correct": 48,
+  "wrong": 2,
+  "ready": 43,
+  "review": 7,
+  "accuracy": 0.96,
+  "completedAccuracy": 0.96,
+  "accuracyInterval95": [0.8654, 0.989],
   "readyAccuracy": 1,
-  "readyAccuracyInterval95": [0.9197, 1],
-  "reviewRate": 0.12,
-  "contestedAccuracy": 0.75,
+  "readyAccuracyInterval95": [0.918, 1],
+  "reviewRate": 0.14,
+  "contestedAccuracy": 0.875,
   "adversarialAccuracy": 0.833,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 4, "accuracy": 0.25 },
+    { "confidence": "0-0.5", "cases": 4, "accuracy": 0.5 },
     { "confidence": "0.5-0.6", "cases": 0, "accuracy": null },
     { "confidence": "0.6-0.7", "cases": 0, "accuracy": null },
-    { "confidence": "0.7-0.8", "cases": 2, "accuracy": 1 },
-    { "confidence": "0.8-0.9", "cases": 4, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 40, "accuracy": 1 }
+    { "confidence": "0.7-0.8", "cases": 3, "accuracy": 1 },
+    { "confidence": "0.8-0.9", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 41, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
@@ -99,43 +99,43 @@
     },
     {
       "minConfidence": 0.8,
-      "deferRate": 0.12,
+      "deferRate": 0.14,
       "readyAccuracy": 1,
-      "readyCases": 44,
-      "reviewCases": 6,
+      "readyCases": 43,
+      "reviewCases": 7,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9197, 1]
+      "readyAccuracyInterval95": [0.918, 1]
     },
     {
       "minConfidence": 0.85,
-      "deferRate": 0.12,
+      "deferRate": 0.14,
       "readyAccuracy": 1,
-      "readyCases": 44,
-      "reviewCases": 6,
+      "readyCases": 43,
+      "reviewCases": 7,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9197, 1]
+      "readyAccuracyInterval95": [0.918, 1]
     },
     {
       "minConfidence": 0.9,
-      "deferRate": 0.2,
+      "deferRate": 0.18,
       "readyAccuracy": 1,
-      "readyCases": 40,
-      "reviewCases": 10,
+      "readyCases": 41,
+      "reviewCases": 9,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9124, 1]
+      "readyAccuracyInterval95": [0.9143, 1]
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.26,
+      "deferRate": 0.22,
       "readyAccuracy": 1,
-      "readyCases": 37,
-      "reviewCases": 13,
+      "readyCases": 39,
+      "reviewCases": 11,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9059, 1]
+      "readyAccuracyInterval95": [0.9103, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 108.06, "p95": 143.55, "totalCaseTime": 6374.94 },
+  "latencyMs": { "p50": 95.56, "p95": 145, "totalCaseTime": 5025.49 },
   "usage": {
     "requests": 50,
     "input_tokens": 29532,
@@ -293,10 +293,8 @@
     },
     "{\"checks\":[{\"id\":\"pediatric\",\"verdict\":\"supported\"}]}": {
       "total": 1,
-      "correct": 0,
-      "misses": {
-        "{\"checks\":[{\"id\":\"pediatric\",\"status\":\"review\",\"verdict\":\"unsupported\",\"confidence\":0.2,\"probabilities\":{\"supported\":0.46,\"contradicted\":0.07,\"unsupported\":0.47}}]}": 1
-      }
+      "correct": 1,
+      "misses": {}
     },
     "{\"checks\":[{\"id\":\"population\",\"verdict\":\"unsupported\"}]}": {
       "total": 1,
@@ -357,7 +355,7 @@
       "total": 1,
       "correct": 0,
       "misses": {
-        "{\"checks\":[{\"id\":\"shipping\",\"status\":\"review\",\"verdict\":\"contradicted\",\"confidence\":0.37,\"probabilities\":{\"supported\":0.21,\"contradicted\":0.58,\"unsupported\":0.21}}]}": 1
+        "{\"checks\":[{\"id\":\"shipping\",\"status\":\"review\",\"verdict\":\"contradicted\",\"confidence\":0.22,\"probabilities\":{\"supported\":0.33,\"contradicted\":0.48,\"unsupported\":0.19}}]}": 1
       }
     },
     "{\"checks\":[{\"id\":\"train\",\"verdict\":\"contradicted\"}]}": {
@@ -374,7 +372,7 @@
       "total": 1,
       "correct": 0,
       "misses": {
-        "{\"checks\":[{\"id\":\"uptime\",\"status\":\"review\",\"verdict\":\"supported\",\"confidence\":0.37,\"probabilities\":{\"supported\":0.58,\"contradicted\":0,\"unsupported\":0.42}}]}": 1
+        "{\"checks\":[{\"id\":\"uptime\",\"status\":\"review\",\"verdict\":\"supported\",\"confidence\":0.35,\"probabilities\":{\"supported\":0.5599999999999999,\"contradicted\":0.01,\"unsupported\":0.43}}]}": 1
       }
     },
     "{\"checks\":[{\"id\":\"warranty\",\"verdict\":\"contradicted\"}]}": {
@@ -405,23 +403,6 @@
   },
   "failures": [
     {
-      "id": "cst-approved-for-children",
-      "expected": { "checks": [{ "id": "pediatric", "verdict": "supported" }] },
-      "actual": {
-        "checks": [
-          {
-            "id": "pediatric",
-            "status": "review",
-            "verdict": "unsupported",
-            "confidence": 0.2,
-            "probabilities": { "supported": 0.46, "contradicted": 0.07, "unsupported": 0.47 }
-          }
-        ]
-      },
-      "confidence": 0.2,
-      "contested": true
-    },
-    {
       "id": "cst-free-shipping",
       "expected": { "checks": [{ "id": "shipping", "verdict": "supported" }] },
       "actual": {
@@ -430,12 +411,12 @@
             "id": "shipping",
             "status": "review",
             "verdict": "contradicted",
-            "confidence": 0.37,
-            "probabilities": { "supported": 0.21, "contradicted": 0.58, "unsupported": 0.21 }
+            "confidence": 0.22,
+            "probabilities": { "supported": 0.33, "contradicted": 0.48, "unsupported": 0.19 }
           }
         ]
       },
-      "confidence": 0.37,
+      "confidence": 0.22,
       "contested": true
     },
     {
@@ -447,12 +428,16 @@
             "id": "uptime",
             "status": "review",
             "verdict": "supported",
-            "confidence": 0.37,
-            "probabilities": { "supported": 0.58, "contradicted": 0, "unsupported": 0.42 }
+            "confidence": 0.35,
+            "probabilities": {
+              "supported": 0.5599999999999999,
+              "contradicted": 0.01,
+              "unsupported": 0.43
+            }
           }
         ]
       },
-      "confidence": 0.37,
+      "confidence": 0.35,
       "adversarial": true
     }
   ]

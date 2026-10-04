@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "46f25ecc-082b-4eed-8f06-fd64bca5e458",
+    "runId": "9051f86b-c74b-4bd2-bb27-526140a6f90c",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:32.849Z",
-    "createdAt": "2026-10-04T18:16:32.849Z",
+    "evaluatedAt": "2026-10-04T20:43:30.092Z",
+    "createdAt": "2026-10-04T20:43:30.092Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "4740e3077ceb0727eb06a35d4c4e3c56e01da0c117fbc378b8f7e940b53c9bfa",
     "datasetFingerprint": "e1a6928c7c05552d47a930818c0b81130f2dad2ca64407cdb5c4d88a318bf4b3",
     "split": "development",
@@ -92,88 +92,88 @@
   "failed": 0,
   "correct": 105,
   "wrong": 7,
-  "ready": 54,
-  "review": 58,
+  "ready": 55,
+  "review": 57,
   "accuracy": 0.938,
   "completedAccuracy": 0.938,
   "accuracyInterval95": [0.8766, 0.9694],
   "readyAccuracy": 1,
-  "readyAccuracyInterval95": [0.9336, 1],
-  "reviewRate": 0.518,
+  "readyAccuracyInterval95": [0.9347, 1],
+  "reviewRate": 0.509,
   "contestedAccuracy": null,
   "adversarialAccuracy": null,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 27, "accuracy": 0.741 },
-    { "confidence": "0.5-0.6", "cases": 23, "accuracy": 1 },
+    { "confidence": "0-0.5", "cases": 32, "accuracy": 0.813 },
+    { "confidence": "0.5-0.6", "cases": 16, "accuracy": 0.938 },
     { "confidence": "0.6-0.7", "cases": 4, "accuracy": 1 },
-    { "confidence": "0.7-0.8", "cases": 4, "accuracy": 1 },
-    { "confidence": "0.8-0.9", "cases": 3, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 51, "accuracy": 1 }
+    { "confidence": "0.7-0.8", "cases": 5, "accuracy": 1 },
+    { "confidence": "0.8-0.9", "cases": 5, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 50, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
     {
       "minConfidence": 0.5,
-      "deferRate": 0.241,
-      "readyAccuracy": 1,
-      "readyCases": 85,
-      "reviewCases": 27,
+      "deferRate": 0.286,
+      "readyAccuracy": 0.988,
+      "readyCases": 80,
+      "reviewCases": 32,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9568, 1]
+      "readyAccuracyInterval95": [0.9325, 0.9978]
     },
     {
       "minConfidence": 0.55,
-      "deferRate": 0.339,
+      "deferRate": 0.348,
       "readyAccuracy": 1,
-      "readyCases": 74,
-      "reviewCases": 38,
+      "readyCases": 73,
+      "reviewCases": 39,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9507, 1]
+      "readyAccuracyInterval95": [0.95, 1]
     },
     {
       "minConfidence": 0.6,
-      "deferRate": 0.446,
+      "deferRate": 0.429,
       "readyAccuracy": 1,
-      "readyCases": 62,
-      "reviewCases": 50,
+      "readyCases": 64,
+      "reviewCases": 48,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9417, 1]
+      "readyAccuracyInterval95": [0.9434, 1]
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.473,
+      "deferRate": 0.455,
       "readyAccuracy": 1,
-      "readyCases": 59,
-      "reviewCases": 53,
+      "readyCases": 61,
+      "reviewCases": 51,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9389, 1]
+      "readyAccuracyInterval95": [0.9408, 1]
     },
     {
       "minConfidence": 0.7,
-      "deferRate": 0.482,
+      "deferRate": 0.464,
       "readyAccuracy": 1,
-      "readyCases": 58,
-      "reviewCases": 54,
+      "readyCases": 60,
+      "reviewCases": 52,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9379, 1]
+      "readyAccuracyInterval95": [0.9398, 1]
     },
     {
       "minConfidence": 0.75,
-      "deferRate": 0.5,
+      "deferRate": 0.509,
       "readyAccuracy": 1,
-      "readyCases": 56,
-      "reviewCases": 56,
+      "readyCases": 55,
+      "reviewCases": 57,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9358, 1]
+      "readyAccuracyInterval95": [0.9347, 1]
     },
     {
       "minConfidence": 0.8,
-      "deferRate": 0.518,
+      "deferRate": 0.509,
       "readyAccuracy": 1,
-      "readyCases": 54,
-      "reviewCases": 58,
+      "readyCases": 55,
+      "reviewCases": 57,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9336, 1]
+      "readyAccuracyInterval95": [0.9347, 1]
     },
     {
       "minConfidence": 0.85,
@@ -186,25 +186,25 @@
     },
     {
       "minConfidence": 0.9,
-      "deferRate": 0.545,
+      "deferRate": 0.554,
       "readyAccuracy": 1,
-      "readyCases": 51,
-      "reviewCases": 61,
+      "readyCases": 50,
+      "reviewCases": 62,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.93, 1]
+      "readyAccuracyInterval95": [0.9287, 1]
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.58,
+      "deferRate": 0.598,
       "readyAccuracy": 1,
-      "readyCases": 47,
-      "reviewCases": 65,
+      "readyCases": 45,
+      "reviewCases": 67,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9244, 1]
+      "readyAccuracyInterval95": [0.9213, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 106.01, "p95": 149.52, "totalCaseTime": 12534.01 },
+  "latencyMs": { "p50": 102.5, "p95": 147.45, "totalCaseTime": 12027.36 },
   "usage": {
     "requests": 112,
     "input_tokens": 61304,
@@ -227,25 +227,31 @@
       "id": "node-v22.20.0-assert.md-separate-12",
       "expected": { "verdict": "separate" },
       "actual": { "verdict": "continue" },
-      "confidence": 0.47
+      "confidence": 0.35
     },
     {
       "id": "node-v22.20.0-child_process.md-separate-98",
       "expected": { "verdict": "separate" },
       "actual": { "verdict": "continue" },
-      "confidence": 0.43
+      "confidence": 0.5
     },
     {
       "id": "node-v22.20.0-child_process.md-separate-168",
       "expected": { "verdict": "separate" },
       "actual": { "verdict": "continue" },
-      "confidence": 0.47
+      "confidence": 0.25
     },
     {
       "id": "node-v22.20.0-dns.md-separate-82",
       "expected": { "verdict": "separate" },
       "actual": { "verdict": "continue" },
-      "confidence": 0.29
+      "confidence": 0.4
+    },
+    {
+      "id": "node-v22.20.0-errors.md-separate-180",
+      "expected": { "verdict": "separate" },
+      "actual": { "verdict": "continue" },
+      "confidence": 0.23
     },
     {
       "id": "node-v22.20.0-timers.md-separate-17",
@@ -257,13 +263,7 @@
       "id": "node-v22.20.0-vm.md-separate-1",
       "expected": { "verdict": "separate" },
       "actual": { "verdict": "continue" },
-      "confidence": 0.26
-    },
-    {
-      "id": "node-v22.20.0-vm.md-separate-47",
-      "expected": { "verdict": "separate" },
-      "actual": { "verdict": "continue" },
-      "confidence": 0.13
+      "confidence": 0.38
     }
   ]
 }

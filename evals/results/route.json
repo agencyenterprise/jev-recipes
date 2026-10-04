@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "f6368a57-4346-4db9-8487-2eae1ebcb535",
+    "runId": "87c676c9-7517-4a7c-ab66-6cf269edc12d",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:49.661Z",
-    "createdAt": "2026-10-04T18:16:49.661Z",
+    "evaluatedAt": "2026-10-04T20:43:46.575Z",
+    "createdAt": "2026-10-04T20:43:46.575Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "47f2015674f4ab7c9498d3ccfbd072384bc90f6c451edadcfe62cf24de2d402d",
     "datasetFingerprint": "dd552262e538fa494bed93467d79da2c2f8dc3efb1017c0766428f547f1ccf93",
     "split": "development",
@@ -32,34 +32,34 @@
   "failed": 0,
   "correct": 110,
   "wrong": 0,
-  "ready": 72,
-  "review": 38,
+  "ready": 73,
+  "review": 37,
   "accuracy": 1,
   "completedAccuracy": 1,
   "accuracyInterval95": [0.9663, 1],
   "readyAccuracy": 1,
-  "readyAccuracyInterval95": [0.9493, 1],
-  "reviewRate": 0.345,
+  "readyAccuracyInterval95": [0.95, 1],
+  "reviewRate": 0.336,
   "contestedAccuracy": 1,
   "adversarialAccuracy": 1,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 6, "accuracy": 1 },
-    { "confidence": "0.5-0.6", "cases": 3, "accuracy": 1 },
-    { "confidence": "0.6-0.7", "cases": 4, "accuracy": 1 },
-    { "confidence": "0.7-0.8", "cases": 5, "accuracy": 1 },
+    { "confidence": "0-0.5", "cases": 5, "accuracy": 1 },
+    { "confidence": "0.5-0.6", "cases": 5, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 5, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 2, "accuracy": 1 },
     { "confidence": "0.8-0.9", "cases": 5, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 87, "accuracy": 1 }
+    { "confidence": "0.9-1", "cases": 88, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
     {
       "minConfidence": 0.5,
-      "deferRate": 0.245,
+      "deferRate": 0.236,
       "readyAccuracy": 1,
-      "readyCases": 83,
-      "reviewCases": 27,
+      "readyCases": 84,
+      "reviewCases": 26,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9558, 1]
+      "readyAccuracyInterval95": [0.9563, 1]
     },
     {
       "minConfidence": 0.55,
@@ -72,30 +72,30 @@
     },
     {
       "minConfidence": 0.6,
-      "deferRate": 0.273,
+      "deferRate": 0.282,
       "readyAccuracy": 1,
-      "readyCases": 80,
-      "reviewCases": 30,
+      "readyCases": 79,
+      "reviewCases": 31,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9542, 1]
+      "readyAccuracyInterval95": [0.9536, 1]
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.291,
+      "deferRate": 0.282,
       "readyAccuracy": 1,
-      "readyCases": 78,
-      "reviewCases": 32,
+      "readyCases": 79,
+      "reviewCases": 31,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9531, 1]
+      "readyAccuracyInterval95": [0.9536, 1]
     },
     {
       "minConfidence": 0.7,
-      "deferRate": 0.309,
+      "deferRate": 0.327,
       "readyAccuracy": 1,
-      "readyCases": 76,
-      "reviewCases": 34,
+      "readyCases": 74,
+      "reviewCases": 36,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9519, 1]
+      "readyAccuracyInterval95": [0.9507, 1]
     },
     {
       "minConfidence": 0.75,
@@ -108,21 +108,21 @@
     },
     {
       "minConfidence": 0.8,
-      "deferRate": 0.345,
+      "deferRate": 0.336,
       "readyAccuracy": 1,
-      "readyCases": 72,
-      "reviewCases": 38,
+      "readyCases": 73,
+      "reviewCases": 37,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9493, 1]
+      "readyAccuracyInterval95": [0.95, 1]
     },
     {
       "minConfidence": 0.85,
-      "deferRate": 0.355,
+      "deferRate": 0.364,
       "readyAccuracy": 1,
-      "readyCases": 71,
-      "reviewCases": 39,
+      "readyCases": 70,
+      "reviewCases": 40,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9487, 1]
+      "readyAccuracyInterval95": [0.948, 1]
     },
     {
       "minConfidence": 0.9,
@@ -135,16 +135,16 @@
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.436,
+      "deferRate": 0.427,
       "readyAccuracy": 1,
-      "readyCases": 62,
-      "reviewCases": 48,
+      "readyCases": 63,
+      "reviewCases": 47,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9417, 1]
+      "readyAccuracyInterval95": [0.9425, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 100.92, "p95": 151.5, "totalCaseTime": 11890.89 },
+  "latencyMs": { "p50": 100.99, "p95": 174.25, "totalCaseTime": 12211.88 },
   "usage": {
     "requests": 110,
     "input_tokens": 47484,

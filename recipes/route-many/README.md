@@ -154,13 +154,13 @@ The result `status` is `review` when any item is `review`. Items are independent
 
 Measured on 87 golden cases against `jev-1.13.0`: **94% accurate** overall (contested cases 40%, adversarial cases 95%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `eb9dc99b562568445d1ff5ff7b021cffacbbe4b2f65861df51e5c193ccb8f594`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `eb9dc99b562568445d1ff5ff7b021cffacbbe4b2f65861df51e5c193ccb8f594`.
 
 Scoring revision: 2.
 
-82/87 cases correct; 49 ready, 38 review, 0 failed. Accuracy among ready cases: 98%.
+82/87 cases correct; 47 ready, 40 review, 0 failed. Accuracy among ready cases: 98%.
 
-Latency: p50 109.16 ms, p95 177.8 ms. Usage: 79511 input tokens and 10515 output tokens across 124 logical requests.
+Latency: p50 107.58 ms, p95 156.48 ms. Usage: 79511 input tokens and 10515 output tokens across 124 logical requests.
 
 Labels: unspecified (27 cases): Existing repository labels; independent review and original authorship were not recorded. author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
@@ -172,12 +172,12 @@ A case counts as correct only when every item in it is right. Across the 217 ind
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 31%                | 98%                       |
-| 0.6             | 31%                | 98%                       |
-| 0.7             | 36%                | 98%                       |
-| 0.8             | 44%                | 98%                       |
-| 0.9             | 48%                | 100%                      |
-| 0.95            | 57%                | 100%                      |
+| 0.5             | 30%                | 98%                       |
+| 0.6             | 32%                | 98%                       |
+| 0.7             | 37%                | 98%                       |
+| 0.8             | 46%                | 98%                       |
+| 0.9             | 51%                | 100%                      |
+| 0.95            | 56%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 

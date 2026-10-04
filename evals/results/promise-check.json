@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "004549b0-6e45-4e06-bf49-ecc9d249b61d",
+    "runId": "8cef85c0-ab3b-4bf9-b306-4da216681899",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:40.383Z",
-    "createdAt": "2026-10-04T18:16:40.383Z",
+    "evaluatedAt": "2026-10-04T20:43:37.293Z",
+    "createdAt": "2026-10-04T20:43:37.293Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "49ee0d45f1abd476d39302edeeb80b4e9cf47a46f82642872688fc03f45497fe",
     "datasetFingerprint": "51ce60b5ee2b62b749370e48c0d953e71e9f11188f47cfa464a2bf7ec0f87932",
     "split": "development",
@@ -32,23 +32,23 @@
   "failed": 0,
   "correct": 98,
   "wrong": 4,
-  "ready": 94,
-  "review": 8,
+  "ready": 93,
+  "review": 9,
   "accuracy": 0.961,
   "completedAccuracy": 0.961,
   "accuracyInterval95": [0.9035, 0.9846],
   "readyAccuracy": 1,
-  "readyAccuracyInterval95": [0.9607, 1],
-  "reviewRate": 0.078,
+  "readyAccuracyInterval95": [0.9603, 1],
+  "reviewRate": 0.088,
   "contestedAccuracy": 0.667,
   "adversarialAccuracy": 1,
   "calibration": [
     { "confidence": "0-0.5", "cases": 3, "accuracy": 0.333 },
-    { "confidence": "0.5-0.6", "cases": 0, "accuracy": null },
-    { "confidence": "0.6-0.7", "cases": 4, "accuracy": 0.5 },
-    { "confidence": "0.7-0.8", "cases": 1, "accuracy": 1 },
-    { "confidence": "0.8-0.9", "cases": 4, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 90, "accuracy": 1 }
+    { "confidence": "0.5-0.6", "cases": 1, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 3, "accuracy": 0.667 },
+    { "confidence": "0.7-0.8", "cases": 2, "accuracy": 0.5 },
+    { "confidence": "0.8-0.9", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 91, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
@@ -72,66 +72,66 @@
     },
     {
       "minConfidence": 0.6,
-      "deferRate": 0.029,
+      "deferRate": 0.039,
       "readyAccuracy": 0.98,
-      "readyCases": 99,
-      "reviewCases": 3,
+      "readyCases": 98,
+      "reviewCases": 4,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9293, 0.9944]
+      "readyAccuracyInterval95": [0.9286, 0.9944]
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.049,
+      "deferRate": 0.059,
       "readyAccuracy": 0.99,
-      "readyCases": 97,
-      "reviewCases": 5,
+      "readyCases": 96,
+      "reviewCases": 6,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9439, 0.9982]
+      "readyAccuracyInterval95": [0.9433, 0.9982]
     },
     {
       "minConfidence": 0.7,
       "deferRate": 0.069,
-      "readyAccuracy": 1,
+      "readyAccuracy": 0.989,
       "readyCases": 95,
       "reviewCases": 7,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9611, 1]
+      "readyAccuracyInterval95": [0.9428, 0.9981]
     },
     {
       "minConfidence": 0.75,
-      "deferRate": 0.078,
-      "readyAccuracy": 1,
-      "readyCases": 94,
-      "reviewCases": 8,
+      "deferRate": 0.069,
+      "readyAccuracy": 0.989,
+      "readyCases": 95,
+      "reviewCases": 7,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9607, 1]
+      "readyAccuracyInterval95": [0.9428, 0.9981]
     },
     {
       "minConfidence": 0.8,
-      "deferRate": 0.078,
+      "deferRate": 0.088,
       "readyAccuracy": 1,
-      "readyCases": 94,
-      "reviewCases": 8,
+      "readyCases": 93,
+      "reviewCases": 9,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9607, 1]
+      "readyAccuracyInterval95": [0.9603, 1]
     },
     {
       "minConfidence": 0.85,
-      "deferRate": 0.098,
+      "deferRate": 0.088,
       "readyAccuracy": 1,
-      "readyCases": 92,
-      "reviewCases": 10,
+      "readyCases": 93,
+      "reviewCases": 9,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9599, 1]
+      "readyAccuracyInterval95": [0.9603, 1]
     },
     {
       "minConfidence": 0.9,
-      "deferRate": 0.118,
+      "deferRate": 0.108,
       "readyAccuracy": 1,
-      "readyCases": 90,
-      "reviewCases": 12,
+      "readyCases": 91,
+      "reviewCases": 11,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9591, 1]
+      "readyAccuracyInterval95": [0.9595, 1]
     },
     {
       "minConfidence": 0.95,
@@ -144,7 +144,7 @@
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 100.55, "p95": 135.01, "totalCaseTime": 10620.98 },
+  "latencyMs": { "p50": 97.11, "p95": 132.29, "totalCaseTime": 10523.38 },
   "usage": {
     "requests": 102,
     "input_tokens": 47940,
@@ -172,27 +172,27 @@
       "id": "unsupported-three-day-shipping",
       "expected": { "verdict": "unsupported" },
       "actual": { "verdict": "within_commitments" },
-      "confidence": 0.69,
+      "confidence": 0.75,
       "contested": true
     },
     {
       "id": "unclear-judgment-policy",
       "expected": { "verdict": "unclear" },
       "actual": { "verdict": "within_commitments" },
-      "confidence": 0.3
+      "confidence": 0.35
     },
     {
       "id": "unclear-consider-it-handled",
       "expected": { "verdict": "unclear" },
       "actual": { "verdict": "unsupported" },
-      "confidence": 0.63,
+      "confidence": 0.6,
       "contested": true
     },
     {
       "id": "unclear-make-this-right",
       "expected": { "verdict": "unclear" },
       "actual": { "verdict": "within_commitments" },
-      "confidence": 0.38
+      "confidence": 0.25
     }
   ]
 }

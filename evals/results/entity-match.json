@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "7016c84f-443b-415e-8ca2-1421c9f0fed0",
+    "runId": "2c6a803e-7946-4f6f-b8e4-a5d19e8f4905",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:16.162Z",
-    "createdAt": "2026-10-04T18:16:16.162Z",
+    "evaluatedAt": "2026-10-04T20:43:14.302Z",
+    "createdAt": "2026-10-04T20:43:14.302Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "937fa33427abf5c862ed5c9f34919d1a5585a05b6cd7a722c857f0405f2dfb1d",
     "datasetFingerprint": "bbf1f8e57ebea24150cb4cc2c7bb371fc606adc093630fae41789b2411af4241",
     "split": "development",
@@ -39,8 +39,8 @@
   "adversarialAccuracy": null,
   "calibration": [
     { "confidence": "0-0.5", "cases": 0, "accuracy": null },
-    { "confidence": "0.5-0.6", "cases": 13, "accuracy": 0.385 },
-    { "confidence": "0.6-0.7", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.5-0.6", "cases": 11, "accuracy": 0.273 },
+    { "confidence": "0.6-0.7", "cases": 4, "accuracy": 1 },
     { "confidence": "0.7-0.8", "cases": 0, "accuracy": null },
     { "confidence": "0.8-0.9", "cases": 0, "accuracy": null },
     { "confidence": "0.9-1", "cases": 45, "accuracy": 1 }
@@ -58,30 +58,30 @@
     },
     {
       "minConfidence": 0.55,
-      "deferRate": 0.133,
-      "readyAccuracy": 0.962,
-      "readyCases": 52,
-      "reviewCases": 8,
+      "deferRate": 0.1,
+      "readyAccuracy": 0.944,
+      "readyCases": 54,
+      "reviewCases": 6,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8702, 0.9894]
+      "readyAccuracyInterval95": [0.8489, 0.9809]
     },
     {
       "minConfidence": 0.6,
-      "deferRate": 0.217,
+      "deferRate": 0.183,
       "readyAccuracy": 1,
-      "readyCases": 47,
-      "reviewCases": 13,
+      "readyCases": 49,
+      "reviewCases": 11,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9244, 1]
+      "readyAccuracyInterval95": [0.9273, 1]
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.233,
+      "deferRate": 0.2,
       "readyAccuracy": 1,
-      "readyCases": 46,
-      "reviewCases": 14,
+      "readyCases": 48,
+      "reviewCases": 12,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9229, 1]
+      "readyAccuracyInterval95": [0.9259, 1]
     },
     {
       "minConfidence": 0.7,
@@ -138,8 +138,8 @@
       "readyAccuracyInterval95": [0.9213, 1]
     }
   ],
-  "suggestedMinConfidence": 0.55,
-  "latencyMs": { "p50": 106.09, "p95": 168.95, "totalCaseTime": 6907.94 },
+  "suggestedMinConfidence": 0.6,
+  "latencyMs": { "p50": 106.69, "p95": 162.27, "totalCaseTime": 6837.37 },
   "usage": {
     "requests": 60,
     "input_tokens": 31304,
@@ -165,46 +165,46 @@
       "confidence": 0.55
     },
     {
+      "id": "featured-01-different-id",
+      "expected": { "verdict": "different" },
+      "actual": { "verdict": "same" },
+      "confidence": 0.53
+    },
+    {
       "id": "featured-02-different-id",
       "expected": { "verdict": "different" },
       "actual": { "verdict": "same" },
-      "confidence": 0.56
+      "confidence": 0.57
     },
     {
       "id": "featured-03-different-id",
       "expected": { "verdict": "different" },
       "actual": { "verdict": "same" },
-      "confidence": 0.54
+      "confidence": 0.53
     },
     {
       "id": "featured-06-different-id",
       "expected": { "verdict": "different" },
       "actual": { "verdict": "same" },
-      "confidence": 0.52
+      "confidence": 0.54
     },
     {
       "id": "featured-07-different-id",
       "expected": { "verdict": "different" },
       "actual": { "verdict": "same" },
-      "confidence": 0.51
+      "confidence": 0.5
     },
     {
       "id": "featured-08-different-id",
       "expected": { "verdict": "different" },
       "actual": { "verdict": "same" },
-      "confidence": 0.5
-    },
-    {
-      "id": "featured-09-different-id",
-      "expected": { "verdict": "different" },
-      "actual": { "verdict": "same" },
-      "confidence": 0.5
+      "confidence": 0.51
     },
     {
       "id": "featured-10-different-id",
       "expected": { "verdict": "different" },
       "actual": { "verdict": "same" },
-      "confidence": 0.52
+      "confidence": 0.58
     }
   ]
 }

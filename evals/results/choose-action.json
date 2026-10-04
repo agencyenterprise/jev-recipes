@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "c771b818-045a-4b30-b2c6-89dcf81eb02f",
+    "runId": "61214dba-9072-44ce-8995-cdc869a2760c",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:00.877Z",
-    "createdAt": "2026-10-04T18:16:00.877Z",
+    "evaluatedAt": "2026-10-04T20:42:58.654Z",
+    "createdAt": "2026-10-04T20:42:58.654Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "3f5ecf6afa9ec8c529c66294d49bfacab11c5c3cae74610752c7828783031b58",
     "datasetFingerprint": "7e758c652163b3c0d251e6b925171484c15abf93d65c9dfede1c4cc79f554c46",
     "split": "development",
@@ -36,8 +36,8 @@
   "calibration": [
     { "confidence": "0-0.5", "cases": 4, "accuracy": 0.75 },
     { "confidence": "0.5-0.6", "cases": 0, "accuracy": null },
-    { "confidence": "0.6-0.7", "cases": 0, "accuracy": null },
-    { "confidence": "0.7-0.8", "cases": 1, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 1, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 0, "accuracy": null },
     { "confidence": "0.8-0.9", "cases": 3, "accuracy": 1 },
     { "confidence": "0.9-1", "cases": 24, "accuracy": 1 }
   ],
@@ -81,12 +81,12 @@
     },
     {
       "minConfidence": 0.7,
-      "deferRate": 0.125,
+      "deferRate": 0.156,
       "readyAccuracy": 1,
-      "readyCases": 28,
-      "reviewCases": 4,
+      "readyCases": 27,
+      "reviewCases": 5,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8794, 1]
+      "readyAccuracyInterval95": [0.8754, 1]
     },
     {
       "minConfidence": 0.75,
@@ -135,7 +135,7 @@
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 100.39, "p95": 139.6, "totalCaseTime": 3438.16 },
+  "latencyMs": { "p50": 102.73, "p95": 164.09, "totalCaseTime": 3574.34 },
   "usage": {
     "requests": 32,
     "input_tokens": 26903,
@@ -192,7 +192,7 @@
       "id": "expected-value-gamble",
       "expected": { "suggestedSelection": "take-gamble-card" },
       "actual": { "suggestedSelection": "take-safe-card" },
-      "confidence": 0.27,
+      "confidence": 0.38,
       "contested": true
     }
   ]

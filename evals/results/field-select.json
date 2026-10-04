@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "18224cb0-81f5-4756-8839-15b7ae382335",
+    "runId": "2867cb47-f09b-49cb-9257-7a99f78f32b2",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:19.851Z",
-    "createdAt": "2026-10-04T18:16:19.851Z",
+    "evaluatedAt": "2026-10-04T20:43:17.929Z",
+    "createdAt": "2026-10-04T20:43:17.929Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "3410c4137a54287f299baf2ea79eca4e6fe0c84ce9f3a15629f076db7b7dde5c",
     "datasetFingerprint": "d4ac5b33fe664c5d35d603d77d12459ee1c1fd0aa285880a785920cc10995b5c",
     "split": "development",
@@ -27,14 +27,14 @@
   "failed": 0,
   "correct": 60,
   "wrong": 0,
-  "ready": 45,
-  "review": 15,
+  "ready": 44,
+  "review": 16,
   "accuracy": 1,
   "completedAccuracy": 1,
   "accuracyInterval95": [0.9398, 1],
   "readyAccuracy": 1,
-  "readyAccuracyInterval95": [0.9213, 1],
-  "reviewRate": 0.25,
+  "readyAccuracyInterval95": [0.9197, 1],
+  "reviewRate": 0.267,
   "items": 120,
   "correctItems": 120,
   "itemAccuracy": 1,
@@ -44,9 +44,9 @@
     { "confidence": "0-0.5", "cases": 0, "accuracy": null },
     { "confidence": "0.5-0.6", "cases": 0, "accuracy": null },
     { "confidence": "0.6-0.7", "cases": 0, "accuracy": null },
-    { "confidence": "0.7-0.8", "cases": 1, "accuracy": 1 },
-    { "confidence": "0.8-0.9", "cases": 14, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 45, "accuracy": 1 }
+    { "confidence": "0.7-0.8", "cases": 4, "accuracy": 1 },
+    { "confidence": "0.8-0.9", "cases": 12, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 44, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
@@ -106,12 +106,12 @@
     },
     {
       "minConfidence": 0.8,
-      "deferRate": 0.25,
+      "deferRate": 0.267,
       "readyAccuracy": 1,
-      "readyCases": 45,
-      "reviewCases": 15,
+      "readyCases": 44,
+      "reviewCases": 16,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9213, 1]
+      "readyAccuracyInterval95": [0.9197, 1]
     },
     {
       "minConfidence": 0.85,
@@ -142,7 +142,7 @@
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 109.6, "p95": 154.94, "totalCaseTime": 6835.12 },
+  "latencyMs": { "p50": 100.63, "p95": 137.4, "totalCaseTime": 6248.88 },
   "usage": {
     "requests": 60,
     "input_tokens": 30173,

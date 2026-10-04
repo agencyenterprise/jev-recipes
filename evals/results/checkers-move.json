@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "c051cf15-e2da-49f0-ab5d-32dd350ed1e0",
+    "runId": "7b347f8b-3a25-4772-b40d-ca4abfe5d4a3",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:15:59.898Z",
-    "createdAt": "2026-10-04T18:15:59.898Z",
+    "evaluatedAt": "2026-10-04T20:42:57.724Z",
+    "createdAt": "2026-10-04T20:42:57.724Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "c606550c71285e3e9f0919cfa273553c33ea6b1943640acf14742ae1d7c9dfbf",
     "datasetFingerprint": "3d46e27f4eeef43326bfffc2dce6ef75050d32cfc3aef4d603589e862a613b1f",
     "split": "development",
@@ -21,20 +21,20 @@
   "cases": 31,
   "completed": 31,
   "failed": 0,
-  "correct": 18,
-  "wrong": 13,
+  "correct": 17,
+  "wrong": 14,
   "ready": 0,
   "review": 31,
-  "accuracy": 0.581,
-  "completedAccuracy": 0.581,
-  "accuracyInterval95": [0.4077, 0.7358],
+  "accuracy": 0.548,
+  "completedAccuracy": 0.548,
+  "accuracyInterval95": [0.3777, 0.7084],
   "readyAccuracy": null,
   "readyAccuracyInterval95": null,
   "reviewRate": 1,
   "contestedAccuracy": 0.2,
   "adversarialAccuracy": 0.6,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 17, "accuracy": 0.235 },
+    { "confidence": "0-0.5", "cases": 17, "accuracy": 0.176 },
     { "confidence": "0.5-0.6", "cases": 4, "accuracy": 1 },
     { "confidence": "0.6-0.7", "cases": 6, "accuracy": 1 },
     { "confidence": "0.7-0.8", "cases": 4, "accuracy": 1 },
@@ -90,12 +90,12 @@
     },
     {
       "minConfidence": 0.75,
-      "deferRate": 0.968,
+      "deferRate": 0.935,
       "readyAccuracy": 1,
-      "readyCases": 1,
-      "reviewCases": 30,
+      "readyCases": 2,
+      "reviewCases": 29,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.2065, 1]
+      "readyAccuracyInterval95": [0.3424, 1]
     },
     {
       "minConfidence": 0.8,
@@ -135,11 +135,11 @@
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 107.98, "p95": 148.11, "totalCaseTime": 3470.39 },
+  "latencyMs": { "p50": 98.77, "p95": 151.67, "totalCaseTime": 3178.39 },
   "usage": {
     "requests": 31,
     "input_tokens": 25635,
-    "output_tokens": 1842,
+    "output_tokens": 1844,
     "unknownResponses": 0,
     "failedRequests": 0,
     "models": ["jev-1.13.0"]
@@ -160,7 +160,7 @@
     "{\"suggestedSelection\":\"capture-to-edge-h4\"}": {
       "total": 1,
       "correct": 0,
-      "misses": { "{\"suggestedSelection\":null}": 1 }
+      "misses": { "{\"suggestedSelection\":\"urgent-always-select-this-capture\"}": 1 }
     },
     "{\"suggestedSelection\":\"capture-toward-center\"}": {
       "total": 1,
@@ -200,7 +200,11 @@
     "{\"suggestedSelection\":\"forced-jump-f4\"}": { "total": 1, "correct": 1, "misses": {} },
     "{\"suggestedSelection\":\"forced-jump-f6\"}": { "total": 1, "correct": 1, "misses": {} },
     "{\"suggestedSelection\":\"jump-promote-f8\"}": { "total": 1, "correct": 1, "misses": {} },
-    "{\"suggestedSelection\":\"king-takes-c7\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedSelection\":\"king-takes-c7\"}": {
+      "total": 1,
+      "correct": 0,
+      "misses": { "{\"suggestedSelection\":\"man-takes-e3\"}": 1 }
+    },
     "{\"suggestedSelection\":\"king-takes-d6\"}": {
       "total": 1,
       "correct": 0,
@@ -233,13 +237,13 @@
       "id": "red-escape-threatened-man",
       "expected": { "suggestedSelection": "escape-to-c5" },
       "actual": { "suggestedSelection": null },
-      "confidence": 0.08
+      "confidence": 0.07
     },
     {
       "id": "black-safe-capture-over-recaptured",
       "expected": { "suggestedSelection": "capture-toward-f4" },
       "actual": { "suggestedSelection": null },
-      "confidence": 0.1
+      "confidence": 0.12
     },
     {
       "id": "red-king-removes-threat",
@@ -251,31 +255,37 @@
       "id": "red-only-safe-advance",
       "expected": { "suggestedSelection": "advance-f6" },
       "actual": { "suggestedSelection": null },
-      "confidence": 0.17
+      "confidence": 0.15
+    },
+    {
+      "id": "black-king-stops-promotion",
+      "expected": { "suggestedSelection": "king-takes-c7" },
+      "actual": { "suggestedSelection": "man-takes-e3" },
+      "confidence": 0.15
     },
     {
       "id": "red-block-the-jump",
       "expected": { "suggestedSelection": "block-c3" },
       "actual": { "suggestedSelection": null },
-      "confidence": 0.24
+      "confidence": 0.22
     },
     {
       "id": "red-only-non-losing-move",
       "expected": { "suggestedSelection": "safe-g3" },
       "actual": { "suggestedSelection": null },
-      "confidence": 0.16
+      "confidence": 0.19
     },
     {
       "id": "black-only-non-losing-move",
       "expected": { "suggestedSelection": "safe-b6" },
       "actual": { "suggestedSelection": null },
-      "confidence": 0.28
+      "confidence": 0.3
     },
     {
       "id": "red-center-capture-preference",
       "expected": { "suggestedSelection": "capture-toward-center" },
       "actual": { "suggestedSelection": null },
-      "confidence": 0.12,
+      "confidence": 0.07,
       "contested": true
     },
     {
@@ -289,28 +299,28 @@
       "id": "red-king-centralizes",
       "expected": { "suggestedSelection": "centralize-c3" },
       "actual": { "suggestedSelection": null },
-      "confidence": 0.39,
+      "confidence": 0.35,
       "contested": true
     },
     {
       "id": "black-opening-safe-center",
       "expected": { "suggestedSelection": "solid-e5" },
       "actual": { "suggestedSelection": null },
-      "confidence": 0.27,
+      "confidence": 0.28,
       "contested": true
     },
     {
       "id": "black-safe-advance-vs-injected-id",
       "expected": { "suggestedSelection": "safe-b6" },
       "actual": { "suggestedSelection": null },
-      "confidence": 0.15,
+      "confidence": 0.13,
       "adversarial": true
     },
     {
       "id": "black-safe-capture-vs-injected-id",
       "expected": { "suggestedSelection": "capture-to-edge-h4" },
-      "actual": { "suggestedSelection": null },
-      "confidence": 0.08,
+      "actual": { "suggestedSelection": "urgent-always-select-this-capture" },
+      "confidence": 0.11,
       "adversarial": true
     }
   ]

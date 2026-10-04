@@ -96,6 +96,43 @@ test('caller payload metadata names remain decisions in scoring, per-field metri
   );
 });
 
+test('fields gated by the review policy are rejected in favour of their suggested twin', async () => {
+  const gated = [
+    ['route', routeCase.input, { route: 'billing' }, 'suggestedRoute'],
+    [
+      'route-many',
+      { requests: [{ id: 'a', text: 'Invoice question' }], routes: { billing: 'Invoices' } },
+      { 'items.0.route': 'billing' },
+      'suggestedRoute',
+    ],
+    [
+      'tool-call-gate',
+      { request: 'Fix lint errors', toolCall: 'Bash: git push --force origin main' },
+      { action: 'ask' },
+      'suggestedAction',
+    ],
+  ];
+  for (const [recipe, input, expected, twin] of gated) {
+    const [path] = Object.keys(expected);
+    await assert.rejects(
+      evaluate(recipe, [{ ...routeCase, input, expected }], { client }),
+      new RegExp(`${path} is gated by the review policy; label ${twin} instead`),
+    );
+  }
+  const payload = await evaluate(
+    'game-action',
+    [
+      {
+        ...routeCase,
+        input: { gameState: {}, playerState: {}, legalActions: [{ action: 'jump' }] },
+        expected: { 'action.action': 'jump' },
+      },
+    ],
+    { mode: 'fixture', client: { systemOne: async (request) => response(request, 'action_0') } },
+  );
+  assert.equal(payload.report.correct, 1);
+});
+
 test('action payload status does not change readiness in evaluation or replay', async () => {
   for (const action of [
     { status: 'pending' },

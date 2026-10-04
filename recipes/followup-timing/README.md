@@ -94,26 +94,26 @@ Does not extract dates, time zones, or event identifiers and does not schedule c
 
 **Current synthetic measurement; experimental.**
 
-Measured on 60 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 80%).
+Measured on 60 golden cases against `jev-1.13.0`: **97% accurate** overall (contested cases 80%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `4866c46f354ce9b8856fe256afca3700a757a07e3bdf69be816718bd9dbbeca3`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `4866c46f354ce9b8856fe256afca3700a757a07e3bdf69be816718bd9dbbeca3`.
 
 Scoring revision: 2.
 
-59/60 cases correct; 51 ready, 9 review, 0 failed. Accuracy among ready cases: 100%.
+58/60 cases correct; 51 ready, 9 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 106.04 ms, p95 145.47 ms. Usage: 37499 input tokens and 3810 output tokens across 60 logical requests.
+Latency: p50 95.27 ms, p95 142.93 ms. Usage: 37499 input tokens and 3811 output tokens across 60 logical requests.
 
 Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 91% to 100%.
+95% case-level accuracy interval: 89% to 99%.
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
 | 0.5             | 10%                | 100%                      |
-| 0.6             | 12%                | 100%                      |
+| 0.6             | 13%                | 100%                      |
 | 0.7             | 15%                | 100%                      |
 | 0.8             | 15%                | 100%                      |
 | 0.9             | 17%                | 100%                      |

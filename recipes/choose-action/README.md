@@ -189,13 +189,13 @@ A saved demo response recommends `defend`. A live recommendation can differ. The
 
 Measured on 32 golden cases against `jev-1.13.0`: **97% accurate** overall (contested cases 80%, adversarial cases 100%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `3f5ecf6afa9ec8c529c66294d49bfacab11c5c3cae74610752c7828783031b58`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `3f5ecf6afa9ec8c529c66294d49bfacab11c5c3cae74610752c7828783031b58`.
 
 Scoring revision: 2.
 
 31/32 cases correct; 27 ready, 5 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 100.39 ms, p95 139.6 ms. Usage: 26903 input tokens and 2011 output tokens across 32 logical requests.
+Latency: p50 102.73 ms, p95 164.09 ms. Usage: 26903 input tokens and 2011 output tokens across 32 logical requests.
 
 Labels: unspecified (32 cases): Not recorded by the dataset author.
 
@@ -207,7 +207,7 @@ These authored cases are not independent human validation. Related variants are 
 | --------------- | ------------------ | ------------------------- |
 | 0.5             | 13%                | 100%                      |
 | 0.6             | 13%                | 100%                      |
-| 0.7             | 13%                | 100%                      |
+| 0.7             | 16%                | 100%                      |
 | 0.8             | 16%                | 100%                      |
 | 0.9             | 25%                | 100%                      |
 | 0.95            | 28%                | 100%                      |

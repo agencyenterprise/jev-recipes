@@ -92,13 +92,13 @@ The recipe reads the failure as text and asks only whether repeating the same at
 
 Measured on 60 golden cases against `jev-1.13.0`: **100% accurate** overall.
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `4325f3b69b7412e092d660cb8a88b35faf53642a1310dff64aabd0557ca88f46`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `4325f3b69b7412e092d660cb8a88b35faf53642a1310dff64aabd0557ca88f46`.
 
 Scoring revision: 2.
 
 60/60 cases correct; 60 ready, 0 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 105.32 ms, p95 153.05 ms. Usage: 28263 input tokens and 1200 output tokens across 60 logical requests.
+Latency: p50 95.01 ms, p95 142.84 ms. Usage: 28263 input tokens and 1200 output tokens across 60 logical requests.
 
 Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
@@ -113,7 +113,7 @@ These authored cases are not independent human validation. Related variants are 
 | 0.7             | 0%                 | 100%                      |
 | 0.8             | 0%                 | 100%                      |
 | 0.9             | 7%                 | 100%                      |
-| 0.95            | 35%                | 100%                      |
+| 0.95            | 33%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 

@@ -86,13 +86,13 @@ See [shared options and behavior](../README.md#shared-options-and-behavior) for 
 
 Measured on 44 golden cases against `jev-1.13.0`: **89% accurate** overall (contested cases 60%, adversarial cases 75%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `30419ace0225cb784d22b7f49cdd1d61be3199ad734b04d19f726e8777ad3d97`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `30419ace0225cb784d22b7f49cdd1d61be3199ad734b04d19f726e8777ad3d97`.
 
 Scoring revision: 2.
 
-39/44 cases correct; 35 ready, 9 review, 0 failed. Accuracy among ready cases: 97%.
+39/44 cases correct; 33 ready, 11 review, 0 failed. Accuracy among ready cases: 97%.
 
-Latency: p50 118.56 ms, p95 190 ms. Usage: 25562 input tokens and 2261 output tokens across 44 logical requests.
+Latency: p50 99.4 ms, p95 135.3 ms. Usage: 25562 input tokens and 2261 output tokens across 44 logical requests.
 
 Labels: unspecified (44 cases): Not recorded by the dataset author.
 
@@ -104,10 +104,10 @@ These authored cases are not independent human validation. Related variants are 
 | --------------- | ------------------ | ------------------------- |
 | 0.5             | 11%                | 92%                       |
 | 0.6             | 11%                | 92%                       |
-| 0.7             | 11%                | 92%                       |
-| 0.8             | 21%                | 97%                       |
+| 0.7             | 14%                | 95%                       |
+| 0.8             | 25%                | 97%                       |
 | 0.9             | 30%                | 97%                       |
-| 0.95            | 39%                | 96%                       |
+| 0.95            | 39%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.8.
 

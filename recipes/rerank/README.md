@@ -97,13 +97,13 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 Measured on 57 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%, adversarial cases 100%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `b49302ae595364c80d2ba7cfcec2ff9a43d3345dc8b55afe0edfa95510253cb2`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `b49302ae595364c80d2ba7cfcec2ff9a43d3345dc8b55afe0edfa95510253cb2`.
 
 Scoring revision: 2.
 
 57/57 cases correct; 57 ready, 0 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 104.92 ms, p95 139.77 ms. Usage: 40528 input tokens and 4494 output tokens across 57 logical requests.
+Latency: p50 104.49 ms, p95 149.4 ms. Usage: 40528 input tokens and 4494 output tokens across 57 logical requests.
 
 Labels: unspecified (57 cases): Not recorded by the dataset author.
 

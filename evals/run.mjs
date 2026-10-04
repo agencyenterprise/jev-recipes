@@ -8,7 +8,7 @@ import { gzipSync } from 'node:zlib';
 import { evaluate } from '../dist/evaluation/index.js';
 import { scoringRevision } from '../dist/evaluation/comparison.js';
 import { loadEvaluationRecipe, validateCases } from '../dist/evaluation/dataset.js';
-import { readDevelopmentBaseline, saveDevelopmentBaseline } from './lib/baselines.mjs';
+import { readDevelopmentBaseline, readReport, saveDevelopmentBaseline } from './lib/baselines.mjs';
 import {
   listGoldenRecipeIds,
   projectRoot,
@@ -26,6 +26,8 @@ const { values, positionals } = parseArgs({
     check: { type: 'boolean', default: false },
     concurrency: { type: 'string', default: '4' },
     featured: { type: 'boolean', default: false },
+    'allow-failures': { type: 'boolean', default: false },
+    'replace-held-out': { type: 'boolean', default: false },
   },
 });
 const saveResults = values.write ?? !values.check;
@@ -54,6 +56,7 @@ for (const id of ids) {
 }
 requireApiKey();
 let regressed = false;
+let withheld = false;
 for (const { id, cases, baseline } of plannedRuns) {
   const archive = saveResults
     ? join(projectRoot, 'evals/runs', `${id}-${Date.now()}-${randomUUID().slice(0, 8)}`)
@@ -67,10 +70,15 @@ for (const { id, cases, baseline } of plannedRuns) {
   if (archive) console.log(`  Recorded responses: ${archive}`);
   printReport(report);
   if (baseline) regressed = checkAgainstBaseline(report, baseline) || regressed;
-  if (saveResults) await saveEvaluation(run);
+  if (!saveResults) continue;
+  if (failuresWithholdSaving(report)) {
+    withheld = true;
+    continue;
+  }
+  await saveEvaluation(run);
 }
 if (!saveResults && !values.check) console.log('Results were not saved (--no-write).');
-if (regressed) process.exitCode = 1;
+if (regressed || withheld) process.exitCode = 1;
 
 function printReport(report) {
   console.log(
@@ -100,6 +108,23 @@ function snapshotPath(id) {
   return join(projectRoot, 'evals/results', `${id}.json`);
 }
 
+function failuresWithholdSaving(report) {
+  if (report.failed === 0) return false;
+  if (report.failed === report.cases) {
+    console.error(
+      `  NOT SAVED ${report.recipe}: every case failed, so this run measured nothing. ` +
+        'The responses are retained under evals/runs; the report, baseline, and guide were kept.',
+    );
+    return true;
+  }
+  if (values['allow-failures']) return false;
+  console.error(
+    `  NOT SAVED ${report.recipe}: ${report.failed} of ${report.cases} cases failed. ` +
+      'Rerun with --allow-failures to save a measurement that includes provider failures.',
+  );
+  return true;
+}
+
 async function saveEvaluation(run) {
   const { report } = run;
   const evidence = join(projectRoot, 'evals/evidence', run.recipe, `${run.split}-${run.runId}`);
@@ -108,8 +133,16 @@ async function saveEvaluation(run) {
     flag: 'wx',
   });
   await saveDevelopmentBaseline(report);
-  const config = await resolveConfig(join(projectRoot, 'package.json'));
   const reportPath = snapshotPath(report.recipe);
+  const previous = await readReport(reportPath);
+  if (previous?.evidence?.split === 'held-out' && !values['replace-held-out']) {
+    console.log(
+      `  Kept the held-out summary in evals/results/${report.recipe}.json and its guide; ` +
+        'pass --replace-held-out to replace them with this development run.',
+    );
+    return;
+  }
+  const config = await resolveConfig(join(projectRoot, 'package.json'));
   await mkdir(join(projectRoot, 'evals/results'), { recursive: true });
   await writeFile(
     reportPath,
