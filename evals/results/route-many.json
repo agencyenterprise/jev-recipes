@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "d750983f-a9a0-4964-8890-f54a5560286f",
+    "runId": "c30b065e-4c4c-4b67-ae1a-4f9803f233d6",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:52.787Z",
-    "createdAt": "2026-10-04T18:16:52.787Z",
+    "evaluatedAt": "2026-10-04T20:43:49.817Z",
+    "createdAt": "2026-10-04T20:43:49.817Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "eb9dc99b562568445d1ff5ff7b021cffacbbe4b2f65861df51e5c193ccb8f594",
     "datasetFingerprint": "61a9417eb3b39ef01861aada69c0107dc934e9160433cc59b986b7683a19a6a4",
     "split": "development",
@@ -32,37 +32,37 @@
   "failed": 0,
   "correct": 82,
   "wrong": 5,
-  "ready": 49,
-  "review": 38,
+  "ready": 47,
+  "review": 40,
   "accuracy": 0.943,
   "completedAccuracy": 0.943,
   "accuracyInterval95": [0.8724, 0.9752],
-  "readyAccuracy": 0.98,
-  "readyAccuracyInterval95": [0.8931, 0.9964],
-  "reviewRate": 0.437,
+  "readyAccuracy": 0.979,
+  "readyAccuracyInterval95": [0.8889, 0.9962],
+  "reviewRate": 0.46,
   "items": 217,
   "correctItems": 212,
   "itemAccuracy": 0.977,
   "contestedAccuracy": 0.4,
   "adversarialAccuracy": 0.95,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 4, "accuracy": 0.75 },
-    { "confidence": "0.5-0.6", "cases": 1, "accuracy": 0 },
-    { "confidence": "0.6-0.7", "cases": 5, "accuracy": 0.8 },
-    { "confidence": "0.7-0.8", "cases": 7, "accuracy": 1 },
-    { "confidence": "0.8-0.9", "cases": 8, "accuracy": 0.875 },
-    { "confidence": "0.9-1", "cases": 62, "accuracy": 0.984 }
+    { "confidence": "0-0.5", "cases": 3, "accuracy": 0.667 },
+    { "confidence": "0.5-0.6", "cases": 3, "accuracy": 0.667 },
+    { "confidence": "0.6-0.7", "cases": 4, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 9, "accuracy": 0.889 },
+    { "confidence": "0.8-0.9", "cases": 9, "accuracy": 0.778 },
+    { "confidence": "0.9-1", "cases": 59, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
     {
       "minConfidence": 0.5,
-      "deferRate": 0.31,
-      "readyAccuracy": 0.983,
-      "readyCases": 60,
-      "reviewCases": 27,
+      "deferRate": 0.299,
+      "readyAccuracy": 0.984,
+      "readyCases": 61,
+      "reviewCases": 26,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9114, 0.9971]
+      "readyAccuracyInterval95": [0.9128, 0.9971]
     },
     {
       "minConfidence": 0.55,
@@ -75,79 +75,79 @@
     },
     {
       "minConfidence": 0.6,
-      "deferRate": 0.31,
+      "deferRate": 0.322,
       "readyAccuracy": 0.983,
-      "readyCases": 60,
-      "reviewCases": 27,
+      "readyCases": 59,
+      "reviewCases": 28,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9114, 0.9971]
+      "readyAccuracyInterval95": [0.91, 0.997]
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.345,
-      "readyAccuracy": 0.982,
-      "readyCases": 57,
-      "reviewCases": 30,
+      "deferRate": 0.333,
+      "readyAccuracy": 0.983,
+      "readyCases": 58,
+      "reviewCases": 29,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9071, 0.9969]
+      "readyAccuracyInterval95": [0.9086, 0.9969]
     },
     {
       "minConfidence": 0.7,
-      "deferRate": 0.356,
+      "deferRate": 0.368,
       "readyAccuracy": 0.982,
-      "readyCases": 56,
-      "reviewCases": 31,
+      "readyCases": 55,
+      "reviewCases": 32,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9055, 0.9968]
+      "readyAccuracyInterval95": [0.9039, 0.9968]
     },
     {
       "minConfidence": 0.75,
-      "deferRate": 0.379,
+      "deferRate": 0.402,
       "readyAccuracy": 0.981,
-      "readyCases": 54,
-      "reviewCases": 33,
+      "readyCases": 52,
+      "reviewCases": 35,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9023, 0.9967]
+      "readyAccuracyInterval95": [0.8988, 0.9966]
     },
     {
       "minConfidence": 0.8,
-      "deferRate": 0.437,
-      "readyAccuracy": 0.98,
-      "readyCases": 49,
-      "reviewCases": 38,
+      "deferRate": 0.46,
+      "readyAccuracy": 0.979,
+      "readyCases": 47,
+      "reviewCases": 40,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8931, 0.9964]
+      "readyAccuracyInterval95": [0.8889, 0.9962]
     },
     {
       "minConfidence": 0.85,
       "deferRate": 0.46,
-      "readyAccuracy": 1,
+      "readyAccuracy": 0.979,
       "readyCases": 47,
       "reviewCases": 40,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9244, 1]
+      "readyAccuracyInterval95": [0.8889, 0.9962]
     },
     {
       "minConfidence": 0.9,
-      "deferRate": 0.483,
+      "deferRate": 0.506,
       "readyAccuracy": 1,
-      "readyCases": 45,
-      "reviewCases": 42,
+      "readyCases": 43,
+      "reviewCases": 44,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9213, 1]
+      "readyAccuracyInterval95": [0.918, 1]
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.575,
+      "deferRate": 0.563,
       "readyAccuracy": 1,
-      "readyCases": 37,
-      "reviewCases": 50,
+      "readyCases": 38,
+      "reviewCases": 49,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9059, 1]
+      "readyAccuracyInterval95": [0.9082, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 109.16, "p95": 177.8, "totalCaseTime": 10106.11 },
+  "latencyMs": { "p50": 107.58, "p95": 156.48, "totalCaseTime": 9775.16 },
   "usage": {
     "requests": 124,
     "input_tokens": 79511,
@@ -467,7 +467,7 @@
         "items.3.suggestedRoute": "sales",
         "items.4.suggestedRoute": "account"
       },
-      "confidence": 0.58
+      "confidence": 0.5
     },
     {
       "id": "support-refund-request-vague",
@@ -481,7 +481,7 @@
         "items.1.suggestedRoute": "technical",
         "items.2.suggestedRoute": null
       },
-      "confidence": 0.91,
+      "confidence": 0.89,
       "contested": true
     },
     {
@@ -506,7 +506,7 @@
         "items.6.suggestedRoute": "account",
         "items.7.suggestedRoute": "account"
       },
-      "confidence": 0.81
+      "confidence": 0.85
     },
     {
       "id": "email-contested-fyi",
@@ -520,7 +520,7 @@
         "items.1.suggestedRoute": null,
         "items.2.suggestedRoute": "needs_reply"
       },
-      "confidence": 0.64,
+      "confidence": 0.73,
       "contested": true
     },
     {
@@ -535,7 +535,7 @@
         "items.1.suggestedRoute": "network",
         "items.2.suggestedRoute": "software"
       },
-      "confidence": 0.42,
+      "confidence": 0.45,
       "contested": true,
       "adversarial": true
     }

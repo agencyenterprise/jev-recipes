@@ -93,25 +93,25 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 **Current measurement; labels unspecified; experimental.**
 
-Measured on 50 golden cases against `jev-1.13.0`: **96% accurate** overall (contested cases 75%, adversarial cases 100%).
+Measured on 50 golden cases against `jev-1.13.0`: **94% accurate** overall (contested cases 75%, adversarial cases 100%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `f31c23b38f2f307f91db63617db6b2bb2f6a2119e156cb4abcff329b1ccdfbef`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `f31c23b38f2f307f91db63617db6b2bb2f6a2119e156cb4abcff329b1ccdfbef`.
 
 Scoring revision: 2.
 
-48/50 cases correct; 44 ready, 6 review, 0 failed. Accuracy among ready cases: 100%.
+47/50 cases correct; 44 ready, 6 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 100.05 ms, p95 136.29 ms. Usage: 25688 input tokens and 2894 output tokens across 50 logical requests.
+Latency: p50 101.71 ms, p95 144.63 ms. Usage: 25688 input tokens and 2892 output tokens across 50 logical requests.
 
 Labels: unspecified (50 cases): Not recorded by the dataset author.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 87% to 99%.
+95% case-level accuracy interval: 84% to 98%.
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 10%                | 100%                      |
+| 0.5             | 8%                 | 98%                       |
 | 0.6             | 10%                | 100%                      |
 | 0.7             | 10%                | 100%                      |
 | 0.8             | 12%                | 100%                      |

@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "ea023a0c-9e0b-4284-86ea-287d7b6e1d1e",
+    "runId": "0f2cc5e1-45b6-48d2-87e9-6aa4c198d369",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:17:04.220Z",
-    "createdAt": "2026-10-04T18:17:04.220Z",
+    "evaluatedAt": "2026-10-04T20:44:00.345Z",
+    "createdAt": "2026-10-04T20:44:00.345Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "30419ace0225cb784d22b7f49cdd1d61be3199ad734b04d19f726e8777ad3d97",
     "datasetFingerprint": "63d5a621d071992053626961efc7bd146125605435c8ffbbc5cfae0b7eec149a",
     "split": "development",
@@ -23,22 +23,22 @@
   "failed": 0,
   "correct": 39,
   "wrong": 5,
-  "ready": 35,
-  "review": 9,
+  "ready": 33,
+  "review": 11,
   "accuracy": 0.886,
   "completedAccuracy": 0.886,
   "accuracyInterval95": [0.7602, 0.9505],
-  "readyAccuracy": 0.971,
-  "readyAccuracyInterval95": [0.8547, 0.9949],
-  "reviewRate": 0.205,
+  "readyAccuracy": 0.97,
+  "readyAccuracyInterval95": [0.8468, 0.9946],
+  "reviewRate": 0.25,
   "contestedAccuracy": 0.6,
   "adversarialAccuracy": 0.75,
   "calibration": [
     { "confidence": "0-0.5", "cases": 5, "accuracy": 0.6 },
     { "confidence": "0.5-0.6", "cases": 0, "accuracy": null },
-    { "confidence": "0.6-0.7", "cases": 0, "accuracy": null },
-    { "confidence": "0.7-0.8", "cases": 4, "accuracy": 0.5 },
-    { "confidence": "0.8-0.9", "cases": 4, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 1, "accuracy": 0 },
+    { "confidence": "0.7-0.8", "cases": 5, "accuracy": 0.8 },
+    { "confidence": "0.8-0.9", "cases": 2, "accuracy": 1 },
     { "confidence": "0.9-1", "cases": 31, "accuracy": 0.968 }
   ],
   "thresholdEvaluation": "recipe-replay",
@@ -72,24 +72,6 @@
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.114,
-      "readyAccuracy": 0.923,
-      "readyCases": 39,
-      "reviewCases": 5,
-      "failedCases": 0,
-      "readyAccuracyInterval95": [0.7968, 0.9735]
-    },
-    {
-      "minConfidence": 0.7,
-      "deferRate": 0.114,
-      "readyAccuracy": 0.923,
-      "readyCases": 39,
-      "reviewCases": 5,
-      "failedCases": 0,
-      "readyAccuracyInterval95": [0.7968, 0.9735]
-    },
-    {
-      "minConfidence": 0.75,
       "deferRate": 0.136,
       "readyAccuracy": 0.947,
       "readyCases": 38,
@@ -98,22 +80,40 @@
       "readyAccuracyInterval95": [0.8271, 0.9854]
     },
     {
-      "minConfidence": 0.8,
-      "deferRate": 0.205,
-      "readyAccuracy": 0.971,
-      "readyCases": 35,
-      "reviewCases": 9,
+      "minConfidence": 0.7,
+      "deferRate": 0.136,
+      "readyAccuracy": 0.947,
+      "readyCases": 38,
+      "reviewCases": 6,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8547, 0.9949]
+      "readyAccuracyInterval95": [0.8271, 0.9854]
     },
     {
-      "minConfidence": 0.85,
+      "minConfidence": 0.75,
+      "deferRate": 0.182,
+      "readyAccuracy": 0.944,
+      "readyCases": 36,
+      "reviewCases": 8,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8186, 0.9846]
+    },
+    {
+      "minConfidence": 0.8,
       "deferRate": 0.25,
       "readyAccuracy": 0.97,
       "readyCases": 33,
       "reviewCases": 11,
       "failedCases": 0,
       "readyAccuracyInterval95": [0.8468, 0.9946]
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.295,
+      "readyAccuracy": 0.968,
+      "readyCases": 31,
+      "reviewCases": 13,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8381, 0.9943]
     },
     {
       "minConfidence": 0.9,
@@ -127,15 +127,15 @@
     {
       "minConfidence": 0.95,
       "deferRate": 0.386,
-      "readyAccuracy": 0.963,
+      "readyAccuracy": 1,
       "readyCases": 27,
       "reviewCases": 17,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8172, 0.9934]
+      "readyAccuracyInterval95": [0.8754, 1]
     }
   ],
   "suggestedMinConfidence": 0.8,
-  "latencyMs": { "p50": 118.56, "p95": 190, "totalCaseTime": 5515.67 },
+  "latencyMs": { "p50": 99.4, "p95": 135.3, "totalCaseTime": 4682.37 },
   "usage": {
     "requests": 44,
     "input_tokens": 25562,
@@ -168,28 +168,28 @@
       "id": "wake-shard-errors-partial",
       "expected": { "verdict": "wake" },
       "actual": { "verdict": "not_yet" },
-      "confidence": 0.7,
+      "confidence": 0.64,
       "contested": true
     },
     {
       "id": "wake-approver-asks-blocking-question",
       "expected": { "verdict": "wake" },
       "actual": { "verdict": "not_yet" },
-      "confidence": 0.95,
+      "confidence": 0.93,
       "contested": true
     },
     {
       "id": "unrelated-spam-mentions-keyword",
       "expected": { "verdict": "unrelated" },
       "actual": { "verdict": "not_yet" },
-      "confidence": 0.41,
+      "confidence": 0.38,
       "adversarial": true
     },
     {
       "id": "unclear-opaque-status-code",
       "expected": { "verdict": "unclear" },
       "actual": { "verdict": "not_yet" },
-      "confidence": 0.76
+      "confidence": 0.75
     },
     {
       "id": "unclear-truncated-reply",

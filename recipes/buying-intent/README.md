@@ -100,13 +100,13 @@ The rubric grades what the message expresses about buying. It does not estimate 
 
 Measured on 75 golden cases against `jev-1.13.0`: **100% accurate** overall.
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `f6f9cdae49cfd815b8389061f1c8bc6ba27a6a62517fbdcb184d1487f12f8047`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `f6f9cdae49cfd815b8389061f1c8bc6ba27a6a62517fbdcb184d1487f12f8047`.
 
 Scoring revision: 2.
 
 75/75 cases correct; 74 ready, 1 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 110.64 ms, p95 174.69 ms. Usage: 36142 input tokens and 1275 output tokens across 75 logical requests.
+Latency: p50 99.96 ms, p95 168.85 ms. Usage: 36142 input tokens and 1275 output tokens across 75 logical requests.
 
 Labels: author-synthetic (75 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
@@ -121,7 +121,7 @@ These authored cases are not independent human validation. Related variants are 
 | 0.7             | 0%                 | 100%                      |
 | 0.8             | 1%                 | 100%                      |
 | 0.9             | 11%                | 100%                      |
-| 0.95            | 12%                | 100%                      |
+| 0.95            | 13%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 

@@ -102,13 +102,13 @@ Selects from the supplied earlier requests. Supply enough conversation context t
 
 Measured on 60 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `77fc95ddff5d802d6341d747e754da620513c23205a4bb31bcdfe9ad44efea4c`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `77fc95ddff5d802d6341d747e754da620513c23205a4bb31bcdfe9ad44efea4c`.
 
 Scoring revision: 2.
 
 60/60 cases correct; 45 ready, 15 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 110.21 ms, p95 163.34 ms. Usage: 30966 input tokens and 3150 output tokens across 60 logical requests.
+Latency: p50 93.92 ms, p95 147.14 ms. Usage: 30966 input tokens and 3150 output tokens across 60 logical requests.
 
 Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 

@@ -102,28 +102,28 @@ The caller supplies ordered, retained text and owns native tags, extraction, off
 
 Measured on 126 golden cases against `jev-1.13.0`: **83% accurate** overall.
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `32da43478751402b4e6dc643b92a96dfdbf6b467d1299cd29aedf389d4710b8b`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `32da43478751402b4e6dc643b92a96dfdbf6b467d1299cd29aedf389d4710b8b`.
 
 Scoring revision: 2.
 
-105/126 cases correct; 92 ready, 34 review, 0 failed. Accuracy among ready cases: 96%.
+104/126 cases correct; 92 ready, 34 review, 0 failed. Accuracy among ready cases: 97%.
 
-Latency: p50 109.23 ms, p95 185.59 ms. Usage: 92848 input tokens and 10333 output tokens across 126 logical requests.
+Latency: p50 97.35 ms, p95 131.45 ms. Usage: 92848 input tokens and 10332 output tokens across 126 logical requests.
 
 Labels: public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/assert.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/child_process.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/crypto.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/diagnostics_channel.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/dns.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/errors.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/process.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/repl.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/timers.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/tls.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/util.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/vm.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/wasi.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license. public-dataset (9 cases): https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/webcrypto.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 76% to 89%.
+95% case-level accuracy interval: 75% to 88%.
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 6%                 | 86%                       |
-| 0.6             | 12%                | 90%                       |
-| 0.7             | 19%                | 93%                       |
-| 0.8             | 27%                | 96%                       |
-| 0.9             | 35%                | 99%                       |
-| 0.95            | 42%                | 100%                      |
+| 0.5             | 7%                 | 87%                       |
+| 0.6             | 10%                | 89%                       |
+| 0.7             | 18%                | 91%                       |
+| 0.8             | 27%                | 97%                       |
+| 0.9             | 33%                | 99%                       |
+| 0.95            | 41%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.8.
 

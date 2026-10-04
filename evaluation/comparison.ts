@@ -89,6 +89,20 @@ export function isMetadataPath(schema: Schema, segments: string[]): boolean {
   return child !== undefined && isMetadataPath(child, rest);
 }
 
+export function gatedTwinFor(schema: Schema, segments: string[]): string | undefined {
+  const name = segments.at(-1);
+  if (name === undefined || !name.length) return undefined;
+  const twin = `suggested${name[0]!.toUpperCase()}${name.slice(1)}`;
+  const parent = schemaAtPath(schema, segments.slice(0, -1));
+  return parent !== undefined && hasProperty(parent, twin) ? twin : undefined;
+}
+
+function hasProperty(schema: Schema, name: string): boolean {
+  if (Array.isArray(schema.anyOf))
+    return schema.anyOf.some((branch) => isRecord(branch) && hasProperty(branch, name));
+  return isRecord(schema.properties) && Object.hasOwn(schema.properties, name);
+}
+
 export function schemaAtPath(schema: Schema, segments: string[]): Schema | undefined {
   if (!segments.length) return schema;
   if (Array.isArray(schema.anyOf)) {

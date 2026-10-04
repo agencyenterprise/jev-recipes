@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "74491e02-cdac-4c08-ab6c-88b7d9c3ec1d",
+    "runId": "f445ce63-ff79-495c-bb5c-1ca7c69d3206",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:15:57.971Z",
-    "createdAt": "2026-10-04T18:15:57.971Z",
+    "evaluatedAt": "2026-10-04T20:42:56.097Z",
+    "createdAt": "2026-10-04T20:42:56.097Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "e3afba589f57bf106ce32a86e6d6dd3eb7d42c3c7f43a4e659330e8368a2cad6",
     "datasetFingerprint": "df3494b970c0e117b7f35b64170beb57509e9d6d2a574617afa162c1d8bb5ed8",
     "split": "development",
@@ -39,8 +39,8 @@
   "adversarialAccuracy": null,
   "calibration": [
     { "confidence": "0-0.5", "cases": 0, "accuracy": null },
-    { "confidence": "0.5-0.6", "cases": 0, "accuracy": null },
-    { "confidence": "0.6-0.7", "cases": 4, "accuracy": 0.75 },
+    { "confidence": "0.5-0.6", "cases": 1, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 3, "accuracy": 0.667 },
     { "confidence": "0.7-0.8", "cases": 2, "accuracy": 0 },
     { "confidence": "0.8-0.9", "cases": 5, "accuracy": 0.8 },
     { "confidence": "0.9-1", "cases": 49, "accuracy": 1 }
@@ -58,30 +58,30 @@
     },
     {
       "minConfidence": 0.55,
-      "deferRate": 0.3,
-      "readyAccuracy": 0.905,
-      "readyCases": 42,
-      "reviewCases": 18,
-      "failedCases": 0,
-      "readyAccuracyInterval95": [0.7793, 0.9623]
-    },
-    {
-      "minConfidence": 0.6,
-      "deferRate": 0.3,
-      "readyAccuracy": 0.905,
-      "readyCases": 42,
-      "reviewCases": 18,
-      "failedCases": 0,
-      "readyAccuracyInterval95": [0.7793, 0.9623]
-    },
-    {
-      "minConfidence": 0.65,
       "deferRate": 0.317,
-      "readyAccuracy": 0.927,
+      "readyAccuracy": 0.902,
       "readyCases": 41,
       "reviewCases": 19,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8057, 0.9748]
+      "readyAccuracyInterval95": [0.7745, 0.9614]
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.317,
+      "readyAccuracy": 0.902,
+      "readyCases": 41,
+      "reviewCases": 19,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.7745, 0.9614]
+    },
+    {
+      "minConfidence": 0.65,
+      "deferRate": 0.333,
+      "readyAccuracy": 0.925,
+      "readyCases": 40,
+      "reviewCases": 20,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8014, 0.9742]
     },
     {
       "minConfidence": 0.7,
@@ -112,12 +112,12 @@
     },
     {
       "minConfidence": 0.85,
-      "deferRate": 0.433,
+      "deferRate": 0.417,
       "readyAccuracy": 1,
-      "readyCases": 34,
-      "reviewCases": 26,
+      "readyCases": 35,
+      "reviewCases": 25,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8985, 1]
+      "readyAccuracyInterval95": [0.9011, 1]
     },
     {
       "minConfidence": 0.9,
@@ -139,7 +139,7 @@
     }
   ],
   "suggestedMinConfidence": 0.8,
-  "latencyMs": { "p50": 110.41, "p95": 158.55, "totalCaseTime": 6975.81 },
+  "latencyMs": { "p50": 96.31, "p95": 143.13, "totalCaseTime": 6007.37 },
   "usage": {
     "requests": 60,
     "input_tokens": 41046,
@@ -169,26 +169,26 @@
       "id": "featured-05-revised",
       "expected": { "verdict": "unclear" },
       "actual": { "verdict": "business" },
-      "confidence": 0.84,
+      "confidence": 0.78,
       "contested": true
     },
     {
       "id": "featured-08-business",
       "expected": { "verdict": "customer" },
       "actual": { "verdict": "business" },
-      "confidence": 0.75
+      "confidence": 0.81
     },
     {
       "id": "featured-09-customer",
       "expected": { "verdict": "customer" },
       "actual": { "verdict": "business" },
-      "confidence": 0.72
+      "confidence": 0.74
     },
     {
       "id": "featured-11-revised",
       "expected": { "verdict": "unclear" },
       "actual": { "verdict": "business" },
-      "confidence": 0.63,
+      "confidence": 0.6,
       "contested": true
     }
   ]

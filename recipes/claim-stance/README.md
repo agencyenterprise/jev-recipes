@@ -114,13 +114,13 @@ Uses the shared choice helper and makes one logical Jev request. It does not cal
 
 Measured on 53 golden cases against `jev-1.13.0`: **96% accurate** overall (contested cases 100%, adversarial cases 83%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `f7a00369209358a41194a20c68fcecd15ea1597e37ae0267884085a4871f62d4`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `f7a00369209358a41194a20c68fcecd15ea1597e37ae0267884085a4871f62d4`.
 
 Scoring revision: 2.
 
 51/53 cases correct; 39 ready, 14 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 104.68 ms, p95 140.97 ms. Usage: 33869 input tokens and 3079 output tokens across 53 logical requests.
+Latency: p50 100.13 ms, p95 154.07 ms. Usage: 33869 input tokens and 3079 output tokens across 53 logical requests.
 
 Labels: unspecified (53 cases): Not recorded by the dataset author.
 
@@ -130,11 +130,11 @@ These authored cases are not independent human validation. Related variants are 
 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
-| 0.5             | 21%                | 98%                       |
-| 0.6             | 23%                | 100%                      |
+| 0.5             | 17%                | 96%                       |
+| 0.6             | 21%                | 98%                       |
 | 0.7             | 26%                | 100%                      |
 | 0.8             | 26%                | 100%                      |
-| 0.9             | 32%                | 100%                      |
+| 0.9             | 34%                | 100%                      |
 | 0.95            | 38%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.

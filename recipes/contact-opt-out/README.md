@@ -95,13 +95,13 @@ This is a language decision, not a consent registry. Never treat none as permiss
 
 Measured on 60 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `cf942449ed8153c6445d9bf776146328e9d17bffef15889a4280357e0e83d640`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `cf942449ed8153c6445d9bf776146328e9d17bffef15889a4280357e0e83d640`.
 
 Scoring revision: 2.
 
 60/60 cases correct; 50 ready, 10 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 105.35 ms, p95 144.22 ms. Usage: 37041 input tokens and 3261 output tokens across 60 logical requests.
+Latency: p50 101.96 ms, p95 140.69 ms. Usage: 37041 input tokens and 3261 output tokens across 60 logical requests.
 
 Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
@@ -116,7 +116,7 @@ These authored cases are not independent human validation. Related variants are 
 | 0.7             | 13%                | 100%                      |
 | 0.8             | 17%                | 100%                      |
 | 0.9             | 20%                | 100%                      |
-| 0.95            | 27%                | 100%                      |
+| 0.95            | 25%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 

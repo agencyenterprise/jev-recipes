@@ -103,13 +103,13 @@ Chooses among caller-supplied candidates. Extract candidates with a parser or ge
 
 Measured on 60 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `3410c4137a54287f299baf2ea79eca4e6fe0c84ce9f3a15629f076db7b7dde5c`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `3410c4137a54287f299baf2ea79eca4e6fe0c84ce9f3a15629f076db7b7dde5c`.
 
 Scoring revision: 2.
 
-60/60 cases correct; 45 ready, 15 review, 0 failed. Accuracy among ready cases: 100%.
+60/60 cases correct; 44 ready, 16 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 109.6 ms, p95 154.94 ms. Usage: 30173 input tokens and 3015 output tokens across 60 logical requests.
+Latency: p50 100.63 ms, p95 137.4 ms. Usage: 30173 input tokens and 3015 output tokens across 60 logical requests.
 
 Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
@@ -124,7 +124,7 @@ A case counts as correct only when every item in it is right. Across the 120 ind
 | 0.5             | 25%                | 100%                      |
 | 0.6             | 25%                | 100%                      |
 | 0.7             | 25%                | 100%                      |
-| 0.8             | 25%                | 100%                      |
+| 0.8             | 27%                | 100%                      |
 | 0.9             | 27%                | 100%                      |
 | 0.95            | 32%                | 100%                      |
 

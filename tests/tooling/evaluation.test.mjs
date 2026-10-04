@@ -1,7 +1,22 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { evaluateRecipe } from '../../evals/lib/evaluate.mjs';
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { evaluateRecipe } from './helpers/evaluate.mjs';
 import { loadRecipe, readGoldenCases } from '../../evals/lib/harness.mjs';
+
+test('golden cases are read with the installed JSONL reader', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'jev-golden-cases-'));
+  try {
+    await mkdir(join(root, 'evals/route'), { recursive: true });
+    const line = JSON.stringify({ id: 'crlf' });
+    await writeFile(join(root, 'evals/route/cases.jsonl'), `${line}\r\n\r\n${line}\r\n`);
+    assert.deepEqual(await readGoldenCases('route', root), [{ id: 'crlf' }, { id: 'crlf' }]);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
 
 test('the original 50 route cases report mandatory review without extra provider calls', async () => {
   const recipe = await loadRecipe('route');

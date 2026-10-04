@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "1ad7b030-bfed-4acf-a445-f9c5c2b2f890",
+    "runId": "2de85291-8baa-4da6-9c88-e2ea1d447e53",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:15:55.707Z",
-    "createdAt": "2026-10-04T18:15:55.707Z",
+    "evaluatedAt": "2026-10-04T20:42:53.964Z",
+    "createdAt": "2026-10-04T20:42:53.964Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "f6f9cdae49cfd815b8389061f1c8bc6ba27a6a62517fbdcb184d1487f12f8047",
     "datasetFingerprint": "ea60e52ab2ae50bc0a745091a78813fc4592d5b1e5712b400f40895e9e51384f",
     "split": "development",
@@ -112,12 +112,12 @@
     },
     {
       "minConfidence": 0.85,
-      "deferRate": 0.053,
+      "deferRate": 0.04,
       "readyAccuracy": 1,
-      "readyCases": 71,
-      "reviewCases": 4,
+      "readyCases": 72,
+      "reviewCases": 3,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9487, 1]
+      "readyAccuracyInterval95": [0.9493, 1]
     },
     {
       "minConfidence": 0.9,
@@ -130,16 +130,16 @@
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.12,
+      "deferRate": 0.133,
       "readyAccuracy": 1,
-      "readyCases": 66,
-      "reviewCases": 9,
+      "readyCases": 65,
+      "reviewCases": 10,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.945, 1]
+      "readyAccuracyInterval95": [0.9442, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 110.64, "p95": 174.69, "totalCaseTime": 8491.41 },
+  "latencyMs": { "p50": 99.96, "p95": 168.85, "totalCaseTime": 8058.97 },
   "usage": {
     "requests": 75,
     "input_tokens": 36142,

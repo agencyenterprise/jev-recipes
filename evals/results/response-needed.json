@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "b30f56a3-f504-4f06-8def-545be58470c1",
+    "runId": "51504066-0301-4b9b-9bb5-3326fd703710",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:44.778Z",
-    "createdAt": "2026-10-04T18:16:44.778Z",
+    "evaluatedAt": "2026-10-04T20:43:41.765Z",
+    "createdAt": "2026-10-04T20:43:41.765Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "accce497113821fcd870e3ebd3806c7cbe214d13e3a6ca96544043ab52b168b6",
     "datasetFingerprint": "82349d5da9900695fefdfcc826e15db6ec5246fdd6fcf792a65719d86b870aeb",
     "split": "development",
@@ -42,8 +42,8 @@
     { "confidence": "0.5-0.6", "cases": 0, "accuracy": null },
     { "confidence": "0.6-0.7", "cases": 0, "accuracy": null },
     { "confidence": "0.7-0.8", "cases": 0, "accuracy": null },
-    { "confidence": "0.8-0.9", "cases": 1, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 59, "accuracy": 1 }
+    { "confidence": "0.8-0.9", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 58, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
@@ -121,25 +121,25 @@
     },
     {
       "minConfidence": 0.9,
-      "deferRate": 0.017,
+      "deferRate": 0.033,
       "readyAccuracy": 1,
-      "readyCases": 59,
-      "reviewCases": 1,
+      "readyCases": 58,
+      "reviewCases": 2,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9389, 1]
+      "readyAccuracyInterval95": [0.9379, 1]
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.05,
+      "deferRate": 0.067,
       "readyAccuracy": 1,
-      "readyCases": 57,
-      "reviewCases": 3,
+      "readyCases": 56,
+      "reviewCases": 4,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9369, 1]
+      "readyAccuracyInterval95": [0.9358, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 105.19, "p95": 139.93, "totalCaseTime": 6674.68 },
+  "latencyMs": { "p50": 96.28, "p95": 157.98, "totalCaseTime": 6411.09 },
   "usage": {
     "requests": 60,
     "input_tokens": 26798,

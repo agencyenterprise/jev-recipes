@@ -1,6 +1,6 @@
-import { createClient } from '../../dist/src/client.js';
-import { confidenceThresholds, evaluateCases } from '../../dist/evaluation/engine.js';
-import { buildReport } from '../../dist/evaluation/report.js';
+import { createClient } from '../../../dist/src/client.js';
+import { confidenceThresholds, evaluateCases } from '../../../dist/evaluation/engine.js';
+import { buildReport } from '../../../dist/evaluation/report.js';
 
 export async function evaluateRecipe(
   recipe,

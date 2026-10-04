@@ -110,13 +110,13 @@ The overall `status` is `review` when any single label falls below `minConfidenc
 
 Measured on 43 golden cases against `jev-1.13.0`: **95% accurate** overall (contested cases 100%, adversarial cases 80%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `3d17977295595f9944444ce0330aa0158bd0649f056b4004fef0ff8f8c8a5c88`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `3d17977295595f9944444ce0330aa0158bd0649f056b4004fef0ff8f8c8a5c88`.
 
 Scoring revision: 2.
 
-41/43 cases correct; 34 ready, 9 review, 0 failed. Accuracy among ready cases: 97%.
+41/43 cases correct; 35 ready, 8 review, 0 failed. Accuracy among ready cases: 97%.
 
-Latency: p50 109.35 ms, p95 143.92 ms. Usage: 43106 input tokens and 4386 output tokens across 43 logical requests.
+Latency: p50 97 ms, p95 180.77 ms. Usage: 43106 input tokens and 4386 output tokens across 43 logical requests.
 
 Labels: unspecified (43 cases): Not recorded by the dataset author.
 
@@ -129,9 +129,9 @@ These authored cases are not independent human validation. Related variants are 
 | 0.5             | 0%                 | 95%                       |
 | 0.6             | 5%                 | 95%                       |
 | 0.7             | 12%                | 95%                       |
-| 0.8             | 21%                | 97%                       |
+| 0.8             | 19%                | 97%                       |
 | 0.9             | 40%                | 100%                      |
-| 0.95            | 58%                | 100%                      |
+| 0.95            | 61%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.5.
 

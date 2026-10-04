@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "d8c963fc-efe4-4421-a13a-5971d36889ee",
+    "runId": "4f6aacf1-70af-4d38-b0a1-10ba69583b1c",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:15:52.868Z",
-    "createdAt": "2026-10-04T18:15:52.868Z",
+    "evaluatedAt": "2026-10-04T20:42:51.224Z",
+    "createdAt": "2026-10-04T20:42:51.224Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "1725aabfba04f76bbd33199de824e59997c8ab4750feef1ba71b221ff775c4a0",
     "datasetFingerprint": "acb94f568cbd96918c3b3ead1b109900bf19d56260765bdecb96ddec58a02eb8",
     "split": "development",
@@ -21,22 +21,22 @@
   "cases": 44,
   "completed": 44,
   "failed": 0,
-  "correct": 39,
-  "wrong": 5,
+  "correct": 40,
+  "wrong": 4,
   "ready": 20,
   "review": 24,
-  "accuracy": 0.886,
-  "completedAccuracy": 0.886,
-  "accuracyInterval95": [0.7602, 0.9505],
+  "accuracy": 0.909,
+  "completedAccuracy": 0.909,
+  "accuracyInterval95": [0.7884, 0.9641],
   "readyAccuracy": 1,
   "readyAccuracyInterval95": [0.8389, 1],
   "reviewRate": 0.545,
   "contestedAccuracy": 0.6,
-  "adversarialAccuracy": 0.6,
+  "adversarialAccuracy": 0.8,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 7, "accuracy": 0.571 },
-    { "confidence": "0.5-0.6", "cases": 3, "accuracy": 0.667 },
-    { "confidence": "0.6-0.7", "cases": 7, "accuracy": 0.857 },
+    { "confidence": "0-0.5", "cases": 8, "accuracy": 0.625 },
+    { "confidence": "0.5-0.6", "cases": 3, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 6, "accuracy": 0.833 },
     { "confidence": "0.7-0.8", "cases": 7, "accuracy": 1 },
     { "confidence": "0.8-0.9", "cases": 3, "accuracy": 1 },
     { "confidence": "0.9-1", "cases": 17, "accuracy": 1 }
@@ -45,15 +45,6 @@
   "thresholds": [
     {
       "minConfidence": 0.5,
-      "deferRate": 0.159,
-      "readyAccuracy": 0.946,
-      "readyCases": 37,
-      "reviewCases": 7,
-      "failedCases": 0,
-      "readyAccuracyInterval95": [0.823, 0.985]
-    },
-    {
-      "minConfidence": 0.55,
       "deferRate": 0.182,
       "readyAccuracy": 0.972,
       "readyCases": 36,
@@ -62,22 +53,31 @@
       "readyAccuracyInterval95": [0.8583, 0.9951]
     },
     {
-      "minConfidence": 0.6,
-      "deferRate": 0.227,
+      "minConfidence": 0.55,
+      "deferRate": 0.205,
       "readyAccuracy": 0.971,
-      "readyCases": 34,
-      "reviewCases": 10,
+      "readyCases": 35,
+      "reviewCases": 9,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8508, 0.9948]
+      "readyAccuracyInterval95": [0.8547, 0.9949]
+    },
+    {
+      "minConfidence": 0.6,
+      "deferRate": 0.25,
+      "readyAccuracy": 0.97,
+      "readyCases": 33,
+      "reviewCases": 11,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8468, 0.9946]
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.318,
+      "deferRate": 0.364,
       "readyAccuracy": 1,
-      "readyCases": 30,
-      "reviewCases": 14,
+      "readyCases": 28,
+      "reviewCases": 16,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8865, 1]
+      "readyAccuracyInterval95": [0.8794, 1]
     },
     {
       "minConfidence": 0.7,
@@ -90,12 +90,12 @@
     },
     {
       "minConfidence": 0.75,
-      "deferRate": 0.523,
+      "deferRate": 0.477,
       "readyAccuracy": 1,
-      "readyCases": 21,
-      "reviewCases": 23,
+      "readyCases": 23,
+      "reviewCases": 21,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8454, 1]
+      "readyAccuracyInterval95": [0.8569, 1]
     },
     {
       "minConfidence": 0.8,
@@ -126,16 +126,16 @@
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.705,
+      "deferRate": 0.727,
       "readyAccuracy": 1,
-      "readyCases": 13,
-      "reviewCases": 31,
+      "readyCases": 12,
+      "reviewCases": 32,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.7719, 1]
+      "readyAccuracyInterval95": [0.7575, 1]
     }
   ],
-  "suggestedMinConfidence": 0.55,
-  "latencyMs": { "p50": 112.1, "p95": 166.27, "totalCaseTime": 5204 },
+  "suggestedMinConfidence": 0.5,
+  "latencyMs": { "p50": 98.33, "p95": 157.26, "totalCaseTime": 4746.52 },
   "usage": {
     "requests": 44,
     "input_tokens": 25554,
@@ -149,8 +149,8 @@
     "{\"reversibility\":\"effortful\"}": { "total": 9, "correct": 9, "misses": {} },
     "{\"reversibility\":\"irreversible\"}": {
       "total": 10,
-      "correct": 8,
-      "misses": { "{\"reversibility\":\"practical\"}": 1, "{\"reversibility\":\"partial\"}": 1 }
+      "correct": 9,
+      "misses": { "{\"reversibility\":\"practical\"}": 1 }
     },
     "{\"reversibility\":\"partial\"}": {
       "total": 8,
@@ -169,21 +169,21 @@
       "id": "temporarily-disable-user",
       "expected": { "reversibility": "partial" },
       "actual": { "reversibility": "trivial" },
-      "confidence": 0.32,
+      "confidence": 0.36,
       "contested": true
     },
     {
       "id": "adversarial-trivial-sounding-force-push",
       "expected": { "reversibility": "practical" },
       "actual": { "reversibility": "partial" },
-      "confidence": 0.5,
+      "confidence": 0.49,
       "adversarial": true
     },
     {
       "id": "rewrite-shared-branch-history",
       "expected": { "reversibility": "practical" },
       "actual": { "reversibility": "partial" },
-      "confidence": 0.44,
+      "confidence": 0.42,
       "contested": true
     },
     {
@@ -191,13 +191,6 @@
       "expected": { "reversibility": "irreversible" },
       "actual": { "reversibility": "practical" },
       "confidence": 0.6
-    },
-    {
-      "id": "adversarial-easily-undone-broadcast",
-      "expected": { "reversibility": "irreversible" },
-      "actual": { "reversibility": "partial" },
-      "confidence": 0.21,
-      "adversarial": true
     }
   ]
 }

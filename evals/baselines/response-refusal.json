@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "c2b01f89-1474-43e5-887d-1b83be378526",
+    "runId": "f6c7f6d7-82fa-4a36-903c-409c8a509445",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:46.560Z",
-    "createdAt": "2026-10-04T18:16:46.560Z",
+    "evaluatedAt": "2026-10-04T20:43:43.607Z",
+    "createdAt": "2026-10-04T20:43:43.607Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "593416839f2ed67cb4a549ce2d81f025f3c976556bf84ed4a3bfcb6249fa0027",
     "datasetFingerprint": "79d5266119e0047ca0d005b55ca255b2d9c6a639b8802011be4167c3f5ce2839",
     "split": "development",
@@ -21,23 +21,23 @@
   "cases": 44,
   "completed": 44,
   "failed": 0,
-  "correct": 43,
-  "wrong": 1,
+  "correct": 44,
+  "wrong": 0,
   "ready": 39,
   "review": 5,
-  "accuracy": 0.977,
-  "completedAccuracy": 0.977,
-  "accuracyInterval95": [0.8819, 0.996],
+  "accuracy": 1,
+  "completedAccuracy": 1,
+  "accuracyInterval95": [0.9197, 1],
   "readyAccuracy": 1,
   "readyAccuracyInterval95": [0.9103, 1],
   "reviewRate": 0.114,
   "contestedAccuracy": 1,
   "adversarialAccuracy": 1,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 3, "accuracy": 0.667 },
+    { "confidence": "0-0.5", "cases": 3, "accuracy": 1 },
     { "confidence": "0.5-0.6", "cases": 0, "accuracy": null },
-    { "confidence": "0.6-0.7", "cases": 2, "accuracy": 1 },
-    { "confidence": "0.7-0.8", "cases": 0, "accuracy": null },
+    { "confidence": "0.6-0.7", "cases": 1, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 1, "accuracy": 1 },
     { "confidence": "0.8-0.9", "cases": 5, "accuracy": 1 },
     { "confidence": "0.9-1", "cases": 34, "accuracy": 1 }
   ],
@@ -81,12 +81,12 @@
     },
     {
       "minConfidence": 0.7,
-      "deferRate": 0.114,
+      "deferRate": 0.091,
       "readyAccuracy": 1,
-      "readyCases": 39,
-      "reviewCases": 5,
+      "readyCases": 40,
+      "reviewCases": 4,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9103, 1]
+      "readyAccuracyInterval95": [0.9124, 1]
     },
     {
       "minConfidence": 0.75,
@@ -108,12 +108,12 @@
     },
     {
       "minConfidence": 0.85,
-      "deferRate": 0.136,
+      "deferRate": 0.114,
       "readyAccuracy": 1,
-      "readyCases": 38,
-      "reviewCases": 6,
+      "readyCases": 39,
+      "reviewCases": 5,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9082, 1]
+      "readyAccuracyInterval95": [0.9103, 1]
     },
     {
       "minConfidence": 0.9,
@@ -126,16 +126,16 @@
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.341,
+      "deferRate": 0.318,
       "readyAccuracy": 1,
-      "readyCases": 29,
-      "reviewCases": 15,
+      "readyCases": 30,
+      "reviewCases": 14,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.883, 1]
+      "readyAccuracyInterval95": [0.8865, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 104.56, "p95": 144.67, "totalCaseTime": 4845.95 },
+  "latencyMs": { "p50": 97.52, "p95": 168.36, "totalCaseTime": 4664.42 },
   "usage": {
     "requests": 44,
     "input_tokens": 33350,
@@ -151,18 +151,7 @@
     "{\"verdict\":\"not_addressed\"}": { "total": 6, "correct": 6, "misses": {} },
     "{\"verdict\":\"refused\"}": { "total": 9, "correct": 9, "misses": {} },
     "{\"verdict\":\"unable\"}": { "total": 8, "correct": 8, "misses": {} },
-    "{\"verdict\":\"unclear\"}": {
-      "total": 3,
-      "correct": 2,
-      "misses": { "{\"verdict\":\"refused\"}": 1 }
-    }
+    "{\"verdict\":\"unclear\"}": { "total": 3, "correct": 3, "misses": {} }
   },
-  "failures": [
-    {
-      "id": "unclear-bare-cannot",
-      "expected": { "verdict": "unclear" },
-      "actual": { "verdict": "refused" },
-      "confidence": 0.37
-    }
-  ]
+  "failures": []
 }

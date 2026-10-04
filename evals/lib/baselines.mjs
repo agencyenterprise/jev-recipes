@@ -53,7 +53,7 @@ export async function saveDevelopmentBaseline(report) {
   );
 }
 
-async function readReport(path) {
+export async function readReport(path) {
   try {
     return JSON.parse(await readFile(path, 'utf8'));
   } catch (error) {

@@ -1,11 +1,11 @@
 {
   "evidence": {
-    "runId": "e3e13cb9-6fae-43c0-a8b1-ee55ffa63d41",
+    "runId": "c5a1119c-a8f4-4680-b963-8ee5c2139641",
     "sourceMode": "live",
-    "evaluatedAt": "2026-10-04T18:16:01.826Z",
-    "createdAt": "2026-10-04T18:16:01.826Z",
+    "evaluatedAt": "2026-10-04T20:42:59.711Z",
+    "createdAt": "2026-10-04T20:42:59.711Z",
     "scoringRevision": 2,
-    "packageVersion": "0.9.11",
+    "packageVersion": "0.9.12",
     "recipeFingerprint": "f7a00369209358a41194a20c68fcecd15ea1597e37ae0267884085a4871f62d4",
     "datasetFingerprint": "f09befd8f4ad904d7705d5a9be356450d0f962d570a61d865f874935169930f4",
     "split": "development",
@@ -34,26 +34,35 @@
   "contestedAccuracy": 1,
   "adversarialAccuracy": 0.833,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 4, "accuracy": 0.75 },
-    { "confidence": "0.5-0.6", "cases": 1, "accuracy": 0 },
-    { "confidence": "0.6-0.7", "cases": 2, "accuracy": 1 },
+    { "confidence": "0-0.5", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.5-0.6", "cases": 2, "accuracy": 0.5 },
+    { "confidence": "0.6-0.7", "cases": 3, "accuracy": 0.667 },
     { "confidence": "0.7-0.8", "cases": 1, "accuracy": 1 },
-    { "confidence": "0.8-0.9", "cases": 3, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 42, "accuracy": 1 }
+    { "confidence": "0.8-0.9", "cases": 4, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 41, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
     {
       "minConfidence": 0.5,
-      "deferRate": 0.208,
-      "readyAccuracy": 0.976,
-      "readyCases": 42,
-      "reviewCases": 11,
+      "deferRate": 0.17,
+      "readyAccuracy": 0.955,
+      "readyCases": 44,
+      "reviewCases": 9,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8768, 0.9958]
+      "readyAccuracyInterval95": [0.8487, 0.9874]
     },
     {
       "minConfidence": 0.55,
+      "deferRate": 0.189,
+      "readyAccuracy": 0.953,
+      "readyCases": 43,
+      "reviewCases": 10,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8454, 0.9872]
+    },
+    {
+      "minConfidence": 0.6,
       "deferRate": 0.208,
       "readyAccuracy": 0.976,
       "readyCases": 42,
@@ -62,22 +71,13 @@
       "readyAccuracyInterval95": [0.8768, 0.9958]
     },
     {
-      "minConfidence": 0.6,
+      "minConfidence": 0.65,
       "deferRate": 0.226,
-      "readyAccuracy": 1,
+      "readyAccuracy": 0.976,
       "readyCases": 41,
       "reviewCases": 12,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9143, 1]
-    },
-    {
-      "minConfidence": 0.65,
-      "deferRate": 0.245,
-      "readyAccuracy": 1,
-      "readyCases": 40,
-      "reviewCases": 13,
-      "failedCases": 0,
-      "readyAccuracyInterval95": [0.9124, 1]
+      "readyAccuracyInterval95": [0.874, 0.9957]
     },
     {
       "minConfidence": 0.7,
@@ -108,21 +108,21 @@
     },
     {
       "minConfidence": 0.85,
-      "deferRate": 0.302,
+      "deferRate": 0.283,
       "readyAccuracy": 1,
-      "readyCases": 37,
-      "reviewCases": 16,
+      "readyCases": 38,
+      "reviewCases": 15,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9059, 1]
+      "readyAccuracyInterval95": [0.9082, 1]
     },
     {
       "minConfidence": 0.9,
-      "deferRate": 0.321,
+      "deferRate": 0.34,
       "readyAccuracy": 1,
-      "readyCases": 36,
-      "reviewCases": 17,
+      "readyCases": 35,
+      "reviewCases": 18,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9036, 1]
+      "readyAccuracyInterval95": [0.9011, 1]
     },
     {
       "minConfidence": 0.95,
@@ -135,7 +135,7 @@
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 104.68, "p95": 140.97, "totalCaseTime": 5709.31 },
+  "latencyMs": { "p50": 100.13, "p95": 154.07, "totalCaseTime": 5580.67 },
   "usage": {
     "requests": 53,
     "input_tokens": 33869,
@@ -165,13 +165,13 @@
       "id": "mixed-flip-flop",
       "expected": { "verdict": "mixed" },
       "actual": { "verdict": "denies" },
-      "confidence": 0.41
+      "confidence": 0.59
     },
     {
       "id": "adv-na-override",
       "expected": { "verdict": "not_addressed" },
       "actual": { "verdict": "affirms" },
-      "confidence": 0.58,
+      "confidence": 0.69,
       "adversarial": true
     }
   ]

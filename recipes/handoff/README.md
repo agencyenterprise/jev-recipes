@@ -116,13 +116,13 @@ Write observable rules and supply the facts needed to evaluate them. Compute exa
 
 Measured on 60 golden cases against `jev-1.13.0`: **92% accurate** overall (contested cases 67%, adversarial cases 100%).
 
-Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `a6b4ea63f7fd7fa621bad8ebdac68421b2db9ccbf35efc7fd32ca34bc4f712c5`.
+Recorded 2026-10-04 with package 0.9.12, on the **development** split. Recipe fingerprint: `a6b4ea63f7fd7fa621bad8ebdac68421b2db9ccbf35efc7fd32ca34bc4f712c5`.
 
 Scoring revision: 2.
 
 55/60 cases correct; 47 ready, 13 review, 0 failed. Accuracy among ready cases: 96%.
 
-Latency: p50 103.54 ms, p95 143.76 ms. Usage: 28423 input tokens and 2660 output tokens across 60 logical requests.
+Latency: p50 106.78 ms, p95 146.17 ms. Usage: 28423 input tokens and 2660 output tokens across 60 logical requests.
 
 Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
@@ -133,11 +133,11 @@ These authored cases are not independent human validation. Related variants are 
 | `minConfidence` | Deferred to review | Accuracy of ready results |
 | --------------- | ------------------ | ------------------------- |
 | 0.5             | 18%                | 92%                       |
-| 0.6             | 20%                | 94%                       |
+| 0.6             | 18%                | 92%                       |
 | 0.7             | 22%                | 96%                       |
 | 0.8             | 22%                | 96%                       |
 | 0.9             | 27%                | 96%                       |
-| 0.95            | 35%                | 100%                      |
+| 0.95            | 33%                | 100%                      |
 
 The lowest threshold reaching 95% accuracy on ready results is 0.65.
 
