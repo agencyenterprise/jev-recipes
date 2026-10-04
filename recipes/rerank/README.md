@@ -4,7 +4,7 @@
 
 Select candidate passages by relevance to a query.
 
-Use when: You have retrieved passages and want the most relevant evidence for a question.
+Use when: You have retrieved passages and want to find the most useful evidence for a question.
 
 Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
@@ -93,9 +93,25 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Unknown response origin; experimental.**
+Measured on 57 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%, adversarial cases 100%).
 
-No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `b49302ae595364c80d2ba7cfcec2ff9a43d3345dc8b55afe0edfa95510253cb2`.
+
+Scoring revision: 2.
+
+57/57 cases correct; 57 ready, 0 review, 0 failed. Accuracy among ready cases: 100%.
+
+Latency: p50 104.92 ms, p95 139.77 ms. Usage: 40528 input tokens and 4494 output tokens across 57 logical requests.
+
+Labels: unspecified (57 cases): Not recorded by the dataset author.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 94% to 100%.
+
+This recipe has no minConfidence setting, so no confidence-threshold table is reported.
+
+Run `npm run eval -- rerank` to save new results and update this guide. The full report, including misses, is in [evals/results/rerank.json](../../evals/results/rerank.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

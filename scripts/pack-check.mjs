@@ -20,7 +20,9 @@ try {
   const ids = Object.keys(manifest.exports)
     .filter(
       (path) =>
-        !['.', './catalog', './evaluation', './package.json', ...adapterPaths].includes(path),
+        !['.', './client', './catalog', './evaluation', './package.json', ...adapterPaths].includes(
+          path,
+        ),
     )
     .map((path) => path.slice(2));
   const packed = parsePackedArchive(
@@ -299,7 +301,7 @@ assert.equal((await readRun('fixture-replay-api')).evaluatedAt, fixture.evaluate
         (id, index) => `import * as recipe${index} from 'jev-recipes/${id}';\nvoid recipe${index};`,
       )
       .join('\n') +
-      `\nimport { describeRecipe, listRecipes } from 'jev-recipes/catalog';\nconst description = describeRecipe('route');\nlistRecipes({ limit: 3 });\nvoid description.inputSchema;\nimport { evaluate, replay, compare, readRun } from 'jev-recipes/evaluation';\nvoid [evaluate, replay, compare, readRun];\nimport { guardTools, routeModelStep, completionCheck, recipeTools } from 'jev-recipes/ai-sdk';\nvoid [guardTools, routeModelStep, completionCheck, recipeTools];\nimport { guardTools as guardLangChainTools, completionTool } from 'jev-recipes/langchain';\nvoid [guardLangChainTools, completionTool];\n` +
+      `\nimport { createClient } from 'jev-recipes/client';\nvoid createClient;\nimport { describeRecipe, listRecipes } from 'jev-recipes/catalog';\nconst description = describeRecipe('route');\nlistRecipes({ limit: 3 });\nvoid description.inputSchema;\nimport { evaluate, replay, compare, readRun } from 'jev-recipes/evaluation';\nvoid [evaluate, replay, compare, readRun];\nimport { guardTools, routeModelStep, completionCheck, recipeTools } from 'jev-recipes/ai-sdk';\nvoid [guardTools, routeModelStep, completionCheck, recipeTools];\nimport { guardTools as guardLangChainTools, completionTool } from 'jev-recipes/langchain';\nvoid [guardLangChainTools, completionTool];\n` +
       `
 import type { InferToolOutput } from 'ai';
 import { recipeTool, type RecipeToolOutput } from 'jev-recipes/ai-sdk';

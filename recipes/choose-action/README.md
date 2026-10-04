@@ -185,9 +185,34 @@ A saved demo response recommends `defend`. A live recommendation can differ. The
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Unknown response origin; experimental.**
+Measured on 32 golden cases against `jev-1.13.0`: **97% accurate** overall (contested cases 80%, adversarial cases 100%).
 
-No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `3f5ecf6afa9ec8c529c66294d49bfacab11c5c3cae74610752c7828783031b58`.
+
+Scoring revision: 2.
+
+31/32 cases correct; 27 ready, 5 review, 0 failed. Accuracy among ready cases: 100%.
+
+Latency: p50 100.39 ms, p95 139.6 ms. Usage: 26903 input tokens and 2011 output tokens across 32 logical requests.
+
+Labels: unspecified (32 cases): Not recorded by the dataset author.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 84% to 99%.
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 13%                | 100%                      |
+| 0.6             | 13%                | 100%                      |
+| 0.7             | 13%                | 100%                      |
+| 0.8             | 16%                | 100%                      |
+| 0.9             | 25%                | 100%                      |
+| 0.95            | 28%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Run `npm run eval -- choose-action` to save new results and update this guide. The full report, including misses, is in [evals/results/choose-action.json](../../evals/results/choose-action.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

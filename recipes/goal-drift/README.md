@@ -78,9 +78,34 @@ A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Unknown response origin; experimental.**
+Measured on 44 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 83%, adversarial cases 100%).
 
-No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `58cf6f3b5a7c234523db222b233704b1e9657cdcdde0f4d0aa57699a70d35b66`.
+
+Scoring revision: 2.
+
+43/44 cases correct; 0 ready, 44 review, 0 failed. Accuracy among ready cases: n/a.
+
+Latency: p50 102.94 ms, p95 153.13 ms. Usage: 20652 input tokens and 880 output tokens across 44 logical requests.
+
+Labels: unspecified (44 cases): Not recorded by the dataset author.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 88% to 100%.
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 0%                 | 98%                       |
+| 0.6             | 16%                | 97%                       |
+| 0.7             | 77%                | 90%                       |
+| 0.8             | 100%               | n/a                       |
+| 0.9             | 100%               | n/a                       |
+| 0.95            | 100%               | n/a                       |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Run `npm run eval -- goal-drift` to save new results and update this guide. The full report, including misses, is in [evals/results/goal-drift.json](../../evals/results/goal-drift.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

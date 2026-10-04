@@ -1,4 +1,4 @@
-import { createClient } from 'jev-recipes';
+import { createClient } from 'jev-recipes/client';
 
 export function createDirectClient(options = {}) {
   return createClient({

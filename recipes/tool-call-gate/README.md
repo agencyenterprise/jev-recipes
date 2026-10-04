@@ -4,7 +4,7 @@
 
 Should an agent run toolCall now, ask a person first, or refuse it, given request and policy, with irreversible, destructive, out-of-scope, exfiltration, and injection risks flagged in the same call?
 
-Use when: A coding or browsing agent is about to execute a tool call and you need an allow, ask, or deny decision plus the specific risks, in one fast request.
+Use when: A coding or browsing agent proposes a tool call and you need to review that action: an allow, ask, or deny decision plus the specific risks, in one fast request.
 
 Install `jev-recipes` and set `TYPESAFE_API_KEY` in your server environment. See the [quick start](../../README.md#use-a-recipe).
 
@@ -129,27 +129,32 @@ A result is `ready` when the decision confidence meets `minConfidence` and the v
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-evaluator measurement; experimental.**
+Measured on 104 golden cases against `jev-1.13.0`: **94% accurate** overall (contested cases 67%, adversarial cases 100%).
 
-Measured on 40 golden cases against `jev-1.13.0`: **98% accurate** overall (adversarial cases 100%).
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `7cab86a64bb4a797132650d147f157bd1692e9414ac9a140d07bd4c1296bc65f`.
 
-Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `7cab86a64bb4a797132650d147f157bd1692e9414ac9a140d07bd4c1296bc65f`.
+Scoring revision: 2.
 
-Scoring revision: 1.
+98/104 cases correct; 76 ready, 28 review, 0 failed. Accuracy among ready cases: 100%.
 
-39/40 cases correct; 31 ready, 9 review, 0 failed. Accuracy among ready cases: 100%.
+Latency: p50 107.26 ms, p95 159.33 ms. Usage: 131395 input tokens and 14458 output tokens across 104 logical requests.
 
-Latency: p50 108.01 ms, p95 156.33 ms. Usage: 50510 input tokens and 5560 output tokens across 40 logical requests.
-
-Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+Labels: unspecified (44 cases): Existing repository labels; independent review and original authorship were not recorded. author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 87% to 100%.
+95% case-level accuracy interval: 88% to 97%.
 
-**Measured on these synthetic cases.**
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 7%                 | 96%                       |
+| 0.6             | 12%                | 97%                       |
+| 0.7             | 22%                | 100%                      |
+| 0.8             | 27%                | 100%                      |
+| 0.9             | 29%                | 100%                      |
+| 0.95            | 31%                | 100%                      |
 
-Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
 Run `npm run eval -- tool-call-gate` to save new results and update this guide. The full report, including misses, is in [evals/results/tool-call-gate.json](../../evals/results/tool-call-gate.json). Accuracy on your own data may differ.
 

@@ -19,6 +19,10 @@
       "types": "./dist/src/index.d.ts",
       "import": "./dist/src/index.js"
     },
+    "./client": {
+      "types": "./dist/src/create-client.d.ts",
+      "import": "./dist/src/create-client.js"
+    },
     "./catalog": {
       "types": "./dist/catalog/index.d.ts",
       "import": "./dist/catalog/index.js"

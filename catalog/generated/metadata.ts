@@ -5620,7 +5620,8 @@ export const recipeMetadata: CatalogRecipe[] = [
       'Does not retrieve documents or establish source truth.',
       'Provide 1 to 100 items with unique IDs.',
     ],
-    useWhen: 'You have retrieved passages and want the most relevant evidence for a question.',
+    useWhen:
+      'You have retrieved passages and want to find the most useful evidence for a question.',
     related: [
       {
         id: 'answerability',
@@ -7023,7 +7024,7 @@ export const recipeMetadata: CatalogRecipe[] = [
       'A review or ask outcome means a person should look; it does not itself block execution. The application must enforce the action.',
     ],
     useWhen:
-      'A coding or browsing agent is about to execute a tool call and you need an allow, ask, or deny decision plus the specific risks, in one fast request.',
+      'A coding or browsing agent proposes a tool call and you need to review that action: an allow, ask, or deny decision plus the specific risks, in one fast request.',
     related: [
       {
         id: 'action-scope',

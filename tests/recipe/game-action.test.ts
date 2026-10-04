@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { asDecisionInstruction } from '../../src/decisions.js';
 import { ZodError } from 'zod';
 import {
   gameAction,
@@ -50,14 +51,16 @@ describe('game-action', () => {
         questions: {
           decision: {
             type: 'choice',
-            instructions: [
-              'Which available action should this player take next, given the supplied game state, player state, rules, and objective?',
-              'gameState: The current game information available for this decision.',
-              'playerState: Information about the player making this decision.',
-              'legalActions: The available actions the player can choose from.',
-              'rules: Game rules and explanations of game-specific information.',
-              'objective: What the player is trying to accomplish.',
-            ].join('\n'),
+            instructions: asDecisionInstruction(
+              [
+                'Which available action should this player take next, given the supplied game state, player state, rules, and objective?',
+                'gameState: The current game information available for this decision.',
+                'playerState: Information about the player making this decision.',
+                'legalActions: The available actions the player can choose from.',
+                'rules: Game rules and explanations of game-specific information.',
+                'objective: What the player is trying to accomplish.',
+              ].join('\n'),
+            ),
             criteria: {
               action_0:
                 '{"id":"game-move-42","unit":"scout-7","command":"move","destination":[2,4]}',

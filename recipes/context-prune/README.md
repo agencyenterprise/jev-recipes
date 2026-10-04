@@ -140,29 +140,34 @@ Each entry in `items` has a `verdict` of `keep` or `drop`, the yes probability t
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-evaluator measurement; experimental.**
+Measured on 136 golden cases against `jev-1.13.0`: **90% accurate** overall (contested cases 20%, adversarial cases 97%).
 
-Measured on 20 golden cases against `typesafe-ai/jev`: **100% accurate** overall.
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `921cf6a3ced0031109478c77c8b5e84815b8b7637f5c8d3380d555b888a2e62f`.
 
-Recorded 2026-09-27 with package 0.8.1, on the **held-out** split. Recipe fingerprint: `921cf6a3ced0031109478c77c8b5e84815b8b7637f5c8d3380d555b888a2e62f`.
+Scoring revision: 2.
 
-Scoring revision: 1.
+122/136 cases correct; 84 ready, 52 review, 0 failed. Accuracy among ready cases: 100%.
 
-20/20 cases correct; 11 ready, 9 review, 0 failed. Accuracy among ready cases: 100%.
+Latency: p50 104.17 ms, p95 156.63 ms. Usage: 171170 input tokens and 9040 output tokens across 136 logical requests.
 
-Latency: p50 294.29 ms, p95 387.25 ms. Usage: 28100 input tokens and 1520 output tokens across 20 logical requests.
-
-Labels: author-synthetic (20 cases): AI-authored new scenario families for the September 2026 update; not independently human-reviewed. Previous inspected holdouts moved to development.
+Labels: unspecified (36 cases): Existing repository labels; independent review and original authorship were not recorded. author-synthetic (100 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 84% to 100%.
+95% case-level accuracy interval: 83% to 94%.
 
-**Experimental: declared acceptance policy not met.**
+A case counts as correct only when every item in it is right. Across the 472 individual items, **97%** were judged correctly.
 
-A case counts as correct only when every item in it is right. Across the 80 individual items, **100%** were judged correctly.
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 0%                 | 90%                       |
+| 0.6             | 11%                | 95%                       |
+| 0.7             | 22%                | 100%                      |
+| 0.8             | 38%                | 100%                      |
+| 0.9             | 93%                | 100%                      |
+| 0.95            | 100%               | n/a                       |
 
-Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+The lowest threshold reaching 95% accuracy on ready results is 0.6.
 
 Run `npm run eval -- context-prune` to save new results and update this guide. The full report, including misses, is in [evals/results/context-prune.json](../../evals/results/context-prune.json). Accuracy on your own data may differ.
 

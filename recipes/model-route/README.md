@@ -113,29 +113,34 @@ A result is `ready` when the selection confidence meets `minConfidence` and the 
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-evaluator measurement; experimental.**
+Measured on 104 golden cases against `jev-1.13.0`: **89% accurate** overall (contested cases 85%, adversarial cases 50%).
 
-Measured on 40 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `39b2c5e0938559fc1549e339ef7191bbcf833ff8f8ec51a339aee1cb29aafe1c`.
 
-Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `39b2c5e0938559fc1549e339ef7191bbcf833ff8f8ec51a339aee1cb29aafe1c`.
+Scoring revision: 2.
 
-Scoring revision: 1.
+93/104 cases correct; 64 ready, 40 review, 0 failed. Accuracy among ready cases: 98%.
 
-40/40 cases correct; 26 ready, 14 review, 0 failed. Accuracy among ready cases: 100%.
+Latency: p50 113.57 ms, p95 163.69 ms. Usage: 86012 input tokens and 7303 output tokens across 104 logical requests.
 
-Latency: p50 124.34 ms, p95 180.04 ms. Usage: 30807 input tokens and 2610 output tokens across 40 logical requests.
-
-Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+Labels: unspecified (44 cases): Existing repository labels; independent review and original authorship were not recorded. author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 91% to 100%.
+95% case-level accuracy interval: 82% to 94%.
 
-**Measured on these synthetic cases.**
+A case counts as correct only when every item in it is right. Across the 179 individual items, **93%** were judged correctly.
 
-A case counts as correct only when every item in it is right. Across the 80 individual items, **100%** were judged correctly.
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 24%                | 91%                       |
+| 0.6             | 29%                | 96%                       |
+| 0.7             | 33%                | 97%                       |
+| 0.8             | 39%                | 98%                       |
+| 0.9             | 46%                | 100%                      |
+| 0.95            | 52%                | 100%                      |
 
-Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+The lowest threshold reaching 95% accuracy on ready results is 0.6.
 
 Run `npm run eval -- model-route` to save new results and update this guide. The full report, including misses, is in [evals/results/model-route.json](../../evals/results/model-route.json). Accuracy on your own data may differ.
 

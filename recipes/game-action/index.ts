@@ -1,17 +1,19 @@
 import { choice } from '@typesafe-ai/sdk';
 import { evaluateWithJev } from '../../src/client.js';
 import { parseChoiceAnswer } from '../../src/answers.js';
-import { parseDecisionState } from '../../src/decisions.js';
+import { asDecisionInstruction, parseDecisionState } from '../../src/decisions.js';
 import type { RecipeOptions } from '../../src/schema.js';
 import { gameActionInputSchema, gameActionResultSchema } from './schema.js';
 import type { GameActionInput, GameActionResult } from './schema.js';
 
-const instructions = [
-  'Which available action should this player take next, given the supplied game state, player state, rules, and objective?',
-  ...Object.entries(gameActionInputSchema.shape).map(
-    ([name, schema]) => `${name}: ${schema.description}`,
-  ),
-].join('\n');
+const instructions = asDecisionInstruction(
+  [
+    'Which available action should this player take next, given the supplied game state, player state, rules, and objective?',
+    ...Object.entries(gameActionInputSchema.shape).map(
+      ([name, schema]) => `${name}: ${schema.description}`,
+    ),
+  ].join('\n'),
+);
 
 export async function gameAction(
   input: GameActionInput,

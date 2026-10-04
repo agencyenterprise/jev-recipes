@@ -1,177 +1,210 @@
 {
   "evidence": {
-    "runId": "dd3165ae-8e6c-4fd0-b372-a877188b903c",
-    "evaluatedAt": "2026-09-27T07:56:33.689Z",
-    "packageVersion": "0.7.0",
+    "runId": "7016c84f-443b-415e-8ca2-1421c9f0fed0",
+    "sourceMode": "live",
+    "evaluatedAt": "2026-10-04T18:16:16.162Z",
+    "createdAt": "2026-10-04T18:16:16.162Z",
+    "scoringRevision": 2,
+    "packageVersion": "0.9.11",
     "recipeFingerprint": "937fa33427abf5c862ed5c9f34919d1a5585a05b6cd7a722c857f0405f2dfb1d",
-    "datasetFingerprint": "f5796d3fee2981671c27058fdc14bdf4761f519f03813154b50b9f72073b9843",
-    "split": "held-out",
+    "datasetFingerprint": "bbf1f8e57ebea24150cb4cc2c7bb371fc606adc093630fae41789b2411af4241",
+    "split": "development",
     "mode": "live",
-    "policy": {
-      "minConfidence": 0.8,
-      "selectedOn": {
-        "runId": "d0a2533c-0273-4f7d-aeb9-807ee79af896",
-        "datasetFingerprint": "bbf1f8e57ebea24150cb4cc2c7bb371fc606adc093630fae41789b2411af4241",
-        "recipeFingerprint": "937fa33427abf5c862ed5c9f34919d1a5585a05b6cd7a722c857f0405f2dfb1d",
-        "model": "jev-1.13.0",
-        "split": "development"
-      }
-    },
+    "policy": {},
     "provenance": [
       {
         "method": "author-synthetic",
         "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
-        "cases": 40
+        "cases": 60
       }
     ]
   },
   "recipe": "entity-match",
   "model": "jev-1.13.0",
   "models": ["jev-1.13.0"],
-  "cases": 40,
-  "completed": 40,
+  "cases": 60,
+  "completed": 60,
   "failed": 0,
-  "correct": 35,
-  "wrong": 5,
-  "ready": 30,
-  "review": 10,
-  "accuracy": 0.875,
-  "completedAccuracy": 0.875,
-  "accuracyInterval95": [0.7389, 0.9454],
+  "correct": 52,
+  "wrong": 8,
+  "ready": 45,
+  "review": 15,
+  "accuracy": 0.867,
+  "completedAccuracy": 0.867,
+  "accuracyInterval95": [0.7583, 0.9309],
   "readyAccuracy": 1,
-  "readyAccuracyInterval95": [0.8865, 1],
+  "readyAccuracyInterval95": [0.9213, 1],
   "reviewRate": 0.25,
   "contestedAccuracy": null,
   "adversarialAccuracy": null,
   "calibration": [
+    { "confidence": "0-0.5", "cases": 0, "accuracy": null },
+    { "confidence": "0.5-0.6", "cases": 13, "accuracy": 0.385 },
+    { "confidence": "0.6-0.7", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 0, "accuracy": null },
+    { "confidence": "0.8-0.9", "cases": 0, "accuracy": null },
+    { "confidence": "0.9-1", "cases": 45, "accuracy": 1 }
+  ],
+  "thresholdEvaluation": "recipe-replay",
+  "thresholds": [
     {
-      "confidence": "0-0.5",
-      "cases": 0,
-      "accuracy": null
+      "minConfidence": 0.5,
+      "deferRate": 0,
+      "readyAccuracy": 0.867,
+      "readyCases": 60,
+      "reviewCases": 0,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.7583, 0.9309]
     },
     {
-      "confidence": "0.5-0.6",
-      "cases": 7,
-      "accuracy": 0.571
+      "minConfidence": 0.55,
+      "deferRate": 0.133,
+      "readyAccuracy": 0.962,
+      "readyCases": 52,
+      "reviewCases": 8,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8702, 0.9894]
     },
     {
-      "confidence": "0.6-0.7",
-      "cases": 3,
-      "accuracy": 0.333
+      "minConfidence": 0.6,
+      "deferRate": 0.217,
+      "readyAccuracy": 1,
+      "readyCases": 47,
+      "reviewCases": 13,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9244, 1]
     },
     {
-      "confidence": "0.7-0.8",
-      "cases": 0,
-      "accuracy": null
+      "minConfidence": 0.65,
+      "deferRate": 0.233,
+      "readyAccuracy": 1,
+      "readyCases": 46,
+      "reviewCases": 14,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9229, 1]
     },
     {
-      "confidence": "0.8-0.9",
-      "cases": 0,
-      "accuracy": null
+      "minConfidence": 0.7,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
     },
     {
-      "confidence": "0.9-1",
-      "cases": 30,
-      "accuracy": 1
+      "minConfidence": 0.75,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.25,
+      "readyAccuracy": 1,
+      "readyCases": 45,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9213, 1]
     }
   ],
-  "thresholdEvaluation": "frozen-policy",
-  "thresholds": [],
-  "suggestedMinConfidence": null,
-  "latencyMs": {
-    "p50": 113.93,
-    "p95": 166.59,
-    "totalCaseTime": 4850.12
-  },
+  "suggestedMinConfidence": 0.55,
+  "latencyMs": { "p50": 106.09, "p95": 168.95, "totalCaseTime": 6907.94 },
   "usage": {
-    "requests": 40,
-    "input_tokens": 20859,
-    "output_tokens": 800,
+    "requests": 60,
+    "input_tokens": 31304,
+    "output_tokens": 1200,
     "unknownResponses": 0,
     "failedRequests": 0,
     "models": ["jev-1.13.0"]
   },
-  "cost": {
-    "model": "jev-1.13.0",
-    "inputPerMillion": 0.042,
-    "outputPerMillion": 0,
-    "currency": "USD",
-    "date": "2026-09-27",
-    "source": "https://docs.typesafe.ai/models",
-    "estimated": 0.00087608
-  },
+  "cost": null,
   "confusion": {
     "{\"verdict\":\"different\"}": {
-      "total": 10,
-      "correct": 5,
-      "misses": {
-        "{\"verdict\":\"same\"}": 5
-      }
+      "total": 15,
+      "correct": 7,
+      "misses": { "{\"verdict\":\"same\"}": 8 }
     },
-    "{\"verdict\":\"same\"}": {
-      "total": 30,
-      "correct": 30,
-      "misses": {}
-    }
+    "{\"verdict\":\"same\"}": { "total": 45, "correct": 45, "misses": {} }
   },
   "failures": [
     {
-      "id": "featured-17-different-id",
-      "expected": {
-        "verdict": "different"
-      },
-      "actual": {
-        "verdict": "same"
-      },
-      "confidence": 0.62
-    },
-    {
-      "id": "featured-19-different-id",
-      "expected": {
-        "verdict": "different"
-      },
-      "actual": {
-        "verdict": "same"
-      },
+      "id": "featured-00-different-id",
+      "expected": { "verdict": "different" },
+      "actual": { "verdict": "same" },
       "confidence": 0.55
     },
     {
-      "id": "featured-22-different-id",
-      "expected": {
-        "verdict": "different"
-      },
-      "actual": {
-        "verdict": "same"
-      },
-      "confidence": 0.6
+      "id": "featured-02-different-id",
+      "expected": { "verdict": "different" },
+      "actual": { "verdict": "same" },
+      "confidence": 0.56
     },
     {
-      "id": "featured-23-different-id",
-      "expected": {
-        "verdict": "different"
-      },
-      "actual": {
-        "verdict": "same"
-      },
+      "id": "featured-03-different-id",
+      "expected": { "verdict": "different" },
+      "actual": { "verdict": "same" },
+      "confidence": 0.54
+    },
+    {
+      "id": "featured-06-different-id",
+      "expected": { "verdict": "different" },
+      "actual": { "verdict": "same" },
       "confidence": 0.52
     },
     {
-      "id": "featured-24-different-id",
-      "expected": {
-        "verdict": "different"
-      },
-      "actual": {
-        "verdict": "same"
-      },
-      "confidence": 0.58
+      "id": "featured-07-different-id",
+      "expected": { "verdict": "different" },
+      "actual": { "verdict": "same" },
+      "confidence": 0.51
+    },
+    {
+      "id": "featured-08-different-id",
+      "expected": { "verdict": "different" },
+      "actual": { "verdict": "same" },
+      "confidence": 0.5
+    },
+    {
+      "id": "featured-09-different-id",
+      "expected": { "verdict": "different" },
+      "actual": { "verdict": "same" },
+      "confidence": 0.5
+    },
+    {
+      "id": "featured-10-different-id",
+      "expected": { "verdict": "different" },
+      "actual": { "verdict": "same" },
+      "confidence": 0.52
     }
-  ],
-  "acceptance": {
-    "minConfidence": 0.8,
-    "minimumHeldOutReadyCases": 20,
-    "minimumReadyAccuracy": 0.95,
-    "maximumProviderFailures": 0,
-    "met": true,
-    "label": "Measured on these synthetic cases"
-  }
+  ]
 }

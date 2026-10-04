@@ -1,13 +1,16 @@
 {
   "evidence": {
-    "runId": "0f417565-224c-4e07-86d5-f80e27bffc8e",
-    "evaluatedAt": "2026-09-27T21:18:59.416Z",
-    "packageVersion": "0.8.1",
+    "runId": "46f25ecc-082b-4eed-8f06-fd64bca5e458",
+    "sourceMode": "live",
+    "evaluatedAt": "2026-10-04T18:16:32.849Z",
+    "createdAt": "2026-10-04T18:16:32.849Z",
+    "scoringRevision": 2,
+    "packageVersion": "0.9.11",
     "recipeFingerprint": "4740e3077ceb0727eb06a35d4c4e3c56e01da0c117fbc378b8f7e940b53c9bfa",
     "datasetFingerprint": "e1a6928c7c05552d47a930818c0b81130f2dad2ca64407cdb5c4d88a318bf4b3",
     "split": "development",
     "mode": "live",
-    "policy": { "minConfidence": 0.8 },
+    "policy": {},
     "provenance": [
       {
         "method": "public-dataset",
@@ -82,41 +85,41 @@
     ]
   },
   "recipe": "paragraph-boundary",
-  "model": "typesafe-ai/jev",
-  "models": ["typesafe-ai/jev"],
+  "model": "jev-1.13.0",
+  "models": ["jev-1.13.0"],
   "cases": 112,
   "completed": 112,
   "failed": 0,
-  "correct": 106,
-  "wrong": 6,
+  "correct": 105,
+  "wrong": 7,
   "ready": 54,
   "review": 58,
-  "accuracy": 0.946,
-  "completedAccuracy": 0.946,
-  "accuracyInterval95": [0.888, 0.9752],
+  "accuracy": 0.938,
+  "completedAccuracy": 0.938,
+  "accuracyInterval95": [0.8766, 0.9694],
   "readyAccuracy": 1,
   "readyAccuracyInterval95": [0.9336, 1],
   "reviewRate": 0.518,
   "contestedAccuracy": null,
   "adversarialAccuracy": null,
   "calibration": [
-    { "confidence": "0-0.5", "cases": 30, "accuracy": 0.8 },
-    { "confidence": "0.5-0.6", "cases": 16, "accuracy": 1 },
-    { "confidence": "0.6-0.7", "cases": 9, "accuracy": 1 },
-    { "confidence": "0.7-0.8", "cases": 3, "accuracy": 1 },
-    { "confidence": "0.8-0.9", "cases": 5, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 49, "accuracy": 1 }
+    { "confidence": "0-0.5", "cases": 27, "accuracy": 0.741 },
+    { "confidence": "0.5-0.6", "cases": 23, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 4, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 4, "accuracy": 1 },
+    { "confidence": "0.8-0.9", "cases": 3, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 51, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
     {
       "minConfidence": 0.5,
-      "deferRate": 0.268,
+      "deferRate": 0.241,
       "readyAccuracy": 1,
-      "readyCases": 82,
-      "reviewCases": 30,
+      "readyCases": 85,
+      "reviewCases": 27,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9552, 1]
+      "readyAccuracyInterval95": [0.9568, 1]
     },
     {
       "minConfidence": 0.55,
@@ -129,30 +132,30 @@
     },
     {
       "minConfidence": 0.6,
-      "deferRate": 0.411,
+      "deferRate": 0.446,
       "readyAccuracy": 1,
-      "readyCases": 66,
-      "reviewCases": 46,
+      "readyCases": 62,
+      "reviewCases": 50,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.945, 1]
+      "readyAccuracyInterval95": [0.9417, 1]
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.464,
+      "deferRate": 0.473,
       "readyAccuracy": 1,
-      "readyCases": 60,
-      "reviewCases": 52,
+      "readyCases": 59,
+      "reviewCases": 53,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9398, 1]
+      "readyAccuracyInterval95": [0.9389, 1]
     },
     {
       "minConfidence": 0.7,
-      "deferRate": 0.491,
+      "deferRate": 0.482,
       "readyAccuracy": 1,
-      "readyCases": 57,
-      "reviewCases": 55,
+      "readyCases": 58,
+      "reviewCases": 54,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9369, 1]
+      "readyAccuracyInterval95": [0.9379, 1]
     },
     {
       "minConfidence": 0.75,
@@ -174,57 +177,49 @@
     },
     {
       "minConfidence": 0.85,
-      "deferRate": 0.527,
+      "deferRate": 0.536,
       "readyAccuracy": 1,
-      "readyCases": 53,
-      "reviewCases": 59,
+      "readyCases": 52,
+      "reviewCases": 60,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9324, 1]
+      "readyAccuracyInterval95": [0.9312, 1]
     },
     {
       "minConfidence": 0.9,
-      "deferRate": 0.563,
+      "deferRate": 0.545,
       "readyAccuracy": 1,
-      "readyCases": 49,
-      "reviewCases": 63,
+      "readyCases": 51,
+      "reviewCases": 61,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9273, 1]
+      "readyAccuracyInterval95": [0.93, 1]
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.589,
+      "deferRate": 0.58,
       "readyAccuracy": 1,
-      "readyCases": 46,
-      "reviewCases": 66,
+      "readyCases": 47,
+      "reviewCases": 65,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9229, 1]
+      "readyAccuracyInterval95": [0.9244, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": { "p50": 249.93, "p95": 337.13, "totalCaseTime": 28359.26 },
+  "latencyMs": { "p50": 106.01, "p95": 149.52, "totalCaseTime": 12534.01 },
   "usage": {
     "requests": 112,
     "input_tokens": 61304,
-    "output_tokens": 4692,
+    "output_tokens": 4690,
     "unknownResponses": 0,
     "failedRequests": 0,
-    "models": ["typesafe-ai/jev"]
+    "models": ["jev-1.13.0"]
   },
-  "cost": {
-    "model": "typesafe-ai/jev",
-    "inputPerMillion": 0.042,
-    "outputPerMillion": 0,
-    "currency": "USD",
-    "date": "2026-09-27",
-    "source": "https://ai-gateway.vercel.sh/v1/models",
-    "estimated": 0.00257477
-  },
+  "cost": null,
   "confusion": {
     "{\"verdict\":\"continue\"}": { "total": 56, "correct": 56, "misses": {} },
     "{\"verdict\":\"separate\"}": {
       "total": 56,
-      "correct": 50,
-      "misses": { "{\"verdict\":\"continue\"}": 6 }
+      "correct": 49,
+      "misses": { "{\"verdict\":\"continue\"}": 7 }
     }
   },
   "failures": [
@@ -238,31 +233,37 @@
       "id": "node-v22.20.0-child_process.md-separate-98",
       "expected": { "verdict": "separate" },
       "actual": { "verdict": "continue" },
-      "confidence": 0.36
+      "confidence": 0.43
     },
     {
       "id": "node-v22.20.0-child_process.md-separate-168",
       "expected": { "verdict": "separate" },
       "actual": { "verdict": "continue" },
-      "confidence": 0.39
+      "confidence": 0.47
     },
     {
       "id": "node-v22.20.0-dns.md-separate-82",
       "expected": { "verdict": "separate" },
       "actual": { "verdict": "continue" },
-      "confidence": 0.45
+      "confidence": 0.29
+    },
+    {
+      "id": "node-v22.20.0-timers.md-separate-17",
+      "expected": { "verdict": "separate" },
+      "actual": { "verdict": "continue" },
+      "confidence": 0.25
     },
     {
       "id": "node-v22.20.0-vm.md-separate-1",
       "expected": { "verdict": "separate" },
       "actual": { "verdict": "continue" },
-      "confidence": 0.45
+      "confidence": 0.26
     },
     {
       "id": "node-v22.20.0-vm.md-separate-47",
       "expected": { "verdict": "separate" },
       "actual": { "verdict": "continue" },
-      "confidence": 0.24
+      "confidence": 0.13
     }
   ]
 }

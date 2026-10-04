@@ -96,27 +96,32 @@ The rubric grades what the message expresses about buying. It does not estimate 
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-evaluator measurement; experimental.**
+Measured on 75 golden cases against `jev-1.13.0`: **100% accurate** overall.
 
-Measured on 25 golden cases against `jev-1.13.0`: **96% accurate** overall.
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `f6f9cdae49cfd815b8389061f1c8bc6ba27a6a62517fbdcb184d1487f12f8047`.
 
-Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `f6f9cdae49cfd815b8389061f1c8bc6ba27a6a62517fbdcb184d1487f12f8047`.
+Scoring revision: 2.
 
-Scoring revision: 1.
+75/75 cases correct; 74 ready, 1 review, 0 failed. Accuracy among ready cases: 100%.
 
-24/25 cases correct; 24 ready, 1 review, 0 failed. Accuracy among ready cases: 96%.
+Latency: p50 110.64 ms, p95 174.69 ms. Usage: 36142 input tokens and 1275 output tokens across 75 logical requests.
 
-Latency: p50 110.34 ms, p95 163.93 ms. Usage: 12080 input tokens and 425 output tokens across 25 logical requests.
-
-Labels: author-synthetic (25 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+Labels: author-synthetic (75 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 80% to 99%.
+95% case-level accuracy interval: 95% to 100%.
 
-**Measured on these synthetic cases.**
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 0%                 | 100%                      |
+| 0.6             | 0%                 | 100%                      |
+| 0.7             | 0%                 | 100%                      |
+| 0.8             | 1%                 | 100%                      |
+| 0.9             | 11%                | 100%                      |
+| 0.95            | 12%                | 100%                      |
 
-Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
 Run `npm run eval -- buying-intent` to save new results and update this guide. The full report, including misses, is in [evals/results/buying-intent.json](../../evals/results/buying-intent.json). Accuracy on your own data may differ.
 

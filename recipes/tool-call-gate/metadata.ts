@@ -17,7 +17,7 @@ export const metadata = {
     'harness',
   ],
   useWhen:
-    'A coding or browsing agent is about to execute a tool call and you need an allow, ask, or deny decision plus the specific risks, in one fast request.',
+    'A coding or browsing agent proposes a tool call and you need to review that action: an allow, ask, or deny decision plus the specific risks, in one fast request.',
   related: [
     {
       id: 'action-scope',

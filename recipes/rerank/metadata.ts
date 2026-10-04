@@ -6,7 +6,7 @@ export const metadata = {
   description: 'Select candidate passages by relevance to a query.',
   category: 'retrieval',
   tags: ['rag', 'search', 'relevance'],
-  useWhen: 'You have retrieved passages and want the most relevant evidence for a question.',
+  useWhen: 'You have retrieved passages and want to find the most useful evidence for a question.',
   related: [
     {
       id: 'answerability',

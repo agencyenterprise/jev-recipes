@@ -93,27 +93,32 @@ Requires speaker roles. Does not infer identities from names or assume every age
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-evaluator measurement; experimental.**
+Measured on 60 golden cases against `jev-1.13.0`: **93% accurate** overall (contested cases 90%).
 
-Measured on 40 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 100%).
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `e3afba589f57bf106ce32a86e6d6dd3eb7d42c3c7f43a4e659330e8368a2cad6`.
 
-Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `e3afba589f57bf106ce32a86e6d6dd3eb7d42c3c7f43a4e659330e8368a2cad6`.
+Scoring revision: 2.
 
-Scoring revision: 1.
+56/60 cases correct; 38 ready, 22 review, 0 failed. Accuracy among ready cases: 97%.
 
-39/40 cases correct; 24 ready, 16 review, 0 failed. Accuracy among ready cases: 100%.
+Latency: p50 110.41 ms, p95 158.55 ms. Usage: 41046 input tokens and 3198 output tokens across 60 logical requests.
 
-Latency: p50 112.84 ms, p95 164.19 ms. Usage: 27344 input tokens and 2133 output tokens across 40 logical requests.
-
-Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 87% to 100%.
+95% case-level accuracy interval: 84% to 97%.
 
-**Measured on these synthetic cases.**
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 30%                | 91%                       |
+| 0.6             | 30%                | 91%                       |
+| 0.7             | 33%                | 93%                       |
+| 0.8             | 37%                | 97%                       |
+| 0.9             | 43%                | 100%                      |
+| 0.95            | 53%                | 100%                      |
 
-Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+The lowest threshold reaching 95% accuracy on ready results is 0.8.
 
 Run `npm run eval -- callback-responsibility` to save new results and update this guide. The full report, including misses, is in [evals/results/callback-responsibility.json](../../evals/results/callback-responsibility.json). Accuracy on your own data may differ.
 
