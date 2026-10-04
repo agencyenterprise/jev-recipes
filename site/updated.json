@@ -7,12 +7,16 @@
     "hash": "b06435c3cf306018",
     "updatedAt": "2026-10-04"
   },
+  "docs/gateway-validation": {
+    "hash": "49cec7ec11b0a8cc",
+    "updatedAt": "2026-10-04"
+  },
   "docs/getting-started": {
     "hash": "0f2044ff86499d35",
     "updatedAt": "2026-10-04"
   },
   "docs/integrations": {
-    "hash": "4ce7cee285271516",
+    "hash": "8cb69f4cb18b94ac",
     "updatedAt": "2026-10-04"
   },
   "recipes/action-compare": {

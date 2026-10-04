@@ -4,7 +4,13 @@ import { join } from 'node:path';
 import { format } from 'prettier';
 import { replaceSection } from './generate.mjs';
 
-export const siteDocs = ['getting-started', 'evaluation', 'integrations', 'coding-assistants'];
+export const siteDocs = [
+  'getting-started',
+  'evaluation',
+  'integrations',
+  'gateway-validation',
+  'coding-assistants',
+];
 export const updateLedgerPath = 'site/updated.json';
 
 const categoryTitles = {
