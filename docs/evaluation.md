@@ -44,6 +44,8 @@ Reports separate completed, wrong, ready, review, and failed cases. Overall accu
 
 Batched recipes wait for every launched chunk to settle before rejecting a failed batch. This lets archives retain later responses and known usage even when another chunk failed. No partial-success result or automatic retry is introduced. Rejection may wait for the slowest outstanding request. Default SDK calls have a timeout; custom clients must honor their own timeout and abort contract. Failure costs can still be unknown.
 
+When several chunks fail, the error comes from the first failed chunk in input order. This makes failure selection consistent between execution and offline replay. Earlier versions selected whichever failure arrived first, so the reported error can differ after upgrading when multiple chunks fail.
+
 ## Keep held-out cases held out
 
 Choose a policy using development cases, then evaluate the reserved cases once that policy is fixed:
@@ -114,7 +116,7 @@ After building, run `npm run eval:audit`. It validates current-format recipe arc
 
 To retain the detailed audit in a new file, run `npm run eval:audit -- --out /tmp/jev-evidence-audit.json`. The command never overwrites a file or updates saved accuracy claims. Shared helper changes can make recipe fingerprints stale; this is not a reason to bypass the replay guard.
 
-Development `--check` requires the current scoring revision before spending quota. Create a current development baseline before enabling that check. See the [next evaluation plan](evaluation-plan.md); no live run or budget is implied by the offline checks.
+Development `--check` requires the current scoring revision before spending quota. Create a current development baseline before enabling that check. No live run or budget is implied by the offline checks.
 
 ## Gateway evaluation
 

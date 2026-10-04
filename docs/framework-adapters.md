@@ -57,6 +57,8 @@ const result = await generateText({
 
 `guardTools` reads the request from the last user message unless `request` is supplied. `routeModelStep` and `completionCheck` read it from the first user message; pass `request` or `task` when the prompt is not the task. A call with no user message throws, so the guard fails closed.
 
+Recipe tools return `RecipeToolOutput`, typed as `Record<string, unknown> | null`. For example, `game-action` returns `null` without a provider call when `legalActions` is empty. Check for `null` before reading output fields. Earlier adapter declarations omitted this valid result, so upgrading may require a null check in TypeScript callers.
+
 The blocked output is `{ kind: 'jev-recipes/blocked-tool-output', blocked: true, action, verdict, status, detected, confidence, message }`. The message tells the model the call did not run and not to retry it unattended. The application decides whether to surface an `ask` to a person; the adapter does not queue approvals.
 
 Guarded tools support both regular results and streaming results. The wrapper's `execute` returns an async iterable: `generateText` collects its final result, and `streamText` can expose preliminary results. If you call `execute` directly, consume it with `for await`:

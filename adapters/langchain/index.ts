@@ -28,6 +28,7 @@ export type {
   GuardEvent,
   GuardOptions,
   RecipeToolOptions,
+  RecipeToolOutput,
 } from '../shared.js';
 
 type JsonSchema = Record<string, unknown>;

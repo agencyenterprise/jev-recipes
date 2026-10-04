@@ -107,6 +107,14 @@ const langchain = await import('jev-recipes/langchain');
 assert.equal((await langchain.recipeTool('route', routeClient).invoke(routeFixture.input)).route, 'billing');
 assert.equal(typeof langchain.guardTools, 'function');
 assert.equal(langchain.completionTool({ task: 'x' }).name, 'report_completion');
+const noLegalActions = { gameState: {}, playerState: {}, legalActions: [] };
+const noProviderCalls = {
+  client: { systemOne: async () => { throw new Error('Empty actions must stay offline.'); } },
+};
+const chooseAction = aiSdk.recipeTool('game-action', noProviderCalls);
+const executionOptions = { toolCallId: 'empty', messages: [], context: {} };
+assert.equal(await chooseAction.execute(noLegalActions, executionOptions), null);
+assert.equal(await langchain.recipeTool('game-action', noProviderCalls).invoke(noLegalActions), null);
 console.log('Verified ' + ids.length + ' installed recipe imports, root exports, schemas, offline decisions, and both framework adapters.');
 `;
   await writeFile(join(consumer, 'smoke.mjs'), fixtureScript);
@@ -291,7 +299,14 @@ assert.equal((await readRun('fixture-replay-api')).evaluatedAt, fixture.evaluate
         (id, index) => `import * as recipe${index} from 'jev-recipes/${id}';\nvoid recipe${index};`,
       )
       .join('\n') +
-      `\nimport { describeRecipe, listRecipes } from 'jev-recipes/catalog';\nconst description = describeRecipe('route');\nlistRecipes({ limit: 3 });\nvoid description.inputSchema;\nimport { evaluate, replay, compare, readRun } from 'jev-recipes/evaluation';\nvoid [evaluate, replay, compare, readRun];\nimport { guardTools, routeModelStep, completionCheck, recipeTools } from 'jev-recipes/ai-sdk';\nvoid [guardTools, routeModelStep, completionCheck, recipeTools];\nimport { guardTools as guardLangChainTools, completionTool } from 'jev-recipes/langchain';\nvoid [guardLangChainTools, completionTool];\n`,
+      `\nimport { describeRecipe, listRecipes } from 'jev-recipes/catalog';\nconst description = describeRecipe('route');\nlistRecipes({ limit: 3 });\nvoid description.inputSchema;\nimport { evaluate, replay, compare, readRun } from 'jev-recipes/evaluation';\nvoid [evaluate, replay, compare, readRun];\nimport { guardTools, routeModelStep, completionCheck, recipeTools } from 'jev-recipes/ai-sdk';\nvoid [guardTools, routeModelStep, completionCheck, recipeTools];\nimport { guardTools as guardLangChainTools, completionTool } from 'jev-recipes/langchain';\nvoid [guardLangChainTools, completionTool];\n` +
+      `
+import type { InferToolOutput } from 'ai';
+import { recipeTool, type RecipeToolOutput } from 'jev-recipes/ai-sdk';
+const noActionResult: InferToolOutput<ReturnType<typeof recipeTool>> = null;
+const recipeOutput: RecipeToolOutput = noActionResult;
+void recipeOutput;
+`,
   );
   await run(
     process.execPath,
