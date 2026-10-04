@@ -284,7 +284,7 @@ Any recipe becomes a tool with `recipeTools(['route', 'verify'])`. The LangChain
 Recipes talk to any server that implements the TypeSafe `systemOne` wire format. Point the SDK client at it with `baseURL`, or set `TYPESAFE_BASE_URL` in the environment, and pass the client to any recipe:
 
 ```js
-import { createClient } from 'jev-recipes';
+import { createClient } from 'jev-recipes/client';
 import { route } from 'jev-recipes/route';
 
 const client = createClient({

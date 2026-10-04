@@ -90,27 +90,34 @@ The recipe compares the two records as supplied. It does not look either record 
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-evaluator measurement; experimental.**
+**Current synthetic measurement; experimental.**
 
-Measured on 40 golden cases against `jev-1.13.0`: **88% accurate** overall.
+Measured on 60 golden cases against `jev-1.13.0`: **87% accurate** overall.
 
-Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `937fa33427abf5c862ed5c9f34919d1a5585a05b6cd7a722c857f0405f2dfb1d`.
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `937fa33427abf5c862ed5c9f34919d1a5585a05b6cd7a722c857f0405f2dfb1d`.
 
-Scoring revision: 1.
+Scoring revision: 2.
 
-35/40 cases correct; 30 ready, 10 review, 0 failed. Accuracy among ready cases: 100%.
+52/60 cases correct; 45 ready, 15 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 113.93 ms, p95 166.59 ms. Usage: 20859 input tokens and 800 output tokens across 40 logical requests.
+Latency: p50 106.09 ms, p95 168.95 ms. Usage: 31304 input tokens and 1200 output tokens across 60 logical requests.
 
-Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 74% to 95%.
+95% case-level accuracy interval: 76% to 93%.
 
-**Measured on these synthetic cases.**
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 0%                 | 87%                       |
+| 0.6             | 22%                | 100%                      |
+| 0.7             | 25%                | 100%                      |
+| 0.8             | 25%                | 100%                      |
+| 0.9             | 25%                | 100%                      |
+| 0.95            | 25%                | 100%                      |
 
-Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+The lowest threshold reaching 95% accuracy on ready results is 0.55.
 
 Run `npm run eval -- entity-match` to save new results and update this guide. The full report, including misses, is in [evals/results/entity-match.json](../../evals/results/entity-match.json). Accuracy on your own data may differ.
 

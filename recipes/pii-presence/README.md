@@ -73,9 +73,36 @@ A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Unknown response origin; experimental.**
+**Current measurement; labels unspecified; experimental.**
 
-No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
+Measured on 43 golden cases against `jev-1.13.0`: **95% accurate** overall (contested cases 80%, adversarial cases 100%).
+
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `1ea428b1221f41d42ce6564bb0562ad57de63489164fbe53442184f8480969e2`.
+
+Scoring revision: 2.
+
+41/43 cases correct; 36 ready, 7 review, 0 failed. Accuracy among ready cases: 100%.
+
+Latency: p50 110.32 ms, p95 157.18 ms. Usage: 18681 input tokens and 860 output tokens across 43 logical requests.
+
+Labels: unspecified (43 cases): Not recorded by the dataset author.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 85% to 99%.
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 0%                 | 95%                       |
+| 0.6             | 5%                 | 98%                       |
+| 0.7             | 12%                | 97%                       |
+| 0.8             | 16%                | 100%                      |
+| 0.9             | 16%                | 100%                      |
+| 0.95            | 28%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Run `npm run eval -- pii-presence` to save new results and update this guide. The full report, including misses, is in [evals/results/pii-presence.json](../../evals/results/pii-presence.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

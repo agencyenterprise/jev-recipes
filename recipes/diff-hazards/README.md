@@ -106,9 +106,36 @@ The overall `status` is `review` when any single label falls below `minConfidenc
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Unknown response origin; experimental.**
+**Current measurement; labels unspecified; experimental.**
 
-No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
+Measured on 43 golden cases against `jev-1.13.0`: **95% accurate** overall (contested cases 100%, adversarial cases 80%).
+
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `3d17977295595f9944444ce0330aa0158bd0649f056b4004fef0ff8f8c8a5c88`.
+
+Scoring revision: 2.
+
+41/43 cases correct; 34 ready, 9 review, 0 failed. Accuracy among ready cases: 97%.
+
+Latency: p50 109.35 ms, p95 143.92 ms. Usage: 43106 input tokens and 4386 output tokens across 43 logical requests.
+
+Labels: unspecified (43 cases): Not recorded by the dataset author.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 85% to 99%.
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 0%                 | 95%                       |
+| 0.6             | 5%                 | 95%                       |
+| 0.7             | 12%                | 95%                       |
+| 0.8             | 21%                | 97%                       |
+| 0.9             | 40%                | 100%                      |
+| 0.95            | 58%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Run `npm run eval -- diff-hazards` to save new results and update this guide. The full report, including misses, is in [evals/results/diff-hazards.json](../../evals/results/diff-hazards.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

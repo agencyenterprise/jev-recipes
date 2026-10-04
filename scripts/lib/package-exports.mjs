@@ -2,6 +2,7 @@ const entry = (path) => ({ types: `./dist/${path}.d.ts`, import: `./dist/${path}
 
 export const packageExports = {
   '.': entry('src/index'),
+  './client': entry('src/create-client'),
   './catalog': entry('catalog/index'),
   './evaluation': entry('evaluation/index'),
   './ai-sdk': entry('adapters/ai-sdk/index'),

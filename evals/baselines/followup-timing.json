@@ -1,15 +1,16 @@
 {
   "evidence": {
-    "runId": "5b611623-817b-41b4-8653-7dee82a21230",
-    "evaluatedAt": "2026-09-27T07:52:20.832Z",
-    "packageVersion": "0.7.0",
+    "runId": "dcb8309e-31f8-41ee-b115-a70bf105f590",
+    "sourceMode": "live",
+    "evaluatedAt": "2026-10-04T18:16:23.554Z",
+    "createdAt": "2026-10-04T18:16:23.554Z",
+    "scoringRevision": 2,
+    "packageVersion": "0.9.11",
     "recipeFingerprint": "4866c46f354ce9b8856fe256afca3700a757a07e3bdf69be816718bd9dbbeca3",
     "datasetFingerprint": "f0aa47e00012ba0a4749b7a38227b90bb1cabbd9f151eba7f41a7e9ce561984d",
     "split": "development",
     "mode": "live",
-    "policy": {
-      "minConfidence": 0.8
-    },
+    "policy": {},
     "provenance": [
       {
         "method": "author-synthetic",
@@ -24,60 +25,36 @@
   "cases": 60,
   "completed": 60,
   "failed": 0,
-  "correct": 58,
-  "wrong": 2,
+  "correct": 59,
+  "wrong": 1,
   "ready": 51,
   "review": 9,
-  "accuracy": 0.967,
-  "completedAccuracy": 0.967,
-  "accuracyInterval95": [0.8864, 0.9908],
+  "accuracy": 0.983,
+  "completedAccuracy": 0.983,
+  "accuracyInterval95": [0.9114, 0.9971],
   "readyAccuracy": 1,
   "readyAccuracyInterval95": [0.93, 1],
   "reviewRate": 0.15,
   "contestedAccuracy": 0.8,
   "adversarialAccuracy": null,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 4,
-      "accuracy": 0.5
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 2,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 2,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 1,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 1,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 50,
-      "accuracy": 1
-    }
+    { "confidence": "0-0.5", "cases": 2, "accuracy": 0.5 },
+    { "confidence": "0.5-0.6", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 3, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 2, "accuracy": 1 },
+    { "confidence": "0.8-0.9", "cases": 1, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 50, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
     {
       "minConfidence": 0.5,
-      "deferRate": 0.117,
+      "deferRate": 0.1,
       "readyAccuracy": 1,
-      "readyCases": 53,
-      "reviewCases": 7,
+      "readyCases": 54,
+      "reviewCases": 6,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9324, 1]
+      "readyAccuracyInterval95": [0.9336, 1]
     },
     {
       "minConfidence": 0.55,
@@ -90,12 +67,12 @@
     },
     {
       "minConfidence": 0.6,
-      "deferRate": 0.15,
+      "deferRate": 0.117,
       "readyAccuracy": 1,
-      "readyCases": 51,
-      "reviewCases": 9,
+      "readyCases": 53,
+      "reviewCases": 7,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.93, 1]
+      "readyAccuracyInterval95": [0.9324, 1]
     },
     {
       "minConfidence": 0.65,
@@ -162,85 +139,35 @@
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": {
-    "p50": 116.14,
-    "p95": 161.74,
-    "totalCaseTime": 7268.47
-  },
+  "latencyMs": { "p50": 106.04, "p95": 145.47, "totalCaseTime": 6459.67 },
   "usage": {
     "requests": 60,
     "input_tokens": 37499,
-    "output_tokens": 3811,
+    "output_tokens": 3810,
     "unknownResponses": 0,
     "failedRequests": 0,
     "models": ["jev-1.13.0"]
   },
-  "cost": {
-    "model": "jev-1.13.0",
-    "inputPerMillion": 0.042,
-    "outputPerMillion": 0,
-    "currency": "USD",
-    "date": "2026-09-27",
-    "source": "https://docs.typesafe.ai/models",
-    "estimated": 0.00157496
-  },
+  "cost": null,
   "confusion": {
-    "{\"verdict\":\"after_event\"}": {
-      "total": 15,
-      "correct": 15,
-      "misses": {}
-    },
-    "{\"verdict\":\"declined\"}": {
-      "total": 5,
-      "correct": 5,
-      "misses": {}
-    },
-    "{\"verdict\":\"later\"}": {
-      "total": 15,
-      "correct": 14,
-      "misses": {
-        "{\"verdict\":\"after_event\"}": 1
-      }
-    },
-    "{\"verdict\":\"not_requested\"}": {
-      "total": 5,
-      "correct": 5,
-      "misses": {}
-    },
-    "{\"verdict\":\"now\"}": {
-      "total": 15,
-      "correct": 15,
-      "misses": {}
-    },
+    "{\"verdict\":\"after_event\"}": { "total": 15, "correct": 15, "misses": {} },
+    "{\"verdict\":\"declined\"}": { "total": 5, "correct": 5, "misses": {} },
+    "{\"verdict\":\"later\"}": { "total": 15, "correct": 15, "misses": {} },
+    "{\"verdict\":\"not_requested\"}": { "total": 5, "correct": 5, "misses": {} },
+    "{\"verdict\":\"now\"}": { "total": 15, "correct": 15, "misses": {} },
     "{\"verdict\":\"unclear\"}": {
       "total": 5,
       "correct": 4,
-      "misses": {
-        "{\"verdict\":\"after_event\"}": 1
-      }
+      "misses": { "{\"verdict\":\"after_event\"}": 1 }
     }
   },
   "failures": [
     {
       "id": "featured-08-3",
-      "expected": {
-        "verdict": "unclear"
-      },
-      "actual": {
-        "verdict": "after_event"
-      },
-      "confidence": 0.41,
+      "expected": { "verdict": "unclear" },
+      "actual": { "verdict": "after_event" },
+      "confidence": 0.43,
       "contested": true
-    },
-    {
-      "id": "featured-13-1",
-      "expected": {
-        "verdict": "later"
-      },
-      "actual": {
-        "verdict": "after_event"
-      },
-      "confidence": 0.42
     }
   ]
 }

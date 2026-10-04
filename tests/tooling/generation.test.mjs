@@ -343,7 +343,7 @@ test('scaffolding keeps tests separate and never overwrites an existing recipe',
 test('reserved package names are rejected before scaffolding writes any files', async () => {
   const root = await mkdtemp(join(tmpdir(), 'jev-reserved-scaffold-'));
   try {
-    for (const id of ['ai-sdk', 'langchain', 'catalog', 'evaluation']) {
+    for (const id of ['client', 'ai-sdk', 'langchain', 'catalog', 'evaluation']) {
       const reservedName = new RegExp(`Recipe ID ${id} is reserved for a package export`);
       await assert.rejects(scaffoldRecipe(root, id), reservedName);
       await assert.rejects(scaffoldFromSpec(root, starterSpec(id, 'choice')), reservedName);
@@ -372,13 +372,14 @@ test('recipe discovery rejects manually created folders using reserved package n
 });
 
 test('export generation rejects collisions instead of replacing existing entry points', () => {
-  for (const id of ['ai-sdk', 'langchain', 'catalog', 'evaluation', 'package.json'])
+  for (const id of ['client', 'ai-sdk', 'langchain', 'catalog', 'evaluation', 'package.json'])
     assert.throws(() => renderExports([{ id }]), /Duplicate package export/);
   assert.throws(
     () => renderExports([{ id: 'sample-check' }, { id: 'sample-check' }]),
     /Duplicate package export/,
   );
   const exports = renderExports([{ id: 'sample-check' }]);
+  assert.equal(exports['./client'].import, './dist/src/create-client.js');
   assert.equal(exports['./ai-sdk'].import, './dist/adapters/ai-sdk/index.js');
   assert.equal(exports['./langchain'].import, './dist/adapters/langchain/index.js');
   assert.equal(exports['./sample-check'].import, './dist/recipes/sample-check/index.js');

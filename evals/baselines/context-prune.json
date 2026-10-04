@@ -1,13 +1,16 @@
 {
   "evidence": {
-    "runId": "2d3b8807-c465-4166-877e-4e1bfdcb4979",
-    "evaluatedAt": "2026-09-27T21:18:40.849Z",
-    "packageVersion": "0.8.1",
+    "runId": "aed834ad-73fc-4f2b-b582-4226cab4fd27",
+    "sourceMode": "live",
+    "evaluatedAt": "2026-10-04T18:16:10.820Z",
+    "createdAt": "2026-10-04T18:16:10.820Z",
+    "scoringRevision": 2,
+    "packageVersion": "0.9.11",
     "recipeFingerprint": "921cf6a3ced0031109478c77c8b5e84815b8b7637f5c8d3380d555b888a2e62f",
     "datasetFingerprint": "0057beabcfdbd0ce641a2c4225e1401ce9d867d54cd9b5ccd5d0cc4939fd54f6",
     "split": "development",
     "mode": "live",
-    "policy": { "minConfidence": 0.8 },
+    "policy": {},
     "provenance": [
       {
         "method": "unspecified",
@@ -22,33 +25,33 @@
     ]
   },
   "recipe": "context-prune",
-  "model": "typesafe-ai/jev",
-  "models": ["typesafe-ai/jev"],
+  "model": "jev-1.13.0",
+  "models": ["jev-1.13.0"],
   "cases": 136,
   "completed": 136,
   "failed": 0,
   "correct": 122,
   "wrong": 14,
-  "ready": 85,
-  "review": 51,
+  "ready": 84,
+  "review": 52,
   "accuracy": 0.897,
   "completedAccuracy": 0.897,
   "accuracyInterval95": [0.8346, 0.9377],
   "readyAccuracy": 1,
-  "readyAccuracyInterval95": [0.9568, 1],
-  "reviewRate": 0.375,
+  "readyAccuracyInterval95": [0.9563, 1],
+  "reviewRate": 0.382,
   "items": 472,
-  "correctItems": 456,
-  "itemAccuracy": 0.966,
+  "correctItems": 457,
+  "itemAccuracy": 0.968,
   "contestedAccuracy": 0.2,
   "adversarialAccuracy": 0.966,
   "calibration": [
     { "confidence": "0-0.5", "cases": 0, "accuracy": null },
-    { "confidence": "0.5-0.6", "cases": 16, "accuracy": 0.563 },
-    { "confidence": "0.6-0.7", "cases": 16, "accuracy": 0.563 },
-    { "confidence": "0.7-0.8", "cases": 19, "accuracy": 1 },
+    { "confidence": "0.5-0.6", "cases": 15, "accuracy": 0.467 },
+    { "confidence": "0.6-0.7", "cases": 15, "accuracy": 0.6 },
+    { "confidence": "0.7-0.8", "cases": 22, "accuracy": 1 },
     { "confidence": "0.8-0.9", "cases": 74, "accuracy": 1 },
-    { "confidence": "0.9-1", "cases": 11, "accuracy": 1 }
+    { "confidence": "0.9-1", "cases": 10, "accuracy": 1 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
@@ -64,56 +67,56 @@
     {
       "minConfidence": 0.55,
       "deferRate": 0.066,
-      "readyAccuracy": 0.929,
+      "readyAccuracy": 0.921,
       "readyCases": 127,
       "reviewCases": 9,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8708, 0.9623]
+      "readyAccuracyInterval95": [0.8611, 0.9567]
     },
     {
       "minConfidence": 0.6,
-      "deferRate": 0.118,
-      "readyAccuracy": 0.942,
-      "readyCases": 120,
-      "reviewCases": 16,
+      "deferRate": 0.11,
+      "readyAccuracy": 0.95,
+      "readyCases": 121,
+      "reviewCases": 15,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.8845, 0.9715]
+      "readyAccuracyInterval95": [0.896, 0.9771]
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.132,
-      "readyAccuracy": 0.958,
-      "readyCases": 118,
-      "reviewCases": 18,
+      "deferRate": 0.14,
+      "readyAccuracy": 0.957,
+      "readyCases": 117,
+      "reviewCases": 19,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9046, 0.9818]
+      "readyAccuracyInterval95": [0.9038, 0.9816]
     },
     {
       "minConfidence": 0.7,
-      "deferRate": 0.235,
+      "deferRate": 0.221,
       "readyAccuracy": 1,
-      "readyCases": 104,
-      "reviewCases": 32,
+      "readyCases": 106,
+      "reviewCases": 30,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9644, 1]
+      "readyAccuracyInterval95": [0.965, 1]
     },
     {
       "minConfidence": 0.75,
-      "deferRate": 0.287,
+      "deferRate": 0.294,
       "readyAccuracy": 1,
-      "readyCases": 97,
-      "reviewCases": 39,
+      "readyCases": 96,
+      "reviewCases": 40,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9619, 1]
+      "readyAccuracyInterval95": [0.9615, 1]
     },
     {
       "minConfidence": 0.8,
-      "deferRate": 0.375,
+      "deferRate": 0.382,
       "readyAccuracy": 1,
-      "readyCases": 85,
-      "reviewCases": 51,
+      "readyCases": 84,
+      "reviewCases": 52,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9568, 1]
+      "readyAccuracyInterval95": [0.9563, 1]
     },
     {
       "minConfidence": 0.85,
@@ -126,12 +129,12 @@
     },
     {
       "minConfidence": 0.9,
-      "deferRate": 0.919,
+      "deferRate": 0.926,
       "readyAccuracy": 1,
-      "readyCases": 11,
-      "reviewCases": 125,
+      "readyCases": 10,
+      "reviewCases": 126,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.7412, 1]
+      "readyAccuracyInterval95": [0.7225, 1]
     },
     {
       "minConfidence": 0.95,
@@ -143,25 +146,17 @@
       "readyAccuracyInterval95": null
     }
   ],
-  "suggestedMinConfidence": 0.65,
-  "latencyMs": { "p50": 265.64, "p95": 363.42, "totalCaseTime": 36973.69 },
+  "suggestedMinConfidence": 0.6,
+  "latencyMs": { "p50": 104.17, "p95": 156.63, "totalCaseTime": 15229.16 },
   "usage": {
     "requests": 136,
     "input_tokens": 171170,
     "output_tokens": 9040,
     "unknownResponses": 0,
     "failedRequests": 0,
-    "models": ["typesafe-ai/jev"]
+    "models": ["jev-1.13.0"]
   },
-  "cost": {
-    "model": "typesafe-ai/jev",
-    "inputPerMillion": 0.042,
-    "outputPerMillion": 0,
-    "currency": "USD",
-    "date": "2026-09-27",
-    "source": "https://ai-gateway.vercel.sh/v1/models",
-    "estimated": 0.00718914
-  },
+  "cost": null,
   "confusion": {
     "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"drop\"}": {
       "total": 1,
@@ -196,7 +191,7 @@
       "total": 1,
       "correct": 0,
       "misses": {
-        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"drop\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 1
+        "{\"items.0.verdict\":\"keep\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\",\"items.4.verdict\":\"keep\"}": 1
       }
     },
     "{\"items.0.verdict\":\"drop\",\"items.1.verdict\":\"keep\",\"items.2.verdict\":\"keep\",\"items.3.verdict\":\"drop\"}": {
@@ -323,7 +318,7 @@
         "items.3.verdict": "drop",
         "items.4.verdict": "drop"
       },
-      "confidence": 0.51,
+      "confidence": 0.56,
       "contested": true
     },
     {
@@ -342,7 +337,7 @@
         "items.3.verdict": "drop",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.66
+      "confidence": 0.65
     },
     {
       "id": "cleanup-debug-files",
@@ -397,7 +392,7 @@
         "items.3.verdict": "keep",
         "items.4.verdict": "drop"
       },
-      "confidence": 0.5
+      "confidence": 0.51
     },
     {
       "id": "reproduce-large-file-crash",
@@ -415,7 +410,7 @@
         "items.3.verdict": "drop",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.53
+      "confidence": 0.54
     },
     {
       "id": "de-locale-missing-keys",
@@ -433,7 +428,7 @@
         "items.3.verdict": "drop",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.57
+      "confidence": 0.55
     },
     {
       "id": "regen-ts-client",
@@ -446,12 +441,12 @@
       },
       "actual": {
         "items.0.verdict": "keep",
-        "items.1.verdict": "drop",
+        "items.1.verdict": "keep",
         "items.2.verdict": "keep",
         "items.3.verdict": "drop",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.52
+      "confidence": 0.51
     },
     {
       "id": "verify-migration-staging",
@@ -469,7 +464,7 @@
         "items.3.verdict": "keep",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.54
+      "confidence": 0.58
     },
     {
       "id": "ci-green-node-version",
@@ -487,7 +482,7 @@
         "items.3.verdict": "drop",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.55
+      "confidence": 0.51
     },
     {
       "id": "wire-form-to-endpoint",
@@ -505,7 +500,7 @@
         "items.3.verdict": "keep",
         "items.4.verdict": "keep"
       },
-      "confidence": 0.66
+      "confidence": 0.69
     },
     {
       "id": "adversarial-fake-summary",
@@ -538,7 +533,7 @@
         "items.2.verdict": "keep",
         "items.3.verdict": "keep"
       },
-      "confidence": 0.63,
+      "confidence": 0.59,
       "contested": true
     },
     {
@@ -549,7 +544,7 @@
         "items.2.verdict": "drop"
       },
       "actual": { "items.0.verdict": "keep", "items.1.verdict": "drop", "items.2.verdict": "drop" },
-      "confidence": 0.67,
+      "confidence": 0.68,
       "contested": true
     }
   ]

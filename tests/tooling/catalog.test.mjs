@@ -94,6 +94,29 @@ test('search finds task wording and supports category and limit without truncati
   assert.throws(() => loadRecipe('__proto__'));
 });
 
+test('search ranks first the recipe for every task phrase the README uses to introduce it', () => {
+  const readmeTasks = [
+    ['Send a request to the right team', 'route'],
+    ['Route work to the right team', 'route'],
+    ['Find useful passages', 'rerank'],
+    ['Select useful evidence', 'rerank'],
+    ['Check whether the evidence is enough to answer', 'answerability'],
+    ['is this answerable', 'answerability'],
+    ['Check claims against supplied evidence', 'verify'],
+    ['Find missing or ambiguous requirements', 'clarify'],
+    ["Label a response's stance toward a claim", 'claim-stance'],
+    ['Choose a move from available game actions', 'choose-action'],
+    ['Choose a checkers move from your board and legal moves', 'checkers-move'],
+    ["Allow, ask, or deny an agent's tool call", 'tool-call-gate'],
+    ["Review an agent's proposed action", 'tool-call-gate'],
+    ['Check an agent\'s "done" against evidence', 'completion-gate'],
+    ['Pick a model tier and effort per request', 'model-route'],
+    ['Route a backlog of messages in a few calls', 'route-many'],
+  ];
+  for (const [query, expected] of readmeTasks)
+    assert.equal(listRecipes({ query, limit: 1 })[0].id, expected, query);
+});
+
 test('CLI accepts old invocations and both orders of the new list flags', () => {
   for (const args of [
     [],

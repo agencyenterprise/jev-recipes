@@ -112,9 +112,36 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Unknown response origin; experimental.**
+**Current measurement; labels unspecified; experimental.**
 
-No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
+Measured on 50 golden cases against `jev-1.13.0`: **94% accurate** overall (contested cases 75%, adversarial cases 83%).
+
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `f22b76f3c955f02a0aa43ccecf083fc37e58f006fc5e3a9268111abd3e8f787f`.
+
+Scoring revision: 2.
+
+47/50 cases correct; 44 ready, 6 review, 0 failed. Accuracy among ready cases: 100%.
+
+Latency: p50 108.06 ms, p95 143.55 ms. Usage: 29532 input tokens and 2690 output tokens across 50 logical requests.
+
+Labels: unspecified (50 cases): Not recorded by the dataset author.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 84% to 98%.
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 8%                 | 100%                      |
+| 0.6             | 8%                 | 100%                      |
+| 0.7             | 8%                 | 100%                      |
+| 0.8             | 12%                | 100%                      |
+| 0.9             | 20%                | 100%                      |
+| 0.95            | 26%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Run `npm run eval -- verify` to save new results and update this guide. The full report, including misses, is in [evals/results/verify.json](../../evals/results/verify.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

@@ -88,27 +88,34 @@ The recipe reads the failure as text and asks only whether repeating the same at
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-evaluator measurement; experimental.**
+**Current synthetic measurement; experimental.**
 
-Measured on 40 golden cases against `jev-1.13.0`: **100% accurate** overall.
+Measured on 60 golden cases against `jev-1.13.0`: **100% accurate** overall.
 
-Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `4325f3b69b7412e092d660cb8a88b35faf53642a1310dff64aabd0557ca88f46`.
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `4325f3b69b7412e092d660cb8a88b35faf53642a1310dff64aabd0557ca88f46`.
 
-Scoring revision: 1.
+Scoring revision: 2.
 
-40/40 cases correct; 39 ready, 1 review, 0 failed. Accuracy among ready cases: 100%.
+60/60 cases correct; 60 ready, 0 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 109 ms, p95 136.32 ms. Usage: 18828 input tokens and 800 output tokens across 40 logical requests.
+Latency: p50 105.32 ms, p95 153.05 ms. Usage: 28263 input tokens and 1200 output tokens across 60 logical requests.
 
-Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 91% to 100%.
+95% case-level accuracy interval: 94% to 100%.
 
-**Measured on these synthetic cases.**
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 0%                 | 100%                      |
+| 0.6             | 0%                 | 100%                      |
+| 0.7             | 0%                 | 100%                      |
+| 0.8             | 0%                 | 100%                      |
+| 0.9             | 7%                 | 100%                      |
+| 0.95            | 35%                | 100%                      |
 
-Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
 Run `npm run eval -- retry-worthwhile` to save new results and update this guide. The full report, including misses, is in [evals/results/retry-worthwhile.json](../../evals/results/retry-worthwhile.json). Accuracy on your own data may differ.
 

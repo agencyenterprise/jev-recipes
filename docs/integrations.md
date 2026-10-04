@@ -5,7 +5,7 @@ Every recipe accepts `{ client, model, signal }` as its second argument. A clien
 ## TypeSafe direct
 
 ```js
-import { createClient } from 'jev-recipes';
+import { createClient } from 'jev-recipes/client';
 import { route } from 'jev-recipes/route';
 
 const client = createClient({
@@ -29,7 +29,7 @@ Pin a model version when comparing evaluations. TypeSafe's aliases can change th
 Use the TypeSafe-compatible endpoint with a Gateway key. The example accepts `VERCEL_GATEWAY_API_KEY` first and `AI_GATEWAY_API_KEY` as a fallback. A blank explicit key is rejected. Validate that key before constructing the client so the SDK cannot fall back to a TypeSafe credential.
 
 ```js
-import { createClient } from 'jev-recipes';
+import { createClient } from 'jev-recipes/client';
 import { route } from 'jev-recipes/route';
 
 const apiKey = process.env.VERCEL_GATEWAY_API_KEY ?? process.env.AI_GATEWAY_API_KEY;

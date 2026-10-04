@@ -1,15 +1,16 @@
 {
   "evidence": {
-    "runId": "1a49d702-87cb-4411-b83c-262aec3f0e2b",
-    "evaluatedAt": "2026-09-27T07:52:04.778Z",
-    "packageVersion": "0.7.0",
-    "recipeFingerprint": "ab78b9ec3027283b20df73fc1b254b21d8f3fccc0fc9dc29d7949507b6266cd1",
+    "runId": "d750983f-a9a0-4964-8890-f54a5560286f",
+    "sourceMode": "live",
+    "evaluatedAt": "2026-10-04T18:16:52.787Z",
+    "createdAt": "2026-10-04T18:16:52.787Z",
+    "scoringRevision": 2,
+    "packageVersion": "0.9.11",
+    "recipeFingerprint": "eb9dc99b562568445d1ff5ff7b021cffacbbe4b2f65861df51e5c193ccb8f594",
     "datasetFingerprint": "61a9417eb3b39ef01861aada69c0107dc934e9160433cc59b986b7683a19a6a4",
     "split": "development",
     "mode": "live",
-    "policy": {
-      "minConfidence": 0.8
-    },
+    "policy": {},
     "provenance": [
       {
         "method": "unspecified",
@@ -31,50 +32,26 @@
   "failed": 0,
   "correct": 82,
   "wrong": 5,
-  "ready": 50,
-  "review": 37,
+  "ready": 49,
+  "review": 38,
   "accuracy": 0.943,
   "completedAccuracy": 0.943,
   "accuracyInterval95": [0.8724, 0.9752],
-  "readyAccuracy": 1,
-  "readyAccuracyInterval95": [0.9287, 1],
-  "reviewRate": 0.425,
+  "readyAccuracy": 0.98,
+  "readyAccuracyInterval95": [0.8931, 0.9964],
+  "reviewRate": 0.437,
   "items": 217,
   "correctItems": 212,
   "itemAccuracy": 0.977,
   "contestedAccuracy": 0.4,
   "adversarialAccuracy": 0.95,
   "calibration": [
-    {
-      "confidence": "0-0.5",
-      "cases": 4,
-      "accuracy": 0.75
-    },
-    {
-      "confidence": "0.5-0.6",
-      "cases": 2,
-      "accuracy": 0
-    },
-    {
-      "confidence": "0.6-0.7",
-      "cases": 4,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.7-0.8",
-      "cases": 6,
-      "accuracy": 0.833
-    },
-    {
-      "confidence": "0.8-0.9",
-      "cases": 10,
-      "accuracy": 1
-    },
-    {
-      "confidence": "0.9-1",
-      "cases": 61,
-      "accuracy": 0.984
-    }
+    { "confidence": "0-0.5", "cases": 4, "accuracy": 0.75 },
+    { "confidence": "0.5-0.6", "cases": 1, "accuracy": 0 },
+    { "confidence": "0.6-0.7", "cases": 5, "accuracy": 0.8 },
+    { "confidence": "0.7-0.8", "cases": 7, "accuracy": 1 },
+    { "confidence": "0.8-0.9", "cases": 8, "accuracy": 0.875 },
+    { "confidence": "0.9-1", "cases": 62, "accuracy": 0.984 }
   ],
   "thresholdEvaluation": "recipe-replay",
   "thresholds": [
@@ -89,92 +66,88 @@
     },
     {
       "minConfidence": 0.55,
-      "deferRate": 0.322,
-      "readyAccuracy": 1,
-      "readyCases": 59,
-      "reviewCases": 28,
+      "deferRate": 0.31,
+      "readyAccuracy": 0.983,
+      "readyCases": 60,
+      "reviewCases": 27,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9389, 1]
+      "readyAccuracyInterval95": [0.9114, 0.9971]
     },
     {
       "minConfidence": 0.6,
-      "deferRate": 0.322,
-      "readyAccuracy": 1,
-      "readyCases": 59,
-      "reviewCases": 28,
+      "deferRate": 0.31,
+      "readyAccuracy": 0.983,
+      "readyCases": 60,
+      "reviewCases": 27,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9389, 1]
+      "readyAccuracyInterval95": [0.9114, 0.9971]
     },
     {
       "minConfidence": 0.65,
-      "deferRate": 0.322,
-      "readyAccuracy": 1,
-      "readyCases": 59,
-      "reviewCases": 28,
+      "deferRate": 0.345,
+      "readyAccuracy": 0.982,
+      "readyCases": 57,
+      "reviewCases": 30,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9389, 1]
+      "readyAccuracyInterval95": [0.9071, 0.9969]
     },
     {
       "minConfidence": 0.7,
-      "deferRate": 0.368,
-      "readyAccuracy": 1,
-      "readyCases": 55,
-      "reviewCases": 32,
+      "deferRate": 0.356,
+      "readyAccuracy": 0.982,
+      "readyCases": 56,
+      "reviewCases": 31,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9347, 1]
+      "readyAccuracyInterval95": [0.9055, 0.9968]
     },
     {
       "minConfidence": 0.75,
-      "deferRate": 0.402,
-      "readyAccuracy": 1,
-      "readyCases": 52,
-      "reviewCases": 35,
+      "deferRate": 0.379,
+      "readyAccuracy": 0.981,
+      "readyCases": 54,
+      "reviewCases": 33,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9312, 1]
+      "readyAccuracyInterval95": [0.9023, 0.9967]
     },
     {
       "minConfidence": 0.8,
-      "deferRate": 0.425,
-      "readyAccuracy": 1,
-      "readyCases": 50,
-      "reviewCases": 37,
+      "deferRate": 0.437,
+      "readyAccuracy": 0.98,
+      "readyCases": 49,
+      "reviewCases": 38,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9287, 1]
+      "readyAccuracyInterval95": [0.8931, 0.9964]
     },
     {
       "minConfidence": 0.85,
-      "deferRate": 0.471,
+      "deferRate": 0.46,
       "readyAccuracy": 1,
-      "readyCases": 46,
-      "reviewCases": 41,
+      "readyCases": 47,
+      "reviewCases": 40,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9229, 1]
+      "readyAccuracyInterval95": [0.9244, 1]
     },
     {
       "minConfidence": 0.9,
-      "deferRate": 0.494,
+      "deferRate": 0.483,
       "readyAccuracy": 1,
-      "readyCases": 44,
-      "reviewCases": 43,
+      "readyCases": 45,
+      "reviewCases": 42,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9197, 1]
+      "readyAccuracyInterval95": [0.9213, 1]
     },
     {
       "minConfidence": 0.95,
-      "deferRate": 0.563,
+      "deferRate": 0.575,
       "readyAccuracy": 1,
-      "readyCases": 38,
-      "reviewCases": 49,
+      "readyCases": 37,
+      "reviewCases": 50,
       "failedCases": 0,
-      "readyAccuracyInterval95": [0.9082, 1]
+      "readyAccuracyInterval95": [0.9059, 1]
     }
   ],
   "suggestedMinConfidence": 0.5,
-  "latencyMs": {
-    "p50": 131.78,
-    "p95": 161.01,
-    "totalCaseTime": 11315.74
-  },
+  "latencyMs": { "p50": 109.16, "p95": 177.8, "totalCaseTime": 10106.11 },
   "usage": {
     "requests": 124,
     "input_tokens": 79511,
@@ -183,15 +156,7 @@
     "failedRequests": 0,
     "models": ["jev-1.13.0"]
   },
-  "cost": {
-    "model": "jev-1.13.0",
-    "inputPerMillion": 0.042,
-    "outputPerMillion": 0,
-    "currency": "USD",
-    "date": "2026-09-27",
-    "source": "https://docs.typesafe.ai/models",
-    "estimated": 0.00333946
-  },
+  "cost": null,
   "confusion": {
     "{\"items.0.suggestedRoute\":\"accessibility\",\"items.1.suggestedRoute\":\"translation\"}": {
       "total": 3,
@@ -208,11 +173,7 @@
       "correct": 1,
       "misses": {}
     },
-    "{\"items.0.suggestedRoute\":\"account\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
+    "{\"items.0.suggestedRoute\":\"account\"}": { "total": 1, "correct": 1, "misses": {} },
     "{\"items.0.suggestedRoute\":\"api\",\"items.1.suggestedRoute\":\"mobile\"}": {
       "total": 3,
       "correct": 3,
@@ -506,7 +467,7 @@
         "items.3.suggestedRoute": "sales",
         "items.4.suggestedRoute": "account"
       },
-      "confidence": 0.52
+      "confidence": 0.58
     },
     {
       "id": "support-refund-request-vague",
@@ -520,7 +481,7 @@
         "items.1.suggestedRoute": "technical",
         "items.2.suggestedRoute": null
       },
-      "confidence": 0.93,
+      "confidence": 0.91,
       "contested": true
     },
     {
@@ -545,7 +506,7 @@
         "items.6.suggestedRoute": "account",
         "items.7.suggestedRoute": "account"
       },
-      "confidence": 0.54
+      "confidence": 0.81
     },
     {
       "id": "email-contested-fyi",
@@ -559,7 +520,7 @@
         "items.1.suggestedRoute": null,
         "items.2.suggestedRoute": "needs_reply"
       },
-      "confidence": 0.73,
+      "confidence": 0.64,
       "contested": true
     },
     {
@@ -574,7 +535,7 @@
         "items.1.suggestedRoute": "network",
         "items.2.suggestedRoute": "software"
       },
-      "confidence": 0.47,
+      "confidence": 0.42,
       "contested": true,
       "adversarial": true
     }

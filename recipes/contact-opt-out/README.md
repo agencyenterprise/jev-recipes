@@ -91,27 +91,34 @@ This is a language decision, not a consent registry. Never treat none as permiss
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-evaluator measurement; experimental.**
+**Current synthetic measurement; experimental.**
 
-Measured on 40 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 80%, adversarial cases 100%).
+Measured on 60 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
 
-Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `cf942449ed8153c6445d9bf776146328e9d17bffef15889a4280357e0e83d640`.
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `cf942449ed8153c6445d9bf776146328e9d17bffef15889a4280357e0e83d640`.
 
-Scoring revision: 1.
+Scoring revision: 2.
 
-39/40 cases correct; 33 ready, 7 review, 0 failed. Accuracy among ready cases: 100%.
+60/60 cases correct; 50 ready, 10 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 118.89 ms, p95 154.6 ms. Usage: 24799 input tokens and 2174 output tokens across 40 logical requests.
+Latency: p50 105.35 ms, p95 144.22 ms. Usage: 37041 input tokens and 3261 output tokens across 60 logical requests.
 
-Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 87% to 100%.
+95% case-level accuracy interval: 94% to 100%.
 
-**Measured on these synthetic cases.**
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 10%                | 100%                      |
+| 0.6             | 12%                | 100%                      |
+| 0.7             | 13%                | 100%                      |
+| 0.8             | 17%                | 100%                      |
+| 0.9             | 20%                | 100%                      |
+| 0.95            | 27%                | 100%                      |
 
-Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
 Run `npm run eval -- contact-opt-out` to save new results and update this guide. The full report, including misses, is in [evals/results/contact-opt-out.json](../../evals/results/contact-opt-out.json). Accuracy on your own data may differ.
 

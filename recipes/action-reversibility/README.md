@@ -84,9 +84,36 @@ A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `re
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Unknown response origin; experimental.**
+**Current measurement; labels unspecified; experimental.**
 
-No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
+Measured on 44 golden cases against `jev-1.13.0`: **89% accurate** overall (contested cases 60%, adversarial cases 60%).
+
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `1725aabfba04f76bbd33199de824e59997c8ab4750feef1ba71b221ff775c4a0`.
+
+Scoring revision: 2.
+
+39/44 cases correct; 20 ready, 24 review, 0 failed. Accuracy among ready cases: 100%.
+
+Latency: p50 112.1 ms, p95 166.27 ms. Usage: 25554 input tokens and 748 output tokens across 44 logical requests.
+
+Labels: unspecified (44 cases): Not recorded by the dataset author.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 76% to 95%.
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 16%                | 95%                       |
+| 0.6             | 23%                | 97%                       |
+| 0.7             | 39%                | 100%                      |
+| 0.8             | 55%                | 100%                      |
+| 0.9             | 61%                | 100%                      |
+| 0.95            | 71%                | 100%                      |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.55.
+
+Run `npm run eval -- action-reversibility` to save new results and update this guide. The full report, including misses, is in [evals/results/action-reversibility.json](../../evals/results/action-reversibility.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

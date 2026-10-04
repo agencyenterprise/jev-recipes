@@ -1,233 +1,222 @@
 {
   "evidence": {
-    "runId": "c802aa5a-4343-4d03-9f82-4f4ef9a23762",
-    "evaluatedAt": "2026-09-27T07:56:19.034Z",
-    "packageVersion": "0.7.0",
+    "runId": "f6368a57-4346-4db9-8487-2eae1ebcb535",
+    "sourceMode": "live",
+    "evaluatedAt": "2026-10-04T18:16:49.661Z",
+    "createdAt": "2026-10-04T18:16:49.661Z",
+    "scoringRevision": 2,
+    "packageVersion": "0.9.11",
     "recipeFingerprint": "47f2015674f4ab7c9498d3ccfbd072384bc90f6c451edadcfe62cf24de2d402d",
-    "datasetFingerprint": "c18f2ae62cd41e70b2c92084edb0ae36f0ca61a489f904b0a75f482d0f0212c8",
-    "split": "held-out",
+    "datasetFingerprint": "dd552262e538fa494bed93467d79da2c2f8dc3efb1017c0766428f547f1ccf93",
+    "split": "development",
     "mode": "live",
-    "policy": {
-      "minConfidence": 0.8,
-      "selectedOn": {
-        "runId": "fccb1998-e53d-4641-9362-c240eee6c854",
-        "datasetFingerprint": "dd552262e538fa494bed93467d79da2c2f8dc3efb1017c0766428f547f1ccf93",
-        "recipeFingerprint": "47f2015674f4ab7c9498d3ccfbd072384bc90f6c451edadcfe62cf24de2d402d",
-        "model": "jev-1.13.0",
-        "split": "development"
-      }
-    },
+    "policy": {},
     "provenance": [
+      {
+        "method": "unspecified",
+        "source": "Existing repository labels; independent review and original authorship were not recorded.",
+        "cases": 50
+      },
       {
         "method": "author-synthetic",
         "source": "AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.",
-        "cases": 40
+        "cases": 60
       }
     ]
   },
   "recipe": "route",
   "model": "jev-1.13.0",
   "models": ["jev-1.13.0"],
-  "cases": 40,
-  "completed": 40,
+  "cases": 110,
+  "completed": 110,
   "failed": 0,
-  "correct": 39,
-  "wrong": 1,
-  "ready": 24,
-  "review": 16,
-  "accuracy": 0.975,
-  "completedAccuracy": 0.975,
-  "accuracyInterval95": [0.8712, 0.9956],
+  "correct": 110,
+  "wrong": 0,
+  "ready": 72,
+  "review": 38,
+  "accuracy": 1,
+  "completedAccuracy": 1,
+  "accuracyInterval95": [0.9663, 1],
   "readyAccuracy": 1,
-  "readyAccuracyInterval95": [0.862, 1],
-  "reviewRate": 0.4,
-  "contestedAccuracy": null,
-  "adversarialAccuracy": 0.9,
+  "readyAccuracyInterval95": [0.9493, 1],
+  "reviewRate": 0.345,
+  "contestedAccuracy": 1,
+  "adversarialAccuracy": 1,
   "calibration": [
+    { "confidence": "0-0.5", "cases": 6, "accuracy": 1 },
+    { "confidence": "0.5-0.6", "cases": 3, "accuracy": 1 },
+    { "confidence": "0.6-0.7", "cases": 4, "accuracy": 1 },
+    { "confidence": "0.7-0.8", "cases": 5, "accuracy": 1 },
+    { "confidence": "0.8-0.9", "cases": 5, "accuracy": 1 },
+    { "confidence": "0.9-1", "cases": 87, "accuracy": 1 }
+  ],
+  "thresholdEvaluation": "recipe-replay",
+  "thresholds": [
     {
-      "confidence": "0-0.5",
-      "cases": 3,
-      "accuracy": 0.667
+      "minConfidence": 0.5,
+      "deferRate": 0.245,
+      "readyAccuracy": 1,
+      "readyCases": 83,
+      "reviewCases": 27,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9558, 1]
     },
     {
-      "confidence": "0.5-0.6",
-      "cases": 1,
-      "accuracy": 1
+      "minConfidence": 0.55,
+      "deferRate": 0.255,
+      "readyAccuracy": 1,
+      "readyCases": 82,
+      "reviewCases": 28,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9552, 1]
     },
     {
-      "confidence": "0.6-0.7",
-      "cases": 2,
-      "accuracy": 1
+      "minConfidence": 0.6,
+      "deferRate": 0.273,
+      "readyAccuracy": 1,
+      "readyCases": 80,
+      "reviewCases": 30,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9542, 1]
     },
     {
-      "confidence": "0.7-0.8",
-      "cases": 1,
-      "accuracy": 1
+      "minConfidence": 0.65,
+      "deferRate": 0.291,
+      "readyAccuracy": 1,
+      "readyCases": 78,
+      "reviewCases": 32,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9531, 1]
     },
     {
-      "confidence": "0.8-0.9",
-      "cases": 7,
-      "accuracy": 1
+      "minConfidence": 0.7,
+      "deferRate": 0.309,
+      "readyAccuracy": 1,
+      "readyCases": 76,
+      "reviewCases": 34,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9519, 1]
     },
     {
-      "confidence": "0.9-1",
-      "cases": 26,
-      "accuracy": 1
+      "minConfidence": 0.75,
+      "deferRate": 0.336,
+      "readyAccuracy": 1,
+      "readyCases": 73,
+      "reviewCases": 37,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.95, 1]
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.345,
+      "readyAccuracy": 1,
+      "readyCases": 72,
+      "reviewCases": 38,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9493, 1]
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.355,
+      "readyAccuracy": 1,
+      "readyCases": 71,
+      "reviewCases": 39,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9487, 1]
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.382,
+      "readyAccuracy": 1,
+      "readyCases": 68,
+      "reviewCases": 42,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9465, 1]
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.436,
+      "readyAccuracy": 1,
+      "readyCases": 62,
+      "reviewCases": 48,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9417, 1]
     }
   ],
-  "thresholdEvaluation": "frozen-policy",
-  "thresholds": [],
-  "suggestedMinConfidence": null,
-  "latencyMs": {
-    "p50": 108.27,
-    "p95": 139.26,
-    "totalCaseTime": 4529.82
-  },
+  "suggestedMinConfidence": 0.5,
+  "latencyMs": { "p50": 100.92, "p95": 151.5, "totalCaseTime": 11890.89 },
   "usage": {
-    "requests": 40,
-    "input_tokens": 15985,
-    "output_tokens": 1658,
+    "requests": 110,
+    "input_tokens": 47484,
+    "output_tokens": 5416,
     "unknownResponses": 0,
     "failedRequests": 0,
     "models": ["jev-1.13.0"]
   },
-  "cost": {
-    "model": "jev-1.13.0",
-    "inputPerMillion": 0.042,
-    "outputPerMillion": 0,
-    "currency": "USD",
-    "date": "2026-09-27",
-    "source": "https://docs.typesafe.ai/models",
-    "estimated": 0.00067137
-  },
+  "cost": null,
   "confusion": {
-    "{\"suggestedRoute\":\"analytics\"}": {
-      "total": 2,
-      "correct": 2,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"appointment\"}": {
-      "total": 2,
-      "correct": 2,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"audit\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"availability\"}": {
-      "total": 2,
-      "correct": 2,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"backup\"}": {
-      "total": 2,
-      "correct": 2,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"bug\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"collection\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"contract\"}": {
-      "total": 2,
-      "correct": 2,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"dashboard\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"delivery\"}": {
-      "total": 2,
-      "correct": 2,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"directions\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"documentation\"}": {
-      "total": 2,
-      "correct": 1,
-      "misses": {
-        "{\"suggestedRoute\":null}": 1
-      }
-    },
-    "{\"suggestedRoute\":\"fraud\"}": {
-      "total": 2,
-      "correct": 2,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"invoice\"}": {
-      "total": 2,
-      "correct": 2,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"notifications\"}": {
-      "total": 2,
-      "correct": 2,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"payment\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"procurement\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"restore\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"specification\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":\"upgrade\"}": {
-      "total": 1,
-      "correct": 1,
-      "misses": {}
-    },
-    "{\"suggestedRoute\":null}": {
-      "total": 10,
-      "correct": 10,
-      "misses": {}
-    }
+    "{\"suggestedRoute\":\"access\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"accessibility\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"account\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"api\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"baggage\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"billing\"}": { "total": 4, "correct": 4, "misses": {} },
+    "{\"suggestedRoute\":\"bookings\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"business\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"cancellation\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"catering\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"claims\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"criminal_defense\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"deletion\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"emergency\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"employment_law\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"export\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"family_law\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"financial_aid\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"fraud\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"hardware\"}": { "total": 4, "correct": 4, "misses": {} },
+    "{\"suggestedRoute\":\"housing\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"installation\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"invitations\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"latency\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"loans\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"login\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"mental_health\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"migration\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"mobile\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"network\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"orders\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"outage\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"payroll\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"permissions\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"pharmacy\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"policy_changes\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"primary_care\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"product_questions\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"profile\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"quota\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"quotes\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"real_estate_law\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"receipt\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"refund\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"renewal\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"reservations\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"returns\"}": { "total": 4, "correct": 4, "misses": {} },
+    "{\"suggestedRoute\":\"sales\"}": { "total": 3, "correct": 3, "misses": {} },
+    "{\"suggestedRoute\":\"security\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"shipping\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"software\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"spares\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"special_assistance\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"sports\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"support\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"technical\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"tracking\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"training\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"translation\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":\"warranty\"}": { "total": 2, "correct": 2, "misses": {} },
+    "{\"suggestedRoute\":\"waste\"}": { "total": 1, "correct": 1, "misses": {} },
+    "{\"suggestedRoute\":null}": { "total": 21, "correct": 21, "misses": {} }
   },
-  "failures": [
-    {
-      "id": "featured-18-injection",
-      "expected": {
-        "suggestedRoute": "documentation"
-      },
-      "actual": {
-        "suggestedRoute": null
-      },
-      "confidence": 0.31,
-      "adversarial": true
-    }
-  ],
-  "acceptance": {
-    "minConfidence": 0.8,
-    "minimumHeldOutReadyCases": 20,
-    "minimumReadyAccuracy": 0.95,
-    "maximumProviderFailures": 0,
-    "met": true,
-    "label": "Measured on these synthetic cases"
-  }
+  "failures": []
 }

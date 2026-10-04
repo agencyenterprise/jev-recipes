@@ -1,653 +1,362 @@
 {
   "evidence": {
-    "runId": "cc47e826-1eb4-4db7-8931-b4387bb7f866",
-    "evaluatedAt": "2026-09-27T21:21:20.879Z",
-    "packageVersion": "0.8.1",
+    "runId": "d949ef80-ac4c-4265-a79e-1d310ab65e7a",
+    "sourceMode": "live",
+    "evaluatedAt": "2026-10-04T18:16:55.531Z",
+    "createdAt": "2026-10-04T18:16:55.531Z",
+    "scoringRevision": 2,
+    "packageVersion": "0.9.11",
     "recipeFingerprint": "32da43478751402b4e6dc643b92a96dfdbf6b467d1299cd29aedf389d4710b8b",
-    "datasetFingerprint": "0fe1a8afe82e4ede162b127779c4bf233a82a6c1377a5543b73b468072ad129c",
-    "split": "held-out",
+    "datasetFingerprint": "94f9dc8026dbc531ceea082e43eb1517f88aedf16c4c013a18f1ff2ac3a0a8e1",
+    "split": "development",
     "mode": "live",
-    "policy": {
-      "minConfidence": 0.8,
-      "selectedOn": {
-        "runId": "3ee4a404-13b0-4a60-9d52-35281782dae8",
-        "datasetFingerprint": "94f9dc8026dbc531ceea082e43eb1517f88aedf16c4c013a18f1ff2ac3a0a8e1",
-        "recipeFingerprint": "32da43478751402b4e6dc643b92a96dfdbf6b467d1299cd29aedf389d4710b8b",
-        "model": "typesafe-ai/jev",
-        "split": "development"
-      }
-    },
+    "policy": {},
     "provenance": [
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/async_context.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/assert.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/buffer.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/child_process.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/cli.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/crypto.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/console.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/diagnostics_channel.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/events.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/dns.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/fs.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/errors.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/http.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/process.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/https.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/repl.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/net.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/timers.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/path.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/tls.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/perf_hooks.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/util.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/querystring.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/vm.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/readline.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/wasi.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       },
       {
         "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/stream.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
-        "cases": 9
-      },
-      {
-        "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/string_decoder.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
-        "cases": 9
-      },
-      {
-        "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/test.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
-        "cases": 9
-      },
-      {
-        "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/tty.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
-        "cases": 9
-      },
-      {
-        "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/url.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
-        "cases": 9
-      },
-      {
-        "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/v8.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
-        "cases": 9
-      },
-      {
-        "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/worker_threads.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
-        "cases": 9
-      },
-      {
-        "method": "public-dataset",
-        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/zlib.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
+        "source": "https://raw.githubusercontent.com/nodejs/node/v22.20.0/doc/api/webcrypto.md; source Markdown labels, transformed by build-ingestion-cases.mjs; no independent human review; Node.js MIT license.",
         "cases": 9
       }
     ]
   },
   "recipe": "text-block-role",
-  "model": "typesafe-ai/jev",
-  "models": ["typesafe-ai/jev"],
-  "cases": 189,
-  "completed": 189,
+  "model": "jev-1.13.0",
+  "models": ["jev-1.13.0"],
+  "cases": 126,
+  "completed": 126,
   "failed": 0,
-  "correct": 155,
-  "wrong": 34,
-  "ready": 136,
-  "review": 53,
-  "accuracy": 0.82,
-  "completedAccuracy": 0.82,
-  "accuracyInterval95": [0.7591, 0.8683],
-  "readyAccuracy": 0.904,
-  "readyAccuracyInterval95": [0.8433, 0.9433],
-  "reviewRate": 0.28,
+  "correct": 105,
+  "wrong": 21,
+  "ready": 92,
+  "review": 34,
+  "accuracy": 0.833,
+  "completedAccuracy": 0.833,
+  "accuracyInterval95": [0.7586, 0.8883],
+  "readyAccuracy": 0.957,
+  "readyAccuracyInterval95": [0.8935, 0.983],
+  "reviewRate": 0.27,
   "contestedAccuracy": null,
   "adversarialAccuracy": null,
   "calibration": [
+    { "confidence": "0-0.5", "cases": 8, "accuracy": 0.375 },
+    { "confidence": "0.5-0.6", "cases": 7, "accuracy": 0.286 },
+    { "confidence": "0.6-0.7", "cases": 9, "accuracy": 0.556 },
+    { "confidence": "0.7-0.8", "cases": 10, "accuracy": 0.7 },
+    { "confidence": "0.8-0.9", "cases": 10, "accuracy": 0.7 },
+    { "confidence": "0.9-1", "cases": 82, "accuracy": 0.988 }
+  ],
+  "thresholdEvaluation": "recipe-replay",
+  "thresholds": [
     {
-      "confidence": "0-0.5",
-      "cases": 15,
-      "accuracy": 0.333
+      "minConfidence": 0.5,
+      "deferRate": 0.063,
+      "readyAccuracy": 0.864,
+      "readyCases": 118,
+      "reviewCases": 8,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.7911, 0.9148]
     },
     {
-      "confidence": "0.5-0.6",
-      "cases": 11,
-      "accuracy": 0.455
+      "minConfidence": 0.55,
+      "deferRate": 0.087,
+      "readyAccuracy": 0.887,
+      "readyCases": 115,
+      "reviewCases": 11,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8162, 0.9327]
     },
     {
-      "confidence": "0.6-0.7",
-      "cases": 16,
-      "accuracy": 0.938
+      "minConfidence": 0.6,
+      "deferRate": 0.119,
+      "readyAccuracy": 0.901,
+      "readyCases": 111,
+      "reviewCases": 15,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8312, 0.9438]
     },
     {
-      "confidence": "0.7-0.8",
-      "cases": 11,
-      "accuracy": 0.636
+      "minConfidence": 0.65,
+      "deferRate": 0.135,
+      "readyAccuracy": 0.899,
+      "readyCases": 109,
+      "reviewCases": 17,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8283, 0.9427]
     },
     {
-      "confidence": "0.8-0.9",
-      "cases": 17,
-      "accuracy": 0.471
+      "minConfidence": 0.7,
+      "deferRate": 0.19,
+      "readyAccuracy": 0.931,
+      "readyCases": 102,
+      "reviewCases": 24,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8651, 0.9664]
     },
     {
-      "confidence": "0.9-1",
-      "cases": 119,
-      "accuracy": 0.966
+      "minConfidence": 0.75,
+      "deferRate": 0.246,
+      "readyAccuracy": 0.947,
+      "readyCases": 95,
+      "reviewCases": 31,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8827, 0.9773]
+    },
+    {
+      "minConfidence": 0.8,
+      "deferRate": 0.27,
+      "readyAccuracy": 0.957,
+      "readyCases": 92,
+      "reviewCases": 34,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.8935, 0.983]
+    },
+    {
+      "minConfidence": 0.85,
+      "deferRate": 0.302,
+      "readyAccuracy": 0.977,
+      "readyCases": 88,
+      "reviewCases": 38,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9209, 0.9937]
+    },
+    {
+      "minConfidence": 0.9,
+      "deferRate": 0.349,
+      "readyAccuracy": 0.988,
+      "readyCases": 82,
+      "reviewCases": 44,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.9341, 0.9978]
+    },
+    {
+      "minConfidence": 0.95,
+      "deferRate": 0.421,
+      "readyAccuracy": 1,
+      "readyCases": 73,
+      "reviewCases": 53,
+      "failedCases": 0,
+      "readyAccuracyInterval95": [0.95, 1]
     }
   ],
-  "thresholdEvaluation": "frozen-policy",
-  "thresholds": [],
-  "suggestedMinConfidence": null,
-  "latencyMs": {
-    "p50": 245.84,
-    "p95": 324.42,
-    "totalCaseTime": 48083.97
-  },
+  "suggestedMinConfidence": 0.8,
+  "latencyMs": { "p50": 109.23, "p95": 185.59, "totalCaseTime": 14920.69 },
   "usage": {
-    "requests": 189,
-    "input_tokens": 138959,
-    "output_tokens": 15498,
+    "requests": 126,
+    "input_tokens": 92848,
+    "output_tokens": 10333,
     "unknownResponses": 0,
     "failedRequests": 0,
-    "models": ["typesafe-ai/jev"]
+    "models": ["jev-1.13.0"]
   },
-  "cost": {
-    "model": "typesafe-ai/jev",
-    "inputPerMillion": 0.042,
-    "outputPerMillion": 0,
-    "currency": "USD",
-    "date": "2026-09-27",
-    "source": "https://ai-gateway.vercel.sh/v1/models",
-    "estimated": 0.00583628
-  },
+  "cost": null,
   "confusion": {
-    "{\"verdict\":\"body\"}": {
-      "total": 63,
-      "correct": 62,
-      "misses": {
-        "{\"verdict\":\"code\"}": 1
-      }
-    },
+    "{\"verdict\":\"body\"}": { "total": 42, "correct": 42, "misses": {} },
     "{\"verdict\":\"code\"}": {
-      "total": 63,
-      "correct": 63,
-      "misses": {}
+      "total": 42,
+      "correct": 41,
+      "misses": { "{\"verdict\":\"body\"}": 1 }
     },
     "{\"verdict\":\"heading\"}": {
-      "total": 63,
-      "correct": 30,
+      "total": 42,
+      "correct": 22,
       "misses": {
-        "{\"verdict\":\"body\"}": 19,
-        "{\"verdict\":\"code\"}": 14
+        "{\"verdict\":\"body\"}": 13,
+        "{\"verdict\":\"code\"}": 6,
+        "{\"verdict\":\"unclear\"}": 1
       }
     }
   },
   "failures": [
     {
-      "id": "node-v22.20.0-async_context.md-role-28",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.81
+      "id": "node-v22.20.0-assert.md-role-113",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.48
     },
     {
-      "id": "node-v22.20.0-buffer.md-role-85",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.28
+      "id": "node-v22.20.0-child_process.md-role-113",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.58
     },
     {
-      "id": "node-v22.20.0-console.md-role-71",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.36
+      "id": "node-v22.20.0-child_process.md-role-30",
+      "expected": { "verdict": "code" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.54
     },
     {
-      "id": "node-v22.20.0-console.md-role-93",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.96
+      "id": "node-v22.20.0-crypto.md-role-76",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.68
     },
     {
-      "id": "node-v22.20.0-console.md-role-95",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.81
+      "id": "node-v22.20.0-dns.md-role-82",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.49
     },
     {
-      "id": "node-v22.20.0-events.md-role-57",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
+      "id": "node-v22.20.0-dns.md-role-135",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.47
+    },
+    {
+      "id": "node-v22.20.0-dns.md-role-149",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.73
+    },
+    {
+      "id": "node-v22.20.0-errors.md-role-165",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.66
+    },
+    {
+      "id": "node-v22.20.0-process.md-role-20",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "unclear" },
+      "confidence": 0.24
+    },
+    {
+      "id": "node-v22.20.0-process.md-role-24",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.51
+    },
+    {
+      "id": "node-v22.20.0-process.md-role-81",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
       "confidence": 0.84
     },
     {
-      "id": "node-v22.20.0-fs.md-role-37",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.65
-    },
-    {
-      "id": "node-v22.20.0-fs.md-role-66",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.8
-    },
-    {
-      "id": "node-v22.20.0-http.md-role-53",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
+      "id": "node-v22.20.0-repl.md-role-83",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
       "confidence": 0.82
     },
     {
-      "id": "node-v22.20.0-http.md-role-112",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.5
+      "id": "node-v22.20.0-timers.md-role-28",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.91
     },
     {
-      "id": "node-v22.20.0-https.md-role-47",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.8
+      "id": "node-v22.20.0-timers.md-role-36",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.67
     },
     {
-      "id": "node-v22.20.0-https.md-role-54",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.59
+      "id": "node-v22.20.0-util.md-role-21",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.53
     },
     {
-      "id": "node-v22.20.0-net.md-role-32",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.79
+      "id": "node-v22.20.0-util.md-role-90",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.68
     },
     {
-      "id": "node-v22.20.0-net.md-role-68",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.59
+      "id": "node-v22.20.0-util.md-role-178",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.73
     },
     {
-      "id": "node-v22.20.0-path.md-role-69",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.35
+      "id": "node-v22.20.0-vm.md-role-1",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.87
     },
     {
-      "id": "node-v22.20.0-path.md-role-105",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.82
-    },
-    {
-      "id": "node-v22.20.0-perf_hooks.md-role-58",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.46
-    },
-    {
-      "id": "node-v22.20.0-perf_hooks.md-role-65",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.78
-    },
-    {
-      "id": "node-v22.20.0-querystring.md-role-22",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.92
-    },
-    {
-      "id": "node-v22.20.0-querystring.md-role-28",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.71
-    },
-    {
-      "id": "node-v22.20.0-readline.md-role-68",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.94
-    },
-    {
-      "id": "node-v22.20.0-readline.md-role-81",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
+      "id": "node-v22.20.0-vm.md-role-47",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
       "confidence": 0.31
     },
     {
-      "id": "node-v22.20.0-stream.md-role-54",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.55
+      "id": "node-v22.20.0-vm.md-role-54",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "code" },
+      "confidence": 0.77
     },
     {
-      "id": "node-v22.20.0-string_decoder.md-role-75",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.83
-    },
-    {
-      "id": "node-v22.20.0-tty.md-role-35",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.78
-    },
-    {
-      "id": "node-v22.20.0-tty.md-role-45",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.4
-    },
-    {
-      "id": "node-v22.20.0-tty.md-role-56",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.85
-    },
-    {
-      "id": "node-v22.20.0-url.md-role-80",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.44
-    },
-    {
-      "id": "node-v22.20.0-url.md-role-82",
-      "expected": {
-        "verdict": "body"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.57
-    },
-    {
-      "id": "node-v22.20.0-v8.md-role-14",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.46
-    },
-    {
-      "id": "node-v22.20.0-v8.md-role-34",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.41
-    },
-    {
-      "id": "node-v22.20.0-v8.md-role-60",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "body"
-      },
-      "confidence": 0.56
-    },
-    {
-      "id": "node-v22.20.0-worker_threads.md-role-104",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.92
-    },
-    {
-      "id": "node-v22.20.0-worker_threads.md-role-151",
-      "expected": {
-        "verdict": "heading"
-      },
-      "actual": {
-        "verdict": "code"
-      },
-      "confidence": 0.43
+      "id": "node-v22.20.0-wasi.md-role-121",
+      "expected": { "verdict": "heading" },
+      "actual": { "verdict": "body" },
+      "confidence": 0.59
     }
-  ],
-  "documentEvaluation": {
-    "baseline": "Frozen syntax/punctuation rules in evals/lib/ingestion-metrics.mjs",
-    "baselineAccuracy": 0.9259259259259259,
-    "documentCount": 21,
-    "perLabel": [
-      {
-        "label": "heading",
-        "cases": 63,
-        "precision": 1,
-        "recall": 0.47619047619047616,
-        "f1": 0.6451612903225806
-      },
-      {
-        "label": "body",
-        "cases": 63,
-        "precision": 0.7654320987654321,
-        "recall": 0.9841269841269841,
-        "f1": 0.8611111111111112
-      },
-      {
-        "label": "list_item",
-        "cases": 0,
-        "precision": 0,
-        "recall": 0,
-        "f1": 0
-      },
-      {
-        "label": "code",
-        "cases": 63,
-        "precision": 0.8076923076923077,
-        "recall": 1,
-        "f1": 0.8936170212765957
-      },
-      {
-        "label": "table",
-        "cases": 0,
-        "precision": 0,
-        "recall": 0,
-        "f1": 0
-      },
-      {
-        "label": "caption",
-        "cases": 0,
-        "precision": 0,
-        "recall": 0,
-        "f1": 0
-      },
-      {
-        "label": "formula",
-        "cases": 0,
-        "precision": 0,
-        "recall": 0,
-        "f1": 0
-      },
-      {
-        "label": "other",
-        "cases": 0,
-        "precision": 0,
-        "recall": 0,
-        "f1": 0
-      }
-    ],
-    "macroF1": 0.2999861778387859,
-    "readyCoverage": 0.7195767195767195,
-    "acceptedDecisions": 136,
-    "acceptedDocuments": 21,
-    "acceptedPrecision": 0.9044117647058824,
-    "acceptedPrecisionInterval95": [0.8721804511278195, 0.9389312977099237],
-    "acceptedContinuationRecall": null,
-    "baselineImprovementInterval95": [-0.164021164021164, -0.042328042328042326],
-    "intervalMethod": "Deterministic percentile bootstrap of whole source documents, 2000 replicates. Sparse/all-correct samples can yield degenerate intervals; these are descriptive, not guarantees."
-  },
-  "acceptance": {
-    "met": false,
-    "checks": {
-      "noProviderFailures": true,
-      "beatsFrozenBaseline": false,
-      "readyAccuracy": false,
-      "precisionLowerBound": false,
-      "macroF1": false,
-      "readyCoverage": true,
-      "everyRoleRepresented": false
-    },
-    "label": "Experimental: declared document acceptance policy not met"
-  },
-  "gatewayIdentity": "Gateway returned the alias typesafe-ai/jev; backend version and BYOK credential use are not independently established."
+  ]
 }

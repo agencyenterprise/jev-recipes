@@ -162,9 +162,36 @@ The board is translated into labeled pieces, such as `c3: your man`, and each mo
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Unknown response origin; experimental.**
+**Current measurement; labels unspecified; experimental.**
 
-No verified live measurement is available. Saved fixture or unknown-origin results do not establish model accuracy.
+Measured on 31 golden cases against `jev-1.13.0`: **58% accurate** overall (contested cases 20%, adversarial cases 60%).
+
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `c606550c71285e3e9f0919cfa273553c33ea6b1943640acf14742ae1d7c9dfbf`.
+
+Scoring revision: 2.
+
+18/31 cases correct; 0 ready, 31 review, 0 failed. Accuracy among ready cases: n/a.
+
+Latency: p50 107.98 ms, p95 148.11 ms. Usage: 25635 input tokens and 1842 output tokens across 31 logical requests.
+
+Labels: unspecified (31 cases): Not recorded by the dataset author.
+
+These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
+
+95% case-level accuracy interval: 41% to 74%.
+
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 55%                | 100%                      |
+| 0.6             | 68%                | 100%                      |
+| 0.7             | 87%                | 100%                      |
+| 0.8             | 100%               | n/a                       |
+| 0.9             | 100%               | n/a                       |
+| 0.95            | 100%               | n/a                       |
+
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
+
+Run `npm run eval -- checkers-move` to save new results and update this guide. The full report, including misses, is in [evals/results/checkers-move.json](../../evals/results/checkers-move.json). Accuracy on your own data may differ.
 
 <!-- END GENERATED: accuracy -->
 

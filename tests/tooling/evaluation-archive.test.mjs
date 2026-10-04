@@ -290,3 +290,28 @@ test('repository comparisons retain nested numeric decisions while excluding res
     false,
   );
 });
+
+test('a recorded request replays even when the SDK question carried an undefined field', async () => {
+  const rerankFixture = JSON.parse(
+    await readFile(new URL('../../recipes/rerank/demo.json', import.meta.url), 'utf8'),
+  );
+  const rerankCase = {
+    id: 'relevance',
+    input: rerankFixture.input,
+    expected: { evaluated: rerankFixture.input.items.length },
+    rationale: 'Every supplied item is evaluated once.',
+  };
+  const rerankClient = { systemOne: async () => structuredClone(rerankFixture.response) };
+  const root = await mkdtemp(join(tmpdir(), 'jev-archive-undefined-field-'));
+  try {
+    const out = join(root, 'rerank');
+    await evaluate('rerank', [rerankCase], { client: rerankClient, out, mode: 'fixture' });
+    const saved = await readRun(out);
+    assert.ok(!('criteria' in saved.rows[0].exchanges[0].request.questions.item_0));
+    const replayed = await replay(saved);
+    assert.equal(replayed.report.correct, 1);
+    assert.equal(replayed.report.failed, 0);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

@@ -21,6 +21,13 @@ const stopWords = new Set([
   'with',
 ]);
 
+const EXACT_ID_BONUS = 10_000;
+const FULL_COVERAGE_BONUS = 1_000;
+const PHRASE_BONUS = 50;
+const EXACT_MATCH = 1;
+const SHARED_STEM_MINIMUM_LENGTH = 4;
+const SHARED_STEM_MINIMUM_RATIO = 0.6;
+
 export function searchRecipes<T extends RecipeMetadata>(
   recipes: readonly T[],
   filters: RecipeFilters,
@@ -38,9 +45,26 @@ export function searchRecipes<T extends RecipeMetadata>(
     .map(({ recipe }) => recipe);
 }
 
+type TermMatch = { quality: number; weight: number };
+
 function scoreRecipe(recipe: RecipeMetadata, query: string, terms: string[]): number {
   if (!query) return 0;
-  const fields: [string, number][] = [
+  const fields = weightedFields(recipe);
+  const matches = terms.map((term) => bestMatch(fields, term));
+  if (matches.every((match) => match.quality === 0)) return -1;
+
+  const coverage = matches.reduce((total, match) => total + match.quality, 0) / terms.length;
+  const relevance = matches.reduce((total, match) => total + match.weight, 0);
+  return (
+    (normalize(recipe.id) === query ? EXACT_ID_BONUS : 0) +
+    (matchesPhrase(recipe, terms) ? PHRASE_BONUS : 0) +
+    coverage * FULL_COVERAGE_BONUS +
+    relevance
+  );
+}
+
+function weightedFields(recipe: RecipeMetadata): [string, number][] {
+  return [
     [normalize(recipe.id), 40],
     [normalize(recipe.title), 25],
     [normalize(recipe.tags.join(' ')), 20],
@@ -48,14 +72,39 @@ function scoreRecipe(recipe: RecipeMetadata, query: string, terms: string[]): nu
     [normalize(recipe.description), 5],
     [normalize(recipe.category), 1],
   ];
-  let score = normalize(recipe.id) === query ? 1000 : 0;
-  if (terms.length > 1 && normalize(recipe.useWhen ?? '').includes(terms.join(' '))) score += 50;
-  for (const term of terms) {
-    const matches = fields.filter(([text]) => text.includes(term));
-    if (!matches.length) return -1;
-    score += Math.max(...matches.map(([, weight]) => weight));
-  }
-  return score;
+}
+
+function bestMatch(fields: [string, number][], term: string): TermMatch {
+  return fields.reduce<TermMatch>(
+    (best, [text, fieldWeight]) => {
+      const quality = fieldMatch(text, term);
+      return {
+        quality: Math.max(best.quality, quality),
+        weight: Math.max(best.weight, fieldWeight * quality),
+      };
+    },
+    { quality: 0, weight: 0 },
+  );
+}
+
+function matchesPhrase(recipe: RecipeMetadata, terms: string[]): boolean {
+  return terms.length > 1 && normalize(recipe.useWhen ?? '').includes(terms.join(' '));
+}
+
+function fieldMatch(text: string, term: string): number {
+  if (text.includes(term)) return EXACT_MATCH;
+  return text.split(' ').reduce((best, word) => Math.max(best, stemSimilarity(word, term)), 0);
+}
+
+function stemSimilarity(first: string, second: string): number {
+  const longerLength = Math.max(first.length, second.length);
+  let sharedLength = 0;
+  while (sharedLength < longerLength && first[sharedLength] === second[sharedLength])
+    sharedLength++;
+  const sharesStem =
+    sharedLength >= SHARED_STEM_MINIMUM_LENGTH &&
+    sharedLength >= Math.ceil(longerLength * SHARED_STEM_MINIMUM_RATIO);
+  return sharesStem ? sharedLength / longerLength : 0;
 }
 
 function normalize(text: string): string {

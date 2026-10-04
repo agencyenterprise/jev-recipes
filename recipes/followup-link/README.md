@@ -98,29 +98,36 @@ Selects from the supplied earlier requests. Supply enough conversation context t
 
 <!-- BEGIN GENERATED: accuracy -->
 
-**Earlier-evaluator measurement; experimental.**
+**Current synthetic measurement; experimental.**
 
-Measured on 40 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
+Measured on 60 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
 
-Recorded 2026-09-27 with package 0.7.0, on the **held-out** split. Recipe fingerprint: `77fc95ddff5d802d6341d747e754da620513c23205a4bb31bcdfe9ad44efea4c`.
+Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `77fc95ddff5d802d6341d747e754da620513c23205a4bb31bcdfe9ad44efea4c`.
 
-Scoring revision: 1.
+Scoring revision: 2.
 
-40/40 cases correct; 30 ready, 10 review, 0 failed. Accuracy among ready cases: 100%.
+60/60 cases correct; 45 ready, 15 review, 0 failed. Accuracy among ready cases: 100%.
 
-Latency: p50 103.91 ms, p95 164.72 ms. Usage: 20559 input tokens and 2100 output tokens across 40 logical requests.
+Latency: p50 110.21 ms, p95 163.34 ms. Usage: 30966 input tokens and 3150 output tokens across 60 logical requests.
 
-Labels: author-synthetic (40 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
+Labels: author-synthetic (60 cases): AI-authored synthetic boundary cases for jev-recipes; labels have not had independent human review.
 
 These authored cases are not independent human validation. Related variants are correlated; case-level confidence intervals can overstate independent evidence.
 
-95% case-level accuracy interval: 91% to 100%.
+95% case-level accuracy interval: 94% to 100%.
 
-**Measured on these synthetic cases.**
+A case counts as correct only when every item in it is right. Across the 120 individual items, **100%** were judged correctly.
 
-A case counts as correct only when every item in it is right. Across the 80 individual items, **100%** were judged correctly.
+| `minConfidence` | Deferred to review | Accuracy of ready results |
+| --------------- | ------------------ | ------------------------- |
+| 0.5             | 25%                | 100%                      |
+| 0.6             | 25%                | 100%                      |
+| 0.7             | 25%                | 100%                      |
+| 0.8             | 25%                | 100%                      |
+| 0.9             | 25%                | 100%                      |
+| 0.95            | 25%                | 100%                      |
 
-Evaluated with the policy frozen on development data: minConfidence 0.8. No threshold search was performed on held-out cases.
+The lowest threshold reaching 95% accuracy on ready results is 0.5.
 
 Run `npm run eval -- followup-link` to save new results and update this guide. The full report, including misses, is in [evals/results/followup-link.json](../../evals/results/followup-link.json). Accuracy on your own data may differ.
 
