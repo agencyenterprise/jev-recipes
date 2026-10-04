@@ -54,4 +54,4 @@ This small harness belongs to the support-routing example. Repository maintainer
 
 ## What the retained comparison does not prove
 
-The September 27 evaluation made no eligible fallback calls on its 48 authored cases. Separate fixture/transport checks cover fallback ready, review, error, and cancellation behavior, but those tests do not establish that fallback improves live accuracy. A new claim needs fresh held-out families and observed fallback cases under a frozen policy. See the [offline preparation plan](../../docs/evaluation-plan.md).
+The September 27 evaluation made no eligible fallback calls on its 48 authored cases. Separate fixture/transport checks cover fallback ready, review, error, and cancellation behavior, but those tests do not establish that fallback improves live accuracy. A new claim needs fresh held-out families and observed fallback cases under a frozen policy.
