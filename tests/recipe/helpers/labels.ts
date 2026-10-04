@@ -63,16 +63,25 @@ export function testLabels<Input extends Record<string, unknown>>(
       });
     });
 
-    it('detects only the labels whose probability is at least 0.5, preserving order', async () => {
-      const first = names[0]!;
-      const last = names[names.length - 1]!;
-      const client = createJevClient(answers({ ...uniform(0.1), [first]: 0.95, [last]: 0.5 }));
-      const result = await run(input, { client });
-      expect(result.detected).toEqual(first === last ? [first] : [first, last]);
-      expect(result.labels[first]).toMatchObject({ verdict: 'present', status: 'ready' });
-      expect(result.labels[last]).toMatchObject({ verdict: 'present', status: 'review' });
-      expect(result.status).toBe('review');
-    });
+    it.each([
+      { probability: 0.95, status: 'ready' },
+      { probability: 0.5, status: 'review' },
+    ])(
+      'preserves detected label order with $status results at probability $probability',
+      async ({ probability, status }) => {
+        const detected = names.filter((_, index) => index === 0 || index === names.length - 1);
+        const probabilities = {
+          ...uniform(0.1),
+          ...Object.fromEntries(detected.map((name) => [name, probability])),
+        };
+        const client = createJevClient(answers(probabilities));
+        const result = await run(input, { client });
+        expect(result.detected).toEqual(detected);
+        for (const name of detected)
+          expect(result.labels[name]).toMatchObject({ verdict: 'present', status });
+        expect(result.status).toBe(status);
+      },
+    );
 
     it.each([
       { probability: 0.79, minConfidence: undefined, status: 'review' },
