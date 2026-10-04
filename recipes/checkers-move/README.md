@@ -162,6 +162,8 @@ The board is translated into labeled pieces, such as `c3: your man`, and each mo
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current measurement; labels unspecified; experimental.**
+
 Measured on 31 golden cases against `jev-1.13.0`: **58% accurate** overall (contested cases 20%, adversarial cases 60%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `c606550c71285e3e9f0919cfa273553c33ea6b1943640acf14742ae1d7c9dfbf`.

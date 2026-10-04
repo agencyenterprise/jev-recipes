@@ -116,6 +116,8 @@ A result is `ready` when the decision confidence meets `minConfidence` and the v
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current mixed-source measurement; experimental.**
+
 Measured on 144 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 100%, adversarial cases 100%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `07af7ca742bf9c8de291687ddb75cb999d01c4ce643a10ac88459553127d4644`.

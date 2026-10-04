@@ -78,6 +78,8 @@ A result is `ready` when `confidence` meets `minConfidence`. Otherwise it is `re
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current measurement; labels unspecified; experimental.**
+
 Measured on 44 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 83%, adversarial cases 100%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `58cf6f3b5a7c234523db222b233704b1e9657cdcdde0f4d0aa57699a70d35b66`.

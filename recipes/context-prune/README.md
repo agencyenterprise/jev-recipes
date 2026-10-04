@@ -140,6 +140,8 @@ Each entry in `items` has a `verdict` of `keep` or `drop`, the yes probability t
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current mixed-source measurement; experimental.**
+
 Measured on 136 golden cases against `jev-1.13.0`: **90% accurate** overall (contested cases 20%, adversarial cases 97%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `921cf6a3ced0031109478c77c8b5e84815b8b7637f5c8d3380d555b888a2e62f`.

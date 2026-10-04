@@ -92,6 +92,8 @@ Does not extract dates, time zones, or event identifiers and does not schedule c
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement; experimental.**
+
 Measured on 60 golden cases against `jev-1.13.0`: **98% accurate** overall (contested cases 80%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `4866c46f354ce9b8856fe256afca3700a757a07e3bdf69be816718bd9dbbeca3`.

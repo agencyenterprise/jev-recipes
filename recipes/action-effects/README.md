@@ -116,6 +116,8 @@ The labels describe the action as written, not what the underlying tool actually
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement; experimental.**
+
 Measured on 100 golden cases against `jev-1.13.0`: **81% accurate** overall (adversarial cases 76%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `1d8a904b39336096ed678153226be54701c7248ebdf7f840f089be0b46f7c1fc`.

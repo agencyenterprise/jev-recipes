@@ -93,6 +93,8 @@ The caller owns ordering, whitespace, native structure, dehyphenation, and sourc
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current public-dataset measurement; experimental.**
+
 Measured on 112 golden cases against `jev-1.13.0`: **94% accurate** overall.
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `4740e3077ceb0727eb06a35d4c4e3c56e01da0c117fbc378b8f7e940b53c9bfa`.

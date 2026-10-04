@@ -98,6 +98,8 @@ The caller supplies ordered, retained text and owns native tags, extraction, off
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current public-dataset measurement; experimental.**
+
 Measured on 126 golden cases against `jev-1.13.0`: **83% accurate** overall.
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `32da43478751402b4e6dc643b92a96dfdbf6b467d1299cd29aedf389d4710b8b`.

@@ -185,6 +185,8 @@ A saved demo response recommends `defend`. A live recommendation can differ. The
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current measurement; labels unspecified; experimental.**
+
 Measured on 32 golden cases against `jev-1.13.0`: **97% accurate** overall (contested cases 80%, adversarial cases 100%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `3f5ecf6afa9ec8c529c66294d49bfacab11c5c3cae74610752c7828783031b58`.

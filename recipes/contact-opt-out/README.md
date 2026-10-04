@@ -91,6 +91,8 @@ This is a language decision, not a consent registry. Never treat none as permiss
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement; experimental.**
+
 Measured on 60 golden cases against `jev-1.13.0`: **100% accurate** overall (contested cases 100%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `cf942449ed8153c6445d9bf776146328e9d17bffef15889a4280357e0e83d640`.

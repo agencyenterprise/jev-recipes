@@ -88,6 +88,8 @@ The recipe reads the failure as text and asks only whether repeating the same at
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current synthetic measurement; experimental.**
+
 Measured on 60 golden cases against `jev-1.13.0`: **100% accurate** overall.
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `4325f3b69b7412e092d660cb8a88b35faf53642a1310dff64aabd0557ca88f46`.

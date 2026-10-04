@@ -106,6 +106,8 @@ The overall `status` is `review` when any single label falls below `minConfidenc
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current measurement; labels unspecified; experimental.**
+
 Measured on 43 golden cases against `jev-1.13.0`: **95% accurate** overall (contested cases 100%, adversarial cases 80%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `3d17977295595f9944444ce0330aa0158bd0649f056b4004fef0ff8f8c8a5c88`.

@@ -150,6 +150,8 @@ The result `status` is `review` when any item is `review`. Items are independent
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current mixed-source measurement; experimental.**
+
 Measured on 87 golden cases against `jev-1.13.0`: **94% accurate** overall (contested cases 40%, adversarial cases 95%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `eb9dc99b562568445d1ff5ff7b021cffacbbe4b2f65861df51e5c193ccb8f594`.

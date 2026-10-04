@@ -112,6 +112,8 @@ The result includes model and token usage. Inspect the outcome as well as its re
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current measurement; labels unspecified; experimental.**
+
 Measured on 50 golden cases against `jev-1.13.0`: **94% accurate** overall (contested cases 75%, adversarial cases 83%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `f22b76f3c955f02a0aa43ccecf083fc37e58f006fc5e3a9268111abd3e8f787f`.

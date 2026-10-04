@@ -83,6 +83,8 @@ Results include model and token usage. Decisions below `minConfidence` require r
 
 <!-- BEGIN GENERATED: accuracy -->
 
+**Current mixed-source measurement; experimental.**
+
 Measured on 102 golden cases against `jev-1.13.0`: **96% accurate** overall (contested cases 67%, adversarial cases 100%).
 
 Recorded 2026-10-04 with package 0.9.11, on the **development** split. Recipe fingerprint: `49ee0d45f1abd476d39302edeeb80b4e9cf47a46f82642872688fc03f45497fe`.
