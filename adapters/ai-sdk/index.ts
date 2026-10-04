@@ -31,6 +31,7 @@ import type {
   CompletionToolOutput,
   GuardOptions,
   RecipeToolOptions,
+  RecipeToolOutput,
 } from '../shared.js';
 
 export type {
@@ -41,9 +42,10 @@ export type {
   GuardEvent,
   GuardOptions,
   RecipeToolOptions,
+  RecipeToolOutput,
 } from '../shared.js';
 
-export type RecipeTool = Tool<Record<string, unknown>, Record<string, unknown>>;
+export type RecipeTool = Tool<Record<string, unknown>, RecipeToolOutput>;
 
 export function recipeTool(name: RecipeName, options: RecipeToolOptions = {}): RecipeTool {
   const definition = defineRecipeTool(name, options);

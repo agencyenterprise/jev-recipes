@@ -9,11 +9,13 @@ import type { RecipeOptions } from '../src/schema.js';
 
 export type RecipeToolOptions = RecipeOptions & { description?: string };
 
+export type RecipeToolOutput = Record<string, unknown> | null;
+
 export type RecipeToolDefinition = {
   name: RecipeName;
   description: string;
   inputSchema: Record<string, unknown>;
-  execute: (input: unknown, signal?: AbortSignal) => Promise<Record<string, unknown>>;
+  execute: (input: unknown, signal?: AbortSignal) => Promise<RecipeToolOutput>;
 };
 
 export type GuardOptions = RecipeOptions & {
@@ -99,7 +101,7 @@ export function defineRecipeTool(
     execute: async (input, signal) => {
       const run = await loadRecipe(name);
       const result = await run(input, withSignal(recipeOptions, signal));
-      return result as Record<string, unknown>;
+      return result as RecipeToolOutput;
     },
   };
 }

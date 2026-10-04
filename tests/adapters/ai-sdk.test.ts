@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, expectTypeOf, it, vi } from 'vitest';
 import { ZodError } from 'zod';
 import {
   generateText,
@@ -9,7 +9,7 @@ import {
   tool,
   wrapLanguageModel,
 } from 'ai';
-import type { ToolSet } from 'ai';
+import type { InferToolOutput, ToolSet } from 'ai';
 import { MockLanguageModelV3 } from 'ai/test';
 import type { LanguageModelV3CallOptions, LanguageModelV3GenerateResult } from '@ai-sdk/provider';
 import {
@@ -59,6 +59,18 @@ function toolCall(toolCallId: string, toolName: string, input: unknown) {
 }
 
 describe('recipeTool', () => {
+  it('includes the empty-action null result in its output type without calling Jev', async () => {
+    const client = createJevClient();
+    const chooseAction = recipeTool('game-action', { client });
+    type GameActionToolOutput = InferToolOutput<typeof chooseAction>;
+
+    expectTypeOf<GameActionToolOutput>().toEqualTypeOf<Record<string, unknown> | null>();
+    await expect(
+      chooseAction.execute!({ gameState: {}, playerState: {}, legalActions: [] }, executionOptions),
+    ).resolves.toBeNull();
+    expect(client.systemOne).not.toHaveBeenCalled();
+  });
+
   it('exposes a recipe with its catalog description and JSON input schema', async () => {
     const client = createJevClient(routeRecipeAnswers(['billing', 'technical'], 'billing'));
     const route = recipeTool('route', { client });
