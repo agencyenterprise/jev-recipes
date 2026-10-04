@@ -4,20 +4,16 @@
     "updatedAt": "2026-09-30"
   },
   "docs/evaluation": {
-    "hash": "e318420633c4b424",
+    "hash": "b06435c3cf306018",
     "updatedAt": "2026-10-04"
-  },
-  "docs/gateway-validation": {
-    "hash": "49cec7ec11b0a8cc",
-    "updatedAt": "2026-09-30"
   },
   "docs/getting-started": {
     "hash": "0f2044ff86499d35",
-    "updatedAt": "2026-09-30"
+    "updatedAt": "2026-10-04"
   },
   "docs/integrations": {
-    "hash": "8cb69f4cb18b94ac",
-    "updatedAt": "2026-09-30"
+    "hash": "4ce7cee285271516",
+    "updatedAt": "2026-10-04"
   },
   "recipes/action-compare": {
     "hash": "8c64c702371e3fb3",
@@ -645,7 +641,7 @@
   },
   "recipes/paragraph-boundary": {
     "hash": "796778bfaa1278ec",
-    "updatedAt": "2026-09-30"
+    "updatedAt": "2026-10-04"
   },
   "recipes/passage-compare": {
     "hash": "d0976440482c369d",
@@ -953,7 +949,7 @@
   },
   "recipes/text-block-role": {
     "hash": "fabac1ecdf375a98",
-    "updatedAt": "2026-09-30"
+    "updatedAt": "2026-10-04"
   },
   "recipes/ticket-match": {
     "hash": "a5d482eeabd2c74e",

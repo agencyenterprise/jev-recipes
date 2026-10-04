@@ -50,7 +50,7 @@ const result = await route(
 
 The SDK posts to `/typesafe/v1/systemone`. This route retains TypeSafe's `choice`, `score`, and `noul` vocabulary and response shapes. It is distinct from Gateway's `evaluate` API. Gateway handles billing for this configuration. See [Vercel's TypeSafe client documentation](https://vercel.com/changelog/ai-gateway-now-supports-typesafe-clients-and-http-api-for-jev).
 
-The executable examples are [clients.mjs](../examples/integrations/clients.mjs) and [run.mjs](../examples/integrations/run.mjs). After building, run `node --env-file-if-exists=.env examples/integrations/run.mjs direct --live` or `node --env-file-if-exists=.env examples/integrations/run.mjs gateway --live`. These commands make a paid request. Offline tests exercise the real SDK with an intercepted HTTP transport and assert the URL, model, authentication header, and parsed recipe result; their fixtures are separate from the [recorded live Gateway validation](gateway-validation.md).
+The executable examples are [clients.mjs](../examples/integrations/clients.mjs) and [run.mjs](../examples/integrations/run.mjs). After building, run `node --env-file-if-exists=.env examples/integrations/run.mjs direct --live` or `node --env-file-if-exists=.env examples/integrations/run.mjs gateway --live`. These commands make a paid request. Offline tests exercise the real SDK with an intercepted HTTP transport and assert the URL, model, authentication header, and parsed recipe result; their fixtures do not establish live model accuracy.
 
 ## Compatibility contract
 
