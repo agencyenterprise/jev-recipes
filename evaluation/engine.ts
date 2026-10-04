@@ -136,7 +136,7 @@ async function evaluateCase(
 function recordResponses(client: DecisionClient, exchanges: Exchange[]): DecisionClient {
   return {
     async systemOne(request, options) {
-      const exchange: Exchange = { request: structuredClone(request), durationMs: 0 };
+      const exchange: Exchange = { request: asArchivedRequest(request), durationMs: 0 };
       exchanges.push(exchange);
       const started = performance.now();
       try {
@@ -160,8 +160,9 @@ export function replayResponses(exchanges: Exchange[]) {
   return {
     client: {
       async systemOne(request: SystemOneRequest) {
+        const archived = asArchivedRequest(request);
         const index = remaining.findIndex((exchange) =>
-          isDeepStrictEqual(exchange.request, request),
+          isDeepStrictEqual(exchange.request, archived),
         );
         if (index === -1)
           throw new ReplayMismatch(
@@ -179,6 +180,10 @@ export function replayResponses(exchanges: Exchange[]) {
         );
     },
   };
+}
+
+function asArchivedRequest(request: SystemOneRequest): SystemOneRequest {
+  return JSON.parse(JSON.stringify(request)) as SystemOneRequest;
 }
 
 function safeError(error: unknown): string {
