@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { cp, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { projectRoot } from '../../scripts/lib/recipes.mjs';
 import {
   recipeKinds,
   renderRecipe,
@@ -39,6 +41,30 @@ test('every starter kind renders a valid spec', () => {
     assert.ok(files.get('index.ts').includes('export async function sampleKind('));
     assert.ok(testSource.includes(`recipes/sample-kind/index.js`));
   }
+});
+
+test('generated tests pass for one-candidate and one-label recipes', async (t) => {
+  const root = await createScaffoldTestProject(t);
+  const selection = starterSpec('single-candidate', 'selection');
+  selection.demoInput.candidates = selection.demoInput.candidates.slice(0, 1);
+  selection.demoProbabilities = {
+    [selection.demoInput.candidates[0].id]: 0.94,
+    none: 0.05,
+    ambiguous: 0.01,
+  };
+  const labels = starterSpec('single-label', 'labels');
+  const label = Object.keys(labels.labels)[0];
+  labels.labels = { [label]: labels.labels[label] };
+  labels.demoProbabilities = { [label]: 0.94 };
+
+  await scaffoldFromSpec(root, selection);
+  await scaffoldFromSpec(root, labels);
+  const result = spawnSync(
+    process.execPath,
+    [join(projectRoot, 'node_modules/vitest/vitest.mjs'), 'run', '--root', root],
+    { cwd: root, encoding: 'utf8' },
+  );
+  assert.equal(result.status, 0, result.error?.message ?? result.stdout + result.stderr);
 });
 
 test('a score spec renders exact files with computed demo arithmetic', () => {
@@ -196,3 +222,13 @@ test('scaffoldFromSpec writes the six files and refuses to overwrite', async () 
     await rm(root, { recursive: true, force: true });
   }
 });
+
+async function createScaffoldTestProject(t) {
+  const root = await mkdtemp(join(tmpdir(), 'jev-scaffold-tests-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  await writeFile(join(root, 'package.json'), JSON.stringify({ type: 'module' }));
+  await symlink(join(projectRoot, 'node_modules'), join(root, 'node_modules'), 'dir');
+  for (const path of ['src', 'tests/recipe/helpers', 'vitest.config.ts'])
+    await cp(join(projectRoot, path), join(root, path), { recursive: true });
+  return root;
+}

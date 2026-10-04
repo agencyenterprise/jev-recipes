@@ -259,6 +259,7 @@ async function selectRecipe(id) {
     if (request !== selectionRequest) return;
     renderInspector(recipe);
   } catch {
+    if (request !== selectionRequest) return;
     inspector.textContent = 'This recipe could not load. Select it again to retry.';
   } finally {
     if (request === selectionRequest) inspector.removeAttribute('aria-busy');

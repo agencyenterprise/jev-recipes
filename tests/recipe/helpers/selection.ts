@@ -93,11 +93,11 @@ export function testSelection<Input extends Record<string, unknown>>(
     });
 
     it('keeps a low-confidence suggestion without committing to it', async () => {
-      const client = createJevClient(choiceAnswers('decision', labels, 'candidate_1', 0.79));
+      const client = createJevClient(choiceAnswers('decision', labels, 'candidate_0', 0.79));
       await expect(run(input, { client })).resolves.toMatchObject({
         status: 'review',
         selection: null,
-        suggestedSelection: candidates[1]!.id,
+        suggestedSelection: candidates[0]!.id,
       });
     });
 
@@ -124,17 +124,22 @@ export function testSelection<Input extends Record<string, unknown>>(
       expect(client.systemOne.mock.calls[0]?.[0].state).toEqual(input);
     });
 
-    it('keeps caller IDs separate from the internal none and ambiguous labels', async () => {
-      const items = candidates.map((candidate, index) => ({
-        ...candidate,
-        id: index === 0 ? 'none' : index === 1 ? 'ambiguous' : candidate.id,
-      }));
-      const client = createJevClient(choiceAnswers('decision', labels, 'candidate_1'));
-      await expect(run({ ...input, [candidateField]: items }, { client })).resolves.toMatchObject({
-        verdict: 'matched',
-        selection: 'ambiguous',
-      });
-    });
+    it.each(['none', 'ambiguous'])(
+      'keeps caller ID %s separate from internal labels',
+      async (id) => {
+        const items = candidates.map((candidate, index) => ({
+          ...candidate,
+          id: index === 0 ? id : candidate.id,
+        }));
+        const client = createJevClient(choiceAnswers('decision', labels, 'candidate_0'));
+        await expect(run({ ...input, [candidateField]: items }, { client })).resolves.toMatchObject(
+          {
+            verdict: 'matched',
+            selection: id,
+          },
+        );
+      },
+    );
 
     it('forwards model and abort signal in a single request', async () => {
       const signal = new AbortController().signal;
