@@ -12,6 +12,10 @@ const metadataFields = new Set([
   'probabilities',
   'score',
   'status',
+  'effortScore',
+  'effortConfidence',
+  'effortProbabilities',
+  'relevance',
 ]);
 type Schema = Record<string, unknown>;
 const resultSchemas = new Map<string, Schema>();
