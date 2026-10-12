@@ -7196,8 +7196,8 @@ export const recipeMetadata: CatalogRecipe[] = [
       },
     ],
     evidence: {
-      kind: 'mixed',
-      label: 'Current mixed-source measurement',
+      kind: 'earlier',
+      label: 'Earlier-version measurement',
       experimental: true,
       measurement: {
         model: 'jev-1.13.0',

@@ -159,6 +159,31 @@ test('action payload status does not change readiness in evaluation or replay', 
   }
 });
 
+test('continuous scores named outside the metadata convention are still ignored', () => {
+  assert.deepEqual(
+    comparableDecision(
+      {
+        verdict: 'matched',
+        selection: 'fast',
+        effort: 'low',
+        effortLevel: 0,
+        effortScore: 0.22,
+        effortConfidence: 0.69,
+        effortProbabilities: { 0: 0.79, 1: 0.21, 2: 0 },
+      },
+      'model-route',
+    ),
+    { verdict: 'matched', selection: 'fast', effort: 'low', effortLevel: 0 },
+  );
+  assert.deepEqual(
+    comparableDecision(
+      { items: [{ id: 'reset', text: 'Reset it.', relevance: 0.98 }], evaluated: 3 },
+      'rerank',
+    ),
+    { items: [{ id: 'reset', text: 'Reset it.' }], evaluated: 3 },
+  );
+});
+
 test('compound checks still ignore actual recipe metadata', async () => {
   const demo = JSON.parse(
     await readFile(new URL('../../recipes/verify/demo.json', import.meta.url), 'utf8'),
