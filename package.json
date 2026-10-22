@@ -9,7 +9,7 @@
     "url": "git+https://github.com/agencyenterprise/jev-recipes.git"
   },
   "engines": {
-    "node": ">=22.9"
+    "node": ">=22.23.4"
   },
   "sideEffects": false,
   "main": "./dist/src/index.js",
