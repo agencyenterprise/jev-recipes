@@ -146,6 +146,15 @@ The [support-routing comparison](../evals/support-routing/README.md) uses this e
 
 ## Independent calibration study
 
-_Summary of the DIY Jev post to come._
+Why should you believe Jev's outputs? Jev was reportedly trained on undisclosed synthetic data and claims to supply
+calibrated probabilistic answers to questions you ask using your data. To probe this claim, a synthetic dataset of
+emails was created with well-understood statistical properties and used to test Jev's calibration. Findings include
+that Jev is not necessarily calibrated in the sense of probabilities being accurate on new, unseen data: Jev answers
+with near-certainty (99-100%) on emails designed to be uncertain. Also, Jev may supply inconsistent answers to the same
+question asked in different ways. If you have labeled data (i.e., sets of questions and known answers), you can
+calibrate Jev yourself, or fairly quickly build your own Jev-like model: about 5 minutes of training on a laptop. In
+this investigation, results from calibrating Jev beat those from training your own model at a few hundred labeled
+samples, tied at about 1,000, and lost from 5,000 on. Consequently, Jev seems especially valuable when you have little
+or no labeled data, although it's worth critically examining the outputs for your domain.
 
-Read the full write-up in [DIY Jev](https://www.steveklosterman.com/diy-jev/) by Steve Klosterman. Code, data, and every number are in [klostest/diy-jev](https://github.com/klostest/diy-jev).
+Read the full write-up in [DIY Jev](https://www.steveklosterman.com/diy-jev/) by Steve Klosterman. Code and data at [klostest/diy-jev](https://github.com/klostest/diy-jev).
