@@ -143,3 +143,9 @@ Catalog and CLI descriptions include an `evidence` object derived from the same 
 ## Compare an application workflow
 
 The [support-routing comparison](../evals/support-routing/README.md) uses this evaluator for primary Jev responses and a small example-specific layer for rules and an optional chat fallback. It records both stages, shares the same primary response between strategies, reports review and failure separately, and refuses replay when a required fallback response is missing. The [web starter](../examples/support-routing/web/README.md) uses the same workflow. Its fixtures are behavior demonstrations; its authored live cases remain experimental.
+
+## Independent calibration study
+
+_Summary of the DIY Jev post to come._
+
+Read the full write-up in [DIY Jev](https://www.steveklosterman.com/diy-jev/) by Steve Klosterman. Code, data, and every number are in [klostest/diy-jev](https://github.com/klostest/diy-jev).
